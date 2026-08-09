@@ -1,0 +1,149 @@
+{
+  "eiffel": {
+    "hours": "9:00 – 23:45 (last entry 22:30)",
+    "ticketPrice": "€11.30 – €28.30 (stairs/lift)",
+    "bestTime": "Spring & Autumn, sunset",
+    "transport": "Metro Line 6 to Bir-Hakeim, RER C to Champ de Mars",
+    "officialUrl": "https://www.toureiffel.paris"
+  },
+  "louvre": {
+    "hours": "9:00 – 18:00 (Wed/Fri until 21:45), closed Tue",
+    "ticketPrice": "€17 online, free under 18",
+    "bestTime": "Wed & Fri evenings, quieter",
+    "transport": "Metro Line 1/7 to Palais Royal – Musée du Louvre",
+    "officialUrl": "https://www.louvre.fr"
+  },
+  "colosseum": {
+    "hours": "8:30 – 19:15 (varies by season)",
+    "ticketPrice": "€18 full, €6 EU youth",
+    "bestTime": "Early morning or late afternoon",
+    "transport": "Metro Line B to Colosseo",
+    "officialUrl": "https://colosseo.it"
+  },
+  "vatican": {
+    "hours": "9:00 – 18:00 (Mon–Sat), closed Sun (except last Sun)",
+    "ticketPrice": "€17, free last Sunday of month",
+    "bestTime": "Early morning, avoid Wed (Papal audience)",
+    "transport": "Metro Line A to Ottaviano",
+    "officialUrl": "https://www.museivaticani.va"
+  },
+  "sagrada": {
+    "hours": "9:00 – 20:00 (Mar–Oct) / 9:00 – 18:00 (Nov–Feb)",
+    "ticketPrice": "€26 basic, €36 with tower",
+    "bestTime": "Morning light through stained glass",
+    "transport": "Metro L2/L5 to Sagrada Família",
+    "officialUrl": "https://sagradafamilia.org"
+  },
+  "acropolis": {
+    "hours": "8:00 – 20:00 (summer), 8:00 – 17:00 (winter)",
+    "ticketPrice": "€20, €10 reduced",
+    "bestTime": "Early morning or late afternoon, avoid midday heat",
+    "transport": "Metro Line 2 to Acropoli",
+    "officialUrl": "https://etickets.tap.gr"
+  },
+  "neuschwanstein": {
+    "hours": "9:00 – 18:00 (Apr–Oct) / 10:00 – 16:00 (Nov–Mar)",
+    "ticketPrice": "€17.50, book online in advance",
+    "bestTime": "Autumn for foliage, winter for snow",
+    "transport": "Train to Füssen + bus 73/78",
+    "officialUrl": "https://www.neuschwanstein.de"
+  },
+  "oia-sunset": {
+    "hours": "Always accessible, sunset ~17:15 (winter) – ~20:30 (summer)",
+    "ticketPrice": "Free",
+    "bestTime": "Arrive 1h before sunset for a good spot",
+    "transport": "Bus from Fira (20 min), rental car or ATV",
+    "officialUrl": "https://www.santorini.gr"
+  },
+  "big-ben": {
+    "hours": "Tours available Mon–Fri, book in advance (UK residents only)",
+    "ticketPrice": "Free to view, tour £25",
+    "bestTime": "Evening when illuminated",
+    "transport": "Tube to Westminster (Jubilee/District/Circle)",
+    "officialUrl": "https://www.parliament.uk/bigben"
+  },
+  "british-museum": {
+    "hours": "10:00 – 17:30 (Fri until 20:30), daily",
+    "ticketPrice": "Free (special exhibitions charge)",
+    "bestTime": "Weekday mornings, avoid school holidays",
+    "transport": "Tube to Tottenham Court Road or Holborn",
+    "officialUrl": "https://www.britishmuseum.org"
+  },
+  "grand-place": {
+    "hours": "Always accessible",
+    "ticketPrice": "Free",
+    "bestTime": "August for Flower Carpet (biennial), evening for lights",
+    "transport": "Train to Brussels Central, 5 min walk",
+    "officialUrl": "https://www.brussels.be/grand-place"
+  },
+  "duomo": {
+    "hours": "10:00 – 17:00 (Mon–Sat), 13:30 – 16:45 (Sun)",
+    "ticketPrice": "€20–30 (cumulative ticket)",
+    "bestTime": "Early morning to climb the dome (463 steps)",
+    "transport": "Walking distance from Santa Maria Novella station",
+    "officialUrl": "https://duomo.firenze.it"
+  },
+  "charles-bridge": {
+    "hours": "Always accessible",
+    "ticketPrice": "Free",
+    "bestTime": "Dawn — have the bridge almost to yourself",
+    "transport": "Walking distance from Old Town Square or Malá Strana",
+    "officialUrl": "https://www.prague.eu"
+  },
+  "prague-castle": {
+    "hours": "6:00 – 22:00 (grounds), 9:00 – 17:00 (interiors)",
+    "ticketPrice": "CZK 250–450 depending on circuit",
+    "bestTime": "Morning, allow 3–4 hours",
+    "transport": "Tram 22 to Pražský hrad",
+    "officialUrl": "https://www.hrad.cz"
+  },
+  "edinburgh-castle": {
+    "hours": "9:30 – 18:00 (Apr–Sep) / 9:30 – 17:00 (Oct–Mar)",
+    "ticketPrice": "£19.50 online",
+    "bestTime": "Morning before tour buses arrive",
+    "transport": "Walking distance from Waverley Station (uphill)",
+    "officialUrl": "https://www.edinburghcastle.scot"
+  },
+  "nyhavn": {
+    "hours": "Always accessible",
+    "ticketPrice": "Free",
+    "bestTime": "Summer evenings, golden hour",
+    "transport": "Metro to Kongens Nytorv, 3 min walk",
+    "officialUrl": "https://www.visitcopenhagen.com"
+  },
+  "city-walls": {
+    "hours": "8:00 – 19:30 (summer) / 9:00 – 15:00 (winter)",
+    "ticketPrice": "€35 (walls only) or Dubrovnik Pass",
+    "bestTime": "Late afternoon for golden light on the Adriatic",
+    "transport": "Walking distance from Old Town gates",
+    "officialUrl": "https://www.dubrovnikcard.com"
+  },
+  "parliament": {
+    "hours": "8:00 – 18:00 (visitor center), tours book ahead",
+    "ticketPrice": "HUF 6,000 for guided tour (EU citizens free)",
+    "bestTime": "Night — illuminated from across the Danube",
+    "transport": "Tram 2 to Kossuth Lajos tér, Metro M2",
+    "officialUrl": "https://www.parlament.hu"
+  },
+  "alhambra": {
+    "hours": "8:30 – 20:00 (Apr–Oct) / 8:30 – 18:00 (Nov–Mar)",
+    "ticketPrice": "€19, book 1+ month ahead",
+    "bestTime": "Spring when gardens are in bloom",
+    "transport": "Bus C30/C32 from Plaza Nueva, or 15 min walk uphill",
+    "officialUrl": "https://www.alhambra-patronato.es"
+  },
+  "brandenburg-gate": {
+    "hours": "Always accessible",
+    "ticketPrice": "Free",
+    "bestTime": "Evening when lit, less crowded",
+    "transport": "S/U-Bahn to Brandenburger Tor",
+    "officialUrl": "https://www.visitberlin.de"
+  },
+  "schonbrunn": {
+    "hours": "8:00 – 17:30 (palace), gardens open until dusk",
+    "ticketPrice": "€22–€29 depending on tour",
+    "bestTime": "Spring for gardens, December for Christmas market",
+    "transport": "U-Bahn U4 to Schönbrunn",
+    "officialUrl": "https://www.schoenbrunn.at"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "featured": [
+    "eiffel",
+    "colosseum",
+    "sagrada",
+    "acropolis",
+    "neuschwanstein",
+    "oia-sunset"
+  ],
+  "popularCities": [
+    "paris",
+    "rome",
+    "barcelona",
+    "london",
+    "amsterdam",
+    "prague",
+    "vienna",
+    "venice",
+    "budapest",
+    "lisbon",
+    "berlin",
+    "santorini"
+  ]
+}
