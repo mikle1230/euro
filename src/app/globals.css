@@ -5,6 +5,11 @@
    Design tokens: warm parchment (light) / deep navy (dark)
    ============================================= */
 
+/* Ensure full-height layout — required for Leaflet map to fill the viewport */
+html, body {
+  height: 100%;
+}
+
 :root {
   /* Light mode — aged journal */
   --bg-primary: #faf7f2;
@@ -165,6 +170,27 @@ body {
   color: #3d6b3d;
 }
 
+.badge-hotel {
+  background: rgba(74, 143, 207, 0.15);
+  color: #3570a5;
+}
+.badge-restaurant {
+  background: rgba(232, 120, 74, 0.15);
+  color: #c05a30;
+}
+.badge-transport {
+  background: rgba(139, 92, 246, 0.15);
+  color: #6d3fd4;
+}
+.badge-guide {
+  background: rgba(113, 128, 150, 0.15);
+  color: #556677;
+}
+
 :root[data-theme="dark"] .badge-landmark { color: #d4a854; }
 :root[data-theme="dark"] .badge-museum { color: #7ba4d0; }
 :root[data-theme="dark"] .badge-nature { color: #6aaa6a; }
+:root[data-theme="dark"] .badge-hotel { color: #7bb8e8; }
+:root[data-theme="dark"] .badge-restaurant { color: #f0906a; }
+:root[data-theme="dark"] .badge-transport { color: #a78bfa; }
+:root[data-theme="dark"] .badge-guide { color: #a0aec0; }
