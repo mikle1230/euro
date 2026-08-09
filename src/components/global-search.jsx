@@ -193,8 +193,8 @@ export default function GlobalSearch() {
           }}
           onFocus={() => { if (query.trim()) setOpen(true) }}
           onKeyDown={handleKeyDown}
-          placeholder="搜索国家、城市、景点..."
-          className="w-48 pl-7 pr-3 py-1.5 text-xs rounded-full border outline-none transition-all focus:ring-2 focus:w-64"
+          placeholder="搜索..."
+          className="w-36 sm:w-48 pl-7 pr-3 py-1.5 text-xs rounded-full border outline-none transition-all focus:ring-2 focus:w-44 sm:focus:w-64"
           style={{
             background: 'var(--bg-surface)',
             borderColor: open ? 'var(--accent)' : 'var(--border-color)',
@@ -206,7 +206,7 @@ export default function GlobalSearch() {
       {/* Dropdown */}
       {open && results.length > 0 && (
         <div
-          className="absolute right-0 mt-1.5 w-80 rounded-xl border shadow-xl overflow-hidden z-[1100]"
+          className="absolute right-0 mt-1.5 w-72 sm:w-80 rounded-xl border shadow-xl overflow-hidden z-[1100]"
           style={{
             background: 'var(--bg-card)',
             borderColor: 'var(--border-color)',

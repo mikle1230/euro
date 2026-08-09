@@ -15,10 +15,7 @@ const notoSansSC = Noto_Sans_SC({
 })
 
 export const metadata = {
-  title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
-    template: `%s — ${SITE.name}`,
-  },
+  title: SITE.name,
   description: SITE.description,
   metadataBase: new URL(SITE.url),
   openGraph: {
