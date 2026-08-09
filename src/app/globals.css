@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
+/* =============================================
+   Euro Atlas — 制图师的旅行手札
+   Design tokens: warm parchment (light) / deep navy (dark)
+   ============================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode — aged journal */
+  --bg-primary: #faf7f2;
+  --bg-secondary: #f5f0e8;
+  --bg-card: #faf7f2;
+  --bg-surface: #ede6d8;
+  --bg-elevated: #e8e0cc;
+
+  --text-primary: #2c2416;
+  --text-secondary: #5c5240;
+  --text-tertiary: #8a7e6b;
+
+  --accent: #14b8a6;
+  --accent-hover: #0d9488;
+  --accent-dim: #0f766e;
+  --accent-subtle: rgba(20, 184, 166, 0.08);
+
+  --gold: #c4a45a;
+  --gold-dim: #a68a3e;
+
+  --border-color: #e0d8c8;
+  --border-light: #e8e0d4;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --noise-opacity: 0.03;
+}
+
+/* Dark mode — cartographer's night study */
+[data-theme="dark"] {
+  --bg-primary: #0a1219;
+  --bg-secondary: #0d161f;
+  --bg-card: #111d28;
+  --bg-surface: #152231;
+  --bg-elevated: #1a2a3a;
+
+  --text-primary: #e8e0d0;
+  --text-secondary: #a09880;
+  --text-tertiary: #6a6250;
+
+  --accent: #2dd4bf;
+  --accent-hover: #45e0cc;
+  --accent-dim: #14b8a6;
+  --accent-subtle: rgba(45, 212, 191, 0.08);
+
+  --gold: #e2b84c;
+  --gold-dim: #c49a30;
+
+  --border-color: #1e3040;
+  --border-light: #263848;
+
+  --noise-opacity: 0.04;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: 'Geist', 'Noto Sans SC', sans-serif;
+  --font-display: 'Geist', 'Noto Sans SC', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---- Noise texture overlay ---- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ---- Grid line texture (subtle map grid) ---- */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(180, 160, 130, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 160, 130, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+:root[data-theme="dark"] .grid-bg {
+  background-image:
+    linear-gradient(rgba(100, 140, 180, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 140, 180, 0.05) 1px, transparent 1px);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Geist', 'Noto Sans SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* ---- Scroll reveal ---- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ---- Stagger children ---- */
+.stagger-children > .scroll-reveal:nth-child(1) { transition-delay: 0s; }
+.stagger-children > .scroll-reveal:nth-child(2) { transition-delay: 0.07s; }
+.stagger-children > .scroll-reveal:nth-child(3) { transition-delay: 0.14s; }
+.stagger-children > .scroll-reveal:nth-child(4) { transition-delay: 0.21s; }
+.stagger-children > .scroll-reveal:nth-child(5) { transition-delay: 0.28s; }
+.stagger-children > .scroll-reveal:nth-child(6) { transition-delay: 0.35s; }
+.stagger-children > .scroll-reveal:nth-child(7) { transition-delay: 0.42s; }
+.stagger-children > .scroll-reveal:nth-child(8) { transition-delay: 0.49s; }
+
+/* ---- Spotlight card hover effect ---- */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(20, 184, 166, 0.08),
+    transparent 40%
+  );
+  pointer-events: none;
+}
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* ---- Type badge colors ---- */
+.badge-landmark {
+  background: rgba(180, 120, 60, 0.15);
+  color: #8b6914;
+}
+.badge-museum {
+  background: rgba(100, 140, 180, 0.15);
+  color: #3d5a80;
+}
+.badge-nature {
+  background: rgba(80, 140, 80, 0.15);
+  color: #3d6b3d;
+}
+
+:root[data-theme="dark"] .badge-landmark { color: #d4a854; }
+:root[data-theme="dark"] .badge-museum { color: #7ba4d0; }
+:root[data-theme="dark"] .badge-nature { color: #6aaa6a; }
