@@ -1,6 +1,7 @@
 import { Geist, Noto_Sans_SC } from 'next/font/google'
 import './globals.css'
 import { SITE } from '@/lib/config'
+import Header from '@/components/header'
 
 const geist = Geist({
   subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <Header />
         {children}
       </body>
     </html>

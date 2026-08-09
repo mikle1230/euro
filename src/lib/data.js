@@ -96,3 +96,37 @@ export function getAttractionImagePath(attractionId) {
 export function getCityImagePath(cityId) {
   return `/images/cities/${cityId}.jpg`
 }
+
+export function getAllCitiesWithCoords() {
+  const cities = []
+  for (const c of countries) {
+    for (const city of c.cities) {
+      cities.push({
+        id: city.id,
+        name: city.name,
+        nameEn: city.nameEn,
+        lat: city.lat,
+        lng: city.lng,
+        country: { id: c.id, name: c.name, nameEn: c.nameEn },
+        attractionCount: city.attractions.length,
+      })
+    }
+  }
+  return cities
+}
+
+export function getCountryCentroids() {
+  const centroids = {}
+  for (const c of countries) {
+    const coords = c.cities.filter((city) => city.lat != null && city.lng != null)
+    if (coords.length === 0) continue
+    centroids[c.id] = {
+      lat: coords.reduce((s, city) => s + city.lat, 0) / coords.length,
+      lng: coords.reduce((s, city) => s + city.lng, 0) / coords.length,
+      name: c.name,
+      nameEn: c.nameEn,
+      cityCount: coords.length,
+    }
+  }
+  return centroids
+}
