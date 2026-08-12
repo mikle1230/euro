@@ -12,7 +12,8 @@ import {
   updateDayCity,
 } from '@/lib/itinerary-store'
 import { getAllCitiesWithCoords } from '@/lib/data'
-import { searchEntities as searchEntityStore } from '@/lib/entity-store'
+import { searchEntities as searchEntityStore, getAllEntities } from '@/lib/entity-store'
+import QUOSList from './quos-list'
 
 const ITEM_TYPES = {
   attraction: { icon: '🏛️', label: '景点 Attraction (ENT)' },
@@ -269,6 +270,14 @@ function ItemEdit({ item, dayId, itineraryId, onDone }) {
   )
 }
 
+// Look up English name for an attraction
+function getAttractionNameEn(itemName) {
+  if (typeof window === 'undefined') return ''
+  const entities = getAllEntities()
+  const match = entities.find((e) => e.type === 'attraction' && e.name === itemName)
+  return match?.nameEn || ''
+}
+
 // ---- Item Row ----
 function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }) {
   const [editing, setEditing] = useState(false)
@@ -335,6 +344,11 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
         <div className="flex items-center gap-1.5">
           <span className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
             {item.name}
+            {item.type === 'attraction' && getAttractionNameEn(item.name) && (
+              <span className="text-xs font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>
+                {getAttractionNameEn(item.name)}
+              </span>
+            )}
           </span>
           {(item.startTime || item.endTime) && (
             <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>
@@ -720,6 +734,7 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
   const [editingCityFor, setEditingCityFor] = useState(null)
   const [hideFree, setHideFree] = useState(true)
   const [expandAll, setExpandAll] = useState(false)
+  const [tableView, setTableView] = useState(false)
 
   const allCities = typeof window !== 'undefined' ? getAllCitiesWithCoords() : []
 
@@ -790,6 +805,28 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
       {/* Toolbar */}
       <div className="flex items-center justify-between mb-3 px-1">
         <div className="flex items-center gap-2">
+          <div className="flex rounded-lg border overflow-hidden" style={{ borderColor: 'var(--border-color)' }}>
+            <button
+              onClick={() => setTableView(false)}
+              className="px-2 py-0.5 text-xs font-medium transition-all"
+              style={{
+                background: !tableView ? 'var(--accent)' : 'transparent',
+                color: !tableView ? '#fff' : 'var(--text-secondary)',
+              }}
+            >
+              📋 卡片
+            </button>
+            <button
+              onClick={() => setTableView(true)}
+              className="px-2 py-0.5 text-xs font-medium transition-all"
+              style={{
+                background: tableView ? 'var(--accent)' : 'transparent',
+                color: tableView ? '#fff' : 'var(--text-secondary)',
+              }}
+            >
+              📊 清单
+            </button>
+          </div>
           <button
             onClick={() => setHideFree(!hideFree)}
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
@@ -807,14 +844,16 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
             <span>{hideFree ? '👁️' : '👁️‍🗨️'}</span>
             <span>{hideFree ? '仅显示收费' : '显示全部'}</span>
           </button>
-          <button
-            onClick={() => setExpandAll(!expandAll)}
-            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-all hover:bg-[var(--bg-surface)]"
-            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-          >
-            <span>{expandAll ? '⇱' : '⇲'}</span>
-            <span>{expandAll ? '全部收起' : '全部展开'}</span>
-          </button>
+          {!tableView && (
+            <button
+              onClick={() => setExpandAll(!expandAll)}
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-all hover:bg-[var(--bg-surface)]"
+              style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+            >
+              <span>{expandAll ? '⇱' : '⇲'}</span>
+              <span>{expandAll ? '全部收起' : '全部展开'}</span>
+            </button>
+          )}
         </div>
         {hideFree && (
           <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
@@ -823,8 +862,12 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
         )}
       </div>
 
-      {/* Day list */}
-      <div className="flex flex-col gap-1.5">
+      {tableView ? (
+        <QUOSList itinerary={itinerary} onItineraryChange={onItineraryChange} />
+      ) : (
+        <>
+          {/* Day list */}
+          <div className="flex flex-col gap-1.5">
         {itinerary.days.map((day, dayIdx) => (
           <div key={day.id}>
             {/* Day header */}
@@ -1043,6 +1086,8 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
         >
           + 添加天数
         </button>
+      )}
+        </>
       )}
     </div>
   )
