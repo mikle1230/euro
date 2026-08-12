@@ -53,6 +53,7 @@ export function ensureSeeded(getAttractions) {
   store.entities = attractions.map((a) => ({
     id: a.id,
     name: a.name,
+    nameEn: a.nameEn || '',
     type: a.type || 'attraction',
     subtype: a.type || 'landmark',  // landmark | museum | nature | restaurant | hotel
     cityId: a.city?.id || '',

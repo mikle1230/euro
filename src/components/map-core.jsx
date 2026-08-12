@@ -537,7 +537,10 @@ export default function MapCore({
 
   const containerStyle = {
     position: 'absolute',
-    inset: 0,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   }
   if (!panelCollapsed && panelWidth > 0) {
     // Shrink the visible map area so center is in the middle of the left portion

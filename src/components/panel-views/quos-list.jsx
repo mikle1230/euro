@@ -146,7 +146,6 @@ export default function QUOSList({ itinerary, onItineraryChange }) {
         cityName: day.cityName,
         cityCode: cityInfo?.cityCode || '',
         countryCode: cityInfo?.countryCode || '',
-        cityUnmatched: !cityInfo,
         quosCode: effectiveQUOS,
         quosLabel: QUOS_LABELS[effectiveQUOS] || effectiveQUOS,
         isAutoQUOS: !item.quosOverride,
