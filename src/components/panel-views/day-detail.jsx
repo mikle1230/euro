@@ -344,11 +344,17 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
         <div className="flex items-center gap-1.5">
           <span className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
             {item.name}
-            {item.type === 'attraction' && getAttractionNameEn(item.name) && (
-              <span className="text-xs font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>
-                {getAttractionNameEn(item.name)}
-              </span>
-            )}
+            {(() => {
+              const nameEn = getAttractionNameEn(item.name)
+              if (item.type === 'attraction' && nameEn) {
+                return (
+                  <span className="text-xs font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>
+                    {nameEn}
+                  </span>
+                )
+              }
+              return null
+            })()}
           </span>
           {(item.startTime || item.endTime) && (
             <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>

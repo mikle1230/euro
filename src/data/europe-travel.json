@@ -22,18 +22,20 @@
               "image": "photo-1500380804539-4e1e8c1e7140",
               "description": "伦敦乃至整个英国的象征，哥特式钟楼伫立于泰晤士河畔",
               "tips": "国会大厦内部仅在特定时间开放",
-              "image_search_url": "https://www.bing.com/images/search?q=Big+Ben+London"
+              "image_search_url": "https://www.bing.com/images/search?q=Big+Ben+London",
+              "nameEn": "Big Ben"
             },
             {
               "id": "british-museum",
               "name": "大英博物馆",
               "type": "museum",
               "lat": 51.5194,
-              "lng": -0.1270,
+              "lng": -0.127,
               "image": "photo-1533319418398-7c6c2e8ccc5c",
               "description": "收藏超过800万件文物，罗塞塔石碑为镇馆之宝",
               "tips": "免费入场，建议预留至少3小时",
-              "image_search_url": "https://www.bing.com/images/search?q=British+Museum"
+              "image_search_url": "https://www.bing.com/images/search?q=British+Museum",
+              "nameEn": "British Museum"
             },
             {
               "id": "tower-bridge",
@@ -43,7 +45,8 @@
               "lng": -0.0754,
               "image": "photo-1513635269979-59663e0ac1ad",
               "description": "横跨泰晤士河的标志性开合桥",
-              "tips": "傍晚时分拍摄最佳"
+              "tips": "傍晚时分拍摄最佳",
+              "nameEn": "Tower Bridge"
             }
           ]
         },
@@ -63,7 +66,8 @@
               "image": "photo-1549925240-8b46e0a3d4b2",
               "description": "建在死火山岩顶的古堡，苏格兰的精神象征",
               "tips": "八月军乐节期间人流量极大",
-              "image_search_url": "https://www.bing.com/images/search?q=Edinburgh+Castle"
+              "image_search_url": "https://www.bing.com/images/search?q=Edinburgh+Castle",
+              "nameEn": "Edinburgh Castle"
             }
           ]
         }
@@ -91,7 +95,8 @@
               "image": "photo-1543349689-3a4d29968ca8",
               "description": "巴黎的标志性建筑，高324米，夜晚灯光秀尤为壮观",
               "tips": "建议黄昏时分登塔，可同时欣赏日景与夜景",
-              "image_search_url": "https://www.bing.com/images/search?q=Eiffel+Tower+Paris"
+              "image_search_url": "https://www.bing.com/images/search?q=Eiffel+Tower+Paris",
+              "nameEn": "Eiffel Tower"
             },
             {
               "id": "louvre",
@@ -102,7 +107,8 @@
               "image": "photo-1499856871958-5b9627545d1a",
               "description": "世界最大的艺术博物馆，收藏蒙娜丽莎等35,000件艺术品",
               "tips": "周三/周五晚间开放至21:45",
-              "image_search_url": "https://www.bing.com/images/search?q=Louvre+Museum+Paris"
+              "image_search_url": "https://www.bing.com/images/search?q=Louvre+Museum+Paris",
+              "nameEn": "Louvre Museum"
             },
             {
               "id": "versailles",
@@ -112,7 +118,8 @@
               "lng": 2.1204,
               "image": "photo-1548013146-72479768bada",
               "description": "法国王权的极致象征，镜厅举世闻名",
-              "tips": "建议预留一整天，周二闭馆"
+              "tips": "建议预留一整天，周二闭馆",
+              "nameEn": "Palace of Versailles"
             }
           ]
         },
@@ -131,7 +138,8 @@
               "lng": 7.2717,
               "image": "photo-1533104816931-20fa691ff6ca",
               "description": "沿地中海延伸7公里的海滨大道",
-              "tips": "适合清晨慢跑或傍晚散步"
+              "tips": "适合清晨慢跑或傍晚散步",
+              "nameEn": "Promenade des Anglais"
             }
           ]
         }
@@ -158,7 +166,8 @@
               "lng": 13.3977,
               "image": "photo-1516315720917-631e3f52039c",
               "description": "施普雷河上的五座世界级博物馆群",
-              "tips": "通票可参观全部五馆"
+              "tips": "通票可参观全部五馆",
+              "nameEn": "Museum Island"
             }
           ]
         },
@@ -177,7 +186,8 @@
               "lng": 10.7498,
               "image": "photo-1439066290691-510176234120",
               "description": "迪士尼城堡的原型，路德维希二世的童话城堡",
-              "tips": "距慕尼黑约2小时车程，务必提前预约门票"
+              "tips": "距慕尼黑约2小时车程，务必提前预约门票",
+              "nameEn": "Neuschwanstein Castle"
             },
             {
               "id": "marienplatz",
@@ -187,7 +197,8 @@
               "lng": 11.5755,
               "image": "photo-1467269204594-9661b134dd2b",
               "description": "慕尼黑的心脏，新市政厅木偶钟每天定时表演",
-              "tips": "上午11点和中午12点有木偶表演"
+              "tips": "上午11点和中午12点有木偶表演",
+              "nameEn": "Marienplatz"
             }
           ]
         }
@@ -214,7 +225,8 @@
               "lng": 12.4922,
               "image": "photo-1552832230-c0197dd311b5",
               "description": "古罗马时期最大的圆形竞技场，可容纳5万人",
-              "tips": "提前在线购票避免排队"
+              "tips": "提前在线购票避免排队",
+              "nameEn": "Colosseum"
             },
             {
               "id": "vatican",
@@ -224,7 +236,8 @@
               "lng": 12.4536,
               "image": "photo-1583417319070-4a69db38a482",
               "description": "拥有西斯廷教堂米开朗基罗壁画",
-              "tips": "每月最后一个周日免费"
+              "tips": "每月最后一个周日免费",
+              "nameEn": "Vatican Museums"
             },
             {
               "id": "trevi",
@@ -234,7 +247,8 @@
               "lng": 12.4833,
               "image": "photo-1551002732-eda762e6124e",
               "description": "罗马最大的巴洛克喷泉",
-              "tips": "清晨6-7点前往可避开人潮"
+              "tips": "清晨6-7点前往可避开人潮",
+              "nameEn": "Trevi Fountain"
             }
           ]
         },
@@ -254,7 +268,8 @@
               "image": "photo-1514890547357-a9ee288728e0",
               "description": "被拿破仑称为欧洲最美的客厅",
               "tips": "清晨或深夜前往可避开人潮",
-              "image_search_url": "https://www.bing.com/images/search?q=St+Marks+Square+Venice"
+              "image_search_url": "https://www.bing.com/images/search?q=St+Marks+Square+Venice",
+              "nameEn": "St. Mark's Square"
             }
           ]
         },
@@ -274,7 +289,8 @@
               "image": "photo-1534081333815-ae5019106622",
               "description": "布鲁内莱斯基的穹顶是建筑史上的奇迹",
               "tips": "登顶需爬463级台阶",
-              "image_search_url": "https://www.bing.com/images/search?q=Florence+Cathedral"
+              "image_search_url": "https://www.bing.com/images/search?q=Florence+Cathedral",
+              "nameEn": "Duomo di Firenze"
             },
             {
               "id": "uffizi",
@@ -284,7 +300,8 @@
               "lng": 11.2556,
               "image": "photo-1543852786-1cf6624b9987",
               "description": "收藏波提切利、达芬奇等大师作品",
-              "tips": "旺季需提前数周预约"
+              "tips": "旺季需提前数周预约",
+              "nameEn": "Uffizi Gallery"
             }
           ]
         }
@@ -312,7 +329,8 @@
               "image": "photo-1583779457094-ab6cdaf2c5d0",
               "description": "高迪未完成的旷世巨作",
               "tips": "需提前数周预订门票",
-              "image_search_url": "https://www.bing.com/images/search?q=Sagrada+Familia"
+              "image_search_url": "https://www.bing.com/images/search?q=Sagrada+Familia",
+              "nameEn": "Sagrada Família"
             },
             {
               "id": "park-guell",
@@ -322,7 +340,8 @@
               "lng": 2.1527,
               "image": "photo-1523531294919-4bcd7c65e216",
               "description": "高迪的童话花园，马赛克蜥蜴喷泉是标志",
-              "tips": "核心区需购票，外围区域免费"
+              "tips": "核心区需购票，外围区域免费",
+              "nameEn": "Park Güell"
             }
           ]
         },
@@ -342,17 +361,19 @@
               "image": "photo-1517420697766-ab15a96f9108",
               "description": "西班牙最重要的艺术殿堂",
               "tips": "周一至周六18:00-20:00免费",
-              "image_search_url": "https://www.bing.com/images/search?q=Prado+Museum"
+              "image_search_url": "https://www.bing.com/images/search?q=Prado+Museum",
+              "nameEn": "Prado Museum"
             },
             {
               "id": "royal-palace",
               "name": "马德里王宫",
               "type": "landmark",
-              "lat": 40.4180,
+              "lat": 40.418,
               "lng": -3.7142,
               "image": "photo-1559563458-527698bbf6b0",
               "description": "欧洲最大的仍在使用的王宫",
-              "tips": "官方活动日不对外开放"
+              "tips": "官方活动日不对外开放",
+              "nameEn": "Royal Palace of Madrid"
             }
           ]
         },
@@ -372,7 +393,8 @@
               "image": "photo-1517142526733-541e95b61ceb",
               "description": "摩尔人在欧洲最后的宫殿",
               "tips": "门票极为抢手，至少提前一月预订",
-              "image_search_url": "https://www.bing.com/images/search?q=Alhambra+Granada"
+              "image_search_url": "https://www.bing.com/images/search?q=Alhambra+Granada",
+              "nameEn": "Alhambra"
             }
           ]
         }
@@ -396,11 +418,12 @@
               "name": "贝伦塔",
               "type": "landmark",
               "lat": 38.6916,
-              "lng": -9.2160,
+              "lng": -9.216,
               "image": "photo-1555881400-74d7acaacd8b",
               "description": "大航海时代的象征",
               "tips": "与热罗尼莫斯修道院步行可达",
-              "image_search_url": "https://www.bing.com/images/search?q=Belem+Tower"
+              "image_search_url": "https://www.bing.com/images/search?q=Belem+Tower",
+              "nameEn": "Belém Tower"
             },
             {
               "id": "alfama",
@@ -410,7 +433,8 @@
               "lng": -9.1304,
               "image": "photo-1513735534726-565e2f1be233",
               "description": "里斯本最古老的街区",
-              "tips": "乘坐28路电车穿行最经典"
+              "tips": "乘坐28路电车穿行最经典",
+              "nameEn": "Alfama"
             }
           ]
         },
@@ -429,7 +453,8 @@
               "lng": -7.7458,
               "image": "photo-1558014144-35a2c4b8b4cb",
               "description": "世界最古老的葡萄酒产区之一",
-              "tips": "建议参加品酒巡游"
+              "tips": "建议参加品酒巡游",
+              "nameEn": "Douro Valley"
             }
           ]
         }
@@ -452,21 +477,23 @@
               "id": "rijksmuseum",
               "name": "荷兰国立博物馆",
               "type": "museum",
-              "lat": 52.3600,
+              "lat": 52.36,
               "lng": 4.8852,
               "image": "photo-1584003564911-5e3a8b54c4e8",
               "description": "伦勃朗《夜巡》的收藏地",
-              "tips": "下载官方App获取中文语音导览"
+              "tips": "下载官方App获取中文语音导览",
+              "nameEn": "Rijksmuseum"
             },
             {
               "id": "anne-frank",
               "name": "安妮·弗兰克之家",
               "type": "museum",
               "lat": 52.3752,
-              "lng": 4.8840,
+              "lng": 4.884,
               "image": "photo-1605101104528-7fc5a82a4b03",
               "description": "二战历史的深刻见证",
-              "tips": "门票仅限网上预订"
+              "tips": "门票仅限网上预订",
+              "nameEn": "Anne Frank House"
             },
             {
               "id": "canals",
@@ -477,7 +504,8 @@
               "image": "photo-1534351590666-13e5a00d84ed",
               "description": "17世纪运河被评为世界遗产",
               "tips": "黄昏灯光巡游最为浪漫",
-              "image_search_url": "https://www.bing.com/images/search?q=Amsterdam+Canals"
+              "image_search_url": "https://www.bing.com/images/search?q=Amsterdam+Canals",
+              "nameEn": "Canal Belt"
             }
           ]
         }
@@ -504,7 +532,8 @@
               "lng": 4.3525,
               "image": "photo-1491557345352-5929e343eb89",
               "description": "被雨果誉为欧洲最美广场",
-              "tips": "每两年八月有鲜花地毯节"
+              "tips": "每两年八月有鲜花地毯节",
+              "nameEn": "Grand Place"
             }
           ]
         },
@@ -523,7 +552,8 @@
               "lng": 3.2245,
               "image": "photo-1491557345352-5929e343eb89",
               "description": "保存最完整的中世纪古城",
-              "tips": "从火车站步行15分钟到老城"
+              "tips": "从火车站步行15分钟到老城",
+              "nameEn": "Canals of Bruges"
             }
           ]
         }
@@ -551,7 +581,8 @@
               "image": "photo-1530122037265-a5f1f91d3b99",
               "description": "海拔3454米的欧洲之巅",
               "tips": "山顶终年积雪需保暖",
-              "image_search_url": "https://www.bing.com/images/search?q=Jungfraujoch"
+              "image_search_url": "https://www.bing.com/images/search?q=Jungfraujoch",
+              "nameEn": "Jungfraujoch"
             }
           ]
         },
@@ -571,7 +602,8 @@
               "image": "photo-1527668752968-14dc70a27c95",
               "description": "欧洲最古老的木桥",
               "tips": "与水塔构成最经典的明信片画面",
-              "image_search_url": "https://www.bing.com/images/search?q=Chapel+Bridge+Lucerne"
+              "image_search_url": "https://www.bing.com/images/search?q=Chapel+Bridge+Lucerne",
+              "nameEn": "Chapel Bridge"
             }
           ]
         }
@@ -599,7 +631,8 @@
               "image": "photo-1516550893923-9f8775b9db19",
               "description": "哈布斯堡王朝的夏宫",
               "tips": "花园免费参观",
-              "image_search_url": "https://www.bing.com/images/search?q=Schonbrunn+Palace"
+              "image_search_url": "https://www.bing.com/images/search?q=Schonbrunn+Palace",
+              "nameEn": "Schönbrunn Palace"
             },
             {
               "id": "belvedere",
@@ -609,7 +642,8 @@
               "lng": 16.3808,
               "image": "photo-1572947650440-e8a97ef053b2",
               "description": "收藏克里姆特《吻》的美术馆",
-              "tips": "露台可俯瞰维也纳老城"
+              "tips": "露台可俯瞰维也纳老城",
+              "nameEn": "Belvedere Palace"
             }
           ]
         },
@@ -629,7 +663,8 @@
               "image": "photo-1552465011-b4e21bf6e79a",
               "description": "中欧保存最完整的中世纪城堡",
               "tips": "可乘缆车或步行登山",
-              "image_search_url": "https://www.bing.com/images/search?q=Hohensalzburg+Fortress"
+              "image_search_url": "https://www.bing.com/images/search?q=Hohensalzburg+Fortress",
+              "nameEn": "Hohensalzburg Fortress"
             }
           ]
         }
@@ -657,7 +692,8 @@
               "image": "photo-1555992336-03a23e7b2e96",
               "description": "帕特农神庙矗立于城市之巅",
               "tips": "夏季中午极热，建议清晨或傍晚前往",
-              "image_search_url": "https://www.bing.com/images/search?q=Acropolis+Athens"
+              "image_search_url": "https://www.bing.com/images/search?q=Acropolis+Athens",
+              "nameEn": "Acropolis"
             },
             {
               "id": "acropolis-museum",
@@ -667,7 +703,8 @@
               "lng": 23.7285,
               "image": "photo-1563530948855-8b4d1ae961f9",
               "description": "现代建筑中陈列着卫城的珍贵文物",
-              "tips": "顶层咖啡厅可直视帕特农神庙"
+              "tips": "顶层咖啡厅可直视帕特农神庙",
+              "nameEn": "Acropolis Museum"
             }
           ]
         },
@@ -686,7 +723,8 @@
               "lng": 25.3753,
               "image": "photo-1570077188670-e3a8d69ac5ff",
               "description": "全球最著名的日落景观之一",
-              "tips": "提前一小时到达占据位置"
+              "tips": "提前一小时到达占据位置",
+              "nameEn": "Oia Sunset"
             }
           ]
         }
@@ -709,11 +747,12 @@
               "id": "vasa",
               "name": "瓦萨沉船博物馆",
               "type": "museum",
-              "lat": 59.3280,
+              "lat": 59.328,
               "lng": 18.0914,
               "image": "photo-1590105838541-c0d5e7e0f43b",
               "description": "1628年首航即沉没的完整战船",
-              "tips": "博物馆光线较暗"
+              "tips": "博物馆光线较暗",
+              "nameEn": "Vasa Museum"
             }
           ]
         }
@@ -740,7 +779,8 @@
               "lng": 10.7522,
               "image": "photo-1513519245088-0e12902e35ca",
               "description": "白色大理石建筑从峡湾中升起",
-              "tips": "屋顶24小时开放"
+              "tips": "屋顶24小时开放",
+              "nameEn": "Oslo Opera House"
             }
           ]
         },
@@ -759,7 +799,8 @@
               "lng": 5.3235,
               "image": "photo-1554110397-9ce02c7e5877",
               "description": "汉萨同盟时期的彩色木屋群",
-              "tips": "从佛罗伊恩山缆车下来步行5分钟"
+              "tips": "从佛罗伊恩山缆车下来步行5分钟",
+              "nameEn": "Bryggen"
             },
             {
               "id": "fjord",
@@ -769,7 +810,8 @@
               "lng": 6.9469,
               "image": "photo-1506034864569-0bbd46e4c9cc",
               "description": "松恩峡湾是挪威最长最深的峡湾",
-              "tips": "从卑尔根出发可参加一日游轮"
+              "tips": "从卑尔根出发可参加一日游轮",
+              "nameEn": "Norwegian Fjords"
             }
           ]
         }
@@ -796,7 +838,8 @@
               "lng": 12.5906,
               "image": "photo-1513622470528-e862e8b9f14e",
               "description": "安徒生曾在此居住创作的彩色运河",
-              "tips": "夏季傍晚时分最佳"
+              "tips": "夏季傍晚时分最佳",
+              "nameEn": "Nyhavn"
             },
             {
               "id": "tivoli",
@@ -806,7 +849,8 @@
               "lng": 12.5683,
               "image": "photo-1559703248-dcaaec9fab50",
               "description": "迪士尼的灵感来源之一",
-              "tips": "夜间灯光秀尤为梦幻"
+              "tips": "夜间灯光秀尤为梦幻",
+              "nameEn": "Tivoli Gardens"
             }
           ]
         }
@@ -833,7 +877,8 @@
               "lng": -6.2567,
               "image": "photo-1548199973-03cce0bbc87b",
               "description": "《凯尔经》的收藏地",
-              "tips": "上午早到避开旅行团"
+              "tips": "上午早到避开旅行团",
+              "nameEn": "Trinity College Library"
             },
             {
               "id": "cliffs-moher",
@@ -843,7 +888,8 @@
               "lng": -9.4265,
               "image": "photo-1564065384079-0cd2ade5ee3d",
               "description": "高出大西洋214米的海崖",
-              "tips": "从都柏林出发约3小时车程"
+              "tips": "从都柏林出发约3小时车程",
+              "nameEn": "Cliffs of Moher"
             }
           ]
         }
@@ -866,21 +912,23 @@
               "id": "wawel",
               "name": "瓦维尔城堡",
               "type": "landmark",
-              "lat": 50.0540,
+              "lat": 50.054,
               "lng": 19.9352,
               "image": "photo-1519199429512-965503b04ae7",
               "description": "波兰历代国王的宫殿",
-              "tips": "免费区域有限"
+              "tips": "免费区域有限",
+              "nameEn": "Wawel Castle"
             },
             {
               "id": "auschwitz",
               "name": "奥斯维辛纪念馆",
               "type": "museum",
               "lat": 50.0358,
-              "lng": 19.1780,
+              "lng": 19.178,
               "image": "photo-1559650656-5d1d361ad10e",
               "description": "二战纳粹集中营遗址",
-              "tips": "参观需3-4小时，提前网上预约"
+              "tips": "参观需3-4小时，提前网上预约",
+              "nameEn": "Auschwitz Memorial"
             }
           ]
         }
@@ -908,7 +956,8 @@
               "image": "photo-1519677100203-a0e668c92439",
               "description": "伏尔塔瓦河上的哥特式石桥",
               "tips": "清晨是拍摄大桥的最佳时间",
-              "image_search_url": "https://www.bing.com/images/search?q=Charles+Bridge+Prague"
+              "image_search_url": "https://www.bing.com/images/search?q=Charles+Bridge+Prague",
+              "nameEn": "Charles Bridge"
             },
             {
               "id": "prague-castle",
@@ -919,7 +968,8 @@
               "image": "photo-1541849546-216c3872b9df",
               "description": "世界上最大的古堡群",
               "tips": "从查理大桥步行上山约20分钟",
-              "image_search_url": "https://www.bing.com/images/search?q=Prague+Castle"
+              "image_search_url": "https://www.bing.com/images/search?q=Prague+Castle",
+              "nameEn": "Prague Castle"
             }
           ]
         }
@@ -942,11 +992,12 @@
               "id": "parliament",
               "name": "国会大厦",
               "type": "landmark",
-              "lat": 47.5070,
+              "lat": 47.507,
               "lng": 19.0457,
               "image": "photo-1549877452-9c387954fbc2",
               "description": "多瑙河畔最壮观的建筑",
-              "tips": "夜间亮灯后从对岸拍摄最佳"
+              "tips": "夜间亮灯后从对岸拍摄最佳",
+              "nameEn": "Hungarian Parliament"
             },
             {
               "id": "szechenyi",
@@ -956,7 +1007,8 @@
               "lng": 19.0822,
               "image": "photo-1569885853176-d1e871b01150",
               "description": "欧洲最大的温泉浴场",
-              "tips": "自备拖鞋和浴巾，冬季室外池尤为惬意"
+              "tips": "自备拖鞋和浴巾，冬季室外池尤为惬意",
+              "nameEn": "Széchenyi Baths"
             }
           ]
         }
@@ -983,7 +1035,8 @@
               "lng": 18.1084,
               "image": "photo-1555992336-03a23e7b2e96",
               "description": "权力的游戏君临城取景地",
-              "tips": "建议上午或傍晚走城墙"
+              "tips": "建议上午或傍晚走城墙",
+              "nameEn": "City Walls"
             }
           ]
         }
@@ -1010,7 +1063,8 @@
               "lng": 28.9799,
               "image": "photo-1541432901042-2d4bd12b1a79",
               "description": "拜占庭建筑的最高成就",
-              "tips": "排队时间较长，建议开门前到达"
+              "tips": "排队时间较长，建议开门前到达",
+              "nameEn": "Hagia Sophia"
             },
             {
               "id": "blue-mosque",
@@ -1021,7 +1075,8 @@
               "image": "photo-1604678933893-f68a9febad20",
               "description": "六座宣礼塔的奥斯曼杰作",
               "tips": "祈祷时间不对外开放",
-              "image_search_url": "https://www.bing.com/images/search?q=Blue+Mosque+Istanbul"
+              "image_search_url": "https://www.bing.com/images/search?q=Blue+Mosque+Istanbul",
+              "nameEn": "Blue Mosque"
             }
           ]
         }

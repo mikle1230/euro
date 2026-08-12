@@ -86,7 +86,8 @@ export function getQUOSOrder() {
       const order = JSON.parse(raw)
       // Validate: must be an array of 12 valid codes
       if (Array.isArray(order) && order.length === 12 &&
-          order.every(c => DEFAULT_QUOS_ORDER.includes(c))) {
+          order.every(c => DEFAULT_QUOS_ORDER.includes(c)) &&
+          (new Set(order)).size === 12) {
         return order
       }
     }
