@@ -69,6 +69,13 @@ const CITY_ALIASES = {
   'Milan': 'Milano',
   // Chinese → English (cities NOT in europe-travel.json but common in itineraries)
   '米兰': 'Milan',
+  // Chinese departure cities (not in europe-travel.json)
+  '北京': 'Beijing',
+  '上海': 'Shanghai',
+  '广州': 'Guangzhou',
+  '深圳': 'Shenzhen',
+  '成都': 'Chengdu',
+  '西安': 'Xi An',
 }
 
 // ---- City Code Lookup ----
