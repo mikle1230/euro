@@ -49,6 +49,8 @@ export default function MapCore({
   highlightedCityIds = new Set(),
   dayLabels = [],
   onEntityAddToItinerary,
+  panelCollapsed = false,
+  panelWidth = 0,
 }) {
   const router = useRouter()
   const containerRef = useRef(null)
@@ -149,6 +151,15 @@ export default function MapCore({
 
     return () => observer.disconnect()
   }, [getThemeColors])
+
+  // Adjust map when side panel toggles
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map) return
+    // Delay to let CSS transition finish
+    const timer = setTimeout(() => map.invalidateSize(), 250)
+    return () => clearTimeout(timer)
+  }, [panelCollapsed, panelWidth])
 
   // GeoJSON country boundaries
   useEffect(() => {
@@ -524,5 +535,14 @@ export default function MapCore({
     }
   }, [routeLine, getThemeColors])
 
-  return <div ref={containerRef} style={{ position: 'absolute', inset: 0 }} />
+  const containerStyle = {
+    position: 'absolute',
+    inset: 0,
+  }
+  if (!panelCollapsed && panelWidth > 0) {
+    // Shrink the visible map area so center is in the middle of the left portion
+    containerStyle.right = panelWidth
+  }
+
+  return <div ref={containerRef} style={containerStyle} />
 }

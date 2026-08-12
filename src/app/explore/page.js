@@ -25,6 +25,11 @@ export default function Home() {
   const [ready, setReady] = useState(false)
   const [hoveredDayId, setHoveredDayId] = useState(null)
   const [highlightedCityIds, setHighlightedCityIds] = useState(new Set())
+  const [panelCollapsed, setPanelCollapsed] = useState(false)
+  const [panelWidth, setPanelWidth] = useState(() => {
+    if (typeof window === 'undefined') return 360
+    return Math.max(360, Math.min(700, Math.floor(window.innerWidth * 0.5)))
+  })
 
   useEffect(() => {
     const c = getAllCitiesWithCoords()
@@ -148,6 +153,8 @@ export default function Home() {
             highlightedCityIds={highlightedCityIds}
             dayLabels={dayLabels}
             onEntityAddToItinerary={handleEntityAddToItinerary}
+            panelCollapsed={panelCollapsed}
+            panelWidth={panelWidth}
           />
         ) : (
           <div
@@ -173,6 +180,10 @@ export default function Home() {
             onAddToItinerary={handleAddToItinerary}
             onDayHover={handleDayHover}
             onSearchHighlight={handleSearchHighlight}
+            collapsed={panelCollapsed}
+            onCollapsedChange={setPanelCollapsed}
+            panelWidth={panelWidth}
+            onWidthChange={setPanelWidth}
           />
         )}
       </main>

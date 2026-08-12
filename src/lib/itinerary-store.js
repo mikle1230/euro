@@ -124,6 +124,8 @@ export function importItinerary(data) {
         duration: item.duration || null,
         entityId: item.entityId || null,
         entityType: item.entityType || null,
+        costCategory: item.costCategory || 'paid',
+        estimatedCost: item.estimatedCost || 0,
         price: item.price || 0,
         priceUnit: item.priceUnit || 'perPerson',
         quantity: item.quantity || 0,

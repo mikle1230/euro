@@ -10,7 +10,8 @@
       "Bash(node -e \"const m = require\\('mammoth'\\); console.log\\('mammoth default:', typeof m.default\\); console.log\\('mammoth extractRawText:', typeof m.extractRawText\\)\")",
       "Bash(node -e \"const x = require\\('xlsx'\\); console.log\\('xlsx read:', typeof x.read\\); console.log\\('xlsx utils:', typeof x.utils?.sheet_to_csv\\)\")",
       "Bash(node -e \"const o = require\\('openai'\\); console.log\\('openai default:', typeof o.default\\)\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(claude plugins *)"
     ],
     "additionalDirectories": [
       "/Users/michael/Projects/euro/src/app/knowledge"

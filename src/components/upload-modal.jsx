@@ -27,6 +27,7 @@ export default function UploadModal({ open, onClose }) {
   const [result, setResult] = useState(null) // AI parse result
   const [importing, setImporting] = useState(false)
   const [expandedDays, setExpandedDays] = useState({})
+  const [hideFree, setHideFree] = useState(false)
   const fileInputRef = useRef(null)
 
   // Reset state when opening
@@ -37,6 +38,7 @@ export default function UploadModal({ open, onClose }) {
       setLoading(false)
       setImporting(false)
       setExpandedDays({})
+      setHideFree(false)
     }
   }, [open])
 
@@ -375,39 +377,76 @@ export default function UploadModal({ open, onClose }) {
                 </div>
               </div>
 
-              {/* Cost stats */}
-              {result.stats && (
-                <div className="grid grid-cols-2 gap-3">
-                  <div
-                    className="rounded-xl p-3"
-                    style={{ background: 'rgba(34, 197, 94, 0.08)' }}
-                  >
-                    <div className="text-xs font-medium mb-1" style={{ color: '#22c55e' }}>
-                      🆓 免费项目
+              {/* Cost stats + toggle */}
+              {(() => {
+                const allItems = (result.days || []).flatMap((d) => d.items || [])
+                const paidCount = allItems.filter((i) => i.costCategory === 'paid').length
+                const freeCount = allItems.filter((i) => i.costCategory !== 'paid').length
+                const paidTotal = allItems
+                  .filter((i) => i.costCategory === 'paid')
+                  .reduce((sum, i) => sum + (i.estimatedCost || 0), 0)
+                return (
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div
+                        className="rounded-xl p-3"
+                        style={{ background: 'rgba(34, 197, 94, 0.08)' }}
+                      >
+                        <div className="text-xs font-medium mb-1" style={{ color: '#22c55e' }}>
+                          🆓 免费项目
+                        </div>
+                        <div className="text-lg font-bold" style={{ color: '#22c55e' }}>
+                          {freeCount}
+                        </div>
+                      </div>
+                      <div
+                        className="rounded-xl p-3"
+                        style={{ background: 'rgba(239, 68, 68, 0.08)' }}
+                      >
+                        <div className="text-xs font-medium mb-1" style={{ color: '#ef4444' }}>
+                          💰 收费项目
+                        </div>
+                        <div className="text-lg font-bold" style={{ color: '#ef4444' }}>
+                          {paidCount}
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-lg font-bold" style={{ color: '#22c55e' }}>
-                      {result.stats.freeItems?.length || 0}
-                    </div>
+                    {paidTotal > 0 && (
+                      <div
+                        className="rounded-xl p-3 flex items-center justify-between"
+                        style={{ background: 'rgba(239, 68, 68, 0.05)' }}
+                      >
+                        <span className="text-sm font-medium" style={{ color: '#ef4444' }}>
+                          📋 收费项目预估总费用
+                        </span>
+                        <span className="text-lg font-bold" style={{ color: '#ef4444' }}>
+                          ¥{paidTotal.toLocaleString()}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  <div
-                    className="rounded-xl p-3"
-                    style={{ background: 'rgba(239, 68, 68, 0.08)' }}
-                  >
-                    <div className="text-xs font-medium mb-1" style={{ color: '#ef4444' }}>
-                      💰 收费项目
-                    </div>
-                    <div className="text-lg font-bold" style={{ color: '#ef4444' }}>
-                      {result.stats.paidItems?.length || 0}
-                    </div>
-                  </div>
-                </div>
-              )}
+                )
+              })()}
 
               {/* Days accordion */}
               <div className="space-y-2">
-                <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
-                  按天预览
-                </h4>
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-tertiary)' }}>
+                    按天预览
+                  </h4>
+                  <button
+                    onClick={() => setHideFree((v) => !v)}
+                    className="inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full transition-all border"
+                    style={{
+                      background: hideFree ? 'rgba(239, 68, 68, 0.1)' : 'var(--bg-surface)',
+                      borderColor: hideFree ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-color)',
+                      color: hideFree ? '#ef4444' : 'var(--text-tertiary)',
+                    }}
+                  >
+                    <span>{hideFree ? '👁️‍🗨️' : '👁️'}</span>
+                    {hideFree ? '已隐藏免费项目' : '隐藏免费项目'}
+                  </button>
+                </div>
                 {(result.days || []).map((d, idx) => {
                   const expanded = expandedDays[idx]
                   const city = matchCity(d.cityName)
@@ -435,6 +474,17 @@ export default function UploadModal({ open, onClose }) {
                               未匹配
                             </span>
                           )}
+                          {(() => {
+                            const paidInDay = (d.items || []).filter((i) => i.costCategory === 'paid').length
+                            const freeInDay = (d.items || []).filter((i) => i.costCategory !== 'paid').length
+                            return (
+                              <span className="ml-1.5 text-[10px]" style={{ color: 'var(--text-tertiary)' }}>
+                                {paidInDay > 0 && <span style={{ color: '#ef4444' }}>💰{paidInDay}</span>}
+                                {paidInDay > 0 && freeInDay > 0 && ' '}
+                                {freeInDay > 0 && <span>{freeInDay}项</span>}
+                              </span>
+                            )
+                          })()}
                         </span>
                         {d.date && (
                           <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
@@ -452,48 +502,65 @@ export default function UploadModal({ open, onClose }) {
                         </span>
                       </button>
 
-                      {expanded && (
-                        <div className="px-4 pb-3 pt-1 space-y-1">
-                          {(d.items || []).map((item, i) => {
-                            const cfg = TYPE_CONFIG[item.type] || TYPE_CONFIG.other
-                            return (
-                              <div
-                                key={i}
-                                className="flex items-center gap-2 py-1.5 px-2 rounded-lg text-sm"
-                                style={{ background: 'var(--bg-card)' }}
-                              >
-                                <span className="text-sm shrink-0">{cfg.icon}</span>
-                                <span className="flex-1 truncate" style={{ color: 'var(--text-primary)' }}>
-                                  {item.name}
-                                </span>
-                                {item.startTime && (
-                                  <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>
-                                    {item.startTime}{item.endTime ? `-${item.endTime}` : ''}
-                                  </span>
-                                )}
-                                <span
-                                  className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0"
-                                  style={{
-                                    background:
-                                      item.costCategory === 'paid'
-                                        ? 'rgba(239, 68, 68, 0.1)'
-                                        : 'rgba(34, 197, 94, 0.1)',
-                                    color:
-                                      item.costCategory === 'paid' ? '#ef4444' : '#22c55e',
-                                  }}
+                      {expanded && (() => {
+                        const allItems = d.items || []
+                        const visibleItems = hideFree
+                          ? allItems.filter((item) => item.costCategory === 'paid')
+                          : allItems
+                        const hiddenCount = hideFree ? allItems.filter((item) => item.costCategory !== 'paid').length : 0
+                        return (
+                          <div className="px-4 pb-3 pt-1 space-y-1">
+                            {visibleItems.map((item, i) => {
+                              const cfg = TYPE_CONFIG[item.type] || TYPE_CONFIG.other
+                              return (
+                                <div
+                                  key={i}
+                                  className="flex items-center gap-2 py-1.5 px-2 rounded-lg text-sm"
+                                  style={{ background: 'var(--bg-card)' }}
                                 >
-                                  {item.costCategory === 'paid' ? '💰' : '🆓'}
-                                </span>
-                              </div>
-                            )
-                          })}
-                          {(!d.items || d.items.length === 0) && (
-                            <p className="text-xs py-2 text-center" style={{ color: 'var(--text-tertiary)' }}>
-                              无项目
-                            </p>
-                          )}
-                        </div>
-                      )}
+                                  <span className="text-sm shrink-0">{cfg.icon}</span>
+                                  <span className="flex-1 truncate" style={{ color: 'var(--text-primary)' }}>
+                                    {item.name}
+                                  </span>
+                                  {item.startTime && (
+                                    <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>
+                                      {item.startTime}{item.endTime ? `-${item.endTime}` : ''}
+                                    </span>
+                                  )}
+                                  {item.estimatedCost > 0 && (
+                                    <span className="text-[10px] font-medium shrink-0" style={{ color: '#ef4444' }}>
+                                      ¥{item.estimatedCost}
+                                    </span>
+                                  )}
+                                  <span
+                                    className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0"
+                                    style={{
+                                      background:
+                                        item.costCategory === 'paid'
+                                          ? 'rgba(239, 68, 68, 0.1)'
+                                          : 'rgba(34, 197, 94, 0.1)',
+                                      color:
+                                        item.costCategory === 'paid' ? '#ef4444' : '#22c55e',
+                                    }}
+                                  >
+                                    {item.costCategory === 'paid' ? '💰' : '🆓'}
+                                  </span>
+                                </div>
+                              )
+                            })}
+                            {hiddenCount > 0 && (
+                              <p className="text-[10px] py-1 text-center" style={{ color: 'var(--text-tertiary)' }}>
+                                ... 已隐藏 {hiddenCount} 个免费项目
+                              </p>
+                            )}
+                            {allItems.length === 0 && (
+                              <p className="text-xs py-2 text-center" style={{ color: 'var(--text-tertiary)' }}>
+                                无项目
+                              </p>
+                            )}
+                          </div>
+                        )
+                      })()}
                     </div>
                   )
                 })}
