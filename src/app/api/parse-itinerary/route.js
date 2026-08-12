@@ -112,6 +112,7 @@ export async function POST(request) {
       "items": [
         {
           "type": "attraction/hotel/breakfast/lunch/dinner/transport/other",
+          "transportSubtype": "day/overnight/空 — 仅当 type=transport 时填写。train 区分日间火车(day)和夜火车(overnight)，boat/ferry 区分日间渡轮(day)和夜间渡轮(overnight)，其他留空",
           "name": "项目名称",
           "startTime": "HH:MM 格式，未知留空",
           "endTime": "HH:MM 格式，未知留空",
@@ -137,6 +138,10 @@ export async function POST(request) {
 3. 酒店作为 hotel 类型 item
 4. 早餐/午餐/晚餐各自单独列出
 5. 交通方式单独列出（大巴/火车/飞机/船）
+5b. 交通方式需要区分 sub-type：
+    - 火车：日间行驶为 day（DTR），夜间/卧铺为 overnight（OTR）
+    - 渡轮/船：日间为 day（DFR），夜间为 overnight（OFR）
+    - 大巴/飞机/步行/地铁不需要此字段
 6. 费用用人民币估算，仅作参考
 7. 只输出 JSON，不要任何解释文字`
 

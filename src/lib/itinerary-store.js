@@ -120,6 +120,7 @@ export function importItinerary(data) {
         from: item.from || '',
         to: item.to || '',
         transportMode: item.transportMode || 'bus',
+        transportSubtype: item.transportSubtype || '',
         distance: item.distance || null,
         duration: item.duration || null,
         entityId: item.entityId || null,
