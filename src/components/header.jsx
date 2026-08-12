@@ -1,13 +1,16 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ThemeToggle from './theme-toggle'
 import GlobalSearch from './global-search'
+import UploadModal from './upload-modal'
 import { SITE } from '@/lib/config'
 
 export default function Header() {
   const pathname = usePathname()
+  const [uploadOpen, setUploadOpen] = useState(false)
 
   const isActive = (href) => {
     if (href === '/explore') return pathname === '/' || pathname.startsWith('/explore')
@@ -38,6 +41,19 @@ export default function Header() {
           {SITE.name}
         </span>
         <GlobalSearch />
+        <button
+          onClick={() => setUploadOpen(true)}
+          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all border"
+          style={{
+            background: 'var(--bg-surface)',
+            borderColor: 'var(--border-color)',
+            color: 'var(--text-secondary)',
+          }}
+          title="导入行程文件"
+        >
+          <span className="text-sm">📤</span>
+          <span className="hidden sm:inline">导入</span>
+        </button>
       </div>
 
       <div className="flex items-end gap-0 self-end h-14">
@@ -79,6 +95,8 @@ export default function Header() {
           <ThemeToggle />
         </div>
       </div>
+
+      <UploadModal open={uploadOpen} onClose={() => setUploadOpen(false)} />
     </header>
   )
 }
