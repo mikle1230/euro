@@ -94,6 +94,49 @@ export function updateItineraryMeta(id, updates) {
   return t
 }
 
+export function importItinerary(data) {
+  const store = readStore()
+  const itinerary = {
+    id: uid(),
+    name: data.name || '导入行程',
+    startDate: data.startDate || '',
+    endDate: data.endDate || '',
+    groupSize: data.groupSize || 0,
+    tourCode: data.tourCode || '',
+    notes: data.notes || '',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    days: (data.days || []).map((d) => ({
+      id: uid(),
+      dayNumber: d.dayNumber,
+      cityId: d.cityId || '',
+      cityName: d.cityName || '',
+      items: (d.items || []).map((item) => ({
+        id: uid(),
+        type: item.type || 'attraction',
+        name: item.name || '',
+        startTime: item.startTime || '',
+        endTime: item.endTime || '',
+        from: item.from || '',
+        to: item.to || '',
+        transportMode: item.transportMode || 'bus',
+        distance: item.distance || null,
+        duration: item.duration || null,
+        entityId: item.entityId || null,
+        entityType: item.entityType || null,
+        price: item.price || 0,
+        priceUnit: item.priceUnit || 'perPerson',
+        quantity: item.quantity || 0,
+        notes: item.notes || '',
+      })),
+    })),
+  }
+  store.itineraries.push(itinerary)
+  store.activeId = itinerary.id
+  writeStore(store)
+  return itinerary
+}
+
 export function setActiveItinerary(id) {
   const store = readStore()
   store.activeId = id
