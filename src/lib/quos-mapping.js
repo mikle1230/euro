@@ -58,13 +58,37 @@ export function getQUOSType(item) {
   return { code: 'OTH', label: 'Others' }
 }
 
+// ---- City Name Aliases ----
+// Handle variations: different Chinese translations, English→native name, etc.
+// quosCities keys are English + Chinese (from europe-travel.json cross-reference).
+// AI may output names not in either dataset.
+const CITY_ALIASES = {
+  // Chinese name variants (both translations for same city)
+  '琉森': '卢塞恩',
+  // English → native (Cities.xlsx uses native names for some cities)
+  'Milan': 'Milano',
+  // Chinese → English (cities NOT in europe-travel.json but common in itineraries)
+  '米兰': 'Milan',
+}
+
 // ---- City Code Lookup ----
 export function getCityCode(cityName) {
   if (!cityName) return null
   const entry = quosCities[cityName]
   if (entry) return entry
-  // Try trimmed
-  return quosCities[cityName.trim()] || null
+  const trimmed = cityName.trim()
+  if (trimmed !== cityName) {
+    const trimEntry = quosCities[trimmed]
+    if (trimEntry) return trimEntry
+  }
+  // Try alias chain (follow aliases recursively, max 3 hops to avoid loops)
+  let alias = CITY_ALIASES[cityName] || CITY_ALIASES[trimmed]
+  for (let i = 0; i < 3 && alias; i++) {
+    const aliasEntry = quosCities[alias]
+    if (aliasEntry) return aliasEntry
+    alias = CITY_ALIASES[alias]
+  }
+  return null
 }
 
 // ---- Attraction English Name (QUOS standard) ----
