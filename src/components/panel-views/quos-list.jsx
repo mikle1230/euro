@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { updateItem } from '@/lib/itinerary-store'
+import { updateItem, getItinerary } from '@/lib/itinerary-store'
 import { getQUOSType, getCityCode, getAttractionNameEn, getQUOSOrder, saveQUOSOrder, DEFAULT_QUOS_ORDER, QUOS_LABELS } from '@/lib/quos-mapping'
 import { getAllEntities } from '@/lib/entity-store'
 
@@ -113,17 +113,22 @@ export default function QUOSList({ itinerary, onItineraryChange }) {
   const [quosOrder, setQUOSOrder] = useState(getQUOSOrder())
 
   const refresh = () => {
-    const raw = localStorage.getItem('euro-itineraries')
-    if (raw) {
-      const data = JSON.parse(raw)
-      const fresh = data.itineraries?.find((t) => t.id === itinerary.id)
-      if (fresh) onItineraryChange(fresh)
-    }
+    const fresh = getItinerary(itinerary.id)
+    if (fresh) onItineraryChange(fresh)
   }
 
   const handleQUOSChange = (dayId, itemId, newCode) => {
     updateItem(itinerary.id, dayId, itemId, { quosOverride: newCode })
     refresh()
+  }
+
+  // Null guard: return empty state if no itinerary data
+  if (!itinerary?.days) {
+    return (
+      <div className="flex flex-col h-full items-center justify-center">
+        <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>暂无行程数据</p>
+      </div>
+    )
   }
 
   // Build flat item list with day context
