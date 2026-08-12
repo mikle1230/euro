@@ -111,6 +111,7 @@ export function importItinerary(data) {
       dayNumber: d.dayNumber,
       cityId: d.cityId || '',
       cityName: d.cityName || '',
+      cityNameEn: d.cityNameEn || '',
       items: (d.items || []).map((item) => ({
         id: uid(),
         type: item.type || 'attraction',
