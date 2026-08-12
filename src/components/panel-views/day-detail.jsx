@@ -15,23 +15,23 @@ import { getAllCitiesWithCoords } from '@/lib/data'
 import { searchEntities as searchEntityStore } from '@/lib/entity-store'
 
 const ITEM_TYPES = {
-  attraction: { icon: '🏛️', label: '景点' },
-  transport: { icon: '🚌', label: '交通' },
-  breakfast: { icon: '🥐', label: '早餐' },
-  lunch: { icon: '🍽️', label: '午餐' },
-  dinner: { icon: '🍷', label: '晚餐' },
-  hotel: { icon: '🏨', label: '住宿' },
-  other: { icon: '📌', label: '其他' },
+  attraction: { icon: '🏛️', label: '景点 Attraction (ENT)' },
+  transport: { icon: '🚌', label: '交通 Transport (MTC)' },
+  breakfast: { icon: '🥐', label: '早餐 Breakfast' },
+  lunch: { icon: '🍽️', label: '午餐 Lunch' },
+  dinner: { icon: '🍷', label: '晚餐 Dinner' },
+  hotel: { icon: '🏨', label: '住宿 Hotel (HTL)' },
+  other: { icon: '📌', label: '其他 Other (OTH)' },
 }
 
 const TRANSPORT_MODES = [
-  { value: 'bus', label: '🚌 大巴' },
-  { value: 'walk', label: '🚶 步行' },
-  { value: 'metro', label: '🚇 地铁' },
-  { value: 'train', label: '🚄 火车' },
-  { value: 'boat', label: '🚢 游船' },
-  { value: 'flight', label: '✈️ 飞机' },
-  { value: 'car', label: '🚗 小车' },
+  { value: 'bus', label: '🚌 大巴 Coach' },
+  { value: 'walk', label: '🚶 步行 Walk' },
+  { value: 'metro', label: '🚇 地铁 Metro' },
+  { value: 'train', label: '🚄 火车 Train' },
+  { value: 'boat', label: '🚢 游船 Boat' },
+  { value: 'flight', label: '✈️ 飞机 Flight' },
+  { value: 'car', label: '🚗 小车 Car' },
 ]
 
 // ---- Inline Item Editor ----
@@ -350,13 +350,16 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
             )}
           </p>
         )}
-        {(item.price > 0 || item.notes) && (
+        {(item.price > 0 || item.notes || isFreeItem(item)) && (
           <p className="text-xs mt-0.5 truncate flex items-center gap-2" style={{ color: 'var(--text-tertiary)' }}>
             {item.price > 0 && (
               <span style={{ color: 'var(--gold)' }}>
                 €{item.price}{item.priceUnit === 'perPerson' ? '/人' : item.priceUnit === 'perGroup' ? '/团' : item.priceUnit === 'perDay' ? '/天' : ''}
                 {item.quantity > 0 ? ` ×${item.quantity}` : ''}
               </span>
+            )}
+            {isFreeItem(item) && item.price === 0 && (
+              <span className="text-xs px-1 py-0.5 rounded" style={{ color: 'var(--text-tertiary)', background: 'var(--bg-elevated)' }}>免费</span>
             )}
             {item.notes}
           </p>
@@ -700,6 +703,14 @@ function CompactAddForm({ dayId, itineraryId, onDone }) {
   )
 }
 
+// ---- Free/Paid helpers ----
+function isFreeItem(item) {
+  if (item.costCategory === 'free') return true
+  if (item.costCategory === 'paid') return false
+  // 旧数据没有 costCategory：通过价格推断
+  return !item.price || item.price === 0
+}
+
 // ---- Main DayDetail Component ----
 export default function DayDetail({ itinerary, cities: _cities, onItineraryChange, onDayHover }) {
   const [activeDayId, setActiveDayId] = useState(null)
@@ -707,6 +718,8 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
   const [addDayCity, setAddDayCity] = useState('')
   const [addingItemTo, setAddingItemTo] = useState(null)
   const [editingCityFor, setEditingCityFor] = useState(null)
+  const [hideFree, setHideFree] = useState(true)
+  const [expandAll, setExpandAll] = useState(false)
 
   const allCities = typeof window !== 'undefined' ? getAllCitiesWithCoords() : []
 
@@ -762,8 +775,54 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
     setCitySearch('')
   }
 
+  // Compute global stats for toolbar
+  let totalPaid = 0
+  let totalFree = 0
+  itinerary.days.forEach((day) => {
+    day.items.forEach((item) => {
+      if (isFreeItem(item)) totalFree++
+      else totalPaid++
+    })
+  })
+
   return (
     <div className="p-3">
+      {/* Toolbar */}
+      <div className="flex items-center justify-between mb-3 px-1">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setHideFree(!hideFree)}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+              hideFree
+                ? 'border'
+                : ''
+            }`}
+            style={
+              hideFree
+                ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
+                : { background: 'var(--accent)', color: '#fff' }
+            }
+            title={hideFree ? '点击显示免费项目' : '点击隐藏免费项目'}
+          >
+            <span>{hideFree ? '👁️' : '👁️‍🗨️'}</span>
+            <span>{hideFree ? '仅显示收费' : '显示全部'}</span>
+          </button>
+          <button
+            onClick={() => setExpandAll(!expandAll)}
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-all hover:bg-[var(--bg-surface)]"
+            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+          >
+            <span>{expandAll ? '⇱' : '⇲'}</span>
+            <span>{expandAll ? '全部收起' : '全部展开'}</span>
+          </button>
+        </div>
+        {hideFree && (
+          <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+            收费 {totalPaid} 项 · 隐藏 {totalFree} 项免费
+          </span>
+        )}
+      </div>
+
       {/* Day list */}
       <div className="flex flex-col gap-1.5">
         {itinerary.days.map((day, dayIdx) => (
@@ -843,18 +902,26 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
               )}
 
               <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>
-                {day.items.length} 项
+                {(() => {
+                  const paidCount = day.items.filter((it) => !isFreeItem(it)).length
+                  const freeCount = day.items.filter((it) => isFreeItem(it)).length
+                  if (hideFree) {
+                    return <>收费 {paidCount} · 免费 {freeCount}</>
+                  }
+                  return <>{day.items.length} 项</>
+                })()}
               </span>
 
               <button
                 onClick={(e) => {
                   e.stopPropagation()
+                  setExpandAll(false)
                   setActiveDayId(activeDayId === day.id ? null : day.id)
                 }}
                 className="text-xs px-1"
                 style={{ color: 'var(--text-tertiary)' }}
               >
-                {activeDayId === day.id ? '收起' : '展开'}
+                {(expandAll || activeDayId === day.id) ? '收起' : '展开'}
               </button>
 
               <button
@@ -867,7 +934,13 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
             </div>
 
             {/* Day items */}
-            {activeDayId === day.id && (
+            {(expandAll || activeDayId === day.id) && (() => {
+                const visibleItems = hideFree
+                  ? day.items.filter((it) => !isFreeItem(it))
+                  : day.items
+                const hiddenFreeCount = day.items.length - visibleItems.length
+
+                return (
               <div
                 className="ml-3 mt-1 pl-2.5"
                 style={{ borderLeft: '2px solid var(--border-color)' }}
@@ -877,7 +950,12 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                     还没有项目，在下方添加
                   </p>
                 )}
-                {day.items.map((item, itemIdx) => (
+                {day.items.length > 0 && visibleItems.length === 0 && (
+                  <p className="text-xs py-3 px-1.5" style={{ color: 'var(--text-tertiary)' }}>
+                    本日仅有免费项目（交通接送、导游陪同等）
+                  </p>
+                )}
+                {visibleItems.map((item, itemIdx) => (
                   <ItemRow
                     key={item.id}
                     item={item}
@@ -889,6 +967,11 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                     isLast={itemIdx === day.items.length - 1}
                   />
                 ))}
+                {hiddenFreeCount > 0 && hideFree && (
+                  <p className="text-xs py-1.5 px-1.5" style={{ color: 'var(--text-tertiary)', opacity: 0.6 }}>
+                    已隐藏 {hiddenFreeCount} 个免费项目
+                  </p>
+                )}
 
                 {addingItemTo === day.id ? (
                   <div className="mt-1.5">
@@ -911,7 +994,7 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                   </button>
                 )}
               </div>
-            )}
+            )})()}
           </div>
         ))}
       </div>
