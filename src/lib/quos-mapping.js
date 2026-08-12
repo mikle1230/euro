@@ -72,7 +72,12 @@ const CITY_ALIASES = {
 }
 
 // ---- City Code Lookup ----
-export function getCityCode(cityName) {
+export function getCityCode(cityName, englishName) {
+  // Try English name first — direct match against Cities.xlsx (8300+ entries)
+  if (englishName) {
+    const entry = quosCities[englishName]
+    if (entry) return entry
+  }
   if (!cityName) return null
   const entry = quosCities[cityName]
   if (entry) return entry

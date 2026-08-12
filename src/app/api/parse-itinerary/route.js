@@ -108,6 +108,7 @@ export async function POST(request) {
     {
       "dayNumber": 1,
       "cityName": "城市中文名（如：巴黎、罗马）",
+      "cityNameEn": "城市英文名（如：Paris、Rome、Lucerne、Milan、Florence），务必输出准确的英文名，用于系统匹配",
       "date": "该天日期 YYYY-MM-DD，未知则留空",
       "items": [
         {
@@ -143,7 +144,8 @@ export async function POST(request) {
     - 渡轮/船：日间为 day（DFR），夜间为 overnight（OFR）
     - 大巴/飞机/步行/地铁不需要此字段
 6. 费用用人民币估算，仅作参考
-7. 只输出 JSON，不要任何解释文字`
+7. 每个城市务必输出准确的英文名 cityNameEn（如巴黎→Paris，罗马→Rome，卢塞恩/琉森→Lucerne，米兰→Milan，佛罗伦萨→Florence），用于后续数据匹配
+8. 只输出 JSON，不要任何解释文字`
 
     const completion = await client.chat.completions.create({
       model: 'deepseek-chat',

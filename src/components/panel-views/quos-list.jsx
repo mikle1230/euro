@@ -138,7 +138,7 @@ export default function QUOSList({ itinerary, onItineraryChange }) {
       if (hideFree && isFreeItem(item)) return
       const autoQUOS = getQUOSType(item)
       const effectiveQUOS = item.quosOverride || autoQUOS.code
-      const cityInfo = getCityCode(day.cityName)
+      const cityInfo = getCityCode(day.cityName, day.cityNameEn)
       flatItems.push({
         ...item,
         dayNumber: day.dayNumber,
@@ -231,7 +231,7 @@ export default function QUOSList({ itinerary, onItineraryChange }) {
       // Sort by QUOS order within day
       dayItems.sort((a, b) => quosOrder.indexOf(a.quosCode) - quosOrder.indexOf(b.quosCode))
 
-      const cityInfo = getCityCode(day.cityName)
+      const cityInfo = getCityCode(day.cityName, day.cityNameEn)
       tableBody.push(
         <tr key={`sep-${day.id}`} className="border-b" style={{ borderColor: 'var(--border-color)' }}>
           <td colSpan={9} className="px-2 py-1.5 text-xs font-semibold" style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}>
