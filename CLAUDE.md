@@ -4,6 +4,8 @@
 
 为欧洲地接社（KuoniTumlare / JTB）构建的行程规划与报价辅助工具。
 
+> **架构速览见 [docs/architecture.md](docs/architecture.md)** —— 含响应式 store 数据流、item 工厂、免费/收费判定、地图常量等关键不变量，改动前先读。
+
 ## 技术栈
 
 - **框架**: Next.js 16.3 App Router + Turbopack（`src/app/` 目录）
@@ -35,9 +37,13 @@ src/
       overview.jsx                   # 总览（已从面板移除，保留文件）
       entity-manager.jsx             # 实体管理（已从面板移除，保留文件）
   lib/
-    data.js                          # 城市/景点数据查询
-    itinerary-store.js               # 行程 CRUD（localStorage euro-itineraries）
+    data.js                          # 城市/景点数据查询（惰性 Map 索引）
+    itinerary-store.js               # 响应式行程 store（useSyncExternalStore + localStorage）
     entity-store.js                  # 实体存储（localStorage euro-entities）
+    config.js                        # SITE / 类型标签 / 地图常量 MAP（defaultZoom=4.5）
+    prompt.js                        # AI 解析 system prompt（SYSTEM_PROMPT）
+    quos-mapping.js                  # QUOS 类型映射（12 种服务类型）
+    id.js                            # 共享 uid()
 ```
 
 ## 面板架构

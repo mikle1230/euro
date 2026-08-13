@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { getAllCitiesWithCoords } from '@/lib/data'
 import { importItinerary } from '@/lib/itinerary-store'
@@ -23,6 +24,8 @@ export default function UploadModal({ open, onClose }) {
   const router = useRouter()
   const [dragOver, setDragOver] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [progressStage, setProgressStage] = useState('')
   const [error, setError] = useState('')
   const [result, setResult] = useState(null) // AI parse result
   const [importing, setImporting] = useState(false)
@@ -39,8 +42,46 @@ export default function UploadModal({ open, onClose }) {
       setImporting(false)
       setExpandedDays({})
       setHideFree(false)
+      setProgress(0)
+      setProgressStage('')
     }
   }, [open])
+
+  // Progress animation during loading
+  useEffect(() => {
+    if (!loading) {
+      setProgress(0)
+      setProgressStage('')
+      return
+    }
+
+    setProgress(2)
+    setProgressStage('提取文件文本...')
+
+    const stages = [
+      { at: 10, label: '提取文件文本...' },
+      { at: 25, label: 'AI 分析行程中...' },
+      { at: 60, label: 'AI 识别景点与交通...' },
+      { at: 85, label: '整理结构化数据...' },
+    ]
+
+    let currentStage = 0
+    const start = Date.now()
+    const timer = setInterval(() => {
+      const elapsed = Date.now() - start
+      // Simulate progress with diminishing returns, max out at 92%
+      const simulated = Math.min(92, 2 + Math.log10(elapsed / 100 + 1) * 28)
+      setProgress(Math.round(simulated))
+
+      // Advance stages
+      while (currentStage < stages.length && simulated >= stages[currentStage].at) {
+        setProgressStage(stages[currentStage].label)
+        currentStage++
+      }
+    }, 200)
+
+    return () => clearInterval(timer)
+  }, [loading])
 
   const handleFile = useCallback(async (file) => {
     // Validate
@@ -119,30 +160,35 @@ export default function UploadModal({ open, onClose }) {
 
     try {
       // Build days with city matching
-      const days = (result.days || []).map((d) => {
+      const days = (result.days || []).map((d, idx) => {
         const city = matchCity(d.cityName)
         const items = (d.items || []).map((item) => ({
           id: undefined, // will be generated
           type: item.type || 'attraction',
           name: item.name || '',
+          nameEn: item.nameEn || '',
           startTime: item.startTime || '',
           endTime: item.endTime || '',
-          transportMode: 'bus',
-          // Cost
-          price: item.estimatedCost || 0,
+          from: item.from || '',
+          to: item.to || '',
+          transportMode: item.transportMode || 'bus',
+          transportSubtype: item.transportSubtype || '',
+          distance: item.distance || null,
+          duration: item.duration || null,
+          // Cost — pass AI costCategory through, DO NOT default it away
+          costCategory: item.costCategory || '',
+          estimatedCost: item.estimatedCost || 0,
+          price: item.price || 0,
           priceUnit: 'perPerson',
-          quantity: 1,
-          // Notes — include cost category
-          notes: [
-            item.costCategory === 'paid' ? '💰 收费项目' : '🆓 免费项目',
-            item.notes || '',
-          ].filter(Boolean).join(' | '),
+          quantity: item.quantity || 0,
+          notes: item.notes || '',
         }))
 
         return {
-          dayNumber: d.dayNumber || days.indexOf(d) + 1,
+          dayNumber: d.dayNumber ?? idx + 1,
           cityId: city?.id || '',
           cityName: city?.name || d.cityName || '',
+          cityNameEn: d.cityNameEn || '',
           items,
           _matchedCity: city,
         }
@@ -209,7 +255,7 @@ export default function UploadModal({ open, onClose }) {
     setExpandedDays((prev) => ({ ...prev, [idx]: !prev[idx] }))
   }
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[1200] flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}
@@ -279,19 +325,28 @@ export default function UploadModal({ open, onClose }) {
                 className="hidden"
               />
 
-              {/* Loading */}
+              {/* Loading with progress bar */}
               {loading && (
-                <div className="mt-4 flex items-center justify-center gap-3 py-4">
+                <div className="mt-4 space-y-3 py-2">
+                  <div className="flex items-center justify-between text-xs" style={{ color: 'var(--text-secondary)' }}>
+                    <span>{progressStage || '准备中...'}</span>
+                    <span className="font-mono">{progress}%</span>
+                  </div>
                   <div
-                    className="w-5 h-5 border-2 rounded-full animate-spin"
-                    style={{
-                      borderColor: 'var(--border-color)',
-                      borderTopColor: 'var(--accent)',
-                    }}
-                  />
-                  <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    正在解析文件，AI 分析中...
-                  </span>
+                    className="h-2 rounded-full overflow-hidden"
+                    style={{ background: 'var(--bg-elevated)' }}
+                  >
+                    <div
+                      className="h-full rounded-full transition-all duration-300 ease-out"
+                      style={{
+                        width: `${progress}%`,
+                        background: 'var(--accent)',
+                      }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-center" style={{ color: 'var(--text-tertiary)' }}>
+                    AI 分析通常需要 10-30 秒，请耐心等待
+                  </p>
                 </div>
               )}
 
@@ -444,7 +499,7 @@ export default function UploadModal({ open, onClose }) {
                     }}
                   >
                     <span>{hideFree ? '👁️‍🗨️' : '👁️'}</span>
-                    {hideFree ? '已隐藏免费项目' : '隐藏免费项目'}
+                    {hideFree ? '只看收费' : '显示全部'}
                   </button>
                 </div>
                 {(result.days || []).map((d, idx) => {
@@ -575,6 +630,11 @@ export default function UploadModal({ open, onClose }) {
             className="flex items-center justify-end gap-3 px-5 py-4 border-t shrink-0"
             style={{ borderColor: 'var(--border-color)' }}
           >
+            {error && (
+              <span className="text-sm flex-1 text-left truncate" style={{ color: '#ef4444' }}>
+                ⚠️ {error}
+              </span>
+            )}
             <button
               onClick={() => {
                 setResult(null)
@@ -615,6 +675,7 @@ export default function UploadModal({ open, onClose }) {
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

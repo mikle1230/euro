@@ -10,15 +10,7 @@ import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import EntityCard from '@/components/dictionary/entity-card'
 import EntityDetail from '@/components/dictionary/entity-detail'
-
-function haversineKm(lat1, lng1, lat2, lng2) {
-  const R = 6371
-  const toRad = (d) => (d * Math.PI) / 180
-  const dLat = toRad(lat2 - lat1)
-  const dLng = toRad(lng2 - lng1)
-  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-}
+import { haversineKm } from '@/lib/geo'
 
 export default function CityPage() {
   const params = useParams()
@@ -194,7 +186,7 @@ export default function CityPage() {
         {filteredItems.length > 0 && (
           <div className="mb-8">
             <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-              🏛️ 景点
+              📍 探索
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredItems.map((item) => {
@@ -206,7 +198,7 @@ export default function CityPage() {
                       type={item._type}
                       name={item.name}
                       size="card"
-                      variant={item._type === 'hotel' || item._type === 'restaurant' ? 'attraction' : 'attraction'}
+                      variant="attraction"
                     />
                     <div className="p-3">
                       <div className="mb-1">

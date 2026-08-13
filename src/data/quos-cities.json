@@ -32931,6 +32931,42 @@
     "cityCode": "EDI",
     "countryCode": "GB"
   },
+  "曼彻斯特": {
+    "cityCode": "MAN",
+    "countryCode": "GB"
+  },
+  "利物浦": {
+    "cityCode": "LPL",
+    "countryCode": "GB"
+  },
+  "格拉斯哥": {
+    "cityCode": "GLA",
+    "countryCode": "GB"
+  },
+  "牛津": {
+    "cityCode": "OXF",
+    "countryCode": "GB"
+  },
+  "剑桥": {
+    "cityCode": "CBG",
+    "countryCode": "GB"
+  },
+  "巴斯": {
+    "cityCode": "BAT",
+    "countryCode": "GB"
+  },
+  "约克": {
+    "cityCode": "YRK",
+    "countryCode": "GB"
+  },
+  "加的夫": {
+    "cityCode": "CWL",
+    "countryCode": "GB"
+  },
+  "贝尔法斯特": {
+    "cityCode": "BFS",
+    "countryCode": "GB"
+  },
   "巴黎": {
     "cityCode": "PAR",
     "countryCode": "FR"
@@ -32939,12 +32975,116 @@
     "cityCode": "NCE",
     "countryCode": "FR"
   },
+  "里昂": {
+    "cityCode": "LYS",
+    "countryCode": "FR"
+  },
+  "马赛": {
+    "cityCode": "MRS",
+    "countryCode": "FR"
+  },
+  "波尔多": {
+    "cityCode": "BOD",
+    "countryCode": "FR"
+  },
+  "戛纳": {
+    "cityCode": "CAN",
+    "countryCode": "FR"
+  },
+  "阿维尼翁": {
+    "cityCode": "AVN",
+    "countryCode": "FR"
+  },
+  "斯特拉斯堡": {
+    "cityCode": "SXB",
+    "countryCode": "FR"
+  },
+  "里尔": {
+    "cityCode": "LIL",
+    "countryCode": "FR"
+  },
+  "图卢兹": {
+    "cityCode": "TLS",
+    "countryCode": "FR"
+  },
+  "南特": {
+    "cityCode": "NTE",
+    "countryCode": "FR"
+  },
+  "蒙彼利埃": {
+    "cityCode": "MPL",
+    "countryCode": "FR"
+  },
+  "第戎": {
+    "cityCode": "DIJ",
+    "countryCode": "FR"
+  },
+  "兰斯": {
+    "cityCode": "RHE",
+    "countryCode": "FR"
+  },
+  "霞慕尼": {
+    "cityCode": "CHX",
+    "countryCode": "FR"
+  },
+  "科尔马": {
+    "cityCode": "CLM",
+    "countryCode": "FR"
+  },
+  "普罗旺斯艾克斯": {
+    "cityCode": "AIX",
+    "countryCode": "FR"
+  },
+  "安纳西": {
+    "cityCode": "NCY",
+    "countryCode": "FR"
+  },
   "柏林": {
     "cityCode": "BER",
     "countryCode": "DE"
   },
   "慕尼黑": {
     "cityCode": "MUC",
+    "countryCode": "DE"
+  },
+  "汉堡": {
+    "cityCode": "HAM",
+    "countryCode": "DE"
+  },
+  "科隆": {
+    "cityCode": "CGN",
+    "countryCode": "DE"
+  },
+  "德累斯顿": {
+    "cityCode": "DRS",
+    "countryCode": "DE"
+  },
+  "海德堡": {
+    "cityCode": "HDB",
+    "countryCode": "DE"
+  },
+  "斯图加特": {
+    "cityCode": "STR",
+    "countryCode": "DE"
+  },
+  "莱比锡": {
+    "cityCode": "LEJ",
+    "countryCode": "DE"
+  },
+  "不来梅": {
+    "cityCode": "BRE",
+    "countryCode": "DE"
+  },
+  "波茨坦": {
+    "cityCode": "POT",
+    "countryCode": "DE"
+  },
+  "巴登巴登": {
+    "cityCode": "BDN",
+    "countryCode": "DE"
+  },
+  "罗滕堡": {
+    "cityCode": "RTB",
     "countryCode": "DE"
   },
   "罗马": {
@@ -32959,6 +33099,66 @@
     "cityCode": "FLR",
     "countryCode": "IT"
   },
+  "那不勒斯": {
+    "cityCode": "NAP",
+    "countryCode": "IT"
+  },
+  "都灵": {
+    "cityCode": "TRN",
+    "countryCode": "IT"
+  },
+  "博洛尼亚": {
+    "cityCode": "BLQ",
+    "countryCode": "IT"
+  },
+  "维罗纳": {
+    "cityCode": "VRN",
+    "countryCode": "IT"
+  },
+  "比萨": {
+    "cityCode": "PSA",
+    "countryCode": "IT"
+  },
+  "锡耶纳": {
+    "cityCode": "SZA",
+    "countryCode": "IT"
+  },
+  "索伦托": {
+    "cityCode": "STX",
+    "countryCode": "IT"
+  },
+  "巴勒莫": {
+    "cityCode": "PMO",
+    "countryCode": "IT"
+  },
+  "巴里": {
+    "cityCode": "BAR",
+    "countryCode": "IT"
+  },
+  "佩鲁贾": {
+    "cityCode": "PEU",
+    "countryCode": "IT"
+  },
+  "科莫": {
+    "cityCode": "COM",
+    "countryCode": "IT"
+  },
+  "卢卡": {
+    "cityCode": "LCV",
+    "countryCode": "IT"
+  },
+  "拉文纳": {
+    "cityCode": "RNX",
+    "countryCode": "IT"
+  },
+  "的里雅斯特": {
+    "cityCode": "TIE",
+    "countryCode": "IT"
+  },
+  "帕多瓦": {
+    "cityCode": "PAV",
+    "countryCode": "IT"
+  },
   "巴塞罗那": {
     "cityCode": "BCN",
     "countryCode": "ES"
@@ -32971,6 +33171,46 @@
     "cityCode": "GRX",
     "countryCode": "ES"
   },
+  "瓦伦西亚": {
+    "cityCode": "VLC",
+    "countryCode": "ES"
+  },
+  "毕尔巴鄂": {
+    "cityCode": "BIO",
+    "countryCode": "ES"
+  },
+  "马拉加": {
+    "cityCode": "AGP",
+    "countryCode": "ES"
+  },
+  "科尔多瓦": {
+    "cityCode": "ODB",
+    "countryCode": "ES"
+  },
+  "托莱多": {
+    "cityCode": "TOL",
+    "countryCode": "ES"
+  },
+  "塞哥维亚": {
+    "cityCode": "SGV",
+    "countryCode": "ES"
+  },
+  "萨拉戈萨": {
+    "cityCode": "ZAZ",
+    "countryCode": "ES"
+  },
+  "萨拉曼卡": {
+    "cityCode": "SLM",
+    "countryCode": "ES"
+  },
+  "圣塞瓦斯蒂安": {
+    "cityCode": "EAS",
+    "countryCode": "ES"
+  },
+  "伊维萨": {
+    "cityCode": "IBZ",
+    "countryCode": "ES"
+  },
   "里斯本": {
     "cityCode": "LIS",
     "countryCode": "PT"
@@ -32979,8 +33219,44 @@
     "cityCode": "OPO",
     "countryCode": "PT"
   },
+  "辛特拉": {
+    "cityCode": "ITR",
+    "countryCode": "PT"
+  },
+  "法鲁": {
+    "cityCode": "FAO",
+    "countryCode": "PT"
+  },
+  "科英布拉": {
+    "cityCode": "CBP",
+    "countryCode": "PT"
+  },
+  "埃武拉": {
+    "cityCode": "EVO",
+    "countryCode": "PT"
+  },
   "阿姆斯特丹": {
     "cityCode": "AMS",
+    "countryCode": "NL"
+  },
+  "鹿特丹": {
+    "cityCode": "RTM",
+    "countryCode": "NL"
+  },
+  "海牙": {
+    "cityCode": "HAG",
+    "countryCode": "NL"
+  },
+  "乌得勒支": {
+    "cityCode": "UTR",
+    "countryCode": "NL"
+  },
+  "马斯特里赫特": {
+    "cityCode": "MST",
+    "countryCode": "NL"
+  },
+  "羊角村": {
+    "cityCode": "GTO",
     "countryCode": "NL"
   },
   "布鲁塞尔": {
@@ -32991,12 +33267,56 @@
     "cityCode": "BRG",
     "countryCode": "BE"
   },
+  "列日": {
+    "cityCode": "LGG",
+    "countryCode": "BE"
+  },
+  "卢塞恩": {
+    "cityCode": "LUZ",
+    "countryCode": "CH"
+  },
   "因特拉肯": {
     "cityCode": "INT",
     "countryCode": "CH"
   },
-  "卢塞恩": {
-    "cityCode": "LUZ",
+  "苏黎世": {
+    "cityCode": "ZRH",
+    "countryCode": "CH"
+  },
+  "日内瓦": {
+    "cityCode": "GVA",
+    "countryCode": "CH"
+  },
+  "伯尔尼": {
+    "cityCode": "BRN",
+    "countryCode": "CH"
+  },
+  "洛桑": {
+    "cityCode": "LSN",
+    "countryCode": "CH"
+  },
+  "策马特": {
+    "cityCode": "QZB",
+    "countryCode": "CH"
+  },
+  "卢加诺": {
+    "cityCode": "LUG",
+    "countryCode": "CH"
+  },
+  "巴塞尔": {
+    "cityCode": "BSL",
+    "countryCode": "CH"
+  },
+  "圣莫里茨": {
+    "cityCode": "SMR",
+    "countryCode": "CH"
+  },
+  "蒙特勒": {
+    "cityCode": "MON",
+    "countryCode": "CH"
+  },
+  "格林德瓦": {
+    "cityCode": "GRW",
     "countryCode": "CH"
   },
   "维也纳": {
@@ -33007,6 +33327,22 @@
     "cityCode": "SZG",
     "countryCode": "AT"
   },
+  "因斯布鲁克": {
+    "cityCode": "INN",
+    "countryCode": "AT"
+  },
+  "哈尔施塔特": {
+    "cityCode": "HSA",
+    "countryCode": "AT"
+  },
+  "格拉茨": {
+    "cityCode": "GRZ",
+    "countryCode": "AT"
+  },
+  "林茨": {
+    "cityCode": "LNZ",
+    "countryCode": "AT"
+  },
   "雅典": {
     "cityCode": "ATH",
     "countryCode": "GR"
@@ -33015,8 +33351,52 @@
     "cityCode": "SZT",
     "countryCode": "GR"
   },
+  "米科诺斯": {
+    "cityCode": "MYN",
+    "countryCode": "GR"
+  },
+  "塞萨洛尼基": {
+    "cityCode": "THE",
+    "countryCode": "GR"
+  },
+  "伊拉克利翁": {
+    "cityCode": "HER",
+    "countryCode": "GR"
+  },
+  "罗德岛": {
+    "cityCode": "RHO",
+    "countryCode": "GR"
+  },
+  "科孚": {
+    "cityCode": "CRF",
+    "countryCode": "GR"
+  },
+  "德尔斐": {
+    "cityCode": "DLP",
+    "countryCode": "GR"
+  },
+  "奥林匹亚": {
+    "cityCode": "OYP",
+    "countryCode": "GR"
+  },
   "斯德哥尔摩": {
     "cityCode": "STO",
+    "countryCode": "SE"
+  },
+  "哥德堡": {
+    "cityCode": "GOT",
+    "countryCode": "SE"
+  },
+  "马尔默": {
+    "cityCode": "MMA",
+    "countryCode": "SE"
+  },
+  "乌普萨拉": {
+    "cityCode": "UPP",
+    "countryCode": "SE"
+  },
+  "基律纳": {
+    "cityCode": "KRN",
     "countryCode": "SE"
   },
   "奥斯陆": {
@@ -33027,32 +33407,204 @@
     "cityCode": "BGO",
     "countryCode": "NO"
   },
+  "斯塔万格": {
+    "cityCode": "SVG",
+    "countryCode": "NO"
+  },
+  "特隆赫姆": {
+    "cityCode": "TRD",
+    "countryCode": "NO"
+  },
+  "弗洛姆": {
+    "cityCode": "FLA",
+    "countryCode": "NO"
+  },
   "哥本哈根": {
     "cityCode": "CPH",
+    "countryCode": "DK"
+  },
+  "奥胡斯": {
+    "cityCode": "AAR",
+    "countryCode": "DK"
+  },
+  "欧登塞": {
+    "cityCode": "ODE",
     "countryCode": "DK"
   },
   "都柏林": {
     "cityCode": "DUB",
     "countryCode": "IE"
   },
+  "戈尔韦": {
+    "cityCode": "GWY",
+    "countryCode": "IE"
+  },
+  "科克": {
+    "cityCode": "ORK",
+    "countryCode": "IE"
+  },
   "克拉科夫": {
     "cityCode": "KRK",
+    "countryCode": "PL"
+  },
+  "华沙": {
+    "cityCode": "WAW",
+    "countryCode": "PL"
+  },
+  "格但斯克": {
+    "cityCode": "GDN",
+    "countryCode": "PL"
+  },
+  "弗罗茨瓦夫": {
+    "cityCode": "WRO",
+    "countryCode": "PL"
+  },
+  "波兹南": {
+    "cityCode": "POZ",
     "countryCode": "PL"
   },
   "布拉格": {
     "cityCode": "PRG",
     "countryCode": "CZ"
   },
+  "克鲁姆洛夫": {
+    "cityCode": "CKV",
+    "countryCode": "CZ"
+  },
+  "卡罗维发利": {
+    "cityCode": "KLV",
+    "countryCode": "CZ"
+  },
+  "布尔诺": {
+    "cityCode": "BRQ",
+    "countryCode": "CZ"
+  },
   "布达佩斯": {
     "cityCode": "BUD",
+    "countryCode": "HU"
+  },
+  "埃格尔": {
+    "cityCode": "EGR",
+    "countryCode": "HU"
+  },
+  "佩奇": {
+    "cityCode": "QPJ",
     "countryCode": "HU"
   },
   "杜布罗夫尼克": {
     "cityCode": "DBV",
     "countryCode": "CR"
   },
+  "斯普利特": {
+    "cityCode": "SPU",
+    "countryCode": "CR"
+  },
+  "萨格勒布": {
+    "cityCode": "ZAG",
+    "countryCode": "CR"
+  },
+  "赫瓦尔": {
+    "cityCode": "HVZ",
+    "countryCode": "CR"
+  },
+  "普拉": {
+    "cityCode": "PUL",
+    "countryCode": "CR"
+  },
+  "扎达尔": {
+    "cityCode": "ZAD",
+    "countryCode": "CR"
+  },
   "伊斯坦布尔": {
     "cityCode": "IST",
     "countryCode": "TR"
+  },
+  "安卡拉": {
+    "cityCode": "ANK",
+    "countryCode": "TR"
+  },
+  "伊兹密尔": {
+    "cityCode": "ADB",
+    "countryCode": "TR"
+  },
+  "安塔利亚": {
+    "cityCode": "AYT",
+    "countryCode": "TR"
+  },
+  "棉花堡": {
+    "cityCode": "PKK",
+    "countryCode": "TR"
+  },
+  "莫斯科": {
+    "cityCode": "MOW",
+    "countryCode": "RU"
+  },
+  "圣彼得堡": {
+    "cityCode": "SPB",
+    "countryCode": "RU"
+  },
+  "索非亚": {
+    "cityCode": "SOF",
+    "countryCode": "BG"
+  },
+  "雷克雅未克": {
+    "cityCode": "REK",
+    "countryCode": "IS"
+  },
+  "卢森堡": {
+    "cityCode": "LUX",
+    "countryCode": "LU"
+  },
+  "贝尔格莱德": {
+    "cityCode": "BEL",
+    "countryCode": "RS"
+  },
+  "尼科西亚": {
+    "cityCode": "NIC",
+    "countryCode": "CY"
+  },
+  "里加": {
+    "cityCode": "RIX",
+    "countryCode": "LV"
+  },
+  "布拉迪斯拉发": {
+    "cityCode": "BRA",
+    "countryCode": "SK"
+  },
+  "卢布尔雅那": {
+    "cityCode": "LJU",
+    "countryCode": "SI"
+  },
+  "布莱德": {
+    "cityCode": "BLD",
+    "countryCode": "SI"
+  },
+  "塔林": {
+    "cityCode": "TLL",
+    "countryCode": "EE"
+  },
+  "维尔纽斯": {
+    "cityCode": "VNO",
+    "countryCode": "LT"
+  },
+  "布加勒斯特": {
+    "cityCode": "BUH",
+    "countryCode": "RO"
+  },
+  "布拉索夫": {
+    "cityCode": "BSV",
+    "countryCode": "RO"
+  },
+  "赫尔辛基": {
+    "cityCode": "HEL",
+    "countryCode": "FI"
+  },
+  "罗瓦涅米": {
+    "cityCode": "RVN",
+    "countryCode": "FI"
+  },
+  "瓦莱塔": {
+    "cityCode": "VLT",
+    "countryCode": "ML"
   }
 }

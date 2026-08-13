@@ -4,6 +4,45 @@ import attractionInfo from '@/data/attraction-info.json'
 
 const { countries } = travelData
 
+// 惰性索引：getCityById / getAttractionById 从 O(n) 嵌套扫描降为 O(1) 查找，
+// 同时缓存两份扁平列表（数据为静态 JSON，多处反复调用时避免重复全量扫描）
+let cityIndex = null
+let attractionIndex = null
+let allAttractionsFlat = null
+let allCitiesWithCoords = null
+
+function buildIndexes() {
+  if (cityIndex) return
+  cityIndex = new Map()
+  attractionIndex = new Map()
+  const attractions = []
+  const cities = []
+  for (const c of countries) {
+    for (const city of c.cities) {
+      cityIndex.set(city.id, { city, country: c })
+      cities.push({
+        id: city.id,
+        name: city.name,
+        nameEn: city.nameEn,
+        lat: city.lat,
+        lng: city.lng,
+        country: { id: c.id, name: c.name, nameEn: c.nameEn },
+        attractionCount: city.attractions.length,
+      })
+      for (const attr of city.attractions) {
+        attractionIndex.set(attr.id, { attr, city, country: c })
+        attractions.push({
+          ...attr,
+          city: { id: city.id, name: city.name, nameEn: city.nameEn },
+          country: { id: c.id, name: c.name, nameEn: c.nameEn },
+        })
+      }
+    }
+  }
+  allAttractionsFlat = attractions
+  allCitiesWithCoords = cities
+}
+
 export function getAllCountries() {
   return countries
 }
@@ -13,43 +52,28 @@ export function getCountryById(id) {
 }
 
 export function getCityById(id) {
-  for (const c of countries) {
-    const city = c.cities.find((ci) => ci.id === id)
-    if (city) return { ...city, country: { id: c.id, name: c.name, nameEn: c.nameEn } }
-  }
-  return null
+  buildIndexes()
+  const entry = cityIndex.get(id)
+  if (!entry) return null
+  const { city, country } = entry
+  return { ...city, country: { id: country.id, name: country.name, nameEn: country.nameEn } }
 }
 
 export function getAttractionById(id) {
-  for (const c of countries) {
-    for (const city of c.cities) {
-      const attr = city.attractions.find((a) => a.id === id)
-      if (attr) {
-        return {
-          ...attr,
-          city: { id: city.id, name: city.name, nameEn: city.nameEn },
-          country: { id: c.id, name: c.name, nameEn: c.nameEn },
-        }
-      }
-    }
+  buildIndexes()
+  const entry = attractionIndex.get(id)
+  if (!entry) return null
+  const { attr, city, country } = entry
+  return {
+    ...attr,
+    city: { id: city.id, name: city.name, nameEn: city.nameEn },
+    country: { id: country.id, name: country.name, nameEn: country.nameEn },
   }
-  return null
 }
 
 export function getAllAttractionsFlat() {
-  const list = []
-  for (const c of countries) {
-    for (const city of c.cities) {
-      for (const attr of city.attractions) {
-        list.push({
-          ...attr,
-          city: { id: city.id, name: city.name, nameEn: city.nameEn },
-          country: { id: c.id, name: c.name, nameEn: c.nameEn },
-        })
-      }
-    }
-  }
-  return list
+  buildIndexes()
+  return allAttractionsFlat
 }
 
 export function getFeaturedAttractions() {
@@ -98,21 +122,8 @@ export function getCityImagePath(cityId) {
 }
 
 export function getAllCitiesWithCoords() {
-  const cities = []
-  for (const c of countries) {
-    for (const city of c.cities) {
-      cities.push({
-        id: city.id,
-        name: city.name,
-        nameEn: city.nameEn,
-        lat: city.lat,
-        lng: city.lng,
-        country: { id: c.id, name: c.name, nameEn: c.nameEn },
-        attractionCount: city.attractions.length,
-      })
-    }
-  }
-  return cities
+  buildIndexes()
+  return allCitiesWithCoords
 }
 
 export function getCountryCentroids() {

@@ -6,15 +6,7 @@ import { getAllCountries, getCountryCoverImage, getStats, getAllAttractionsFlat 
 import { ensureSeeded } from '@/lib/entity-store'
 import countryMeta from '@/data/country-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
-
-const COUNTRY_FLAGS = {
-  '英国': '🇬🇧', '法国': '🇫🇷', '意大利': '🇮🇹', '德国': '🇩🇪',
-  '西班牙': '🇪🇸', '葡萄牙': '🇵🇹', '荷兰': '🇳🇱', '比利时': '🇧🇪',
-  '瑞士': '🇨🇭', '奥地利': '🇦🇹', '捷克': '🇨🇿', '匈牙利': '🇭🇺',
-  '波兰': '🇵🇱', '希腊': '🇬🇷', '瑞典': '🇸🇪', '挪威': '🇳🇴',
-  '丹麦': '🇩🇰', '芬兰': '🇫🇮', '克罗地亚': '🇭🇷', '爱尔兰': '🇮🇪',
-  '土耳其': '🇹🇷', '冰岛': '🇮🇸', '爱沙尼亚': '🇪🇪', '黑山': '🇲🇪',
-}
+import { COUNTRY_FLAGS } from '@/lib/flags'
 
 export default function KnowledgePage() {
   const [stats, setStats] = useState({ countryCount: 0, cityCount: 0, attractionCount: 0 })
@@ -67,12 +59,6 @@ export default function KnowledgePage() {
                   countryName={country.name}
                 />
                 <div className="p-3">
-                  <h3 className="font-display font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>
-                    {flag} {country.name}
-                  </h3>
-                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-                    {[country.nameEn, meta.abbr].filter(Boolean).join(' · ')}
-                  </p>
                   {country.description && (
                     <p className="text-xs mt-2 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
                       {country.description}
@@ -109,7 +95,7 @@ export default function KnowledgePage() {
         {countries.length === 0 && (
           <div className="text-center py-20">
             <p className="text-4xl mb-4">🗺️</p>
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>加载中...</p>
+            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>暂无国家数据</p>
           </div>
         )}
       </div>

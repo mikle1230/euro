@@ -1,10 +1,8 @@
 'use client'
 
-const STORAGE_KEY = 'euro-entities'
+import { uid } from './id'
 
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8)
-}
+const STORAGE_KEY = 'euro-entities'
 
 function readStore() {
   if (typeof window === 'undefined') return { entities: [], version: 1 }
@@ -12,9 +10,7 @@ function readStore() {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) return JSON.parse(raw)
   } catch { /* ignore */ }
-
-  // First load: seed from europe-travel.json attractions
-  return { entities: seedFromData(), version: 1 }
+  return { entities: [], version: 1 }
 }
 
 function writeStore(data) {
@@ -22,20 +18,6 @@ function writeStore(data) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   } catch { /* quota exceeded */ }
-}
-
-function seedFromData() {
-  // Dynamically import won't work here since we're in a 'use client' context.
-  // Seed happens lazily via seedEntities() which the app calls on first load.
-  return []
-}
-
-export function seedEntities() {
-  const store = readStore()
-  if (store.entities.length > 0) return // already seeded
-
-  // We use a static import at call site. Here we receive the data.
-  // The caller (page.js) passes the attractions array.
 }
 
 let _seeded = false

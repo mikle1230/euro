@@ -7,15 +7,8 @@ import countryMeta from '@/data/country-meta.json'
 import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
-
-const COUNTRY_FLAGS = {
-  '英国': '🇬🇧', '法国': '🇫🇷', '意大利': '🇮🇹', '德国': '🇩🇪',
-  '西班牙': '🇪🇸', '葡萄牙': '🇵🇹', '荷兰': '🇳🇱', '比利时': '🇧🇪',
-  '瑞士': '🇨🇭', '奥地利': '🇦🇹', '捷克': '🇨🇿', '匈牙利': '🇭🇺',
-  '波兰': '🇵🇱', '希腊': '🇬🇷', '瑞典': '🇸🇪', '挪威': '🇳🇴',
-  '丹麦': '🇩🇰', '芬兰': '🇫🇮', '克罗地亚': '🇭🇷', '爱尔兰': '🇮🇪',
-  '土耳其': '🇹🇷', '冰岛': '🇮🇸', '爱沙尼亚': '🇪🇪', '黑山': '🇲🇪',
-}
+import { COUNTRY_FLAGS } from '@/lib/flags'
+import { CURRENCY_SYMBOLS } from '@/lib/config'
 
 export default function CountryPage() {
   const params = useParams()
@@ -79,7 +72,9 @@ export default function CountryPage() {
             className="flex flex-wrap items-center gap-3 px-4 py-3 rounded-xl mb-6 text-sm"
             style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}
           >
-            <span style={{ color: 'var(--text-secondary)' }}>💶 货币：</span>
+            <span style={{ color: 'var(--text-secondary)' }}>
+              {CURRENCY_SYMBOLS[meta.currency.code] || meta.currency.code} 货币：
+            </span>
             <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>
               {meta.currency.name} · {meta.currency.code}
             </span>

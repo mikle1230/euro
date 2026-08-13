@@ -3,10 +3,13 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import ItineraryList from './panel-views/itinerary-list'
 import DayDetail from './panel-views/day-detail'
+import QUOSList from './panel-views/quos-list'
+import ItinerarySettings from './itinerary-settings'
 
 const ICONS = [
-  { key: 'itineraries', icon: '📋', label: '行程列表' },
-  { key: 'days', icon: '📅', label: '当前行程详情' },
+  { key: 'itineraries', icon: '🗂️', label: '行程列表' },
+  { key: 'quos', icon: '📋', label: '收费清单' },
+  { key: 'edit', icon: '✏️', label: '编辑行程' },
 ]
 
 const MIN_W = 360
@@ -14,9 +17,9 @@ const MAX_W = 700
 const HEADER_H = 56
 
 export default function FloatingPanel({
+  isMobile,
   cities,
   activeItinerary,
-  onItineraryChange,
   onCityClick,
   onAddToItinerary,
   onDayHover,
@@ -27,7 +30,9 @@ export default function FloatingPanel({
   onWidthChange,
 }) {
   const [view, setView] = useState('itineraries')
+  const [showSettings, setShowSettings] = useState(false)
   const panelRef = useRef(null)
+  const prevItinIdRef = useRef(null)
 
   // Left-edge resize logic
   const startResize = useCallback((e) => {
@@ -54,12 +59,21 @@ export default function FloatingPanel({
     onCollapsedChange(false)
   }
 
-  // When switching to days without active itinerary, redirect to list
+  // 无当前行程时，收费清单/编辑视图重定向到列表
   useEffect(() => {
-    if (!activeItinerary && view === 'days') {
+    if (!activeItinerary && (view === 'quos' || view === 'edit')) {
       setView('itineraries')
     }
   }, [activeItinerary, view])
+
+  // 导入/切换行程后直接落到「收费清单」；首挂载不触发
+  useEffect(() => {
+    const currentId = activeItinerary?.id || null
+    if (prevItinIdRef.current !== null && currentId && currentId !== prevItinIdRef.current) {
+      setView('quos')
+    }
+    prevItinIdRef.current = currentId
+  }, [activeItinerary])
 
   // Update panelWidth on window resize to stay within bounds
   useEffect(() => {
@@ -72,11 +86,12 @@ export default function FloatingPanel({
 
   const titleMap = {
     itineraries: '行程列表',
-    days: activeItinerary ? activeItinerary.name : '天数详情',
+    quos: '收费清单',
+    edit: activeItinerary ? activeItinerary.name : '编辑行程',
   }
 
   // ---- Collapsed state: just an arrow on the right edge ----
-  if (collapsed) {
+  if (collapsed && !isMobile) {
     return (
       <div
         className="fixed z-[1000] flex flex-col items-center justify-center gap-2 py-3 rounded-l-xl border shadow-lg cursor-pointer transition-colors hover:bg-[var(--bg-elevated)]"
@@ -100,8 +115,16 @@ export default function FloatingPanel({
   return (
     <div
       ref={panelRef}
-      className="fixed z-[1000] flex flex-col border-l shadow-2xl"
-      style={{
+      className={`fixed z-[1000] flex flex-col shadow-2xl ${isMobile ? '' : 'border-l'}`}
+      style={isMobile ? {
+        left: 0,
+        right: 0,
+        top: HEADER_H,
+        bottom: 0,
+        width: '100%',
+        background: 'var(--bg-card)',
+        borderColor: 'var(--border-color)',
+      } : {
         right: 0,
         top: HEADER_H,
         bottom: 0,
@@ -114,11 +137,15 @@ export default function FloatingPanel({
       }}
     >
       {/* Left-edge resize handle */}
-      <div
-        className="absolute top-0 bottom-0 w-[6px] cursor-col-resize z-10 hover:bg-[var(--accent)] hover:opacity-20"
-        style={{ left: 0 }}
-        onPointerDown={startResize}
-      />
+      {!isMobile && (
+        <div
+          className="absolute top-0 bottom-0 w-3 cursor-col-resize z-10 flex items-center justify-center transition-colors hover:bg-[var(--accent)] hover:opacity-20"
+          style={{ left: 0 }}
+          onPointerDown={startResize}
+        >
+          <div className="w-[2px] h-12 rounded-full" style={{ background: 'var(--border-color)' }} />
+        </div>
+      )}
 
       {/* Title bar */}
       <div
@@ -127,14 +154,16 @@ export default function FloatingPanel({
       >
         <div className="flex items-center gap-2">
           {/* Collapse button */}
-          <button
-            onClick={() => onCollapsedChange(true)}
-            className="w-7 h-7 rounded-lg flex items-center justify-center text-sm transition-colors hover:bg-[var(--bg-surface)]"
-            style={{ color: 'var(--text-tertiary)' }}
-            title="收起面板"
-          >
-            ▶
-          </button>
+          {!isMobile && (
+            <button
+              onClick={() => onCollapsedChange(true)}
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-sm transition-colors hover:bg-[var(--bg-surface)]"
+              style={{ color: 'var(--text-tertiary)' }}
+              title="收起面板"
+            >
+              ▶
+            </button>
+          )}
           {activeItinerary && view !== 'itineraries' && (
             <button
               onClick={() => setView('itineraries')}
@@ -151,7 +180,7 @@ export default function FloatingPanel({
         <div className="flex items-center gap-1">
           {/* View tabs */}
           <div className="flex items-center gap-1">
-            {ICONS.map((item) => (
+            {ICONS.filter((item) => !isMobile || item.key !== 'edit').map((item) => (
               <button
                 key={item.key}
                 onClick={() => openView(item.key)}
@@ -165,6 +194,16 @@ export default function FloatingPanel({
               </button>
             ))}
           </div>
+          {activeItinerary && (
+            <button
+              onClick={() => setShowSettings(true)}
+              className="w-7 h-7 rounded-md flex items-center justify-center text-sm transition-colors hover:bg-[var(--bg-surface)]"
+              style={{ color: 'var(--text-tertiary)' }}
+              title="行程设置"
+            >
+              ⚙️
+            </button>
+          )}
         </div>
       </div>
 
@@ -172,22 +211,28 @@ export default function FloatingPanel({
       <div className="flex-1 overflow-y-auto">
         {view === 'itineraries' && (
           <ItineraryList
-            onItineraryChange={onItineraryChange}
-            onNavigate={(itinerary) => {
-              onItineraryChange(itinerary)
-              setView('days')
-            }}
+            activeItinerary={activeItinerary}
+            onNavigate={() => setView('quos')}
           />
         )}
-        {view === 'days' && activeItinerary && (
+        {view === 'quos' && activeItinerary && (
+          <QUOSList itinerary={activeItinerary} />
+        )}
+        {view === 'edit' && activeItinerary && (
           <DayDetail
             itinerary={activeItinerary}
             cities={cities}
-            onItineraryChange={onItineraryChange}
             onDayHover={onDayHover}
           />
         )}
       </div>
+
+      {showSettings && activeItinerary && (
+        <ItinerarySettings
+          itinerary={activeItinerary}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
     </div>
   )
 }
