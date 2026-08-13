@@ -11,7 +11,9 @@
       "Bash(node -e \"const x = require\\('xlsx'\\); console.log\\('xlsx read:', typeof x.read\\); console.log\\('xlsx utils:', typeof x.utils?.sheet_to_csv\\)\")",
       "Bash(node -e \"const o = require\\('openai'\\); console.log\\('openai default:', typeof o.default\\)\")",
       "Bash(node -e ' *)",
-      "Bash(claude plugins *)"
+      "Bash(claude plugins *)",
+      "WebSearch",
+      "Read(//Users/michael/.claude/**)"
     ],
     "additionalDirectories": [
       "/Users/michael/Projects/euro/src/app/knowledge"

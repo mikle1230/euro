@@ -73,23 +73,13 @@
   font-family: 'Geist', 'Noto Sans SC', sans-serif !important;
 }
 
+/* ---- Country boundary: default cursor (no hand) ---- */
+.country-boundary.leaflet-interactive {
+  cursor: default !important;
+}
+
 .leaflet-tooltip-top::before {
   border-top-color: var(--border-color) !important;
-}
-
-/* ---- Country tooltip (image preview) ---- */
-.country-tooltip {
-  background: var(--bg-card) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14) !important;
-  padding: 8px !important;
-  font-family: 'Geist', 'Noto Sans SC', sans-serif !important;
-}
-
-.country-tooltip::before {
-  display: none !important;
 }
 
 /* ---- Zoom controls ---- */

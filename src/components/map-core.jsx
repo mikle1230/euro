@@ -1,13 +1,30 @@
 'use client'
 
 import { useEffect, useRef, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import './map-styles.css'
 import { getAllEntities } from '@/lib/entity-store'
-import { getEntityMarkerColor, TYPE_ICONS, TYPE_LABELS } from '@/lib/config'
+import { getCountryById } from '@/lib/data'
+import { getCityCode } from '@/lib/quos-mapping'
+import { getEntityMarkerColor, TYPE_ICONS, TYPE_LABELS, MAP } from '@/lib/config'
 import europeBoundaries from '@/data/europe-boundaries.json'
+
+const ROAD_FACTOR = 1.35
+
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLng = ((lng2 - lng1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2)
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return Math.round(R * c * ROAD_FACTOR)
+}
 
 // ISO_A2 → project countryId mapping
 const ISO_TO_COUNTRY_ID = {
@@ -24,6 +41,12 @@ const NAME_TO_COUNTRY_ID = {
   'France': 'france',
   'Norway': 'norway',
 }
+
+// Reverse map: countryId → ISO code
+const COUNTRY_ID_TO_ISO = {}
+Object.entries(ISO_TO_COUNTRY_ID).forEach(([iso, id]) => {
+  COUNTRY_ID_TO_ISO[id] = iso
+})
 
 function resolveCountryId(iso, name) {
   if (iso && ISO_TO_COUNTRY_ID[iso]) return ISO_TO_COUNTRY_ID[iso]
@@ -52,7 +75,6 @@ export default function MapCore({
   panelCollapsed = false,
   panelWidth = 0,
 }) {
-  const router = useRouter()
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const markersRef = useRef({})
@@ -60,6 +82,7 @@ export default function MapCore({
   const dayLabelMarkersRef = useRef([])
   const routeRef = useRef(null)
   const arrowRouteRef = useRef(null)
+  const routeLabelRef = useRef([])
   const tileLayerRef = useRef(null)
   const geoJsonLayerRef = useRef(null)
   const entityLayerGroupRef = useRef(null)
@@ -93,8 +116,8 @@ export default function MapCore({
     initRef.current = true
 
     const map = L.map(containerRef.current, {
-      center: [50, 10],
-      zoom: 4,
+      center: MAP.initialCenter,
+      zoom: MAP.initialZoom,
       scrollWheelZoom: true,
       zoomControl: true,
       attributionControl: false,
@@ -103,22 +126,39 @@ export default function MapCore({
     mapRef.current = map
 
     if (cities.length > 0) {
-      const bounds = cities.map((c) => [c.lat, c.lng])
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 7 })
+      const lats = cities.map((c) => c.lat)
+      const lngs = cities.map((c) => c.lng)
+      const centerLat = (Math.min(...lats) + Math.max(...lats)) / 2
+      const centerLng = (Math.min(...lngs) + Math.max(...lngs)) / 2
+      map.setView([centerLat, centerLng], MAP.defaultZoom)
     }
 
     setTimeout(() => map.invalidateSize(), 100)
 
     return () => {
-      map.remove()
+      // Close any open popups/tooltips first to prevent _leaflet_pos errors
+      try { map.closePopup() } catch {}
+      try { map.closeTooltip() } catch {}
+      // Remove all layers before destroying the map
+      if (tileLayerRef.current) try { map.removeLayer(tileLayerRef.current) } catch {}
+      if (geoJsonLayerRef.current) try { map.removeLayer(geoJsonLayerRef.current) } catch {}
+      Object.values(markersRef.current).forEach((m) => { try { map.removeLayer(m) } catch {} })
+      Object.values(ringMarkersRef.current).forEach((r) => { try { map.removeLayer(r) } catch {} })
+      dayLabelMarkersRef.current.forEach((m) => { try { map.removeLayer(m) } catch {} })
+      if (routeRef.current) try { map.removeLayer(routeRef.current) } catch {}
+      if (arrowRouteRef.current) try { map.removeLayer(arrowRouteRef.current) } catch {}
+      if (entityLayerGroupRef.current) try { map.removeLayer(entityLayerGroupRef.current) } catch {}
+      try { map.remove() } catch {}
       mapRef.current = null
       initRef.current = false
       tileLayerRef.current = null
+      geoJsonLayerRef.current = null
       markersRef.current = {}
       ringMarkersRef.current = {}
       dayLabelMarkersRef.current = []
       routeRef.current = null
       arrowRouteRef.current = null
+      entityLayerGroupRef.current = null
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -130,7 +170,7 @@ export default function MapCore({
     const updateTiles = () => {
       const { isDark } = getThemeColors()
 
-      if (tileLayerRef.current) map.removeLayer(tileLayerRef.current)
+      if (tileLayerRef.current && mapRef.current) map.removeLayer(tileLayerRef.current)
 
       const url = isDark
         ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
@@ -167,6 +207,7 @@ export default function MapCore({
     if (!map) return
 
     const geoJsonLayer = L.geoJSON(europeBoundaries, {
+      className: 'country-boundary',
       style: () => ({
         fillColor: 'transparent',
         fillOpacity: 0,
@@ -180,30 +221,27 @@ export default function MapCore({
         const countryId = resolveCountryId(iso, name)
 
         if (countryId) {
-          const imgSrc = `/images/countries/${countryId}.jpg`
-          layer.bindTooltip(
-            `<div style="text-align:center;padding:2px">
-              <div style="width:100px;height:100px;border-radius:10px;overflow:hidden;margin:0 auto 6px;border:1px solid var(--border-color,#e0dbcf)">
-                <img src="${imgSrc}" alt="${name}"
-                  style="width:100%;height:100%;object-fit:cover;display:block"
-                  loading="lazy" />
-              </div>
-              <div style="font-size:12px;font-weight:600;color:var(--text-primary,#1a1a1a)">${name}</div>
-              <div style="font-size:10px;color:var(--text-tertiary,#999)">点击浏览详情 →</div>
-            </div>`,
-            { sticky: true, direction: 'top', className: 'country-tooltip', opacity: 1 },
-          )
+          const country = getCountryById(countryId)
+          const nameZh = country?.name || name
+          const nameEn = country?.nameEn || ''
+          const code = COUNTRY_ID_TO_ISO[countryId] || ''
+          const label = [nameZh, nameEn, code].filter(Boolean).join(' ')
+          layer.bindTooltip(label, {
+            sticky: true,
+            direction: 'top',
+            opacity: 1,
+          })
         }
 
         layer.on({
           mouseover: (e) => {
             const l = e.target
             l.setStyle({
-              fillColor: '#14b8a6',
+              fillColor: '#f97316',
               fillOpacity: 0.08,
               weight: 1.5,
               opacity: 0.6,
-              color: '#14b8a6',
+              color: '#f97316',
             })
             if (countryId) {
               l.openTooltip()
@@ -213,11 +251,6 @@ export default function MapCore({
             geoJsonLayer.resetStyle(e.target)
             e.target.closeTooltip()
           },
-          click: () => {
-            if (countryId) {
-              router.push(`/knowledge/${countryId}`)
-            }
-          },
         })
       },
     }).addTo(map)
@@ -226,10 +259,12 @@ export default function MapCore({
     geoJsonLayer.bringToBack()
 
     return () => {
-      map.removeLayer(geoJsonLayer)
+      if (mapRef.current) {
+        mapRef.current.removeLayer(geoJsonLayer)
+      }
       geoJsonLayerRef.current = null
     }
-  }, [router])
+  }, [])
 
   // City markers
   useEffect(() => {
@@ -238,7 +273,7 @@ export default function MapCore({
 
     const { isDark, accent, gold } = getThemeColors()
 
-    Object.values(markersRef.current).forEach((m) => map.removeLayer(m))
+    Object.values(markersRef.current).forEach((m) => { if (mapRef.current) mapRef.current.removeLayer(m) })
     markersRef.current = {}
 
     cities.forEach((city) => {
@@ -254,8 +289,11 @@ export default function MapCore({
         fillOpacity: inItinerary ? 0.8 : 0.65,
       }).addTo(map)
 
+      const cityCodeInfo = getCityCode(city.name, city.nameEn)
+      const cityCode = cityCodeInfo?.cityCode || ''
+      const tooltipParts = [city.name, city.nameEn, cityCode].filter(Boolean)
       marker.bindTooltip(
-        `<span style="font-size:12px;font-weight:600">${city.name}${city.nameEn ? ' · ' + city.nameEn : ''}</span>`,
+        `<span style="font-size:12px;font-weight:600">${tooltipParts.join(' ')}</span>`,
         { direction: 'top', offset: [0, -radius - 4], opacity: 0.95 },
       )
 
@@ -374,7 +412,7 @@ export default function MapCore({
     const map = mapRef.current
     if (!map) return
 
-    dayLabelMarkersRef.current.forEach((m) => map.removeLayer(m))
+    dayLabelMarkersRef.current.forEach((m) => { if (mapRef.current) map.removeLayer(m) })
     dayLabelMarkersRef.current = []
 
     dayLabels.forEach(({ cityId, label, lat, lng }) => {
@@ -400,7 +438,7 @@ export default function MapCore({
     })
   }, [dayLabels])
 
-  // Entity markers (attractions, hotels, restaurants) — appear at zoom > 8
+  // Entity markers (attractions, hotels, restaurants) — appear at zoom > MAP.entityVisibleZoom
   useEffect(() => {
     const map = mapRef.current
     if (!map) return
@@ -485,8 +523,9 @@ export default function MapCore({
 
     // Zoom-based visibility
     const updateVisibility = () => {
+      if (!mapRef.current) return
       const zoom = map.getZoom()
-      if (zoom > 8) {
+      if (zoom > MAP.entityVisibleZoom) {
         if (!map.hasLayer(layerGroup)) layerGroup.addTo(map)
       } else {
         if (map.hasLayer(layerGroup)) map.removeLayer(layerGroup)
@@ -497,7 +536,9 @@ export default function MapCore({
 
     return () => {
       map.off('zoomend', updateVisibility)
-      map.removeLayer(layerGroup)
+      if (mapRef.current) {
+        map.removeLayer(layerGroup)
+      }
       entityLayerGroupRef.current = null
     }
   }, [])
@@ -509,14 +550,18 @@ export default function MapCore({
 
     const { isDark, gold, routeColor } = getThemeColors()
 
-    if (routeRef.current) {
+    if (routeRef.current && mapRef.current) {
       map.removeLayer(routeRef.current)
       routeRef.current = null
     }
-    if (arrowRouteRef.current) {
+    if (arrowRouteRef.current && mapRef.current) {
       map.removeLayer(arrowRouteRef.current)
       arrowRouteRef.current = null
     }
+    routeLabelRef.current.forEach((m) => {
+      if (mapRef.current) mapRef.current.removeLayer(m)
+    })
+    routeLabelRef.current = []
 
     if (routeLine.length >= 2) {
       routeRef.current = L.polyline(routeLine, {
@@ -532,6 +577,31 @@ export default function MapCore({
         opacity: 0.9,
         dashArray: '4 12',
       }).addTo(map)
+
+      // Distance labels at midpoints
+      const textColor = isDark ? '#cbd5e1' : '#64748b'
+      for (let i = 0; i < routeLine.length - 1; i++) {
+        const [lat1, lng1] = routeLine[i]
+        const [lat2, lng2] = routeLine[i + 1]
+        const km = haversineKm(lat1, lng1, lat2, lng2)
+        const midLat = (lat1 + lat2) / 2
+        const midLng = (lng1 + lng2) / 2
+        const icon = L.divIcon({
+          className: '',
+          html: `<div style="
+            font-size:11px;font-weight:600;white-space:nowrap;
+            color:${textColor};
+            background:${isDark ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.85)'};
+            border:1px solid ${isDark ? '#334155' : '#e2e8f0'};
+            border-radius:6px;padding:2px 6px;
+            pointer-events:none;
+          ">${km}km</div>`,
+          iconSize: [0, 0],
+          iconAnchor: [0, 0],
+        })
+        const marker = L.marker([midLat, midLng], { icon, interactive: false }).addTo(map)
+        routeLabelRef.current.push(marker)
+      }
     }
   }, [routeLine, getThemeColors])
 

@@ -40,4 +40,28 @@ function getEntityMarkerColor(type, subtype) {
   return ENTITY_MARKER_COLORS[key] || ENTITY_MARKER_COLORS.landmark
 }
 
-export { SITE, TYPE_LABELS, TYPE_ICONS, ENTITY_MARKER_COLORS, getEntityMarkerColor }
+const EMPTY_TEXT = {
+  noItems: '暂无项目',
+  allFree: '本日仅含免费项目',
+}
+
+const CURRENCY_SYMBOLS = {
+  EUR: '€',
+  GBP: '£',
+  PLN: 'zł',
+  CZK: 'Kč',
+  HUF: 'Ft',
+  SEK: 'kr',
+  DKK: 'kr',
+  NOK: 'kr',
+  USD: '$',
+}
+
+const MAP = {
+  initialCenter: [50, 10],
+  initialZoom: 6,
+  defaultZoom: 4.5, // 默认视野缩放（用户已确认固定 4.5，勿改为 4.3）
+  entityVisibleZoom: 8, // 实体标记（景点/酒店/餐厅）在 zoom > 该值时显示
+}
+
+export { SITE, TYPE_LABELS, TYPE_ICONS, ENTITY_MARKER_COLORS, MAP, EMPTY_TEXT, CURRENCY_SYMBOLS, getEntityMarkerColor }

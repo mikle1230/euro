@@ -37,7 +37,7 @@ export default function Header() {
     >
       <div className="flex items-center gap-2 sm:gap-3">
         <span className="text-base sm:text-lg shrink-0">🗺️</span>
-        <span className="font-display font-bold text-sm sm:text-base shrink-0 hidden xs:inline" style={{ color: 'var(--text-primary)' }}>
+        <span className="font-display font-bold text-sm sm:text-base shrink-0 hidden sm:inline" style={{ color: 'var(--text-primary)' }}>
           {SITE.name}
         </span>
         <GlobalSearch />
@@ -88,7 +88,7 @@ export default function Header() {
               sm:w-[96px] sm:h-[40px] sm:text-sm
               md:w-[120px] md:h-[45px] md:text-sm"
           >
-            📖 知识库
+            知识库
           </Link>
         </nav>
         <div className="flex items-center h-14 ml-1 sm:ml-3">

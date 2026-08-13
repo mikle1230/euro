@@ -1,11 +1,9 @@
 import Link from 'next/link'
-import Header from '@/components/header'
 import Footer from '@/components/footer'
 
 export default function NotFound() {
   return (
     <>
-      <Header />
       <main className="flex-1 flex items-center justify-center px-4">
         <div className="text-center py-20">
           <div className="text-6xl mb-4">🗺️</div>

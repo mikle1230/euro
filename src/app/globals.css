@@ -35,8 +35,6 @@ html, body {
 
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
 
   --noise-opacity: 0.03;
 }
@@ -107,31 +105,6 @@ body {
   font-family: 'Geist', 'Noto Sans SC', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-
-/* ---- Scroll reveal ---- */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  filter: blur(4px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-/* ---- Stagger children ---- */
-.stagger-children > .scroll-reveal:nth-child(1) { transition-delay: 0s; }
-.stagger-children > .scroll-reveal:nth-child(2) { transition-delay: 0.07s; }
-.stagger-children > .scroll-reveal:nth-child(3) { transition-delay: 0.14s; }
-.stagger-children > .scroll-reveal:nth-child(4) { transition-delay: 0.21s; }
-.stagger-children > .scroll-reveal:nth-child(5) { transition-delay: 0.28s; }
-.stagger-children > .scroll-reveal:nth-child(6) { transition-delay: 0.35s; }
-.stagger-children > .scroll-reveal:nth-child(7) { transition-delay: 0.42s; }
-.stagger-children > .scroll-reveal:nth-child(8) { transition-delay: 0.49s; }
 
 /* ---- Spotlight card hover effect ---- */
 .spotlight-card {

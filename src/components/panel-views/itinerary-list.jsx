@@ -2,67 +2,57 @@
 
 import { useState } from 'react'
 import {
-  getAllItineraries,
+  useItineraries,
   createItinerary,
   deleteItinerary,
   renameItinerary,
   setActiveItinerary,
-  updateItineraryMeta,
   getAllTemplates,
   createFromTemplate,
   saveAsTemplate,
 } from '@/lib/itinerary-store'
+import ConfirmDialog from '@/components/confirm-dialog'
 
-export default function ItineraryList({ onItineraryChange, onNavigate }) {
-  const [itineraries, setItineraries] = useState(() => getAllItineraries())
+export default function ItineraryList({ activeItinerary, onNavigate }) {
+  const { itineraries } = useItineraries()
   const [templates, setTemplates] = useState(() => getAllTemplates())
   const [newName, setNewName] = useState('')
   const [editingId, setEditingId] = useState(null)
   const [editName, setEditName] = useState('')
-  const [expandedId, setExpandedId] = useState(null)
+  const [deleteTarget, setDeleteTarget] = useState(null)
   const [showTemplates, setShowTemplates] = useState(false)
 
-  const refresh = () => {
-    setItineraries(getAllItineraries())
-    setTemplates(getAllTemplates())
+  const formatTime = (isoString) => {
+    if (!isoString) return ''
+    const d = new Date(isoString)
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    const hour = String(d.getHours()).padStart(2, '0')
+    const min = String(d.getMinutes()).padStart(2, '0')
+    return `${month}-${day} ${hour}:${min}`
   }
 
   const handleCreate = () => {
     const name = newName.trim() || '未命名行程'
-    const it = createItinerary(name)
+    createItinerary(name)
     setNewName('')
-    refresh()
-    onItineraryChange(it)
-    onNavigate(it)
+    onNavigate()
   }
 
   const handleDelete = (id) => {
     deleteItinerary(id)
-    refresh()
-    onItineraryChange(getAllItineraries()[0] || null)
   }
 
   const handleSelect = (it) => {
     setActiveItinerary(it.id)
-    onItineraryChange(it)
-    onNavigate(it)
+    onNavigate()
   }
 
   const handleRename = (id) => {
     if (editName.trim()) {
       renameItinerary(id, editName.trim())
       setEditingId(null)
-      refresh()
-      const it = getAllItineraries().find((t) => t.id === id)
-      if (it) onItineraryChange(it)
     }
-  }
-
-  const handleMetaChange = (id, field, value) => {
-    updateItineraryMeta(id, { [field]: value })
-    refresh()
-    const it = getAllItineraries().find((t) => t.id === id)
-    if (it) onItineraryChange(it)
   }
 
   return (
@@ -98,7 +88,7 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
           className="flex items-center gap-1 text-xs font-medium w-full px-2 py-1 rounded transition-colors hover:bg-[var(--bg-surface)]"
           style={{ color: 'var(--text-secondary)' }}
         >
-          📋 从模板创建 {showTemplates ? '▼' : '▶'}
+          📄 从模板创建 {showTemplates ? '▼' : '▶'}
         </button>
         {showTemplates && (
           <div className="mt-1.5 flex flex-col gap-1">
@@ -113,14 +103,10 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
                   className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-[var(--bg-surface)] transition-colors cursor-pointer group"
                   onClick={() => {
                     const it = createFromTemplate(tpl.id)
-                    if (it) {
-                      refresh()
-                      onItineraryChange(it)
-                      onNavigate(it)
-                    }
+                    if (it) onNavigate()
                   }}
                 >
-                  <span className="text-base shrink-0">📋</span>
+                  <span className="text-base shrink-0">📄</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
                       {tpl.name}
@@ -146,20 +132,17 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
         </div>
       ) : (
         <div className="flex flex-col gap-1.5">
-          {itineraries.map((it) => (
+          {itineraries.map((it) => {
+            const isActive = activeItinerary?.id === it.id
+            return (
             <div key={it.id}>
               <div
                 className="group flex items-center gap-2 px-3 py-2.5 rounded-lg transition-all cursor-pointer hover:bg-[var(--bg-surface)]"
                 style={{
-                  background: expandedId === it.id ? 'var(--bg-surface)' : 'transparent',
+                  background: isActive ? 'var(--accent-subtle, rgba(20,184,166,0.08))' : 'transparent',
+                  borderLeft: isActive ? '3px solid var(--accent)' : '3px solid transparent',
                 }}
-                onClick={() => {
-                  if (expandedId === it.id) {
-                    handleSelect(it)
-                  } else {
-                    setExpandedId(it.id)
-                  }
-                }}
+                onClick={() => handleSelect(it)}
               >
                 {editingId === it.id ? (
                   <input
@@ -182,9 +165,14 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
                   />
                 ) : (
                   <>
-                    <span className="text-base shrink-0">📋</span>
+                    <span className="text-base shrink-0">🗂️</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+                        {it.tourCode ? (
+                          <span style={{ color: isActive ? 'var(--accent)' : 'var(--text-tertiary)' }}>{it.tourCode} </span>
+                        ) : it.serialNumber ? (
+                          <span style={{ color: isActive ? 'var(--accent)' : 'var(--text-tertiary)' }}>#{it.serialNumber} </span>
+                        ) : null}
                         {it.name}
                       </p>
                       <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
@@ -192,20 +180,21 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
                         {it.startDate ? ` · ${it.startDate}` : ''}
                         {it.startDate && it.endDate ? ` → ${it.endDate}` : ''}
                         {it.groupSize > 0 ? ` · ${it.groupSize}人` : ''}
+                        {it.createdAt ? ` · ${formatTime(it.createdAt)}` : ''}
                       </p>
                     </div>
-                    <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-0.5">
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
                           saveAsTemplate(it.id)
-                          refresh()
+                          setTemplates(getAllTemplates())
                         }}
-                        className="w-6 h-6 rounded flex items-center justify-center text-xs hover:bg-[var(--bg-elevated)]"
+                        className="w-7 h-7 rounded flex items-center justify-center text-xs hover:bg-[var(--bg-elevated)]"
                         style={{ color: 'var(--text-tertiary)' }}
                         title="保存为模板"
                       >
-                        📋
+                        💾
                       </button>
                       <button
                         onClick={(e) => {
@@ -213,7 +202,7 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
                           setEditingId(it.id)
                           setEditName(it.name)
                         }}
-                        className="w-6 h-6 rounded flex items-center justify-center text-xs hover:bg-[var(--bg-elevated)]"
+                        className="w-7 h-7 rounded flex items-center justify-center text-xs hover:bg-[var(--bg-elevated)]"
                         style={{ color: 'var(--text-tertiary)' }}
                         title="重命名"
                       >
@@ -222,9 +211,9 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
-                          if (confirm('确定删除这个行程？')) handleDelete(it.id)
+                          setDeleteTarget(it)
                         }}
-                        className="w-6 h-6 rounded flex items-center justify-center text-xs hover:bg-red-50"
+                        className="w-7 h-7 rounded flex items-center justify-center text-xs hover:bg-[var(--bg-elevated)]"
                         style={{ color: 'var(--text-tertiary)' }}
                         title="删除"
                       >
@@ -235,114 +224,22 @@ export default function ItineraryList({ onItineraryChange, onNavigate }) {
                 )}
               </div>
 
-              {/* Expanded metadata form */}
-              {expandedId === it.id && (
-                <div
-                  className="mx-3 mb-1 p-3 rounded-lg border"
-                  style={{
-                    background: 'var(--bg-surface)',
-                    borderColor: 'var(--border-color)',
-                  }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="text-xs mb-0.5 block" style={{ color: 'var(--text-tertiary)' }}>
-                        开始日期
-                      </label>
-                      <input
-                        type="date"
-                        value={it.startDate || ''}
-                        onChange={(e) => handleMetaChange(it.id, 'startDate', e.target.value)}
-                        className="w-full px-2 py-1 rounded text-xs border outline-none"
-                        style={{
-                          background: 'var(--bg-card)',
-                          borderColor: 'var(--border-color)',
-                          color: 'var(--text-primary)',
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs mb-0.5 block" style={{ color: 'var(--text-tertiary)' }}>
-                        结束日期
-                      </label>
-                      <input
-                        type="date"
-                        value={it.endDate || ''}
-                        onChange={(e) => handleMetaChange(it.id, 'endDate', e.target.value)}
-                        className="w-full px-2 py-1 rounded text-xs border outline-none"
-                        style={{
-                          background: 'var(--bg-card)',
-                          borderColor: 'var(--border-color)',
-                          color: 'var(--text-primary)',
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs mb-0.5 block" style={{ color: 'var(--text-tertiary)' }}>
-                        团号
-                      </label>
-                      <input
-                        type="text"
-                        value={it.tourCode || ''}
-                        onChange={(e) => handleMetaChange(it.id, 'tourCode', e.target.value)}
-                        placeholder="如 TL2024-001"
-                        className="w-full px-2 py-1 rounded text-xs border outline-none"
-                        style={{
-                          background: 'var(--bg-card)',
-                          borderColor: 'var(--border-color)',
-                          color: 'var(--text-primary)',
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs mb-0.5 block" style={{ color: 'var(--text-tertiary)' }}>
-                        团人数
-                      </label>
-                      <input
-                        type="number"
-                        value={it.groupSize || ''}
-                        onChange={(e) => handleMetaChange(it.id, 'groupSize', parseInt(e.target.value) || 0)}
-                        placeholder="30"
-                        min="0"
-                        className="w-full px-2 py-1 rounded text-xs border outline-none"
-                        style={{
-                          background: 'var(--bg-card)',
-                          borderColor: 'var(--border-color)',
-                          color: 'var(--text-primary)',
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="mt-2">
-                    <label className="text-xs mb-0.5 block" style={{ color: 'var(--text-tertiary)' }}>
-                      备注
-                    </label>
-                    <textarea
-                      value={it.notes || ''}
-                      onChange={(e) => handleMetaChange(it.id, 'notes', e.target.value)}
-                      placeholder="内部备注..."
-                      rows={2}
-                      className="w-full px-2 py-1 rounded text-xs border outline-none resize-none"
-                      style={{
-                        background: 'var(--bg-card)',
-                        borderColor: 'var(--border-color)',
-                        color: 'var(--text-primary)',
-                      }}
-                    />
-                  </div>
-                  <button
-                    onClick={() => handleSelect(it)}
-                    className="mt-2 w-full px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
-                    style={{ background: 'var(--accent)', color: '#fff' }}
-                  >
-                    进入行程编辑
-                  </button>
-                </div>
-              )}
             </div>
-          ))}
+            )
+          })}
         </div>
+      )}
+
+      {deleteTarget && (
+        <ConfirmDialog
+          title="删除行程"
+          message={`确定删除「${deleteTarget.name}」？此操作不可恢复。`}
+          onConfirm={() => {
+            handleDelete(deleteTarget.id)
+            setDeleteTarget(null)
+          }}
+          onCancel={() => setDeleteTarget(null)}
+        />
       )}
     </div>
   )

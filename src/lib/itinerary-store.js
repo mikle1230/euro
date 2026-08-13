@@ -1,52 +1,116 @@
 'use client'
 
-const STORAGE_KEY = 'euro-itineraries'
+import { useSyncExternalStore } from 'react'
+import { uid } from './id'
 
-function uid() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 8)
+const STORAGE_KEY = 'euro-itineraries'
+const SERIAL_KEY = 'euro-itinerary-serial'
+const TEMPLATE_KEY = 'euro-templates'
+
+// ---- Reactive core (in-memory cache + localStorage + subscription) ----
+// 数据流：组件调 mutation 函数 → 改内存 state → commit() 持久化并通知订阅者
+// 组件用 useItineraries() 订阅，store 一变就自动重渲染，无需手动 refresh
+let state = null
+let version = 0
+const listeners = new Set()
+
+function loadState() {
+  if (state !== null) return state
+  state = { itineraries: [], activeId: null }
+  if (typeof window !== 'undefined') {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY)
+      if (raw) state = JSON.parse(raw)
+    } catch { /* ignore */ }
+  }
+  migrate(state)
+  return state
 }
 
-function readStore() {
-  if (typeof window === 'undefined') return { itineraries: [], activeId: null }
+function commit() {
+  if (typeof window !== 'undefined') {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)) } catch { /* quota */ }
+  }
+  version++
+  listeners.forEach((l) => l())
+}
+
+function subscribe(listener) {
+  listeners.add(listener)
+  return () => listeners.delete(listener)
+}
+
+function getVersion() {
+  return version
+}
+
+export function useItineraries() {
+  useSyncExternalStore(subscribe, getVersion, getVersion)
+  return loadState()
+}
+
+// ---- Serial number ----
+function getNextSerial() {
+  if (typeof window === 'undefined') return 0
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw
-      ? JSON.parse(raw)
-      : { itineraries: [], activeId: null }
+    const current = parseInt(localStorage.getItem(SERIAL_KEY) || '0', 10)
+    const next = current + 1
+    localStorage.setItem(SERIAL_KEY, String(next))
+    return next
   } catch {
-    return { itineraries: [], activeId: null }
+    return 0
   }
 }
 
-function writeStore(data) {
-  if (typeof window === 'undefined') return
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-  } catch { /* quota exceeded */ }
+// ---- One-time migration: backfill serialNumber ----
+function migrate(store) {
+  let changed = false
+  store.itineraries.forEach((it) => {
+    if (!it.serialNumber) {
+      it.serialNumber = getNextSerial()
+      changed = true
+    }
+  })
+  if (changed && typeof window !== 'undefined') {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)) } catch { /* ignore */ }
+  }
+}
+
+// ---- Item schema factory ----
+// 统一 item 形状：AI 导入和手动添加都走这里，避免字段漂移
+function makeItem(input = {}) {
+  return {
+    id: input.id || uid(),
+    type: input.type || 'attraction',
+    name: input.name || '',
+    nameEn: input.nameEn || '',
+    startTime: input.startTime || '',
+    endTime: input.endTime || '',
+    from: input.from || '',
+    to: input.to || '',
+    transportMode: input.transportMode || 'bus',
+    transportSubtype: input.transportSubtype || '',
+    distance: input.distance || null,
+    duration: input.duration || null,
+    entityId: input.entityId || null,
+    entityType: input.entityType || null,
+    costCategory: input.costCategory || (input.estimatedCost > 0 ? 'paid' : ''),
+    estimatedCost: input.estimatedCost || 0,
+    price: input.price || input.estimatedCost || 0,
+    priceUnit: input.priceUnit || 'perPerson',
+    quantity: input.quantity || 0,
+    notes: input.notes || '',
+    quosChecked: input.quosChecked || false,
+  }
 }
 
 // ---- Itineraries ----
 
-export function getAllItineraries() {
-  return readStore().itineraries
-}
-
-export function getItinerary(id) {
-  return readStore().itineraries.find((t) => t.id === id) || null
-}
-
-export function getActiveItinerary() {
-  const store = readStore()
-  if (store.activeId) {
-    return store.itineraries.find((t) => t.id === store.activeId) || null
-  }
-  return store.itineraries[0] || null
-}
-
 export function createItinerary(name) {
-  const store = readStore()
+  const store = loadState()
   const itinerary = {
     id: uid(),
+    serialNumber: getNextSerial(),
     name: name || '未命名行程',
     startDate: '',
     endDate: '',
@@ -59,45 +123,46 @@ export function createItinerary(name) {
   }
   store.itineraries.push(itinerary)
   store.activeId = itinerary.id
-  writeStore(store)
+  commit()
   return itinerary
 }
 
 export function deleteItinerary(id) {
-  const store = readStore()
+  const store = loadState()
   store.itineraries = store.itineraries.filter((t) => t.id !== id)
   if (store.activeId === id) {
     store.activeId = store.itineraries[0]?.id || null
   }
-  writeStore(store)
+  commit()
 }
 
 export function renameItinerary(id, name) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === id)
   if (t) {
     t.name = name
     t.updatedAt = new Date().toISOString()
   }
-  writeStore(store)
+  commit()
   return t
 }
 
 export function updateItineraryMeta(id, updates) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === id)
   if (t) {
     Object.assign(t, updates)
     t.updatedAt = new Date().toISOString()
   }
-  writeStore(store)
+  commit()
   return t
 }
 
 export function importItinerary(data) {
-  const store = readStore()
+  const store = loadState()
   const itinerary = {
     id: uid(),
+    serialNumber: getNextSerial(),
     name: data.name || '导入行程',
     startDate: data.startDate || '',
     endDate: data.endDate || '',
@@ -112,45 +177,25 @@ export function importItinerary(data) {
       cityId: d.cityId || '',
       cityName: d.cityName || '',
       cityNameEn: d.cityNameEn || '',
-      items: (d.items || []).map((item) => ({
-        id: uid(),
-        type: item.type || 'attraction',
-        name: item.name || '',
-        startTime: item.startTime || '',
-        endTime: item.endTime || '',
-        from: item.from || '',
-        to: item.to || '',
-        transportMode: item.transportMode || 'bus',
-        transportSubtype: item.transportSubtype || '',
-        distance: item.distance || null,
-        duration: item.duration || null,
-        entityId: item.entityId || null,
-        entityType: item.entityType || null,
-        costCategory: item.costCategory || 'paid',
-        estimatedCost: item.estimatedCost || 0,
-        price: item.price || 0,
-        priceUnit: item.priceUnit || 'perPerson',
-        quantity: item.quantity || 0,
-        notes: item.notes || '',
-      })),
+      items: (d.items || []).map((item) => makeItem(item)),
     })),
   }
   store.itineraries.push(itinerary)
   store.activeId = itinerary.id
-  writeStore(store)
+  commit()
   return itinerary
 }
 
 export function setActiveItinerary(id) {
-  const store = readStore()
+  const store = loadState()
   store.activeId = id
-  writeStore(store)
+  commit()
 }
 
 // ---- Days ----
 
 export function addDay(itineraryId, cityId, cityName) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return null
 
@@ -163,23 +208,22 @@ export function addDay(itineraryId, cityId, cityName) {
   }
   t.days.push(day)
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
   return day
 }
 
 export function removeDay(itineraryId, dayId) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return
   t.days = t.days.filter((d) => d.id !== dayId)
-  // Renumber
   t.days.forEach((d, i) => { d.dayNumber = i + 1 })
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
 }
 
 export function reorderDays(itineraryId, dayIds) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return
   const map = new Map(t.days.map((d) => [d.id, d]))
@@ -189,11 +233,11 @@ export function reorderDays(itineraryId, dayIds) {
     return d
   })
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
 }
 
 export function updateDayCity(itineraryId, dayId, cityId, cityName) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return
   const d = t.days.find((d) => d.id === dayId)
@@ -202,59 +246,50 @@ export function updateDayCity(itineraryId, dayId, cityId, cityName) {
     d.cityName = cityName
     t.updatedAt = new Date().toISOString()
   }
-  writeStore(store)
+  commit()
+}
+
+export function updateDay(itineraryId, dayId, updates) {
+  const store = loadState()
+  const t = store.itineraries.find((t) => t.id === itineraryId)
+  if (!t) return
+  const d = t.days.find((d) => d.id === dayId)
+  if (d) {
+    Object.assign(d, updates)
+    t.updatedAt = new Date().toISOString()
+  }
+  commit()
 }
 
 // ---- Items within a day ----
 
 export function addItem(itineraryId, dayId, item) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return null
   const d = t.days.find((d) => d.id === dayId)
   if (!d) return null
 
-  const newItem = {
-    id: uid(),
-    type: item.type || 'attraction',
-    name: item.name || '',
-    startTime: item.startTime || '',
-    endTime: item.endTime || '',
-    // Transport specific
-    from: item.from || '',
-    to: item.to || '',
-    transportMode: item.transportMode || 'bus',
-    distance: item.distance || null,
-    duration: item.duration || null,
-    // Entity reference
-    entityId: item.entityId || null,
-    entityType: item.entityType || null,
-    // Cost
-    price: item.price || 0,
-    priceUnit: item.priceUnit || 'perPerson',
-    quantity: item.quantity || 0,
-    // Notes
-    notes: item.notes || '',
-  }
+  const newItem = makeItem(item)
   d.items.push(newItem)
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
   return newItem
 }
 
 export function removeItem(itineraryId, dayId, itemId) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return
   const d = t.days.find((d) => d.id === dayId)
   if (!d) return
   d.items = d.items.filter((i) => i.id !== itemId)
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
 }
 
 export function updateItem(itineraryId, dayId, itemId, updates) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return
   const d = t.days.find((d) => d.id === dayId)
@@ -263,11 +298,23 @@ export function updateItem(itineraryId, dayId, itemId, updates) {
   if (!item) return
   Object.assign(item, updates)
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
+}
+
+export function setDayChecked(itineraryId, dayId, checked) {
+  const store = loadState()
+  const t = store.itineraries.find((t) => t.id === itineraryId)
+  if (!t) return
+  const d = t.days.find((d) => d.id === dayId)
+  if (!d) return
+  d.quosChecked = checked
+  d.items.forEach((item) => { item.quosChecked = checked })
+  t.updatedAt = new Date().toISOString()
+  commit()
 }
 
 export function reorderItems(itineraryId, dayId, itemIds) {
-  const store = readStore()
+  const store = loadState()
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return
   const d = t.days.find((d) => d.id === dayId)
@@ -275,12 +322,10 @@ export function reorderItems(itineraryId, dayId, itemIds) {
   const map = new Map(d.items.map((i) => [i.id, i]))
   d.items = itemIds.map((id) => map.get(id)).filter(Boolean)
   t.updatedAt = new Date().toISOString()
-  writeStore(store)
+  commit()
 }
 
 // ---- Templates ----
-
-const TEMPLATE_KEY = 'euro-templates'
 
 function readTemplates() {
   if (typeof window === 'undefined') return []
@@ -288,7 +333,6 @@ function readTemplates() {
     const raw = localStorage.getItem(TEMPLATE_KEY)
     if (raw) return JSON.parse(raw)
   } catch { /* ignore */ }
-  // Seed with built-in templates
   return getBuiltInTemplates()
 }
 
@@ -364,7 +408,7 @@ export function getAllTemplates() {
 }
 
 export function saveAsTemplate(itineraryId) {
-  const store = readStore()
+  const store = loadState()
   const it = store.itineraries.find((t) => t.id === itineraryId)
   if (!it || it.days.length === 0) return null
 
@@ -393,9 +437,10 @@ export function createFromTemplate(templateId) {
   const tpl = templates.find((t) => t.id === templateId)
   if (!tpl) return null
 
-  const store = readStore()
+  const store = loadState()
   const itinerary = {
     id: uid(),
+    serialNumber: getNextSerial(),
     name: tpl.name.replace(' (模板)', ''),
     startDate: '',
     endDate: '',
@@ -417,7 +462,7 @@ export function createFromTemplate(templateId) {
   }
   store.itineraries.push(itinerary)
   store.activeId = itinerary.id
-  writeStore(store)
+  commit()
   return itinerary
 }
 
@@ -427,16 +472,6 @@ export function deleteTemplate(id) {
 }
 
 // ---- Itinerary utility ----
-
-export function getItineraryRoute(itinerary) {
-  if (!itinerary) return []
-  return itinerary.days.map((d) => ({
-    dayNumber: d.dayNumber,
-    cityId: d.cityId,
-    cityName: d.cityName,
-    dayId: d.id,
-  }))
-}
 
 export function getItineraryStats(itinerary) {
   if (!itinerary) return { dayCount: 0, cityCount: 0, countryIds: [] }

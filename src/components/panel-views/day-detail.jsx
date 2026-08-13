@@ -13,262 +13,28 @@ import {
 } from '@/lib/itinerary-store'
 import { getAllCitiesWithCoords } from '@/lib/data'
 import { searchEntities as searchEntityStore, getAllEntities } from '@/lib/entity-store'
-import QUOSList from './quos-list'
+import { EMPTY_TEXT } from '@/lib/config'
+import ConfirmDialog from '@/components/confirm-dialog'
 
 const ITEM_TYPES = {
   attraction: { icon: '🏛️', label: '景点 Attraction (ENT)' },
   transport: { icon: '🚌', label: '交通 Transport (MTC)' },
-  breakfast: { icon: '🥐', label: '早餐 Breakfast' },
-  lunch: { icon: '🍽️', label: '午餐 Lunch' },
-  dinner: { icon: '🍷', label: '晚餐 Dinner' },
+  breakfast: { icon: '🥐', label: '早餐 Breakfast (RST)' },
+  lunch: { icon: '🍽️', label: '午餐 Lunch (RST)' },
+  dinner: { icon: '🍷', label: '晚餐 Dinner (RST)' },
   hotel: { icon: '🏨', label: '住宿 Hotel (HTL)' },
   other: { icon: '📌', label: '其他 Other (OTH)' },
 }
 
 const TRANSPORT_MODES = [
-  { value: 'bus', label: '🚌 大巴 Coach' },
-  { value: 'walk', label: '🚶 步行 Walk' },
-  { value: 'metro', label: '🚇 地铁 Metro' },
-  { value: 'train', label: '🚄 火车 Train' },
-  { value: 'boat', label: '🚢 游船 Boat' },
-  { value: 'flight', label: '✈️ 飞机 Flight' },
-  { value: 'car', label: '🚗 小车 Car' },
+  { value: 'bus', label: '🚌 大巴' },
+  { value: 'walk', label: '🚶 步行' },
+  { value: 'metro', label: '🚇 地铁' },
+  { value: 'train', label: '🚄 火车' },
+  { value: 'boat', label: '🚢 游船' },
+  { value: 'flight', label: '✈️ 飞机' },
+  { value: 'car', label: '🚗 小车' },
 ]
-
-// ---- Inline Item Editor ----
-function ItemEdit({ item, dayId, itineraryId, onDone }) {
-  const [name, setName] = useState(item.name)
-  const [type, setType] = useState(item.type)
-  const [startTime, setStartTime] = useState(item.startTime || '')
-  const [endTime, setEndTime] = useState(item.endTime || '')
-  const [from, setFrom] = useState(item.from || '')
-  const [to, setTo] = useState(item.to || '')
-  const [mode, setMode] = useState(item.transportMode || 'bus')
-  const [notes, setNotes] = useState(item.notes || '')
-  const [price, setPrice] = useState(item.price?.toString() || '')
-  const [priceUnit, setPriceUnit] = useState(item.priceUnit || 'perPerson')
-  const [quantity, setQuantity] = useState(item.quantity?.toString() || '')
-  const [showDetails, setShowDetails] = useState(
-    !!(item.startTime || item.notes || item.from || item.price),
-  )
-
-  const handleSave = () => {
-    if (!name.trim()) return
-    updateItem(itineraryId, dayId, item.id, {
-      type,
-      name: name.trim(),
-      startTime,
-      endTime,
-      from,
-      to,
-      transportMode: mode,
-      notes,
-      price: parseFloat(price) || 0,
-      priceUnit,
-      quantity: parseInt(quantity, 10) || 0,
-    })
-    onDone()
-  }
-
-  return (
-    <div
-      className="p-2.5 rounded-lg border ml-2"
-      style={{ borderColor: 'var(--border-color)', background: 'var(--bg-surface)' }}
-    >
-      {/* Type + Name row */}
-      <div className="flex gap-1.5 items-center mb-2">
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          className="px-1.5 py-1 rounded text-xs border outline-none shrink-0"
-          style={{
-            background: 'var(--bg-card)',
-            borderColor: 'var(--border-color)',
-            color: 'var(--text-primary)',
-          }}
-        >
-          {Object.entries(ITEM_TYPES).map(([k, v]) => (
-            <option key={k} value={k}>{v.icon} {v.label}</option>
-          ))}
-        </select>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleSave()}
-          placeholder="名称"
-          autoFocus
-          className="flex-1 px-2 py-1 rounded text-sm border outline-none"
-          style={{
-            background: 'var(--bg-card)',
-            borderColor: 'var(--border-color)',
-            color: 'var(--text-primary)',
-          }}
-        />
-      </div>
-
-      {/* Expand/collapse details */}
-      {!showDetails && (
-        <button
-          onClick={() => setShowDetails(true)}
-          className="text-xs underline"
-          style={{ color: 'var(--text-tertiary)' }}
-        >
-          + 时间/备注/交通信息
-        </button>
-      )}
-
-      {showDetails && (
-        <div className="flex flex-col gap-1.5">
-          <div className="flex gap-1.5 items-center">
-            <input
-              type="time"
-              value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
-              className="flex-1 px-2 py-1 rounded text-xs border outline-none"
-              style={{
-                background: 'var(--bg-card)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            />
-            <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>至</span>
-            <input
-              type="time"
-              value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
-              className="flex-1 px-2 py-1 rounded text-xs border outline-none"
-              style={{
-                background: 'var(--bg-card)',
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-primary)',
-              }}
-            />
-          </div>
-
-          {type === 'transport' && (
-            <>
-              <div className="flex gap-1.5 items-center">
-                <input
-                  type="text"
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
-                  placeholder="从"
-                  className="flex-1 px-2 py-1 rounded text-xs border outline-none"
-                  style={{
-                    background: 'var(--bg-card)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-primary)',
-                  }}
-                />
-                <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>→</span>
-                <input
-                  type="text"
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
-                  placeholder="到"
-                  className="flex-1 px-2 py-1 rounded text-xs border outline-none"
-                  style={{
-                    background: 'var(--bg-card)',
-                    borderColor: 'var(--border-color)',
-                    color: 'var(--text-primary)',
-                  }}
-                />
-              </div>
-              <select
-                value={mode}
-                onChange={(e) => setMode(e.target.value)}
-                className="px-2 py-1 rounded text-xs border outline-none"
-                style={{
-                  background: 'var(--bg-card)',
-                  borderColor: 'var(--border-color)',
-                  color: 'var(--text-primary)',
-                }}
-              >
-                {TRANSPORT_MODES.map((m) => (
-                  <option key={m.value} value={m.value}>{m.label}</option>
-                ))}
-              </select>
-            </>
-          )}
-
-          <div className="flex gap-1.5 items-end">
-            <div className="flex-1">
-              <label className="text-xs block mb-0.5" style={{ color: 'var(--text-tertiary)' }}>单价</label>
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                placeholder="0"
-                min="0"
-                step="0.01"
-                className="w-full px-2 py-1 rounded text-xs border outline-none"
-                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-              />
-            </div>
-            <div className="shrink-0" style={{ width: 80 }}>
-              <label className="text-xs block mb-0.5" style={{ color: 'var(--text-tertiary)' }}>单位</label>
-              <select
-                value={priceUnit}
-                onChange={(e) => setPriceUnit(e.target.value)}
-                className="w-full px-1 py-1 rounded text-xs border outline-none"
-                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-              >
-                <option value="perPerson">/人</option>
-                <option value="perGroup">/团</option>
-                <option value="perDay">/天</option>
-                <option value="included">含</option>
-              </select>
-            </div>
-            <div className="shrink-0" style={{ width: 52 }}>
-              <label className="text-xs block mb-0.5" style={{ color: 'var(--text-tertiary)' }}>数量</label>
-              <input
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                placeholder="1"
-                min="0"
-                className="w-full px-2 py-1 rounded text-xs border outline-none"
-                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-              />
-            </div>
-          </div>
-
-          <textarea
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            placeholder="备注..."
-            rows={2}
-            className="px-2 py-1 rounded text-xs border outline-none resize-none"
-            style={{
-              background: 'var(--bg-card)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-primary)',
-            }}
-          />
-        </div>
-      )}
-
-      {/* Actions */}
-      <div className="flex gap-2 mt-2">
-        <button
-          onClick={handleSave}
-          className="flex-1 px-2 py-1 rounded text-xs font-medium"
-          style={{ background: 'var(--accent)', color: '#fff' }}
-        >
-          保存
-        </button>
-        <button
-          onClick={onDone}
-          className="px-2 py-1 rounded text-xs"
-          style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}
-        >
-          取消
-        </button>
-      </div>
-    </div>
-  )
-}
 
 // Look up English name for an attraction
 function getAttractionNameEn(itemName) {
@@ -279,18 +45,19 @@ function getAttractionNameEn(itemName) {
 }
 
 // ---- Item Row ----
-function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }) {
+function ItemRow({ item, dayId, itineraryId, items, isFirst, isLast }) {
   const [editing, setEditing] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
   const info = ITEM_TYPES[item.type] || ITEM_TYPES.other
   const isTransport = item.type === 'transport'
 
   if (editing) {
     return (
-      <ItemEdit
+      <ItemForm
         item={item}
         dayId={dayId}
         itineraryId={itineraryId}
-        onDone={() => { setEditing(false); onRefresh() }}
+        onDone={() => setEditing(false)}
       />
     )
   }
@@ -301,7 +68,6 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
     const newIds = items.map((i) => i.id)
     ;[newIds[idx - 1], newIds[idx]] = [newIds[idx], newIds[idx - 1]]
     reorderItems(itineraryId, dayId, newIds)
-    onRefresh()
   }
 
   const handleMoveDown = () => {
@@ -310,21 +76,21 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
     const newIds = items.map((i) => i.id)
     ;[newIds[idx + 1], newIds[idx]] = [newIds[idx], newIds[idx + 1]]
     reorderItems(itineraryId, dayId, newIds)
-    onRefresh()
   }
 
   return (
+    <>
     <div
       className="flex items-start gap-1.5 px-1.5 py-1.5 rounded group hover:bg-[var(--bg-surface)] transition-colors cursor-pointer"
       onClick={() => setEditing(true)}
       title="点击编辑"
     >
       {/* Reorder arrows */}
-      <div className="flex flex-col shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" style={{ marginTop: 1 }}>
+      <div className="flex flex-col shrink-0 opacity-50 group-hover:opacity-100 transition-opacity" style={{ marginTop: 1 }}>
         <button
           onClick={(e) => { e.stopPropagation(); handleMoveUp() }}
           disabled={isFirst}
-          className="w-4 h-3 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
+          className="w-6 h-6 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
           style={{ color: 'var(--text-tertiary)' }}
         >
           ▲
@@ -332,7 +98,7 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
         <button
           onClick={(e) => { e.stopPropagation(); handleMoveDown() }}
           disabled={isLast}
-          className="w-4 h-3 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
+          className="w-6 h-6 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
           style={{ color: 'var(--text-tertiary)' }}
         >
           ▼
@@ -385,38 +151,53 @@ function ItemRow({ item, dayId, itineraryId, items, onRefresh, isFirst, isLast }
           </p>
         )}
       </div>
+      <span className="self-center text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>›</span>
       <button
         onClick={(e) => {
           e.stopPropagation()
-          removeItem(itineraryId, dayId, item.id)
-          onRefresh()
+          setConfirmDelete(true)
         }}
-        className="w-4 h-4 rounded flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity shrink-0 hover:text-red-500"
+        className="w-7 h-7 rounded flex items-center justify-center text-xs opacity-50 group-hover:opacity-100 transition-opacity shrink-0 hover:text-red-500"
         style={{ color: 'var(--text-tertiary)' }}
       >
         ×
       </button>
     </div>
+    {confirmDelete && (
+      <ConfirmDialog
+        title="删除项目"
+        message={`确定删除「${item.name}」？`}
+        onConfirm={() => {
+          removeItem(itineraryId, dayId, item.id)
+          setConfirmDelete(false)
+        }}
+        onCancel={() => setConfirmDelete(false)}
+      />
+    )}
+    </>
   )
 }
 
-// ---- Compact Add Item Form ----
-function CompactAddForm({ dayId, itineraryId, onDone }) {
-  const [name, setName] = useState('')
-  const [type, setType] = useState('attraction')
-  const [startTime, setStartTime] = useState('')
-  const [endTime, setEndTime] = useState('')
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
-  const [mode, setMode] = useState('bus')
-  const [notes, setNotes] = useState('')
-  const [showDetails, setShowDetails] = useState(false)
+// ---- Unified Item Form (add + edit) ----
+function ItemForm({ item, dayId, itineraryId, onDone }) {
+  const isEdit = !!item
+  const [name, setName] = useState(item?.name || '')
+  const [type, setType] = useState(item?.type || 'attraction')
+  const [startTime, setStartTime] = useState(item?.startTime || '')
+  const [endTime, setEndTime] = useState(item?.endTime || '')
+  const [from, setFrom] = useState(item?.from || '')
+  const [to, setTo] = useState(item?.to || '')
+  const [mode, setMode] = useState(item?.transportMode || 'bus')
+  const [notes, setNotes] = useState(item?.notes || '')
+  const [showDetails, setShowDetails] = useState(
+    isEdit ? !!(item.startTime || item.notes || item.from || item.price) : false,
+  )
   const [entitySearch, setEntitySearch] = useState('')
   const [entityResults, setEntityResults] = useState([])
   const [showEntityPicker, setShowEntityPicker] = useState(false)
-  const [price, setPrice] = useState('')
-  const [priceUnit, setPriceUnit] = useState('perPerson')
-  const [quantity, setQuantity] = useState('')
+  const [price, setPrice] = useState(item?.price?.toString() || '')
+  const [priceUnit, setPriceUnit] = useState(item?.priceUnit || 'perPerson')
+  const [quantity, setQuantity] = useState(item?.quantity?.toString() || '')
   const inputRef = useRef(null)
 
   const doEntitySearch = (q) => {
@@ -425,7 +206,13 @@ function CompactAddForm({ dayId, itineraryId, onDone }) {
       setEntityResults([])
       return
     }
-    const types = type === 'attraction' ? ['attraction'] : type === 'hotel' ? ['hotel'] : type === 'meal' ? ['restaurant'] : []
+    const types = type === 'attraction'
+      ? ['attraction']
+      : type === 'hotel'
+        ? ['hotel']
+        : ['breakfast', 'lunch', 'dinner'].includes(type)
+          ? ['restaurant']
+          : []
     const results = searchEntityStore(q, types.length > 0 ? types : [])
     setEntityResults(results.slice(0, 6))
   }
@@ -441,7 +228,7 @@ function CompactAddForm({ dayId, itineraryId, onDone }) {
 
   const handleSubmit = () => {
     if (!name.trim()) return
-    addItem(itineraryId, dayId, {
+    const payload = {
       type,
       name: name.trim(),
       startTime,
@@ -453,7 +240,9 @@ function CompactAddForm({ dayId, itineraryId, onDone }) {
       price: parseFloat(price) || 0,
       priceUnit,
       quantity: parseInt(quantity, 10) || 0,
-    })
+    }
+    if (isEdit) updateItem(itineraryId, dayId, item.id, payload)
+    else addItem(itineraryId, dayId, payload)
     onDone()
   }
 
@@ -484,7 +273,7 @@ function CompactAddForm({ dayId, itineraryId, onDone }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-          placeholder={`添加${ITEM_TYPES[type].label}...`}
+          placeholder="名称"
           autoFocus
           className="flex-1 px-2 py-1.5 rounded text-sm border outline-none"
           style={{
@@ -498,7 +287,7 @@ function CompactAddForm({ dayId, itineraryId, onDone }) {
           className="px-3 py-1.5 rounded text-sm font-medium shrink-0"
           style={{ background: 'var(--accent)', color: '#fff' }}
         >
-          添加
+          {isEdit ? '保存' : '添加'}
         </button>
       </div>
 
@@ -731,27 +520,31 @@ function isFreeItem(item) {
   return !item.price || item.price === 0
 }
 
+// ---- Day title helper ----
+function formatDayTitle(startDate, dayNumber) {
+  let label = `第${dayNumber}天`
+  if (startDate) {
+    const start = new Date(`${startDate}T00:00:00`)
+    if (!Number.isNaN(start.getTime())) {
+      const d = new Date(start)
+      d.setDate(start.getDate() + (dayNumber - 1))
+      label += ` ${d.getMonth() + 1}月${d.getDate()}日`
+    }
+  }
+  return label
+}
+
 // ---- Main DayDetail Component ----
-export default function DayDetail({ itinerary, cities: _cities, onItineraryChange, onDayHover }) {
-  const [activeDayId, setActiveDayId] = useState(null)
+export default function DayDetail({ itinerary, onDayHover }) {
   const [showAddDay, setShowAddDay] = useState(false)
   const [addDayCity, setAddDayCity] = useState('')
   const [addingItemTo, setAddingItemTo] = useState(null)
   const [editingCityFor, setEditingCityFor] = useState(null)
-  const [hideFree, setHideFree] = useState(true)
-  const [expandAll, setExpandAll] = useState(false)
-  const [tableView, setTableView] = useState(false)
+  const [hideFree, setHideFree] = useState(false)
+  const [collapsedDays, setCollapsedDays] = useState(() => new Set())
+  const [deleteDayTarget, setDeleteDayTarget] = useState(null)
 
   const allCities = typeof window !== 'undefined' ? getAllCitiesWithCoords() : []
-
-  const refresh = () => {
-    const raw = localStorage.getItem('euro-itineraries')
-    if (raw) {
-      const data = JSON.parse(raw)
-      const fresh = data.itineraries?.find((t) => t.id === itinerary.id)
-      if (fresh) onItineraryChange(fresh)
-    }
-  }
 
   const handleAddDay = () => {
     if (!addDayCity) return
@@ -759,13 +552,10 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
     addDay(itinerary.id, addDayCity, city ? city.name : addDayCity)
     setAddDayCity('')
     setShowAddDay(false)
-    refresh()
   }
 
   const handleRemoveDay = (dayId) => {
     removeDay(itinerary.id, dayId)
-    if (activeDayId === dayId) setActiveDayId(null)
-    refresh()
   }
 
   const handleMoveDayUp = (dayId) => {
@@ -774,7 +564,6 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
     const newIds = itinerary.days.map((d) => d.id)
     ;[newIds[idx - 1], newIds[idx]] = [newIds[idx], newIds[idx - 1]]
     reorderDays(itinerary.id, newIds)
-    refresh()
   }
 
   const handleMoveDayDown = (dayId) => {
@@ -783,17 +572,14 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
     const newIds = itinerary.days.map((d) => d.id)
     ;[newIds[idx + 1], newIds[idx]] = [newIds[idx], newIds[idx + 1]]
     reorderDays(itinerary.id, newIds)
-    refresh()
   }
 
   const handleChangeCity = (dayId, newCityId) => {
     const city = allCities.find((c) => c.id === newCityId)
     if (city) {
       updateDayCity(itinerary.id, dayId, newCityId, city.name)
-      refresh()
     }
     setEditingCityFor(null)
-    setCitySearch('')
   }
 
   // Compute global stats for toolbar
@@ -806,33 +592,18 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
     })
   })
 
+  const allExpanded = collapsedDays.size === 0
+
+  const deleteDayLabel = (() => {
+    const d = itinerary.days.find((x) => x.id === deleteDayTarget)
+    return d ? `第${d.dayNumber}天 ${d.cityName}` : ''
+  })()
+
   return (
     <div className="p-3">
       {/* Toolbar */}
       <div className="flex items-center justify-between mb-3 px-1">
         <div className="flex items-center gap-2">
-          <div className="flex rounded-lg border overflow-hidden" style={{ borderColor: 'var(--border-color)' }}>
-            <button
-              onClick={() => setTableView(false)}
-              className="px-2 py-0.5 text-xs font-medium transition-all"
-              style={{
-                background: !tableView ? 'var(--accent)' : 'transparent',
-                color: !tableView ? '#fff' : 'var(--text-secondary)',
-              }}
-            >
-              📋 卡片
-            </button>
-            <button
-              onClick={() => setTableView(true)}
-              className="px-2 py-0.5 text-xs font-medium transition-all"
-              style={{
-                background: tableView ? 'var(--accent)' : 'transparent',
-                color: tableView ? '#fff' : 'var(--text-secondary)',
-              }}
-            >
-              📊 清单
-            </button>
-          </div>
           <button
             onClick={() => setHideFree(!hideFree)}
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
@@ -848,18 +619,22 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
             title={hideFree ? '点击显示免费项目' : '点击隐藏免费项目'}
           >
             <span>{hideFree ? '👁️' : '👁️‍🗨️'}</span>
-            <span>{hideFree ? '仅显示收费' : '显示全部'}</span>
+            <span>{hideFree ? '只看收费' : '显示全部'}</span>
           </button>
-          {!tableView && (
-            <button
-              onClick={() => setExpandAll(!expandAll)}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-all hover:bg-[var(--bg-surface)]"
-              style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-            >
-              <span>{expandAll ? '⇱' : '⇲'}</span>
-              <span>{expandAll ? '全部收起' : '全部展开'}</span>
-            </button>
-          )}
+          <button
+            onClick={() => {
+              if (allExpanded) {
+                setCollapsedDays(new Set(itinerary.days.map((d) => d.id)))
+              } else {
+                setCollapsedDays(new Set())
+              }
+            }}
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border transition-all hover:bg-[var(--bg-surface)]"
+            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+          >
+            <span>{allExpanded ? '⇱' : '⇲'}</span>
+            <span>{allExpanded ? '全部收起' : '全部展开'}</span>
+          </button>
         </div>
         {hideFree && (
           <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
@@ -868,29 +643,31 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
         )}
       </div>
 
-      {tableView ? (
-        <QUOSList itinerary={itinerary} onItineraryChange={onItineraryChange} />
-      ) : (
-        <>
+      <>
           {/* Day list */}
           <div className="flex flex-col gap-1.5">
         {itinerary.days.map((day, dayIdx) => (
           <div key={day.id}>
             {/* Day header */}
             <div
-              className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all group"
-              style={{
-                background: activeDayId === day.id ? 'var(--accent-subtle)' : 'transparent',
+              className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg transition-all group cursor-pointer hover:bg-[var(--bg-surface)]"
+              onClick={() => {
+                setCollapsedDays((prev) => {
+                  const next = new Set(prev)
+                  if (next.has(day.id)) next.delete(day.id)
+                  else next.add(day.id)
+                  return next
+                })
               }}
               onMouseEnter={() => onDayHover?.(day.id)}
               onMouseLeave={() => onDayHover?.(null)}
             >
               {/* Reorder arrows */}
-              <div className="flex flex-col shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex flex-col shrink-0 opacity-50 group-hover:opacity-100 transition-opacity">
                 <button
                   onClick={(e) => { e.stopPropagation(); handleMoveDayUp(day.id) }}
                   disabled={dayIdx === 0}
-                  className="w-4 h-3 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
+                  className="w-6 h-6 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   ▲
@@ -898,19 +675,16 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                 <button
                   onClick={(e) => { e.stopPropagation(); handleMoveDayDown(day.id) }}
                   disabled={dayIdx === itinerary.days.length - 1}
-                  className="w-4 h-3 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
+                  className="w-6 h-6 flex items-center justify-center text-xs leading-none disabled:opacity-20 hover:text-[var(--accent)]"
                   style={{ color: 'var(--text-tertiary)' }}
                 >
                   ▼
                 </button>
               </div>
 
-              {/* Day number */}
-              <span
-                className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
-                style={{ background: 'var(--accent)', color: '#fff' }}
-              >
-                {day.dayNumber}
+              {/* Day title: 第N天 几月几号 */}
+              <span className="text-sm font-bold shrink-0" style={{ color: 'var(--text-primary)' }}>
+                {formatDayTitle(itinerary.startDate, day.dayNumber)}
               </span>
 
               {/* City selector */}
@@ -921,6 +695,7 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                     if (e.target.value) handleChangeCity(day.id, e.target.value)
                   }}
                   onBlur={() => setEditingCityFor(null)}
+                  onClick={(e) => e.stopPropagation()}
                   autoFocus
                   className="flex-1 px-2 py-1 rounded text-xs border outline-none"
                   style={{
@@ -937,17 +712,20 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                   ))}
                 </select>
               ) : (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setEditingCityFor(day.id)
-                  }}
-                  className="flex-1 text-left text-sm font-semibold hover:underline truncate cursor-pointer"
-                  style={{ color: 'var(--text-primary)' }}
-                  title="点击修改城市"
-                >
-                  {day.cityName || '选择城市'}
-                </button>
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setEditingCityFor(day.id)
+                    }}
+                    className="min-w-0 text-left text-sm hover:underline truncate cursor-pointer"
+                    style={{ color: 'var(--text-secondary)', maxWidth: '45%' }}
+                    title="点击修改城市"
+                  >
+                    {day.cityName || '选择城市'}
+                  </button>
+                  <span className="flex-1" />
+                </>
               )}
 
               <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>
@@ -961,21 +739,13 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
                 })()}
               </span>
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setExpandAll(false)
-                  setActiveDayId(activeDayId === day.id ? null : day.id)
-                }}
-                className="text-xs px-1"
-                style={{ color: 'var(--text-tertiary)' }}
-              >
-                {(expandAll || activeDayId === day.id) ? '收起' : '展开'}
-              </button>
+              <span className="text-xs shrink-0" style={{ color: 'var(--text-tertiary)' }}>
+                {collapsedDays.has(day.id) ? '▸' : '▾'}
+              </span>
 
               <button
-                onClick={(e) => { e.stopPropagation(); handleRemoveDay(day.id) }}
-                className="w-4 h-4 rounded flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-500"
+                onClick={(e) => { e.stopPropagation(); setDeleteDayTarget(day.id) }}
+                className="w-7 h-7 rounded flex items-center justify-center text-xs opacity-50 group-hover:opacity-100 transition-opacity hover:text-red-500"
                 style={{ color: 'var(--text-tertiary)' }}
               >
                 ×
@@ -983,7 +753,7 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
             </div>
 
             {/* Day items */}
-            {(expandAll || activeDayId === day.id) && (() => {
+            {!collapsedDays.has(day.id) && (() => {
                 const visibleItems = hideFree
                   ? day.items.filter((it) => !isFreeItem(it))
                   : day.items
@@ -996,26 +766,28 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
               >
                 {day.items.length === 0 && (
                   <p className="text-xs py-3 px-1.5" style={{ color: 'var(--text-tertiary)' }}>
-                    还没有项目，在下方添加
+                    {EMPTY_TEXT.noItems}
                   </p>
                 )}
                 {day.items.length > 0 && visibleItems.length === 0 && (
                   <p className="text-xs py-3 px-1.5" style={{ color: 'var(--text-tertiary)' }}>
-                    本日仅有免费项目（交通接送、导游陪同等）
+                    {EMPTY_TEXT.allFree}
                   </p>
                 )}
-                {visibleItems.map((item, itemIdx) => (
-                  <ItemRow
-                    key={item.id}
-                    item={item}
-                    dayId={day.id}
-                    itineraryId={itinerary.id}
-                    items={day.items}
-                    onRefresh={refresh}
-                    isFirst={itemIdx === 0}
-                    isLast={itemIdx === day.items.length - 1}
-                  />
-                ))}
+                {visibleItems.map((item) => {
+                  const fullIdx = day.items.findIndex((i) => i.id === item.id)
+                  return (
+                    <ItemRow
+                      key={item.id}
+                      item={item}
+                      dayId={day.id}
+                      itineraryId={itinerary.id}
+                      items={day.items}
+                      isFirst={fullIdx === 0}
+                      isLast={fullIdx === day.items.length - 1}
+                    />
+                  )
+                })}
                 {hiddenFreeCount > 0 && hideFree && (
                   <p className="text-xs py-1.5 px-1.5" style={{ color: 'var(--text-tertiary)', opacity: 0.6 }}>
                     已隐藏 {hiddenFreeCount} 个免费项目
@@ -1024,10 +796,10 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
 
                 {addingItemTo === day.id ? (
                   <div className="mt-1.5">
-                    <CompactAddForm
+                    <ItemForm
                       dayId={day.id}
                       itineraryId={itinerary.id}
-                      onDone={() => { setAddingItemTo(null); refresh() }}
+                      onDone={() => setAddingItemTo(null)}
                     />
                   </div>
                 ) : (
@@ -1093,7 +865,17 @@ export default function DayDetail({ itinerary, cities: _cities, onItineraryChang
           + 添加天数
         </button>
       )}
-        </>
+      </>
+      {deleteDayTarget && (
+        <ConfirmDialog
+          title="删除天数"
+          message={`确定删除「${deleteDayLabel}」这一整天吗？`}
+          onConfirm={() => {
+            handleRemoveDay(deleteDayTarget)
+            setDeleteDayTarget(null)
+          }}
+          onCancel={() => setDeleteDayTarget(null)}
+        />
       )}
     </div>
   )
