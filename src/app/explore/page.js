@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import FloatingPanel from '@/components/floating-panel'
 import { getAllCitiesWithCoords, getAllAttractionsFlat } from '@/lib/data'
-import { useItineraries, addDay } from '@/lib/itinerary-store'
+import { useItineraries, useStoreVersion, addDay } from '@/lib/itinerary-store'
 import { ensureSeeded } from '@/lib/entity-store'
 import { useIsMobile } from '@/lib/use-is-mobile'
 
@@ -35,6 +35,10 @@ export default function Home() {
 
   // 响应式订阅行程 store：任意 mutation 后自动重渲染，activeId 驱动当前行程
   const { itineraries, activeId } = useItineraries()
+  // 版本号：行程 store 每次 commit 递增；用它做派生数据的 memo 依赖。
+  // 注意：itinerary 对象是原地 mutate 的（引用稳定），所以派生数据不能依赖对象引用，
+  // 必须依赖 version —— 否则 mutation 后 useMemo 不会重算（见 docs/architecture.md）。
+  const version = useStoreVersion()
 
   useEffect(() => {
     setCities(getAllCitiesWithCoords())
@@ -47,22 +51,27 @@ export default function Home() {
     ? itineraries.find((t) => t.id === activeId) || itineraries[0] || null
     : itineraries[0] || null
 
-  const routeLine = !ready || !activeItinerary ? [] : activeItinerary.days
-    .map((d) => {
-      const city = cities.find((c) => c.id === d.cityId)
-      return city ? [city.lat, city.lng] : null
-    })
-    .filter(Boolean)
+  // 派生数据 memo 化：仅在行程 store 变更（version 递增）或城市数据就绪时重算。
+  // 这样 hover/高亮等无关状态变化不会重建地图 markers（之前每次 render 都重建）。
+  const routeLine = useMemo(() => {
+    if (!ready || !activeItinerary) return []
+    return activeItinerary.days
+      .map((d) => {
+        const city = cities.find((c) => c.id === d.cityId)
+        return city ? [city.lat, city.lng] : null
+      })
+      .filter(Boolean)
+  }, [version, ready, activeItinerary, cities])
 
-  const itineraryCityIds = (() => {
+  const itineraryCityIds = useMemo(() => {
     const ids = new Set()
     if (ready && activeItinerary) {
       activeItinerary.days.forEach((d) => { if (d.cityId) ids.add(d.cityId) })
     }
     return ids
-  })()
+  }, [version, ready, activeItinerary])
 
-  const dayLabels = (() => {
+  const dayLabels = useMemo(() => {
     if (!ready || !activeItinerary) return []
     const cityDayMap = {}
     activeItinerary.days.forEach((d) => {
@@ -76,7 +85,7 @@ export default function Home() {
       const label = dayNums.length === 1 ? `D${dayNums[0]}` : `D${dayNums.join(',')}`
       return { cityId, label, lat: city?.lat || 0, lng: city?.lng || 0 }
     })
-  })()
+  }, [version, ready, activeItinerary, cities])
 
   const hoveredCityId = (() => {
     if (!hoveredDayId || !activeItinerary) return null

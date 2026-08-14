@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /* =============================================
-   Euro Atlas — 制图师的旅行手札
-   Design tokens: warm parchment (light) / deep navy (dark)
+   Euro Atlas — 欧洲地接行程工作台
+   Design tokens: 专业蓝系
+   主色 #08739D · 辅蓝 #4984AC · 浅底 #E7EEF8 · 绿 #6D9D39 · 青柠 #AEC60C
    ============================================= */
 
 /* Ensure full-height layout — required for Leaflet map to fill the viewport */
@@ -11,27 +12,31 @@ html, body {
 }
 
 :root {
-  /* Light mode — aged journal */
-  --bg-primary: #faf7f2;
-  --bg-secondary: #f5f0e8;
-  --bg-card: #faf7f2;
-  --bg-surface: #ede6d8;
-  --bg-elevated: #e8e0cc;
+  /* Light mode — 浅蓝灰工作台 */
+  --bg-primary: #E7EEF8;
+  --bg-secondary: #dde8f4;
+  --bg-card: #f7fafd;
+  --bg-surface: #e3ecf6;
+  --bg-elevated: #d9e5f2;
 
-  --text-primary: #2c2416;
-  --text-secondary: #5c5240;
-  --text-tertiary: #8a7e6b;
+  --text-primary: #17283d;
+  --text-secondary: #3d5470;
+  /* #54697f = 4.85:1 on 底 / 4.75:1 on surface */
+  --text-tertiary: #54697f;
 
-  --accent: #14b8a6;
-  --accent-hover: #0d9488;
-  --accent-dim: #0f766e;
-  --accent-subtle: rgba(20, 184, 166, 0.08);
+  /* #08739D = 5.08:1 文字 on card / 5.32:1 白字按钮 */
+  --accent: #08739D;
+  --accent-hover: #06698f;
+  --accent-dim: #4984AC;
+  --accent-strong: #08739D;
+  --accent-subtle: rgba(8, 115, 157, 0.08);
 
-  --gold: #c4a45a;
-  --gold-dim: #a68a3e;
+  /* 价格/高亮文字：#5f7113 = 5.20:1 on card / 4.56:1 on surface（青柠深色化） */
+  --gold: #5f7113;
+  --gold-dim: #e9efcf;
 
-  --border-color: #e0d8c8;
-  --border-light: #e8e0d4;
+  --border-color: #c3d5e8;
+  --border-light: #d3e0ef;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -39,28 +44,33 @@ html, body {
   --noise-opacity: 0.03;
 }
 
-/* Dark mode — cartographer's night study */
+/* Dark mode — 深夜蓝 */
 [data-theme="dark"] {
-  --bg-primary: #0a1219;
-  --bg-secondary: #0d161f;
-  --bg-card: #111d28;
-  --bg-surface: #152231;
-  --bg-elevated: #1a2a3a;
+  --bg-primary: #071521;
+  --bg-secondary: #0a1a29;
+  --bg-card: #0d1f30;
+  --bg-surface: #122740;
+  --bg-elevated: #17304c;
 
-  --text-primary: #e8e0d0;
-  --text-secondary: #a09880;
-  --text-tertiary: #6a6250;
+  --text-primary: #e8f1fa;
+  --text-secondary: #a9c2d8;
+  /* #8ba6c0 = 6.62:1 on card / 5.98:1 on surface */
+  --text-tertiary: #8ba6c0;
 
-  --accent: #2dd4bf;
-  --accent-hover: #45e0cc;
-  --accent-dim: #14b8a6;
-  --accent-subtle: rgba(45, 212, 191, 0.08);
+  /* 深色 accent 用辅蓝亮化到 #63a0c8（#4984AC 在深底仅 4.12 不达标），
+     主按钮底色用 --accent-strong（白字 5.32:1） */
+  --accent: #63a0c8;
+  --accent-hover: #6da6cc;
+  --accent-dim: #4984AC;
+  --accent-strong: #08739D;
+  --accent-subtle: rgba(99, 160, 200, 0.12);
 
-  --gold: #e2b84c;
-  --gold-dim: #c49a30;
+  /* 青柠在深底 8.67:1，直接用作价格/高亮 */
+  --gold: #AEC60C;
+  --gold-dim: #262f0e;
 
-  --border-color: #1e3040;
-  --border-light: #263848;
+  --border-color: #1b3350;
+  --border-light: #233f5e;
 
   --noise-opacity: 0.04;
 }
@@ -88,15 +98,15 @@ body::before {
 /* ---- Grid line texture (subtle map grid) ---- */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(180, 160, 130, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 160, 130, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(8, 115, 157, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 115, 157, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 :root[data-theme="dark"] .grid-bg {
   background-image:
-    linear-gradient(rgba(100, 140, 180, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100, 140, 180, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(99, 160, 200, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 160, 200, 0.07) 1px, transparent 1px);
 }
 
 body {
@@ -104,6 +114,13 @@ body {
   color: var(--text-primary);
   font-family: 'Geist', 'Noto Sans SC', sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Tailwind v4 preflight 把 button 光标改为 default（原生行为），
+   工具类界面里按钮应保持手型指针（disabled 除外） */
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
 }
 
 /* ---- Spotlight card hover effect ---- */
@@ -120,7 +137,7 @@ body {
   transition: opacity 0.4s ease;
   background: radial-gradient(
     600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    rgba(20, 184, 166, 0.08),
+    rgba(8, 115, 157, 0.08),
     transparent 40%
   );
   pointer-events: none;

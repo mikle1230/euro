@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 public/pagefind/
+
+# 工作区杂物（行程原始文档 / 一次性脚本输出）
+/*.docx
+/*.xlsx
+/*.xls
+/deepseek_typescript_*.ts

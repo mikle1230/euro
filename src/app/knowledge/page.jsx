@@ -6,6 +6,7 @@ import { getAllCountries, getCountryCoverImage, getStats, getAllAttractionsFlat 
 import { ensureSeeded } from '@/lib/entity-store'
 import countryMeta from '@/data/country-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
+import GlobalSearch from '@/components/global-search'
 import { COUNTRY_FLAGS } from '@/lib/flags'
 
 export default function KnowledgePage() {
@@ -20,9 +21,9 @@ export default function KnowledgePage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb + stats */}
+      {/* Breadcrumb + stats + 搜索（从顶部导航栏移入知识库内部） */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
-        <div className="flex items-baseline justify-between mb-6">
+        <div className="flex items-start justify-between gap-3 mb-6 flex-wrap">
           <div>
             <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
               📖 知识库
@@ -30,6 +31,9 @@ export default function KnowledgePage() {
             <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
               共 {stats.countryCount} 个国家 · {stats.cityCount} 个城市 · {stats.attractionCount}+ 个景点
             </p>
+          </div>
+          <div className="w-full sm:w-80 shrink-0">
+            <GlobalSearch wide />
           </div>
         </div>
 

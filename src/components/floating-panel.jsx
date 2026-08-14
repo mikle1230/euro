@@ -4,17 +4,21 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import ItineraryList from './panel-views/itinerary-list'
 import DayDetail from './panel-views/day-detail'
 import QUOSList from './panel-views/quos-list'
-import ItinerarySettings from './itinerary-settings'
 
 const ICONS = [
   { key: 'itineraries', icon: '🗂️', label: '行程列表' },
-  { key: 'quos', icon: '📋', label: '收费清单' },
-  { key: 'edit', icon: '✏️', label: '编辑行程' },
+  { key: 'quos', icon: '📋', label: '行程详情' },
+  // { key: 'edit', icon: '✏️', label: '编辑行程' }, // 暂时隐藏：编辑行程视图入口（用户确认后移除）
 ]
 
 const MIN_W = 360
-const MAX_W = 700
+const MAX_PCT = 85 // 面板最大宽度 = 视口宽度的 85%
 const HEADER_H = 56
+
+function maxPanelWidth() {
+  if (typeof window === 'undefined') return MIN_W
+  return Math.max(MIN_W, Math.floor((window.innerWidth * MAX_PCT) / 100))
+}
 
 export default function FloatingPanel({
   isMobile,
@@ -30,7 +34,7 @@ export default function FloatingPanel({
   onWidthChange,
 }) {
   const [view, setView] = useState('itineraries')
-  const [showSettings, setShowSettings] = useState(false)
+  const [dragging, setDragging] = useState(false)
   const panelRef = useRef(null)
   const prevItinIdRef = useRef(null)
 
@@ -38,15 +42,17 @@ export default function FloatingPanel({
   const startResize = useCallback((e) => {
     e.preventDefault()
     e.stopPropagation()
+    setDragging(true)
     const startX = e.clientX
     const origW = panelWidth
 
     const onMove = (ev) => {
       // Panel is on the right, so dragging left edge changes width inversely
       const dw = startX - ev.clientX
-      onWidthChange(Math.max(MIN_W, Math.min(MAX_W, origW + dw)))
+      onWidthChange(Math.max(MIN_W, Math.min(maxPanelWidth(), origW + dw)))
     }
     const onUp = () => {
+      setDragging(false)
       document.removeEventListener('pointermove', onMove)
       document.removeEventListener('pointerup', onUp)
     }
@@ -54,19 +60,14 @@ export default function FloatingPanel({
     document.addEventListener('pointerup', onUp)
   }, [panelWidth])
 
-  const openView = (key) => {
-    setView(key)
-    onCollapsedChange(false)
-  }
-
-  // 无当前行程时，收费清单/编辑视图重定向到列表
+  // 无当前行程时，行程详情/编辑视图重定向到列表
   useEffect(() => {
     if (!activeItinerary && (view === 'quos' || view === 'edit')) {
       setView('itineraries')
     }
   }, [activeItinerary, view])
 
-  // 导入/切换行程后直接落到「收费清单」；首挂载不触发
+  // 导入/切换行程后直接落到「行程详情」；首挂载不触发
   useEffect(() => {
     const currentId = activeItinerary?.id || null
     if (prevItinIdRef.current !== null && currentId && currentId !== prevItinIdRef.current) {
@@ -78,35 +79,32 @@ export default function FloatingPanel({
   // Update panelWidth on window resize to stay within bounds
   useEffect(() => {
     const onResize = () => {
-      onWidthChange((w) => Math.max(MIN_W, Math.min(MAX_W, w)))
+      onWidthChange((w) => Math.max(MIN_W, Math.min(maxPanelWidth(), w)))
     }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  const titleMap = {
-    itineraries: '行程列表',
-    quos: '收费清单',
-    edit: activeItinerary ? activeItinerary.name : '编辑行程',
-  }
-
   // ---- Collapsed state: just an arrow on the right edge ----
   if (collapsed && !isMobile) {
     return (
       <div
-        className="fixed z-[1000] flex flex-col items-center justify-center gap-2 py-3 rounded-l-xl border shadow-lg cursor-pointer transition-colors hover:bg-[var(--bg-elevated)]"
+        className="fixed z-[1000] flex items-center justify-center rounded-l-xl border shadow-lg cursor-pointer transition-colors hover:bg-[var(--bg-surface)]"
         style={{
           right: 0,
           top: '50%',
           transform: 'translateY(-50%)',
-          width: 36,
+          width: 30,
+          height: 148,
           background: 'var(--bg-card)',
           borderColor: 'var(--border-color)',
+          borderRight: 'none',
         }}
         onClick={() => onCollapsedChange(false)}
         title="展开面板"
+        aria-label="展开面板"
       >
-        <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>◀</span>
+        <span className="text-base" style={{ color: 'var(--text-secondary)' }}>◀</span>
       </div>
     )
   }
@@ -130,21 +128,44 @@ export default function FloatingPanel({
         bottom: 0,
         width: panelWidth,
         minWidth: MIN_W,
-        maxWidth: MAX_W,
+        maxWidth: `${MAX_PCT}vw`,
         background: 'var(--bg-card)',
         borderColor: 'var(--border-color)',
-        transition: 'width 200ms ease',
+        // 拖拽中禁用过渡，避免每帧宽度动画卡顿；松手后才恢复动画
+        transition: dragging ? 'none' : 'width 200ms ease',
       }}
     >
-      {/* Left-edge resize handle */}
+      {/* Left-edge resize handle + 收起按钮 */}
       {!isMobile && (
-        <div
-          className="absolute top-0 bottom-0 w-3 cursor-col-resize z-10 flex items-center justify-center transition-colors hover:bg-[var(--accent)] hover:opacity-20"
-          style={{ left: 0 }}
-          onPointerDown={startResize}
-        >
-          <div className="w-[2px] h-12 rounded-full" style={{ background: 'var(--border-color)' }} />
-        </div>
+        <>
+          <div
+            className="absolute top-0 bottom-0 w-3 cursor-col-resize z-10 flex items-center justify-center transition-colors hover:bg-[var(--accent)] hover:opacity-20"
+            style={{ left: 0 }}
+            onPointerDown={startResize}
+          >
+            <div className="w-[2px] h-12 rounded-full" style={{ background: 'var(--border-color)' }} />
+          </div>
+          {/* 收起按钮：左侧边中部，形状/大小与收起态一致（细长拉条），
+              贴在面板左缘外侧，不压边线与拖拽手柄 */}
+          <button
+            onClick={() => onCollapsedChange(true)}
+            className="absolute z-20 flex items-center justify-center rounded-l-xl border shadow-lg cursor-pointer transition-colors hover:bg-[var(--bg-elevated)]"
+            style={{
+              left: -30,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: 30,
+              height: 148,
+              background: 'var(--bg-card)',
+              borderColor: 'var(--border-color)',
+              borderRight: 'none',
+            }}
+            title="收起面板"
+            aria-label="收起面板"
+          >
+            <span className="text-base" style={{ color: 'var(--text-secondary)' }}>▶</span>
+          </button>
+        </>
       )}
 
       {/* Title bar */}
@@ -153,62 +174,50 @@ export default function FloatingPanel({
         style={{ borderColor: 'var(--border-color)' }}
       >
         <div className="flex items-center gap-2">
-          {/* Collapse button */}
-          {!isMobile && (
-            <button
-              onClick={() => onCollapsedChange(true)}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-sm transition-colors hover:bg-[var(--bg-surface)]"
-              style={{ color: 'var(--text-tertiary)' }}
-              title="收起面板"
-            >
-              ▶
-            </button>
-          )}
           {activeItinerary && view !== 'itineraries' && (
             <button
               onClick={() => setView('itineraries')}
-              className="w-6 h-6 rounded flex items-center justify-center text-xs hover:bg-[var(--bg-surface)]"
-              style={{ color: 'var(--text-tertiary)' }}
+              className="w-9 h-8 rounded-lg border flex items-center justify-center text-base shrink-0 transition-colors hover:bg-[var(--bg-elevated)]"
+              style={{
+                borderColor: 'var(--border-color)',
+                color: 'var(--text-secondary)',
+                background: 'var(--bg-surface)',
+              }}
+              title="返回行程列表"
+              aria-label="返回行程列表"
             >
               ←
             </button>
           )}
-          <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
-            {titleMap[view]}
-          </span>
         </div>
         <div className="flex items-center gap-1">
-          {/* View tabs */}
-          <div className="flex items-center gap-1">
-            {ICONS.filter((item) => !isMobile || item.key !== 'edit').map((item) => (
-              <button
-                key={item.key}
-                onClick={() => openView(item.key)}
-                className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
-                  view === item.key ? '' : 'opacity-40 hover:opacity-70'
-                }`}
-                style={view === item.key ? { background: 'var(--bg-surface)' } : {}}
-              >
-                <span className="text-sm">{item.icon}</span>
-                <span style={{ color: 'var(--text-primary)' }}>{item.label}</span>
-              </button>
-            ))}
+          {/* 导航状态指示（非按钮，图标+文字表示当前位置，悬停显示提示） */}
+          <div className="flex items-center gap-1 select-none">
+            {['itineraries', 'quos'].map((key) => {
+              const cfg = ICONS.find((i) => i.key === key)
+              const active = view === key
+              return (
+                <span
+                  key={key}
+                  title={cfg.label}
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${
+                    active ? '' : 'opacity-40'
+                  }`}
+                  style={active
+                    ? { background: 'var(--accent-strong)', color: '#fff' }
+                    : { color: 'var(--text-tertiary)' }}
+                >
+                  <span className="text-sm">{cfg.icon}</span>
+                  <span>{cfg.label}</span>
+                </span>
+              )
+            })}
           </div>
-          {activeItinerary && (
-            <button
-              onClick={() => setShowSettings(true)}
-              className="w-7 h-7 rounded-md flex items-center justify-center text-sm transition-colors hover:bg-[var(--bg-surface)]"
-              style={{ color: 'var(--text-tertiary)' }}
-              title="行程设置"
-            >
-              ⚙️
-            </button>
-          )}
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto">
+      {/* Content —— 桌面端左侧留出拖拽手柄宽度（12px），内容与手柄挨着但不被盖住 */}
+      <div className={`flex-1 overflow-y-auto ${isMobile ? '' : 'pl-3'}`}>
         {view === 'itineraries' && (
           <ItineraryList
             activeItinerary={activeItinerary}
@@ -226,13 +235,6 @@ export default function FloatingPanel({
           />
         )}
       </div>
-
-      {showSettings && activeItinerary && (
-        <ItinerarySettings
-          itinerary={activeItinerary}
-          onClose={() => setShowSettings(false)}
-        />
-      )}
     </div>
   )
 }

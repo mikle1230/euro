@@ -27,7 +27,7 @@ const TYPE_ICONS = {
 
 const ENTITY_MARKER_COLORS = {
   landmark:   { fill: '#d4a854', border: '#b8933a' },
-  museum:     { fill: '#14b8a6', border: '#0d9488' },
+  museum:     { fill: '#4984AC', border: '#3a6f96' },
   nature:     { fill: '#4a9e4a', border: '#358535' },
   hotel:      { fill: '#4a8fcf', border: '#3570a5' },
   restaurant: { fill: '#e8784a', border: '#c05a30' },
@@ -42,7 +42,7 @@ function getEntityMarkerColor(type, subtype) {
 
 const EMPTY_TEXT = {
   noItems: '暂无项目',
-  allFree: '本日仅含免费项目',
+  allFree: '已全部隐藏',
 }
 
 const CURRENCY_SYMBOLS = {
