@@ -58,6 +58,15 @@ export function getQUOSType(item) {
   return { code: 'OTH', label: 'Others' }
 }
 
+// ---- Free/Paid ----
+// 免费/收费判定（唯一实现，day-detail 与 quos-list 均 import 此处）
+export function isFreeItem(item) {
+  if (item.costCategory === 'free') return true
+  if (item.costCategory === 'paid') return false
+  // 旧数据没有 costCategory：通过价格推断
+  return !item.price || item.price === 0
+}
+
 // ---- City Name Aliases ----
 // Handle variations: different Chinese translations, English→native name, etc.
 // quosCities keys are English + Chinese (from europe-travel.json cross-reference).

@@ -13,7 +13,9 @@
       "Bash(node -e ' *)",
       "Bash(claude plugins *)",
       "WebSearch",
-      "Read(//Users/michael/.claude/**)"
+      "Read(//Users/michael/.claude/**)",
+      "mcp__plugin_vercel_vercel__list_deployments",
+      "mcp__plugin_vercel_vercel__get_project"
     ],
     "additionalDirectories": [
       "/Users/michael/Projects/euro/src/app/knowledge"

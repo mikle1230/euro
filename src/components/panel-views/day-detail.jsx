@@ -14,6 +14,7 @@ import {
 import { getAllCitiesWithCoords } from '@/lib/data'
 import { searchEntities as searchEntityStore, getAllEntities } from '@/lib/entity-store'
 import { EMPTY_TEXT } from '@/lib/config'
+import { isFreeItem } from '@/lib/quos-mapping'
 import ConfirmDialog from '@/components/confirm-dialog'
 
 const ITEM_TYPES = {
@@ -510,14 +511,6 @@ function ItemForm({ item, dayId, itineraryId, onDone }) {
       )}
     </div>
   )
-}
-
-// ---- Free/Paid helpers ----
-function isFreeItem(item) {
-  if (item.costCategory === 'free') return true
-  if (item.costCategory === 'paid') return false
-  // 旧数据没有 costCategory：通过价格推断
-  return !item.price || item.price === 0
 }
 
 // ---- Day title helper ----

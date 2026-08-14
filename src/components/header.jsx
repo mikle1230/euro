@@ -90,6 +90,22 @@ export default function Header() {
           >
             知识库
           </Link>
+          <Link
+            href="/guide"
+            style={{
+              ...tabGlass,
+              ...(isActive('/guide')
+                ? { background: 'rgba(20, 184, 166, 0.18)', color: 'var(--accent)', boxShadow: '0 -1px 8px rgba(0,0,0,0.04)', border: '1px solid var(--border-color)', borderBottom: 'none' }
+                : { background: 'rgba(148, 163, 184, 0.08)', color: 'var(--text-tertiary)' }
+              ),
+            }}
+            className="inline-flex items-center justify-center font-medium transition-all
+              w-[72px] h-[36px] text-xs
+              sm:w-[96px] sm:h-[40px] sm:text-sm
+              md:w-[120px] md:h-[45px] md:text-sm"
+          >
+            🧭 界面导游
+          </Link>
         </nav>
         <div className="flex items-center h-14 ml-1 sm:ml-3">
           <ThemeToggle />

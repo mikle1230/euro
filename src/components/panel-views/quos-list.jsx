@@ -3,17 +3,11 @@
 import { useState } from 'react'
 import { updateItem, setDayChecked } from '@/lib/itinerary-store'
 import { useIsMobile } from '@/lib/use-is-mobile'
-import { getQUOSType, getCityCode, getAttractionNameEn, getQUOSOrder, saveQUOSOrder, DEFAULT_QUOS_ORDER, QUOS_LABELS } from '@/lib/quos-mapping'
+import { getQUOSType, getCityCode, getAttractionNameEn, getQUOSOrder, saveQUOSOrder, DEFAULT_QUOS_ORDER, QUOS_LABELS, isFreeItem } from '@/lib/quos-mapping'
 import { getAllEntities } from '@/lib/entity-store'
 import { EMPTY_TEXT } from '@/lib/config'
 
 // ---- helpers ----
-function isFreeItem(item) {
-  if (item.costCategory === 'free') return true
-  if (item.costCategory === 'paid') return false
-  return !item.price || item.price === 0
-}
-
 function getItemNameEn(item) {
   // Priority 1: AI-parsed nameEn (covers attractions, hotels, etc.)
   if (item.nameEn) return item.nameEn
