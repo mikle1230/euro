@@ -1,15 +1,16 @@
 'use client'
 
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { getAllCountries, getAllCitiesWithCoords, getAllAttractionsFlat } from '@/lib/data'
 import { getAllEntities, ensureSeeded } from '@/lib/entity-store'
 
 const TYPE_CONFIG = {
-  country: { icon: '🗺️', label: '国家', color: '#14b8a6' },
-  city: { icon: '🏙️', label: '城市', color: '#f0a030' },
-  landmark: { icon: '🏛️', label: '地标', color: '#d4a854' },
-  museum: { icon: '🏺', label: '博物馆', color: '#14b8a6' },
+  country: { icon: '🗺️', label: '国家', color: '#08739D' },
+  city: { icon: '🏙️', label: '城市', color: '#4984AC' },
+  landmark: { icon: '🏛️', label: '地标', color: '#AEC60C' },
+  museum: { icon: '🏺', label: '博物馆', color: '#4984AC' },
   nature: { icon: '🌿', label: '自然', color: '#22c55e' },
   hotel: { icon: '🏨', label: '酒店', color: '#4a8fcf' },
   restaurant: { icon: '🍽️', label: '餐厅', color: '#e8784a' },
@@ -17,13 +18,27 @@ const TYPE_CONFIG = {
   guide: { icon: '🧑‍💼', label: '导游', color: '#718096' },
 }
 
-export default function GlobalSearch() {
+export default function GlobalSearch({ wide = false }) {
   const router = useRouter()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [selectedIdx, setSelectedIdx] = useState(0)
+  // 下拉用 portal 渲染到 body：header 是 z-[900] 堆叠上下文，
+  // 若放在 header 内会被右侧面板（z-[1000]）盖住
+  const [dropPos, setDropPos] = useState(null)
   const inputRef = useRef(null)
   const containerRef = useRef(null)
+  const dropdownRef = useRef(null)
+
+  const openDropdown = useCallback(() => {
+    const rect = inputRef.current?.getBoundingClientRect()
+    if (!rect) return
+    setDropPos({
+      top: rect.bottom + 6,
+      left: Math.max(8, rect.left),
+      width: Math.min(Math.max(288, rect.width), window.innerWidth - 16),
+    })
+  }, [])
 
   // Seed entity store once
   useEffect(() => { ensureSeeded(getAllAttractionsFlat) }, [])
@@ -158,16 +173,26 @@ export default function GlobalSearch() {
     [open, results, selectedIdx, selectItem],
   )
 
-  // Close dropdown on outside click
+  // Close dropdown on outside click（portal 下拉在 container 外，需同时检查下拉自身）
   useEffect(() => {
     if (!open) return
     const handler = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
+      const inContainer = containerRef.current && containerRef.current.contains(e.target)
+      const inDropdown = dropdownRef.current && dropdownRef.current.contains(e.target)
+      if (!inContainer && !inDropdown) {
         setOpen(false)
       }
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
+  // 滚动时收起，避免下拉悬空错位
+  useEffect(() => {
+    if (!open) return
+    const onScroll = () => setOpen(false)
+    window.addEventListener('scroll', onScroll, true)
+    return () => window.removeEventListener('scroll', onScroll, true)
   }, [open])
 
   // Reset selectedIdx when results change
@@ -190,11 +215,12 @@ export default function GlobalSearch() {
           onChange={(e) => {
             setQuery(e.target.value)
             setOpen(true)
+            openDropdown()
           }}
-          onFocus={() => { if (query.trim()) setOpen(true) }}
+          onFocus={() => { if (query.trim()) { setOpen(true); openDropdown() } }}
           onKeyDown={handleKeyDown}
           placeholder="搜索..."
-          className="w-36 sm:w-48 pl-7 pr-3 py-1.5 text-xs rounded-full border outline-none transition-all focus:ring-2 focus:w-44 sm:focus:w-64"
+          className={wide ? 'w-full pl-8 pr-3 py-2 text-sm rounded-full border outline-none transition-all focus:ring-2' : 'w-36 sm:w-48 pl-7 pr-3 py-1.5 text-xs rounded-full border outline-none transition-all focus:ring-2 focus:w-44 sm:focus:w-64'}
           style={{
             background: 'var(--bg-surface)',
             borderColor: open ? 'var(--accent)' : 'var(--border-color)',
@@ -203,11 +229,17 @@ export default function GlobalSearch() {
         />
       </div>
 
-      {/* Dropdown */}
-      {open && results.length > 0 && (
+      {/* Dropdown（portal 到 body，fixed 定位，避免被面板 z-[1000] 遮挡） */}
+      {open && results.length > 0 && dropPos && createPortal(
         <div
-          className="absolute right-0 mt-1.5 w-72 sm:w-80 rounded-xl border shadow-xl overflow-hidden z-[1100]"
+          ref={dropdownRef}
+          className="rounded-xl border shadow-xl overflow-hidden"
           style={{
+            position: 'fixed',
+            top: dropPos.top,
+            left: dropPos.left,
+            width: dropPos.width,
+            zIndex: 1300,
             background: 'var(--bg-card)',
             borderColor: 'var(--border-color)',
           }}
@@ -265,21 +297,29 @@ export default function GlobalSearch() {
           >
             ↑↓ 导航 · ↵ 选择 · Esc 关闭
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
 
       {/* No results */}
-      {open && query.trim() && results.length === 0 && (
+      {open && query.trim() && results.length === 0 && dropPos && createPortal(
         <div
-          className="absolute right-0 mt-1.5 w-72 rounded-xl border shadow-xl z-[1100] px-4 py-6 text-center"
+          ref={dropdownRef}
+          className="rounded-xl border shadow-xl px-4 py-6 text-center"
           style={{
+            position: 'fixed',
+            top: dropPos.top,
+            left: dropPos.left,
+            width: dropPos.width,
+            zIndex: 1300,
             background: 'var(--bg-card)',
             borderColor: 'var(--border-color)',
           }}
         >
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>未找到匹配结果</p>
           <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>试试其他关键词</p>
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   )

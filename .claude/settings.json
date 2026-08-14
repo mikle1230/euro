@@ -15,7 +15,11 @@
       "WebSearch",
       "Read(//Users/michael/.claude/**)",
       "mcp__plugin_vercel_vercel__list_deployments",
-      "mcp__plugin_vercel_vercel__get_project"
+      "mcp__plugin_vercel_vercel__get_project",
+      "Bash(ls -la \"/Users/michael/Projects/KT/系统拷贝列表/\" 2>&1 | head -40)",
+      "Read(//Users/michael/Projects/KT/系统拷贝列表/**)",
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(node scripts/import-kt-hotels.mjs)"
     ],
     "additionalDirectories": [
       "/Users/michael/Projects/euro/src/app/knowledge"

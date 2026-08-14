@@ -196,7 +196,6 @@ export default function EntityDetail({ entity, onClose, onAddToItinerary }) {
               style={{
                 background: 'var(--bg-surface)',
                 color: 'var(--text-secondary)',
-                borderLeft: '3px solid var(--accent)',
               }}
             >
               <span className="mr-1">💡</span>
@@ -209,7 +208,7 @@ export default function EntityDetail({ entity, onClose, onAddToItinerary }) {
             <button
               onClick={() => onAddToItinerary(entity)}
               className="w-full py-2.5 rounded-lg text-sm font-medium transition-all hover:opacity-90"
-              style={{ background: 'var(--accent)', color: '#fff' }}
+              style={{ background: 'var(--accent-strong)', color: '#fff' }}
             >
               + 加入行程
             </button>

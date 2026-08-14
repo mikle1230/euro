@@ -152,7 +152,7 @@ export default function CityPage() {
               className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
               style={
                 entityFilter.length === 0
-                  ? { background: 'var(--accent)', color: '#fff', borderColor: 'var(--accent)' }
+                  ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
                   : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
               }
             >
@@ -171,7 +171,7 @@ export default function CityPage() {
                   className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
                   style={
                     entityFilter.includes(key)
-                      ? { background: 'var(--accent)', color: '#fff', borderColor: 'var(--accent)' }
+                      ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
                       : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
                   }
                 >

@@ -2,6 +2,8 @@
 
 import { useSyncExternalStore } from 'react'
 import { uid } from './id'
+import { getAllEntities, replaceAllEntities } from './entity-store'
+import { getCityCode } from './quos-mapping'
 
 const STORAGE_KEY = 'euro-itineraries'
 const SERIAL_KEY = 'euro-itinerary-serial'
@@ -13,6 +15,41 @@ const TEMPLATE_KEY = 'euro-templates'
 let state = null
 let version = 0
 const listeners = new Set()
+
+// ---- Storage quota warning ----
+// localStorage 写满（约 5MB）时静默失败会导致数据丢失，这里把失败暴露出来，
+// UI 订阅后提示用户立即导出备份。
+let quotaWarning = false
+const quotaListeners = new Set()
+
+function setQuotaWarning(v) {
+  if (quotaWarning === v) return
+  quotaWarning = v
+  quotaListeners.forEach((l) => l(v))
+}
+
+export function getQuotaWarning() {
+  return quotaWarning
+}
+
+export function subscribeQuotaWarning(cb) {
+  quotaListeners.add(cb)
+  return () => quotaListeners.delete(cb)
+}
+
+// ---- Cross-tab sync ----
+// 另一个标签页写入 localStorage 时刷新内存 state 并通知订阅者，
+// 避免多标签同时编辑互相覆盖。
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key !== STORAGE_KEY) return
+    try {
+      state = e.newValue ? JSON.parse(e.newValue) : { itineraries: [], activeId: null }
+    } catch { return }
+    version++
+    listeners.forEach((l) => l())
+  })
+}
 
 function loadState() {
   if (state !== null) return state
@@ -29,7 +66,12 @@ function loadState() {
 
 function commit() {
   if (typeof window !== 'undefined') {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)) } catch { /* quota */ }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+      setQuotaWarning(false)
+    } catch {
+      setQuotaWarning(true)
+    }
   }
   version++
   listeners.forEach((l) => l())
@@ -44,8 +86,12 @@ function getVersion() {
   return version
 }
 
+export function useStoreVersion() {
+  return useSyncExternalStore(subscribe, getVersion, getVersion)
+}
+
 export function useItineraries() {
-  useSyncExternalStore(subscribe, getVersion, getVersion)
+  useStoreVersion()
   return loadState()
 }
 
@@ -101,6 +147,9 @@ function makeItem(input = {}) {
     quantity: input.quantity || 0,
     notes: input.notes || '',
     quosChecked: input.quosChecked || false,
+    quoteKind: input.quoteKind || undefined,
+    quoteOrder: input.quoteOrder ?? undefined,
+    locationCategory: input.locationCategory || undefined,
   }
 }
 
@@ -169,6 +218,8 @@ export function importItinerary(data) {
     groupSize: data.groupSize || 0,
     tourCode: data.tourCode || '',
     notes: data.notes || '',
+    // 保留原文（AI 解析用文本），供「AI 反馈重解析」复用，无需重新上传
+    sourceText: data.sourceText || '',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     days: (data.days || []).map((d) => ({
@@ -177,6 +228,10 @@ export function importItinerary(data) {
       cityId: d.cityId || '',
       cityName: d.cityName || '',
       cityNameEn: d.cityNameEn || '',
+      cityCode: d.cityCode || '',
+      countryCode: d.countryCode || '',
+      finalCityName: d.finalCityName || '',
+      finalCityNameEn: d.finalCityNameEn || '',
       items: (d.items || []).map((item) => makeItem(item)),
     })),
   }
@@ -184,6 +239,34 @@ export function importItinerary(data) {
   store.activeId = itinerary.id
   commit()
   return itinerary
+}
+
+// ---- AI 反馈重解析：原地替换行程内容（保留 id/serialNumber/原文）----
+// days 需已做过城市匹配（cityId/cityName 等），由调用方（itinerary-list）准备。
+export function replaceItineraryContent(id, { days = [], name, tourCode, startDate, endDate, groupSize }) {
+  const store = loadState()
+  const t = store.itineraries.find((t) => t.id === id)
+  if (!t) return null
+  t.name = name || t.name
+  t.tourCode = tourCode || t.tourCode
+  t.startDate = startDate || t.startDate
+  t.endDate = endDate || t.endDate
+  t.groupSize = groupSize || t.groupSize
+  t.days = days.map((d) => ({
+    id: uid(),
+    dayNumber: d.dayNumber,
+    cityId: d.cityId || '',
+    cityName: d.cityName || '',
+    cityNameEn: d.cityNameEn || '',
+    cityCode: d.cityCode || '',
+    countryCode: d.countryCode || '',
+    finalCityName: d.finalCityName || '',
+    finalCityNameEn: d.finalCityNameEn || '',
+    items: (d.items || []).map((item) => makeItem(item)),
+  }))
+  t.updatedAt = new Date().toISOString()
+  commit()
+  return t
 }
 
 export function setActiveItinerary(id) {
@@ -199,11 +282,16 @@ export function addDay(itineraryId, cityId, cityName) {
   const t = store.itineraries.find((t) => t.id === itineraryId)
   if (!t) return null
 
+  const info = getCityCode(cityName, '')
   const day = {
     id: uid(),
     dayNumber: t.days.length + 1,
     cityId,
     cityName,
+    cityCode: info?.cityCode || '',
+    countryCode: info?.countryCode || '',
+    finalCityName: '',
+    finalCityNameEn: '',
     items: [],
   }
   t.days.push(day)
@@ -242,8 +330,11 @@ export function updateDayCity(itineraryId, dayId, cityId, cityName) {
   if (!t) return
   const d = t.days.find((d) => d.id === dayId)
   if (d) {
+    const info = getCityCode(cityName, '')
     d.cityId = cityId
     d.cityName = cityName
+    d.cityCode = info?.cityCode || ''
+    d.countryCode = info?.countryCode || ''
     t.updatedAt = new Date().toISOString()
   }
   commit()
@@ -469,6 +560,63 @@ export function createFromTemplate(templateId) {
 export function deleteTemplate(id) {
   const templates = readTemplates()
   writeTemplates(templates.filter((t) => t.id !== id))
+}
+
+// ---- Backup: export / import ----
+// 所有数据（行程 + 实体 + 模板）打包成一个 JSON 下载；导入时整体恢复。
+// localStorage 有约 5MB 上限且无法跨设备，建议定期导出备份。
+
+export function exportAllData() {
+  const s = loadState()
+  // 内置模板（代码里 fallback 的那 3 个）不导出，避免导入后与内置模板重复
+  const BUILTIN_TEMPLATE_IDS = new Set(['tpl-classic-7', 'tpl-eastern-12', 'tpl-uk-5'])
+  return {
+    app: 'euro-atlas',
+    formatVersion: 1,
+    exportedAt: new Date().toISOString(),
+    activeId: s.activeId,
+    itineraries: s.itineraries,
+    entities: getAllEntities(),
+    templates: getAllTemplates().filter((t) => !BUILTIN_TEMPLATE_IDS.has(t.id)),
+  }
+}
+
+export function importAllData(data) {
+  if (!data || typeof data !== 'object') {
+    throw new Error('备份文件格式不正确')
+  }
+  if (!Array.isArray(data.itineraries)) {
+    throw new Error('备份文件中缺少行程数据（itineraries）')
+  }
+  if (typeof window === 'undefined') return
+
+  // 归一化：走过的字段统一过 makeItem，避免旧备份/手工编辑导致字段漂移
+  const itineraries = data.itineraries.map((it) => ({
+    ...it,
+    days: (it.days || []).map((d) => ({
+      ...d,
+      id: d.id || uid(),
+      items: (d.items || []).map((item) => makeItem(item)),
+    })),
+  }))
+  const nextState = {
+    itineraries,
+    activeId: data.activeId || itineraries[0]?.id || null,
+  }
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState))
+    if (Array.isArray(data.entities)) replaceAllEntities(data.entities)
+    if (Array.isArray(data.templates)) writeTemplates(data.templates)
+    setQuotaWarning(false)
+  } catch {
+    setQuotaWarning(true)
+    throw new Error('存储空间不足，无法写入全部备份数据，请清理后重试')
+  }
+
+  state = nextState
+  version++
+  listeners.forEach((l) => l())
 }
 
 // ---- Itinerary utility ----

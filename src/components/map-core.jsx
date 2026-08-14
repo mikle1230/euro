@@ -8,23 +8,10 @@ import { getAllEntities } from '@/lib/entity-store'
 import { getCountryById } from '@/lib/data'
 import { getCityCode } from '@/lib/quos-mapping'
 import { getEntityMarkerColor, TYPE_ICONS, TYPE_LABELS, MAP } from '@/lib/config'
+import { haversineKm } from '@/lib/geo'
 import europeBoundaries from '@/data/europe-boundaries.json'
 
 const ROAD_FACTOR = 1.35
-
-function haversineKm(lat1, lng1, lat2, lng2) {
-  const R = 6371
-  const dLat = ((lat2 - lat1) * Math.PI) / 180
-  const dLng = ((lng2 - lng1) * Math.PI) / 180
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLng / 2) *
-      Math.sin(dLng / 2)
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-  return Math.round(R * c * ROAD_FACTOR)
-}
 
 // ISO_A2 → project countryId mapping
 const ISO_TO_COUNTRY_ID = {
@@ -54,13 +41,14 @@ function resolveCountryId(iso, name) {
   return null
 }
 
-const ACCENT_LIGHT = '#14b8a6'
-const ACCENT_DARK = '#2dd4bf'
-const GOLD_LIGHT = '#f0a030'
-const GOLD_DARK = '#f5c842'
-const ROUTE_COLOR_LIGHT = '#14b8a6'
-const ROUTE_COLOR_DARK = '#2dd4bf'
-const HIGHLIGHT_RING_COLOR = '#e8308a'
+// 地图配色（与 globals.css 主题 token 同源：主蓝 #08739D / 辅蓝 #4984AC / 绿 #6D9D39 / 青柠 #AEC60C）
+const ACCENT_LIGHT = '#08739D'
+const ACCENT_DARK = '#4984AC'
+const GOLD_LIGHT = '#6D9D39'
+const GOLD_DARK = '#9bc554'
+const ROUTE_COLOR_LIGHT = '#08739D'
+const ROUTE_COLOR_DARK = '#4984AC'
+const HIGHLIGHT_RING_COLOR = '#AEC60C'
 
 export default function MapCore({
   cities = [],
@@ -284,7 +272,7 @@ export default function MapCore({
       const marker = L.circleMarker([city.lat, city.lng], {
         radius,
         fillColor,
-        color: inItinerary ? gold : isDark ? '#1a2a3a' : '#ffffff',
+        color: inItinerary ? gold : isDark ? '#122740' : '#ffffff',
         weight: inItinerary ? 2.5 : 1.5,
         fillOpacity: inItinerary ? 0.8 : 0.65,
       }).addTo(map)
@@ -320,7 +308,7 @@ export default function MapCore({
 
         const btnAdd = document.createElement('button')
         btnAdd.style.cssText =
-          'display:block;width:100%;padding:5px 10px;margin-bottom:3px;border-radius:6px;font-size:12px;font-weight:500;border:none;cursor:pointer;text-align:left;background:var(--accent,#14b8a6);color:#fff'
+          'display:block;width:100%;padding:5px 10px;margin-bottom:3px;border-radius:6px;font-size:12px;font-weight:500;border:none;cursor:pointer;text-align:left;background:var(--accent-strong,#0f766e);color:#fff'
         btnAdd.textContent = '+ 添加为新的一天'
         btnAdd.onclick = () => {
           if (onAddRef.current) onAddRef.current(city)
@@ -377,7 +365,7 @@ export default function MapCore({
         marker.setStyle({
           fillOpacity: inItinerary ? 0.8 : 0.65,
           weight: inItinerary ? 2.5 : 1.5,
-          color: inItinerary ? gold : isDark ? '#1a2a3a' : '#ffffff',
+          color: inItinerary ? gold : isDark ? '#122740' : '#ffffff',
         })
       }
     })
@@ -419,7 +407,7 @@ export default function MapCore({
       const icon = L.divIcon({
         className: '',
         html: `<div style="
-          background:var(--accent,#14b8a6);
+          background:var(--accent-strong,#0f766e);
           color:#fff;
           font-size:10px;
           font-weight:700;
@@ -495,7 +483,7 @@ export default function MapCore({
         if (onEntityAddRef.current) {
           const btnAdd = document.createElement('button')
           btnAdd.style.cssText =
-            'display:block;width:100%;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:500;border:none;cursor:pointer;text-align:left;background:var(--accent,#14b8a6);color:#fff'
+            'display:block;width:100%;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:500;border:none;cursor:pointer;text-align:left;background:var(--accent-strong,#0f766e);color:#fff'
           btnAdd.textContent = '+ 加入行程'
           btnAdd.onclick = () => {
             onEntityAddRef.current(entity)
@@ -583,7 +571,7 @@ export default function MapCore({
       for (let i = 0; i < routeLine.length - 1; i++) {
         const [lat1, lng1] = routeLine[i]
         const [lat2, lng2] = routeLine[i + 1]
-        const km = haversineKm(lat1, lng1, lat2, lng2)
+        const km = Math.round(haversineKm(lat1, lng1, lat2, lng2) * ROAD_FACTOR)
         const midLat = (lat1 + lat2) / 2
         const midLng = (lng1 + lng2) / 2
         const icon = L.divIcon({

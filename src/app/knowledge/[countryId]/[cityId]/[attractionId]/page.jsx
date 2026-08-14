@@ -115,7 +115,6 @@ export default function AttractionPage() {
                 style={{
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-color)',
-                  borderLeft: '3px solid var(--accent)',
                   color: 'var(--text-secondary)',
                 }}
               >

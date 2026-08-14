@@ -56,7 +56,11 @@ export default function GuidePage() {
     ? itineraries.find((t) => t.id === activeId) || itineraries[0] || null
     : itineraries[0] || null
 
-  const steps = buildGuideSteps(activeItinerary)
+  const [hideMeals, setHideMeals] = useState(true)
+  const [hideAttractions, setHideAttractions] = useState(true)
+  const [hideInlandTransit, setHideInlandTransit] = useState(true)
+
+  const steps = buildGuideSteps(activeItinerary, { hideMeals, hideAttractions, hideInlandTransit })
   const [current, setCurrent] = useState(0)
   const [done, setDone] = useState([])
 
@@ -109,7 +113,7 @@ export default function GuidePage() {
         <div className="flex items-end justify-between mb-5 flex-wrap gap-3">
           <div>
             <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
-              🧭 界面导游
+              🧭 录入Copilot
             </h1>
             <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
               照着 QUOS 界面字段，逐步完成录入
@@ -138,13 +142,47 @@ export default function GuidePage() {
             <Link
               href="/explore"
               className="inline-flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium"
-              style={{ background: 'var(--accent)', color: '#fff' }}
+              style={{ background: 'var(--accent-strong)', color: '#fff' }}
             >
               去导入一个行程 →
             </Link>
           </div>
         ) : (
           <>
+            {/* 显示开关（默认隐藏用餐/景点/内陆交通，仅保留酒店+用车等报价项） */}
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
+              <button
+                onClick={() => setHideMeals(!hideMeals)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border transition-all"
+                style={hideMeals
+                  ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
+                  : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+              >
+                <span>🍽️</span>
+                <span style={hideMeals ? { textDecoration: 'line-through' } : {}}>用餐</span>
+              </button>
+              <button
+                onClick={() => setHideAttractions(!hideAttractions)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border transition-all"
+                style={hideAttractions
+                  ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
+                  : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+              >
+                <span>🎫</span>
+                <span style={hideAttractions ? { textDecoration: 'line-through' } : {}}>景点</span>
+              </button>
+              <button
+                onClick={() => setHideInlandTransit(!hideInlandTransit)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border transition-all"
+                style={hideInlandTransit
+                  ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
+                  : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+              >
+                <span>🚄</span>
+                <span style={hideInlandTransit ? { textDecoration: 'line-through' } : {}}>内陆交通</span>
+              </button>
+            </div>
+
             {/* 进度条 */}
             <div className="flex items-center gap-2 mb-3">
               <span className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
@@ -153,7 +191,7 @@ export default function GuidePage() {
               <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--bg-surface)' }}>
                 <div
                   className="h-full rounded-full transition-all"
-                  style={{ background: 'var(--accent)', width: `${((safeCurrent + 1) / steps.length) * 100}%` }}
+                  style={{ background: 'var(--accent-strong)', width: `${((safeCurrent + 1) / steps.length) * 100}%` }}
                 />
               </div>
               {freeCount > 0 && (
@@ -205,12 +243,18 @@ export default function GuidePage() {
                 style={{ background: 'var(--gold-dim)', borderColor: 'var(--gold)' }}
               >
                 <div className="font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
-                  🚌 LDC 大巴规则（{step.ldc.scope}）
+                  🚌 LDC 大巴规则（{step.ldc.region}）
                 </div>
                 <div className="rounded-lg p-3 mb-3" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
                   <div className="text-xs mb-1" style={{ color: 'var(--text-tertiary)' }}>供应商选择（务必）</div>
-                  <div className="font-semibold" style={{ color: 'var(--accent)' }}>{step.ldc.supplierRule}</div>
+                  <div className="font-semibold" style={{ color: 'var(--accent)' }}>{step.ldc.fullSelectionName}</div>
+                  <div className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+                    {step.ldc.symbol}{step.ldc.dailyRate}/天 · {step.ldc.vehicleType}
+                  </div>
                 </div>
+                {step.ldc.note && (
+                  <p className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>ℹ️ {step.ldc.note}</p>
+                )}
                 <ul className="space-y-1">
                   {step.ldc.rates.map((r, i) => (
                     <li key={i} className="text-sm" style={{ color: 'var(--text-secondary)' }}>· {r}</li>
@@ -276,7 +320,7 @@ export default function GuidePage() {
                 <button
                   onClick={markDone}
                   className="inline-flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all"
-                  style={{ background: 'var(--accent)', color: '#fff' }}
+                  style={{ background: 'var(--accent-strong)', color: '#fff' }}
                 >
                   {done.includes(step.id) ? '已完成 ✓' : 'Mark as Done'}
                 </button>

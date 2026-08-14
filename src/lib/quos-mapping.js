@@ -1,7 +1,8 @@
-'use client'
-
-import quosCities from '@/data/quos-cities.json'
-import quosAttractions from '@/data/quos-attractions.json'
+// 纯函数模块：类型映射 / 免费判定 / 城市代码查找 / QUOS 排序。
+// 无 'use client' —— 服务端（route.js / coach-plan.js）与客户端均可 import，
+// localStorage 访问全部带 typeof window 守卫。
+import quosCities from '../data/quos-cities.json' with { type: 'json' }
+import quosAttractions from '../data/quos-attractions.json' with { type: 'json' }
 
 // ---- QUOS Type Definitions ----
 export const DEFAULT_QUOS_ORDER = [
@@ -65,6 +66,20 @@ export function isFreeItem(item) {
   if (item.costCategory === 'paid') return false
   // 旧数据没有 costCategory：通过价格推断
   return !item.price || item.price === 0
+}
+
+// ---- Visibility Filter ----
+// 行程详情/录入Copilot/天数详情共用的「隐藏」判定（默认只显示酒店+用车+保险等报价项）
+const INLAND_TRANSIT_CODES = ['FLT', 'DTR', 'OTR', 'DFR', 'OFR']
+
+export function shouldHideItem(item, opts = {}) {
+  const { hideFree = false, hideMeals = false, hideAttractions = false, hideInlandTransit = false } = opts
+  const code = getQUOSType(item).code
+  if (hideFree && isFreeItem(item)) return true
+  if (hideMeals && code === 'RST') return true
+  if (hideAttractions && code === 'ENT' && !isFreeItem(item)) return true
+  if (hideInlandTransit && INLAND_TRANSIT_CODES.includes(code)) return true
+  return false
 }
 
 // ---- City Name Aliases ----

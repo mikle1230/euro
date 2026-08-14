@@ -11,6 +11,7 @@ export function openPrintView(itinerary, cities) {
   let perGroupTotal = 0
   itinerary.days.forEach((d) => {
     d.items.forEach((item) => {
+      if (item.quoteKind) return // 报价注入项（保险/接驳/THROUGH COACH/前后夜）不计入行程费用估算
       if (!item.price) return
       const qty = item.quantity || 1
       if (item.priceUnit === 'perPerson') perPersonTotal += item.price * qty
@@ -24,9 +25,10 @@ export function openPrintView(itinerary, cities) {
 
   const daysHtml = itinerary.days.map((day) => {
     const city = day.cityId ? cityMap[day.cityId] : null
-    const itemsHtml = day.items.length === 0
+    const chargeableItems = day.items.filter((it) => !it.quoteKind)
+    const itemsHtml = chargeableItems.length === 0
       ? '<p style="color:#999;font-style:italic;margin:4px 0">无项目</p>'
-      : day.items.map((item) => {
+      : chargeableItems.map((item) => {
           const icon = itemIcons[item.type] || '📌'
           let costStr = ''
           if (item.price) {

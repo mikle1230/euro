@@ -4,24 +4,29 @@ import {
   getAttractionNameEn,
   DEFAULT_QUOS_ORDER,
   isFreeItem,
+  shouldHideItem,
 } from '@/lib/quos-mapping'
-
-// ---- 西欧国家集合（LDC 大巴规则适用范围）----
-// ⚠️ 精确边界按 KT 业务口径可调；此处取西欧主要国家
-export const WESTERN_EUROPE_CODES = [
-  'FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'ES', 'PT',
-]
+import { getAllCitiesWithCoords } from '@/lib/data'
+import { recommendHotels } from '@/lib/hotel-recommend'
+import { resolveLdcSupplier, hasArcticCity } from '@/lib/ldc-mapping'
+import { QUOTE_RATES, LDC_RATES } from '@/lib/quote-rates'
+import { haversineKm } from '@/lib/geo'
 
 // ---- LDC 长距离大巴费率速查（来自 KT-Knowledge-Base，LDC 费率体系 ✅）----
 export const LDC_RULES = {
-  rates: [
-    'NGS 西欧：€650/天，上限 375 km/天，超出 €2/km',
-    'Empty Run：0–350 km 免费 / 351–600 km €450 / 601–1000 km €800 / 1001–1400 km €1000 / 1401–1999 km €1500',
-    '司机前/后夜：€120/晚',
-    'VAT：西欧 NGS 已含（德国除外，+€85/天）',
-    'Tips：最低 €50/天',
-  ],
+  rates: LDC_RATES,
 }
+
+// ---- Rome NGS（西欧 IT-ROM）THROUGH COACH 补充下拉：空驶费 Empty Run + 司机前后夜 ----
+// 录入 THROUGH COACH (NGS) 时需从下拉选对应补充产品；其他供应商/区域待补充
+export const NGS_SUPPLEMENT_OPTIONS = [
+  { label: 'Rome - EMPTY RUN (1000-1400) - 1000 EUR', type: 'empty_run', distanceRule: '1000-1400 km', price: 1000, currency: 'EUR' },
+  { label: 'Rome - EMPTY RUN (351-600km) - 450 EUR', type: 'empty_run', distanceRule: '351-600 km', price: 450, currency: 'EUR' },
+  { label: 'Rome - EMPTY RUN (601-1000KMS) - 800 EUR', type: 'empty_run', distanceRule: '601-1000 km', price: 800, currency: 'EUR' },
+  { label: 'Rome - EMPTY RUN AMSTERDAM PARIS or vv. (min. 3 live days)', type: 'empty_run_specific_route', route: 'AMS-PAR' },
+  { label: 'Rome - EMPTY RUN FRANKFURT PARIS or vv. (min. 3 live days)', type: 'empty_run_specific_route', route: 'FRA-PAR' },
+  { label: 'Rome - PRE/POST NIGHT ACCOMMODATION', type: 'driver_accommodation', price: 120, currency: 'EUR' },
+]
 
 // 字段映射行：{ field, action, value, confidence, note }
 function row(field, action, value, confidence, note = '') {
@@ -34,6 +39,26 @@ function fmtCity(cityName, cityNameEn) {
   return { code: c.cityCode, country: c.countryCode }
 }
 
+// 酒店推荐：按最终抵达/过夜城市，返回 30km 内城市（含自身，距离升序，不分大小）
+function recommendHotelCities(finalCityName, finalCityNameEn) {
+  if (!finalCityName && !finalCityNameEn) return []
+  const cities = getAllCitiesWithCoords()
+  const cn = (finalCityName || '').trim()
+  const en = (finalCityNameEn || '').trim().toLowerCase()
+  const match = cities.find((c) =>
+    (cn && c.name === cn) || (en && c.nameEn && c.nameEn.toLowerCase() === en))
+  if (!match || match.lat == null || match.lng == null) return []
+  return cities
+    .filter((c) => c.lat != null && c.lng != null)
+    .map((c) => ({
+      name: c.name,
+      nameEn: c.nameEn,
+      distanceKm: haversineKm(match.lat, match.lng, c.lat, c.lng),
+    }))
+    .filter((c) => c.distanceKm <= 30)
+    .sort((a, b) => a.distanceKm - b.distanceKm)
+}
+
 function citiesSequence(itinerary) {
   const seen = []
   itinerary.days.forEach((d) => {
@@ -42,62 +67,126 @@ function citiesSequence(itinerary) {
   return seen.join(' → ') || '—'
 }
 
-// ---- LDC 检测：是否是「西欧长距离大巴」----
-// 命中条件：QUOS=MTC + transportMode=bus + 城际（from/to 有值）+ 涉及西欧国家
-export function isWesternEuropeMtc(item, day, itinerary) {
-  const quos = getQUOSType(item)
-  if (quos.code !== 'MTC') return null
-  if ((item.transportMode || 'bus') !== 'bus') return null
-  // 市区游览用车（无 from/to）属本地巴士，非 LDC 长距离
-  if (!item.from && !item.to) return null
-
-  const dayCountry = (fmtCity(day.cityName, day.cityNameEn) || {}).country || null
-
+// ---- LDC 检测：收集行程涉及的国家代码集合 ----
+// 排除 CN（北京/上海等中国出发城市不参与 LDC 区域判定）
+function collectCountries(itinerary) {
   const countries = new Set()
   itinerary.days.forEach((d) => {
     const c = fmtCity(d.cityName, d.cityNameEn)
-    if (c) countries.add(c.country)
+    if (c && c.country && c.country !== 'CN') countries.add(c.country)
   })
-  const list = [...countries]
+  return [...countries]
+}
 
-  const isWestern =
-    (dayCountry && WESTERN_EUROPE_CODES.includes(dayCountry)) ||
-    list.some((c) => WESTERN_EUROPE_CODES.includes(c))
-  if (!isWestern) return null
+// 收集行程出现的城市名（中英文 + 过夜城市），用于北极极地判定
+function collectCityNames(itinerary) {
+  const names = new Set()
+  itinerary.days.forEach((d) => {
+    ;[d.cityName, d.cityNameEn, d.finalCityName, d.finalCityNameEn].forEach((n) => {
+      if (n) names.add(n)
+    })
+  })
+  return [...names]
+}
 
-  let supplierRule
-  let scope = '西欧跨境'
-  if (list.length === 1) {
-    const c = list[0]
-    scope = `${c} 单国`
-    if (c === 'FR') supplierRule = '法国单国 → FR PAR · GLS'
-    else if (c === 'IT') supplierRule = '意大利单国 → IT ROM · GLS'
-    else supplierRule = `${c} 单国 → 按 LDC 区域选供应商（GLS）`
-  } else {
-    supplierRule = '西欧跨境（多国）→ IT ROM · Through Coach · NGS'
-  }
-
-  return { supplierRule, scope, ...LDC_RULES }
+// 是否是 LDC 长距离项（THROUGH COACH 或城际 MTC bus）
+function isLdcItem(item) {
+  if (item.quoteKind === 'through-coach') return true
+  const quos = getQUOSType(item)
+  return quos.code === 'MTC' && (item.transportMode || 'bus') === 'bus' && (item.from || item.to)
 }
 
 // ---- 单个收费 item 的字段映射表（按 QUOS 服务类型）----
 function buildItemFields(item, day, itinerary, ldc) {
   const { code, label } = getQUOSType(item)
-  const city = fmtCity(day.cityName, day.cityNameEn)
+  const isInsurance = item.quoteKind === 'insurance'
+  const isThroughCoach = item.quoteKind === 'through-coach'
+  // THROUGH COACH 的 Location 按 LDC 供应商所在地（如 IT ROM），不是当天城市
+  const city = isInsurance
+    ? { code: 'BJS', country: 'CN' }
+    : isThroughCoach && item.cityCode
+      ? { code: item.cityCode, country: item.countryCode }
+      : fmtCity(day.cityName, day.cityNameEn)
   const fields = []
 
   fields.push(row('Service Type', '选择', `${code} (${label})`, '✅'))
 
   fields.push(
     city
-      ? row('Location / City Area', '选择', city.code, '✅', day.cityName)
+      ? row(
+          'Location / City Area',
+          '选择',
+          city.code,
+          '✅',
+          isInsurance
+            ? '国 CN，统一固定'
+            : isThroughCoach && item.cityCode
+              ? 'LDC 供应商所在地'
+              : day.cityName,
+        )
       : row('Location / City Area', '选择', '（未匹配，手动选城市）', '⚠️', 'cityNameEn 为空，QUOS 城市代码可能匹配失败'),
   )
+
+  // 报价注入项（保险 / 接驳 / THROUGH COACH / 前后夜）走专属字段映射
+  if (item.quoteKind === 'insurance') {
+    const pax = itinerary.groupSize || 0
+    const rate = QUOTE_RATES.insurance
+    fields.push(row('Category / Supplier Type', '选择', 'OTH → MANUAL GROUP PRICE', '⚠️'))
+    fields.push(row('Service Name', '填入', 'Travel Insurance', '✅'))
+    fields.push(row('Price', '填入', pax > 0 ? `${rate.price} USD/人 × ${pax} 人 = $${(rate.price * pax).toFixed(2)}` : `${rate.price} USD/人 × 人数`, pax > 0 ? '✅' : '⚠️'))
+    fields.push(row('Price Remarks / Internal Comments', '填入', '团险保单号等', '❓'))
+    return fields
+  }
+  if (item.quoteKind === 'through-coach') {
+    fields.push(row('Type', '选择', 'THROUGH COACH (LDC)', '✅'))
+    if (ldc) {
+      fields.push(row('Supplier', '选择', ldc.fullSelectionName, '✅'))
+      fields.push(row('Daily Rate / 日费率', '参考', `${ldc.symbol}${ldc.dailyRate}/天（${ldc.vehicleType}）`, '✅', ldc.note))
+    } else {
+      fields.push(row('Supplier', '选择', '按 LDC 区域选供应商', '⚠️', '未匹配到 LDC 区域，需人工判定'))
+    }
+    fields.push(row('Start/End Location', '填入', `${item.from || '?'} → ${item.to || '?'}`, item.from && item.to ? '✅' : '⚠️'))
+    fields.push(row('Pax Type', '选择', 'G (Group)', '✅'))
+    const emptyRuns = NGS_SUPPLEMENT_OPTIONS.filter((o) => o.type !== 'driver_accommodation')
+    fields.push(row(
+      'Empty Run / 空驶费（下拉）',
+      '选择',
+      emptyRuns.map((o) => (o.distanceRule ? `${o.distanceRule} €${o.price}` : o.route)).join(' · '),
+      '⚠️',
+      `Rome NGS 空驶费下拉：${emptyRuns.map((o) => o.label).join('；')}；司机前后夜 €120 已单独录入；其他区域待补充`,
+    ))
+    fields.push(row('Price', '手动录入', '按 LDC 费率（€/天 × 天数，见高亮卡）', '⚠️'))
+    return fields
+  }
+  if (item.quoteKind === 'pickup') {
+    fields.push(row('Type', '选择', 'STD MTC (Local)', '✅'))
+    fields.push(row('Start/End Location', '选择', item.locationCategory || 'APT/HTL', '✅'))
+    fields.push(row('Price', '手动录入', '单次 Group rate', '⚠️'))
+    return fields
+  }
+  if (item.quoteKind === 'prepost') {
+    fields.push(row('Description', '参考', `司机前后夜住宿（${QUOTE_RATES.prepostNight.note}）`, '✅'))
+    fields.push(row('Price', '手动录入', `${QUOTE_RATES.prepostNight.note} × 前后夜`, '⚠️'))
+    return fields
+  }
 
   switch (code) {
     case 'HTL': {
       fields.push(row('Hotel / 酒店', '选择', item.nameEn || item.name || '（选酒店）', item.nameEn ? '✅' : '⚠️'))
       fields.push(row('Room / Pension 房型', '手动录入', '从供应商/报价组选', '❓', '房型、餐食（B&B/HB/FB）按酒店报价组'))
+      const finalCity = day.finalCityName || day.cityName
+      const rec = recommendHotelCities(day.finalCityName, day.finalCityNameEn)
+      if (rec.length > 1) {
+        const near = rec.slice(1, 4).map((c) => `${c.name}(${Math.round(c.distanceKm)}km)`).join('、')
+        fields.push(row('酒店城市推荐', '参考', `${finalCity} 或 30km 内：${near}`, '✅'))
+      }
+      const hotels = recommendHotels(day.finalCityName, day.finalCityNameEn)
+      if (hotels.length) {
+        const list = hotels.map((h) => `${h.name} ${'★'.repeat(h.star)}${h.rating ? `（${h.rating}分）` : ''}`).join('；')
+        fields.push(row('推荐酒店 booking 4/5星', '参考', list, '✅', 'booking 评分待补，可上 booking.com 查当前评分'))
+      } else {
+        fields.push(row('推荐酒店 booking 4/5星', '参考', `${finalCity} 暂无推荐数据（待补充）`, '⚠️'))
+      }
       break
     }
     case 'MTC': {
@@ -105,7 +194,7 @@ function buildItemFields(item, day, itinerary, ldc) {
         fields.push(row('Route / From – To', '填入', `${item.from || '?'} → ${item.to || '?'}`, item.from && item.to ? '✅' : '⚠️'))
       }
       if (ldc) {
-        fields.push(row('Supplier', '选择', ldc.supplierRule, '⚠️', '见上方 LDC 高亮规则'))
+        fields.push(row('Supplier', '选择', ldc.fullSelectionName, '⚠️', '见上方 LDC 高亮规则'))
       } else {
         fields.push(row('Supplier', '选择', '选本地巴士供应商', '❓', '非 LDC 长距离，按当地供应商'))
       }
@@ -288,28 +377,41 @@ function buildNavPostSteps() {
 }
 
 // ---- 生成完整步骤序列：导航步 + 逐条收费 item 步 + 收尾导航步 ----
-export function buildGuideSteps(itinerary) {
+export function buildGuideSteps(itinerary, opts = {}) {
   if (!itinerary) return []
+
+  const { hideMeals = true, hideAttractions = true, hideInlandTransit = true } = opts
 
   const steps = buildNavPreSteps(itinerary)
 
   const paidItems = []
   itinerary.days.forEach((day) => {
     day.items.forEach((item) => {
-      if (!isFreeItem(item)) paidItems.push({ item, day })
+      if (shouldHideItem(item, { hideFree: true, hideMeals, hideAttractions, hideInlandTransit })) return
+      paidItems.push({ item, day })
     })
   })
 
+  const sortKey = (entry) => {
+    const item = entry.item
+    if (item.quoteOrder != null) return item.quoteOrder
+    return 100 + DEFAULT_QUOS_ORDER.indexOf(getQUOSType(item).code)
+  }
   paidItems.sort((a, b) => {
-    const oa = DEFAULT_QUOS_ORDER.indexOf(getQUOSType(a.item).code)
-    const ob = DEFAULT_QUOS_ORDER.indexOf(getQUOSType(b.item).code)
+    const oa = sortKey(a)
+    const ob = sortKey(b)
     if (oa !== ob) return oa - ob
     return a.day.dayNumber - b.day.dayNumber
   })
 
+  const ldcSupplier = resolveLdcSupplier(collectCountries(itinerary), {
+    arctic: hasArcticCity(collectCityNames(itinerary)),
+  })
   paidItems.forEach(({ item, day }) => {
     const quos = getQUOSType(item)
-    const ldc = isWesternEuropeMtc(item, day, itinerary)
+    const ldc = isLdcItem(item) && ldcSupplier
+      ? { ...ldcSupplier, rates: LDC_RULES.rates }
+      : null
     steps.push({
       id: `item-${item.id}`,
       kind: 'item',

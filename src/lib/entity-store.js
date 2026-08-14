@@ -4,13 +4,22 @@ import { uid } from './id'
 
 const STORAGE_KEY = 'euro-entities'
 
+// 内存缓存：quos-list / day-detail 在渲染循环里反复调 getAllEntities()，
+// 每次全量读 localStorage + JSON.parse 太浪费。写操作后置脏，读走缓存。
+let cache = null
+
 function readStore() {
+  if (cache) return cache
   if (typeof window === 'undefined') return { entities: [], version: 1 }
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) return JSON.parse(raw)
+    if (raw) {
+      cache = JSON.parse(raw)
+      return cache
+    }
   } catch { /* ignore */ }
-  return { entities: [], version: 1 }
+  cache = { entities: [], version: 1 }
+  return cache
 }
 
 function writeStore(data) {
@@ -18,6 +27,8 @@ function writeStore(data) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   } catch { /* quota exceeded */ }
+  // 写后缓存即失效；下次读取重新解析
+  cache = data
 }
 
 let _seeded = false
@@ -74,9 +85,7 @@ export function ensureSeeded(getAttractions) {
 
 export function getAllEntities() {
   return readStore().entities
-}
-
-export function getEntitiesByType(type) {
+}export function getEntitiesByType(type) {
   return readStore().entities.filter((e) => e.type === type)
 }
 
@@ -151,6 +160,14 @@ export function deleteEntity(id) {
   const store = readStore()
   store.entities = store.entities.filter((e) => e.id !== id)
   writeStore(store)
+}
+
+// 整库替换（备份导入用）：直接覆盖 entities 并重置缓存
+export function replaceAllEntities(entities) {
+  if (typeof window === 'undefined') return
+  const store = { entities: Array.isArray(entities) ? entities : [], version: 1 }
+  writeStore(store)
+  _seeded = true
 }
 
 export function getEntityStats() {

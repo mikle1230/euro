@@ -1,8 +1,27 @@
 import { NextResponse } from 'next/server'
-import { SYSTEM_PROMPT } from '@/lib/prompt'
+import { applyQuoteRules } from '@/lib/coach-plan'
+import { aiParse } from '@/lib/ai-parse'
+
+// 可选鉴权：.env.local 配置 PARSE_API_TOKEN 后，请求必须带
+// Authorization: Bearer <token>，防止公网部署被刷 DeepSeek API 额度。
+function checkAuth(request) {
+  const apiToken = process.env.PARSE_API_TOKEN
+  if (!apiToken) return null
+  const auth = request.headers.get('authorization')
+  if (auth !== `Bearer ${apiToken}`) {
+    return NextResponse.json(
+      { error: '未授权：缺少或错误的 API Token（在行程设置中配置）' },
+      { status: 401 },
+    )
+  }
+  return null
+}
 
 export async function POST(request) {
   try {
+    const authError = checkAuth(request)
+    if (authError) return authError
+
     const formData = await request.formData()
     const file = formData.get('file')
 
@@ -87,54 +106,14 @@ export async function POST(request) {
       text = text.slice(0, maxChars) + '\n\n[文本过长，已截断...]'
     }
 
-    // ---- Call DeepSeek API ----
-    const OpenAI = (await import('openai')).default
-    const client = new OpenAI({
-      apiKey: process.env.DEEPSEEK_API_KEY,
-      baseURL: 'https://api.deepseek.com/v1',
-    })
-
-    const completion = await client.chat.completions.create({
-      model: 'deepseek-chat',
-      messages: [
-        { role: 'system', content: SYSTEM_PROMPT },
-        { role: 'user', content: `请解析以下行程文件内容：\n\n${text}` },
-      ],
-      response_format: { type: 'json_object' },
-      temperature: 0.1,
-      max_tokens: 16000,
-    })
-
-    const aiResponse = completion.choices[0]?.message?.content
-    if (!aiResponse) {
-      return NextResponse.json(
-        { error: 'AI 未返回有效结果，请重试' },
-        { status: 500 },
-      )
+    // ---- Call DeepSeek API（共享 aiParse）----
+    const { parsed, error } = await aiParse(`请解析以下行程文件内容：\n\n${text}`)
+    if (error) {
+      return NextResponse.json({ error }, { status: 500 })
     }
 
-    let parsed
-    try {
-      // Try direct parse first
-      parsed = JSON.parse(aiResponse)
-    } catch {
-      // Fallback: strip markdown fences and try again
-      const cleaned = aiResponse
-        .replace(/```json\s*/gi, '')
-        .replace(/```\s*/g, '')
-        .trim()
-      try {
-        parsed = JSON.parse(cleaned)
-      } catch {
-        console.error('AI response parse error. Raw (first 500):', aiResponse.slice(0, 500))
-        return NextResponse.json(
-          { error: 'AI 返回格式异常，请重试' },
-          { status: 500 },
-        )
-      }
-    }
-
-    return NextResponse.json(parsed)
+    // sourceText 随结果返回，前端存到行程上，供「AI 反馈重解析」复用原文
+    return NextResponse.json({ ...applyQuoteRules(parsed), sourceText: text })
   } catch (error) {
     console.error('Parse itinerary error:', error)
     return NextResponse.json(
