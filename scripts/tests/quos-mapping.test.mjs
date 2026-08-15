@@ -62,6 +62,25 @@ test('getCityCode：英文名 / 中文名 / 别名链', () => {
   assert.equal(getCityCode('不存在的城市XYZ'), null)
 })
 
+test('getCityCode：写法变体归一化（Saint-Tropez ↔ Saint Tropez → JSZ）', () => {
+  // 表里键是「Saint Tropez」（空格），AI 输出连字符写法
+  assert.deepEqual(getCityCode('圣特罗佩', 'Saint-Tropez'), { cityCode: 'JSZ', countryCode: 'FR' })
+  assert.deepEqual(getCityCode('Saint-Tropez'), { cityCode: 'JSZ', countryCode: 'FR' })
+  // 中文别名路径
+  assert.deepEqual(getCityCode('圣特罗佩', ''), { cityCode: 'JSZ', countryCode: 'FR' })
+  // 未知城市仍返回 null
+  assert.equal(getCityCode('不存在的城市XYZ', 'Some-Nonexistent-City'), null)
+})
+
+test('getCityCode：同名城市错配（锡拉库扎=意大利，英文 Syracuse 是美国）', () => {
+  // 中文名优先：锡拉库扎 → 意大利 QIC，不会被美国 Syracuse 抢走
+  assert.deepEqual(getCityCode('锡拉库扎', 'Syracuse'), { cityCode: 'QIC', countryCode: 'IT' })
+  assert.deepEqual(getCityCode('锡拉库萨', 'Syracuse'), { cityCode: 'QIC', countryCode: 'IT' })
+  // 热那亚：表里是 Genova，英文 Genoa 走别名
+  assert.deepEqual(getCityCode('热那亚', 'Genoa'), { cityCode: 'GOA', countryCode: 'IT' })
+  assert.deepEqual(getCityCode('Genoa'), { cityCode: 'GOA', countryCode: 'IT' })
+})
+
 test('DEFAULT_QUOS_ORDER 为 12 个码且与标签表一致', () => {
   assert.equal(DEFAULT_QUOS_ORDER.length, 12)
   for (const code of DEFAULT_QUOS_ORDER) {

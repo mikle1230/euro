@@ -206,11 +206,18 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
 
       {/* Itinerary list */}
       {itineraries.length === 0 ? (
-        <div className="text-center py-12">
+        <div className="text-center py-12 px-4">
           <p className="text-3xl mb-3">🗺️</p>
-          <p className="text-sm" style={{ color: 'var(--text-tertiary)' }}>
-            还没有行程，点击右上角「导入」上传行程文件开始
+          <p className="text-sm mb-4" style={{ color: 'var(--text-tertiary)' }}>
+            还没有行程，导入行程文件后自动解析成结构化清单
           </p>
+          <button
+            onClick={() => document.querySelector('header [aria-label="导入行程文件"]')?.click()}
+            className="inline-flex items-center gap-1.5 px-4 h-10 rounded-full text-sm font-medium transition-all"
+            style={{ background: 'var(--accent-strong)', color: '#fff' }}
+          >
+            📤 导入行程
+          </button>
         </div>
       ) : (
         <div className="flex flex-col gap-2">
@@ -225,7 +232,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
             return (
               <div
                 key={it.id}
-                className="rounded-xl border transition-all cursor-pointer hover:shadow-md"
+                className="rounded-xl border transition-all cursor-pointer hover:shadow-md active:scale-[0.99] active:opacity-90"
                 style={{
                   background: isActive ? 'var(--accent-subtle)' : 'var(--bg-card)',
                   borderColor: isActive ? 'var(--accent)' : 'var(--border-color)',
@@ -303,8 +310,8 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
                       {it.updatedAt && <span>更新于 {formatTime(it.updatedAt)}</span>}
                     </div>
 
-                    {/* 操作行 */}
-                    <div className="px-2.5 pb-2.5 flex justify-end gap-1.5">
+                    {/* 操作行（触控目标 ≥32px） */}
+                    <div className="px-2.5 pb-2.5 flex justify-end gap-1.5 flex-wrap">
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
@@ -315,7 +322,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
                           setFeedbackTarget(it)
                           setFeedbackText('')
                         }}
-                        className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-medium border transition-colors hover:bg-[var(--bg-elevated)]"
+                        className="inline-flex items-center gap-1 px-2.5 h-8 rounded-full text-[11px] font-medium border transition-colors hover:bg-[var(--bg-elevated)]"
                         style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
                       >
                         🤖 反馈重解析
@@ -326,7 +333,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
                           setEditingId(it.id)
                           setEditName(it.name)
                         }}
-                        className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-medium border transition-colors hover:bg-[var(--bg-elevated)]"
+                        className="inline-flex items-center gap-1 px-2.5 h-8 rounded-full text-[11px] font-medium border transition-colors hover:bg-[var(--bg-elevated)]"
                         style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
                       >
                         ✏️ 重命名
@@ -336,7 +343,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
                           e.stopPropagation()
                           setDeleteTarget(it)
                         }}
-                        className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-medium border transition-colors hover:bg-[var(--bg-elevated)]"
+                        className="inline-flex items-center gap-1 px-2.5 h-8 rounded-full text-[11px] font-medium border transition-colors hover:bg-[var(--bg-elevated)]"
                         style={{ borderColor: 'var(--border-color)', color: '#c05a30' }}
                       >
                         🗑️ 删除

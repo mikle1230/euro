@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
-import { applyQuoteRules } from '@/lib/coach-plan'
-import { aiParse } from '@/lib/ai-parse'
+import { applyQuoteRules, patchEmptyRunRoadKm } from '@/lib/coach-plan'
+import { aiParse, cleanText } from '@/lib/ai-parse'
 
 // 可选鉴权：.env.local 配置 PARSE_API_TOKEN 后，请求必须带
 // Authorization: Bearer <token>，防止公网部署被刷 DeepSeek API 额度。
@@ -100,6 +100,9 @@ export async function POST(request) {
       )
     }
 
+    // 输入降噪（页码/页眉页脚/重复行等）压缩 token，然后截断
+    text = cleanText(text)
+
     // Truncate to avoid token limits (DeepSeek context: 128K)
     const maxChars = 50000
     if (text.length > maxChars) {
@@ -113,7 +116,9 @@ export async function POST(request) {
     }
 
     // sourceText 随结果返回，前端存到行程上，供「AI 反馈重解析」复用原文
-    return NextResponse.json({ ...applyQuoteRules(parsed), sourceText: text })
+    const result = applyQuoteRules(parsed)
+    await patchEmptyRunRoadKm(result) // EMPTY RUN 真实车程（OSRM，失败回退估算）
+    return NextResponse.json({ ...result, sourceText: text })
   } catch (error) {
     console.error('Parse itinerary error:', error)
     return NextResponse.json(

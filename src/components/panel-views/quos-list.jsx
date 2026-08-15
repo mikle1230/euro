@@ -3,58 +3,76 @@
 import { useState } from 'react'
 import { updateItem, setDayChecked } from '@/lib/itinerary-store'
 import { useIsMobile } from '@/lib/use-is-mobile'
-import { getQUOSType, getCityCode, getQUOSOrder, saveQUOSOrder, DEFAULT_QUOS_ORDER, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
+import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
 import { getItemNameEn } from '@/lib/item-name'
+import { recommendHotels } from '@/lib/hotel-recommend'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
-import Modal from '@/components/modal'
 
 // ---- helpers ----
 // getItemNameEn 统一实现在 @/lib/item-name（优先级：AI nameEn → QUOS 标准 → 实体库）
+
+// Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / 7-8 琥珀
+const ratingColor = (r) => {
+  if (r >= 9) return '#1e7d32'
+  if (r >= 8) return 'var(--accent-strong)'
+  return '#b8860b'
+}
+
+// 推荐入住酒店块：按当天「最后入住城市」取静态库（Booking 评分≥7 + 欧元参考价，显示前2家）
+function HotelRecommend({ day }) {
+  const hotels = recommendHotels(
+    day.finalCityName || day.cityName,
+    day.finalCityNameEn || day.cityNameEn,
+    2,
+    day.cityCode,
+  )
+  if (!hotels.length) return null
+  return (
+    <div className="px-2.5 py-1.5 rounded-lg border border-dashed" style={{ borderColor: 'var(--border-color)' }}>
+      <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
+        🏨 推荐入住酒店
+        <span className="font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>
+          Booking ≥7 · 欧元参考价
+        </span>
+      </div>
+      <div className="flex flex-col gap-1">
+        {hotels.map((h, i) => (
+          <div key={i} className="text-xs flex items-start gap-1.5">
+            <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(h.rating) }}>
+              ★{h.rating}
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block truncate" style={{ color: 'var(--text-primary)' }} title={h.name}>
+                {h.name}
+              </span>
+              {h.area && (
+                <span className="block truncate" style={{ color: 'var(--text-tertiary)' }}>
+                  {h.area}{h.near ? ` · 近${h.near}` : ''}
+                </span>
+              )}
+            </span>
+            <span className="shrink-0" style={{ color: 'var(--text-secondary)' }}>
+              {h.priceEur ? `€${h.priceEur}/晚` : '—'}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 // 报价注入项（保险/用车）优先排序：quoteOrder 越小越靠前；无 quoteOrder 按 QUOS 顺序回退
 function quosSortKey(row, order) {
   return row.quoteOrder ?? (100 + order.indexOf(row.quosCode))
 }
 
-// ---- 复制 / 导出工具（供 KT/QUOS 手工录入与 Excel 粘贴）----
+// ---- 导出工具（CSV）----
 
 function fmtPrice(row) {
   if (row.price <= 0) return ''
   const symbol = row.currency === 'USD' ? '$' : row.currency === 'GBP' ? '£' : CURRENCY_SYMBOLS[row.currency] || '€'
   const unit = row.priceUnit === 'perPerson' ? '/人' : row.priceUnit === 'perGroup' ? '/团' : row.priceUnit === 'perDay' ? '/天' : ''
   return `${symbol}${row.price}${unit}${row.quantity > 0 ? `×${row.quantity}` : ''}`
-}
-
-// Tab 分隔行：直接粘贴进 Excel/表格类软件即分列
-function formatRow(row) {
-  const time = [row.startTime, row.endTime].filter(Boolean).join('-')
-  return [
-    `D${row.dayNumber}`, row.quosCode, row.countryCode || '', row.cityCode || '',
-    row.name, row.nameEn || '', time, fmtPrice(row),
-    row.estimatedCost > 0 ? `¥${row.estimatedCost}` : '', row.notes || '',
-  ].join('\t')
-}
-
-function fallbackCopy(text) {
-  try {
-    const ta = document.createElement('textarea')
-    ta.value = text
-    ta.style.position = 'fixed'
-    ta.style.opacity = '0'
-    document.body.appendChild(ta)
-    ta.select()
-    const ok = document.execCommand('copy')
-    document.body.removeChild(ta)
-    return ok
-  } catch { return false }
-}
-
-function copyText(text) {
-  if (typeof navigator === 'undefined' || !text) return Promise.resolve(false)
-  if (navigator.clipboard?.writeText) {
-    return navigator.clipboard.writeText(text).then(() => true).catch(() => fallbackCopy(text))
-  }
-  return Promise.resolve(fallbackCopy(text))
 }
 
 function downloadCSV(rows, itineraryName) {
@@ -77,71 +95,6 @@ function downloadCSV(rows, itineraryName) {
   URL.revokeObjectURL(url)
 }
 
-// ---- QUOS Sort Settings Popup ----
-function SortSettings({ order, onSave, onClose }) {
-  const [items, setItems] = useState([...order])
-
-  const moveUp = (idx) => {
-    if (idx <= 0) return
-    const next = [...items]
-    ;[next[idx - 1], next[idx]] = [next[idx], next[idx - 1]]
-    setItems(next)
-  }
-
-  const moveDown = (idx) => {
-    if (idx >= items.length - 1) return
-    const next = [...items]
-    ;[next[idx + 1], next[idx]] = [next[idx], next[idx + 1]]
-    setItems(next)
-  }
-
-  const reset = () => setItems([...DEFAULT_QUOS_ORDER])
-
-  return (
-    <Modal title="QUOS 类型排序" onClose={onClose} width="w-80" maxHeight="max-h-[70vh]">
-      <p className="text-xs mb-3 shrink-0" style={{ color: 'var(--text-tertiary)' }}>
-        拖拽排序暂用按钮代替，调整后点保存
-      </p>
-      <div className="flex-1 overflow-y-auto flex flex-col gap-1 mb-3">
-        {items.map((code, idx) => (
-          <div
-            key={code}
-            className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs"
-            style={{ background: 'var(--bg-surface)' }}
-          >
-            <span className="font-mono font-bold w-8" style={{ color: 'var(--accent)' }}>{code}</span>
-            <span className="flex-1" style={{ color: 'var(--text-primary)' }}>{QUOS_LABELS[code]}</span>
-            <button
-              onClick={() => moveUp(idx)}
-              disabled={idx === 0}
-              className="w-7 h-7 rounded flex items-center justify-center text-xs disabled:opacity-20"
-              style={{ color: 'var(--text-tertiary)' }}
-            >▲</button>
-            <button
-              onClick={() => moveDown(idx)}
-              disabled={idx === items.length - 1}
-              className="w-7 h-7 rounded flex items-center justify-center text-xs disabled:opacity-20"
-              style={{ color: 'var(--text-tertiary)' }}
-            >▼</button>
-          </div>
-        ))}
-        </div>
-        <div className="flex gap-2 shrink-0">
-          <button onClick={reset} className="flex-1 px-3 py-1.5 rounded-lg text-xs border" style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
-            重置默认
-          </button>
-          <button
-            onClick={() => { saveQUOSOrder(items); onSave(items); onClose() }}
-            className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium"
-            style={{ background: 'var(--accent-strong)', color: '#fff' }}
-          >
-            保存
-          </button>
-        </div>
-    </Modal>
-  )
-}
-
 // ---- Main Table ----
 export default function QUOSList({ itinerary }) {
   const [viewMode, setViewMode] = useState('by-day') // 'by-day' | 'by-type'
@@ -149,11 +102,9 @@ export default function QUOSList({ itinerary }) {
   const [hideMeals, setHideMeals] = useState(true)
   const [hideAttractions, setHideAttractions] = useState(true)
   const [hideInlandTransit, setHideInlandTransit] = useState(true)
-  const [showSortSettings, setShowSortSettings] = useState(false)
-  const [quosOrder, setQUOSOrder] = useState(getQUOSOrder())
+  const quosOrder = getQUOSOrder()
   const isMobile = useIsMobile()
   const [onlyUnchecked, setOnlyUnchecked] = useState(false)
-  const [copiedId, setCopiedId] = useState(null)
 
   const handleItemCheck = (dayId, itemId, checked) => {
     updateItem(itinerary.id, dayId, itemId, { quosChecked: checked })
@@ -163,22 +114,6 @@ export default function QUOSList({ itinerary }) {
     setDayChecked(itinerary.id, dayId, checked)
   }
 
-  // 复制反馈：短暂显示 ✓ 后还原
-  const flashCopied = (id) => {
-    setCopiedId(id)
-    setTimeout(() => setCopiedId((c) => (c === id ? null : c)), 1500)
-  }
-
-  const handleCopyRows = (rows, label) => {
-    copyText(rows.map(formatRow).join('\n')).then((ok) => {
-      if (ok) flashCopied(label)
-    })
-  }
-
-  const handleCopyAll = () => handleCopyRows(visibleFlatItems, 'all')
-  const handleCopyDay = (dayId) => handleCopyRows(visibleFlatItems.filter((r) => r.dayId === dayId), `day-${dayId}`)
-  const handleCopyType = (code) => handleCopyRows(visibleFlatItems.filter((r) => r.quosCode === code), `type-${code}`)
-  const handleCopyRow = (row) => handleCopyRows([row], row.id)
   const handleExportCSV = () => downloadCSV(visibleFlatItems, itinerary.name)
 
   // Null guard: return empty state if no itinerary data
@@ -291,7 +226,7 @@ export default function QUOSList({ itinerary }) {
               style={{ width: `${totalCount ? Math.round((doneCount / totalCount) * 100) : 0}%`, background: 'var(--accent-strong)' }}
             />
           </div>
-          {/* 合计 + 复制/导出 */}
+          {/* 合计 + 导出 */}
           <div className="flex items-center justify-between gap-2 mt-2">
             <span className="text-xs min-w-0 truncate" style={{ color: 'var(--text-secondary)' }}>
               {sumEstimated > 0 && <span style={{ color: 'var(--gold)' }}>预估 ¥{sumEstimated.toLocaleString()}</span>}
@@ -299,15 +234,6 @@ export default function QUOSList({ itinerary }) {
               {sumPrice > 0 && <span style={{ color: 'var(--gold)' }}>€单价 {sumPrice}</span>}
             </span>
             <div className="flex items-center gap-1 shrink-0">
-              <button
-                onClick={handleCopyAll}
-                disabled={visibleFlatItems.length === 0}
-                className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-medium border transition-all disabled:opacity-40"
-                style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-              >
-                <span>{copiedId === 'all' ? '✅' : '📋'}</span>
-                <span>复制</span>
-              </button>
               <button
                 onClick={handleExportCSV}
                 disabled={visibleFlatItems.length === 0}
@@ -386,6 +312,8 @@ export default function QUOSList({ itinerary }) {
                     </div>
                   </button>
                 ))}
+                {/* 推荐入住酒店 */}
+                <HotelRecommend day={day} />
               </div>
             )
           })}
@@ -451,16 +379,6 @@ export default function QUOSList({ itinerary }) {
       <td className="px-1.5 py-1 max-w-[120px] truncate" style={{ color: 'var(--text-tertiary)' }} title={row.notes}>
         {row.notes}
       </td>
-      <td className="px-1 py-1 text-center">
-        <button
-          onClick={(e) => { e.stopPropagation(); handleCopyRow(row) }}
-          className="w-6 h-6 rounded flex items-center justify-center text-xs transition-colors hover:bg-[var(--bg-surface)]"
-          style={{ color: 'var(--text-tertiary)' }}
-          title="复制此行（Tab 分隔，可直接粘贴进表格）"
-        >
-          {copiedId === row.id ? '✅' : '📋'}
-        </button>
-      </td>
     </tr>
   )
 
@@ -479,59 +397,69 @@ export default function QUOSList({ itinerary }) {
       const dayCode = day.cityCode || cityInfo?.cityCode || ''
       const dayCountry = day.countryCode || cityInfo?.countryCode || ''
       tableBody.push(
-        <tr key={`sep-${day.id}`} className="border-b" style={{ borderColor: 'var(--border-color)' }}>
-          <td className="px-1 py-1.5 text-center" style={{ background: 'var(--bg-surface)' }}>
+        <tr key={`sep-${day.id}`} className="border-b" style={{ borderColor: 'var(--accent)' }}>
+          <td className="px-1 py-1.5 text-center" style={{ background: 'linear-gradient(90deg, var(--accent-strong), var(--accent-dim))' }}>
             <input
               type="checkbox"
               checked={!!day.quosChecked}
               onChange={(e) => handleDayCheck(day.id, e.target.checked)}
-              className="w-3.5 h-3.5 cursor-pointer accent-[var(--accent)]"
+              className="w-3.5 h-3.5 cursor-pointer"
             />
           </td>
-          <td colSpan={10} className="px-2 py-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden" style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}>
+          <td colSpan={10} className="px-2 py-1.5 text-xs font-bold whitespace-nowrap overflow-hidden" style={{ background: 'linear-gradient(90deg, var(--accent-strong), var(--accent-dim))', color: '#fff' }}>
             <span className="align-middle">
               第{day.dayNumber}天 — {day.cityName}
             </span>
             {dayCode && dayCountry && (
-              <span className="ml-1.5 font-mono font-normal" style={{ color: 'var(--text-tertiary)' }}>
+              <span className="ml-1.5 font-mono font-normal" style={{ color: 'rgba(255,255,255,0.9)' }}>
                 {dayCode} / {dayCountry}
               </span>
             )}
             {!dayCode && day.cityName && (
-              <span className="ml-1.5 font-mono" style={{ color: 'var(--danger, #e53e3e)' }}>
+              <span className="ml-1.5 font-mono" style={{ color: '#ffe3e3' }}>
                 未匹配城市代码
               </span>
             )}
-            <button
-              onClick={() => handleCopyDay(day.id)}
-              disabled={dayItems.length === 0}
-              className="ml-2 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded font-medium transition-colors hover:bg-[var(--bg-elevated)] disabled:opacity-40"
-              style={{ color: 'var(--text-secondary)' }}
-              title="复制本天全部可见项"
-            >
-              {copiedId === `day-${day.id}` ? '✅' : '📋'}
-              本天
-            </button>
           </td>
         </tr>,
       )
       if (dayItems.length === 0) {
         tableBody.push(
           <tr key={`empty-${day.id}`}>
-            <td colSpan={11} className="px-2 py-1.5 text-xs text-center" style={{ color: 'var(--text-tertiary)' }}>
-              {hideFree ? EMPTY_TEXT.allFree : EMPTY_TEXT.noItems}
+            <td colSpan={10} className="px-3 py-1">
+              <div
+                className="border-t border-dashed"
+                style={{ borderColor: 'var(--border-color)' }}
+                title={hideFree ? EMPTY_TEXT.allFree : EMPTY_TEXT.noItems}
+              />
             </td>
           </tr>,
         )
       } else {
         dayItems.forEach((row) => tableBody.push(renderRow(row)))
       }
+      // 推荐入住酒店（当天最后入住城市）
+      const hasHotels = recommendHotels(
+        day.finalCityName || day.cityName,
+        day.finalCityNameEn || day.cityNameEn,
+        1,
+        day.cityCode,
+      ).length > 0
+      if (hasHotels) {
+        tableBody.push(
+          <tr key={`hotels-${day.id}`}>
+            <td colSpan={10} className="px-1.5 pb-1.5">
+              <HotelRecommend day={day} />
+            </td>
+          </tr>,
+        )
+      }
     })
     // 合计行
     if (visibleFlatItems.length > 0 && (sumEstimated > 0 || sumPrice > 0)) {
       tableBody.push(
         <tr key="totals">
-          <td colSpan={11} className="px-2 py-2 text-xs font-semibold text-right" style={{ background: 'var(--bg-elevated)', color: 'var(--text-primary)' }}>
+          <td colSpan={10} className="px-2 py-2 text-xs font-semibold text-right" style={{ background: 'var(--bg-elevated)', color: 'var(--text-primary)' }}>
             合计：
             {sumPrice > 0 && <span style={{ color: 'var(--gold)' }}>€单价 {sumPrice}</span>}
             {sumPrice > 0 && sumEstimated > 0 && <span> · </span>}
@@ -555,22 +483,13 @@ export default function QUOSList({ itinerary }) {
       const subtotal = items.reduce((s, r) => s + (r.estimatedCost || 0), 0)
       tableBody.push(
         <tr key={`sep-${code}`} className="border-b" style={{ borderColor: 'var(--border-color)' }}>
-          <td colSpan={11} className="px-2 py-1.5 text-xs font-semibold" style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}>
+          <td colSpan={10} className="px-2 py-1.5 text-xs font-semibold" style={{ background: 'var(--bg-surface)', color: 'var(--text-primary)' }}>
             {code} — {QUOS_LABELS[code]} ({items.length}项)
             {subtotal > 0 && (
               <span className="ml-1.5 font-normal" style={{ color: 'var(--gold)' }}>
                 预估 ¥{subtotal.toLocaleString()}
               </span>
             )}
-            <button
-              onClick={() => handleCopyType(code)}
-              className="ml-2 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded font-medium transition-colors hover:bg-[var(--bg-elevated)]"
-              style={{ color: 'var(--text-secondary)' }}
-              title="复制本类全部可见项"
-            >
-              {copiedId === `type-${code}` ? '✅' : '📋'}
-              本类
-            </button>
           </td>
         </tr>,
       )
@@ -580,7 +499,7 @@ export default function QUOSList({ itinerary }) {
   }
 
   // Compute column widths for the header colgroup
-  const colWidths = [24, 52, 32, 32, 'auto', 64, 48, 52, 28, 80, 28]
+  const colWidths = [24, 52, 32, 32, 'auto', 64, 48, 52, 28, 80]
 
   return (
     <div className="flex flex-col h-full">
@@ -671,17 +590,6 @@ export default function QUOSList({ itinerary }) {
             已录 {doneCount}/{totalCount}
           </span>
           */}
-          {/* 暂注释：复制全部（功能待定）
-          <button
-            onClick={handleCopyAll}
-            disabled={visibleFlatItems.length === 0}
-            className="w-7 h-7 rounded-full flex items-center justify-center text-sm border transition-all hover:bg-[var(--bg-surface)] disabled:opacity-40"
-            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-            title="复制全部可见项（Tab 分隔，可直接粘贴进表格）"
-          >
-            {copiedId === 'all' ? '✅' : '📋'}
-          </button>
-          */}
           {/* 暂注释：导出 CSV（功能待定）
           <button
             onClick={handleExportCSV}
@@ -693,14 +601,6 @@ export default function QUOSList({ itinerary }) {
             📥
           </button>
           */}
-          <button
-            onClick={() => setShowSortSettings(true)}
-            className="w-7 h-7 rounded-full flex items-center justify-center text-sm border transition-all hover:bg-[var(--bg-surface)]"
-            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-            title="QUOS 类型排序设置"
-          >
-            ⚙️
-          </button>
         </div>
       </div>
 
@@ -724,19 +624,18 @@ export default function QUOSList({ itinerary }) {
               <th className="px-1.5 py-1.5 text-right font-semibold" style={{ color: 'var(--text-secondary)' }}>预估</th>
               <th className="px-1.5 py-1.5 text-center font-semibold" style={{ color: 'var(--text-secondary)' }}>量</th>
               <th className="px-1.5 py-1.5 text-left font-semibold" style={{ color: 'var(--text-secondary)' }}>备注</th>
-              <th className="w-7" />
             </tr>
           </thead>
           <tbody>
             {flatItems.length === 0 ? (
               <tr>
-                <td colSpan={11} className="px-3 py-6 text-center text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                <td colSpan={10} className="px-3 py-6 text-center text-xs" style={{ color: 'var(--text-tertiary)' }}>
                   {hideFree ? EMPTY_TEXT.allFree : EMPTY_TEXT.noItems}
                 </td>
               </tr>
             ) : visibleFlatItems.length === 0 ? (
               <tr>
-                <td colSpan={11} className="px-3 py-6 text-center text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                <td colSpan={10} className="px-3 py-6 text-center text-xs" style={{ color: 'var(--text-tertiary)' }}>
                   全部已录 🎉
                 </td>
               </tr>
@@ -746,15 +645,6 @@ export default function QUOSList({ itinerary }) {
           </tbody>
         </table>
       </div>
-
-      {/* Sort settings modal */}
-      {showSortSettings && (
-        <SortSettings
-          order={quosOrder}
-          onSave={(newOrder) => setQUOSOrder(newOrder)}
-          onClose={() => setShowSortSettings(false)}
-        />
-      )}
     </div>
   )
 }

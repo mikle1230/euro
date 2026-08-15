@@ -9,7 +9,7 @@ export const QUOTE_RATES = {
     priceUnit: 'perPerson',
     cityCode: 'BJS',
     countryCode: 'CN',
-    note: 'OTH → Travel Insurance，每团必录，国 CN 城 BJS',
+    note: '每团必录',
   },
   // 司机前后夜（PRE/POST NIGHT）
   prepostNight: {

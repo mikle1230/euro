@@ -97,6 +97,9 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
         quoteKind: item.quoteKind || undefined,
         quoteOrder: item.quoteOrder ?? undefined,
         locationCategory: item.locationCategory || undefined,
+        // 报价注入项自带的国/城必须透传（保险=CN/BJS、THROUGH COACH=供应商所在地）
+        cityCode: item.cityCode || '',
+        countryCode: item.countryCode || '',
       }))
 
       return {

@@ -59,11 +59,12 @@ item 统一由 `makeItem()` 工厂（itinerary-store 内部）创建，AI 导入
   - `MAP.entityVisibleZoom = 8` —— 实体标记显示阈值。
 - `src/lib/prompt.js`：AI 行程解析的 system prompt（`SYSTEM_PROMPT`），与 `app/api/parse-itinerary/route.js` 解耦；文末附常用城市 QUOS 码表（`src/data/city-hints.js`，由 `scripts/build-city-hints.js` 生成），AI 直接输出 `day.cityCode/countryCode`。
 - `src/lib/quos-mapping.js`：QUOS 类型映射（12 种服务类型 HTL/MTC/GUI/...）。**纯函数、无 `'use client'`**，服务端/客户端通用。
-- `src/lib/quote-rates.js`：固定费率集中配置（旅行保险 2.66 USD/人、司机前后夜 €120/晚）。改价只动这里。
+- `src/lib/quote-rates.js`：固定费率集中配置（旅行保险 2.66 USD/人；前后夜默认 €120/晚，仅兜底）。保险改价只动这里。
 - `src/lib/item-name.js`：统一英文名查找（AI nameEn → QUOS 标准 → 实体库）。
-- `src/lib/geo.js`：`haversineKm` 距离计算（map-core / guide-content 共用）。
-- `src/lib/coach-plan.js`：报价规则注入（保险 / THROUGH COACH / 接驳 / 前后夜），纯函数，route.js 调用。**THROUGH COACH 的国/城 = LDC 供应商所在地**（西欧多国→IT ROM，单国→该国 Mono），按 `ldc-mapping.js` 查表注入；day 0 中国出发日不参与判定。
-- `src/lib/ldc-mapping.js`：LDC 长途车供应商判定（单国/多国/北极极地），纯函数。
+- `src/lib/geo.js`：`haversineKm` 距离计算（map-core / guide-content / city-coords 共用）。
+- `src/lib/city-coords.js`：城市坐标查询（中文/英文/变体归一化）+ `estimateRoadKm` 车程估算（haversine×1.3 道路系数，就近取整 5km）；坐标表 `src/data/city-coords.js` 由 `scripts/build-city-coords.js` 从 europe-travel.json + MANUAL 生成（EMPTY RUN 空驶公里数用）。
+- `src/lib/coach-plan.js`：报价规则注入（保险 / THROUGH COACH / EMPTY RUN / 接机 / 前后夜），纯函数，route.js 调用。**THROUGH COACH 的国/城 = LDC 供应商所在地**（西欧多国→IT ROM，单国→该国 Mono），按 `ldc-mapping.js` 查表注入；**前后夜费率按 LDC 区域细分**（`ldc.prepost`），界面不显示金额；**中国出发/返程日不参与分段**（避免虚段）；**接机只在抵达日**（transit 终点=过夜城市，flight→APT/HTL）；**EMPTY RUN 空驶**（`quoteKind: 'empty-run'`）仅首个 LDC 段首天注入，公里数 = 全行程首→末真实过夜城市车程，由 route.js `patchEmptyRunRoadKm` 用 OSRM 真实驾驶距离补全（`src/lib/road-distance.js`，失败回退 `estimateRoadKmFallback` 直线×1.3）；day 0 中国出发日不参与判定。
+- `src/lib/ldc-mapping.js`：LDC 长途车供应商判定（单国/多国/北极极地），纯函数；`SUPPLIERS` 每条目含 `prepost`（区域前后夜费率）与 `finlandNorthNgs`（ON REQUEST）。
 - `src/lib/api-config.js`：客户端 API Token 存取（解析接口鉴权，见 route.js 的 `PARSE_API_TOKEN`）。
 - `src/lib/id.js`：共享 `uid()`。
 
