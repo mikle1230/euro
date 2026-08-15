@@ -348,10 +348,55 @@ test('单晚停留的抵达日（如飞抵巴勒莫）→ THROUGH COACH 从抵�
   const tc = d2.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, 'THROUGH COACH 从抵达日（巴勒莫）开始')
   assert.equal(tc.from, '巴勒莫')
-  assert.equal(tc.notes, 'LDC第2-4天，供应商 IT ROM Through Coach (NGS)')
+  assert.equal(tc.notes, 'LDC第2-4天，共3天，供应商 IT ROM Through Coach (NGS)')
   const er = d2.items.find((i) => i.quoteKind === 'empty-run')
   assert.ok(er, '该段也有 EMPTY RUN')
   assert.equal(er.from, '巴勒莫')
   assert.equal(er.to, '陶尔米纳', '段终点 = 段末日 cityName（无后续 transit）')
   assert.ok(d2.items.some((i) => i.quoteKind === 'prepost'), '该段也有 PRE/POST')
+})
+
+test('首日飞抵白天城市（马赛）当夜住瓦朗索勒 → THROUGH COACH 从第 1 天开始（from=马赛）', () => {
+  const parsed = {
+    groupSize: 30,
+    days: [
+      day(0, '上海'),
+      day(1, '马赛', [item({ type: 'transport', transportMode: 'flight', from: '上海', to: '马赛' })], {
+        finalCityName: '瓦朗索勒', cityNameEn: 'Marseille',
+      }),
+      day(2, '瓦朗索勒', [], { finalCityName: '圣特罗佩' }),
+      day(3, '圣特罗佩'),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const d1 = out.days.find((d) => d.dayNumber === 1)
+  const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
+  assert.ok(tc, '第 1 天应有 THROUGH COACH')
+  assert.equal(tc.from, '马赛', 'from 取抵达的白天城市（马赛）')
+  assert.ok(tc.notes.includes('LDC第1-'), '长途车从第 1 天开始')
+  assert.ok(d1.items.some((i) => i.quoteKind === 'empty-run'), '第 1 天也有 EMPTY RUN')
+  assert.ok(!d1.items.some((i) => i.quoteKind === 'pickup'), '首日单晚换城 → 无 STD MTC 接机')
+})
+
+test('酒店项名称规范化为当天城市（而非 AI 用错的过夜城市）', () => {
+  const parsed = {
+    groupSize: 20,
+    days: [
+      day(1, '马赛', [item({ type: 'hotel', name: '瓦朗索勒酒店', nameEn: 'Hotel in Valensole' })], {
+        cityNameEn: 'Marseille', finalCityName: '瓦朗索勒',
+      }),
+      day(2, '瓦朗索勒', [item({ type: 'hotel', name: '圣特罗佩酒店', nameEn: 'Hotel in Saint-Tropez' })], {
+        cityNameEn: 'Valensole', finalCityName: '圣特罗佩',
+      }),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const d1 = out.days.find((d) => d.dayNumber === 1)
+  const h1 = d1.items.find((i) => i.type === 'hotel')
+  assert.equal(h1.name, '马赛酒店', '酒店名跟随当天城市（马赛）')
+  assert.equal(h1.nameEn, 'Hotel in Marseille')
+  const d2 = out.days.find((d) => d.dayNumber === 2)
+  const h2 = d2.items.find((i) => i.type === 'hotel')
+  assert.equal(h2.name, '瓦朗索勒酒店')
+  assert.equal(h2.nameEn, 'Hotel in Valensole')
 })

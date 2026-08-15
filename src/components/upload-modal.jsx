@@ -87,11 +87,13 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
         transportSubtype: item.transportSubtype || '',
         distance: item.distance || null,
         duration: item.duration || null,
-        // Cost — pass AI costCategory through, DO NOT default it away
+        // Cost — 报价注入项（quoteKind）才有真实价格；AI 解析的普通项只有 estimatedCost（¥估算）。
+        // AI 偶尔会自发输出 schema 里没有的 price/priceUnit/currency（幻觉），普通项一律不信任，避免显示假的 €xxx。
         costCategory: item.costCategory || '',
         estimatedCost: item.estimatedCost || 0,
-        price: item.price || 0,
-        priceUnit: 'perPerson',
+        price: item.quoteKind ? (item.price || 0) : 0,
+        priceUnit: item.priceUnit || 'perPerson',
+        currency: item.currency || '',
         quantity: item.quantity || 0,
         notes: item.notes || '',
         quoteKind: item.quoteKind || undefined,

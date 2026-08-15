@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect, Fragment } from 'react'
 import { updateItem, setDayChecked } from '@/lib/itinerary-store'
 import { useIsMobile } from '@/lib/use-is-mobile'
 import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
 import { getItemNameEn } from '@/lib/item-name'
-import { recommendHotels } from '@/lib/hotel-recommend'
+import { recommendHotels, getHotelPriceRange } from '@/lib/hotel-recommend'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
 
 // ---- helpers ----
@@ -18,25 +18,30 @@ const ratingColor = (r) => {
   return '#b8860b'
 }
 
-// 推荐入住酒店块：按当天「最后入住城市」取静态库（Booking 评分≥7 + 欧元参考价，显示前2家）
-function HotelRecommend({ day }) {
+// 推荐入住酒店块：按「当天所在城市」取静态库（Booking 评分≥7 + 欧元参考价，显示前2家）
+// aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
+// aligned=false（移动端卡片）：纵向堆叠
+function HotelRecommend({ day, aligned = false }) {
   const hotels = recommendHotels(
-    day.finalCityName || day.cityName,
-    day.finalCityNameEn || day.cityNameEn,
+    day.cityName || day.finalCityName,
+    day.cityNameEn || day.finalCityNameEn,
     2,
     day.cityCode,
   )
   if (!hotels.length) return null
+  const gridStyle = aligned ? { gridTemplateColumns: '28px 52px 34px 34px 1fr 1fr' } : undefined
+  const nameCol = aligned ? { gridColumnStart: 5, paddingRight: 8 } : undefined
+  const areaCol = aligned ? { gridColumnStart: 6 } : undefined
   return (
     <div className="px-2.5 py-1.5 rounded-lg border border-dashed" style={{ borderColor: 'var(--border-color)' }}>
       <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
         🏨 推荐入住酒店
       </div>
-      <div className="flex flex-col gap-1.5">
+      <div className="grid gap-y-1.5" style={gridStyle}>
         {hotels.map((h, i) => (
-          <div key={i} className="flex flex-col sm:flex-row sm:items-start sm:gap-3">
-            {/* 左：名称 + 价格（价格在名称下面一行） */}
-            <div className="sm:w-[40%] shrink-0 min-w-0">
+          <Fragment key={i}>
+            {/* 酒店名 + 价格 → 项目列 */}
+            <div className="min-w-0" style={nameCol}>
               <div className="text-xs flex items-start gap-1.5">
                 <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(h.rating) }}>
                   ★{h.rating}
@@ -51,11 +56,11 @@ function HotelRecommend({ day }) {
                 </div>
               )}
             </div>
-            {/* 右：酒店特点（备注列位置） */}
-            <div className="flex-1 min-w-0 text-xs mt-0.5 sm:mt-0" style={{ color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
+            {/* 酒店特点 → 备注列 */}
+            <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
               {[h.area, h.near ? `近${h.near}` : ''].filter(Boolean).join(' · ')}
             </div>
-          </div>
+          </Fragment>
         ))}
       </div>
     </div>
@@ -77,12 +82,17 @@ function fmtPrice(row) {
 }
 
 // 备注列的元信息行：时间 · 收费/价格 · 预估 · 数量（与备注文字合并为一列展示）
+// 酒店项：用调研酒店库的价格区间（如 €100–120/晚）作参考，不再显示 AI 猜的 ¥/€
 function rowMeta(row) {
   const parts = []
   const t = [row.startTime, row.endTime].filter(Boolean).join('-')
   if (t) parts.push(`🕐${t}`)
-  if (isFreeItem(row)) parts.push('免费')
-  else if (row.price > 0) {
+  if (row.type === 'hotel') {
+    const range = getHotelPriceRange(row.cityName || row.finalCityName, row.cityNameEn || row.finalCityNameEn, row.cityCode)
+    parts.push(range || '收费')
+  } else if (isFreeItem(row)) {
+    parts.push('免费')
+  } else if (row.price > 0) {
     const symbol = row.currency === 'USD' ? '$' : row.currency === 'GBP' ? '£' : CURRENCY_SYMBOLS[row.currency] || '€'
     const unit = row.priceUnit === 'perPerson' ? '/人' : row.priceUnit === 'perGroup' ? '/团' : row.priceUnit === 'perDay' ? '/天' : ''
     parts.push(`${symbol}${row.price}${unit}`)
@@ -90,7 +100,7 @@ function rowMeta(row) {
   } else {
     parts.push('收费')
   }
-  if (row.estimatedCost > 0) parts.push(`¥${row.estimatedCost}`)
+  if (row.type !== 'hotel' && row.estimatedCost > 0) parts.push(`¥${row.estimatedCost}`)
   return parts.join(' · ')
 }
 
@@ -100,9 +110,13 @@ function downloadCSV(rows, itineraryName) {
   const lines = [header.join(',')]
   rows.forEach((r) => {
     const time = [r.startTime, r.endTime].filter(Boolean).join('-')
+    const priceCell = r.type === 'hotel'
+      ? getHotelPriceRange(r.cityName || r.finalCityName, r.cityNameEn || r.finalCityNameEn, r.cityCode)
+      : fmtPrice(r)
+    const estimateCell = r.type === 'hotel' ? '' : (r.estimatedCost || 0)
     lines.push([
       `D${r.dayNumber}`, r.quosCode, r.countryCode || '', r.cityCode || '', r.name, r.nameEn || '',
-      time, fmtPrice(r), r.estimatedCost || 0, r.quantity || 0, r.notes || '',
+      time, priceCell, estimateCell, r.quantity || 0, r.notes || '',
     ].map(esc).join(','))
   })
   const blob = new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' })
@@ -124,6 +138,22 @@ export default function QUOSList({ itinerary }) {
   const quosOrder = getQUOSOrder()
   const isMobile = useIsMobile()
   const [onlyUnchecked, setOnlyUnchecked] = useState(false)
+
+  // 表格需要 ~560px 才能舒适展示 6 列；面板/容器宽度低于阈值时降级为卡片布局（复用手机端卡片）。
+  // 依据「容器自身宽度」而非屏幕宽度：桌面侧栏拖窄到 360px 也会自动切卡片，杜绝表格溢出。
+  const containerRef = useRef(null)
+  const [containerWidth, setContainerWidth] = useState(null)
+  const useCards = isMobile || (containerWidth != null && containerWidth < 560)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const ro = new ResizeObserver((entries) => {
+      if (entries[0]) setContainerWidth(entries[0].contentRect.width)
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [useCards])
 
   const handleItemCheck = (dayId, itemId, checked) => {
     updateItem(itinerary.id, dayId, itemId, { quosChecked: checked })
@@ -156,10 +186,12 @@ export default function QUOSList({ itinerary }) {
         dayNumber: day.dayNumber,
         dayId: day.id,
         cityName: day.cityName,
+        cityNameEn: day.cityNameEn || '',
+        finalCityName: day.finalCityName || day.cityName,
+        finalCityNameEn: day.finalCityNameEn || day.cityNameEn || '',
         cityCode: item.cityCode || day.cityCode || cityInfo?.cityCode || '',
         countryCode: item.countryCode || day.countryCode || cityInfo?.countryCode || '',
         quosCode: autoQUOS.code,
-        quosLabel: autoQUOS.label,
         nameEn: getItemNameEn(item),
       })
     })
@@ -175,11 +207,11 @@ export default function QUOSList({ itinerary }) {
   const sumPrice = visibleFlatItems.reduce((s, r) => s + (r.price || 0), 0)
 
   // ---- Mobile: card checklist with progress ----
-  if (isMobile) {
+  if (useCards) {
     const sortedDays = [...itinerary.days].sort((a, b) => a.dayNumber - b.dayNumber)
 
     return (
-      <div className="flex flex-col h-full">
+      <div ref={containerRef} className="flex flex-col h-full">
         {/* Progress header */}
         <div className="sticky top-0 z-10 px-3 py-2.5 border-b" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
           <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
@@ -287,13 +319,13 @@ export default function QUOSList({ itinerary }) {
                     第{day.dayNumber}天
                   </span>
                   <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{day.cityName}</span>
-                  {dayCode && (
+                  {dayCountry && (
                     <span className="text-xs font-mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>
-                      {dayCode}{dayCountry ? `/${dayCountry}` : ''}
+                      {dayCountry}{dayCode ? `/${dayCode}` : ''}
                     </span>
                   )}
-                  {!dayCode && dayCountry && (
-                    <span className="text-xs font-mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>{dayCountry}</span>
+                  {!dayCountry && dayCode && (
+                    <span className="text-xs font-mono shrink-0" style={{ color: 'var(--text-tertiary)' }}>{dayCode}</span>
                   )}
                 </div>
                 {dayItems.map((it) => (
@@ -319,17 +351,25 @@ export default function QUOSList({ itinerary }) {
                         {it.quosChecked ? '✓' : ''}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-sm font-semibold truncate" style={{ color: 'var(--text-primary)', textDecoration: it.quosChecked ? 'line-through' : 'none' }}>
-                            {it.name}
-                          </span>
-                          {it.nameEn && <span className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>{it.nameEn}</span>}
+                        <div className="flex items-baseline gap-1.5 flex-wrap">
+                          {it.nameEn ? (
+                            <>
+                              <span className="text-sm font-semibold truncate" style={{ color: 'var(--text-primary)', textDecoration: it.quosChecked ? 'line-through' : 'none' }}>
+                                {it.nameEn}
+                              </span>
+                              <span className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>{it.name}</span>
+                            </>
+                          ) : (
+                            <span className="text-sm font-semibold truncate" style={{ color: 'var(--text-primary)', textDecoration: it.quosChecked ? 'line-through' : 'none' }}>
+                              {it.name}
+                            </span>
+                          )}
                         </div>
                         <div className="flex items-center gap-2 mt-0.5 text-xs flex-wrap">
                           <span className="font-mono font-bold" style={{ color: 'var(--accent)' }}>{it.quosCode}</span>
-                          <span style={{ color: 'var(--text-tertiary)' }}>{it.quosLabel}</span>
+                          {it.countryCode && <span className="font-mono" style={{ color: 'var(--text-tertiary)' }}>{it.countryCode}</span>}
                           {it.cityCode && <span className="font-mono" style={{ color: 'var(--text-tertiary)' }}>{it.cityCode}</span>}
-                          {it.estimatedCost > 0 && <span className="text-[10px]" style={{ color: 'var(--gold)' }}>¥{it.estimatedCost}</span>}
+                          {it.type !== 'hotel' && it.estimatedCost > 0 && <span className="text-[10px]" style={{ color: 'var(--gold)' }}>¥{it.estimatedCost}</span>}
                           {it.startTime && <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{it.startTime}{it.endTime ? `-${it.endTime}` : ''}</span>}
                         </div>
                         {it.notes && (
@@ -339,11 +379,18 @@ export default function QUOSList({ itinerary }) {
                         )}
                       </div>
                       <div className="shrink-0 text-right">
-                        {it.price > 0 && (
-                          <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>
-                            €{it.price}{it.quantity > 0 ? `×${it.quantity}` : ''}
+                        {it.type === 'hotel' ? (
+                          <div className="text-xs font-semibold" style={{ color: 'var(--gold)' }}>
+                            {getHotelPriceRange(it.cityName || it.finalCityName, it.cityNameEn || it.finalCityNameEn, it.cityCode)}
                           </div>
-                        )}
+                        ) : it.price > 0 ? (
+                          <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>
+                            {(() => {
+                              const symbol = it.currency === 'USD' ? '$' : it.currency === 'GBP' ? '£' : CURRENCY_SYMBOLS[it.currency] || '€'
+                              return `${symbol}${it.price}${it.quantity > 0 ? `×${it.quantity}` : ''}`
+                            })()}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </button>
@@ -387,10 +434,14 @@ export default function QUOSList({ itinerary }) {
       >
         {row.cityCode || '--'}
       </td>
-      <td className="px-1.5 py-1 max-w-[200px] truncate" style={{ color: 'var(--text-primary)' }}>
-        <span className="font-medium">{row.name}</span>
-        {row.nameEn && (
-          <span className="ml-1" style={{ color: 'var(--text-tertiary)' }}>{row.nameEn}</span>
+      <td className="px-1.5 py-1 align-top" style={{ color: 'var(--text-primary)', overflowWrap: 'break-word' }}>
+        {row.nameEn ? (
+          <>
+            <span className="font-medium">{row.nameEn}</span>
+            <span className="ml-1" style={{ color: 'var(--text-tertiary)' }}>{row.name}</span>
+          </>
+        ) : (
+          <span className="font-medium">{row.name}</span>
         )}
       </td>
       <td className="px-1.5 py-1 align-top" style={{ color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
@@ -429,13 +480,13 @@ export default function QUOSList({ itinerary }) {
               className="w-3.5 h-3.5 cursor-pointer"
             />
           </td>
-          <td colSpan={6} className="px-2 py-1.5 text-xs font-bold whitespace-nowrap overflow-hidden" style={{ background: 'linear-gradient(90deg, var(--accent-strong), var(--accent-dim))', color: '#fff' }}>
+          <td colSpan={5} className="px-2 py-1.5 text-xs font-bold whitespace-nowrap overflow-hidden" style={{ background: 'linear-gradient(90deg, var(--accent-strong), var(--accent-dim))', color: '#fff' }}>
             <span className="align-middle">
               第{day.dayNumber}天 — {day.cityName}
             </span>
             {dayCode && dayCountry && (
               <span className="ml-1.5 font-mono font-normal" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                {dayCode} / {dayCountry}
+                {dayCountry} / {dayCode}
               </span>
             )}
             {!dayCode && day.cityName && (
@@ -461,10 +512,10 @@ export default function QUOSList({ itinerary }) {
       } else {
         dayItems.forEach((row) => tableBody.push(renderRow(row)))
       }
-      // 推荐入住酒店（当天最后入住城市）
+      // 推荐入住酒店（当天所在城市）
       const hasHotels = recommendHotels(
-        day.finalCityName || day.cityName,
-        day.finalCityNameEn || day.cityNameEn,
+        day.cityName || day.finalCityName,
+        day.cityNameEn || day.finalCityNameEn,
         1,
         day.cityCode,
       ).length > 0
@@ -472,7 +523,7 @@ export default function QUOSList({ itinerary }) {
         tableBody.push(
           <tr key={`hotels-${day.id}`}>
             <td colSpan={6} className="px-1.5 pb-1.5">
-              <HotelRecommend day={day} />
+              <HotelRecommend day={day} aligned />
             </td>
           </tr>,
         )
@@ -522,11 +573,11 @@ export default function QUOSList({ itinerary }) {
   }
 
   // Compute column widths for the header colgroup
-  // 固定列 + 百分比列（配合 table-fixed：项目/备注按剩余宽度分配，备注自动换行）
-  const colWidths = [28, 52, 34, 34, '38%', '62%']
+  // 前 4 列固定像素；项目/备注两列 auto（table-fixed 下平分剩余空间，绝不超出容器）
+  const colWidths = [28, 52, 34, 34, 'auto', 'auto']
 
   return (
-    <div className="flex flex-col h-full">
+    <div ref={containerRef} className="flex flex-col h-full">
       {/* Toolbar —— 紧凑布局：面板 50vw 也能一行放下；放不下时整组换行而不是把文字挤换行 */}
       <div className="flex items-start gap-x-3 gap-y-1.5 px-3 py-2 border-b shrink-0 flex-wrap" style={{ borderColor: 'var(--border-color)' }}>
         <div className="flex items-center gap-1.5 flex-wrap flex-1 min-w-0">
@@ -608,32 +659,14 @@ export default function QUOSList({ itinerary }) {
             <span>{onlyUnchecked ? '全部' : '未录'}</span>
           </button>
         </div>
-        <div className="flex items-center gap-1.5 shrink-0 whitespace-nowrap ml-auto">
-          {/* 暂注释：已录计数（功能待定）
-          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-            已录 {doneCount}/{totalCount}
-          </span>
-          */}
-          {/* 暂注释：导出 CSV（功能待定）
-          <button
-            onClick={handleExportCSV}
-            disabled={visibleFlatItems.length === 0}
-            className="w-7 h-7 rounded-full flex items-center justify-center text-sm border transition-all hover:bg-[var(--bg-surface)] disabled:opacity-40"
-            style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
-            title="导出可见项为 CSV（Excel 可直接打开）"
-          >
-            📥
-          </button>
-          */}
-        </div>
       </div>
 
       {/* Table */}
-      <div className="flex-1 overflow-auto">
-        <table className="w-full border-collapse table-fixed">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <table className="w-full max-w-full border-collapse table-fixed">
           <colgroup>
             {colWidths.map((w, i) => (
-              <col key={i} style={{ width: w }} />
+              <col key={i} style={w === 'auto' ? undefined : { width: w }} />
             ))}
           </colgroup>
           <thead className="sticky top-0 z-10" style={{ background: 'var(--bg-card)' }}>

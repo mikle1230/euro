@@ -13,7 +13,8 @@ function makeInsurance(groupSize) {
   const rate = QUOTE_RATES.insurance
   return {
     type: 'other',
-    name: '旅行保险 Travel Insurance',
+    name: '旅行保险',
+    nameEn: 'Travel Insurance',
     costCategory: 'paid',
     estimatedCost: 0,
     price: rate.price,
@@ -32,7 +33,8 @@ function makePickup(locationCategory) {
   return {
     type: 'transport',
     transportMode: 'bus',
-    name: '接机 MTC',
+    name: '接机',
+    nameEn: 'MTC',
     costCategory: 'paid',
     estimatedCost: 0,
     price: 0,
@@ -48,7 +50,8 @@ function makeDropoff() {
   return {
     type: 'transport',
     transportMode: 'bus',
-    name: '送机 MTC',
+    name: '送机',
+    nameEn: 'MTC',
     costCategory: 'paid',
     estimatedCost: 0,
     price: 0,
@@ -78,7 +81,7 @@ function makeThroughCoach(seg, ldc) {
     quoteOrder: 20,
     cityCode,
     countryCode,
-    notes: `LDC第${seg.startDay}-${seg.endDay}天${ldc ? `，供应商 ${ldc.fullSelectionName}` : ''}`,
+    notes: `LDC第${seg.startDay}-${seg.endDay}天，共${seg.endDay - seg.startDay + 1}天${ldc ? `，供应商 ${ldc.fullSelectionName}` : ''}`,
   }
 }
 
@@ -92,7 +95,8 @@ function makeEmptyRun(firstCity, lastCity, ldc) {
   return {
     type: 'transport',
     transportMode: 'bus',
-    name: 'MTC EMPTY RUN 空驶',
+    name: '空驶',
+    nameEn: 'MTC EMPTY RUN',
     from: firstCity,
     to: lastCity,
     costCategory: 'paid',
@@ -121,7 +125,8 @@ function makePrePostNight(ldc) {
   return {
     type: 'transport',
     transportMode: 'bus',
-    name: 'PRE/POST NIGHT 司机前后夜',
+    name: '司机前后夜',
+    nameEn: 'PRE/POST NIGHT',
     costCategory: 'paid',
     estimatedCost: 0,
     price: 0,
@@ -144,6 +149,21 @@ export function applyQuoteRules(parsed) {
   days.forEach((d) => {
     d.items = (d.items || []).filter((it) =>
       !(it.type === 'transport' && ['bus', 'car'].includes(it.transportMode) && (it.from || it.to)))
+  })
+
+  // 1.5) 规范化酒店项名称：跟随「当天所在城市」cityName（而非 AI 有时用错的过夜城市 finalCityName），
+  //       避免出现城市码=MRS（马赛）但酒店名却是「瓦朗索勒酒店」的错位。
+  days.forEach((d) => {
+    if (!d.cityName) return
+    const cityEn = (d.cityNameEn || '').trim()
+    d.items = (d.items || []).map((it) => {
+      if (it.type !== 'hotel') return it
+      return {
+        ...it,
+        name: `${d.cityName}酒店`,
+        nameEn: cityEn ? `Hotel in ${cityEn}` : it.nameEn || '',
+      }
+    })
   })
 
   // 中国出发/返程日（如 day 0/day 16 上海）只做展示，不参与地面用车分段，
@@ -180,18 +200,19 @@ export function applyQuoteRules(parsed) {
 
   const transitOf = (d) => (d.items || []).find((it) =>
     it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) && (it.from || it.to))
-  // 「抵达」transit：交通工具终点 = 当晚过夜城市（如航班抵达巴勒莫）→ 需要接机；
-  // 离境 transit（终点不是过夜城市，如返程航班罗马→上海）→ 不需要接机。
+  // 「抵达」transit：交通工具终点 = 当晚过夜城市（如航班抵达巴勒莫）或当天白天城市（如首日飞抵马赛、当夜住瓦朗索勒）→ 需要接机/长途车；
+  // 离境 transit（终点非上述两者，如返程航班罗马→上海）→ 不需要接机。
   const arrivalTransitOf = (d) => (d.items || []).find((it) =>
-    it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) && it.to && it.to === overnight(d))
+    it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) &&
+    it.to && (it.to === overnight(d) || it.to === d.cityName))
   const categoryFor = (mode) =>
     mode === 'flight' ? 'APT/HTL' : mode === 'train' ? 'HTL-STA' : mode === 'boat' ? 'HTL-PIER' : null
 
   // 4) 切分段：连续无 transit 的 real days = 一个段。
-  //    「抵达日」（transit 终点=当晚过夜城市）分两种：
-  //      - 次日换城市（单晚停留，如飞抵巴勒莫后继续巡游）→ 段从抵达日当天开始，THROUGH COACH 负责接机，不加 STD MTC
-  //      - 同城连住（如飞抵巴黎住多晚）→ 当天加 STD MTC 接机（APT/HTL），段从次日正常日开始
-  //    离境日（transit 终点≠过夜城市，如返程航班）→ 只断段，接机/送机另行判定。
+  //    「抵达日」（transit 终点 = 过夜城市 或 当天白天城市）分两种：
+  //      - 航班降落后第 1 天与第 2 天住「不同」城市 → 从第 1 天起用 LDC（THROUGH COACH 负责接机，不加 STD MTC）
+  //      - 航班降落后同城住宿 ≥2 天 → 第 1 天单独接机 STD MTC（APT/HTL），第 2 天起用 LDC
+  //    离境日（transit 终点≠过夜城市也≠白天城市，如返程航班）→ 只断段，接机/送机另行判定。
   const segments = []
   let cur = null
   for (let i = 0; i < realDays.length; i++) {
@@ -208,8 +229,8 @@ export function applyQuoteRules(parsed) {
           // 同城连住（或抵达日是最后一天）→ STD MTC 接机
           d.items.push(makePickup(categoryFor(arrival.transportMode)))
         } else {
-          // 单晚停留的抵达日 → 段从当天开始（fromCity 取抵达/过夜城市，如巴勒莫）
-          cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: overnight(d) }
+          // 单晚停留的抵达日 → 段从当天开始，fromCity 取抵达城市（如首日飞抵马赛 / 飞抵巴勒莫）
+          cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: arrival.to || overnight(d) }
           cur.endDay = d.dayNumber
           cur.endCity = overnight(d)
         }

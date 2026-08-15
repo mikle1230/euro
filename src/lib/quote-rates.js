@@ -11,19 +11,10 @@ export const QUOTE_RATES = {
     countryCode: 'CN',
     note: '每团必录',
   },
-  // 司机前后夜（PRE/POST NIGHT）
+  // 司机前后夜（PRE/POST NIGHT）—— 各区域费率见 ldc-mapping.js 的 prepost 字段
   prepostNight: {
     price: 120,
     currency: 'EUR',
     note: '€120/晚',
   },
 }
-
-// LDC 长途车费率速查（来自 KT-Knowledge-Base，LDC 费率体系 ✅）
-export const LDC_RATES = [
-  'NGS 西欧：€650/天，上限 375 km/天，超出 €2/km',
-  'Empty Run：0–350 km 免费 / 351–600 km €450 / 601–1000 km €800 / 1001–1400 km €1000 / 1401–1999 km €1500',
-  `司机前/后夜：${QUOTE_RATES.prepostNight.note}`,
-  'VAT：西欧 NGS 已含（德国除外，+€85/天）',
-  'Tips：最低 €50/天',
-]

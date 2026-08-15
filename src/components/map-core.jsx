@@ -48,7 +48,6 @@ const GOLD_LIGHT = '#6D9D39'
 const GOLD_DARK = '#9bc554'
 const ROUTE_COLOR_LIGHT = '#08739D'
 const ROUTE_COLOR_DARK = '#4984AC'
-const HIGHLIGHT_RING_COLOR = '#AEC60C'
 
 export default function MapCore({
   cities = [],
@@ -56,8 +55,6 @@ export default function MapCore({
   routeLine = [],
   onCityClick,
   onCityAddToItinerary,
-  hoveredCityId = null,
-  highlightedCityIds = new Set(),
   dayLabels = [],
   onEntityAddToItinerary,
   panelCollapsed = false,
@@ -66,7 +63,6 @@ export default function MapCore({
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const markersRef = useRef({})
-  const ringMarkersRef = useRef({})
   const dayLabelMarkersRef = useRef([])
   const routeRef = useRef(null)
   const arrowRouteRef = useRef(null)
@@ -77,15 +73,11 @@ export default function MapCore({
   const onCityClickRef = useRef(onCityClick)
   const onAddRef = useRef(onCityAddToItinerary)
   const onEntityAddRef = useRef(onEntityAddToItinerary)
-  const hoveredRef = useRef(hoveredCityId)
-  const highlightedRef = useRef(highlightedCityIds)
   const initRef = useRef(false)
 
   onCityClickRef.current = onCityClick
   onAddRef.current = onCityAddToItinerary
   onEntityAddRef.current = onEntityAddToItinerary
-  hoveredRef.current = hoveredCityId
-  highlightedRef.current = highlightedCityIds
 
   const getThemeColors = useCallback(() => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
@@ -131,7 +123,6 @@ export default function MapCore({
       if (tileLayerRef.current) try { map.removeLayer(tileLayerRef.current) } catch {}
       if (geoJsonLayerRef.current) try { map.removeLayer(geoJsonLayerRef.current) } catch {}
       Object.values(markersRef.current).forEach((m) => { try { map.removeLayer(m) } catch {} })
-      Object.values(ringMarkersRef.current).forEach((r) => { try { map.removeLayer(r) } catch {} })
       dayLabelMarkersRef.current.forEach((m) => { try { map.removeLayer(m) } catch {} })
       if (routeRef.current) try { map.removeLayer(routeRef.current) } catch {}
       if (arrowRouteRef.current) try { map.removeLayer(arrowRouteRef.current) } catch {}
@@ -142,7 +133,6 @@ export default function MapCore({
       tileLayerRef.current = null
       geoJsonLayerRef.current = null
       markersRef.current = {}
-      ringMarkersRef.current = {}
       dayLabelMarkersRef.current = []
       routeRef.current = null
       arrowRouteRef.current = null
@@ -330,70 +320,32 @@ export default function MapCore({
       })
       marker.on('mouseout', function () {
         const r = inItinerary ? 7 : 5
-        const isHovered = hoveredRef.current === city.id
-        const isHighlighted = highlightedRef.current.has(city.id)
-        if (!isHovered && !isHighlighted) {
-          this.setRadius(r)
-          this.setStyle({
-            fillOpacity: inItinerary ? 0.8 : 0.65,
-            weight: inItinerary ? 2.5 : 1.5,
-          })
-        }
+        this.setRadius(r)
+        this.setStyle({
+          fillOpacity: inItinerary ? 0.8 : 0.65,
+          weight: inItinerary ? 2.5 : 1.5,
+        })
       })
 
       markersRef.current[city.id] = marker
     })
   }, [cities, itineraryCityIds, dayLabels, getThemeColors])
 
-  // Highlight / hover effects on markers
+  // Itinerary marker sizing（随行程城市集合变化更新半径/样式）
   useEffect(() => {
     Object.entries(markersRef.current).forEach(([cityId, marker]) => {
       const inItinerary = itineraryCityIds.has(cityId)
-      const isHovered = hoveredCityId === cityId
-      const isHighlighted = highlightedCityIds.has(cityId)
       const baseRadius = inItinerary ? 7 : 5
 
-      if (isHovered) {
-        marker.setRadius(11)
-        marker.setStyle({ fillOpacity: 0.95, weight: 4, color: GOLD_LIGHT })
-      } else if (isHighlighted) {
-        marker.setRadius(9)
-        marker.setStyle({ fillOpacity: 0.9, weight: 3, color: HIGHLIGHT_RING_COLOR })
-      } else {
-        marker.setRadius(baseRadius)
-        const { isDark, accent, gold } = getThemeColors()
-        marker.setStyle({
-          fillOpacity: inItinerary ? 0.8 : 0.65,
-          weight: inItinerary ? 2.5 : 1.5,
-          color: inItinerary ? gold : isDark ? '#122740' : '#ffffff',
-        })
-      }
+      marker.setRadius(baseRadius)
+      const { isDark, gold } = getThemeColors()
+      marker.setStyle({
+        fillOpacity: inItinerary ? 0.8 : 0.65,
+        weight: inItinerary ? 2.5 : 1.5,
+        color: inItinerary ? gold : isDark ? '#122740' : '#ffffff',
+      })
     })
-
-    // Clean up old ring markers
-    Object.values(ringMarkersRef.current).forEach((r) => {
-      if (mapRef.current) mapRef.current.removeLayer(r)
-    })
-    ringMarkersRef.current = {}
-
-    // Add pulsing ring for highlighted cities
-    highlightedCityIds.forEach((cityId) => {
-      const city = cities.find((c) => c.id === cityId)
-      if (!city || !mapRef.current) return
-
-      const ring = L.circleMarker([city.lat, city.lng], {
-        radius: 14,
-        fillColor: 'transparent',
-        color: HIGHLIGHT_RING_COLOR,
-        weight: 2,
-        fillOpacity: 0,
-        opacity: 0.7,
-        dashArray: '4 3',
-      }).addTo(mapRef.current)
-
-      ringMarkersRef.current[cityId] = ring
-    })
-  }, [hoveredCityId, highlightedCityIds, cities, itineraryCityIds, getThemeColors])
+  }, [cities, itineraryCityIds, getThemeColors])
 
   // Day labels on itinerary cities
   useEffect(() => {

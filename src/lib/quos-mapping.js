@@ -60,7 +60,7 @@ export function getQUOSType(item) {
 }
 
 // ---- Free/Paid ----
-// 免费/收费判定（唯一实现，day-detail 与 quos-list 均 import 此处）
+// 免费/收费判定（唯一实现）
 export function isFreeItem(item) {
   if (item.costCategory === 'free') return true
   if (item.costCategory === 'paid') return false
@@ -161,7 +161,7 @@ export function getAttractionNameEn(chineseName) {
   if (!chineseName) return ''
   // Priority 1: KT 巴黎景点.xlsx standard name
   if (quosAttractions[chineseName]) return quosAttractions[chineseName]
-  // Priority 2: euro-travel.json entity store (handled by caller in DayDetail)
+  // Priority 2: euro-travel.json entity store
   // Priority 3: blank
   return ''
 }

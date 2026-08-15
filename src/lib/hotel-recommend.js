@@ -45,17 +45,22 @@ const INDEX = (() => {
   return map
 })()
 
+// 命中城市的 entry（中文名 / 英文名 / 城市码 / 别名 均可），未命中返回 null
+function findCity(cityName, cityNameEn, cityCode = '') {
+  const cn = String(cityName || '').trim()
+  const en = String(cityNameEn || '').trim()
+  for (const c of [cn, en, cityCode, ALIASES[cn] || '', ALIASES[en] || '']) {
+    if (!c) continue
+    const entry = INDEX.get(norm(c))
+    if (entry) return entry
+  }
+  return null
+}
+
 // recommendHotels(cityName, cityNameEn, limit=5, cityCode='')
 // 命中城市 → 返回按评分降序、评分≥7 的酒店（含 rating / priceEur / area / near）
 export function recommendHotels(cityName, cityNameEn, limit = 5, cityCode = '') {
-  const cn = String(cityName || '').trim()
-  const en = String(cityNameEn || '').trim()
-  let entry = null
-  for (const c of [cn, en, cityCode, ALIASES[cn] || '', ALIASES[en] || '']) {
-    if (!c) continue
-    entry = INDEX.get(norm(c))
-    if (entry) break
-  }
+  const entry = findCity(cityName, cityNameEn, cityCode)
   if (!entry) return []
   return (entry.hotels || [])
     .filter((h) => (h.rating || 0) >= 7)
@@ -63,13 +68,20 @@ export function recommendHotels(cityName, cityNameEn, limit = 5, cityCode = '') 
     .slice(0, limit)
 }
 
+// 酒店价格区间：该城评分≥7 酒店的价格范围（如 "€100–120/晚"）；无数据返回 ''
+export function getHotelPriceRange(cityName, cityNameEn, cityCode = '') {
+  const entry = findCity(cityName, cityNameEn, cityCode)
+  if (!entry) return ''
+  const prices = (entry.hotels || [])
+    .filter((h) => (h.rating || 0) >= 7 && h.priceEur > 0)
+    .map((h) => h.priceEur)
+  if (!prices.length) return ''
+  const min = Math.min(...prices)
+  const max = Math.max(...prices)
+  return min === max ? `€${min}/晚` : `€${min}–${max}/晚`
+}
+
 // 命中城市返回 1（含城市信息），未命中 0 —— 供 UI 判断「有参考数据」
 export function hasHotelData(cityName, cityNameEn, cityCode = '') {
-  const cn = String(cityName || '').trim()
-  const en = String(cityNameEn || '').trim()
-  for (const c of [cn, en, cityCode, ALIASES[cn] || '', ALIASES[en] || '']) {
-    if (!c) continue
-    if (INDEX.get(norm(c))) return 1
-  }
-  return 0
+  return findCity(cityName, cityNameEn, cityCode) ? 1 : 0
 }
