@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
-import { applyQuoteRules } from '@/lib/coach-plan'
-import { aiParse } from '@/lib/ai-parse'
+import { applyQuoteRules, patchEmptyRunRoadKm } from '@/lib/coach-plan'
+import { aiParse, cleanText } from '@/lib/ai-parse'
 
 // AI 反馈重解析：导入后人工检查发现问题 → 带原文 + 反馈 + 上次结果，
 // 让 AI 修正后重新输出完整 JSON，前端原地替换行程内容。
@@ -39,7 +39,7 @@ export async function POST(request) {
       return NextResponse.json({ error: '请填写反馈内容' }, { status: 400 })
     }
 
-    const text = sourceText.slice(0, 50000)
+    const text = cleanText(sourceText).slice(0, 50000)
 
     // 带上原文 + 上次解析结果 + 用户反馈，让 AI 修正而非重来
     let userContent = `请解析以下行程文件内容：\n\n${text}`
@@ -53,7 +53,9 @@ export async function POST(request) {
       return NextResponse.json({ error }, { status: 500 })
     }
 
-    return NextResponse.json(applyQuoteRules(parsed))
+    const result = applyQuoteRules(parsed)
+    await patchEmptyRunRoadKm(result) // EMPTY RUN 真实车程（OSRM，失败回退估算）
+    return NextResponse.json(result)
   } catch (error) {
     console.error('Reparse itinerary error:', error)
     return NextResponse.json(

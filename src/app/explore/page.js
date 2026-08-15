@@ -31,7 +31,6 @@ export default function Home() {
     return Math.max(360, Math.min(700, Math.floor(window.innerWidth * 0.5)))
   })
   const isMobile = useIsMobile()
-  const [mobileView, setMobileView] = useState('list') // 'list' | 'map'
 
   // 响应式订阅行程 store：任意 mutation 后自动重渲染，activeId 驱动当前行程
   const { itineraries, activeId } = useItineraries()
@@ -121,8 +120,9 @@ export default function Home() {
     setHighlightedCityIds(new Set(cityIds))
   }, [])
 
-  const showMap = !isMobile || mobileView === 'map'
-  const showPanel = !isMobile || mobileView === 'list'
+  // 手机端：不需要地图，只显示右侧面板（列表/详情）；地图仅桌面端渲染
+  const showMap = !isMobile
+  const showPanel = true
 
   return (
     <main style={{ flex: 1, position: 'relative' }}>
@@ -152,8 +152,8 @@ export default function Home() {
               highlightedCityIds={highlightedCityIds}
               dayLabels={dayLabels}
               onEntityAddToItinerary={handleEntityAddToItinerary}
-              panelCollapsed={isMobile ? true : panelCollapsed}
-              panelWidth={isMobile ? 0 : panelWidth}
+              panelCollapsed={panelCollapsed}
+              panelWidth={panelWidth}
             />
           )}
           {showPanel && (
@@ -172,17 +172,6 @@ export default function Home() {
             />
           )}
         </>
-      )}
-
-      {isMobile && ready && (
-        <button
-          onClick={() => setMobileView((v) => (v === 'list' ? 'map' : 'list'))}
-          className="fixed z-[1100] right-4 bottom-5 flex items-center gap-1.5 px-3.5 py-2.5 rounded-full font-medium text-sm shadow-lg border"
-          style={{ background: 'var(--accent)', color: '#fff', borderColor: 'transparent' }}
-        >
-          <span>{mobileView === 'list' ? '🗺️' : '📋'}</span>
-          <span>{mobileView === 'list' ? '地图' : '清单'}</span>
-        </button>
       )}
     </main>
   )

@@ -89,8 +89,13 @@ export function shouldHideItem(item, opts = {}) {
 const CITY_ALIASES = {
   // Chinese name variants (both translations for same city)
   '琉森': '卢塞恩',
+  '圣特罗佩': 'Saint Tropez',
+  // 锡拉库扎/锡拉库萨（西西里）→ 意大利语 Siracusa；英文 Syracuse 会撞上美国城市
+  '锡拉库扎': 'Siracusa',
+  '锡拉库萨': 'Siracusa',
   // English → native (Cities.xlsx uses native names for some cities)
   'Milan': 'Milano',
+  'Genoa': 'Genova',
   // Chinese → English (cities NOT in europe-travel.json but common in itineraries)
   '米兰': 'Milan',
   // Chinese departure cities (not in europe-travel.json)
@@ -102,20 +107,38 @@ const CITY_ALIASES = {
   '西安': 'Xi An',
 }
 
+// ---- 归一化索引（通用变体修复）----
+// Cities.xlsx 里同一城市可能有多种写法（Saint Tropez / Saint-Tropez / St. Tropez），
+// 精确匹配失败时按「去空格/连字符/撇号/点 + 小写」兜底，如 Saint-Tropez → JSZ。
+const normCity = (s) => String(s || '').toLowerCase().replace(/[\s\-'.·]/g, '')
+let normIndex = null
+function buildNormIndex() {
+  if (normIndex) return normIndex
+  normIndex = new Map()
+  for (const key of Object.keys(quosCities)) {
+    const n = normCity(key)
+    if (!normIndex.has(n)) normIndex.set(n, quosCities[key])
+  }
+  return normIndex
+}
+
 // ---- City Code Lookup ----
 export function getCityCode(cityName, englishName) {
-  // Try English name first — direct match against Cities.xlsx (8300+ entries)
-  if (englishName) {
-    const entry = quosCities[englishName]
-    if (entry) return entry
-  }
   if (!cityName) return null
-  const entry = quosCities[cityName]
-  if (entry) return entry
+  // 先精确匹配中文名：中文键来自 europe-travel.json / curated-cities.cjs（可靠数据）。
+  // 英文名后查——同名城市可能错配（如西西里锡拉库扎 Syracuse vs 美国锡拉丘兹 Syracuse→US），
+  // 中文名没有歧义，优先以中文为准。
+  const exact = quosCities[cityName]
+  if (exact) return exact
   const trimmed = cityName.trim()
   if (trimmed !== cityName) {
     const trimEntry = quosCities[trimmed]
     if (trimEntry) return trimEntry
+  }
+  // English name — direct match against Cities.xlsx (8300+ entries)
+  if (englishName) {
+    const entry = quosCities[englishName]
+    if (entry) return entry
   }
   // Try alias chain (follow aliases recursively, max 3 hops to avoid loops)
   let alias = CITY_ALIASES[cityName] || CITY_ALIASES[trimmed]
@@ -123,6 +146,12 @@ export function getCityCode(cityName, englishName) {
     const aliasEntry = quosCities[alias]
     if (aliasEntry) return aliasEntry
     alias = CITY_ALIASES[alias]
+  }
+  // 兜底：归一化匹配（去空格/连字符/撇号/点），覆盖写法变体（中英文都试）
+  const normalized = normCity(trimmed) || (englishName ? normCity(englishName) : '')
+  if (normalized) {
+    const hit = buildNormIndex().get(normalized)
+    if (hit) return hit
   }
   return null
 }

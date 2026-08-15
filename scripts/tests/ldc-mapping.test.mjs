@@ -2,7 +2,7 @@
 // 运行：npm test
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { resolveLdcSupplier, hasArcticCity } from '../../src/lib/ldc-mapping.js'
+import { resolveLdcSupplier, hasArcticCity, SUPPLIERS } from '../../src/lib/ldc-mapping.js'
 
 test('单国 → 对应 Mono/区域供应商', () => {
   assert.equal(resolveLdcSupplier(['FR']).supplierCode, 'FR PAR')
@@ -49,4 +49,27 @@ test('hasArcticCity 命中北极极地城市（中英文）', () => {
 test('空国家列表 → null', () => {
   assert.equal(resolveLdcSupplier([]), null)
   assert.equal(resolveLdcSupplier(['XX']), null)
+})
+
+test('PRE/POST 前后夜费率按官方 LDC 表逐区域配置', () => {
+  assert.equal(resolveLdcSupplier(['FR', 'IT']).prepost, '€120') // 西欧
+  assert.equal(resolveLdcSupplier(['NL', 'BE']).prepost, '€135') // 荷比卢
+  assert.equal(resolveLdcSupplier(['NO', 'SE', 'DK']).prepost, '€148') // 斯堪的纳维亚
+  assert.equal(resolveLdcSupplier(['GB']).prepost, '£110') // 英国
+  assert.equal(resolveLdcSupplier(['CH']).prepost, 'CHF 130') // 瑞士
+  assert.equal(resolveLdcSupplier(['DK']).prepost, 'DKK 1200') // 丹麦
+  assert.equal(resolveLdcSupplier(['SE']).prepost, 'SEK 1340') // 瑞典
+  assert.equal(resolveLdcSupplier(['NO'], { arctic: true }).prepost, 'NOK 1750') // 挪威北
+  assert.equal(resolveLdcSupplier(['FI'], { arctic: true }).prepost, '€146') // 芬兰北
+  assert.equal(resolveLdcSupplier(['FI']).prepost, '€151') // 芬兰南
+})
+
+test('芬兰北部 NGS：ON REQUEST 条目存在且费率齐备', () => {
+  const ngs = SUPPLIERS.finlandNorthNgs
+  assert.ok(ngs, 'finlandNorthNgs 条目应存在')
+  assert.equal(ngs.supplierCode, 'FI ROV')
+  assert.equal(ngs.vehicleType, 'NGS')
+  assert.equal(ngs.dailyRate, null)
+  assert.ok(ngs.note.includes('ON REQUEST'))
+  assert.equal(ngs.prepost, '€146')
 })

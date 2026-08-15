@@ -10,8 +10,16 @@ import {
 import { getAllCitiesWithCoords } from '@/lib/data'
 import { EMPTY_TEXT } from '@/lib/config'
 import { isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
+import { recommendHotels } from '@/lib/hotel-recommend'
 import ConfirmDialog from '@/components/confirm-dialog'
 import { ItemRow, ItemForm } from './day-item'
+
+// Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
+const ratingColor = (r) => {
+  if (r >= 9) return '#1e7d32'
+  if (r >= 8) return 'var(--accent-strong)'
+  return '#b8860b'
+}
 
 // ---- Day title helper ----
 function formatDayTitle(startDate, dayNumber) {
@@ -318,6 +326,46 @@ export default function DayDetail({ itinerary, onDayHover }) {
                     已隐藏 {hiddenCount} 项
                   </p>
                 )}
+
+                {/* 推荐入住酒店：按当天「最后入住城市」查静态参考库（Booking 评分≥7，欧元参考价，显示前2家） */}
+                {(() => {
+                  const stayCity = day.finalCityName || day.cityName
+                  const stayCityEn = day.finalCityNameEn || day.cityNameEn
+                  const hotels = recommendHotels(stayCity, stayCityEn, 2, day.cityCode)
+                  if (!hotels.length) return null
+                  return (
+                    <div className="mt-1.5 px-2 py-1.5 rounded-lg" style={{ background: 'var(--bg-surface)' }}>
+                      <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
+                        🏨 推荐入住酒店
+                        <span className="font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>
+                          Booking 评分≥7 · 欧元参考价
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        {hotels.map((h, i) => (
+                          <div key={i} className="text-xs flex items-start gap-1.5">
+                            <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(h.rating) }}>
+                              ★{h.rating}
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate" style={{ color: 'var(--text-primary)' }} title={h.name}>
+                                {h.name}
+                              </span>
+                              {h.area && (
+                                <span className="block truncate" style={{ color: 'var(--text-tertiary)' }}>
+                                  {h.area}{h.near ? ` · 近${h.near}` : ''}
+                                </span>
+                              )}
+                            </span>
+                            <span className="shrink-0" style={{ color: 'var(--text-secondary)' }}>
+                              {h.priceEur ? `€${h.priceEur}/晚` : '—'}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })()}
 
                 {addingItemTo === day.id ? (
                   <div className="mt-1.5">

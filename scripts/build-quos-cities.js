@@ -1,13 +1,16 @@
 // scripts/build-quos-cities.js
 // One-shot build: node scripts/build-quos-cities.js
-// Reads KT Cities.xlsx + euro-travel.json → outputs quos-cities.json
+// Reads Cities.xlsx（项目根目录优先，回退 KT 路径）+ euro-travel.json → outputs quos-cities.json
 // Reads KT 巴黎景点.xlsx → outputs quos-attractions.json
 
 const XLSX = require('xlsx')
 const fs = require('fs')
 const path = require('path')
 
-const CITIES_PATH = '/Users/michael/Projects/KT/系统拷贝列表/Cities.xlsx'
+// Cities.xlsx 优先用项目根目录的副本（可复现构建）；找不到再回退到 KT 知识库路径
+const LOCAL_CITIES = path.join(__dirname, '../Cities.xlsx')
+const KT_CITIES = '/Users/michael/Projects/KT/系统拷贝列表/Cities.xlsx'
+const CITIES_PATH = fs.existsSync(LOCAL_CITIES) ? LOCAL_CITIES : KT_CITIES
 const ATTRACTIONS_PATH = '/Users/michael/Projects/KT/系统拷贝列表/巴黎景点.xlsx'
 const TRAVEL_DATA_PATH = path.join(__dirname, '../src/data/europe-travel.json')
 const OUT_CITIES = path.join(__dirname, '../src/data/quos-cities.json')
@@ -52,7 +55,18 @@ function buildCities() {
     }
   }
 
-  console.log(`quos-cities.json: ${Object.keys(lookup).length} keys (${chineseMatchCount} Chinese names matched)`)
+  // 扩展中文键：精选常用欧洲城市表（scripts/curated-cities.cjs，含不在 europe-travel.json
+  // 里的城市，如 圣特罗佩→Saint Tropez→JSZ）。已有键不覆盖。
+  const curatedCities = require('./curated-cities.cjs')
+  let curatedMatchCount = 0
+  for (const [cn, en] of curatedCities) {
+    if (!lookup[cn] && lookup[en]) {
+      lookup[cn] = lookup[en]
+      curatedMatchCount++
+    }
+  }
+
+  console.log(`quos-cities.json: ${Object.keys(lookup).length} keys (${chineseMatchCount} europe-travel + ${curatedMatchCount} curated Chinese names)`)
   fs.writeFileSync(OUT_CITIES, JSON.stringify(lookup, null, 2))
 }
 

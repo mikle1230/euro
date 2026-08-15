@@ -33606,5 +33606,65 @@
   "瓦莱塔": {
     "cityCode": "VLT",
     "countryCode": "ML"
+  },
+  "凡尔赛": {
+    "cityCode": "VES",
+    "countryCode": "FR"
+  },
+  "圣特罗佩": {
+    "cityCode": "JSZ",
+    "countryCode": "FR"
+  },
+  "热那亚": {
+    "cityCode": "GOA",
+    "countryCode": "IT"
+  },
+  "圣吉米尼亚诺": {
+    "cityCode": "SYO",
+    "countryCode": "IT"
+  },
+  "阿马尔菲": {
+    "cityCode": "AQF",
+    "countryCode": "IT"
+  },
+  "卡塔尼亚": {
+    "cityCode": "CTA",
+    "countryCode": "IT"
+  },
+  "陶尔米纳": {
+    "cityCode": "TOX",
+    "countryCode": "IT"
+  },
+  "锡拉库扎": {
+    "cityCode": "QIC",
+    "countryCode": "IT"
+  },
+  "锡拉库萨": {
+    "cityCode": "QIC",
+    "countryCode": "IT"
+  },
+  "采尔马特": {
+    "cityCode": "QZB",
+    "countryCode": "CH"
+  },
+  "达沃斯": {
+    "cityCode": "DAV",
+    "countryCode": "CH"
+  },
+  "波恩": {
+    "cityCode": "BNJ",
+    "countryCode": "DE"
+  },
+  "维尔茨堡": {
+    "cityCode": "WRZ",
+    "countryCode": "DE"
+  },
+  "龙达": {
+    "cityCode": "RON",
+    "countryCode": "ES"
+  },
+  "格雷梅": {
+    "cityCode": "GE1",
+    "countryCode": "TR"
   }
 }

@@ -405,6 +405,12 @@ export const CITY_HINTS = [
     "countryCode": "FR"
   },
   {
+    "cn": "圣特罗佩",
+    "en": "Saint Tropez",
+    "cityCode": "JSZ",
+    "countryCode": "FR"
+  },
+  {
     "cn": "斯特拉斯堡",
     "en": "Strasbourg",
     "cityCode": "SXB",
@@ -550,7 +556,7 @@ export const CITY_HINTS = [
   },
   {
     "cn": "热那亚",
-    "en": "Genoa",
+    "en": "Genova",
     "cityCode": "GOA",
     "countryCode": "IT"
   },
@@ -600,6 +606,18 @@ export const CITY_HINTS = [
     "cn": "锡耶纳",
     "en": "Siena",
     "cityCode": "SZA",
+    "countryCode": "IT"
+  },
+  {
+    "cn": "锡拉库扎",
+    "en": "Siracusa",
+    "cityCode": "QIC",
+    "countryCode": "IT"
+  },
+  {
+    "cn": "锡拉库萨",
+    "en": "Siracusa",
+    "cityCode": "QIC",
     "countryCode": "IT"
   },
   {

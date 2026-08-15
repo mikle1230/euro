@@ -3,9 +3,88 @@
 import { useRef, useState } from 'react'
 import { exportAllData, importAllData } from '@/lib/itinerary-store'
 import { getApiToken, setApiToken } from '@/lib/api-config'
+import { getQUOSOrder, saveQUOSOrder, DEFAULT_QUOS_ORDER, QUOS_LABELS } from '@/lib/quos-mapping'
 import { toast } from '@/components/toast'
 
-// 设置页：数据备份 + 解析 API Token。
+// QUOS 类型排序（设置页内联卡片）：行程详情按此顺序排列
+function QUOSSortSection() {
+  const [order, setOrder] = useState(() => getQUOSOrder())
+
+  const moveUp = (idx) => {
+    if (idx <= 0) return
+    const next = [...order]
+    ;[next[idx - 1], next[idx]] = [next[idx], next[idx - 1]]
+    setOrder(next)
+  }
+
+  const moveDown = (idx) => {
+    if (idx >= order.length - 1) return
+    const next = [...order]
+    ;[next[idx + 1], next[idx]] = [next[idx], next[idx + 1]]
+    setOrder(next)
+  }
+
+  const save = () => {
+    saveQUOSOrder(order)
+    toast('已保存 QUOS 排序（重新进入行程详情生效）', 'success')
+  }
+
+  return (
+    <div
+      className="rounded-xl border p-4 mt-4"
+      style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+    >
+      <h2 className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+        📊 QUOS 类型排序
+      </h2>
+      <p className="text-xs mb-3" style={{ color: 'var(--text-tertiary)' }}>
+        行程详情（按类型视图 / 天内排列）按此顺序显示。拖拽排序暂用按钮代替，调整后点保存。
+      </p>
+      <div className="flex flex-col gap-1 mb-3">
+        {order.map((code, idx) => (
+          <div
+            key={code}
+            className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs"
+            style={{ background: 'var(--bg-surface)' }}
+          >
+            <span className="font-mono font-bold w-8" style={{ color: 'var(--accent)' }}>{code}</span>
+            <span className="flex-1" style={{ color: 'var(--text-primary)' }}>{QUOS_LABELS[code]}</span>
+            <button
+              onClick={() => moveUp(idx)}
+              disabled={idx === 0}
+              className="w-7 h-7 rounded flex items-center justify-center text-xs disabled:opacity-20"
+              style={{ color: 'var(--text-tertiary)' }}
+            >▲</button>
+            <button
+              onClick={() => moveDown(idx)}
+              disabled={idx === order.length - 1}
+              className="w-7 h-7 rounded flex items-center justify-center text-xs disabled:opacity-20"
+              style={{ color: 'var(--text-tertiary)' }}
+            >▼</button>
+          </div>
+        ))}
+      </div>
+      <div className="flex gap-2 max-w-sm">
+        <button
+          onClick={() => setOrder([...DEFAULT_QUOS_ORDER])}
+          className="flex-1 px-3 py-1.5 rounded-lg text-xs border"
+          style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
+        >
+          重置默认
+        </button>
+        <button
+          onClick={save}
+          className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium"
+          style={{ background: 'var(--accent-strong)', color: '#fff' }}
+        >
+          保存
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// 设置页：数据备份 + QUOS 排序 + 解析 API Token。
 // 后续设置项（默认语言等）继续往这里加。
 export default function SettingsPage() {
   const backupFileRef = useRef(null)
@@ -93,6 +172,9 @@ export default function SettingsPage() {
             />
           </div>
         </div>
+
+        {/* QUOS 类型排序 */}
+        <QUOSSortSection />
 
         <p className="text-xs mt-6" style={{ color: 'var(--text-tertiary)' }}>
           更多设置项将陆续加入

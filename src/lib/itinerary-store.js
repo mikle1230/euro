@@ -150,6 +150,10 @@ function makeItem(input = {}) {
     quoteKind: input.quoteKind || undefined,
     quoteOrder: input.quoteOrder ?? undefined,
     locationCategory: input.locationCategory || undefined,
+    // 报价注入项自带的国/城（保险=CN/BJS、THROUGH COACH=LDC 供应商所在地），
+    // 不落库就会回退显示当天城市（历史 bug）
+    cityCode: input.cityCode || '',
+    countryCode: input.countryCode || '',
   }
 }
 

@@ -180,17 +180,19 @@ function buildItemFields(item, day, itinerary, ldc) {
         const near = rec.slice(1, 4).map((c) => `${c.name}(${Math.round(c.distanceKm)}km)`).join('、')
         fields.push(row('酒店城市推荐', '参考', `${finalCity} 或 30km 内：${near}`, '✅'))
       }
-      const hotels = recommendHotels(day.finalCityName, day.finalCityNameEn)
+      const hotels = recommendHotels(day.finalCityName, day.finalCityNameEn, 2)
       if (hotels.length) {
-        const list = hotels.map((h) => `${h.name} ${'★'.repeat(h.star)}${h.rating ? `（${h.rating}分）` : ''}`).join('；')
-        fields.push(row('推荐酒店 booking 4/5星', '参考', list, '✅', 'booking 评分待补，可上 booking.com 查当前评分'))
+        const list = hotels.map((h) => `${h.name}${h.rating ? `（${h.rating}分）` : ''}${h.priceEur ? ` €${h.priceEur}/晚` : ''}`).join('；')
+        fields.push(row('推荐酒店（Booking ≥7分）', '参考', list, '✅', '评分/价格为静态参考，可上 booking.com 复核实时价'))
       } else {
-        fields.push(row('推荐酒店 booking 4/5星', '参考', `${finalCity} 暂无推荐数据（待补充）`, '⚠️'))
+        fields.push(row('推荐酒店（Booking ≥7分）', '参考', `${finalCity} 暂无推荐数据（待补充）`, '⚠️'))
       }
       break
     }
     case 'MTC': {
-      if (item.from || item.to) {
+      if (item.quoteKind === 'empty-run') {
+        fields.push(row('Empty Run 空驶', '填入', `${item.from || '?'} → ${item.to || '?'}，${item.quantity || 0} km`, item.quantity > 0 ? '✅' : '⚠️', '按首城→末城车程估算'))
+      } else if (item.from || item.to) {
         fields.push(row('Route / From – To', '填入', `${item.from || '?'} → ${item.to || '?'}`, item.from && item.to ? '✅' : '⚠️'))
       }
       if (ldc) {
