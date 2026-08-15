@@ -98,7 +98,7 @@ export default function FloatingPanel({
           height: 148,
           background: 'var(--bg-card)',
           borderColor: 'var(--border-color)',
-          borderRight: 'none',
+          borderRightWidth: 0,
         }}
         onClick={() => onCollapsedChange(false)}
         title="展开面板"
@@ -158,7 +158,7 @@ export default function FloatingPanel({
               height: 148,
               background: 'var(--bg-card)',
               borderColor: 'var(--border-color)',
-              borderRight: 'none',
+              borderRightWidth: 0,
             }}
             title="收起面板"
             aria-label="收起面板"
