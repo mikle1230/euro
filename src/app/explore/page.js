@@ -23,8 +23,6 @@ const MapCore = dynamic(() => import('../../components/map-core'), {
 export default function Home() {
   const [cities, setCities] = useState([])
   const [ready, setReady] = useState(false)
-  const [hoveredDayId, setHoveredDayId] = useState(null)
-  const [highlightedCityIds, setHighlightedCityIds] = useState(new Set())
   const [panelCollapsed, setPanelCollapsed] = useState(false)
   const [panelWidth, setPanelWidth] = useState(() => {
     if (typeof window === 'undefined') return 360
@@ -51,7 +49,6 @@ export default function Home() {
     : itineraries[0] || null
 
   // 派生数据 memo 化：仅在行程 store 变更（version 递增）或城市数据就绪时重算。
-  // 这样 hover/高亮等无关状态变化不会重建地图 markers（之前每次 render 都重建）。
   const routeLine = useMemo(() => {
     if (!ready || !activeItinerary) return []
     return activeItinerary.days
@@ -86,12 +83,6 @@ export default function Home() {
     })
   }, [version, ready, activeItinerary, cities])
 
-  const hoveredCityId = (() => {
-    if (!hoveredDayId || !activeItinerary) return null
-    const day = activeItinerary.days.find((d) => d.id === hoveredDayId)
-    return day?.cityId || null
-  })()
-
   const handleCityClick = useCallback(() => {
     // Called alongside popup display, for reference
   }, [])
@@ -112,17 +103,8 @@ export default function Home() {
     [activeItinerary],
   )
 
-  const handleDayHover = useCallback((dayId) => {
-    setHoveredDayId(dayId)
-  }, [])
-
-  const handleSearchHighlight = useCallback((cityIds) => {
-    setHighlightedCityIds(new Set(cityIds))
-  }, [])
-
-  // 手机端：不需要地图，只显示右侧面板（列表/详情）；地图仅桌面端渲染
+  // 手机端：不需要地图，只显示面板（列表/详情）；地图仅桌面端渲染
   const showMap = !isMobile
-  const showPanel = true
 
   return (
     <main style={{ flex: 1, position: 'relative' }}>
@@ -148,29 +130,20 @@ export default function Home() {
               routeLine={routeLine}
               onCityClick={handleCityClick}
               onCityAddToItinerary={handleAddCityToItinerary}
-              hoveredCityId={hoveredCityId}
-              highlightedCityIds={highlightedCityIds}
               dayLabels={dayLabels}
               onEntityAddToItinerary={handleEntityAddToItinerary}
               panelCollapsed={panelCollapsed}
               panelWidth={panelWidth}
             />
           )}
-          {showPanel && (
-            <FloatingPanel
-              isMobile={isMobile}
-              cities={cities}
-              activeItinerary={activeItinerary}
-              onCityClick={handleCityClick}
-              onAddToItinerary={handleAddCityToItinerary}
-              onDayHover={handleDayHover}
-              onSearchHighlight={handleSearchHighlight}
-              collapsed={panelCollapsed}
-              onCollapsedChange={setPanelCollapsed}
-              panelWidth={panelWidth}
-              onWidthChange={setPanelWidth}
-            />
-          )}
+          <FloatingPanel
+            isMobile={isMobile}
+            activeItinerary={activeItinerary}
+            collapsed={panelCollapsed}
+            onCollapsedChange={setPanelCollapsed}
+            panelWidth={panelWidth}
+            onWidthChange={setPanelWidth}
+          />
         </>
       )}
     </main>

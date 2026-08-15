@@ -4,7 +4,7 @@ import { uid } from './id'
 
 const STORAGE_KEY = 'euro-entities'
 
-// 内存缓存：quos-list / day-detail 在渲染循环里反复调 getAllEntities()，
+// 内存缓存：quos-list 在渲染循环里反复调 getAllEntities()，
 // 每次全量读 localStorage + JSON.parse 太浪费。写操作后置脏，读走缓存。
 let cache = null
 

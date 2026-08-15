@@ -2,13 +2,11 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import ItineraryList from './panel-views/itinerary-list'
-import DayDetail from './panel-views/day-detail'
 import QUOSList from './panel-views/quos-list'
 
 const ICONS = [
   { key: 'itineraries', icon: '🗂️', label: '行程列表' },
   { key: 'quos', icon: '📋', label: '行程详情' },
-  // { key: 'edit', icon: '✏️', label: '编辑行程' }, // 暂时隐藏：编辑行程视图入口（用户确认后移除）
 ]
 
 const MIN_W = 360
@@ -22,12 +20,7 @@ function maxPanelWidth() {
 
 export default function FloatingPanel({
   isMobile,
-  cities,
   activeItinerary,
-  onCityClick,
-  onAddToItinerary,
-  onDayHover,
-  onSearchHighlight,
   collapsed,
   onCollapsedChange,
   panelWidth,
@@ -60,9 +53,9 @@ export default function FloatingPanel({
     document.addEventListener('pointerup', onUp)
   }, [panelWidth])
 
-  // 无当前行程时，行程详情/编辑视图重定向到列表
+  // 无当前行程时，行程详情重定向到列表
   useEffect(() => {
-    if (!activeItinerary && (view === 'quos' || view === 'edit')) {
+    if (!activeItinerary && view === 'quos') {
       setView('itineraries')
     }
   }, [activeItinerary, view])
@@ -226,13 +219,6 @@ export default function FloatingPanel({
         )}
         {view === 'quos' && activeItinerary && (
           <QUOSList itinerary={activeItinerary} />
-        )}
-        {view === 'edit' && activeItinerary && (
-          <DayDetail
-            itinerary={activeItinerary}
-            cities={cities}
-            onDayHover={onDayHover}
-          />
         )}
       </div>
     </div>

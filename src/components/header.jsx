@@ -93,20 +93,6 @@ export default function Header() {
           >
             知识库
           </Link>
-          {/* 暂注释：录入Copilot（功能待定）
-          <Link
-            href="/guide"
-            style={{
-              ...tabGlass,
-              ...(isActive('/guide')
-                ? { background: 'rgba(8, 115, 157, 0.18)', color: 'var(--accent)', boxShadow: '0 -1px 8px rgba(0,0,0,0.04)', border: '1px solid var(--border-color)', borderBottom: 'none' }
-                : { background: 'rgba(148, 163, 184, 0.08)', color: 'var(--text-tertiary)' }),
-            }}
-            className={tabClass}
-          >
-            🧭 录入Copilot
-          </Link>
-          */}
         </nav>
         {/* 导入行程文件（点一下直接打开本地文件选择器） */}
         <button

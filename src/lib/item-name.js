@@ -1,4 +1,4 @@
-// 统一英文名查找（单一实现，day-detail 与 quos-list 共用）：
+// 统一英文名查找（单一实现）：
 // 优先级 1: AI 解析的 nameEn（覆盖景点/酒店等）
 // 优先级 2: QUOS 标准名（KT 巴黎景点.xlsx）
 // 优先级 3: 实体库（localStorage euro-entities）
