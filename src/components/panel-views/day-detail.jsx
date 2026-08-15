@@ -337,9 +337,6 @@ export default function DayDetail({ itinerary, onDayHover }) {
                     <div className="mt-1.5 px-2 py-1.5 rounded-lg" style={{ background: 'var(--bg-surface)' }}>
                       <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
                         🏨 推荐入住酒店
-                        <span className="font-normal ml-1" style={{ color: 'var(--text-tertiary)' }}>
-                          Booking 评分≥7 · 欧元参考价
-                        </span>
                       </div>
                       <div className="flex flex-col gap-1">
                         {hotels.map((h, i) => (
@@ -351,14 +348,16 @@ export default function DayDetail({ itinerary, onDayHover }) {
                               <span className="block truncate" style={{ color: 'var(--text-primary)' }} title={h.name}>
                                 {h.name}
                               </span>
-                              {h.area && (
-                                <span className="block truncate" style={{ color: 'var(--text-tertiary)' }}>
-                                  {h.area}{h.near ? ` · 近${h.near}` : ''}
+                              {h.priceEur && (
+                                <span className="block" style={{ color: 'var(--text-secondary)' }}>
+                                  €{h.priceEur}/晚
                                 </span>
                               )}
-                            </span>
-                            <span className="shrink-0" style={{ color: 'var(--text-secondary)' }}>
-                              {h.priceEur ? `€${h.priceEur}/晚` : '—'}
+                              {(h.area || h.near) && (
+                                <span className="block truncate" style={{ color: 'var(--text-tertiary)' }}>
+                                  {[h.area, h.near ? `近${h.near}` : ''].filter(Boolean).join(' · ')}
+                                </span>
+                              )}
                             </span>
                           </div>
                         ))}
