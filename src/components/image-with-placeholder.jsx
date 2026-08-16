@@ -45,9 +45,10 @@ export default function ImageWithPlaceholder({
     thumb: 'aspect-square',
   }
 
-  // 响应式 sizes：告诉浏览器按实际渲染宽度选 srcset（next/image 生成多档尺寸）
+  // 响应式 sizes：告诉浏览器按实际渲染宽度选 srcset（next/image 生成多档尺寸）。
+  // hero 容器是 max-w-5xl（1024px），所以桌面端最多 1024px，而非 100vw。
   const sizes = {
-    hero: '100vw',
+    hero: '(max-width: 1024px) 100vw, 1024px',
     card: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw',
     thumb: '(max-width: 640px) 50vw, 160px',
   }[size]
