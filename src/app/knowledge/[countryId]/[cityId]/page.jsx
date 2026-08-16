@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { getCityById, getAllCitiesWithCoords } from '@/lib/data'
@@ -12,6 +12,7 @@ import { haversineKm } from '@/lib/geo'
 export default function CityPage() {
   const params = useParams()
   const { countryId, cityId } = params
+  const [typeFilter, setTypeFilter] = useState([])
 
   const city = getCityById(cityId)
   if (!city) {
@@ -28,29 +29,25 @@ export default function CityPage() {
     )
   }
 
-  const [typeFilter, setTypeFilter] = useState([])
   const meta = cityMeta[cityId] || {}
   const attractions = city.attractions || []
 
-  // 城市库仅展示人工维护的景点数据（europe-travel.json），不合并导入解析出的实体
-  const allItems = useMemo(() => attractions.map((a) => ({
+  // 城市库仅展示人工维护的景点数据（europe-travel.json），不合并导入解析出的实体。
+  // 数据为静态 JSON、数组很小，直接计算即可，无需 useMemo。
+  const allItems = attractions.map((a) => ({
     ...a,
     _type: a.type || 'landmark',
     _href: `/knowledge/${countryId}/${cityId}/${a.id}`,
-  })), [attractions, countryId, cityId])
+  }))
 
-  const filteredItems = useMemo(() => {
-    if (typeFilter.length === 0) return allItems
-    return allItems.filter((item) => typeFilter.includes(item._type))
-  }, [allItems, typeFilter])
+  const filteredItems = typeFilter.length === 0
+    ? allItems
+    : allItems.filter((item) => typeFilter.includes(item._type))
 
-  const availableTypes = useMemo(
-    () => [...new Set(allItems.map((item) => item._type))],
-    [allItems],
-  )
+  const availableTypes = [...new Set(allItems.map((item) => item._type))]
 
   const FILTER_TYPES = [
-    { key: 'landmark', icon: '🏛️', label: '景点' },
+    { key: 'landmark', icon: '🏛️', label: '地标' },
     { key: 'museum', icon: '🏺', label: '博物馆' },
     { key: 'nature', icon: '🌿', label: '自然' },
   ]
@@ -85,7 +82,7 @@ export default function CityPage() {
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
         <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
           <ImageWithPlaceholder
-            src={null}
+            src={`/images/cities/${cityId}.jpg`}
             alt={city.name}
             name={city.name}
             subtitle={city.nameEn ? `${city.nameEn} · ${city.country?.name || ''}` : city.country?.name}
@@ -160,7 +157,7 @@ export default function CityPage() {
                   style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                 >
                   <ImageWithPlaceholder
-                    src={null}
+                    src={`/images/attractions/${item.id}.jpg`}
                     alt={item.name}
                     type={item._type}
                     name={item.name}

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { getCountryById, getCountryCoverImage, getAllAttractionsFlat } from '@/lib/data'
@@ -21,6 +22,7 @@ function currencySymbol(currency) {
 export default function CountryPage() {
   const params = useParams()
   const countryId = params.countryId
+  const [attrFilter, setAttrFilter] = useState([])
 
   const country = getCountryById(countryId)
   if (!country) {
@@ -51,6 +53,17 @@ export default function CountryPage() {
   ].filter(Boolean)
 
   const neighbors = (meta.neighbors || []).map((nid) => ({ id: nid }))
+
+  // 全国景点（含类型筛选）
+  const countryAttractions = getAllAttractionsFlat().filter((a) => a.country?.id === countryId)
+  const filteredAttractions = attrFilter.length === 0
+    ? countryAttractions
+    : countryAttractions.filter((a) => attrFilter.includes(a.type || 'landmark'))
+  const attrTypeCounts = { landmark: 0, museum: 0, nature: 0 }
+  for (const a of countryAttractions) {
+    const t = a.type || 'landmark'
+    if (t in attrTypeCounts) attrTypeCounts[t]++
+  }
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
@@ -137,7 +150,7 @@ export default function CountryPage() {
                     style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                   >
                     <ImageWithPlaceholder
-                      src={null}
+                      src={`/images/cities/${city.id}.jpg`}
                       alt={city.name}
                       type="landmark"
                       name={city.name}
@@ -171,21 +184,51 @@ export default function CountryPage() {
         )}
 
         {/* All attractions in this country */}
-        {(() => {
-          const countryAttractions = getAllAttractionsFlat().filter(
-            (a) => a.country?.id === countryId,
-          )
-          if (countryAttractions.length === 0) return null
-          return (
-            <div className="mb-8">
-              <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-                🏛️ 全部景点
-                <span className="text-sm font-normal ml-2" style={{ color: 'var(--text-tertiary)' }}>
-                  {countryAttractions.length} 个
-                </span>
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {countryAttractions.map((attr) => (
+        {countryAttractions.length > 0 && (
+          <div className="mb-8">
+            <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
+              🏛️ 全部景点
+              <span className="text-sm font-normal ml-2" style={{ color: 'var(--text-tertiary)' }}>
+                {countryAttractions.length} 个
+              </span>
+            </h2>
+            <div className="flex items-center gap-1.5 flex-wrap mb-4">
+              <button
+                onClick={() => setAttrFilter([])}
+                className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
+                style={
+                  attrFilter.length === 0
+                    ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                    : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
+                }
+              >
+                全部 ({countryAttractions.length})
+              </button>
+              {[
+                { key: 'landmark', icon: '🏛️', label: '地标' },
+                { key: 'museum', icon: '🏺', label: '博物馆' },
+                { key: 'nature', icon: '🌿', label: '自然' },
+              ].filter((t) => attrTypeCounts[t.key] > 0).map(({ key, icon, label }) => (
+                <button
+                  key={key}
+                  onClick={() =>
+                    setAttrFilter((prev) =>
+                      prev.includes(key) ? prev.filter((t) => t !== key) : [...prev, key],
+                    )
+                  }
+                  className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
+                  style={
+                    attrFilter.includes(key)
+                      ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                      : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
+                  }
+                >
+                  {icon} {label} ({attrTypeCounts[key]})
+                </button>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredAttractions.map((attr) => (
                   <Link
                     key={attr.id}
                     href={`/knowledge/${countryId}/${attr.city?.id || 'unknown'}/${attr.id}`}
@@ -193,7 +236,7 @@ export default function CountryPage() {
                     style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                   >
                     <ImageWithPlaceholder
-                      src={null}
+                      src={`/images/attractions/${attr.id}.jpg`}
                       alt={attr.name}
                       type={attr.type || 'landmark'}
                       name={attr.name}
@@ -220,8 +263,7 @@ export default function CountryPage() {
                 ))}
               </div>
             </div>
-          )
-        })()}
+        )}
 
         {/* Neighboring countries */}
         {neighbors.length > 0 && (
