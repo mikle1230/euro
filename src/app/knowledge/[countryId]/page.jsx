@@ -81,7 +81,7 @@ export default function CountryPage() {
             </h1>
             {intro && (
               <p
-                className="text-sm md:text-base leading-relaxed max-w-3xl"
+                className="text-sm md:text-base leading-relaxed"
                 style={{ color: 'rgba(255,255,255,0.94)' }}
               >
                 {intro}
@@ -92,10 +92,10 @@ export default function CountryPage() {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
-        {/* 国家信息栏：表格排版，标签与内容均左对齐 */}
+        {/* 国家信息栏：表格排版，标签与内容均左对齐（与 hero 同用 p-6/md:p-10 边距） */}
         {infoRows.length > 0 && (
           <div
-            className="rounded-xl border overflow-hidden mb-6"
+            className="rounded-xl border overflow-hidden mb-6 p-6 md:p-10"
             style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
           >
             {infoRows.map((row, i) => (
@@ -104,11 +104,12 @@ export default function CountryPage() {
                 className="grid text-sm"
                 style={{
                   gridTemplateColumns: '104px 1fr',
+                  padding: '10px 0',
                   ...(i < infoRows.length - 1 ? { borderBottom: '1px solid var(--border-color)' } : {}),
                 }}
               >
-                <span className="pl-5 py-3" style={{ color: 'var(--text-tertiary)' }}>{row.label}</span>
-                <span className="pr-5 py-3 font-medium" style={{ color: 'var(--text-primary)' }}>
+                <span style={{ color: 'var(--text-tertiary)' }}>{row.label}</span>
+                <span className="font-medium" style={{ color: 'var(--text-primary)' }}>
                   {row.symbol && (
                     <span className="mr-1.5 font-semibold" style={{ color: 'var(--accent)' }}>{row.symbol}</span>
                   )}
