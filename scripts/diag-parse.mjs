@@ -89,6 +89,6 @@ if (parsed) {
 } else {
   console.log('❌ JSON 解析失败 —— 这就是「AI 返回格式异常」的根因')
   if (choice?.finish_reason === 'length') {
-    console.log('👉 finish_reason=length：输出被 max_tokens=8192 截断（行程太大）')
+    console.log('👉 finish_reason=length：输出被 max_tokens=16384 截断（行程太大）')
   }
 }

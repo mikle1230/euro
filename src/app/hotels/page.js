@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { getHotelCatalog, searchHotels } from '@/lib/hotel-recommend'
+import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
+import { COUNTRY_FLAGS } from '@/lib/flags'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -133,18 +134,26 @@ export default function HotelsPage() {
     <div className="max-w-5xl mx-auto px-4 py-6">
       {/* 页头 + 搜索 */}
       <div className="mb-4">
-        <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>🏨 酒店参考库</h1>
+        <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>🏨 酒店库</h1>
         <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
           {catalog.length} 国 · {totalHotels} 家酒店 · Booking 评分 ≥7 · 欧元参考价（非实时）
         </p>
         <div className="mt-3 relative max-w-xl">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-tertiary)' }}>🔍</span>
+          <span
+            className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center"
+            style={{ color: 'var(--text-tertiary)' }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="搜索酒店名或城市（如 Nice、尼斯、罗马、Hôtel Carré）"
-            className="w-full pl-9 pr-9 py-2.5 rounded-xl text-sm border outline-none"
+            className="w-full pl-10 pr-9 py-2.5 rounded-xl text-sm border outline-none"
             style={{
               background: 'var(--bg-card)',
               borderColor: 'var(--border-color)',
@@ -220,9 +229,24 @@ export default function HotelsPage() {
         /* 完整目录：国家 → 城市 → 酒店 */
         visibleCountries.map((countryItem) => (
           <section key={countryItem.country} className="mb-7">
-            <div className="flex items-baseline gap-2 mb-3">
-              <h2 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>{countryItem.countryName}</h2>
+            <div className="flex items-baseline gap-2 mb-3 flex-wrap">
+              <h2 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
+                {COUNTRY_FLAGS[countryItem.countryName] ? `${COUNTRY_FLAGS[countryItem.countryName]} ` : ''}
+                {countryItem.countryName}
+              </h2>
               <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>{countryItem.country}</span>
+              {(() => {
+                const cur = COUNTRY_CURRENCIES[countryItem.country]
+                if (!cur) return null
+                return (
+                  <span
+                    className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[11px]"
+                    style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
+                  >
+                    {cur.symbol} {cur.code} {cur.name}
+                  </span>
+                )
+              })()}
             </div>
             {countryItem.cities.map((city) => (
               <div key={city.city} className="mb-5">

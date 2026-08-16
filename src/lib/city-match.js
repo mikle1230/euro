@@ -1,11 +1,12 @@
 // 城市匹配：AI 解析出的城市中文名 → 本地 europe-travel 数据里的 cityId/countryId。
 // upload-modal 与「AI 反馈重解析」共用，避免重复实现。
 import { getAllCitiesWithCoords } from './data'
+import { CN_NAME_ALIASES as NAME_ALIASES } from '../data/city-aliases.js'
 
 export function matchCity(cityName) {
   if (!cityName) return null
   const cities = getAllCitiesWithCoords()
-  const cleaned = cityName.trim()
+  const cleaned = NAME_ALIASES[cityName.trim()] || cityName.trim()
   // Exact match
   let match = cities.find((c) => c.name === cleaned)
   // Contains match

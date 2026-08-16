@@ -10,6 +10,7 @@ import {
   DEFAULT_QUOS_ORDER,
   QUOS_LABELS,
 } from '../../src/lib/quos-mapping.js'
+import travelData from '../../src/data/europe-travel.json' with { type: 'json' }
 
 test('getQUOSType：类型 → QUOS 码', () => {
   assert.equal(getQUOSType({ type: 'hotel' }).code, 'HTL')
@@ -86,4 +87,19 @@ test('DEFAULT_QUOS_ORDER 为 12 个码且与标签表一致', () => {
   for (const code of DEFAULT_QUOS_ORDER) {
     assert.ok(QUOS_LABELS[code], `缺少标签: ${code}`)
   }
+})
+
+test('数据漂移：每个 europe-travel 城市都能经 getCityCode 解析（无码遗址列白名单）', () => {
+  // 以弗所是考古遗址，Cities.xlsx 无对应城市码，属预期无码
+  const NO_CODE_ALLOWLIST = new Set(['以弗所'])
+  const missing = []
+  for (const country of travelData.countries) {
+    for (const city of country.cities) {
+      if (NO_CODE_ALLOWLIST.has(city.name)) continue
+      if (!getCityCode(city.name, city.nameEn)) {
+        missing.push(`${city.name} / ${city.nameEn}`)
+      }
+    }
+  }
+  assert.deepEqual(missing, [], `以下城市查不到 QUOS 码（需在 build-quos-cities.js EN_TO_NATIVE 或白名单补充）：\n${missing.join('\n')}`)
 })

@@ -20,7 +20,7 @@ export default function AttractionPage() {
           <p className="text-4xl mb-4">🏛️</p>
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>景点未找到</p>
           <Link href="/knowledge" className="text-xs mt-2 inline-block" style={{ color: 'var(--accent)' }}>
-            ← 返回知识库
+            ← 返回城市库
           </Link>
         </div>
       </div>
@@ -52,10 +52,10 @@ export default function AttractionPage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb */}
-      <div className="px-4 md:px-6 py-3 max-w-5xl mx-auto">
-        <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          <Link href="/knowledge" className="hover:text-[var(--accent)] transition-colors">知识库</Link>
+      {/* Breadcrumb（吸顶，滚动时随时返回上级） */}
+      <div className="sticky top-0 z-40 border-b px-4 md:px-6 py-3" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+        <div className="max-w-5xl mx-auto flex items-center gap-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
+          <Link href="/knowledge" className="hover:text-[var(--accent)] transition-colors">城市库</Link>
           <span>/</span>
           <Link href={`/knowledge/${countryId}`} className="hover:text-[var(--accent)] transition-colors">
             {attraction.country?.name || countryId}
@@ -142,7 +142,7 @@ export default function AttractionPage() {
           {/* Sidebar: info card */}
           <div>
             <div
-              className="rounded-xl border p-4 sticky top-20"
+              className="rounded-xl border p-4 sticky top-14"
               style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
             >
               <h3 className="font-display font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>

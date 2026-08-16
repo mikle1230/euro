@@ -76,7 +76,7 @@ function quosSortKey(row, order) {
 
 function fmtPrice(row) {
   if (row.price <= 0) return ''
-  const symbol = row.currency === 'USD' ? '$' : row.currency === 'GBP' ? '£' : CURRENCY_SYMBOLS[row.currency] || '€'
+  const symbol = CURRENCY_SYMBOLS[row.currency] || '€'
   const unit = row.priceUnit === 'perPerson' ? '/人' : row.priceUnit === 'perGroup' ? '/团' : row.priceUnit === 'perDay' ? '/天' : ''
   return `${symbol}${row.price}${unit}${row.quantity > 0 ? `×${row.quantity}` : ''}`
 }
@@ -93,7 +93,7 @@ function rowMeta(row) {
   } else if (isFreeItem(row)) {
     parts.push('免费')
   } else if (row.price > 0) {
-    const symbol = row.currency === 'USD' ? '$' : row.currency === 'GBP' ? '£' : CURRENCY_SYMBOLS[row.currency] || '€'
+    const symbol = CURRENCY_SYMBOLS[row.currency] || '€'
     const unit = row.priceUnit === 'perPerson' ? '/人' : row.priceUnit === 'perGroup' ? '/团' : row.priceUnit === 'perDay' ? '/天' : ''
     parts.push(`${symbol}${row.price}${unit}`)
     if (row.quantity > 0) parts.push(`×${row.quantity}`)
@@ -386,7 +386,7 @@ export default function QUOSList({ itinerary }) {
                         ) : it.price > 0 ? (
                           <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>
                             {(() => {
-                              const symbol = it.currency === 'USD' ? '$' : it.currency === 'GBP' ? '£' : CURRENCY_SYMBOLS[it.currency] || '€'
+                              const symbol = CURRENCY_SYMBOLS[it.currency] || '€'
                               return `${symbol}${it.price}${it.quantity > 0 ? `×${it.quantity}` : ''}`
                             })()}
                           </div>

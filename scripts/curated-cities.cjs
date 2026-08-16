@@ -8,15 +8,16 @@ module.exports = [
   ['巴黎', 'Paris'], ['尼斯', 'Nice'], ['马赛', 'Marseille'], ['戛纳', 'Cannes'],
   ['阿维尼翁', 'Avignon'], ['里昂', 'Lyon'], ['斯特拉斯堡', 'Strasbourg'], ['波尔多', 'Bordeaux'],
   ['第戎', 'Dijon'], ['科尔马', 'Colmar'], ['安纳西', 'Annecy'], ['霞慕尼', 'Chamonix'],
-  ['凡尔赛', 'Versailles'], ['圣特罗佩', 'Saint Tropez'], ['圣米歇尔山', 'Mont Saint Michel'],
+  ['凡尔赛', 'Versailles'], ['圣特罗佩', 'Saint Tropez'], ['瓦朗索勒', 'Valensole'], ['圣米歇尔山', 'Mont Saint Michel'],
   // 意大利
   ['罗马', 'Rome'], ['佛罗伦萨', 'Florence'], ['威尼斯', 'Venice'], ['米兰', 'Milan'],
-  ['维罗纳', 'Verona'], ['比萨', 'Pisa'], ['那不勒斯', 'Naples'], ['索伦托', 'Sorrento'],
+  ['维罗纳', 'Verona'], ['比萨', 'Pisa'], ['那不勒斯', 'Naples'], ['索伦托', 'Sorrento'], ['苏莲托', 'Sorrento'],
+  ['奇维塔维基亚', 'Civitavecchia'], ['阿尔贝罗贝洛', 'Alberobello'], ['阿格里真托', 'Agrigento'],
   ['庞贝', 'Pompeii'], ['五渔村', 'Cinque Terre'], ['博洛尼亚', 'Bologna'], ['都灵', 'Turin'],
   ['热那亚', 'Genova'], ['锡耶纳', 'Siena'], ['圣吉米尼亚诺', 'San Gimignano'], ['阿马尔菲', 'Amalfi'],
   ['科莫', 'Como'], ['巴勒莫', 'Palermo'], ['卡塔尼亚', 'Catania'], ['陶尔米纳', 'Taormina'], ['锡拉库扎', 'Siracusa'], ['锡拉库萨', 'Siracusa'],
   // 瑞士
-  ['苏黎世', 'Zurich'], ['日内瓦', 'Geneva'], ['卢塞恩', 'Lucerne'], ['因特拉肯', 'Interlaken'],
+  ['苏黎世', 'Zurich'], ['日内瓦', 'Geneva'], ['卢塞恩', 'Lucerne'], ['琉森', 'Lucerne'], ['因特拉肯', 'Interlaken'],
   ['伯尔尼', 'Bern'], ['采尔马特', 'Zermatt'], ['洛桑', 'Lausanne'], ['蒙特勒', 'Montreux'],
   ['圣莫里茨', 'St Moritz'], ['卢加诺', 'Lugano'], ['达沃斯', 'Davos'], ['格林德瓦', 'Grindelwald'],
   // 奥地利

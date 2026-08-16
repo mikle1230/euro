@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { getPlaceholderColors, getCountryPlaceholderColors } from '@/lib/images'
 import TypeBadge from './type-badge'
 
@@ -43,6 +44,13 @@ export default function ImageWithPlaceholder({
     card: variant === 'country' ? 'aspect-[4/3]' : 'aspect-[3/2]',
     thumb: 'aspect-square',
   }
+
+  // 响应式 sizes：告诉浏览器按实际渲染宽度选 srcset（next/image 生成多档尺寸）
+  const sizes = {
+    hero: '100vw',
+    card: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw',
+    thumb: '(max-width: 640px) 50vw, 160px',
+  }[size]
 
   if (showPlaceholder) {
     return (
@@ -98,14 +106,15 @@ export default function ImageWithPlaceholder({
 
   return (
     <div className={`relative overflow-hidden ${sizeClasses[size] || sizeClasses.card} bg-[var(--bg-surface)] ${className}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={alt}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+        fill
+        sizes={sizes}
+        priority={size === 'hero'}
+        className={`object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
         onLoad={() => setImgLoaded(true)}
         onError={() => setImgError(true)}
-        loading={size === 'hero' ? 'eager' : 'lazy'}
       />
       {!imgLoaded && (
         <div className="absolute inset-0 animate-pulse" style={{ background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` }} />

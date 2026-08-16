@@ -33039,12 +33039,20 @@
     "cityCode": "NCY",
     "countryCode": "FR"
   },
+  "瓦朗索勒": {
+    "cityCode": "VSO",
+    "countryCode": "FR"
+  },
   "柏林": {
     "cityCode": "BER",
     "countryCode": "DE"
   },
   "慕尼黑": {
     "cityCode": "MUC",
+    "countryCode": "DE"
+  },
+  "法兰克福": {
+    "cityCode": "FRA",
     "countryCode": "DE"
   },
   "汉堡": {
@@ -33067,6 +33075,10 @@
     "cityCode": "STR",
     "countryCode": "DE"
   },
+  "纽伦堡": {
+    "cityCode": "NUE",
+    "countryCode": "DE"
+  },
   "莱比锡": {
     "cityCode": "LEJ",
     "countryCode": "DE"
@@ -33077,6 +33089,10 @@
   },
   "波茨坦": {
     "cityCode": "POT",
+    "countryCode": "DE"
+  },
+  "菲森": {
+    "cityCode": "FES",
     "countryCode": "DE"
   },
   "巴登巴登": {
@@ -33097,6 +33113,10 @@
   },
   "佛罗伦萨": {
     "cityCode": "FLR",
+    "countryCode": "IT"
+  },
+  "米兰": {
+    "cityCode": "MIL",
     "countryCode": "IT"
   },
   "那不勒斯": {
@@ -33159,6 +33179,26 @@
     "cityCode": "PAV",
     "countryCode": "IT"
   },
+  "奇维塔维基亚": {
+    "cityCode": "CVV",
+    "countryCode": "IT"
+  },
+  "阿尔贝罗贝洛": {
+    "cityCode": "AXB",
+    "countryCode": "IT"
+  },
+  "阿格里真托": {
+    "cityCode": "QAO",
+    "countryCode": "IT"
+  },
+  "锡拉库扎": {
+    "cityCode": "QIC",
+    "countryCode": "IT"
+  },
+  "陶尔米纳": {
+    "cityCode": "TOX",
+    "countryCode": "IT"
+  },
   "巴塞罗那": {
     "cityCode": "BCN",
     "countryCode": "ES"
@@ -33169,6 +33209,10 @@
   },
   "格拉纳达": {
     "cityCode": "GRX",
+    "countryCode": "ES"
+  },
+  "塞维利亚": {
+    "cityCode": "SVQ",
     "countryCode": "ES"
   },
   "瓦伦西亚": {
@@ -33207,8 +33251,16 @@
     "cityCode": "EAS",
     "countryCode": "ES"
   },
+  "圣地亚哥-德孔波斯特拉": {
+    "cityCode": "SCQ",
+    "countryCode": "ES"
+  },
   "伊维萨": {
     "cityCode": "IBZ",
+    "countryCode": "ES"
+  },
+  "帕尔马": {
+    "cityCode": "PMI",
     "countryCode": "ES"
   },
   "里斯本": {
@@ -33265,6 +33317,14 @@
   },
   "布鲁日": {
     "cityCode": "BRG",
+    "countryCode": "BE"
+  },
+  "安特卫普": {
+    "cityCode": "ANR",
+    "countryCode": "BE"
+  },
+  "根特": {
+    "cityCode": "GNT",
     "countryCode": "BE"
   },
   "列日": {
@@ -33405,6 +33465,10 @@
   },
   "卑尔根": {
     "cityCode": "BGO",
+    "countryCode": "NO"
+  },
+  "特罗姆瑟": {
+    "cityCode": "TOS",
     "countryCode": "NO"
   },
   "斯塔万格": {
@@ -33567,6 +33631,22 @@
     "cityCode": "RIX",
     "countryCode": "LV"
   },
+  "摩纳哥": {
+    "cityCode": "MCM",
+    "countryCode": "MC"
+  },
+  "科托尔": {
+    "cityCode": "KOT",
+    "countryCode": "MO"
+  },
+  "布德瓦": {
+    "cityCode": "BVA",
+    "countryCode": "MO"
+  },
+  "波德戈里察": {
+    "cityCode": "PCA",
+    "countryCode": "MO"
+  },
   "布拉迪斯拉发": {
     "cityCode": "BRA",
     "countryCode": "SK"
@@ -33615,6 +33695,14 @@
     "cityCode": "JSZ",
     "countryCode": "FR"
   },
+  "苏莲托": {
+    "cityCode": "STX",
+    "countryCode": "IT"
+  },
+  "五渔村": {
+    "cityCode": "MAX",
+    "countryCode": "IT"
+  },
   "热那亚": {
     "cityCode": "GOA",
     "countryCode": "IT"
@@ -33631,17 +33719,13 @@
     "cityCode": "CTA",
     "countryCode": "IT"
   },
-  "陶尔米纳": {
-    "cityCode": "TOX",
-    "countryCode": "IT"
-  },
-  "锡拉库扎": {
-    "cityCode": "QIC",
-    "countryCode": "IT"
-  },
   "锡拉库萨": {
     "cityCode": "QIC",
     "countryCode": "IT"
+  },
+  "琉森": {
+    "cityCode": "LUZ",
+    "countryCode": "CH"
   },
   "采尔马特": {
     "cityCode": "QZB",
@@ -33650,6 +33734,10 @@
   "达沃斯": {
     "cityCode": "DAV",
     "countryCode": "CH"
+  },
+  "杜塞尔多夫": {
+    "cityCode": "DUS",
+    "countryCode": "DE"
   },
   "波恩": {
     "cityCode": "BNJ",

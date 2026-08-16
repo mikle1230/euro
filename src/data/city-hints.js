@@ -99,6 +99,12 @@ export const CITY_HINTS = [
     "countryCode": "CH"
   },
   {
+    "cn": "琉森",
+    "en": "Lucerne",
+    "cityCode": "LUZ",
+    "countryCode": "CH"
+  },
+  {
     "cn": "卢加诺",
     "en": "Lugano",
     "cityCode": "LUG",
@@ -201,6 +207,12 @@ export const CITY_HINTS = [
     "countryCode": "DE"
   },
   {
+    "cn": "杜塞尔多夫",
+    "en": "Dusseldorf",
+    "cityCode": "DUS",
+    "countryCode": "DE"
+  },
+  {
     "cn": "法兰克福",
     "en": "Frankfurt",
     "cityCode": "FRA",
@@ -228,6 +240,12 @@ export const CITY_HINTS = [
     "cn": "慕尼黑",
     "en": "Munich",
     "cityCode": "MUC",
+    "countryCode": "DE"
+  },
+  {
+    "cn": "纽伦堡",
+    "en": "Nuremberg",
+    "cityCode": "NUE",
     "countryCode": "DE"
   },
   {
@@ -417,6 +435,12 @@ export const CITY_HINTS = [
     "countryCode": "FR"
   },
   {
+    "cn": "瓦朗索勒",
+    "en": "Valensole",
+    "cityCode": "VSO",
+    "countryCode": "FR"
+  },
+  {
     "cn": "凡尔赛",
     "en": "Versailles",
     "cityCode": "VES",
@@ -525,6 +549,18 @@ export const CITY_HINTS = [
     "countryCode": "IS"
   },
   {
+    "cn": "阿格里真托",
+    "en": "Agrigento",
+    "cityCode": "QAO",
+    "countryCode": "IT"
+  },
+  {
+    "cn": "阿尔贝罗贝洛",
+    "en": "Alberobello",
+    "cityCode": "AXB",
+    "countryCode": "IT"
+  },
+  {
     "cn": "阿马尔菲",
     "en": "Amalfi",
     "cityCode": "AQF",
@@ -540,6 +576,18 @@ export const CITY_HINTS = [
     "cn": "卡塔尼亚",
     "en": "Catania",
     "cityCode": "CTA",
+    "countryCode": "IT"
+  },
+  {
+    "cn": "五渔村",
+    "en": "Cinque Terre",
+    "cityCode": "MAX",
+    "countryCode": "IT"
+  },
+  {
+    "cn": "奇维塔维基亚",
+    "en": "Civitavecchia",
+    "cityCode": "CVV",
     "countryCode": "IT"
   },
   {
@@ -627,6 +675,12 @@ export const CITY_HINTS = [
     "countryCode": "IT"
   },
   {
+    "cn": "苏莲托",
+    "en": "Sorrento",
+    "cityCode": "STX",
+    "countryCode": "IT"
+  },
+  {
     "cn": "陶尔米纳",
     "en": "Taormina",
     "cityCode": "TOX",
@@ -667,6 +721,12 @@ export const CITY_HINTS = [
     "en": "Riga",
     "cityCode": "RIX",
     "countryCode": "LV"
+  },
+  {
+    "cn": "摩纳哥",
+    "en": "Monaco",
+    "cityCode": "MCM",
+    "countryCode": "MC"
   },
   {
     "cn": "阿姆斯特丹",

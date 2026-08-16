@@ -9,18 +9,6 @@
  * naming convention: <id>.jpg
  */
 
-export function getCountryImage(countryId) {
-  return `/images/countries/${countryId}.jpg`
-}
-
-export function getCityImage(cityId) {
-  return `/images/cities/${cityId}.jpg`
-}
-
-export function getAttractionImage(attractionId) {
-  return `/images/attractions/${attractionId}.jpg`
-}
-
 /**
  * Generate deterministic gradient colors from a name string.
  * Returns { from, to, text } – colors for a placeholder gradient.

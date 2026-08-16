@@ -33,8 +33,17 @@ function writeStore(data) {
 
 let _seeded = false
 export function ensureSeeded(getAttractions) {
-  if (_seeded) return
   const store = readStore()
+
+  // 清理历史遗留：旧版导入行程会把解析出的酒店写进实体库（如「网评四星酒店」）。
+  // 城市库/地图改为手动维护，这里统一移除这些导入生成的酒店实体。
+  const cleaned = store.entities.filter((e) => e.type !== 'hotel')
+  if (cleaned.length !== store.entities.length) {
+    store.entities = cleaned
+    writeStore(store)
+  }
+
+  if (_seeded) return
   if (store.entities.length > 0) {
     _seeded = true
     return
@@ -85,7 +94,9 @@ export function ensureSeeded(getAttractions) {
 
 export function getAllEntities() {
   return readStore().entities
-}export function getEntitiesByType(type) {
+}
+
+export function getEntitiesByType(type) {
   return readStore().entities.filter((e) => e.type === type)
 }
 
