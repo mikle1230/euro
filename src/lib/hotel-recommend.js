@@ -85,3 +85,62 @@ export function getHotelPriceRange(cityName, cityNameEn, cityCode = '') {
 export function hasHotelData(cityName, cityNameEn, cityCode = '') {
   return findCity(cityName, cityNameEn, cityCode) ? 1 : 0
 }
+
+// ---- 酒店目录（/hotels 页）----
+
+// 国家码 → 中文名（酒店参考库覆盖的国家）
+export const COUNTRY_NAMES = {
+  FR: '法国', IT: '意大利', ES: '西班牙', PT: '葡萄牙', GB: '英国',
+  NL: '荷兰', BE: '比利时', DE: '德国', AT: '奥地利', CZ: '捷克', HU: '匈牙利', CH: '瑞士',
+}
+
+// 全部酒店按「国家 → 城市 → 酒店」分组（评分≥7，按评分降序）
+export function getHotelCatalog() {
+  const byCountry = {}
+  for (const c of Object.values(hotelData)) {
+    const cc = c.country || 'ZZ'
+    if (!byCountry[cc]) byCountry[cc] = []
+    byCountry[cc].push({
+      city: c.name,
+      nameEn: c.nameEn,
+      cityCode: c.cityCode,
+      note: c.note,
+      hotels: (c.hotels || [])
+        .filter((h) => (h.rating || 0) >= 7)
+        .sort((a, b) => (b.rating || 0) - (a.rating || 0)),
+    })
+  }
+  return Object.entries(byCountry)
+    .map(([cc, cities]) => ({
+      country: cc,
+      countryName: COUNTRY_NAMES[cc] || cc,
+      cities: cities.sort((a, b) => String(a.city).localeCompare(String(b.city), 'zh')),
+    }))
+    .sort((a, b) => String(a.countryName).localeCompare(String(b.countryName), 'zh'))
+}
+
+// 搜索酒店：酒店名（中/英）模糊匹配 + 城市名（中/英/码）匹配
+export function searchHotels(query) {
+  const q = String(query || '').trim().toLowerCase()
+  if (!q) return []
+  const results = []
+  for (const c of Object.values(hotelData)) {
+    const cityHit = [c.name, c.nameEn, c.cityCode].some((s) => String(s || '').toLowerCase().includes(q))
+    for (const h of (c.hotels || [])) {
+      if ((h.rating || 0) < 7) continue
+      const nameHit = [h.name, h.nameZh].some((s) => String(s || '').toLowerCase().includes(q))
+      if (cityHit || nameHit) {
+        results.push({
+          ...h,
+          city: c.name,
+          cityNameEn: c.nameEn,
+          cityCode: c.cityCode,
+          country: c.country,
+          countryName: COUNTRY_NAMES[c.country] || c.country,
+          cityNote: c.note,
+        })
+      }
+    }
+  }
+  return results.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+}
