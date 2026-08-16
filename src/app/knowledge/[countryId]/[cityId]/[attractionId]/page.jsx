@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { getAttractionById, getAllAttractionsFlat } from '@/lib/data'
 import attractionInfo from '@/data/attraction-info.json'
+import { ATTRACTION_DETAILS } from '@/data/attraction-details'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import { haversineKm } from '@/lib/geo'
@@ -28,6 +29,7 @@ export default function AttractionPage() {
   }
 
   const info = attractionInfo[attractionId] || {}
+  const detail = ATTRACTION_DETAILS[attractionId]
   const type = attraction.type || 'landmark'
 
   // Nearby attractions (same city first, then by distance)
@@ -73,7 +75,7 @@ export default function AttractionPage() {
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
         <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
           <ImageWithPlaceholder
-            src={null}
+            src={`/images/attractions/${attraction.id}.jpg`}
             alt={attraction.name}
             type={type}
             name={attraction.name}
@@ -99,14 +101,29 @@ export default function AttractionPage() {
               {attraction.city?.name} · {attraction.country?.name}
             </p>
 
-            {/* Description */}
-            {attraction.description && (
+            {/* 简介（富文本优先，回退到短描述） */}
+            {(detail?.intro || attraction.description) && (
               <div className="mb-6">
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  {attraction.description}
+                  {detail?.intro || attraction.description}
                 </p>
               </div>
             )}
+
+            {/* 详细章节（历史与建造故事 / 名字与特色 等） */}
+            {detail?.sections?.map((section) => (
+              <div key={section.title} className="mb-6">
+                <h2 className="font-display font-semibold text-base mb-3" style={{ color: 'var(--text-primary)' }}>
+                  {section.title}
+                </h2>
+                {section.items.map((item) => (
+                  <div key={item.h} className="mb-3">
+                    <p className="text-sm font-medium mb-1" style={{ color: 'var(--text-primary)' }}>{item.h}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{item.p}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
 
             {/* Tips */}
             {attraction.tips && (
@@ -149,16 +166,22 @@ export default function AttractionPage() {
                 实用信息
               </h3>
 
-              {info.hours && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>开放时间</p>
-                  <p style={fieldValue}>{info.hours}</p>
-                </div>
-              )}
-              {info.ticketPrice && (
+              {(detail?.visit?.ticket || info.ticketPrice) && (
                 <div className="mb-3">
                   <p style={fieldLabel}>门票</p>
-                  <p style={fieldValue}>{info.ticketPrice}</p>
+                  <p style={fieldValue}>{detail?.visit?.ticket || info.ticketPrice}</p>
+                </div>
+              )}
+              {(detail?.visit?.hours || info.hours) && (
+                <div className="mb-3">
+                  <p style={fieldLabel}>开放时间</p>
+                  <p style={fieldValue}>{detail?.visit?.hours || info.hours}</p>
+                </div>
+              )}
+              {(detail?.visit?.transport || info.transport) && (
+                <div className="mb-3">
+                  <p style={fieldLabel}>交通</p>
+                  <p style={fieldValue}>{detail?.visit?.transport || info.transport}</p>
                 </div>
               )}
               {info.bestTime && (
@@ -167,28 +190,22 @@ export default function AttractionPage() {
                   <p style={fieldValue}>{info.bestTime}</p>
                 </div>
               )}
-              {info.transport && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>交通</p>
-                  <p style={fieldValue}>{info.transport}</p>
-                </div>
-              )}
-              {info.officialUrl && (
+              {(detail?.officialUrl || info.officialUrl) && (
                 <div className="mb-3">
                   <p style={fieldLabel}>官网</p>
                   <a
-                    href={info.officialUrl}
+                    href={detail?.officialUrl || info.officialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ ...fieldValue, color: 'var(--accent)' }}
                     className="hover:underline break-all text-xs"
                   >
-                    {info.officialUrl}
+                    {detail?.officialUrl || info.officialUrl}
                   </a>
                 </div>
               )}
 
-              {!info.hours && !info.ticketPrice && !info.bestTime && !info.transport && !info.officialUrl && (
+              {!detail && !info.hours && !info.ticketPrice && !info.bestTime && !info.transport && !info.officialUrl && (
                 <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>暂无详细信息</p>
               )}
             </div>
@@ -209,7 +226,7 @@ export default function AttractionPage() {
                   className="spotlight-card rounded-xl border overflow-hidden transition-all hover:-translate-y-0.5"
                   style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                 >
-                  <ImageWithPlaceholder src={null} alt={a.name} type={a.type || 'landmark'} name={a.name} size="card" variant="attraction" />
+                  <ImageWithPlaceholder src={`/images/attractions/${a.id}.jpg`} alt={a.name} type={a.type || 'landmark'} name={a.name} size="card" variant="attraction" />
                   <div className="p-2">
                     <p className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>{a.name}</p>
                   </div>

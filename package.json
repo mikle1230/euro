@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/tests/*.test.mjs",
-    "build:data": "node scripts/build-quos-cities.js && node scripts/build-city-hints.js && node scripts/build-city-coords.js"
+    "build:data": "node scripts/build-quos-cities.js && node scripts/build-city-hints.js && node scripts/build-city-coords.js",
+    "images:check": "node scripts/normalize-images.mjs --check",
+    "images:fix": "node scripts/normalize-images.mjs --fix",
+    "images:watch": "node scripts/normalize-images.mjs --watch"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

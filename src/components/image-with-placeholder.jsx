@@ -105,18 +105,34 @@ export default function ImageWithPlaceholder({
     )
   }
 
+  // 静态导入图（country-images.js）用 next/image 优化；字符串路径（如景点图 /images/attractions/xxx.jpg）用普通 <img>
+  const isStaticImport = typeof src === 'object' && src !== null
+
   return (
     <div className={`relative overflow-hidden ${sizeClasses[size] || sizeClasses.card} bg-[var(--bg-surface)] ${className}`}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        priority={size === 'hero'}
-        className={`object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
-        onLoad={() => setImgLoaded(true)}
-        onError={() => setImgError(true)}
-      />
+      {isStaticImport ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={size === 'hero'}
+          className={`object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={alt}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoad={() => setImgLoaded(true)}
+          onError={() => setImgError(true)}
+          loading={size === 'hero' ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      )}
       {!imgLoaded && (
         <div className="absolute inset-0 animate-pulse" style={{ background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` }} />
       )}

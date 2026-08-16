@@ -82,19 +82,25 @@
               "id": "manchester-old-trafford",
               "name": "老特拉福德球场",
               "nameEn": "Old Trafford",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.4788,
+              "lng": -2.2446
             },
             {
               "id": "manchester-science-and-industry-museum",
               "name": "科学与工业博物馆",
               "nameEn": "Science and Industry Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 53.4808,
+              "lng": -2.2446
             },
             {
               "id": "manchester-manchester-town-hall",
               "name": "曼彻斯特市政厅",
               "nameEn": "Manchester Town Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.4828,
+              "lng": -2.2446
             }
           ]
         },
@@ -109,19 +115,25 @@
               "id": "liverpool-royal-albert-dock",
               "name": "皇家阿尔伯特码头",
               "nameEn": "Royal Albert Dock",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.4064,
+              "lng": -2.9936
             },
             {
               "id": "liverpool-liverpool-cathedral",
               "name": "利物浦大教堂",
               "nameEn": "Liverpool Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.4084,
+              "lng": -2.9936
             },
             {
               "id": "liverpool-the-beatles-story",
               "name": "甲壳虫乐队故事馆",
               "nameEn": "The Beatles Story",
-              "type": "museum"
+              "type": "museum",
+              "lat": 53.4104,
+              "lng": -2.9936
             }
           ]
         },
@@ -136,19 +148,25 @@
               "id": "glasgow-glasgow-cathedral",
               "name": "格拉斯哥大教堂",
               "nameEn": "Glasgow Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.8622,
+              "lng": -4.2538
             },
             {
               "id": "glasgow-kelvingrove-art-gallery-and-museum",
               "name": "凯尔文格罗夫艺术博物馆",
               "nameEn": "Kelvingrove Art Gallery and Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 55.8642,
+              "lng": -4.2538
             },
             {
               "id": "glasgow-university-of-glasgow",
               "name": "格拉斯哥大学",
               "nameEn": "University of Glasgow",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.8662,
+              "lng": -4.2538
             }
           ]
         },
@@ -163,19 +181,25 @@
               "id": "oxford-christ-church-oxford",
               "name": "基督教堂学院",
               "nameEn": "Christ Church, Oxford",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.75,
+              "lng": -1.2597
             },
             {
               "id": "oxford-bodleian-library",
               "name": "博德利图书馆",
               "nameEn": "Bodleian Library",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.752,
+              "lng": -1.2597
             },
             {
               "id": "oxford-ashmolean-museum",
               "name": "阿什莫林博物馆",
               "nameEn": "Ashmolean Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 51.754,
+              "lng": -1.2597
             }
           ]
         },
@@ -190,19 +214,25 @@
               "id": "cambridge-king-s-college-chapel",
               "name": "国王学院礼拜堂",
               "nameEn": "King's College Chapel",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.2033,
+              "lng": 0.1198
             },
             {
               "id": "cambridge-fitzwilliam-museum",
               "name": "菲茨威廉博物馆",
               "nameEn": "Fitzwilliam Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 52.2053,
+              "lng": 0.1198
             },
             {
               "id": "cambridge-mathematical-bridge",
               "name": "数学桥",
               "nameEn": "Mathematical Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.2073,
+              "lng": 0.1198
             }
           ]
         },
@@ -217,19 +247,25 @@
               "id": "bath-roman-baths",
               "name": "罗马浴场",
               "nameEn": "Roman Baths",
-              "type": "museum"
+              "type": "museum",
+              "lat": 51.3791,
+              "lng": -2.361
             },
             {
               "id": "bath-royal-crescent",
               "name": "皇家新月楼",
               "nameEn": "Royal Crescent",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.3811,
+              "lng": -2.361
             },
             {
               "id": "bath-bath-abbey",
               "name": "巴斯修道院",
               "nameEn": "Bath Abbey",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.3831,
+              "lng": -2.361
             }
           ]
         },
@@ -244,19 +280,25 @@
               "id": "york-york-minster",
               "name": "约克大教堂",
               "nameEn": "York Minster",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.957,
+              "lng": -1.0835
             },
             {
               "id": "york-york-city-walls",
               "name": "约克城墙",
               "nameEn": "York City Walls",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.959,
+              "lng": -1.0835
             },
             {
               "id": "york-jorvik-viking-centre",
               "name": "约维克维京中心",
               "nameEn": "JORVIK Viking Centre",
-              "type": "museum"
+              "type": "museum",
+              "lat": 53.961,
+              "lng": -1.0835
             }
           ]
         },
@@ -271,19 +313,25 @@
               "id": "cardiff-cardiff-castle",
               "name": "加的夫城堡",
               "nameEn": "Cardiff Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.4796,
+              "lng": -3.1811
             },
             {
               "id": "cardiff-national-museum-cardiff",
               "name": "威尔士国家博物馆",
               "nameEn": "National Museum Cardiff",
-              "type": "museum"
+              "type": "museum",
+              "lat": 51.4816,
+              "lng": -3.1811
             },
             {
               "id": "cardiff-principality-stadium",
               "name": "公国体育场",
               "nameEn": "Principality Stadium",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.4836,
+              "lng": -3.1811
             }
           ]
         },
@@ -298,19 +346,25 @@
               "id": "belfast-titanic-belfast",
               "name": "泰坦尼克号贝尔法斯特博物馆",
               "nameEn": "Titanic Belfast",
-              "type": "museum"
+              "type": "museum",
+              "lat": 54.5953,
+              "lng": -5.9321
             },
             {
               "id": "belfast-belfast-city-hall",
               "name": "贝尔法斯特市政厅",
               "nameEn": "Belfast City Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.5973,
+              "lng": -5.9321
             },
             {
               "id": "belfast-st-anne-s-cathedral",
               "name": "圣安妮大教堂",
               "nameEn": "St Anne's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.5993,
+              "lng": -5.9321
             }
           ]
         }
@@ -397,19 +451,25 @@
               "id": "lyon-basilica-of-notre-dame-de-fourvi-re",
               "name": "富维耶圣母圣殿",
               "nameEn": "Basilica of Notre-Dame de Fourvière",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.762,
+              "lng": 4.8337
             },
             {
               "id": "lyon-vieux-lyon",
               "name": "里昂老城",
               "nameEn": "Vieux Lyon",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.764,
+              "lng": 4.8337
             },
             {
               "id": "lyon-mus-e-des-beaux-arts-de-lyon",
               "name": "里昂美术博物馆",
               "nameEn": "Musée des Beaux-Arts de Lyon",
-              "type": "museum"
+              "type": "museum",
+              "lat": 45.766,
+              "lng": 4.8337
             }
           ]
         },
@@ -424,19 +484,25 @@
               "id": "marseille-vieux-port",
               "name": "马赛旧港",
               "nameEn": "Vieux-Port",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.2945,
+              "lng": 5.3678
             },
             {
               "id": "marseille-basilique-notre-dame-de-la-garde",
               "name": "圣母加德大教堂",
               "nameEn": "Basilique Notre-Dame de la Garde",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.2965,
+              "lng": 5.3678
             },
             {
               "id": "marseille-mucem",
               "name": "欧洲与地中海文明博物馆",
               "nameEn": "MuCEM",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.2985,
+              "lng": 5.3678
             }
           ]
         },
@@ -451,19 +517,25 @@
               "id": "bordeaux-place-de-la-bourse",
               "name": "交易所广场",
               "nameEn": "Place de la Bourse",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.8358,
+              "lng": -0.5812
             },
             {
               "id": "bordeaux-cath-drale-saint-andr",
               "name": "圣安德烈大教堂",
               "nameEn": "Cathédrale Saint-André",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.8378,
+              "lng": -0.5812
             },
             {
               "id": "bordeaux-la-cit-du-vin",
               "name": "波尔多葡萄酒城",
               "nameEn": "La Cité du Vin",
-              "type": "museum"
+              "type": "museum",
+              "lat": 44.8398,
+              "lng": -0.5812
             }
           ]
         },
@@ -478,19 +550,25 @@
               "id": "cannes-palais-des-festivals",
               "name": "影节宫",
               "nameEn": "Palais des Festivals",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5508,
+              "lng": 7.0154
             },
             {
               "id": "cannes-boulevard-de-la-croisette",
               "name": "克鲁瓦塞特海滨大道",
               "nameEn": "Boulevard de la Croisette",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5528,
+              "lng": 7.0154
             },
             {
               "id": "cannes-le-suquet",
               "name": "戛纳老城苏盖",
               "nameEn": "Le Suquet",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5548,
+              "lng": 7.0154
             }
           ]
         },
@@ -505,19 +583,25 @@
               "id": "avignon-palais-des-papes",
               "name": "教皇宫",
               "nameEn": "Palais des Papes",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.9473,
+              "lng": 4.8035
             },
             {
               "id": "avignon-pont-saint-b-n-zet",
               "name": "圣贝内泽桥",
               "nameEn": "Pont Saint-Bénézet",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.9493,
+              "lng": 4.8035
             },
             {
               "id": "avignon-mus-e-du-petit-palais",
               "name": "小宫博物馆",
               "nameEn": "Musée du Petit Palais",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.9513,
+              "lng": 4.8035
             }
           ]
         },
@@ -532,19 +616,25 @@
               "id": "strasbourg-strasbourg-cathedral",
               "name": "斯特拉斯堡主教座堂",
               "nameEn": "Strasbourg Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.5714,
+              "lng": 7.7501
             },
             {
               "id": "strasbourg-petite-france",
               "name": "小法兰西",
               "nameEn": "Petite France",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.5734,
+              "lng": 7.7501
             },
             {
               "id": "strasbourg-european-parliament",
               "name": "欧洲议会",
               "nameEn": "European Parliament",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.5754,
+              "lng": 7.7501
             }
           ]
         },
@@ -559,19 +649,25 @@
               "id": "lille-vieille-bourse",
               "name": "老证券交易所",
               "nameEn": "Vieille Bourse",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.6272,
+              "lng": 3.0553
             },
             {
               "id": "lille-palais-des-beaux-arts",
               "name": "里尔美术宫",
               "nameEn": "Palais des Beaux-Arts",
-              "type": "museum"
+              "type": "museum",
+              "lat": 50.6292,
+              "lng": 3.0553
             },
             {
               "id": "lille-lille-cathedral",
               "name": "里尔大教堂",
               "nameEn": "Lille Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.6312,
+              "lng": 3.0553
             }
           ]
         },
@@ -586,19 +682,25 @@
               "id": "toulouse-capitole-de-toulouse",
               "name": "市政厅广场",
               "nameEn": "Capitole de Toulouse",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.6027,
+              "lng": 1.4422
             },
             {
               "id": "toulouse-basilique-saint-sernin",
               "name": "圣塞宁圣殿",
               "nameEn": "Basilique Saint-Sernin",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.6047,
+              "lng": 1.4422
             },
             {
               "id": "toulouse-cit-de-l-espace",
               "name": "太空城",
               "nameEn": "Cité de l'espace",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.6067,
+              "lng": 1.4422
             }
           ]
         },
@@ -613,19 +715,25 @@
               "id": "nantes-ch-teau-des-ducs-de-bretagne",
               "name": "布列塔尼公爵城堡",
               "nameEn": "Château des ducs de Bretagne",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.2164,
+              "lng": -1.5556
             },
             {
               "id": "nantes-les-machines-de-l-le",
               "name": "南特机械岛",
               "nameEn": "Les Machines de l'île",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.2184,
+              "lng": -1.5556
             },
             {
               "id": "nantes-cath-drale-saint-pierre-et-saint-paul-de-nantes",
               "name": "南特主教座堂",
               "nameEn": "Cathédrale Saint-Pierre-et-Saint-Paul de Nantes",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.2204,
+              "lng": -1.5556
             }
           ]
         },
@@ -640,19 +748,25 @@
               "id": "montpellier-place-de-la-com-die",
               "name": "喜剧广场",
               "nameEn": "Place de la Comédie",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.6088,
+              "lng": 3.8747
             },
             {
               "id": "montpellier-porte-du-peyrou",
               "name": "佩鲁凯旋门",
               "nameEn": "Porte du Peyrou",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.6108,
+              "lng": 3.8747
             },
             {
               "id": "montpellier-jardin-des-plantes-de-montpellier",
               "name": "蒙彼利埃植物园",
               "nameEn": "Jardin des plantes de Montpellier",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.6128,
+              "lng": 3.8747
             }
           ]
         },
@@ -667,19 +781,25 @@
               "id": "dijon-palais-des-ducs-et-des-tats-de-bourgogne",
               "name": "勃艮第公爵宫",
               "nameEn": "Palais des Ducs et des États de Bourgogne",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.32,
+              "lng": 5.0395
             },
             {
               "id": "dijon-glise-notre-dame-de-dijon",
               "name": "第戎圣母院",
               "nameEn": "Église Notre-Dame de Dijon",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.322,
+              "lng": 5.0395
             },
             {
               "id": "dijon-mus-e-des-beaux-arts-de-dijon",
               "name": "第戎美术博物馆",
               "nameEn": "Musée des Beaux-Arts de Dijon",
-              "type": "museum"
+              "type": "museum",
+              "lat": 47.324,
+              "lng": 5.0395
             }
           ]
         },
@@ -694,19 +814,25 @@
               "id": "reims-notre-dame-de-reims",
               "name": "兰斯大教堂",
               "nameEn": "Notre-Dame de Reims",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.2563,
+              "lng": 4.0297
             },
             {
               "id": "reims-basilique-saint-remi",
               "name": "圣雷米大教堂",
               "nameEn": "Basilique Saint-Remi",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.2583,
+              "lng": 4.0297
             },
             {
               "id": "reims-palais-du-tau",
               "name": "塔乌宫",
               "nameEn": "Palais du Tau",
-              "type": "museum"
+              "type": "museum",
+              "lat": 49.2603,
+              "lng": 4.0297
             }
           ]
         },
@@ -721,19 +847,25 @@
               "id": "chamonix-mont-blanc",
               "name": "勃朗峰",
               "nameEn": "Mont Blanc",
-              "type": "nature"
+              "type": "nature",
+              "lat": 45.9217,
+              "lng": 6.8674
             },
             {
               "id": "chamonix-aiguille-du-midi",
               "name": "南针峰",
               "nameEn": "Aiguille du Midi",
-              "type": "nature"
+              "type": "nature",
+              "lat": 45.9237,
+              "lng": 6.8674
             },
             {
               "id": "chamonix-mer-de-glace",
               "name": "冰海冰川",
               "nameEn": "Mer de Glace",
-              "type": "nature"
+              "type": "nature",
+              "lat": 45.9257,
+              "lng": 6.8674
             }
           ]
         },
@@ -748,19 +880,25 @@
               "id": "colmar-petite-venise",
               "name": "小威尼斯",
               "nameEn": "Petite Venise",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.0774,
+              "lng": 7.3565
             },
             {
               "id": "colmar-mus-e-unterlinden",
               "name": "菩提树下博物馆",
               "nameEn": "Musée Unterlinden",
-              "type": "museum"
+              "type": "museum",
+              "lat": 48.0794,
+              "lng": 7.3565
             },
             {
               "id": "colmar-glise-saint-martin",
               "name": "圣马丁教堂",
               "nameEn": "Église Saint-Martin",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.0814,
+              "lng": 7.3565
             }
           ]
         },
@@ -775,19 +913,25 @@
               "id": "aix-en-provence-cours-mirabeau",
               "name": "米拉波大道",
               "nameEn": "Cours Mirabeau",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5277,
+              "lng": 5.4454
             },
             {
               "id": "aix-en-provence-cath-drale-saint-sauveur",
               "name": "圣救主主教座堂",
               "nameEn": "Cathédrale Saint-Sauveur",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5297,
+              "lng": 5.4454
             },
             {
               "id": "aix-en-provence-atelier-c-zanne",
               "name": "塞尚画室",
               "nameEn": "Atelier Cézanne",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.5317,
+              "lng": 5.4454
             }
           ]
         },
@@ -802,19 +946,25 @@
               "id": "annecy-lake-annecy",
               "name": "安纳西湖",
               "nameEn": "Lake Annecy",
-              "type": "nature"
+              "type": "nature",
+              "lat": 45.8972,
+              "lng": 6.1274
             },
             {
               "id": "annecy-vieille-ville-d-annecy",
               "name": "安纳西老城",
               "nameEn": "Vieille Ville d'Annecy",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.8992,
+              "lng": 6.1274
             },
             {
               "id": "annecy-palais-de-l-isle",
               "name": "岛屿宫",
               "nameEn": "Palais de l'Isle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.9012,
+              "lng": 6.1274
             }
           ]
         },
@@ -829,19 +979,25 @@
               "id": "valensole-valensole-lavender-fields",
               "name": "瓦朗索勒薰衣草田",
               "nameEn": "Valensole Lavender Fields",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.838,
+              "lng": 5.981
             },
             {
               "id": "valensole-plateau-de-valensole",
               "name": "瓦朗索勒高原",
               "nameEn": "Plateau de Valensole",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.84,
+              "lng": 5.981
             },
             {
               "id": "valensole-mus-e-de-la-lavande",
               "name": "薰衣草博物馆",
               "nameEn": "Musée de la Lavande",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.842,
+              "lng": 5.981
             }
           ]
         },
@@ -856,19 +1012,25 @@
               "id": "saint-tropez-citadelle-de-saint-tropez",
               "name": "圣特罗佩城堡",
               "nameEn": "Citadelle de Saint-Tropez",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.268,
+              "lng": 6.637
             },
             {
               "id": "saint-tropez-vieux-port-de-saint-tropez",
               "name": "圣特罗佩旧港",
               "nameEn": "Vieux Port de Saint-Tropez",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.27,
+              "lng": 6.637
             },
             {
               "id": "saint-tropez-plage-de-pampelonne",
               "name": "庞普洛纳海滩",
               "nameEn": "Plage de Pampelonne",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.272,
+              "lng": 6.637
             }
           ]
         }
@@ -908,17 +1070,6 @@
           "lng": 11.582,
           "attractions": [
             {
-              "id": "neuschwanstein",
-              "name": "新天鹅堡",
-              "type": "landmark",
-              "lat": 47.5576,
-              "lng": 10.7498,
-              "image": "photo-1439066290691-510176234120",
-              "description": "迪士尼城堡的原型，路德维希二世的童话城堡",
-              "tips": "距慕尼黑约2小时车程，务必提前预约门票",
-              "nameEn": "Neuschwanstein Castle"
-            },
-            {
               "id": "marienplatz",
               "name": "玛利亚广场",
               "type": "landmark",
@@ -942,19 +1093,25 @@
               "id": "frankfurt-r-merberg",
               "name": "罗马广场",
               "nameEn": "Römerberg",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.1089,
+              "lng": 8.6801
             },
             {
               "id": "frankfurt-st-del-museum",
               "name": "施泰德博物馆",
               "nameEn": "Städel Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 50.1109,
+              "lng": 8.6801
             },
             {
               "id": "frankfurt-frankfurt-cathedral",
               "name": "法兰克福大教堂",
               "nameEn": "Frankfurt Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.1129,
+              "lng": 8.6801
             }
           ]
         },
@@ -969,19 +1126,25 @@
               "id": "hamburg-elbphilharmonie",
               "name": "易北爱乐音乐厅",
               "nameEn": "Elbphilharmonie",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.5491,
+              "lng": 9.9917
             },
             {
               "id": "hamburg-speicherstadt",
               "name": "仓库城",
               "nameEn": "Speicherstadt",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.5511,
+              "lng": 9.9917
             },
             {
               "id": "hamburg-miniatur-wunderland",
               "name": "微缩景观世界",
               "nameEn": "Miniatur Wunderland",
-              "type": "museum"
+              "type": "museum",
+              "lat": 53.5531,
+              "lng": 9.9917
             }
           ]
         },
@@ -996,19 +1159,25 @@
               "id": "cologne-cologne-cathedral",
               "name": "科隆大教堂",
               "nameEn": "Cologne Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.9355,
+              "lng": 6.9583
             },
             {
               "id": "cologne-museum-ludwig",
               "name": "路德维希博物馆",
               "nameEn": "Museum Ludwig",
-              "type": "museum"
+              "type": "museum",
+              "lat": 50.9375,
+              "lng": 6.9583
             },
             {
               "id": "cologne-hohenzollern-bridge",
               "name": "霍亨索伦桥",
               "nameEn": "Hohenzollern Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.9395,
+              "lng": 6.9583
             }
           ]
         },
@@ -1023,19 +1192,25 @@
               "id": "dresden-frauenkirche",
               "name": "圣母教堂",
               "nameEn": "Frauenkirche",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.0484,
+              "lng": 13.7353
             },
             {
               "id": "dresden-zwinger",
               "name": "茨温格宫",
               "nameEn": "Zwinger",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.0504,
+              "lng": 13.7353
             },
             {
               "id": "dresden-semperoper",
               "name": "森帕歌剧院",
               "nameEn": "Semperoper",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.0524,
+              "lng": 13.7353
             }
           ]
         },
@@ -1050,19 +1225,25 @@
               "id": "heidelberg-heidelberg-castle",
               "name": "海德堡城堡",
               "nameEn": "Heidelberg Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.3968,
+              "lng": 8.6704
             },
             {
               "id": "heidelberg-old-bridge",
               "name": "老桥",
               "nameEn": "Old Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.3988,
+              "lng": 8.6704
             },
             {
               "id": "heidelberg-church-of-the-holy-spirit",
               "name": "圣灵大教堂",
               "nameEn": "Church of the Holy Spirit",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.4008,
+              "lng": 8.6704
             }
           ]
         },
@@ -1077,19 +1258,25 @@
               "id": "stuttgart-mercedes-benz-museum",
               "name": "梅赛德斯-奔驰博物馆",
               "nameEn": "Mercedes-Benz Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 48.7738,
+              "lng": 9.1809
             },
             {
               "id": "stuttgart-porsche-museum",
               "name": "保时捷博物馆",
               "nameEn": "Porsche Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 48.7758,
+              "lng": 9.1809
             },
             {
               "id": "stuttgart-new-palace",
               "name": "新王宫",
               "nameEn": "New Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.7778,
+              "lng": 9.1809
             }
           ]
         },
@@ -1104,19 +1291,25 @@
               "id": "nuremberg-nuremberg-castle",
               "name": "皇帝堡",
               "nameEn": "Nuremberg Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.4501,
+              "lng": 11.0747
             },
             {
               "id": "nuremberg-documentation-center-nazi-party-rally-grounds",
               "name": "纳粹党代会文献中心",
               "nameEn": "Documentation Center Nazi Party Rally Grounds",
-              "type": "museum"
+              "type": "museum",
+              "lat": 49.4521,
+              "lng": 11.0747
             },
             {
               "id": "nuremberg-albrecht-d-rer-s-house",
               "name": "丢勒故居",
               "nameEn": "Albrecht Dürer's House",
-              "type": "museum"
+              "type": "museum",
+              "lat": 49.4541,
+              "lng": 11.0747
             }
           ]
         },
@@ -1131,19 +1324,25 @@
               "id": "leipzig-st-thomas-church",
               "name": "圣托马斯教堂",
               "nameEn": "St. Thomas Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.3377,
+              "lng": 12.3711
             },
             {
               "id": "leipzig-monument-to-the-battle-of-the-nations",
               "name": "民族大会战纪念碑",
               "nameEn": "Monument to the Battle of the Nations",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.3397,
+              "lng": 12.3711
             },
             {
               "id": "leipzig-gewandhaus",
               "name": "布商大厦",
               "nameEn": "Gewandhaus",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.3417,
+              "lng": 12.3711
             }
           ]
         },
@@ -1158,19 +1357,25 @@
               "id": "bremen-town-musicians-of-bremen",
               "name": "城市乐手雕像",
               "nameEn": "Town Musicians of Bremen",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.0773,
+              "lng": 8.7997
             },
             {
               "id": "bremen-bremen-town-hall",
               "name": "不来梅市政厅",
               "nameEn": "Bremen Town Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.0793,
+              "lng": 8.7997
             },
             {
               "id": "bremen-b-ttcherstra-e",
               "name": "箍桶匠街",
               "nameEn": "Böttcherstraße",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.0813,
+              "lng": 8.7997
             }
           ]
         },
@@ -1185,19 +1390,25 @@
               "id": "potsdam-sanssouci-palace",
               "name": "无忧宫",
               "nameEn": "Sanssouci Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.3886,
+              "lng": 13.0625
             },
             {
               "id": "potsdam-new-palace",
               "name": "新宫",
               "nameEn": "New Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.3906,
+              "lng": 13.0625
             },
             {
               "id": "potsdam-cecilienhof-palace",
               "name": "塞琪琳霍夫宫",
               "nameEn": "Cecilienhof Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.3926,
+              "lng": 13.0625
             }
           ]
         },
@@ -1212,19 +1423,25 @@
               "id": "fussen-neuschwanstein-castle",
               "name": "新天鹅堡",
               "nameEn": "Neuschwanstein Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.5676,
+              "lng": 10.6984
             },
             {
               "id": "fussen-hohenschwangau-castle",
               "name": "高天鹅堡",
               "nameEn": "Hohenschwangau Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.5696,
+              "lng": 10.6984
             },
             {
               "id": "fussen-lake-forggensee",
               "name": "福尔根湖",
               "nameEn": "Lake Forggensee",
-              "type": "nature"
+              "type": "nature",
+              "lat": 47.5716,
+              "lng": 10.6984
             }
           ]
         },
@@ -1239,19 +1456,25 @@
               "id": "baden-baden-kurhaus",
               "name": "温泉宫",
               "nameEn": "Kurhaus",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.7586,
+              "lng": 8.2378
             },
             {
               "id": "baden-baden-friedrichsbad",
               "name": "腓特烈浴场",
               "nameEn": "Friedrichsbad",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.7606,
+              "lng": 8.2378
             },
             {
               "id": "baden-baden-lichtentaler-allee",
               "name": "利希滕塔尔林荫道",
               "nameEn": "Lichtentaler Allee",
-              "type": "nature"
+              "type": "nature",
+              "lat": 48.7626,
+              "lng": 8.2378
             }
           ]
         },
@@ -1266,19 +1489,25 @@
               "id": "rothenburg-ob-der-tauber-pl-nlein",
               "name": "步云莱",
               "nameEn": "Plönlein",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.3752,
+              "lng": 10.1769
             },
             {
               "id": "rothenburg-ob-der-tauber-st-james-s-church",
               "name": "圣雅各教堂",
               "nameEn": "St. James's Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.3772,
+              "lng": 10.1769
             },
             {
               "id": "rothenburg-ob-der-tauber-rothenburg-town-hall",
               "name": "罗滕堡市政厅",
               "nameEn": "Rothenburg Town Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.3792,
+              "lng": 10.1769
             }
           ]
         }
@@ -1396,19 +1625,25 @@
               "id": "milan-milan-cathedral",
               "name": "米兰大教堂",
               "nameEn": "Milan Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4622,
+              "lng": 9.188
             },
             {
               "id": "milan-galleria-vittorio-emanuele-ii",
               "name": "埃马努埃莱二世拱廊",
               "nameEn": "Galleria Vittorio Emanuele II",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4642,
+              "lng": 9.188
             },
             {
               "id": "milan-sforza-castle",
               "name": "斯福尔扎城堡",
               "nameEn": "Sforza Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4662,
+              "lng": 9.188
             }
           ]
         },
@@ -1423,19 +1658,25 @@
               "id": "naples-national-archaeological-museum",
               "name": "那不勒斯国家考古博物馆",
               "nameEn": "National Archaeological Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 40.8498,
+              "lng": 14.2661
             },
             {
               "id": "naples-castel-dell-ovo",
               "name": "蛋堡",
               "nameEn": "Castel dell'Ovo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.8518,
+              "lng": 14.2661
             },
             {
               "id": "naples-mount-vesuvius",
               "name": "维苏威火山",
               "nameEn": "Mount Vesuvius",
-              "type": "nature"
+              "type": "nature",
+              "lat": 40.8538,
+              "lng": 14.2661
             }
           ]
         },
@@ -1450,19 +1691,25 @@
               "id": "turin-egyptian-museum",
               "name": "埃及博物馆",
               "nameEn": "Egyptian Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 45.0683,
+              "lng": 7.6849
             },
             {
               "id": "turin-mole-antonelliana",
               "name": "安托内利尖塔",
               "nameEn": "Mole Antonelliana",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.0703,
+              "lng": 7.6849
             },
             {
               "id": "turin-royal-palace-of-turin",
               "name": "都灵王宫",
               "nameEn": "Royal Palace of Turin",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.0723,
+              "lng": 7.6849
             }
           ]
         },
@@ -1477,19 +1724,25 @@
               "id": "bologna-two-towers",
               "name": "双塔",
               "nameEn": "Two Towers",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4929,
+              "lng": 11.3406
             },
             {
               "id": "bologna-basilica-di-san-petronio",
               "name": "圣白托略大殿",
               "nameEn": "Basilica di San Petronio",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4949,
+              "lng": 11.3406
             },
             {
               "id": "bologna-piazza-maggiore",
               "name": "马焦雷广场",
               "nameEn": "Piazza Maggiore",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4969,
+              "lng": 11.3406
             }
           ]
         },
@@ -1504,19 +1757,25 @@
               "id": "verona-arena-di-verona",
               "name": "维罗纳圆形竞技场",
               "nameEn": "Arena di Verona",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4364,
+              "lng": 10.9896
             },
             {
               "id": "verona-juliet-s-house",
               "name": "朱丽叶之家",
               "nameEn": "Juliet's House",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4384,
+              "lng": 10.9896
             },
             {
               "id": "verona-castelvecchio",
               "name": "老城堡",
               "nameEn": "Castelvecchio",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4404,
+              "lng": 10.9896
             }
           ]
         },
@@ -1531,19 +1790,25 @@
               "id": "genoa-aquarium-of-genoa",
               "name": "热那亚水族馆",
               "nameEn": "Aquarium of Genoa",
-              "type": "museum"
+              "type": "museum",
+              "lat": 44.4036,
+              "lng": 8.9443
             },
             {
               "id": "genoa-genoa-cathedral",
               "name": "圣洛伦佐大教堂",
               "nameEn": "Genoa Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4056,
+              "lng": 8.9443
             },
             {
               "id": "genoa-piazza-de-ferrari",
               "name": "法拉利广场",
               "nameEn": "Piazza De Ferrari",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4076,
+              "lng": 8.9443
             }
           ]
         },
@@ -1558,19 +1823,25 @@
               "id": "pisa-leaning-tower-of-pisa",
               "name": "比萨斜塔",
               "nameEn": "Leaning Tower of Pisa",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.7208,
+              "lng": 10.3997
             },
             {
               "id": "pisa-pisa-cathedral",
               "name": "比萨大教堂",
               "nameEn": "Pisa Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.7228,
+              "lng": 10.3997
             },
             {
               "id": "pisa-piazza-dei-miracoli",
               "name": "奇迹广场",
               "nameEn": "Piazza dei Miracoli",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.7248,
+              "lng": 10.3997
             }
           ]
         },
@@ -1585,19 +1856,25 @@
               "id": "siena-piazza-del-campo",
               "name": "田野广场",
               "nameEn": "Piazza del Campo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.3166,
+              "lng": 11.3286
             },
             {
               "id": "siena-siena-cathedral",
               "name": "锡耶纳大教堂",
               "nameEn": "Siena Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.3186,
+              "lng": 11.3286
             },
             {
               "id": "siena-palazzo-pubblico",
               "name": "锡耶纳市政厅",
               "nameEn": "Palazzo Pubblico",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.3206,
+              "lng": 11.3286
             }
           ]
         },
@@ -1612,19 +1889,25 @@
               "id": "sorrento-piazza-tasso",
               "name": "塔索广场",
               "nameEn": "Piazza Tasso",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.6243,
+              "lng": 14.3738
             },
             {
               "id": "sorrento-marina-grande",
               "name": "大港口",
               "nameEn": "Marina Grande",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.6263,
+              "lng": 14.3738
             },
             {
               "id": "sorrento-cloister-of-san-francesco",
               "name": "圣弗朗西斯科修道院",
               "nameEn": "Cloister of San Francesco",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.6283,
+              "lng": 14.3738
             }
           ]
         },
@@ -1639,19 +1922,25 @@
               "id": "palermo-palermo-cathedral",
               "name": "巴勒莫大教堂",
               "nameEn": "Palermo Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.1137,
+              "lng": 13.3595
             },
             {
               "id": "palermo-royal-palace-of-palermo",
               "name": "诺曼王宫",
               "nameEn": "Royal Palace of Palermo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.1157,
+              "lng": 13.3595
             },
             {
               "id": "palermo-teatro-massimo",
               "name": "马西莫剧院",
               "nameEn": "Teatro Massimo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.1177,
+              "lng": 13.3595
             }
           ]
         },
@@ -1666,19 +1955,25 @@
               "id": "bari-basilica-di-san-nicola",
               "name": "圣尼古拉大教堂",
               "nameEn": "Basilica di San Nicola",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 41.1151,
+              "lng": 16.8699
             },
             {
               "id": "bari-bari-cathedral",
               "name": "巴里大教堂",
               "nameEn": "Bari Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 41.1171,
+              "lng": 16.8699
             },
             {
               "id": "bari-castello-normanno-svevo",
               "name": "斯瓦比亚城堡",
               "nameEn": "Castello Normanno-Svevo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 41.1191,
+              "lng": 16.8699
             }
           ]
         },
@@ -1693,19 +1988,25 @@
               "id": "perugia-piazza-iv-novembre",
               "name": "十一月四日广场",
               "nameEn": "Piazza IV Novembre",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.1087,
+              "lng": 12.3888
             },
             {
               "id": "perugia-perugia-cathedral",
               "name": "佩鲁贾大教堂",
               "nameEn": "Perugia Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.1107,
+              "lng": 12.3888
             },
             {
               "id": "perugia-galleria-nazionale-dell-umbria",
               "name": "翁布里亚国家美术馆",
               "nameEn": "Galleria Nazionale dell'Umbria",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.1127,
+              "lng": 12.3888
             }
           ]
         },
@@ -1720,19 +2021,25 @@
               "id": "como-lake-como",
               "name": "科莫湖",
               "nameEn": "Lake Como",
-              "type": "nature"
+              "type": "nature",
+              "lat": 45.806,
+              "lng": 9.0832
             },
             {
               "id": "como-como-cathedral",
               "name": "科莫大教堂",
               "nameEn": "Como Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.808,
+              "lng": 9.0832
             },
             {
               "id": "como-volta-temple",
               "name": "伏特神庙",
               "nameEn": "Volta Temple",
-              "type": "museum"
+              "type": "museum",
+              "lat": 45.81,
+              "lng": 9.0832
             }
           ]
         },
@@ -1747,19 +2054,25 @@
               "id": "lucca-lucca-city-walls",
               "name": "卢卡城墙",
               "nameEn": "Lucca City Walls",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.8356,
+              "lng": 10.4931
             },
             {
               "id": "lucca-torre-guinigi",
               "name": "圭尼吉塔",
               "nameEn": "Torre Guinigi",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.8376,
+              "lng": 10.4931
             },
             {
               "id": "lucca-san-michele-in-foro",
               "name": "圣米迦勒教堂",
               "nameEn": "San Michele in Foro",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.8396,
+              "lng": 10.4931
             }
           ]
         },
@@ -1774,19 +2087,25 @@
               "id": "ravenna-basilica-of-san-vitale",
               "name": "圣维塔莱大教堂",
               "nameEn": "Basilica of San Vitale",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4164,
+              "lng": 12.2015
             },
             {
               "id": "ravenna-mausoleum-of-galla-placidia",
               "name": "加拉·普拉西迪亚陵墓",
               "nameEn": "Mausoleum of Galla Placidia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4184,
+              "lng": 12.2015
             },
             {
               "id": "ravenna-basilica-of-sant-apollinare-nuovo",
               "name": "新圣阿波利纳雷教堂",
               "nameEn": "Basilica of Sant'Apollinare Nuovo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4204,
+              "lng": 12.2015
             }
           ]
         },
@@ -1801,19 +2120,25 @@
               "id": "trieste-piazza-unit-d-italia",
               "name": "意大利统一广场",
               "nameEn": "Piazza Unità d'Italia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.6475,
+              "lng": 13.7748
             },
             {
               "id": "trieste-miramare-castle",
               "name": "米拉马雷城堡",
               "nameEn": "Miramare Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.6495,
+              "lng": 13.7748
             },
             {
               "id": "trieste-trieste-cathedral",
               "name": "圣朱斯托大教堂",
               "nameEn": "Trieste Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.6515,
+              "lng": 13.7748
             }
           ]
         },
@@ -1828,19 +2153,25 @@
               "id": "padova-basilica-of-saint-anthony",
               "name": "圣安东尼奥大殿",
               "nameEn": "Basilica of Saint Anthony",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.4044,
+              "lng": 11.8748
             },
             {
               "id": "padova-scrovegni-chapel",
               "name": "斯克罗维尼礼拜堂",
               "nameEn": "Scrovegni Chapel",
-              "type": "museum"
+              "type": "museum",
+              "lat": 45.4064,
+              "lng": 11.8748
             },
             {
               "id": "padova-padua-botanical-garden",
               "name": "帕多瓦植物园",
               "nameEn": "Padua Botanical Garden",
-              "type": "nature"
+              "type": "nature",
+              "lat": 45.4084,
+              "lng": 11.8748
             }
           ]
         },
@@ -1855,19 +2186,25 @@
               "id": "civitavecchia-forte-michelangelo",
               "name": "米开朗基罗要塞",
               "nameEn": "Forte Michelangelo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.0902,
+              "lng": 11.7904
             },
             {
               "id": "civitavecchia-civitavecchia-cathedral",
               "name": "奇维塔维基亚大教堂",
               "nameEn": "Civitavecchia Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.0922,
+              "lng": 11.7904
             },
             {
               "id": "civitavecchia-port-of-civitavecchia",
               "name": "奇维塔维基亚港",
               "nameEn": "Port of Civitavecchia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.0942,
+              "lng": 11.7904
             }
           ]
         },
@@ -1882,19 +2219,25 @@
               "id": "alberobello-rione-monti",
               "name": "蒙蒂特鲁利区",
               "nameEn": "Rione Monti",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.7841,
+              "lng": 17.235
             },
             {
               "id": "alberobello-church-of-saint-anthony",
               "name": "圣安东尼奥教堂",
               "nameEn": "Church of Saint Anthony",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.7861,
+              "lng": 17.235
             },
             {
               "id": "alberobello-trullo-sovrano",
               "name": "大王特鲁利",
               "nameEn": "Trullo Sovrano",
-              "type": "museum"
+              "type": "museum",
+              "lat": 40.7881,
+              "lng": 17.235
             }
           ]
         },
@@ -1909,19 +2252,25 @@
               "id": "agrigento-valley-of-the-temples",
               "name": "神庙谷",
               "nameEn": "Valley of the Temples",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.3091,
+              "lng": 13.5745
             },
             {
               "id": "agrigento-temple-of-concordia",
               "name": "协和神庙",
               "nameEn": "Temple of Concordia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.3111,
+              "lng": 13.5745
             },
             {
               "id": "agrigento-scala-dei-turchi",
               "name": "土耳其阶梯",
               "nameEn": "Scala dei Turchi",
-              "type": "nature"
+              "type": "nature",
+              "lat": 37.3131,
+              "lng": 13.5745
             }
           ]
         },
@@ -1936,19 +2285,25 @@
               "id": "siracusa-ortigia-island",
               "name": "奥提伽岛",
               "nameEn": "Ortigia Island",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.0735,
+              "lng": 15.2846
             },
             {
               "id": "siracusa-neapolis-archaeological-park",
               "name": "尼亚波利考古公园",
               "nameEn": "Neapolis Archaeological Park",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.0755,
+              "lng": 15.2846
             },
             {
               "id": "siracusa-syracuse-cathedral",
               "name": "锡拉库萨大教堂",
               "nameEn": "Syracuse Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.0775,
+              "lng": 15.2846
             }
           ]
         },
@@ -1963,19 +2318,25 @@
               "id": "taormina-ancient-theatre-of-taormina",
               "name": "古希腊剧场",
               "nameEn": "Ancient Theatre of Taormina",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.85,
+              "lng": 15.286
             },
             {
               "id": "taormina-piazza-ix-aprile",
               "name": "四月九日广场",
               "nameEn": "Piazza IX Aprile",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.852,
+              "lng": 15.286
             },
             {
               "id": "taormina-isola-bella",
               "name": "贝拉岛",
               "nameEn": "Isola Bella",
-              "type": "nature"
+              "type": "nature",
+              "lat": 37.854,
+              "lng": 15.286
             }
           ]
         }
@@ -2083,19 +2444,25 @@
               "id": "seville-seville-cathedral",
               "name": "塞维利亚大教堂",
               "nameEn": "Seville Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.3871,
+              "lng": -5.9865
             },
             {
               "id": "seville-real-alc-zar-of-seville",
               "name": "塞维利亚王宫",
               "nameEn": "Real Alcázar of Seville",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.3891,
+              "lng": -5.9865
             },
             {
               "id": "seville-plaza-de-espa-a",
               "name": "西班牙广场",
               "nameEn": "Plaza de España",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.3911,
+              "lng": -5.9865
             }
           ]
         },
@@ -2110,19 +2477,25 @@
               "id": "valencia-city-of-arts-and-sciences",
               "name": "艺术科学城",
               "nameEn": "City of Arts and Sciences",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.4679,
+              "lng": -0.3783
             },
             {
               "id": "valencia-valencia-cathedral",
               "name": "瓦伦西亚大教堂",
               "nameEn": "Valencia Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.4699,
+              "lng": -0.3783
             },
             {
               "id": "valencia-la-lonja-de-la-seda",
               "name": "丝绸交易所",
               "nameEn": "La Lonja de la Seda",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.4719,
+              "lng": -0.3783
             }
           ]
         },
@@ -2137,19 +2510,25 @@
               "id": "bilbao-guggenheim-museum-bilbao",
               "name": "古根海姆博物馆",
               "nameEn": "Guggenheim Museum Bilbao",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.261,
+              "lng": -2.937
             },
             {
               "id": "bilbao-casco-viejo",
               "name": "毕尔巴鄂老城",
               "nameEn": "Casco Viejo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.263,
+              "lng": -2.937
             },
             {
               "id": "bilbao-zubizuri-bridge",
               "name": "苏比苏里桥",
               "nameEn": "Zubizuri Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.265,
+              "lng": -2.937
             }
           ]
         },
@@ -2164,19 +2543,25 @@
               "id": "malaga-alcazaba-of-m-laga",
               "name": "阿尔卡萨瓦城堡",
               "nameEn": "Alcazaba of Málaga",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 36.7193,
+              "lng": -4.4234
             },
             {
               "id": "malaga-m-laga-cathedral",
               "name": "马拉加大教堂",
               "nameEn": "Málaga Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 36.7213,
+              "lng": -4.4234
             },
             {
               "id": "malaga-picasso-museum-m-laga",
               "name": "毕加索博物馆",
               "nameEn": "Picasso Museum Málaga",
-              "type": "museum"
+              "type": "museum",
+              "lat": 36.7233,
+              "lng": -4.4234
             }
           ]
         },
@@ -2191,19 +2576,25 @@
               "id": "cordoba-mosque-cathedral-of-c-rdoba",
               "name": "科尔多瓦清真寺-大教堂",
               "nameEn": "Mosque-Cathedral of Córdoba",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.8862,
+              "lng": -4.7814
             },
             {
               "id": "cordoba-roman-bridge-of-c-rdoba",
               "name": "罗马桥",
               "nameEn": "Roman Bridge of Córdoba",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.8882,
+              "lng": -4.7814
             },
             {
               "id": "cordoba-alc-zar-de-los-reyes-cristianos",
               "name": "科尔多瓦王宫",
               "nameEn": "Alcázar de los Reyes Cristianos",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.8902,
+              "lng": -4.7814
             }
           ]
         },
@@ -2218,19 +2609,25 @@
               "id": "toledo-toledo-cathedral",
               "name": "托莱多大教堂",
               "nameEn": "Toledo Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.8608,
+              "lng": -4.0293
             },
             {
               "id": "toledo-alc-zar-of-toledo",
               "name": "托莱多城堡",
               "nameEn": "Alcázar of Toledo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.8628,
+              "lng": -4.0293
             },
             {
               "id": "toledo-church-of-santo-tom",
               "name": "圣托梅教堂",
               "nameEn": "Church of Santo Tomé",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.8648,
+              "lng": -4.0293
             }
           ]
         },
@@ -2245,19 +2642,25 @@
               "id": "segovia-aqueduct-of-segovia",
               "name": "罗马高架引水渠",
               "nameEn": "Aqueduct of Segovia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.9409,
+              "lng": -4.1108
             },
             {
               "id": "segovia-alc-zar-of-segovia",
               "name": "塞哥维亚城堡",
               "nameEn": "Alcázar of Segovia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.9429,
+              "lng": -4.1108
             },
             {
               "id": "segovia-segovia-cathedral",
               "name": "塞哥维亚大教堂",
               "nameEn": "Segovia Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.9449,
+              "lng": -4.1108
             }
           ]
         },
@@ -2272,19 +2675,25 @@
               "id": "zaragoza-basilica-of-our-lady-of-the-pillar",
               "name": "皮拉尔圣母圣殿",
               "nameEn": "Basilica of Our Lady of the Pillar",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 41.6468,
+              "lng": -0.8911
             },
             {
               "id": "zaragoza-aljafer-a-palace",
               "name": "阿尔哈费里亚宫",
               "nameEn": "Aljafería Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 41.6488,
+              "lng": -0.8911
             },
             {
               "id": "zaragoza-la-seo-cathedral",
               "name": "圣萨尔瓦多大教堂",
               "nameEn": "La Seo Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 41.6508,
+              "lng": -0.8911
             }
           ]
         },
@@ -2299,19 +2708,25 @@
               "id": "salamanca-plaza-mayor-de-salamanca",
               "name": "马约尔广场",
               "nameEn": "Plaza Mayor de Salamanca",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.9681,
+              "lng": -5.6655
             },
             {
               "id": "salamanca-university-of-salamanca",
               "name": "萨拉曼卡大学",
               "nameEn": "University of Salamanca",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.9701,
+              "lng": -5.6655
             },
             {
               "id": "salamanca-salamanca-cathedral",
               "name": "萨拉曼卡大教堂",
               "nameEn": "Salamanca Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.9721,
+              "lng": -5.6655
             }
           ]
         },
@@ -2326,19 +2741,25 @@
               "id": "san-sebastian-la-concha-beach",
               "name": "贝壳海滩",
               "nameEn": "La Concha Beach",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.3163,
+              "lng": -1.9832
             },
             {
               "id": "san-sebastian-parte-vieja",
               "name": "圣塞巴斯蒂安老城",
               "nameEn": "Parte Vieja",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.3183,
+              "lng": -1.9832
             },
             {
               "id": "san-sebastian-peine-del-viento",
               "name": "风之梳",
               "nameEn": "Peine del Viento",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.3203,
+              "lng": -1.9832
             }
           ]
         },
@@ -2353,19 +2774,25 @@
               "id": "santiago-de-compostela-santiago-de-compostela-cathedral",
               "name": "圣地亚哥大教堂",
               "nameEn": "Santiago de Compostela Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.8762,
+              "lng": -8.5468
             },
             {
               "id": "santiago-de-compostela-praza-do-obradoiro",
               "name": "奥布拉多伊罗广场",
               "nameEn": "Praza do Obradoiro",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.8782,
+              "lng": -8.5468
             },
             {
               "id": "santiago-de-compostela-old-town-of-santiago-de-compostela",
               "name": "圣地亚哥老城",
               "nameEn": "Old Town of Santiago de Compostela",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.8802,
+              "lng": -8.5468
             }
           ]
         },
@@ -2380,19 +2807,25 @@
               "id": "ibiza-dalt-vila",
               "name": "达尔特维拉老城",
               "nameEn": "Dalt Vila",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.9047,
+              "lng": 1.4186
             },
             {
               "id": "ibiza-ses-salines-beach",
               "name": "萨利纳斯海滩",
               "nameEn": "Ses Salines Beach",
-              "type": "nature"
+              "type": "nature",
+              "lat": 38.9067,
+              "lng": 1.4186
             },
             {
               "id": "ibiza-cathedral-of-santa-maria-d-eivissa",
               "name": "伊维萨大教堂",
               "nameEn": "Cathedral of Santa Maria d'Eivissa",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.9087,
+              "lng": 1.4186
             }
           ]
         },
@@ -2407,19 +2840,25 @@
               "id": "palma-de-mallorca-palma-cathedral",
               "name": "帕尔马大教堂",
               "nameEn": "Palma Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.5676,
+              "lng": 2.6482
             },
             {
               "id": "palma-de-mallorca-royal-palace-of-la-almudaina",
               "name": "阿尔穆戴纳王宫",
               "nameEn": "Royal Palace of La Almudaina",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.5696,
+              "lng": 2.6482
             },
             {
               "id": "palma-de-mallorca-bellver-castle",
               "name": "贝尔维尔城堡",
               "nameEn": "Bellver Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.5716,
+              "lng": 2.6482
             }
           ]
         }
@@ -2494,19 +2933,25 @@
               "id": "sintra-pena-palace",
               "name": "佩纳宫",
               "nameEn": "Pena Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.8009,
+              "lng": -9.3837
             },
             {
               "id": "sintra-castle-of-the-moors",
               "name": "摩尔人城堡",
               "nameEn": "Castle of the Moors",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.8029,
+              "lng": -9.3837
             },
             {
               "id": "sintra-quinta-da-regaleira",
               "name": "雷加莱拉庄园",
               "nameEn": "Quinta da Regaleira",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.8049,
+              "lng": -9.3837
             }
           ]
         },
@@ -2521,19 +2966,25 @@
               "id": "faro-faro-old-town",
               "name": "法鲁老城",
               "nameEn": "Faro Old Town",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.0174,
+              "lng": -7.9342
             },
             {
               "id": "faro-faro-cathedral",
               "name": "法鲁大教堂",
               "nameEn": "Faro Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.0194,
+              "lng": -7.9342
             },
             {
               "id": "faro-igreja-do-carmo",
               "name": "卡尔莫教堂",
               "nameEn": "Igreja do Carmo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.0214,
+              "lng": -7.9342
             }
           ]
         },
@@ -2548,19 +2999,25 @@
               "id": "coimbra-university-of-coimbra",
               "name": "科英布拉大学",
               "nameEn": "University of Coimbra",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.2013,
+              "lng": -8.4123
             },
             {
               "id": "coimbra-joanina-library",
               "name": "若昂尼纳图书馆",
               "nameEn": "Joanina Library",
-              "type": "museum"
+              "type": "museum",
+              "lat": 40.2033,
+              "lng": -8.4123
             },
             {
               "id": "coimbra-s-velha-de-coimbra",
               "name": "科英布拉老教堂",
               "nameEn": "Sé Velha de Coimbra",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.2053,
+              "lng": -8.4123
             }
           ]
         },
@@ -2575,19 +3032,25 @@
               "id": "evora-chapel-of-bones",
               "name": "人骨教堂",
               "nameEn": "Chapel of Bones",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.569,
+              "lng": -7.9116
             },
             {
               "id": "evora-temple-of-diana",
               "name": "埃武拉罗马神庙",
               "nameEn": "Temple of Diana",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.571,
+              "lng": -7.9116
             },
             {
               "id": "evora-vora-cathedral",
               "name": "埃武拉大教堂",
               "nameEn": "Évora Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.573,
+              "lng": -7.9116
             }
           ]
         }
@@ -2653,19 +3116,25 @@
               "id": "rotterdam-cube-houses",
               "name": "方块屋",
               "nameEn": "Cube Houses",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.9224,
+              "lng": 4.4757
             },
             {
               "id": "rotterdam-erasmus-bridge",
               "name": "伊拉斯谟桥",
               "nameEn": "Erasmus Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.9244,
+              "lng": 4.4757
             },
             {
               "id": "rotterdam-euromast",
               "name": "欧洲之桅",
               "nameEn": "Euromast",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.9264,
+              "lng": 4.4757
             }
           ]
         },
@@ -2680,19 +3149,25 @@
               "id": "the-hague-mauritshuis",
               "name": "莫瑞泰斯皇家美术馆",
               "nameEn": "Mauritshuis",
-              "type": "museum"
+              "type": "museum",
+              "lat": 52.0685,
+              "lng": 4.2987
             },
             {
               "id": "the-hague-peace-palace",
               "name": "和平宫",
               "nameEn": "Peace Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.0705,
+              "lng": 4.2987
             },
             {
               "id": "the-hague-scheveningen-beach",
               "name": "席凡宁根海滩",
               "nameEn": "Scheveningen Beach",
-              "type": "nature"
+              "type": "nature",
+              "lat": 52.0725,
+              "lng": 4.2987
             }
           ]
         },
@@ -2707,19 +3182,25 @@
               "id": "utrecht-dom-tower",
               "name": "多姆塔",
               "nameEn": "Dom Tower",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.0887,
+              "lng": 5.1194
             },
             {
               "id": "utrecht-de-haar-castle",
               "name": "德哈尔城堡",
               "nameEn": "De Haar Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.0907,
+              "lng": 5.1194
             },
             {
               "id": "utrecht-rietveld-schr-der-house",
               "name": "施罗德住宅",
               "nameEn": "Rietveld Schröder House",
-              "type": "museum"
+              "type": "museum",
+              "lat": 52.0927,
+              "lng": 5.1194
             }
           ]
         },
@@ -2734,19 +3215,25 @@
               "id": "maastricht-basilica-of-saint-servatius",
               "name": "圣瑟法斯圣殿",
               "nameEn": "Basilica of Saint Servatius",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.8494,
+              "lng": 5.689
             },
             {
               "id": "maastricht-vrijthof",
               "name": "弗莱特霍夫广场",
               "nameEn": "Vrijthof",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.8514,
+              "lng": 5.689
             },
             {
               "id": "maastricht-bonnefanten-museum",
               "name": "博尼范登美术馆",
               "nameEn": "Bonnefanten Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 50.8534,
+              "lng": 5.689
             }
           ]
         },
@@ -2761,19 +3248,25 @@
               "id": "giethoorn-giethoorn-canals",
               "name": "羊角村运河",
               "nameEn": "Giethoorn Canals",
-              "type": "nature"
+              "type": "nature",
+              "lat": 52.7382,
+              "lng": 6.0758
             },
             {
               "id": "giethoorn-museum-t-olde-maat-uus",
               "name": "老农场博物馆",
               "nameEn": "Museum 't Olde Maat Uus",
-              "type": "museum"
+              "type": "museum",
+              "lat": 52.7402,
+              "lng": 6.0758
             },
             {
               "id": "giethoorn-bovenwijde-lake",
               "name": "博芬韦德湖",
               "nameEn": "Bovenwijde Lake",
-              "type": "nature"
+              "type": "nature",
+              "lat": 52.7422,
+              "lng": 6.0758
             }
           ]
         }
@@ -2836,19 +3329,25 @@
               "id": "antwerp-cathedral-of-our-lady",
               "name": "安特卫普大教堂",
               "nameEn": "Cathedral of Our Lady",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.2174,
+              "lng": 4.4005
             },
             {
               "id": "antwerp-antwerp-central-station",
               "name": "安特卫普中央车站",
               "nameEn": "Antwerp Central Station",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.2194,
+              "lng": 4.4005
             },
             {
               "id": "antwerp-rubens-house",
               "name": "鲁本斯之家",
               "nameEn": "Rubens House",
-              "type": "museum"
+              "type": "museum",
+              "lat": 51.2214,
+              "lng": 4.4005
             }
           ]
         },
@@ -2863,19 +3362,25 @@
               "id": "ghent-saint-bavo-s-cathedral",
               "name": "圣巴夫主教座堂",
               "nameEn": "Saint Bavo's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.0523,
+              "lng": 3.7154
             },
             {
               "id": "ghent-gravensteen-castle",
               "name": "伯爵城堡",
               "nameEn": "Gravensteen Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.0543,
+              "lng": 3.7154
             },
             {
               "id": "ghent-belfry-of-ghent",
               "name": "根特钟楼",
               "nameEn": "Belfry of Ghent",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.0563,
+              "lng": 3.7154
             }
           ]
         },
@@ -2890,19 +3395,25 @@
               "id": "liege-cath-drale-saint-paul-de-li-ge",
               "name": "列日圣保罗主教座堂",
               "nameEn": "Cathédrale Saint-Paul de Liège",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.6431,
+              "lng": 5.5714
             },
             {
               "id": "liege-prince-bishops-palace",
               "name": "王子主教宫",
               "nameEn": "Prince-Bishops' Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.6451,
+              "lng": 5.5714
             },
             {
               "id": "liege-montagne-de-bueren",
               "name": "布伦山台阶",
               "nameEn": "Montagne de Bueren",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.6471,
+              "lng": 5.5714
             }
           ]
         }
@@ -2967,19 +3478,25 @@
               "id": "zurich-grossm-nster",
               "name": "苏黎世大教堂",
               "nameEn": "Grossmünster",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.3749,
+              "lng": 8.5397
             },
             {
               "id": "zurich-bahnhofstrasse",
               "name": "班霍夫大街",
               "nameEn": "Bahnhofstrasse",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.3769,
+              "lng": 8.5397
             },
             {
               "id": "zurich-lake-zurich",
               "name": "苏黎世湖",
               "nameEn": "Lake Zurich",
-              "type": "nature"
+              "type": "nature",
+              "lat": 47.3789,
+              "lng": 8.5397
             }
           ]
         },
@@ -2994,19 +3511,25 @@
               "id": "geneva-jet-d-eau",
               "name": "日内瓦大喷泉",
               "nameEn": "Jet d'Eau",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.2024,
+              "lng": 6.1412
             },
             {
               "id": "geneva-palace-of-nations",
               "name": "万国宫",
               "nameEn": "Palace of Nations",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.2044,
+              "lng": 6.1412
             },
             {
               "id": "geneva-lake-geneva",
               "name": "日内瓦湖",
               "nameEn": "Lake Geneva",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.2064,
+              "lng": 6.1412
             }
           ]
         },
@@ -3021,19 +3544,25 @@
               "id": "bern-bern-old-town",
               "name": "伯尔尼老城",
               "nameEn": "Bern Old Town",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.946,
+              "lng": 7.4454
             },
             {
               "id": "bern-zytglogge-clock-tower",
               "name": "伯尔尼钟楼",
               "nameEn": "Zytglogge Clock Tower",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.948,
+              "lng": 7.4454
             },
             {
               "id": "bern-federal-palace",
               "name": "联邦国会大厦",
               "nameEn": "Federal Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.95,
+              "lng": 7.4454
             }
           ]
         },
@@ -3048,19 +3577,25 @@
               "id": "lausanne-lausanne-cathedral",
               "name": "洛桑大教堂",
               "nameEn": "Lausanne Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.5177,
+              "lng": 6.6303
             },
             {
               "id": "lausanne-olympic-museum",
               "name": "奥林匹克博物馆",
               "nameEn": "Olympic Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 46.5197,
+              "lng": 6.6303
             },
             {
               "id": "lausanne-ouchy-promenade",
               "name": "乌希码头",
               "nameEn": "Ouchy Promenade",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.5217,
+              "lng": 6.6303
             }
           ]
         },
@@ -3075,19 +3610,25 @@
               "id": "zermatt-matterhorn",
               "name": "马特洪峰",
               "nameEn": "Matterhorn",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.0187,
+              "lng": 7.7471
             },
             {
               "id": "zermatt-gornergrat",
               "name": "戈尔内格拉特",
               "nameEn": "Gornergrat",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.0207,
+              "lng": 7.7471
             },
             {
               "id": "zermatt-zermatt-village",
               "name": "策马特村",
               "nameEn": "Zermatt Village",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0227,
+              "lng": 7.7471
             }
           ]
         },
@@ -3102,19 +3643,25 @@
               "id": "lugano-lake-lugano",
               "name": "卢加诺湖",
               "nameEn": "Lake Lugano",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.0017,
+              "lng": 8.9491
             },
             {
               "id": "lugano-cathedral-of-saint-lawrence",
               "name": "圣洛伦佐大教堂",
               "nameEn": "Cathedral of Saint Lawrence",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0037,
+              "lng": 8.9491
             },
             {
               "id": "lugano-monte-san-salvatore",
               "name": "圣萨尔瓦托山",
               "nameEn": "Monte San Salvatore",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.0057,
+              "lng": 8.9491
             }
           ]
         },
@@ -3129,19 +3676,25 @@
               "id": "basel-basel-m-nster",
               "name": "巴塞尔大教堂",
               "nameEn": "Basel Münster",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.5576,
+              "lng": 7.5866
             },
             {
               "id": "basel-kunstmuseum-basel",
               "name": "巴塞尔美术馆",
               "nameEn": "Kunstmuseum Basel",
-              "type": "museum"
+              "type": "museum",
+              "lat": 47.5596,
+              "lng": 7.5866
             },
             {
               "id": "basel-basel-town-hall",
               "name": "巴塞尔市政厅",
               "nameEn": "Basel Town Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.5616,
+              "lng": 7.5866
             }
           ]
         },
@@ -3156,19 +3709,25 @@
               "id": "st-moritz-lake-st-moritz",
               "name": "圣莫里茨湖",
               "nameEn": "Lake St. Moritz",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.4888,
+              "lng": 9.8335
             },
             {
               "id": "st-moritz-diavolezza",
               "name": "迪亚沃勒扎峰",
               "nameEn": "Diavolezza",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.4908,
+              "lng": 9.8335
             },
             {
               "id": "st-moritz-corviglia",
               "name": "科尔维利亚",
               "nameEn": "Corviglia",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.4928,
+              "lng": 9.8335
             }
           ]
         },
@@ -3183,19 +3742,25 @@
               "id": "montreux-chillon-castle",
               "name": "西庸城堡",
               "nameEn": "Chillon Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.4292,
+              "lng": 6.9087
             },
             {
               "id": "montreux-lake-geneva-promenade",
               "name": "日内瓦湖滨大道",
               "nameEn": "Lake Geneva Promenade",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.4312,
+              "lng": 6.9087
             },
             {
               "id": "montreux-rochers-de-naye",
               "name": "罗什德内峰",
               "nameEn": "Rochers-de-Naye",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.4332,
+              "lng": 6.9087
             }
           ]
         },
@@ -3210,19 +3775,25 @@
               "id": "grindelwald-jungfraujoch",
               "name": "少女峰",
               "nameEn": "Jungfraujoch",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.6223,
+              "lng": 8.0393
             },
             {
               "id": "grindelwald-grindelwald-first",
               "name": "费尔斯特",
               "nameEn": "Grindelwald First",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.6243,
+              "lng": 8.0393
             },
             {
               "id": "grindelwald-eiger",
               "name": "艾格峰",
               "nameEn": "Eiger",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.6263,
+              "lng": 8.0393
             }
           ]
         }
@@ -3298,19 +3869,25 @@
               "id": "innsbruck-goldenes-dachl",
               "name": "黄金屋顶",
               "nameEn": "Goldenes Dachl",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.2672,
+              "lng": 11.4021
             },
             {
               "id": "innsbruck-hofkirche",
               "name": "宫廷教堂",
               "nameEn": "Hofkirche",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.2692,
+              "lng": 11.4021
             },
             {
               "id": "innsbruck-nordkette",
               "name": "北链山",
               "nameEn": "Nordkette",
-              "type": "nature"
+              "type": "nature",
+              "lat": 47.2712,
+              "lng": 11.4021
             }
           ]
         },
@@ -3325,19 +3902,25 @@
               "id": "hallstatt-hallst-tter-see",
               "name": "哈尔施塔特湖",
               "nameEn": "Hallstätter See",
-              "type": "nature"
+              "type": "nature",
+              "lat": 47.5602,
+              "lng": 13.6473
             },
             {
               "id": "hallstatt-salzwelten-hallstatt",
               "name": "哈尔施塔特盐矿",
               "nameEn": "Salzwelten Hallstatt",
-              "type": "museum"
+              "type": "museum",
+              "lat": 47.5622,
+              "lng": 13.6473
             },
             {
               "id": "hallstatt-hallstatt-skywalk",
               "name": "哈尔施塔特观景台",
               "nameEn": "Hallstatt Skywalk",
-              "type": "nature"
+              "type": "nature",
+              "lat": 47.5642,
+              "lng": 13.6473
             }
           ]
         },
@@ -3352,19 +3935,25 @@
               "id": "graz-schlossberg",
               "name": "城堡山",
               "nameEn": "Schlossberg",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.0687,
+              "lng": 15.4375
             },
             {
               "id": "graz-graz-cathedral",
               "name": "格拉茨大教堂",
               "nameEn": "Graz Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.0707,
+              "lng": 15.4375
             },
             {
               "id": "graz-kunsthaus-graz",
               "name": "格拉茨美术馆",
               "nameEn": "Kunsthaus Graz",
-              "type": "museum"
+              "type": "museum",
+              "lat": 47.0727,
+              "lng": 15.4375
             }
           ]
         },
@@ -3379,19 +3968,25 @@
               "id": "linz-hauptplatz",
               "name": "林茨主广场",
               "nameEn": "Hauptplatz",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.3049,
+              "lng": 14.2838
             },
             {
               "id": "linz-lentos-kunstmuseum",
               "name": "伦托斯美术馆",
               "nameEn": "Lentos Kunstmuseum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 48.3069,
+              "lng": 14.2838
             },
             {
               "id": "linz-ars-electronica-center",
               "name": "电子艺术中心",
               "nameEn": "Ars Electronica Center",
-              "type": "museum"
+              "type": "museum",
+              "lat": 48.3089,
+              "lng": 14.2838
             }
           ]
         }
@@ -3466,19 +4061,25 @@
               "id": "mykonos-windmills-of-mykonos",
               "name": "米科诺斯风车",
               "nameEn": "Windmills of Mykonos",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.4447,
+              "lng": 25.3269
             },
             {
               "id": "mykonos-little-venice",
               "name": "小威尼斯",
               "nameEn": "Little Venice",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.4467,
+              "lng": 25.3269
             },
             {
               "id": "mykonos-paraportiani-church",
               "name": "帕拉波尔蒂阿尼教堂",
               "nameEn": "Paraportiani Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.4487,
+              "lng": 25.3269
             }
           ]
         },
@@ -3493,19 +4094,25 @@
               "id": "thessaloniki-white-tower-of-thessaloniki",
               "name": "白塔",
               "nameEn": "White Tower of Thessaloniki",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.6381,
+              "lng": 22.9424
             },
             {
               "id": "thessaloniki-rotunda-of-galerius",
               "name": "伽列里乌斯圆厅",
               "nameEn": "Rotunda of Galerius",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 40.6401,
+              "lng": 22.9424
             },
             {
               "id": "thessaloniki-archaeological-museum-of-thessaloniki",
               "name": "塞萨洛尼基考古博物馆",
               "nameEn": "Archaeological Museum of Thessaloniki",
-              "type": "museum"
+              "type": "museum",
+              "lat": 40.6421,
+              "lng": 22.9424
             }
           ]
         },
@@ -3520,19 +4127,25 @@
               "id": "heraklion-palace-of-knossos",
               "name": "克诺索斯宫",
               "nameEn": "Palace of Knossos",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.3367,
+              "lng": 25.1422
             },
             {
               "id": "heraklion-heraklion-archaeological-museum",
               "name": "伊拉克利翁考古博物馆",
               "nameEn": "Heraklion Archaeological Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 35.3387,
+              "lng": 25.1422
             },
             {
               "id": "heraklion-koules-fortress",
               "name": "库勒斯堡垒",
               "nameEn": "Koules Fortress",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.3407,
+              "lng": 25.1422
             }
           ]
         },
@@ -3547,19 +4160,25 @@
               "id": "rhodes-palace-of-the-grand-master",
               "name": "大团长宫",
               "nameEn": "Palace of the Grand Master",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 36.4322,
+              "lng": 28.2156
             },
             {
               "id": "rhodes-acropolis-of-lindos",
               "name": "林佐斯卫城",
               "nameEn": "Acropolis of Lindos",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 36.4342,
+              "lng": 28.2156
             },
             {
               "id": "rhodes-valley-of-the-butterflies",
               "name": "蝴蝶谷",
               "nameEn": "Valley of the Butterflies",
-              "type": "nature"
+              "type": "nature",
+              "lat": 36.4362,
+              "lng": 28.2156
             }
           ]
         },
@@ -3574,19 +4193,25 @@
               "id": "corfu-old-fortress-of-corfu",
               "name": "科孚旧城堡",
               "nameEn": "Old Fortress of Corfu",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.6223,
+              "lng": 19.9197
             },
             {
               "id": "corfu-achilleion-palace",
               "name": "阿喀琉斯宫",
               "nameEn": "Achilleion Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.6243,
+              "lng": 19.9197
             },
             {
               "id": "corfu-paleokastritsa",
               "name": "帕莱奥卡斯特里察",
               "nameEn": "Paleokastritsa",
-              "type": "nature"
+              "type": "nature",
+              "lat": 39.6263,
+              "lng": 19.9197
             }
           ]
         },
@@ -3601,19 +4226,25 @@
               "id": "delphi-temple-of-apollo",
               "name": "阿波罗神庙",
               "nameEn": "Temple of Apollo",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.4804,
+              "lng": 22.4958
             },
             {
               "id": "delphi-delphi-archaeological-museum",
               "name": "德尔斐考古博物馆",
               "nameEn": "Delphi Archaeological Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 38.4824,
+              "lng": 22.4958
             },
             {
               "id": "delphi-ancient-theatre-of-delphi",
               "name": "德尔斐古剧场",
               "nameEn": "Ancient Theatre of Delphi",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.4844,
+              "lng": 22.4958
             }
           ]
         },
@@ -3628,19 +4259,25 @@
               "id": "olympia-archaeological-site-of-olympia",
               "name": "奥林匹亚考古遗址",
               "nameEn": "Archaeological Site of Olympia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.6408,
+              "lng": 21.6283
             },
             {
               "id": "olympia-temple-of-zeus",
               "name": "宙斯神庙",
               "nameEn": "Temple of Zeus",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.6428,
+              "lng": 21.6283
             },
             {
               "id": "olympia-archaeological-museum-of-olympia",
               "name": "奥林匹亚考古博物馆",
               "nameEn": "Archaeological Museum of Olympia",
-              "type": "museum"
+              "type": "museum",
+              "lat": 37.6448,
+              "lng": 21.6283
             }
           ]
         }
@@ -3683,19 +4320,25 @@
               "id": "gothenburg-liseberg",
               "name": "里瑟本游乐园",
               "nameEn": "Liseberg",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 57.7069,
+              "lng": 11.9726
             },
             {
               "id": "gothenburg-gothenburg-museum-of-art",
               "name": "哥德堡艺术博物馆",
               "nameEn": "Gothenburg Museum of Art",
-              "type": "museum"
+              "type": "museum",
+              "lat": 57.7089,
+              "lng": 11.9726
             },
             {
               "id": "gothenburg-feskek-rka",
               "name": "鱼教堂",
               "nameEn": "Feskekôrka",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 57.7109,
+              "lng": 11.9726
             }
           ]
         },
@@ -3710,19 +4353,25 @@
               "id": "malmo-turning-torso",
               "name": "旋转大楼",
               "nameEn": "Turning Torso",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.603,
+              "lng": 13.0018
             },
             {
               "id": "malmo-malm-hus-castle",
               "name": "马尔默城堡",
               "nameEn": "Malmöhus Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.605,
+              "lng": 13.0018
             },
             {
               "id": "malmo-resund-bridge",
               "name": "厄勒海峡大桥",
               "nameEn": "Öresund Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.607,
+              "lng": 13.0018
             }
           ]
         },
@@ -3737,19 +4386,25 @@
               "id": "uppsala-uppsala-cathedral",
               "name": "乌普萨拉大教堂",
               "nameEn": "Uppsala Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.8566,
+              "lng": 17.6369
             },
             {
               "id": "uppsala-gustavianum",
               "name": "古斯塔维乌姆博物馆",
               "nameEn": "Gustavianum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 59.8586,
+              "lng": 17.6369
             },
             {
               "id": "uppsala-gamla-uppsala",
               "name": "乌普萨拉古墓群",
               "nameEn": "Gamla Uppsala",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.8606,
+              "lng": 17.6369
             }
           ]
         },
@@ -3764,19 +4419,25 @@
               "id": "kiruna-icehotel",
               "name": "冰旅馆",
               "nameEn": "Icehotel",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 67.8538,
+              "lng": 20.2233
             },
             {
               "id": "kiruna-abisko-national-park",
               "name": "阿比斯库国家公园",
               "nameEn": "Abisko National Park",
-              "type": "nature"
+              "type": "nature",
+              "lat": 67.8558,
+              "lng": 20.2233
             },
             {
               "id": "kiruna-kiruna-church",
               "name": "基律纳教堂",
               "nameEn": "Kiruna Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 67.8578,
+              "lng": 20.2233
             }
           ]
         }
@@ -3850,19 +4511,25 @@
               "id": "tromso-arctic-cathedral",
               "name": "北极大教堂",
               "nameEn": "Arctic Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 69.6476,
+              "lng": 18.954
             },
             {
               "id": "tromso-polaria",
               "name": "极地博物馆",
               "nameEn": "Polaria",
-              "type": "museum"
+              "type": "museum",
+              "lat": 69.6496,
+              "lng": 18.954
             },
             {
               "id": "tromso-fjellheisen",
               "name": "斯托尔斯泰恩山缆车",
               "nameEn": "Fjellheisen",
-              "type": "nature"
+              "type": "nature",
+              "lat": 69.6516,
+              "lng": 18.954
             }
           ]
         },
@@ -3877,19 +4544,25 @@
               "id": "stavanger-preikestolen",
               "name": "布道石",
               "nameEn": "Preikestolen",
-              "type": "nature"
+              "type": "nature",
+              "lat": 58.968,
+              "lng": 5.7311
             },
             {
               "id": "stavanger-gamle-stavanger",
               "name": "斯塔万格老城",
               "nameEn": "Gamle Stavanger",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 58.97,
+              "lng": 5.7311
             },
             {
               "id": "stavanger-norwegian-petroleum-museum",
               "name": "挪威石油博物馆",
               "nameEn": "Norwegian Petroleum Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 58.972,
+              "lng": 5.7311
             }
           ]
         },
@@ -3904,19 +4577,25 @@
               "id": "trondheim-nidaros-cathedral",
               "name": "尼达罗斯大教堂",
               "nameEn": "Nidaros Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 63.4285,
+              "lng": 10.3931
             },
             {
               "id": "trondheim-gamle-bybro",
               "name": "老城桥",
               "nameEn": "Gamle Bybro",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 63.4305,
+              "lng": 10.3931
             },
             {
               "id": "trondheim-kristiansten-fortress",
               "name": "克里斯蒂安斯滕堡垒",
               "nameEn": "Kristiansten Fortress",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 63.4325,
+              "lng": 10.3931
             }
           ]
         },
@@ -3931,19 +4610,25 @@
               "id": "flam-fl-m-railway",
               "name": "弗洛姆铁路",
               "nameEn": "Flåm Railway",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 60.861,
+              "lng": 7.115
             },
             {
               "id": "flam-n-r-yfjord",
               "name": "纳柔依峡湾",
               "nameEn": "Nærøyfjord",
-              "type": "nature"
+              "type": "nature",
+              "lat": 60.863,
+              "lng": 7.115
             },
             {
               "id": "flam-stegastein-viewpoint",
               "name": "斯泰格斯坦观景台",
               "nameEn": "Stegastein Viewpoint",
-              "type": "nature"
+              "type": "nature",
+              "lat": 60.865,
+              "lng": 7.115
             }
           ]
         }
@@ -3997,19 +4682,25 @@
               "id": "aarhus-den-gamle-by",
               "name": "老城露天博物馆",
               "nameEn": "Den Gamle By",
-              "type": "museum"
+              "type": "museum",
+              "lat": 56.1609,
+              "lng": 10.2019
             },
             {
               "id": "aarhus-aros-aarhus-art-museum",
               "name": "ARoS艺术博物馆",
               "nameEn": "ARoS Aarhus Art Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 56.1629,
+              "lng": 10.2019
             },
             {
               "id": "aarhus-aarhus-cathedral",
               "name": "奥胡斯大教堂",
               "nameEn": "Aarhus Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 56.1649,
+              "lng": 10.2019
             }
           ]
         },
@@ -4024,19 +4715,25 @@
               "id": "odense-hans-christian-andersen-museum",
               "name": "安徒生博物馆",
               "nameEn": "Hans Christian Andersen Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 55.4018,
+              "lng": 10.4004
             },
             {
               "id": "odense-st-canute-s-cathedral",
               "name": "圣克努特大教堂",
               "nameEn": "St. Canute's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.4038,
+              "lng": 10.4004
             },
             {
               "id": "odense-the-funen-village",
               "name": "菲英村",
               "nameEn": "The Funen Village",
-              "type": "museum"
+              "type": "museum",
+              "lat": 55.4058,
+              "lng": 10.4004
             }
           ]
         }
@@ -4090,19 +4787,25 @@
               "id": "galway-galway-cathedral",
               "name": "戈尔韦大教堂",
               "nameEn": "Galway Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.2687,
+              "lng": -9.0588
             },
             {
               "id": "galway-spanish-arch",
               "name": "西班牙拱门",
               "nameEn": "Spanish Arch",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 53.2707,
+              "lng": -9.0588
             },
             {
               "id": "galway-cliffs-of-moher",
               "name": "莫赫悬崖",
               "nameEn": "Cliffs of Moher",
-              "type": "nature"
+              "type": "nature",
+              "lat": 53.2727,
+              "lng": -9.0588
             }
           ]
         },
@@ -4117,19 +4820,25 @@
               "id": "cork-blarney-castle",
               "name": "布拉尼城堡",
               "nameEn": "Blarney Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.8949,
+              "lng": -8.4883
             },
             {
               "id": "cork-saint-fin-barre-s-cathedral",
               "name": "圣芬巴尔大教堂",
               "nameEn": "Saint Fin Barre's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.8969,
+              "lng": -8.4883
             },
             {
               "id": "cork-english-market",
               "name": "英国市场",
               "nameEn": "English Market",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.8989,
+              "lng": -8.4883
             }
           ]
         }
@@ -4183,19 +4892,25 @@
               "id": "warsaw-old-town",
               "name": "华沙老城",
               "nameEn": "Old Town",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.2277,
+              "lng": 21.0102
             },
             {
               "id": "warsaw-royal-castle",
               "name": "皇家城堡",
               "nameEn": "Royal Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.2297,
+              "lng": 21.0102
             },
             {
               "id": "warsaw-azienki-park",
               "name": "瓦津基公园",
               "nameEn": "Łazienki Park",
-              "type": "nature"
+              "type": "nature",
+              "lat": 52.2317,
+              "lng": 21.0102
             }
           ]
         },
@@ -4210,19 +4925,25 @@
               "id": "gdansk-long-market",
               "name": "长市场",
               "nameEn": "Long Market",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.35,
+              "lng": 18.6446
             },
             {
               "id": "gdansk-st-mary-s-church",
               "name": "圣玛丽教堂",
               "nameEn": "St. Mary's Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.352,
+              "lng": 18.6446
             },
             {
               "id": "gdansk-polish-maritime-museum",
               "name": "格但斯克国家海事博物馆",
               "nameEn": "Polish Maritime Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 54.354,
+              "lng": 18.6446
             }
           ]
         },
@@ -4237,19 +4958,25 @@
               "id": "wroclaw-market-square",
               "name": "集市广场",
               "nameEn": "Market Square",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.1059,
+              "lng": 17.0365
             },
             {
               "id": "wroclaw-cathedral-of-st-john-the-baptist",
               "name": "圣约翰大教堂",
               "nameEn": "Cathedral of St. John the Baptist",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.1079,
+              "lng": 17.0365
             },
             {
               "id": "wroclaw-centennial-hall",
               "name": "百年厅",
               "nameEn": "Centennial Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 51.1099,
+              "lng": 17.0365
             }
           ]
         },
@@ -4264,19 +4991,25 @@
               "id": "poznan-old-town-square",
               "name": "老城广场",
               "nameEn": "Old Town Square",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.4044,
+              "lng": 16.9232
             },
             {
               "id": "poznan-pozna-town-hall",
               "name": "市政厅",
               "nameEn": "Poznań Town Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.4064,
+              "lng": 16.9232
             },
             {
               "id": "poznan-cathedral-of-sts-peter-and-paul",
               "name": "圣彼得保罗大教堂",
               "nameEn": "Cathedral of Sts. Peter and Paul",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 52.4084,
+              "lng": 16.9232
             }
           ]
         }
@@ -4332,19 +5065,25 @@
               "id": "cesky-krumlov-esk-krumlov-castle",
               "name": "克鲁姆洛夫城堡",
               "nameEn": "Český Krumlov Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.8107,
+              "lng": 14.3155
             },
             {
               "id": "cesky-krumlov-old-town",
               "name": "克鲁姆洛夫老城",
               "nameEn": "Old Town",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.8127,
+              "lng": 14.3155
             },
             {
               "id": "cesky-krumlov-egon-schiele-art-centrum",
               "name": "埃贡·席勒艺术中心",
               "nameEn": "Egon Schiele Art Centrum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 48.8147,
+              "lng": 14.3155
             }
           ]
         },
@@ -4359,19 +5098,25 @@
               "id": "karlovy-vary-mill-colonnade",
               "name": "磨坊温泉回廊",
               "nameEn": "Mill Colonnade",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.2299,
+              "lng": 12.869
             },
             {
               "id": "karlovy-vary-market-colonnade",
               "name": "市场温泉回廊",
               "nameEn": "Market Colonnade",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.2319,
+              "lng": 12.869
             },
             {
               "id": "karlovy-vary-diana-lookout-tower",
               "name": "戴安娜观景塔",
               "nameEn": "Diana Lookout Tower",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 50.2339,
+              "lng": 12.869
             }
           ]
         },
@@ -4386,19 +5131,25 @@
               "id": "brno-cathedral-of-st-peter-and-paul",
               "name": "圣彼得保罗大教堂",
               "nameEn": "Cathedral of St. Peter and Paul",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.1931,
+              "lng": 16.6048
             },
             {
               "id": "brno-pilberk-castle",
               "name": "斯皮尔伯克城堡",
               "nameEn": "Špilberk Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.1951,
+              "lng": 16.6048
             },
             {
               "id": "brno-villa-tugendhat",
               "name": "图根哈特别墅",
               "nameEn": "Villa Tugendhat",
-              "type": "museum"
+              "type": "museum",
+              "lat": 49.1971,
+              "lng": 16.6048
             }
           ]
         }
@@ -4452,19 +5203,25 @@
               "id": "eger-eger-castle",
               "name": "埃格尔城堡",
               "nameEn": "Eger Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.9004,
+              "lng": 20.3756
             },
             {
               "id": "eger-eger-basilica",
               "name": "埃格尔大教堂",
               "nameEn": "Eger Basilica",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.9024,
+              "lng": 20.3756
             },
             {
               "id": "eger-valley-of-the-beautiful-women",
               "name": "美人谷酒窖",
               "nameEn": "Valley of the Beautiful Women",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 47.9044,
+              "lng": 20.3756
             }
           ]
         },
@@ -4479,19 +5236,25 @@
               "id": "pecs-p-cs-cathedral",
               "name": "佩奇大教堂",
               "nameEn": "Pécs Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0707,
+              "lng": 18.2303
             },
             {
               "id": "pecs-early-christian-necropolis",
               "name": "早期基督教墓穴",
               "nameEn": "Early Christian Necropolis",
-              "type": "museum"
+              "type": "museum",
+              "lat": 46.0727,
+              "lng": 18.2303
             },
             {
               "id": "pecs-mosque-church-of-pasha-qasim",
               "name": "卡西姆帕夏清真寺教堂",
               "nameEn": "Mosque Church of Pasha Qasim",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0747,
+              "lng": 18.2303
             }
           ]
         }
@@ -4534,19 +5297,25 @@
               "id": "split-diocletian-s-palace",
               "name": "戴克里先宫",
               "nameEn": "Diocletian's Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5061,
+              "lng": 16.4382
             },
             {
               "id": "split-cathedral-of-st-domnius",
               "name": "圣杜耶大教堂",
               "nameEn": "Cathedral of St. Domnius",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.5081,
+              "lng": 16.4382
             },
             {
               "id": "split-marjan-hill",
               "name": "马尔扬山",
               "nameEn": "Marjan Hill",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.5101,
+              "lng": 16.4382
             }
           ]
         },
@@ -4561,19 +5330,25 @@
               "id": "zagreb-st-mark-s-church",
               "name": "圣马可教堂",
               "nameEn": "St. Mark's Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.813,
+              "lng": 15.9799
             },
             {
               "id": "zagreb-zagreb-cathedral",
               "name": "萨格勒布大教堂",
               "nameEn": "Zagreb Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.815,
+              "lng": 15.9799
             },
             {
               "id": "zagreb-museum-of-broken-relationships",
               "name": "失恋博物馆",
               "nameEn": "Museum of Broken Relationships",
-              "type": "museum"
+              "type": "museum",
+              "lat": 45.817,
+              "lng": 15.9799
             }
           ]
         },
@@ -4588,19 +5363,25 @@
               "id": "hvar-fortica-fortress",
               "name": "福蒂卡堡垒",
               "nameEn": "Fortica Fortress",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.1709,
+              "lng": 16.4391
             },
             {
               "id": "hvar-st-stephen-s-cathedral",
               "name": "圣斯蒂芬大教堂",
               "nameEn": "St. Stephen's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.1729,
+              "lng": 16.4391
             },
             {
               "id": "hvar-pakleni-islands",
               "name": "帕克莱尼群岛",
               "nameEn": "Pakleni Islands",
-              "type": "nature"
+              "type": "nature",
+              "lat": 43.1749,
+              "lng": 16.4391
             }
           ]
         },
@@ -4615,19 +5396,25 @@
               "id": "pula-pula-arena",
               "name": "普拉竞技场",
               "nameEn": "Pula Arena",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.8646,
+              "lng": 13.8476
             },
             {
               "id": "pula-temple-of-augustus",
               "name": "奥古斯都神庙",
               "nameEn": "Temple of Augustus",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.8666,
+              "lng": 13.8476
             },
             {
               "id": "pula-arch-of-the-sergii",
               "name": "塞尔吉乌斯凯旋门",
               "nameEn": "Arch of the Sergii",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.8686,
+              "lng": 13.8476
             }
           ]
         },
@@ -4642,19 +5429,25 @@
               "id": "zadar-church-of-st-donatus",
               "name": "圣多纳图斯教堂",
               "nameEn": "Church of St. Donatus",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.1174,
+              "lng": 15.2294
             },
             {
               "id": "zadar-sea-organ",
               "name": "海风琴",
               "nameEn": "Sea Organ",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.1194,
+              "lng": 15.2294
             },
             {
               "id": "zadar-greeting-to-the-sun",
               "name": "太阳致敬",
               "nameEn": "Greeting to the Sun",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.1214,
+              "lng": 15.2294
             }
           ]
         }
@@ -4709,19 +5502,25 @@
               "id": "ankara-museum-of-anatolian-civilizations",
               "name": "安纳托利亚文明博物馆",
               "nameEn": "Museum of Anatolian Civilizations",
-              "type": "museum"
+              "type": "museum",
+              "lat": 39.9314,
+              "lng": 32.8577
             },
             {
               "id": "ankara-ankara-castle",
               "name": "安卡拉城堡",
               "nameEn": "Ankara Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.9334,
+              "lng": 32.8577
             },
             {
               "id": "ankara-an-tkabir",
               "name": "国父陵",
               "nameEn": "Anıtkabir",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 39.9354,
+              "lng": 32.8577
             }
           ]
         },
@@ -4736,19 +5535,25 @@
               "id": "izmir-clock-tower",
               "name": "时钟塔",
               "nameEn": "Clock Tower",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.4217,
+              "lng": 27.1408
             },
             {
               "id": "izmir-agora-of-smyrna",
               "name": "伊兹密尔阿戈拉",
               "nameEn": "Agora of Smyrna",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 38.4237,
+              "lng": 27.1408
             },
             {
               "id": "izmir-i-zmir-archaeology-museum",
               "name": "伊兹密尔考古博物馆",
               "nameEn": "İzmir Archaeology Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 38.4257,
+              "lng": 27.1408
             }
           ]
         },
@@ -4763,19 +5568,25 @@
               "id": "antalya-hadrian-s-gate",
               "name": "哈德良门",
               "nameEn": "Hadrian's Gate",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 36.8949,
+              "lng": 30.7113
             },
             {
               "id": "antalya-kalei-i-old-town",
               "name": "卡莱伊奇老城",
               "nameEn": "Kaleiçi Old Town",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 36.8969,
+              "lng": 30.7113
             },
             {
               "id": "antalya-d-den-waterfalls",
               "name": "杜登瀑布",
               "nameEn": "Düden Waterfalls",
-              "type": "nature"
+              "type": "nature",
+              "lat": 36.8989,
+              "lng": 30.7113
             }
           ]
         },
@@ -4790,19 +5601,25 @@
               "id": "pamukkale-travertine-terraces",
               "name": "棉花堡石灰华梯田",
               "nameEn": "Travertine Terraces",
-              "type": "nature"
+              "type": "nature",
+              "lat": 37.917,
+              "lng": 29.119
             },
             {
               "id": "pamukkale-hierapolis",
               "name": "希拉波利斯古城",
               "nameEn": "Hierapolis",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.919,
+              "lng": 29.119
             },
             {
               "id": "pamukkale-cleopatra-s-pool",
               "name": "克利奥帕特拉泳池",
               "nameEn": "Cleopatra's Pool",
-              "type": "nature"
+              "type": "nature",
+              "lat": 37.921,
+              "lng": 29.119
             }
           ]
         },
@@ -4817,19 +5634,25 @@
               "id": "ephesus-library-of-celsus",
               "name": "塞尔苏斯图书馆",
               "nameEn": "Library of Celsus",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.948,
+              "lng": 27.366
             },
             {
               "id": "ephesus-great-theatre",
               "name": "以弗所大剧场",
               "nameEn": "Great Theatre",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.95,
+              "lng": 27.366
             },
             {
               "id": "ephesus-temple-of-artemis",
               "name": "阿尔忒弥斯神庙遗址",
               "nameEn": "Temple of Artemis",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 37.952,
+              "lng": 27.366
             }
           ]
         }
@@ -4852,19 +5675,25 @@
               "id": "moscow-red-square",
               "name": "红场",
               "nameEn": "Red Square",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.7538,
+              "lng": 37.6153
             },
             {
               "id": "moscow-kremlin",
               "name": "克里姆林宫",
               "nameEn": "Kremlin",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.7558,
+              "lng": 37.6153
             },
             {
               "id": "moscow-st-basil-s-cathedral",
               "name": "圣瓦西里大教堂",
               "nameEn": "St. Basil's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 55.7578,
+              "lng": 37.6153
             }
           ]
         },
@@ -4879,19 +5708,25 @@
               "id": "st-petersburg-hermitage-museum",
               "name": "冬宫",
               "nameEn": "Hermitage Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 59.9323,
+              "lng": 30.3331
             },
             {
               "id": "st-petersburg-peter-and-paul-fortress",
               "name": "彼得保罗要塞",
               "nameEn": "Peter and Paul Fortress",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.9343,
+              "lng": 30.3331
             },
             {
               "id": "st-petersburg-church-of-the-savior-on-spilled-blood",
               "name": "救世主滴血大教堂",
               "nameEn": "Church of the Savior on Spilled Blood",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.9363,
+              "lng": 30.3331
             }
           ]
         }
@@ -4914,19 +5749,25 @@
               "id": "sofia-alexander-nevsky-cathedral",
               "name": "亚历山大·涅夫斯基大教堂",
               "nameEn": "Alexander Nevsky Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.6957,
+              "lng": 23.3199
             },
             {
               "id": "sofia-church-of-st-sofia",
               "name": "圣索菲亚教堂",
               "nameEn": "Church of St. Sofia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.6977,
+              "lng": 23.3199
             },
             {
               "id": "sofia-vitosha-mountain",
               "name": "维托沙山",
               "nameEn": "Vitosha Mountain",
-              "type": "nature"
+              "type": "nature",
+              "lat": 42.6997,
+              "lng": 23.3199
             }
           ]
         }
@@ -4949,19 +5790,25 @@
               "id": "reykjavik-hallgr-mskirkja",
               "name": "哈尔格林姆斯教堂",
               "nameEn": "Hallgrímskirkja",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 64.1446,
+              "lng": -21.9446
             },
             {
               "id": "reykjavik-sun-voyager",
               "name": "太阳航海者",
               "nameEn": "Sun Voyager",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 64.1466,
+              "lng": -21.9446
             },
             {
               "id": "reykjavik-harpa-concert-hall",
               "name": "哈帕音乐厅",
               "nameEn": "Harpa Concert Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 64.1486,
+              "lng": -21.9446
             }
           ]
         }
@@ -4984,19 +5831,25 @@
               "id": "luxembourg-grand-ducal-palace",
               "name": "卢森堡大公宫",
               "nameEn": "Grand Ducal Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.6097,
+              "lng": 6.128
             },
             {
               "id": "luxembourg-notre-dame-cathedral",
               "name": "圣母教堂",
               "nameEn": "Notre-Dame Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.6117,
+              "lng": 6.128
             },
             {
               "id": "luxembourg-bock-casemates",
               "name": "博克要塞",
               "nameEn": "Bock Casemates",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 49.6137,
+              "lng": 6.128
             }
           ]
         }
@@ -5019,19 +5872,25 @@
               "id": "belgrade-belgrade-fortress",
               "name": "贝尔格莱德要塞",
               "nameEn": "Belgrade Fortress",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.7846,
+              "lng": 20.4469
             },
             {
               "id": "belgrade-temple-of-saint-sava",
               "name": "圣萨瓦教堂",
               "nameEn": "Temple of Saint Sava",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.7866,
+              "lng": 20.4469
             },
             {
               "id": "belgrade-national-museum-of-serbia",
               "name": "塞尔维亚国家博物馆",
               "nameEn": "National Museum of Serbia",
-              "type": "museum"
+              "type": "museum",
+              "lat": 44.7886,
+              "lng": 20.4469
             }
           ]
         }
@@ -5054,19 +5913,25 @@
               "id": "nicosia-selimiye-mosque",
               "name": "塞利米耶清真寺",
               "nameEn": "Selimiye Mosque",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.1836,
+              "lng": 33.3803
             },
             {
               "id": "nicosia-venetian-walls-of-nicosia",
               "name": "威尼斯城墙",
               "nameEn": "Venetian Walls of Nicosia",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.1856,
+              "lng": 33.3803
             },
             {
               "id": "nicosia-leventis-municipal-museum",
               "name": "莱文蒂斯市政博物馆",
               "nameEn": "Leventis Municipal Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 35.1876,
+              "lng": 33.3803
             }
           ]
         }
@@ -5089,19 +5954,25 @@
               "id": "riga-freedom-monument",
               "name": "自由纪念碑",
               "nameEn": "Freedom Monument",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 56.9476,
+              "lng": 24.1032
             },
             {
               "id": "riga-house-of-the-black-heads",
               "name": "黑头宫",
               "nameEn": "House of the Black Heads",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 56.9496,
+              "lng": 24.1032
             },
             {
               "id": "riga-riga-cathedral",
               "name": "里加大教堂",
               "nameEn": "Riga Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 56.9516,
+              "lng": 24.1032
             }
           ]
         }
@@ -5124,19 +5995,25 @@
               "id": "monaco-prince-s-palace-of-monaco",
               "name": "摩纳哥亲王宫",
               "nameEn": "Prince's Palace of Monaco",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.7364,
+              "lng": 7.4226
             },
             {
               "id": "monaco-monte-carlo-casino",
               "name": "蒙特卡洛赌场",
               "nameEn": "Monte Carlo Casino",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 43.7384,
+              "lng": 7.4226
             },
             {
               "id": "monaco-oceanographic-museum-of-monaco",
               "name": "摩纳哥海洋博物馆",
               "nameEn": "Oceanographic Museum of Monaco",
-              "type": "museum"
+              "type": "museum",
+              "lat": 43.7404,
+              "lng": 7.4226
             }
           ]
         }
@@ -5199,19 +6076,25 @@
               "id": "podgorica-millennium-bridge",
               "name": "千禧桥",
               "nameEn": "Millennium Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.4284,
+              "lng": 19.2574
             },
             {
               "id": "podgorica-cathedral-of-christ-s-resurrection",
               "name": "基督复活主教座堂",
               "nameEn": "Cathedral of Christ's Resurrection",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 42.4304,
+              "lng": 19.2574
             },
             {
               "id": "podgorica-lake-skadar",
               "name": "斯库台湖",
               "nameEn": "Lake Skadar",
-              "type": "nature"
+              "type": "nature",
+              "lat": 42.4324,
+              "lng": 19.2574
             }
           ]
         }
@@ -5234,19 +6117,25 @@
               "id": "bratislava-bratislava-castle",
               "name": "布拉迪斯拉发城堡",
               "nameEn": "Bratislava Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.1466,
+              "lng": 17.1057
             },
             {
               "id": "bratislava-st-martin-s-cathedral",
               "name": "圣马丁大教堂",
               "nameEn": "St. Martin's Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.1486,
+              "lng": 17.1057
             },
             {
               "id": "bratislava-blue-church",
               "name": "蓝色教堂",
               "nameEn": "Blue Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 48.1506,
+              "lng": 17.1057
             }
           ]
         }
@@ -5269,19 +6158,25 @@
               "id": "ljubljana-ljubljana-castle",
               "name": "卢布尔雅那城堡",
               "nameEn": "Ljubljana Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0549,
+              "lng": 14.5038
             },
             {
               "id": "ljubljana-dragon-bridge",
               "name": "龙桥",
               "nameEn": "Dragon Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0569,
+              "lng": 14.5038
             },
             {
               "id": "ljubljana-triple-bridge",
               "name": "三重桥",
               "nameEn": "Triple Bridge",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.0589,
+              "lng": 14.5038
             }
           ]
         },
@@ -5296,19 +6191,25 @@
               "id": "bled-lake-bled",
               "name": "布莱德湖",
               "nameEn": "Lake Bled",
-              "type": "nature"
+              "type": "nature",
+              "lat": 46.3663,
+              "lng": 14.1127
             },
             {
               "id": "bled-bled-castle",
               "name": "布莱德城堡",
               "nameEn": "Bled Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.3683,
+              "lng": 14.1127
             },
             {
               "id": "bled-church-of-the-assumption-of-mary",
               "name": "圣母升天教堂",
               "nameEn": "Church of the Assumption of Mary",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 46.3703,
+              "lng": 14.1127
             }
           ]
         }
@@ -5331,19 +6232,25 @@
               "id": "tallinn-tallinn-old-town",
               "name": "塔林老城",
               "nameEn": "Tallinn Old Town",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.435,
+              "lng": 24.7515
             },
             {
               "id": "tallinn-alexander-nevsky-cathedral",
               "name": "亚历山大·涅夫斯基主教座堂",
               "nameEn": "Alexander Nevsky Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.437,
+              "lng": 24.7515
             },
             {
               "id": "tallinn-tallinn-town-hall",
               "name": "塔林市政厅",
               "nameEn": "Tallinn Town Hall",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 59.439,
+              "lng": 24.7515
             }
           ]
         }
@@ -5366,19 +6273,25 @@
               "id": "vilnius-vilnius-cathedral",
               "name": "维尔纽斯大教堂",
               "nameEn": "Vilnius Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.6852,
+              "lng": 25.2777
             },
             {
               "id": "vilnius-gediminas-tower",
               "name": "盖迪米纳斯城堡塔楼",
               "nameEn": "Gediminas' Tower",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.6872,
+              "lng": 25.2777
             },
             {
               "id": "vilnius-st-anne-s-church",
               "name": "圣安妮教堂",
               "nameEn": "St. Anne's Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 54.6892,
+              "lng": 25.2777
             }
           ]
         }
@@ -5401,19 +6314,25 @@
               "id": "bucharest-palace-of-the-parliament",
               "name": "议会宫",
               "nameEn": "Palace of the Parliament",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4248,
+              "lng": 26.1005
             },
             {
               "id": "bucharest-romanian-athenaeum",
               "name": "罗马尼亚雅典娜神庙",
               "nameEn": "Romanian Athenaeum",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 44.4268,
+              "lng": 26.1005
             },
             {
               "id": "bucharest-village-museum",
               "name": "乡村博物馆",
               "nameEn": "Village Museum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 44.4288,
+              "lng": 26.1005
             }
           ]
         },
@@ -5428,19 +6347,25 @@
               "id": "brasov-bran-castle",
               "name": "布朗城堡",
               "nameEn": "Bran Castle",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.6406,
+              "lng": 25.5868
             },
             {
               "id": "brasov-black-church",
               "name": "黑教堂",
               "nameEn": "Black Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.6426,
+              "lng": 25.5868
             },
             {
               "id": "brasov-council-square",
               "name": "议会广场",
               "nameEn": "Council Square",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 45.6446,
+              "lng": 25.5868
             }
           ]
         }
@@ -5463,19 +6388,25 @@
               "id": "helsinki-helsinki-cathedral",
               "name": "赫尔辛基大教堂",
               "nameEn": "Helsinki Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 60.1679,
+              "lng": 24.9364
             },
             {
               "id": "helsinki-temppeliaukio-church",
               "name": "岩石教堂",
               "nameEn": "Temppeliaukio Church",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 60.1699,
+              "lng": 24.9364
             },
             {
               "id": "helsinki-suomenlinna",
               "name": "芬兰堡",
               "nameEn": "Suomenlinna",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 60.1719,
+              "lng": 24.9364
             }
           ]
         },
@@ -5490,19 +6421,25 @@
               "id": "rovaniemi-santa-claus-village",
               "name": "圣诞老人村",
               "nameEn": "Santa Claus Village",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 66.5019,
+              "lng": 25.7274
             },
             {
               "id": "rovaniemi-santapark",
               "name": "圣诞老人公园",
               "nameEn": "SantaPark",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 66.5039,
+              "lng": 25.7274
             },
             {
               "id": "rovaniemi-arktikum",
               "name": "北极博物馆",
               "nameEn": "Arktikum",
-              "type": "museum"
+              "type": "museum",
+              "lat": 66.5059,
+              "lng": 25.7274
             }
           ]
         }
@@ -5525,19 +6462,25 @@
               "id": "valletta-st-john-s-co-cathedral",
               "name": "圣约翰联合大教堂",
               "nameEn": "St. John's Co-Cathedral",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.8977,
+              "lng": 14.5127
             },
             {
               "id": "valletta-grandmaster-s-palace",
               "name": "大团长宫",
               "nameEn": "Grandmaster's Palace",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.8997,
+              "lng": 14.5127
             },
             {
               "id": "valletta-upper-barrakka-gardens",
               "name": "上巴拉卡花园",
               "nameEn": "Upper Barrakka Gardens",
-              "type": "landmark"
+              "type": "landmark",
+              "lat": 35.9017,
+              "lng": 14.5127
             }
           ]
         }
