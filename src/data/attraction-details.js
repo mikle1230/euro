@@ -1333,7 +1333,7 @@ export const ATTRACTION_DETAILS = {
     }
   },
   "trevi": {
-    "officialUrl": "https://www.turismoroma.it",
+    "officialUrl": "https://fontanaditrevi.roma.it",
     "intro": "特雷维喷泉（Fontana di Trevi）是罗马最大、最著名的巴洛克式喷泉，1762 年落成，因电影《罗马假日》和“背对喷泉投硬币”的传统而闻名世界，是罗马最具人气的城市地标之一。",
     "sections": [
       {
