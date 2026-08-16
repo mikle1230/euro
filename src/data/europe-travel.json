@@ -342,6 +342,22 @@
           "lat": 45.8992,
           "lng": 6.1294,
           "attractions": []
+        },
+        {
+          "id": "valensole",
+          "name": "瓦朗索勒",
+          "nameEn": "Valensole",
+          "lat": 43.84,
+          "lng": 5.983,
+          "attractions": []
+        },
+        {
+          "id": "saint-tropez",
+          "name": "圣特罗佩",
+          "nameEn": "Saint-Tropez",
+          "lat": 43.27,
+          "lng": 6.639,
+          "attractions": []
         }
       ]
     },
@@ -743,6 +759,46 @@
           "nameEn": "Padova",
           "lat": 45.4064,
           "lng": 11.8768,
+          "attractions": []
+        },
+        {
+          "id": "civitavecchia",
+          "name": "奇维塔维基亚",
+          "nameEn": "Civitavecchia",
+          "lat": 42.0922,
+          "lng": 11.7924,
+          "attractions": []
+        },
+        {
+          "id": "alberobello",
+          "name": "阿尔贝罗贝洛",
+          "nameEn": "Alberobello",
+          "lat": 40.7861,
+          "lng": 17.237,
+          "attractions": []
+        },
+        {
+          "id": "agrigento",
+          "name": "阿格里真托",
+          "nameEn": "Agrigento",
+          "lat": 37.3111,
+          "lng": 13.5765,
+          "attractions": []
+        },
+        {
+          "id": "siracusa",
+          "name": "锡拉库扎",
+          "nameEn": "Siracusa",
+          "lat": 37.0755,
+          "lng": 15.2866,
+          "attractions": []
+        },
+        {
+          "id": "taormina",
+          "name": "陶尔米纳",
+          "nameEn": "Taormina",
+          "lat": 37.852,
+          "lng": 15.288,
           "attractions": []
         }
       ]
@@ -2270,6 +2326,62 @@
           "nameEn": "Monaco",
           "lat": 43.7384,
           "lng": 7.4246,
+          "attractions": []
+        }
+      ]
+    },
+    {
+      "id": "montenegro",
+      "name": "黑山",
+      "nameEn": "Montenegro",
+      "description": "亚得里亚海东岸的山地小国，科托尔湾古城与峡湾风光",
+      "cities": [
+        {
+          "id": "kotor",
+          "name": "科托尔",
+          "nameEn": "Kotor",
+          "lat": 42.4247,
+          "lng": 18.7712,
+          "attractions": [
+            {
+              "id": "kotor-old-town",
+              "name": "科托尔老城",
+              "nameEn": "Kotor Old Town",
+              "type": "landmark",
+              "lat": 42.4247,
+              "lng": 18.7712,
+              "description": "联合国教科文组织世界遗产，中世纪古城与城墙",
+              "tips": "建议登城墙俯瞰科托尔湾全景",
+              "image_search_url": "https://www.bing.com/images/search?q=Kotor+Old+Town"
+            }
+          ]
+        },
+        {
+          "id": "budva",
+          "name": "布德瓦",
+          "nameEn": "Budva",
+          "lat": 42.2881,
+          "lng": 18.8444,
+          "attractions": [
+            {
+              "id": "sveti-stefan",
+              "name": "圣斯特凡岛",
+              "nameEn": "Sveti Stefan",
+              "type": "landmark",
+              "lat": 42.2565,
+              "lng": 18.8976,
+              "description": "亚得里亚海上的岛礁度假胜地，红瓦石屋与碧海相连",
+              "tips": "观景点在公路旁，适合远眺拍照",
+              "image_search_url": "https://www.bing.com/images/search?q=Sveti+Stefan"
+            }
+          ]
+        },
+        {
+          "id": "podgorica",
+          "name": "波德戈里察",
+          "nameEn": "Podgorica",
+          "lat": 42.4304,
+          "lng": 19.2594,
           "attractions": []
         }
       ]

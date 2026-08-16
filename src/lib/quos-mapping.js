@@ -3,6 +3,8 @@
 // localStorage 访问全部带 typeof window 守卫。
 import quosCities from '../data/quos-cities.json' with { type: 'json' }
 import quosAttractions from '../data/quos-attractions.json' with { type: 'json' }
+import { normalizeCityName as normCity } from './normalize.js'
+import { CITY_CODE_ALIASES as CITY_ALIASES } from '../data/city-aliases.js'
 
 // ---- QUOS Type Definitions ----
 export const DEFAULT_QUOS_ORDER = [
@@ -82,35 +84,9 @@ export function shouldHideItem(item, opts = {}) {
   return false
 }
 
-// ---- City Name Aliases ----
-// Handle variations: different Chinese translations, English→native name, etc.
-// quosCities keys are English + Chinese (from europe-travel.json cross-reference).
-// AI may output names not in either dataset.
-const CITY_ALIASES = {
-  // Chinese name variants (both translations for same city)
-  '琉森': '卢塞恩',
-  '圣特罗佩': 'Saint Tropez',
-  // 锡拉库扎/锡拉库萨（西西里）→ 意大利语 Siracusa；英文 Syracuse 会撞上美国城市
-  '锡拉库扎': 'Siracusa',
-  '锡拉库萨': 'Siracusa',
-  // English → native (Cities.xlsx uses native names for some cities)
-  'Milan': 'Milano',
-  'Genoa': 'Genova',
-  // Chinese → English (cities NOT in europe-travel.json but common in itineraries)
-  '米兰': 'Milan',
-  // Chinese departure cities (not in europe-travel.json)
-  '北京': 'Beijing',
-  '上海': 'Shanghai',
-  '广州': 'Guangzhou',
-  '深圳': 'Shenzhen',
-  '成都': 'Chengdu',
-  '西安': 'Xi An',
-}
-
 // ---- 归一化索引（通用变体修复）----
 // Cities.xlsx 里同一城市可能有多种写法（Saint Tropez / Saint-Tropez / St. Tropez），
 // 精确匹配失败时按「去空格/连字符/撇号/点 + 小写」兜底，如 Saint-Tropez → JSZ。
-const normCity = (s) => String(s || '').toLowerCase().replace(/[\s\-'.·]/g, '')
 let normIndex = null
 function buildNormIndex() {
   if (normIndex) return normIndex

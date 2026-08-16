@@ -9,21 +9,41 @@ import { SYSTEM_PROMPT } from './prompt.js'
 export function cleanText(raw) {
   const lines = String(raw || '').split('\n')
   const seen = new Set()
+  const seenPageNorm = new Set() // 页码/页眉类行：数字归一化后去重（第 2 页 / 第 3 页 视为同一噪声）
   const out = []
   for (const line of lines) {
-    const t = line.trim()
+    let t = line.trim()
     if (!t) {
       if (out.length && out[out.length - 1] !== '') out.push('')
       continue
     }
-    // 纯数字（页码）、"第 N 页"、URL、纯分隔线
+    // 纯数字（页码）
     if (/^\d{1,3}$/.test(t)) continue
-    if (/^(第\s*\d+\s*页|page\s*\d+)/i.test(t)) continue
+    // 整行页码标记：第 N 页 [ / 共 M 页 ]、Page N [ of M ]
+    if (/^(第\s*\d+\s*页(\s*\/\s*共\s*\d+\s*页)?|page\s*\d+(\s*(of|\/)\s*\d+)?)\s*$/i.test(t)) continue
+    // URL
     if (/^(https?:\/\/|www\.)/i.test(t)) continue
+    // 纯分隔线
     if (/^[-=_*·•—~]{4,}$/.test(t)) continue
-    // 重复行（页眉/页脚等）只保留一次
-    if (seen.has(t)) continue
-    seen.add(t)
+    // 纯标点/符号行
+    if (/^[\p{P}\p{S}\s]+$/u.test(t)) continue
+    // 电话 / 传真 / 邮箱单行
+    if (/^(tel|fax|phone|mobile|电话|传真|手机)\s*[:：]?\s*\S+$/i.test(t)) continue
+    if (/^[\w.+-]+@[\w-]+\.[\w.-]+$/.test(t)) continue
+
+    // 行尾独立页码（如「行程说明   3」）→ 剥掉，便于和同名行去重
+    t = t.replace(/\s{2,}\d{1,3}$/, '')
+
+    // 去重：页码/页眉类行按「去掉数字」归一化，其余按原样去重
+    const pageLike = /页|page/i.test(t)
+    if (pageLike) {
+      const key = t.replace(/\d+/g, '#')
+      if (seenPageNorm.has(key)) continue
+      seenPageNorm.add(key)
+    } else {
+      if (seen.has(t)) continue
+      seen.add(t)
+    }
     out.push(t)
   }
   return out.join('\n').replace(/\n{3,}/g, '\n\n')

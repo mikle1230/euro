@@ -9,6 +9,14 @@ import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import { COUNTRY_FLAGS } from '@/lib/flags'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
+import { COUNTRY_INTROS } from '@/data/country-intros'
+import { COUNTRY_INFO } from '@/data/country-info'
+
+// 从「货币名 码」字符串（如「欧元 EUR」）提取货币符号
+function currencySymbol(currency) {
+  const code = String(currency || '').trim().split(/\s+/).pop()
+  return code ? (CURRENCY_SYMBOLS[code] || '') : ''
+}
 
 export default function CountryPage() {
   const params = useParams()
@@ -22,7 +30,7 @@ export default function CountryPage() {
           <p className="text-4xl mb-4">🗺️</p>
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>国家未找到</p>
           <Link href="/knowledge" className="text-xs mt-2 inline-block" style={{ color: 'var(--accent)' }}>
-            ← 返回知识库
+            ← 返回城市库
           </Link>
         </div>
       </div>
@@ -33,64 +41,81 @@ export default function CountryPage() {
   const flag = COUNTRY_FLAGS[country.name] || '📍'
   const coverSrc = getCountryCoverImage(countryId)
   const cities = country.cities || []
+  const intro = COUNTRY_INTROS[countryId] || country.description || ''
+  const info = COUNTRY_INFO[countryId]
+  const infoRows = [
+    info?.capital && { label: '首都', value: info.capital },
+    info?.nationalDay && { label: '国庆日', value: info.nationalDay },
+    info?.language && { label: '官方语言', value: info.language },
+    info?.currency && { label: '货币', value: info.currency, symbol: currencySymbol(info.currency) },
+  ].filter(Boolean)
 
-  const neighbors = (meta.neighbors || []).map((nid) => {
-    // Use getAllCountries or just show the ID
-    return { id: nid }
-  })
+  const neighbors = (meta.neighbors || []).map((nid) => ({ id: nid }))
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb */}
-      <div className="px-4 md:px-6 py-3 max-w-5xl mx-auto">
-        <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          <Link href="/knowledge" className="hover:text-[var(--accent)] transition-colors">知识库</Link>
+      {/* Breadcrumb（吸顶，滚动时随时返回上级） */}
+      <div className="sticky top-0 z-40 border-b px-4 md:px-6 py-3" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
+        <div className="max-w-5xl mx-auto flex items-center gap-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
+          <Link href="/knowledge" className="hover:text-[var(--accent)] transition-colors">城市库</Link>
           <span>/</span>
           <span style={{ color: 'var(--text-primary)' }}>{country.name}</span>
         </div>
       </div>
 
-      {/* Hero postcard */}
+      {/* Hero postcard：封面图 + 深灰蒙版 + 国家介绍 */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
-        <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
+        <div className="relative rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
           <ImageWithPlaceholder
             src={coverSrc}
             alt={country.name}
-            name={`${flag} ${country.name}`}
-            subtitle={`${country.nameEn}${meta.abbr ? ' · ' + meta.abbr : ''}`}
             size="hero"
             variant="country"
-            countryName={country.name}
           />
+          <div
+            className="absolute inset-0 flex flex-col justify-center p-6 md:p-10"
+            style={{ background: 'rgba(23, 32, 42, 0.62)' }}
+          >
+            <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3">
+              {flag} {country.name}
+            </h1>
+            {intro && (
+              <p
+                className="text-sm md:text-base leading-relaxed max-w-3xl"
+                style={{ color: 'rgba(255,255,255,0.94)' }}
+              >
+                {intro}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
-        {/* Currency & meta bar */}
-        {meta.currency && (
+        {/* 国家信息栏：表格排版，标签与内容均左对齐 */}
+        {infoRows.length > 0 && (
           <div
-            className="flex flex-wrap items-center gap-3 px-4 py-3 rounded-xl mb-6 text-sm"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}
+            className="rounded-xl border overflow-hidden mb-6"
+            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
           >
-            <span style={{ color: 'var(--text-secondary)' }}>
-              {CURRENCY_SYMBOLS[meta.currency.code] || meta.currency.code} 货币：
-            </span>
-            <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>
-              {meta.currency.name} · {meta.currency.code}
-            </span>
-            <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>
-              1 {meta.currency.code} ≈ {meta.currency.rateToCny} CNY
-            </span>
-            <span className="text-xs ml-auto" style={{ color: 'var(--text-tertiary)' }}>仅供参考</span>
-          </div>
-        )}
-
-        {/* Description */}
-        {country.description && (
-          <div className="mb-8">
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              {country.description}
-            </p>
+            {infoRows.map((row, i) => (
+              <div
+                key={row.label}
+                className="grid text-sm"
+                style={{
+                  gridTemplateColumns: '104px 1fr',
+                  ...(i < infoRows.length - 1 ? { borderBottom: '1px solid var(--border-color)' } : {}),
+                }}
+              >
+                <span className="pl-5 py-3" style={{ color: 'var(--text-tertiary)' }}>{row.label}</span>
+                <span className="pr-5 py-3 font-medium" style={{ color: 'var(--text-primary)' }}>
+                  {row.symbol && (
+                    <span className="mr-1.5 font-semibold" style={{ color: 'var(--accent)' }}>{row.symbol}</span>
+                  )}
+                  {row.value}
+                </span>
+              </div>
+            ))}
           </div>
         )}
 

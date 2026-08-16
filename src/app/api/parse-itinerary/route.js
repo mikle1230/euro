@@ -2,6 +2,54 @@ import { NextResponse } from 'next/server'
 import { applyQuoteRules, patchEmptyRunRoadKm } from '@/lib/coach-plan'
 import { aiParse, cleanText } from '@/lib/ai-parse'
 
+// PDF 页面文本重建：pdf2json 的 Texts 是逐字形/片段（CJK 每字一条），
+// 若像旧代码那样整页用空格拼成一行，cleanText 的按行降噪（页码/页眉/去重）全部失效。
+// 这里按 y 坐标重建「行」，行内按 x 排序；相邻字形间距明显大于该页中位间距时补一个空格
+// 以区分词/字段边界（如 "PEK" 与 "CA933"），否则直接拼接（CJK 不再逐字加空格）。
+function pdfPageToText(page) {
+  const texts = page.Texts || []
+  if (!texts.length) return ''
+
+  const glyphs = texts.map((t) => ({
+    x: t.x || 0,
+    y: t.y || 0,
+    text: decodeURIComponent((t.R && t.R[0] && t.R[0].T) || ''),
+  }))
+  glyphs.sort((a, b) => (a.y - b.y) || (a.x - b.x))
+
+  // 同一行内相邻字形的 x 间距中位数 → 词边界阈值（尺度自适应，不硬编码像素）
+  const gaps = []
+  for (let i = 1; i < glyphs.length; i++) {
+    if (Math.abs(glyphs[i].y - glyphs[i - 1].y) < 0.5) {
+      gaps.push(glyphs[i].x - glyphs[i - 1].x)
+    }
+  }
+  const positive = gaps.filter((g) => g > 0).sort((a, b) => a - b)
+  const medianGap = positive.length ? positive[Math.floor(positive.length / 2)] : 0
+  const wordGap = medianGap > 0 ? medianGap * 2.5 : 2
+
+  const lines = []
+  let cur = []
+  let curKey = null
+  let prevX = null
+  for (const g of glyphs) {
+    const key = Math.round(g.y)
+    if (curKey === null || key === curKey) {
+      if (prevX !== null && g.x - prevX > wordGap) cur.push(' ')
+      cur.push(g.text)
+      prevX = g.x
+      if (curKey === null) curKey = key
+    } else {
+      lines.push(cur.join(''))
+      cur = [g.text]
+      curKey = key
+      prevX = g.x
+    }
+  }
+  if (cur.length) lines.push(cur.join(''))
+  return lines.join('\n')
+}
+
 // 可选鉴权：.env.local 配置 PARSE_API_TOKEN 后，请求必须带
 // Authorization: Bearer <token>，防止公网部署被刷 DeepSeek API 额度。
 function checkAuth(request) {
@@ -47,15 +95,7 @@ export async function POST(request) {
         const parser = new PDFParser()
         parser.on('pdfParser_dataReady', (data) => {
           const pages = data.Pages || []
-          resolve(
-            pages
-              .map((page) =>
-                (page.Texts || [])
-                  .map((t) => decodeURIComponent(t.R[0].T))
-                  .join(' '),
-              )
-              .join('\n\n'),
-          )
+          resolve(pages.map(pdfPageToText).join('\n\n'))
         })
         parser.on('pdfParser_dataError', (err) => reject(err.parserError || err))
         parser.parseBuffer(buffer)
@@ -103,10 +143,16 @@ export async function POST(request) {
     // 输入降噪（页码/页眉页脚/重复行等）压缩 token，然后截断
     text = cleanText(text)
 
-    // Truncate to avoid token limits (DeepSeek context: 128K)
+    // Truncate to avoid token limits (DeepSeek context: 128K)。
+    // 保留头 + 尾：返程航班/结尾说明常落在文件尾部，盲切头部会丢掉。
     const maxChars = 50000
     if (text.length > maxChars) {
-      text = text.slice(0, maxChars) + '\n\n[文本过长，已截断...]'
+      const headChars = Math.floor(maxChars * 0.8)
+      const tailChars = maxChars - headChars
+      text =
+        text.slice(0, headChars) +
+        `\n\n[文本过长，已截断中间 ${text.length - maxChars} 字符]\n\n` +
+        text.slice(-tailChars)
     }
 
     // ---- Call DeepSeek API（共享 aiParse）----

@@ -6,9 +6,14 @@
    主色 #08739D · 辅蓝 #4984AC · 浅底 #E7EEF8 · 绿 #6D9D39 · 青柠 #AEC60C
    ============================================= */
 
-/* Ensure full-height layout — required for Leaflet map to fill the viewport */
-html, body {
+/* Ensure full-height layout — required for Leaflet map to fill the viewport.
+   注意：body 用 min-height 而非 height，否则固定高度会让 body 不随内容增长，
+   导致 position: sticky（顶栏/面包屑吸顶）只在前一屏生效、滚动后失效。 */
+html {
   height: 100%;
+}
+body {
+  min-height: 100%;
 }
 
 :root {

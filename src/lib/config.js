@@ -1,7 +1,8 @@
+import { CURRENCY_SYMBOLS } from '../data/countries.js'
+
 const SITE = {
   name: 'Euro Atlas',
-  tagline: '每天认识一个欧洲角落',
-  description: '欧洲旅行知识大全 — 按国家、城市、景点浏览，每日一景逐步探索整个欧洲。',
+  description: '欧洲旅行知识大全 — 按国家、城市、景点浏览。',
   url: 'https://euro.831225.xyz',
 }
 
@@ -45,18 +46,6 @@ const EMPTY_TEXT = {
   allFree: '已全部隐藏',
 }
 
-const CURRENCY_SYMBOLS = {
-  EUR: '€',
-  GBP: '£',
-  PLN: 'zł',
-  CZK: 'Kč',
-  HUF: 'Ft',
-  SEK: 'kr',
-  DKK: 'kr',
-  NOK: 'kr',
-  USD: '$',
-}
-
 const MAP = {
   initialCenter: [50, 10],
   initialZoom: 6,
@@ -64,4 +53,4 @@ const MAP = {
   entityVisibleZoom: 8, // 实体标记（景点/酒店/餐厅）在 zoom > 该值时显示
 }
 
-export { SITE, TYPE_LABELS, TYPE_ICONS, ENTITY_MARKER_COLORS, MAP, EMPTY_TEXT, CURRENCY_SYMBOLS, getEntityMarkerColor }
+export { SITE, TYPE_LABELS, TYPE_ICONS, MAP, EMPTY_TEXT, CURRENCY_SYMBOLS, getEntityMarkerColor }

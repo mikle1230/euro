@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/tests/*.test.mjs"
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/tests/*.test.mjs",
+    "build:data": "node scripts/build-quos-cities.js && node scripts/build-city-hints.js && node scripts/build-city-coords.js"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

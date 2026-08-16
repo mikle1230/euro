@@ -1,30 +1,9 @@
 // 酒店推荐：按当天过夜城市返回 Booking 评分≥7 的参考酒店（静态库，评分/价格非实时）
 // 纯函数、无 'use client'，可运行于服务端与客户端。
 import hotelData from '../data/hotel-recommendations.js'
-
-// 与 quos-mapping 一致的城市名归一化：去空格/连字符/撇号/点/间隔号
-const norm = (s) => String(s || '').toLowerCase().replace(/[\s\-'.·]/g, '')
-
-// 中文名 → 常用英文名（匹配键用）
-const ALIASES = {
-  瓦朗索勒: 'Valensole',
-  圣特罗佩: 'Saint Tropez',
-  奇维塔维基亚: 'Civitavecchia',
-  那不勒斯: 'Naples',
-  苏莲托: 'Sorrento',
-  阿尔贝罗贝洛: 'Alberobello',
-  波西塔诺: 'Positano',
-  巴勒莫: 'Palermo',
-  阿格里真托: 'Agrigento',
-  锡拉库扎: 'Siracusa',
-  锡拉库萨: 'Siracusa',
-  陶尔米纳: 'Taormina',
-  热那亚: 'Genoa',
-  因特拉肯: 'Interlaken',
-  马赛: 'Marseille',
-  塞维利亚: 'Seville',
-  波尔图: 'Porto',
-}
+import { normalizeCityName as norm } from './normalize.js'
+import { HOTEL_ALIASES as ALIASES } from '../data/city-aliases.js'
+import { COUNTRY_NAMES, COUNTRY_CURRENCIES } from '../data/countries.js'
 
 // 一次性索引：中文名 / 英文名 / 城市码 / slug 均可命中
 const INDEX = (() => {
@@ -88,11 +67,8 @@ export function hasHotelData(cityName, cityNameEn, cityCode = '') {
 
 // ---- 酒店目录（/hotels 页）----
 
-// 国家码 → 中文名（酒店参考库覆盖的国家）
-export const COUNTRY_NAMES = {
-  FR: '法国', IT: '意大利', ES: '西班牙', PT: '葡萄牙', GB: '英国',
-  NL: '荷兰', BE: '比利时', DE: '德国', AT: '奥地利', CZ: '捷克', HU: '匈牙利', CH: '瑞士',
-}
+// 国家码 → 中文名 / 货币，已收敛到 src/data/countries.js（国家注册表单一数据源）
+export { COUNTRY_NAMES, COUNTRY_CURRENCIES }
 
 // 全部酒店按「国家 → 城市 → 酒店」分组（评分≥7，按评分降序）
 export function getHotelCatalog() {

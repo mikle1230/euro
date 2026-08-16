@@ -47,10 +47,15 @@ function getQuosStatus(it) {
   return { ...STATUS.doing, total, done }
 }
 
-// 未匹配城市（cityId 为空 = 没匹配到本地数据）
+// 未匹配城市（cityId 为空 = 没匹配到本地数据）；中国出发/返程城市（如上海/北京）不算
 function getUnmatchedCities(it) {
   const set = new Set()
-  it.days.forEach((d) => { if (!d.cityId && d.cityName) set.add(d.cityName) })
+  it.days.forEach((d) => {
+    if (!d.cityId && d.cityName) {
+      const cc = getCityCode(d.cityName, d.cityNameEn)?.countryCode
+      if (cc !== 'CN') set.add(d.cityName)
+    }
+  })
   return [...set]
 }
 
@@ -84,7 +89,8 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
       const token = getApiToken()
       if (token) headers['Authorization'] = `Bearer ${token}`
 
-      // 上次解析结果（精简版，供 AI 参考；排除报价注入项）
+      // 上次解析结果（精简版，供 AI 参考；排除报价注入项）。
+      // 只保留「定位」所需的最小字段，时间/费用/备注等由 AI 从原文重推导，省输入 token。
       const current = {
         days: feedbackTarget.days.map((d) => ({
           dayNumber: d.dayNumber,
@@ -92,20 +98,13 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
           cityNameEn: d.cityNameEn,
           items: (d.items || [])
             .filter((i) => !i.quoteKind)
-            .map((i) => ({
-              type: i.type,
-              name: i.name,
-              nameEn: i.nameEn,
-              startTime: i.startTime,
-              endTime: i.endTime,
-              from: i.from,
-              to: i.to,
-              transportMode: i.transportMode,
-              transportSubtype: i.transportSubtype,
-              costCategory: i.costCategory,
-              estimatedCost: i.estimatedCost,
-              notes: i.notes,
-            })),
+            .map((i) => {
+              const item = { type: i.type, name: i.name }
+              if (i.from) item.from = i.from
+              if (i.to) item.to = i.to
+              if (i.transportMode) item.transportMode = i.transportMode
+              return item
+            }),
         })),
       }
 
@@ -137,8 +136,8 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
           cityId: city?.id || '',
           cityName: city?.name || d.cityName || '',
           cityNameEn: d.cityNameEn || '',
-          cityCode: d.cityCode || cityInfo?.cityCode || '',
-          countryCode: d.countryCode || cityInfo?.countryCode || '',
+          cityCode: cityInfo?.cityCode || d.cityCode || '',
+          countryCode: cityInfo?.countryCode || d.countryCode || '',
           finalCityName: d.finalCityName || '',
           finalCityNameEn: d.finalCityNameEn || '',
           items: d.items || [],
@@ -305,7 +304,13 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
                         <span style={{ color: 'var(--text-secondary)' }}>📋 已录 {status.done}/{status.total}</span>
                       )}
                       {unmatched.length > 0 && (
-                        <span style={{ color: '#c05a30' }}>⚠️ {unmatched.length}城未匹配</span>
+                        <span
+                          className="max-w-full truncate"
+                          style={{ color: '#c05a30' }}
+                          title={`未匹配城市：${unmatched.join('、')}（这些城市在地图/本地数据中无坐标，可能影响地图路线与城市代码）`}
+                        >
+                          ⚠️ {unmatched.length}城未匹配：{unmatched.join('、')}
+                        </span>
                       )}
                       {it.updatedAt && <span>更新于 {formatTime(it.updatedAt)}</span>}
                     </div>

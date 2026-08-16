@@ -4,7 +4,6 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { importItinerary, deleteItinerary } from '@/lib/itinerary-store'
-import { createEntity } from '@/lib/entity-store'
 import { getCityCode } from '@/lib/quos-mapping'
 import { getApiToken } from '@/lib/api-config'
 import { matchCity } from '@/lib/city-match'
@@ -109,8 +108,8 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
         cityId: city?.id || '',
         cityName: city?.name || d.cityName || '',
         cityNameEn: d.cityNameEn || '',
-        cityCode: d.cityCode || cityInfo?.cityCode || '',
-        countryCode: d.countryCode || cityInfo?.countryCode || '',
+        cityCode: cityInfo?.cityCode || d.cityCode || '',
+        countryCode: cityInfo?.countryCode || d.countryCode || '',
         finalCityName: d.finalCityName || '',
         finalCityNameEn: d.finalCityNameEn || '',
         items,
@@ -125,28 +124,6 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
       groupSize: data.groupSize || 0,
       sourceText: data.sourceText || '',
       days,
-    })
-
-    // Also add hotels as entities
-    const hotelItems = (data.days || []).flatMap((d) =>
-      (d.items || []).filter((i) => i.type === 'hotel'),
-    )
-    hotelItems.forEach((hotel) => {
-      try {
-        const city = matchCity(data.days.find((d) =>
-          d.items?.some((i) => i === hotel),
-        )?.cityName)
-        createEntity({
-          name: hotel.name,
-          type: 'hotel',
-          subtype: 'business',
-          cityId: city?.id || '',
-          cityName: city?.name || '',
-          countryId: city?.countryId || '',
-          countryName: city?.countryName || '',
-          notes: hotel.notes || '',
-        })
-      } catch { /* entity creation is best-effort */ }
     })
 
     onClose()

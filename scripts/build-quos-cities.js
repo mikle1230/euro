@@ -41,15 +41,35 @@ function buildCities() {
     lookup[cityName] = { cityCode, countryCode }
   }
 
-  // Cross-reference with europe-travel.json for Chinese name mapping
+  // Cross-reference with europe-travel.json for Chinese name mapping.
+  // europe-travel.json 用英文名（Frankfurt/Milan/Seville…），Cities.xlsx 用本地/规范拼写
+  // （Frankfurt am Main/Milano/Sevilla…），精确匹配会漏掉这些城市 → 缺中文键 → getCityCode 查不到。
+  // 这里加一层英文→本地拼写映射，保证每个 europe-travel 城市都能生成中文键。
+  const EN_TO_NATIVE = {
+    Milan: 'Milano',
+    Frankfurt: 'Frankfurt am Main',
+    Nuremberg: 'Nuernberg',
+    Fussen: 'Fuessen',
+    Seville: 'Sevilla',
+    'Santiago de Compostela': 'Santiago De Compostela',
+    'Palma de Mallorca': 'Palma De Mallorca',
+    Antwerp: 'Antwerpen',
+    Ghent: 'Gent',
+    Tromso: 'Tromsoe',
+    Monaco: 'Monte Carlo',
+    Dusseldorf: 'Duesseldorf',
+    'Cinque Terre': 'Manarola/Cinq Terre',
+  }
+
   const travelData = JSON.parse(fs.readFileSync(TRAVEL_DATA_PATH, 'utf-8'))
   let chineseMatchCount = 0
 
   for (const country of travelData.countries) {
     for (const city of country.cities) {
-      if (city.nameEn && lookup[city.nameEn]) {
+      const native = city.nameEn && (EN_TO_NATIVE[city.nameEn] || city.nameEn)
+      if (native && lookup[native]) {
         // Chinese name → same data
-        lookup[city.name] = lookup[city.nameEn]
+        lookup[city.name] = lookup[native]
         chineseMatchCount++
       }
     }
@@ -60,8 +80,9 @@ function buildCities() {
   const curatedCities = require('./curated-cities.cjs')
   let curatedMatchCount = 0
   for (const [cn, en] of curatedCities) {
-    if (!lookup[cn] && lookup[en]) {
-      lookup[cn] = lookup[en]
+    const native = EN_TO_NATIVE[en] || en
+    if (!lookup[cn] && lookup[native]) {
+      lookup[cn] = lookup[native]
       curatedMatchCount++
     }
   }

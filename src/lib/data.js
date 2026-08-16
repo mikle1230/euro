@@ -1,6 +1,5 @@
 import travelData from '@/data/europe-travel.json'
-import exploreConfig from '@/data/explore-config.json'
-import attractionInfo from '@/data/attraction-info.json'
+import { COUNTRY_IMAGES } from '@/data/country-images'
 
 const { countries } = travelData
 
@@ -76,22 +75,6 @@ export function getAllAttractionsFlat() {
   return allAttractionsFlat
 }
 
-export function getFeaturedAttractions() {
-  return exploreConfig.featured
-    .map((id) => getAttractionById(id))
-    .filter(Boolean)
-}
-
-export function getPopularCities() {
-  return exploreConfig.popularCities
-    .map((id) => getCityById(id))
-    .filter(Boolean)
-}
-
-export function getAttractionInfo(id) {
-  return attractionInfo[id] || null
-}
-
 export function getStats() {
   let cityCount = 0
   let attractionCount = 0
@@ -109,35 +92,11 @@ export function getStats() {
 }
 
 export function getCountryCoverImage(countryId) {
-  // Returns path; component handles loading/fallback
-  return `/images/countries/${countryId}.jpg`
-}
-
-export function getAttractionImagePath(attractionId) {
-  return `/images/attractions/${attractionId}.jpg`
-}
-
-export function getCityImagePath(cityId) {
-  return `/images/cities/${cityId}.jpg`
+  // 返回静态导入图（StaticImageData），供 next/image 优化；无图国家返回 null → 组件显示占位渐变
+  return COUNTRY_IMAGES[countryId] || null
 }
 
 export function getAllCitiesWithCoords() {
   buildIndexes()
   return allCitiesWithCoords
-}
-
-export function getCountryCentroids() {
-  const centroids = {}
-  for (const c of countries) {
-    const coords = c.cities.filter((city) => city.lat != null && city.lng != null)
-    if (coords.length === 0) continue
-    centroids[c.id] = {
-      lat: coords.reduce((s, city) => s + city.lat, 0) / coords.length,
-      lng: coords.reduce((s, city) => s + city.lng, 0) / coords.length,
-      name: c.name,
-      nameEn: c.nameEn,
-      cityCount: coords.length,
-    }
-  }
-  return centroids
 }

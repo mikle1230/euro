@@ -2,7 +2,7 @@
 // 数据来源：联网调研整理（booking.com / Google Hotels / TripAdvisor 等），仅供报价参考
 export default {
   "agrigento": {
-    name: "阿格里真托", nameEn: "Agrigento", country: "IT", cityCode: "", note: "住神殿之谷（Valle dei Templi）入口附近最方便看神庙群；老城市中心次选。", hotels: [
+    name: "阿格里真托", nameEn: "Agrigento", country: "IT", cityCode: "QAO", note: "住神殿之谷（Valle dei Templi）入口附近最方便看神庙群；老城市中心次选。", hotels: [
       {
         name: "Villa Athena Resort",
         nameZh: "雅典娜别墅酒店",
@@ -39,7 +39,7 @@ export default {
     ],
   },
   "alberobello": {
-    name: "阿尔贝罗贝洛", nameEn: "Alberobello", country: "IT", cityCode: "", note: "建议住特鲁利区（Rione Monti / Aia Piccola）附近，景点集中步行可达，住在特色特鲁利石屋内体验最佳", hotels: [
+    name: "阿尔贝罗贝洛", nameEn: "Alberobello", country: "IT", cityCode: "AXB", note: "建议住特鲁利区（Rione Monti / Aia Piccola）附近，景点集中步行可达，住在特色特鲁利石屋内体验最佳", hotels: [
       {
         name: "Trulli Holiday Albergo Diffuso",
         nameZh: "特鲁利假日酒店",
@@ -250,7 +250,7 @@ export default {
     ],
   },
   "civitavecchia": {
-    name: "奇维塔韦基亚", nameEn: "Civitavecchia", country: "IT", cityCode: "", note: "奇维塔韦基亚是罗马的主要邮轮港，建议住港口/火车站附近的 Via Garibaldi 一带，便于步行登船或乘火车往返罗马。", hotels: [
+    name: "奇维塔韦基亚", nameEn: "Civitavecchia", country: "IT", cityCode: "CVV", note: "奇维塔韦基亚是罗马的主要邮轮港，建议住港口/火车站附近的 Via Garibaldi 一带，便于步行登船或乘火车往返罗马。", hotels: [
       {
         name: "Hotel San Giorgio",
         nameZh: "",
@@ -1020,7 +1020,7 @@ export default {
     ],
   },
   "sorrento": {
-    name: "苏莲托", nameEn: "Sorrento", country: "IT", cityCode: "", note: "建议住市中心Piazza Tasso附近，步行可到码头和老城，去卡普里、庞贝和阿马尔菲海岸都最方便", hotels: [
+    name: "苏莲托", nameEn: "Sorrento", country: "IT", cityCode: "STX", note: "建议住市中心Piazza Tasso附近，步行可到码头和老城，去卡普里、庞贝和阿马尔菲海岸都最方便", hotels: [
       {
         name: "Grand Hotel Excelsior Vittoria",
         nameZh: "埃克塞尔西奥维多利亚大酒店",
@@ -1094,7 +1094,7 @@ export default {
     ],
   },
   "valensole": {
-    name: "瓦朗索勒", nameEn: "Valensole", country: "FR", cityCode: "", note: "瓦朗索勒为薰衣草小镇，自驾最方便；住镇上或高原边缘的民宿/家庭旅馆均可", hotels: [
+    name: "瓦朗索勒", nameEn: "Valensole", country: "FR", cityCode: "VSO", note: "瓦朗索勒为薰衣草小镇，自驾最方便；住镇上或高原边缘的民宿/家庭旅馆均可", hotels: [
       {
         name: "Les Chambres d'Hôtes de Valensole au pays des lavandes et proche des Gorges du Verdon",
         nameZh: "",
@@ -1238,6 +1238,43 @@ export default {
         near: "火车总站",
         ratingSource: "Booking.com",
         sources: ["https://www.booking.com/hotel/ch/crowne-plaza-zurich.html", "https://crowneplazazurich.ohotel.com/"], address: '', chain: '',
+      },
+    ],
+  },
+  "lucerne": {
+    name: "琉森", nameEn: "Lucerne", country: "CH", cityCode: "LUZ", note: "住老城卡佩尔桥/火车站一带最方便，老城、琉森湖、皮拉图斯山均在步行或车程范围内。", hotels: [
+      {
+        name: "Hotel des Balances",
+        nameZh: "",
+        star: 4,
+        rating: 8.8,
+        priceEur: 260,
+        area: "老城中心罗伊斯河畔，正对卡佩尔桥，步行到老城与湖畔",
+        near: "卡佩尔桥",
+        ratingSource: "Booking.com",
+        sources: ["https://www.booking.com/hotel/ch/des-balances.html"], address: "", chain: "",
+      },
+      {
+        name: "Hotel Schweizerhof Luzern",
+        nameZh: "",
+        star: 5,
+        rating: 9.0,
+        priceEur: 420,
+        area: "琉森湖畔，紧邻火车站与湖滨大道，步行到卡佩尔桥",
+        near: "琉森湖",
+        ratingSource: "Booking.com",
+        sources: ["https://www.booking.com/hotel/ch/schweizerhof-luzern.html"], address: "", chain: "",
+      },
+      {
+        name: "Cascada Boutique Hotel",
+        nameZh: "",
+        star: 4,
+        rating: 8.6,
+        priceEur: 190,
+        area: "火车站附近，步行约5分钟到卡佩尔桥与老城",
+        near: "火车站",
+        ratingSource: "Booking.com",
+        sources: ["https://www.booking.com/hotel/ch/cascada-boutique.html"], address: "", chain: "",
       },
     ],
   },

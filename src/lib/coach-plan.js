@@ -4,7 +4,7 @@
 // 费率常量集中在 ./quote-rates.js；EMPTY RUN 真实车程在 route.js 用 patchEmptyRunRoadKm 异步补全。
 import { QUOTE_RATES } from './quote-rates.js'
 import { getCityCode } from './quos-mapping.js'
-import { resolveLdcSupplier, KNOWN_COUNTRY_CODES } from './ldc-mapping.js'
+import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES } from './ldc-mapping.js'
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
@@ -193,49 +193,65 @@ export function applyQuoteRules(parsed) {
       .filter((x) => !(returnCity && x.name && x.name === returnCity))
       .map((x) => x.code),
   )]
-  const ldc = resolveLdcSupplier(ldcCountries)
+  // 挪威/芬兰：行程含北极极地城市（特罗姆瑟/罗瓦涅米等）→ 北（ALT/ROV），否则 → 南（OSL/HEL）
+  const arcticCityNames = realDays.flatMap((d) => [d.cityName, d.cityNameEn])
+  const ldc = resolveLdcSupplier(ldcCountries, { arctic: hasArcticCity(arcticCityNames) })
 
   // 2) 旅行保险：第 1 天、置顶、必录，2.66 USD/人 × 人数
   realDays[0].items = [makeInsurance(parsed.groupSize), ...(realDays[0].items || [])]
 
   const transitOf = (d) => (d.items || []).find((it) =>
     it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) && (it.from || it.to))
-  // 「抵达」transit：交通工具终点 = 当晚过夜城市（如航班抵达巴勒莫）或当天白天城市（如首日飞抵马赛、当夜住瓦朗索勒）→ 需要接机/长途车；
-  // 离境 transit（终点非上述两者，如返程航班罗马→上海）→ 不需要接机。
+  // 「抵达」transit：只认「飞机」跨城抵达。火车/船（金色山口观光列车、游湖船、一日游火车）是地面交通，
+  // 长途车可空驶跟随到下一站继续接团，不打断用车。
   const arrivalTransitOf = (d) => (d.items || []).find((it) =>
-    it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) &&
-    it.to && (it.to === overnight(d) || it.to === d.cityName))
+    it.type === 'transport' && it.transportMode === 'flight' &&
+    it.to && (it.to === overnight(d) || it.to === d.cityName) &&
+    it.from && getCityCode(it.from) != null)
+  // 「返程」transit：终点是中国城市的飞机（返程航班罗马→上海）
+  const returnTransitOf = (d) => (d.items || []).find((it) =>
+    it.type === 'transport' && it.transportMode === 'flight' &&
+    it.to && getCityCode(it.to)?.countryCode === 'CN')
   const categoryFor = (mode) =>
     mode === 'flight' ? 'APT/HTL' : mode === 'train' ? 'HTL-STA' : mode === 'boat' ? 'HTL-PIER' : null
 
-  // 4) 切分段：连续无 transit 的 real days = 一个段。
-  //    「抵达日」（transit 终点 = 过夜城市 或 当天白天城市）分两种：
-  //      - 航班降落后第 1 天与第 2 天住「不同」城市 → 从第 1 天起用 LDC（THROUGH COACH 负责接机，不加 STD MTC）
-  //      - 航班降落后同城住宿 ≥2 天 → 第 1 天单独接机 STD MTC（APT/HTL），第 2 天起用 LDC
-  //    离境日（transit 终点≠过夜城市也≠白天城市，如返程航班）→ 只断段，接机/送机另行判定。
+  // 4) 切分段：只在「跨城交通」处断段。
+  //    抵达 = transit 终点是过夜/当天城市 且 过夜城市相对前一天发生变化（排除同城一日游的返程腿，如少女峰→因特拉肯）；
+  //    返程 = transit 终点是中国（如罗马→上海）。
+  const isRealArrivalAt = (i) => {
+    const d = realDays[i]
+    if (!arrivalTransitOf(d)) return false
+    const prev = i > 0 ? realDays[i - 1] : null
+    return !prev || overnight(prev) !== overnight(d)
+  }
+  const isMoveDay = (d) => isRealArrivalAt(realDays.indexOf(d)) || !!returnTransitOf(d)
+
   const segments = []
   let cur = null
   for (let i = 0; i < realDays.length; i++) {
     const d = realDays[i]
-    const transit = transitOf(d)
-    if (transit) {
+    const returnTransit = returnTransitOf(d)
+    if (isRealArrivalAt(i)) {
+      // 跨城抵达：断段
       if (cur) { segments.push(cur); cur = null }
       const arrival = arrivalTransitOf(d)
-      if (arrival) {
-        const next = realDays[i + 1]
-        const nextOvernight = next ? overnight(next) : null
-        const multiNight = !!nextOvernight && nextOvernight === overnight(d)
-        if (multiNight || !next) {
-          // 同城连住（或抵达日是最后一天）→ STD MTC 接机
-          d.items.push(makePickup(categoryFor(arrival.transportMode)))
-        } else {
-          // 单晚停留的抵达日 → 段从当天开始，fromCity 取抵达城市（如首日飞抵马赛 / 飞抵巴勒莫）
-          cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: arrival.to || overnight(d) }
-          cur.endDay = d.dayNumber
-          cur.endCity = overnight(d)
-        }
+      const next = realDays[i + 1]
+      const nextOvernight = next ? overnight(next) : null
+      const multiNight = !!nextOvernight && nextOvernight === overnight(d)
+      if (multiNight || !next) {
+        // 同城连住（或抵达日是最后一天）→ STD MTC 接机
+        d.items.push(makePickup(categoryFor(arrival.transportMode)))
+      } else {
+        // 单晚停留的抵达日 → 段从当天开始，fromCity 取抵达城市（如首日飞抵马赛 / 飞抵巴勒莫）
+        cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: arrival.to || overnight(d) }
+        cur.endDay = d.dayNumber
+        cur.endCity = overnight(d)
       }
+    } else if (returnTransit) {
+      // 返程离境：断段，不新开段（送机后续处理）
+      if (cur) { segments.push(cur); cur = null }
     } else {
+      // 无跨城交通（含同城一日游的 train/boat）：继续当前段
       if (!cur) cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: d.cityName }
       cur.endDay = d.dayNumber
       cur.endCity = overnight(d)
@@ -243,17 +259,14 @@ export function applyQuoteRules(parsed) {
   }
   if (cur) segments.push(cur)
 
-  // 每段终点 = 下一个 transit 日「最后一段交通的出发城」（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚）；
-  // 无后续 transit 时回退段末日 cityName。
+  // 每段终点 = 下一个「跨城交通」日的出发城（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚）；
+  // 无后续跨城交通时回退段末日 cityName。
   for (const seg of segments) {
-    const nextDay = realDays.find((d) => d.dayNumber > seg.endDay && transitOf(d))
+    const nextDay = realDays.find((d) => d.dayNumber > seg.endDay && isMoveDay(d))
     let toCity = null
     if (nextDay) {
-      const transits = (nextDay.items || []).filter((it) =>
-        it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) && it.from)
-      const flights = transits.filter((t) => t.transportMode === 'flight')
-      const pick = flights.length ? flights : transits
-      if (pick.length && pick[pick.length - 1].from) toCity = pick[pick.length - 1].from
+      const move = returnTransitOf(nextDay) || arrivalTransitOf(nextDay)
+      if (move?.from) toCity = move.from
     }
     if (!toCity) {
       const lastD = realDays.find((d) => d.dayNumber === seg.endDay)
@@ -262,18 +275,18 @@ export function applyQuoteRules(parsed) {
     seg.toCity = toCity
   }
 
-  // 送机：最后一个离境日（transit 终点 ≠ 当晚过夜城市，如返程航班罗马→上海）。
-  // 若与上一个 LDC 段同城衔接（段末日=离境日前一天 且 段末城=离境城市）→ 由 THROUGH COACH 顺路送机；
-  // 否则（断开单城停留，如飞抵罗马后隔天离境）→ 单独加送机 MTC（HTL/APT）。
-  const departureTransitOf = (d) => (d.items || []).find((it) =>
-    it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) &&
-    it.from && !(it.to && it.to === overnight(d)))
-  const lastDeparture = [...realDays].reverse().find((d) => departureTransitOf(d))
+  // 送机：最后一个返程离境日（终点是中国，如返程航班罗马→上海）。
+  // 若上一个 LDC 段与离境日衔接（段末日=离境日前一天 且 段末城=返程航班出发城，即离境城市）→
+  // 由 THROUGH COACH 顺路送机，不加单独送机；否则（断开单城停留，如飞抵罗马后隔天离境）→ 单独加送机 MTC。
+  // 注意：比对的是「返程航班的出发城」（罗马），不是当晚过夜城（返程夜可能落在北京/飞机上），
+  // 否则长途车一路开到罗马却仍被误判为「断开」而多算一次送机。
+  const lastDeparture = [...days].reverse().find((d) => (d.dayNumber ?? 0) >= 1 && returnTransitOf(d))
   if (lastDeparture) {
     const lastSeg = segments[segments.length - 1]
+    const departureFlight = returnTransitOf(lastDeparture)
     const coachCovers = lastSeg &&
       lastSeg.endDay === lastDeparture.dayNumber - 1 &&
-      lastSeg.endCity === overnight(lastDeparture)
+      lastSeg.endCity === (departureFlight?.from || overnight(lastDeparture))
     if (!coachCovers) lastDeparture.items.push(makeDropoff())
   }
 

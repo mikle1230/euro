@@ -39,7 +39,17 @@ export async function POST(request) {
       return NextResponse.json({ error: '请填写反馈内容' }, { status: 400 })
     }
 
-    const text = cleanText(sourceText).slice(0, 50000)
+    // 保留头 + 尾：返程信息常落在文件尾部
+    let text = cleanText(sourceText)
+    const maxChars = 50000
+    if (text.length > maxChars) {
+      const headChars = Math.floor(maxChars * 0.8)
+      const tailChars = maxChars - headChars
+      text =
+        text.slice(0, headChars) +
+        `\n\n[文本过长，已截断中间 ${text.length - maxChars} 字符]\n\n` +
+        text.slice(-tailChars)
+    }
 
     // 带上原文 + 上次解析结果 + 用户反馈，让 AI 修正而非重来
     let userContent = `请解析以下行程文件内容：\n\n${text}`

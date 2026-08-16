@@ -21,12 +21,12 @@ export default function KnowledgePage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb + stats + 搜索（从顶部导航栏移入知识库内部） */}
+      {/* Breadcrumb + stats + 搜索（从顶部导航栏移入城市库内部） */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         <div className="flex items-start justify-between gap-3 mb-6 flex-wrap">
           <div>
             <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
-              📖 知识库
+              📖 城市库
             </h1>
             <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
               共 {stats.countryCount} 个国家 · {stats.cityCount} 个城市 · {stats.attractionCount}+ 个景点
@@ -63,6 +63,12 @@ export default function KnowledgePage() {
                   countryName={country.name}
                 />
                 <div className="p-3">
+                  <h3 className="font-display font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>
+                    {flag} {country.name}
+                  </h3>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+                    {[country.nameEn, meta.abbr].filter(Boolean).join(' · ')}
+                  </p>
                   {country.description && (
                     <p className="text-xs mt-2 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
                       {country.description}
