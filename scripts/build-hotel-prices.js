@@ -11,6 +11,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import XLSX from 'xlsx'
+import extraData from './hotel-extra-data.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
@@ -52,9 +53,14 @@ for (const r of data) {
     hotels: [],
   })
   entry.countryCode = entry.countryCode || countryCode
-  const hotelEntry = { hotel, month, pp: String(pp) }
+  const hotelName = String(hotel).trim() // xlsx 偶有尾随空格（如 "EUROPA "），trim 后与补充表 key 对齐
+  const hotelEntry = { hotel: hotelName, month, pp: String(pp) }
+  // 星级/评分：xlsx 有值优先；为空时查调研补充表（hotel-extra-data.mjs）
+  const extra = extraData?.[cityCode]?.[hotelName] || {}
   if (star) hotelEntry.star = star
+  else if (extra.star) hotelEntry.star = extra.star
   if (rating) hotelEntry.rating = rating
+  else if (extra.rating) hotelEntry.rating = extra.rating
   if (link) hotelEntry.link = link
   entry.hotels.push(hotelEntry)
 }
