@@ -53,6 +53,10 @@ export async function aiParse(userContent) {
   const client = new OpenAI({
     apiKey: process.env.DEEPSEEK_API_KEY,
     baseURL: 'https://api.deepseek.com/v1',
+    // 大行程（15+ 天）DeepSeek 生成较慢，单次最长等 100s；
+    // 超时/失败走下方手动重试。maxRetries:0 —— SDK 默认自动重试会额外拖时间，手动重试已覆盖。
+    timeout: 100 * 1000,
+    maxRetries: 0,
   })
 
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))

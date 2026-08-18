@@ -160,12 +160,27 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
         body: formData,
       })
 
-      const data = await res.json()
+      // 先读文本再解析：504/网关错误等响应体不是 JSON，直接 res.json() 会抛
+      // "Unexpected token 'A'..." 这种莫名其妙的报错，需要转成可读提示
+      const text = await res.text()
+      let data = null
+      try {
+        data = text ? JSON.parse(text) : null
+      } catch {
+        data = null
+      }
+
       if (res.status === 401) {
         setError('解析接口未授权：请到「设置」页填入 API Token（与 PARSE_API_TOKEN 一致）')
         return
       }
       if (!res.ok) {
+        if (res.status === 504 || !data) {
+          // 504 = 网关/平台超时：Vercel 免费版函数最长 10s，大行程（15+ 天）AI 生成必然超时
+          throw new Error(
+            '服务端处理超时（504）。大行程在公网免费部署上有 10 秒时限，请在本机运行 npm run dev 后解析；或将行程拆成两段分别导入',
+          )
+        }
         throw new Error(data.error || '解析失败')
       }
 

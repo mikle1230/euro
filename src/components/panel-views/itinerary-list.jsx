@@ -118,12 +118,25 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
         }),
       })
 
-      const data = await res.json()
+      // 先读文本再解析：504/网关超时响应体不是 JSON，转成可读提示
+      const text = await res.text()
+      let data = null
+      try {
+        data = text ? JSON.parse(text) : null
+      } catch {
+        data = null
+      }
+
       if (res.status === 401) {
         toast('解析接口未授权：请到「设置」页填入 API Token', 'error')
         return
       }
       if (!res.ok) {
+        if (res.status === 504 || !data) {
+          throw new Error(
+            '服务端处理超时（504）。大行程在公网免费部署上有 10 秒时限，请在本机运行 npm run dev 后重试',
+          )
+        }
         throw new Error(data.error || '重新解析失败')
       }
 

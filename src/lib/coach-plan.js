@@ -319,17 +319,22 @@ export function applyQuoteRules(parsed) {
 
 // 解析完成后异步补全 EMPTY RUN 的真实车程（OSRM 驾驶距离；失败时保持估算值）。
 // 在 route.js 调用：const result = applyQuoteRules(parsed); await patchEmptyRunRoadKm(result)
+// 并行执行所有段的车程查询（每段最多 5s 超时），避免 N 段串行把请求拖到平台超时（Vercel 504）。
 export async function patchEmptyRunRoadKm(result) {
+  const tasks = []
   for (const day of result?.days || []) {
     for (const it of day.items || []) {
       if (it.quoteKind === 'empty-run' && it.from && it.to) {
-        const km = await roadKmBetween(it.from, it.to)
-        if (km > 0) {
-          it.quantity = km
-          it.notes = `MTC EMPTY RUN 空驶：${it.from} → ${it.to}，约 ${km} km（车程）`
-        }
+        tasks.push((async () => {
+          const km = await roadKmBetween(it.from, it.to)
+          if (km > 0) {
+            it.quantity = km
+            it.notes = `MTC EMPTY RUN 空驶：${it.from} → ${it.to}，约 ${km} km（车程）`
+          }
+        })())
       }
     }
   }
+  await Promise.all(tasks)
   return result
 }

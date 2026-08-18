@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server'
 import { applyQuoteRules, patchEmptyRunRoadKm } from '@/lib/coach-plan'
 import { aiParse, cleanText } from '@/lib/ai-parse'
 
+// Vercel 平台函数时长上限：Pro/Enterprise 支持最长 300s（大行程 AI 解析需要）；
+// Hobby 免费版固定 10s 不可配置，大行程会 504 —— 请在本机 npm run dev 解析或拆分行程。
+export const maxDuration = 300
+
 // PDF 页面文本重建：pdf2json 的 Texts 是逐字形/片段（CJK 每字一条），
 // 若像旧代码那样整页用空格拼成一行，cleanText 的按行降噪（页码/页眉/去重）全部失效。
 // 这里按 y 坐标重建「行」，行内按 x 排序；相邻字形间距明显大于该页中位间距时补一个空格
