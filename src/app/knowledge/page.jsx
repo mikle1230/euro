@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { getAllCountries, getCountryCoverImage, getStats, getAllAttractionsFlat } from '@/lib/data'
 import { ensureSeeded } from '@/lib/entity-store'
@@ -9,14 +9,13 @@ import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import GlobalSearch from '@/components/global-search'
 
 export default function KnowledgePage() {
-  const [stats, setStats] = useState({ countryCount: 0, cityCount: 0, attractionCount: 0 })
-  const [countries, setCountries] = useState([])
-
+  // getStats / getAllCountries 是纯函数（读静态 JSON），无需 state；
+  // ensureSeeded 是副作用（种子化实体库），放 effect 里执行一次
   useEffect(() => {
     ensureSeeded(getAllAttractionsFlat)
-    setStats(getStats())
-    setCountries(getAllCountries())
   }, [])
+  const stats = useMemo(() => getStats(), [])
+  const countries = useMemo(() => getAllCountries(), [])
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
