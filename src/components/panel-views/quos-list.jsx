@@ -6,7 +6,7 @@ import { useIsMobile } from '@/lib/use-is-mobile'
 import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
 import { getItemNameEn } from '@/lib/item-name'
 import { recommendHotels, getHotelPriceRange } from '@/lib/hotel-recommend'
-import { getMonthFromDate, getHotelQuotes, getQuoteRange } from '@/lib/hotel-prices'
+import { getMonthFromDate, getHotelQuotes, getQuoteRange, findHotelQuote } from '@/lib/hotel-prices'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
 
 // ---- helpers ----
@@ -19,10 +19,11 @@ const ratingColor = (r) => {
   return '#b8860b'
 }
 
-// 推荐入住酒店块：按「当天所在城市」取静态库（Booking 评分≥7 + 欧元参考价，显示前2家）
+// 推荐入住酒店块：按「当天所在城市」取静态库（Booking 评分≥7 + 推荐参考，显示前2家）
 // aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
 // aligned=false（移动端卡片）：纵向堆叠
-// month：行程出发月份（'9月'），用于供应商 PP 报价过滤；空则显示该城全部报价
+// month：行程出发月份（'9月'），用于供应商报价过滤；空则显示该城全部报价
+// 价格口径：优先供应商报价库（hotel list.xlsx，€/间），无匹配才回退推荐库参考价（€/晚）
 function HotelRecommend({ day, aligned = false, month = null }) {
   const hotels = recommendHotels(
     day.cityName || day.finalCityName,
@@ -34,6 +35,17 @@ function HotelRecommend({ day, aligned = false, month = null }) {
   const quoteCityCode = day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || ''
   const quotes = getHotelQuotes(quoteCityCode, month)
   if (!hotels.length && !quotes.length) return null
+  // 推荐酒店的价格：优先匹配报价库（€/间，金色），无则显示推荐库参考价（€/晚，灰色）
+  const priceOf = (h) => {
+    const q = findHotelQuote(quoteCityCode, h.name, month)
+    if (q && q.pp && !isNaN(parseFloat(q.pp))) {
+      return <div className="text-xs mt-0.5 pl-9 font-semibold" style={{ color: 'var(--gold)' }}>€{q.pp}/间</div>
+    }
+    if (h.priceEur) {
+      return <div className="text-xs mt-0.5 pl-9" style={{ color: 'var(--text-secondary)' }}>€{h.priceEur}/晚</div>
+    }
+    return null
+  }
   const gridStyle = aligned ? { gridTemplateColumns: '28px 52px 34px 34px 1fr 1fr' } : undefined
   const nameCol = aligned ? { gridColumnStart: 5, paddingRight: 8 } : undefined
   const areaCol = aligned ? { gridColumnStart: 6 } : undefined
@@ -57,11 +69,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
                       {h.name}
                     </span>
                   </div>
-                  {h.priceEur && (
-                    <div className="text-xs mt-0.5 pl-9" style={{ color: 'var(--text-secondary)' }}>
-                      €{h.priceEur}/晚
-                    </div>
-                  )}
+                  {priceOf(h)}
                 </div>
                 {/* 酒店特点 → 备注列 */}
                 <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
@@ -75,7 +83,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
       {quotes.length > 0 && (
         <div className={hotels.length > 0 ? 'mt-1.5 pt-1.5 border-t border-dashed' : ''} style={{ borderColor: 'var(--border-color)' }}>
           <div className="text-xs font-semibold mb-0.5" style={{ color: 'var(--text-secondary)' }}>
-            💰 供应商报价{month ? `（${month}）` : ''}（€/人）
+            💰 供应商报价{month ? `（${month}）` : ''}（€/间）
           </div>
           <div className="text-[11px] leading-snug flex flex-wrap gap-x-3 gap-y-0.5">
             {quotes.map((q, i) => (
@@ -107,13 +115,14 @@ function fmtPrice(row) {
 }
 
 // 备注列的元信息行：时间 · 收费/价格 · 预估 · 数量（与备注文字合并为一列展示）
-// 酒店项：用调研酒店库的价格区间（如 €100–120/晚）作参考，不再显示 AI 猜的 ¥/€
-function rowMeta(row) {
+// 酒店项：价格优先供应商报价库（€/间，以 hotel list.xlsx 为准），无则回退调研酒店库区间（€/晚）
+function rowMeta(row, month) {
   const parts = []
   const t = [row.startTime, row.endTime].filter(Boolean).join('-')
   if (t) parts.push(`🕐${t}`)
   if (row.type === 'hotel') {
-    const range = getHotelPriceRange(row.cityName || row.finalCityName, row.cityNameEn || row.finalCityNameEn, row.cityCode)
+    const qRange = getQuoteRange(row.cityCode, month)
+    const range = qRange || getHotelPriceRange(row.cityName || row.finalCityName, row.cityNameEn || row.finalCityNameEn, row.cityCode)
     parts.push(range || '收费')
   } else if (isFreeItem(row)) {
     parts.push('免费')
@@ -129,14 +138,14 @@ function rowMeta(row) {
   return parts.join(' · ')
 }
 
-function downloadCSV(rows, itineraryName) {
+function downloadCSV(rows, itineraryName, month) {
   const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`
   const header = ['天', 'QUOS', '国', '城', '项目', '英文名', '时间', '单价', '预估¥', '数量', '备注']
   const lines = [header.join(',')]
   rows.forEach((r) => {
     const time = [r.startTime, r.endTime].filter(Boolean).join('-')
     const priceCell = r.type === 'hotel'
-      ? getHotelPriceRange(r.cityName || r.finalCityName, r.cityNameEn || r.finalCityNameEn, r.cityCode)
+      ? (getQuoteRange(r.cityCode, month) || getHotelPriceRange(r.cityName || r.finalCityName, r.cityNameEn || r.finalCityNameEn, r.cityCode))
       : fmtPrice(r)
     const estimateCell = r.type === 'hotel' ? '' : (r.estimatedCost || 0)
     lines.push([
@@ -190,7 +199,7 @@ export default function QUOSList({ itinerary }) {
     setDayChecked(itinerary.id, dayId, checked)
   }
 
-  const handleExportCSV = () => downloadCSV(visibleFlatItems, itinerary.name)
+  const handleExportCSV = () => downloadCSV(visibleFlatItems, itinerary.name, month)
 
   // Null guard: return empty state if no itinerary data
   if (!itinerary?.days) {
@@ -408,7 +417,7 @@ export default function QUOSList({ itinerary }) {
                       <div className="shrink-0 text-right">
                         {it.type === 'hotel' ? (
                           <div className="text-xs font-semibold" style={{ color: 'var(--gold)' }}>
-                            {getHotelPriceRange(it.cityName || it.finalCityName, it.cityNameEn || it.finalCityNameEn, it.cityCode)}
+                            {getQuoteRange(it.cityCode, month) || getHotelPriceRange(it.cityName || it.finalCityName, it.cityNameEn || it.finalCityNameEn, it.cityCode)}
                           </div>
                         ) : it.price > 0 ? (
                           <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>
@@ -473,7 +482,7 @@ export default function QUOSList({ itinerary }) {
       </td>
       <td className="px-1.5 py-1 align-top" style={{ color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
         {(() => {
-          const meta = rowMeta(row)
+          const meta = rowMeta(row, month)
           return meta ? (
             <div className="text-[10px] mb-0.5" style={{ color: 'var(--text-secondary)' }}>{meta}</div>
           ) : null
