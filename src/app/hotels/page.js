@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
+import { getHotelQuoteCatalog } from '@/lib/hotel-prices'
 import { COUNTRY_FLAGS } from '@/lib/flags'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
@@ -107,18 +108,53 @@ export default function HotelsPage() {
   const [country, setCountry] = useState('') // '' = 全部
   const [sort, setSort] = useState('rating')
   const catalog = useMemo(() => getHotelCatalog(), [])
+  const quoteCatalog = useMemo(() => getHotelQuoteCatalog(), [])
   const results = useMemo(() => searchHotels(query), [query])
   const searching = query.trim().length > 0
 
+  // 合并目录：推荐库 ∪ 报价库（同一城市两种数据都挂上；报价库独有城市也显示）
+  const merged = useMemo(() => {
+    const byCountry = new Map()
+    const getC = (cc) => {
+      if (!byCountry.has(cc)) byCountry.set(cc, new Map())
+      return byCountry.get(cc)
+    }
+    for (const c of catalog) {
+      for (const city of c.cities) {
+        const m = getC(c.country)
+        m.set(city.cityCode || city.city, { ...city, country: c.country, countryName: c.countryName })
+      }
+    }
+    for (const c of quoteCatalog) {
+      for (const city of c.cities) {
+        const m = getC(c.country)
+        const key = city.cityCode || city.city
+        const ex = m.get(key)
+        if (ex) ex.quotes = city
+        else {
+          m.set(key, {
+            city: city.city, nameEn: city.nameEn, cityCode: city.cityCode,
+            hotels: [], note: '', country: c.country, countryName: c.countryName, quotes: city,
+          })
+        }
+      }
+    }
+    return [...byCountry.entries()].map(([cc, m]) => ({
+      country: cc,
+      countryName: [...m.values()][0]?.countryName || cc,
+      cities: [...m.values()].sort((a, b) => String(a.city).localeCompare(String(b.city), 'zh')),
+    })).sort((a, b) => String(a.countryName).localeCompare(String(b.countryName), 'zh'))
+  }, [catalog, quoteCatalog])
+
   const totalHotels = useMemo(
-    () => catalog.reduce((s, c) => s + c.cities.reduce((x, ci) => x + ci.hotels.length, 0), 0),
-    [catalog],
+    () => merged.reduce((s, c) => s + c.cities.reduce((x, ci) => x + ci.hotels.length + (ci.quotes?.hotels?.length || 0), 0), 0),
+    [merged],
   )
 
   // 国家筛选 + 排序后的目录
   const visibleCountries = useMemo(
-    () => (country ? catalog.filter((c) => c.country === country) : catalog),
-    [catalog, country],
+    () => (country ? merged.filter((c) => c.country === country) : merged),
+    [merged, country],
   )
   // 搜索结果的筛选 + 排序
   const visibleResults = useMemo(() => {
@@ -136,7 +172,7 @@ export default function HotelsPage() {
       <div className="mb-4">
         <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>🏨 酒店库</h1>
         <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
-          {catalog.length} 国 · {totalHotels} 家酒店 · Booking 评分 ≥7 · 欧元参考价（非实时）
+          {merged.length} 国 · {totalHotels} 家酒店 · 推荐库（Booking 评分≥7）+ 供应商报价（€/间，以 hotel list 为准）
         </p>
         <div className="mt-3 relative max-w-xl">
           <span
@@ -184,7 +220,7 @@ export default function HotelsPage() {
           >
             全部
           </button>
-          {catalog.map((c) => (
+          {merged.map((c) => (
             <button
               key={c.country}
               onClick={() => setCountry(country === c.country ? '' : c.country)}
@@ -254,14 +290,46 @@ export default function HotelsPage() {
                   <h3 className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{city.city}</h3>
                   {city.nameEn && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>{city.nameEn}</span>}
                   {city.cityCode && <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>{city.cityCode}</span>}
-                  <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{city.hotels.length} 家</span>
+                  <span className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>{city.hotels.length + (city.quotes?.hotels?.length || 0)} 家</span>
                 </div>
                 {city.note && (
                   <p className="text-xs mt-0.5 mb-2" style={{ color: 'var(--text-tertiary)' }}>{city.note}</p>
                 )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                  {sortedHotels(city.hotels, sort).map((h, i) => <HotelCard key={i} h={h} />)}
-                </div>
+                {city.hotels.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                    {sortedHotels(city.hotels, sort).map((h, i) => <HotelCard key={i} h={h} />)}
+                  </div>
+                )}
+                {city.quotes?.hotels?.length > 0 && (
+                  <div className="mt-2.5 rounded-lg border border-dashed p-2.5" style={{ borderColor: 'var(--border-color)' }}>
+                    <div className="text-[11px] font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>
+                      💰 供应商报价（€/间 · 以 hotel list 为准）
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                      {city.quotes.hotels.map((h, i) => {
+                        const prices = h.prices || []
+                        const monthLabel = prices.length === 1 ? prices[0]?.month : prices.map((p) => p.month).join('/')
+                        return (
+                          <div key={i} className="text-xs rounded-lg px-2 py-1.5 flex items-start justify-between gap-2" style={{ background: 'var(--bg-surface)' }}>
+                            <div className="min-w-0">
+                              <div className="font-medium truncate" style={{ color: 'var(--text-primary)' }} title={h.hotel}>{h.hotel}</div>
+                              <div className="flex items-center gap-1 mt-0.5">
+                                {h.rating > 0 && <span className="text-[10px] font-semibold" style={{ color: ratingColor(h.rating) }}>★{h.rating}</span>}
+                                {h.star > 0 && <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{h.star}星</span>}
+                              </div>
+                            </div>
+                            <div className="shrink-0 text-right whitespace-nowrap">
+                              <div className="font-semibold" style={{ color: 'var(--gold)' }}>
+                                {prices[0]?.pp ? `€${prices[0].pp}` : ''}
+                              </div>
+                              {monthLabel && <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{monthLabel}</div>}
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </section>
