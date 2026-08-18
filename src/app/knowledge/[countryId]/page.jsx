@@ -8,7 +8,6 @@ import countryMeta from '@/data/country-meta.json'
 import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
-import { COUNTRY_FLAGS } from '@/lib/flags'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
 import { COUNTRY_INTROS } from '@/data/country-intros'
 import { COUNTRY_INFO } from '@/data/country-info'
@@ -275,7 +274,6 @@ export default function CountryPage() {
                 // Try to resolve neighbor name from available data
                 const neighborCountry = getCountryById(id)
                 const name = neighborCountry?.name || id
-                const nflag = COUNTRY_FLAGS[name] || '📍'
                 return (
                   <Link
                     key={id}
@@ -283,7 +281,7 @@ export default function CountryPage() {
                     className="text-sm px-3 py-1.5 rounded-full border transition-all hover:bg-[var(--bg-surface)]"
                     style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
                   >
-                    {nflag} {name}
+                    {name}
                   </Link>
                 )
               })}
