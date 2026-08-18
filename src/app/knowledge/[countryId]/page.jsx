@@ -40,7 +40,6 @@ export default function CountryPage() {
   }
 
   const meta = countryMeta[countryId] || {}
-  const flag = COUNTRY_FLAGS[country.name] || '📍'
   const coverSrc = getCountryCoverImage(countryId)
   const cities = country.cities || []
   const intro = COUNTRY_INTROS[countryId] || country.description || ''
@@ -90,7 +89,7 @@ export default function CountryPage() {
             style={{ background: 'rgba(23, 32, 42, 0.62)' }}
           >
             <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3">
-              {flag} {country.name}
+              {country.name}
             </h1>
             {intro && (
               <p
