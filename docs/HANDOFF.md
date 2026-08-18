@@ -156,3 +156,10 @@ curl -I http://localhost:3000/images/cities/<id>.jpg   # 抽查 200
 - 纯函数库（quos-mapping / coach-plan / ldc-mapping / quote-rates / geo）**不要加 `'use client'`**；localStorage 访问用 `typeof window` 守卫。
 - 主按钮底色用 `var(--accent-strong)`（`--accent` 配白字深色模式对比度不足）。
 - 改报价规则 / LDC 判定 / QUOS 映射后必须跑 `npm test`。
+
+## 7. 工作流约定（用户确认 2026-08-18）
+
+- **每次改完直接 commit 并 push 到 GitHub**（`mikle1230/euro` main），不用等用户发话。commit 信息用英文短句（如 `feat: ...` / `fix: ...`）。
+- 若直连 GitHub 不稳（公司网络），push/pull 用 `git -c http.schannelCheckRevoke=false ...` 或 ghfast.top 镜像（`https://ghfast.top/https://github.com/mikle1230/euro.git`）。
+- 用户会持续更新 `hotel list.xlsx`（酒店 PP 价/星级/评分），更新后跑 `npm run build:hotels` 同步 `src/data/hotel-prices.json`；星级/评分补充表在 `scripts/hotel-extra-data.mjs`（xlsx 有值则优先）。
+- 补城市 → 改 `scripts/add-missing-cities.mjs` 重跑，再跑 `node scripts/build-city-coords.js`，并检查 `npm test` 的「数据漂移」用例（城市名变体走 `src/data/city-aliases.js`）。
