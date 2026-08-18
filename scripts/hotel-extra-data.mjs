@@ -7,6 +7,8 @@
 // - 评分优先 Booking.com 官方页（部分被 WAF 拦时用 Priceline——Booking Holdings 同源数据，
 //   Trivago 聚合分（以 Booking 评论为主）、Trip.com 交叉验证，差值 ≤0.5）
 // - 星级来自 Booking 页面标题 / 酒店官网 / Trivago schema / Trip.com
+// - 后续调研规则（用户口径 2026-08-18）：**主要查 Booking.com 的价格/评分**；
+//   Priceline/Trivago/Trip.com 仅作 Booking 实在查不到时的备选
 export default {
   MIL: {
     'HOLIDAY INN NORD ZARA': { star: 4, rating: 8.2 },

@@ -220,6 +220,11 @@
         "pp": "55.85",
         "star": 5,
         "rating": 8.6
+      },
+      {
+        "hotel": "AMBASSADOR ZLATA HUSA",
+        "month": "10月",
+        "pp": "66.49"
       }
     ]
   },
@@ -248,6 +253,16 @@
         "pp": "65.96",
         "star": 4,
         "rating": 8.3
+      },
+      {
+        "hotel": "ARCHE KRAKOWSKA",
+        "month": "10月",
+        "pp": "43.62"
+      },
+      {
+        "hotel": "SWING KRK",
+        "month": "10月",
+        "pp": "40.96"
       }
     ]
   },
@@ -276,6 +291,11 @@
         "pp": "109.02",
         "star": 5,
         "rating": 9.2
+      },
+      {
+        "hotel": "CLARION CONGRESS BRNO",
+        "month": "10月",
+        "pp": "53.19"
       }
     ]
   },
@@ -288,6 +308,13 @@
         "hotel": "SENATOR R",
         "month": "10月",
         "pp": "55.32",
+        "star": 4,
+        "rating": 8.2
+      },
+      {
+        "hotel": "SENATOR R",
+        "month": "11月",
+        "pp": "48.94",
         "star": 4,
         "rating": 8.2
       }
@@ -304,6 +331,11 @@
         "pp": "90.43",
         "star": 4,
         "rating": 8.9
+      },
+      {
+        "hotel": "LEONARDO BUDAPEST",
+        "month": "11月",
+        "pp": "35.11"
       }
     ]
   },
@@ -542,6 +574,11 @@
         "pp": "93.62",
         "star": 4,
         "rating": 8.6
+      },
+      {
+        "hotel": "NH SALZBURG CITY",
+        "month": "11月",
+        "pp": "62.23"
       }
     ]
   },
@@ -843,6 +880,18 @@
         "pp": "57.2",
         "star": 3,
         "rating": 7.9
+      }
+    ]
+  },
+  "CSB": {
+    "countryCode": "CZ",
+    "name": "布杰约维采",
+    "nameEn": "Ceske Budejovice",
+    "hotels": [
+      {
+        "hotel": "VITA",
+        "month": "10月",
+        "pp": "29.79"
       }
     ]
   }
