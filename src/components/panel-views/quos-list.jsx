@@ -6,6 +6,7 @@ import { useIsMobile } from '@/lib/use-is-mobile'
 import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
 import { getItemNameEn } from '@/lib/item-name'
 import { recommendHotels, getHotelPriceRange } from '@/lib/hotel-recommend'
+import { getMonthFromDate, getHotelQuotes, getQuoteRange } from '@/lib/hotel-prices'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
 
 // ---- helpers ----
@@ -21,48 +22,72 @@ const ratingColor = (r) => {
 // 推荐入住酒店块：按「当天所在城市」取静态库（Booking 评分≥7 + 欧元参考价，显示前2家）
 // aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
 // aligned=false（移动端卡片）：纵向堆叠
-function HotelRecommend({ day, aligned = false }) {
+// month：行程出发月份（'9月'），用于供应商 PP 报价过滤；空则显示该城全部报价
+function HotelRecommend({ day, aligned = false, month = null }) {
   const hotels = recommendHotels(
     day.cityName || day.finalCityName,
     day.cityNameEn || day.finalCityNameEn,
     2,
     day.cityCode,
   )
-  if (!hotels.length) return null
+  // 供应商报价：按城市码（item/天优先，兜底 getCityCode 反查）
+  const quoteCityCode = day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || ''
+  const quotes = getHotelQuotes(quoteCityCode, month)
+  if (!hotels.length && !quotes.length) return null
   const gridStyle = aligned ? { gridTemplateColumns: '28px 52px 34px 34px 1fr 1fr' } : undefined
   const nameCol = aligned ? { gridColumnStart: 5, paddingRight: 8 } : undefined
   const areaCol = aligned ? { gridColumnStart: 6 } : undefined
   return (
     <div className="px-2.5 py-1.5 rounded-lg border border-dashed" style={{ borderColor: 'var(--border-color)' }}>
-      <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
-        🏨 推荐入住酒店
-      </div>
-      <div className="grid gap-y-1.5" style={gridStyle}>
-        {hotels.map((h, i) => (
-          <Fragment key={i}>
-            {/* 酒店名 + 价格 → 项目列 */}
-            <div className="min-w-0" style={nameCol}>
-              <div className="text-xs flex items-start gap-1.5">
-                <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(h.rating) }}>
-                  ★{h.rating}
-                </span>
-                <span className="min-w-0 truncate" style={{ color: 'var(--text-primary)' }} title={h.name}>
-                  {h.name}
-                </span>
-              </div>
-              {h.priceEur && (
-                <div className="text-xs mt-0.5 pl-9" style={{ color: 'var(--text-secondary)' }}>
-                  €{h.priceEur}/晚
+      {hotels.length > 0 && (
+        <>
+          <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
+            🏨 推荐入住酒店
+          </div>
+          <div className="grid gap-y-1.5" style={gridStyle}>
+            {hotels.map((h, i) => (
+              <Fragment key={i}>
+                {/* 酒店名 + 价格 → 项目列 */}
+                <div className="min-w-0" style={nameCol}>
+                  <div className="text-xs flex items-start gap-1.5">
+                    <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(h.rating) }}>
+                      ★{h.rating}
+                    </span>
+                    <span className="min-w-0 truncate" style={{ color: 'var(--text-primary)' }} title={h.name}>
+                      {h.name}
+                    </span>
+                  </div>
+                  {h.priceEur && (
+                    <div className="text-xs mt-0.5 pl-9" style={{ color: 'var(--text-secondary)' }}>
+                      €{h.priceEur}/晚
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            {/* 酒店特点 → 备注列 */}
-            <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
-              {[h.area, h.near ? `近${h.near}` : ''].filter(Boolean).join(' · ')}
-            </div>
-          </Fragment>
-        ))}
-      </div>
+                {/* 酒店特点 → 备注列 */}
+                <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
+                  {[h.area, h.near ? `近${h.near}` : ''].filter(Boolean).join(' · ')}
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        </>
+      )}
+      {quotes.length > 0 && (
+        <div className={hotels.length > 0 ? 'mt-1.5 pt-1.5 border-t border-dashed' : ''} style={{ borderColor: 'var(--border-color)' }}>
+          <div className="text-xs font-semibold mb-0.5" style={{ color: 'var(--text-secondary)' }}>
+            💰 供应商报价{month ? `（${month}）` : ''}（€/人）
+          </div>
+          <div className="text-[11px] leading-snug flex flex-wrap gap-x-3 gap-y-0.5">
+            {quotes.map((q, i) => (
+              <span key={i} style={{ color: 'var(--text-primary)' }}>
+                <span className="font-medium">{q.hotel}</span>
+                <span className="ml-1 font-mono" style={{ color: 'var(--gold)' }}>€{q.pp}</span>
+                {q.rating ? <span className="ml-1" style={{ color: ratingColor(q.rating) }}>★{q.rating}</span> : null}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -138,6 +163,8 @@ export default function QUOSList({ itinerary }) {
   const quosOrder = getQUOSOrder()
   const isMobile = useIsMobile()
   const [onlyUnchecked, setOnlyUnchecked] = useState(false)
+  // 行程出发月份（'9月'）——供应商 PP 报价按此过滤
+  const month = getMonthFromDate(itinerary?.startDate)
 
   // 表格需要 ~560px 才能舒适展示 6 列；面板/容器宽度低于阈值时降级为卡片布局（复用手机端卡片）。
   // 依据「容器自身宽度」而非屏幕宽度：桌面侧栏拖窄到 360px 也会自动切卡片，杜绝表格溢出。
@@ -396,7 +423,7 @@ export default function QUOSList({ itinerary }) {
                   </button>
                 ))}
                 {/* 推荐入住酒店 */}
-                <HotelRecommend day={day} />
+                <HotelRecommend day={day} month={month} />
               </div>
             )
           })}
@@ -519,11 +546,11 @@ export default function QUOSList({ itinerary }) {
         1,
         day.cityCode,
       ).length > 0
-      if (hasHotels) {
+      if (hasHotels || getHotelQuotes(day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || '', month).length > 0) {
         tableBody.push(
           <tr key={`hotels-${day.id}`}>
             <td colSpan={6} className="px-1.5 pb-1.5">
-              <HotelRecommend day={day} aligned />
+              <HotelRecommend day={day} aligned month={month} />
             </td>
           </tr>,
         )

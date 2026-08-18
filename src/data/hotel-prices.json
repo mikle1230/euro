@@ -7,17 +7,23 @@
       {
         "hotel": "HOLIDAY INN NORD ZARA",
         "month": "9月",
-        "pp": "31.91"
+        "pp": "31.91",
+        "star": 4,
+        "rating": 8.2
       },
       {
         "hotel": "CROWNE PLAZA LINATE",
         "month": "9月",
-        "pp": "46.81"
+        "pp": "46.81",
+        "star": 4,
+        "rating": 7.8
       },
       {
         "hotel": "BELSTAY ASSAGO",
         "month": "9月",
-        "pp": "47.87"
+        "pp": "47.87",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -29,12 +35,16 @@
       {
         "hotel": "NOVOTEL MESTRE CASTELLANA",
         "month": "9月",
-        "pp": "56.38"
+        "pp": "56.38",
+        "star": 4,
+        "rating": 8
       },
       {
         "hotel": "BELSTAY MESTRE",
         "month": "9月",
-        "pp": "41.49"
+        "pp": "41.49",
+        "star": 4,
+        "rating": 8.3
       }
     ]
   },
@@ -46,12 +56,16 @@
       {
         "hotel": "ART MUSEO",
         "month": "9月",
-        "pp": "38.3"
+        "pp": "38.3",
+        "star": 4,
+        "rating": 8.6
       },
       {
         "hotel": "DATINI",
         "month": "9月",
-        "pp": "41.49"
+        "pp": "41.49",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -63,17 +77,23 @@
       {
         "hotel": "THE CAESAR",
         "month": "9月",
-        "pp": "33.51"
+        "pp": "33.51",
+        "star": 4,
+        "rating": 7.9
       },
       {
         "hotel": "PRECISE HOUSE MANTEGNA ROMA",
         "month": "9月",
-        "pp": "77.13"
+        "pp": "77.13",
+        "star": 4,
+        "rating": 9.3
       },
       {
         "hotel": "WARMTHOTEL",
         "month": "10月",
-        "pp": "50"
+        "pp": "50",
+        "star": 4,
+        "rating": 8.9
       }
     ]
   },
@@ -85,17 +105,23 @@
       {
         "hotel": "MERCURE LA DEFENSE",
         "month": "9月",
-        "pp": "50/55.32"
+        "pp": "50/55.32",
+        "star": 4,
+        "rating": 7.5
       },
       {
         "hotel": "PULLMAN LA DEFENSE",
         "month": "9月",
-        "pp": "101.6/127.66"
+        "pp": "101.6/127.66",
+        "star": 5,
+        "rating": 7.7
       },
       {
         "hotel": "MERCURE VAL DE FONTENAY",
         "month": "7月",
-        "pp": "46.28/60.11/100.53"
+        "pp": "46.28/60.11/100.53",
+        "star": 4,
+        "rating": 8.5
       }
     ]
   },
@@ -107,7 +133,9 @@
       {
         "hotel": "HOLIDAY INN MESSE",
         "month": "9月",
-        "pp": "77.13"
+        "pp": "77.13",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -119,7 +147,9 @@
       {
         "hotel": "SUNSTAR GRINDELWALD",
         "month": "9月",
-        "pp": "136.7"
+        "pp": "136.7",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -131,7 +161,9 @@
       {
         "hotel": "MOEVENPICK-GENEVE",
         "month": "9月",
-        "pp": "71.8"
+        "pp": "71.8",
+        "star": 4,
+        "rating": 8.4
       }
     ]
   },
@@ -143,7 +175,9 @@
       {
         "hotel": "NOVOTEL DIJON SUD",
         "month": "9月",
-        "pp": "/"
+        "pp": "/",
+        "star": 4,
+        "rating": 7.2
       }
     ]
   },
@@ -155,7 +189,9 @@
       {
         "hotel": "GRAUER BAER",
         "month": "10月",
-        "pp": "72.34"
+        "pp": "72.34",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -167,7 +203,9 @@
       {
         "hotel": "HARRYS HOME LNZ",
         "month": "10月",
-        "pp": "59.57"
+        "pp": "59.57",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -179,7 +217,9 @@
       {
         "hotel": "URBAN CREME",
         "month": "10月",
-        "pp": "55.85"
+        "pp": "55.85",
+        "star": 5,
+        "rating": 8.6
       }
     ]
   },
@@ -191,7 +231,9 @@
       {
         "hotel": "ALTUS PALACE",
         "month": "10月",
-        "pp": "82.98"
+        "pp": "82.98",
+        "star": 5,
+        "rating": 9.3
       }
     ]
   },
@@ -203,7 +245,9 @@
       {
         "hotel": "LEONARDO ROYAL",
         "month": "10月",
-        "pp": "65.96"
+        "pp": "65.96",
+        "star": 4,
+        "rating": 8.3
       }
     ]
   },
@@ -215,7 +259,9 @@
       {
         "hotel": "UNICUS PALACE",
         "month": "10月",
-        "pp": "129.79"
+        "pp": "129.79",
+        "star": 5,
+        "rating": 9.1
       }
     ]
   },
@@ -227,7 +273,9 @@
       {
         "hotel": "PALACE BRNO",
         "month": "10月",
-        "pp": "109.02"
+        "pp": "109.02",
+        "star": 5,
+        "rating": 9.2
       }
     ]
   },
@@ -239,7 +287,9 @@
       {
         "hotel": "SENATOR R",
         "month": "10月",
-        "pp": "55.32"
+        "pp": "55.32",
+        "star": 4,
+        "rating": 8.2
       }
     ]
   },
@@ -251,7 +301,9 @@
       {
         "hotel": "RADISSON BLU BEKE",
         "month": "10月",
-        "pp": "90.43"
+        "pp": "90.43",
+        "star": 4,
+        "rating": 8.9
       }
     ]
   },
@@ -263,12 +315,16 @@
       {
         "hotel": "DIWOTEL BY TRIP INN",
         "month": "9月",
-        "pp": "32.45"
+        "pp": "32.45",
+        "star": 4,
+        "rating": 8
       },
       {
         "hotel": "DIWOTEL BY TRIP INN",
         "month": "9月",
-        "pp": "32.45"
+        "pp": "32.45",
+        "star": 4,
+        "rating": 8
       }
     ]
   },
@@ -280,7 +336,9 @@
       {
         "hotel": "MERCURE BELFORT CENTRE",
         "month": "9月",
-        "pp": "52.13"
+        "pp": "52.13",
+        "star": 4,
+        "rating": 8.4
       }
     ]
   },
@@ -292,7 +350,9 @@
       {
         "hotel": "AVA",
         "month": "9月",
-        "pp": "93.09"
+        "pp": "93.09",
+        "star": 4,
+        "rating": 8.4
       }
     ]
   },
@@ -304,7 +364,9 @@
       {
         "hotel": "NH BOLOGNA VILLANOVA",
         "month": "9月",
-        "pp": "50"
+        "pp": "50",
+        "star": 4,
+        "rating": 8.5
       }
     ]
   },
@@ -316,7 +378,9 @@
       {
         "hotel": "SAN MARCO / PARMA E CONGRESSI BED BANK",
         "month": "10月",
-        "pp": "35.64"
+        "pp": "35.64",
+        "star": 4,
+        "rating": 7.6
       }
     ]
   },
@@ -328,7 +392,9 @@
       {
         "hotel": "BW TEN",
         "month": "10月",
-        "pp": "395.74"
+        "pp": "395.74",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -338,9 +404,11 @@
     "nameEn": "Tallinn",
     "hotels": [
       {
-        "hotel": "EUROPA ",
+        "hotel": "EUROPA",
         "month": "12月",
-        "pp": "37.41"
+        "pp": "37.41",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -352,7 +420,9 @@
       {
         "hotel": "BELLEVUE",
         "month": "12月",
-        "pp": "27.66"
+        "pp": "27.66",
+        "star": 4,
+        "rating": 8.7
       }
     ]
   },
@@ -364,7 +434,9 @@
       {
         "hotel": "RADISSON LIETUVA",
         "month": "12月",
-        "pp": "47.87"
+        "pp": "47.87",
+        "star": 4,
+        "rating": 9
       }
     ]
   },
@@ -376,7 +448,9 @@
       {
         "hotel": "SCANDIC WINN",
         "month": "12月",
-        "pp": "46.8"
+        "pp": "46.8",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -388,7 +462,9 @@
       {
         "hotel": "X HOTEL",
         "month": "12月",
-        "pp": "42.88-66.26"
+        "pp": "42.88-66.26",
+        "star": 4,
+        "rating": 8.2
       }
     ]
   },
@@ -400,7 +476,9 @@
       {
         "hotel": "SCANDIC VOSS",
         "month": "12月",
-        "pp": "109.14"
+        "pp": "109.14",
+        "star": 4,
+        "rating": 8.2
       }
     ]
   },
@@ -412,7 +490,9 @@
       {
         "hotel": "SCANDIC BACKADAL / MOLNDAL - BEDBANK",
         "month": "12月",
-        "pp": "43.42"
+        "pp": "43.42",
+        "star": 4,
+        "rating": 7.3
       }
     ]
   },
@@ -424,7 +504,9 @@
       {
         "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
         "month": "12月",
-        "pp": "56.89"
+        "pp": "56.89",
+        "star": 4,
+        "rating": 7.6
       }
     ]
   },
@@ -436,12 +518,16 @@
       {
         "hotel": "MERCURE NEUPERLACH SUED",
         "month": "9月",
-        "pp": "98.94"
+        "pp": "98.94",
+        "star": 4,
+        "rating": 8.1
       },
       {
         "hotel": "FERINGAPARK",
         "month": "10月",
-        "pp": "47.34"
+        "pp": "47.34",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -453,7 +539,9 @@
       {
         "hotel": "RADISSON BLU SZG",
         "month": "9月",
-        "pp": "93.62"
+        "pp": "93.62",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -465,7 +553,9 @@
       {
         "hotel": "BW PLUS FUESSEN",
         "month": "9月",
-        "pp": "84.57"
+        "pp": "84.57",
+        "star": 4,
+        "rating": 9
       }
     ]
   },
@@ -477,7 +567,9 @@
       {
         "hotel": "AN DER KONGRESSHALLE AUGSBURG",
         "month": "9月",
-        "pp": "67.02"
+        "pp": "67.02",
+        "star": 4,
+        "rating": 8.6
       }
     ]
   },
@@ -489,7 +581,9 @@
       {
         "hotel": "MOEVENPICK NUERNBERG",
         "month": "9月",
-        "pp": "57.45"
+        "pp": "57.45",
+        "star": 4,
+        "rating": 8.5
       }
     ]
   },
@@ -501,7 +595,9 @@
       {
         "hotel": "PRINZHOTEL",
         "month": "9月",
-        "pp": "80.85"
+        "pp": "80.85",
+        "star": 4,
+        "rating": 8.2
       }
     ]
   },
@@ -513,7 +609,9 @@
       {
         "hotel": "LEONARDO HEIDELBERG",
         "month": "9月",
-        "pp": "90.43"
+        "pp": "90.43",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -525,7 +623,9 @@
       {
         "hotel": "MERCURE WEST",
         "month": "10月",
-        "pp": "58.56"
+        "pp": "58.56",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -537,7 +637,9 @@
       {
         "hotel": "PRIZE BY RADISSON HAMBURG CITY",
         "month": "10月",
-        "pp": "55.85"
+        "pp": "55.85",
+        "star": 3,
+        "rating": 7.9
       }
     ]
   },
@@ -549,7 +651,9 @@
       {
         "hotel": "PARK INN ALEXANDERPLATZ",
         "month": "10月",
-        "pp": "59.57"
+        "pp": "59.57",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -561,7 +665,9 @@
       {
         "hotel": "STEIGENBERGER DE SAXE",
         "month": "10月",
-        "pp": "55.05"
+        "pp": "55.05",
+        "star": 5,
+        "rating": 8.9
       }
     ]
   },
@@ -573,7 +679,9 @@
       {
         "hotel": "NOVOTEL SCHIPHOL AIRPORT",
         "month": "11月",
-        "pp": "61.65"
+        "pp": "61.65",
+        "star": 4,
+        "rating": 8.3
       }
     ]
   },
@@ -585,12 +693,16 @@
       {
         "hotel": "SANTAS IGLOOS ARCTIC CIRCLE",
         "month": "11月",
-        "pp": "413.83"
+        "pp": "413.83",
+        "star": 5,
+        "rating": 8.9
       },
       {
         "hotel": "SANTA CLAUS",
         "month": "11月",
-        "pp": "101.6-198.4"
+        "pp": "101.6-198.4",
+        "star": 4,
+        "rating": 8.9
       }
     ]
   },
@@ -602,7 +714,9 @@
       {
         "hotel": "RIEKONLINNA",
         "month": "11月",
-        "pp": "101.06"
+        "pp": "101.06",
+        "star": 4,
+        "rating": 8
       }
     ]
   },
@@ -614,7 +728,9 @@
       {
         "hotel": "THON KIRKENES",
         "month": "12月",
-        "pp": "107.35"
+        "pp": "107.35",
+        "star": 4,
+        "rating": 8.7
       }
     ]
   },
@@ -626,7 +742,9 @@
       {
         "hotel": "SOKOS LEVI",
         "month": "12月",
-        "pp": "98.94"
+        "pp": "98.94",
+        "star": 4,
+        "rating": 8.9
       }
     ]
   },
@@ -638,7 +756,9 @@
       {
         "hotel": "SCANDIC KEMI",
         "month": "12月",
-        "pp": "93.62"
+        "pp": "93.62",
+        "star": 4,
+        "rating": 7.6
       }
     ]
   },
@@ -650,7 +770,9 @@
       {
         "hotel": "HILTON HELSINKI STRAND",
         "month": "12月",
-        "pp": "92.55"
+        "pp": "92.55",
+        "star": 5,
+        "rating": 8.3
       }
     ]
   },
@@ -662,7 +784,9 @@
       {
         "hotel": "HOLIDAY INN EXPRESS HEATHROW T4",
         "month": "9月",
-        "pp": "55.32"
+        "pp": "55.32",
+        "star": 4,
+        "rating": 8.7
       }
     ]
   },
@@ -674,7 +798,9 @@
       {
         "hotel": "RAMADA WAKEFIELD",
         "month": "9月",
-        "pp": "49.73"
+        "pp": "49.73",
+        "star": 4,
+        "rating": 7.5
       }
     ]
   },
@@ -686,7 +812,9 @@
       {
         "hotel": "HOLIDAY INN EAST KILBRIDE",
         "month": "9月",
-        "pp": "55.94"
+        "pp": "55.94",
+        "star": 4,
+        "rating": 7.9
       }
     ]
   },
@@ -698,7 +826,9 @@
       {
         "hotel": "COURTYARD BY MARRIOTT KEELE-STAFFORDSHIRE",
         "month": "9月",
-        "pp": "44.75"
+        "pp": "44.75",
+        "star": 4,
+        "rating": 8.8
       }
     ]
   },
@@ -710,7 +840,9 @@
       {
         "hotel": "HOLIDAY INN SWINDON",
         "month": "9月",
-        "pp": "57.2"
+        "pp": "57.2",
+        "star": 3,
+        "rating": 7.9
       }
     ]
   }
