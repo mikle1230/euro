@@ -367,6 +367,30 @@
               "lng": -5.9321
             }
           ]
+        },
+        {
+          "id": "leeds",
+          "name": "利兹",
+          "nameEn": "Leeds",
+          "lat": 53.8008,
+          "lng": -1.5491,
+          "attractions": []
+        },
+        {
+          "id": "stoke-on-trent",
+          "name": "特伦特河畔斯托克",
+          "nameEn": "Stoke-on-Trent",
+          "lat": 53.0027,
+          "lng": -2.1794,
+          "attractions": []
+        },
+        {
+          "id": "swindon",
+          "name": "斯温顿",
+          "nameEn": "Swindon",
+          "lat": 51.5558,
+          "lng": -1.7797,
+          "attractions": []
         }
       ]
     },
@@ -1033,6 +1057,14 @@
               "lng": 6.637
             }
           ]
+        },
+        {
+          "id": "belfort",
+          "name": "贝尔福",
+          "nameEn": "Belfort",
+          "lat": 47.6396,
+          "lng": 6.8638,
+          "attractions": []
         }
       ]
     },
@@ -1510,6 +1542,14 @@
               "lng": 10.1769
             }
           ]
+        },
+        {
+          "id": "augsburg",
+          "name": "奥格斯堡",
+          "nameEn": "Augsburg",
+          "lat": 48.3705,
+          "lng": 10.8978,
+          "attractions": []
         }
       ]
     },
@@ -2339,6 +2379,14 @@
               "lng": 15.286
             }
           ]
+        },
+        {
+          "id": "parma",
+          "name": "帕尔马",
+          "nameEn": "Parma",
+          "lat": 44.8015,
+          "lng": 10.3279,
+          "attractions": []
         }
       ]
     },
@@ -4440,6 +4488,14 @@
               "lng": 20.2233
             }
           ]
+        },
+        {
+          "id": "karlstad",
+          "name": "卡尔斯塔德",
+          "nameEn": "Karlstad",
+          "lat": 59.4022,
+          "lng": 13.5115,
+          "attractions": []
         }
       ]
     },
@@ -4631,6 +4687,22 @@
               "lng": 7.115
             }
           ]
+        },
+        {
+          "id": "voss",
+          "name": "沃斯",
+          "nameEn": "Voss",
+          "lat": 60.6288,
+          "lng": 6.4184,
+          "attractions": []
+        },
+        {
+          "id": "kirkenes",
+          "name": "希尔克内斯",
+          "nameEn": "Kirkenes",
+          "lat": 69.7271,
+          "lng": 30.0447,
+          "attractions": []
         }
       ]
     },
@@ -6442,6 +6514,30 @@
               "lng": 25.7274
             }
           ]
+        },
+        {
+          "id": "saariselka",
+          "name": "萨利色尔卡",
+          "nameEn": "Saariselka",
+          "lat": 68.4212,
+          "lng": 27.4167,
+          "attractions": []
+        },
+        {
+          "id": "levi",
+          "name": "列维",
+          "nameEn": "Levi",
+          "lat": 67.8038,
+          "lng": 24.8037,
+          "attractions": []
+        },
+        {
+          "id": "kemi",
+          "name": "凯米",
+          "nameEn": "Kemi",
+          "lat": 65.7365,
+          "lng": 24.5637,
+          "attractions": []
         }
       ]
     },

@@ -27,6 +27,7 @@ export const CITY_CODE_ALIASES = {
   '庞贝': 'Pompei',
   '奥勒松': 'Aalesund',
   '特罗姆瑟': 'Tromsoe',
+  '特伦特河畔斯托克': 'Stoke on Trent',
   // 中国出发城市（不在 europe-travel.json）
   '北京': 'Beijing',
   '上海': 'Shanghai',
