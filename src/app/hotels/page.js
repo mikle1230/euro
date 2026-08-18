@@ -3,7 +3,6 @@
 import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
 import { getHotelQuoteCatalog } from '@/lib/hotel-prices'
-import { COUNTRY_FLAGS } from '@/lib/flags'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -267,7 +266,6 @@ export default function HotelsPage() {
           <section key={countryItem.country} className="mb-7">
             <div className="flex items-baseline gap-2 mb-3 flex-wrap">
               <h2 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
-                {COUNTRY_FLAGS[countryItem.countryName] ? `${COUNTRY_FLAGS[countryItem.countryName]} ` : ''}
                 {countryItem.countryName}
               </h2>
               <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>{countryItem.country}</span>
