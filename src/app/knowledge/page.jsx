@@ -7,7 +7,6 @@ import { ensureSeeded } from '@/lib/entity-store'
 import countryMeta from '@/data/country-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import GlobalSearch from '@/components/global-search'
-import { COUNTRY_FLAGS } from '@/lib/flags'
 
 export default function KnowledgePage() {
   const [stats, setStats] = useState({ countryCount: 0, cityCount: 0, attractionCount: 0 })
@@ -40,7 +39,6 @@ export default function KnowledgePage() {
         {/* Country grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {countries.map((country) => {
-            const flag = COUNTRY_FLAGS[country.name] || '📍'
             const meta = countryMeta[country.id] || {}
             const coverSrc = getCountryCoverImage(country.id)
             const cityCount = country.cities?.length || 0
@@ -56,7 +54,7 @@ export default function KnowledgePage() {
                 <ImageWithPlaceholder
                   src={coverSrc}
                   alt={country.name}
-                  name={`${flag} ${country.name}`}
+                  name={country.name}
                   subtitle={[country.nameEn, meta.abbr].filter(Boolean).join(' · ')}
                   size="card"
                   variant="country"
@@ -64,7 +62,7 @@ export default function KnowledgePage() {
                 />
                 <div className="p-3">
                   <h3 className="font-display font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>
-                    {flag} {country.name}
+                    {country.name}
                   </h3>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
                     {[country.nameEn, meta.abbr].filter(Boolean).join(' · ')}
