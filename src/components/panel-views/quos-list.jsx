@@ -20,7 +20,8 @@ const ratingColor = (r) => {
 }
 
 // 推荐入住酒店块：历史使用（hotel list，实际用过的）+ AI 探索合并为一个列表，
-// 各自带来源标签（📋 历史使用 / 🤖 AI 探索），历史使用价格 = 标间单人价（€/人，用户按单人参考报价）。
+// 各自带来源标签（📋 历史使用 / 🤖 AI 探索），**每天最多显示 5 家，历史使用优先**；
+// 历史使用价格 = 标间单人价（€/人，用户按单人参考报价）。
 // aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
 // aligned=false（移动端卡片）：纵向堆叠
 // month：行程出发月份（'9月'），用于历史使用价过滤；空则显示该城全部
@@ -80,7 +81,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
         🏨 推荐入住酒店{month ? `（${month} 价格）` : ''}
       </div>
       <div className="grid gap-y-1.5" style={gridStyle}>
-        {rows.map((r, i) => (
+        {rows.slice(0, 5).map((r, i) => (
           <Fragment key={i}>
             {/* 酒店名 + 价格 → 项目列 */}
             <div className="min-w-0" style={nameCol}>
