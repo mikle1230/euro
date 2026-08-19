@@ -19,83 +19,101 @@ const ratingColor = (r) => {
   return '#b8860b'
 }
 
-// 推荐入住酒店块：按「当天所在城市」取推荐库酒店（不限制数量）
+// 推荐入住酒店块：历史使用（hotel list，实际用过的）+ AI 探索合并为一个列表，
+// 各自带来源标签（📋 历史使用 / 🤖 AI 探索），价格以 hotel list 实际价（€/间）为准。
 // aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
 // aligned=false（移动端卡片）：纵向堆叠
-// month：行程出发月份（'9月'），用于供应商报价过滤；空则显示该城全部报价
-// 价格口径：优先供应商报价库（hotel list.xlsx，€/间），无匹配才回退推荐库参考价（€/晚）
+// month：行程出发月份（'9月'），用于历史使用价过滤；空则显示该城全部
 function HotelRecommend({ day, aligned = false, month = null }) {
+  const quoteCityCode = day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || ''
+  const quotes = getHotelQuotes(quoteCityCode, month)
   const hotels = recommendHotels(
     day.cityName || day.finalCityName,
     day.cityNameEn || day.finalCityNameEn,
     99, // 不限制每城酒店数量
     day.cityCode,
   )
-  // 供应商报价：按城市码（item/天优先，兜底 getCityCode 反查）
-  const quoteCityCode = day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || ''
-  const quotes = getHotelQuotes(quoteCityCode, month)
   if (!hotels.length && !quotes.length) return null
-  // 推荐酒店的价格：优先匹配报价库（€/间，金色），无则显示推荐库参考价（€/晚，灰色）
-  const priceOf = (h) => {
-    const q = findHotelQuote(quoteCityCode, h.name, month)
-    if (q && q.pp && !isNaN(parseFloat(q.pp))) {
-      return <div className="text-xs mt-0.5 pl-9 font-semibold" style={{ color: 'var(--gold)' }}>€{q.pp}/间</div>
-    }
-    if (h.priceEur) {
-      return <div className="text-xs mt-0.5 pl-9" style={{ color: 'var(--text-secondary)' }}>€{h.priceEur}/晚</div>
-    }
-    return null
+
+  // 合并列表：历史使用（hotel list）在前，AI 探索在后；同名去重（历史优先）
+  const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '')
+  const rows = []
+  const seen = new Set()
+  for (const q of quotes) {
+    const key = norm(q.hotel)
+    if (seen.has(key)) continue
+    seen.add(key)
+    rows.push({
+      name: q.hotel,
+      rating: q.rating || 0,
+      star: q.star || 0,
+      area: '',
+      near: '',
+      price: q.pp,
+      unit: '/间',
+      source: 'history',
+    })
   }
+  for (const h of hotels) {
+    const key = norm(h.name)
+    if (seen.has(key)) continue
+    seen.add(key)
+    const q = findHotelQuote(quoteCityCode, h.name, month)
+    rows.push({
+      name: h.name,
+      rating: h.rating || 0,
+      star: h.star || 0,
+      area: h.area || '',
+      near: h.near || '',
+      price: q?.pp || h.priceEur || 0,
+      unit: q?.pp ? '/间' : '/晚',
+      source: q?.pp ? 'history' : 'ai',
+    })
+  }
+
   const gridStyle = aligned ? { gridTemplateColumns: '28px 52px 34px 34px 1fr 1fr' } : undefined
   const nameCol = aligned ? { gridColumnStart: 5, paddingRight: 8 } : undefined
   const areaCol = aligned ? { gridColumnStart: 6 } : undefined
   return (
     <div className="px-2.5 py-1.5 rounded-lg border border-dashed" style={{ borderColor: 'var(--border-color)' }}>
-      {hotels.length > 0 && (
-        <>
-          <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
-            🏨 推荐入住酒店
-          </div>
-          <div className="grid gap-y-1.5" style={gridStyle}>
-            {hotels.map((h, i) => (
-              <Fragment key={i}>
-                {/* 酒店名 + 价格 → 项目列 */}
-                <div className="min-w-0" style={nameCol}>
-                  <div className="text-xs flex items-start gap-1.5">
-                    <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(h.rating) }}>
-                      ★{h.rating}
-                    </span>
-                    <span className="min-w-0 truncate" style={{ color: 'var(--text-primary)' }} title={h.name}>
-                      {h.name}
-                    </span>
-                  </div>
-                  {priceOf(h)}
+      <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
+        🏨 推荐入住酒店{month ? `（${month} 价格）` : ''}
+      </div>
+      <div className="grid gap-y-1.5" style={gridStyle}>
+        {rows.map((r, i) => (
+          <Fragment key={i}>
+            {/* 酒店名 + 价格 → 项目列 */}
+            <div className="min-w-0" style={nameCol}>
+              <div className="text-xs flex items-start gap-1.5">
+                <span className="shrink-0 font-semibold w-8 text-right" style={{ color: ratingColor(r.rating) }}>
+                  ★{r.rating}
+                </span>
+                <span className="min-w-0 truncate" style={{ color: 'var(--text-primary)' }} title={r.name}>
+                  {r.name}
+                </span>
+                {r.source === 'history' ? (
+                  <span className="shrink-0 text-[10px] px-1 py-0.5 rounded font-medium whitespace-nowrap" style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}>
+                    📋 历史使用
+                  </span>
+                ) : (
+                  <span className="shrink-0 text-[10px] px-1 py-0.5 rounded font-medium whitespace-nowrap" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>
+                    🤖 AI 探索
+                  </span>
+                )}
+              </div>
+              {r.price > 0 && (
+                <div className="text-xs mt-0.5 pl-9 font-semibold" style={{ color: 'var(--gold)' }}>
+                  €{r.price}{r.unit}
                 </div>
-                {/* 酒店特点 → 备注列 */}
-                <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
-                  {[h.area, h.near ? `近${h.near}` : ''].filter(Boolean).join(' · ')}
-                </div>
-              </Fragment>
-            ))}
-          </div>
-        </>
-      )}
-      {quotes.length > 0 && (
-        <div className={hotels.length > 0 ? 'mt-1.5 pt-1.5 border-t border-dashed' : ''} style={{ borderColor: 'var(--border-color)' }}>
-          <div className="text-xs font-semibold mb-0.5" style={{ color: 'var(--text-secondary)' }}>
-            💰 酒店价格参考{month ? `（${month}）` : ''}（€/间）
-          </div>
-          <div className="text-[11px] leading-snug flex flex-wrap gap-x-3 gap-y-0.5">
-            {quotes.map((q, i) => (
-              <span key={i} style={{ color: 'var(--text-primary)' }}>
-                <span className="font-medium">{q.hotel}</span>
-                <span className="ml-1 font-mono" style={{ color: 'var(--gold)' }}>€{q.pp}</span>
-                {q.rating ? <span className="ml-1" style={{ color: ratingColor(q.rating) }}>★{q.rating}</span> : null}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
+              )}
+            </div>
+            {/* 酒店特点 → 备注列 */}
+            <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
+              {[r.area, r.near ? `近${r.near}` : ''].filter(Boolean).join(' · ')}
+            </div>
+          </Fragment>
+        ))}
+      </div>
     </div>
   )
 }
