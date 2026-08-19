@@ -102,7 +102,7 @@ test('空输入/无 days 原样返回', () => {
   assert.deepEqual(applyQuoteRules({ groupSize: 10 }), { groupSize: 10 })
 })
 
-test('THROUGH COACH 国/城按 LDC 表取供应商所在地：西欧多国 → IT ROM', () => {
+test('THROUGH COACH 国/城=段起始城市；供应商（西欧多国 IT ROM）进备注', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -115,9 +115,9 @@ test('THROUGH COACH 国/城按 LDC 表取供应商所在地：西欧多国 → I
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应该有 THROUGH COACH')
-  assert.equal(tc.countryCode, 'IT', '西欧多国 → 国家 IT')
-  assert.equal(tc.cityCode, 'ROM', '西欧多国 → 城市 ROM')
-  assert.ok(tc.notes.includes('IT ROM') || tc.notes.includes('ROM'), '备注带供应商')
+  assert.equal(tc.countryCode, 'FR', '段起始城市巴黎 → 国家 FR（非供应商 IT）')
+  assert.equal(tc.cityCode, 'PAR', '段起始城市巴黎 → 城市 PAR（非供应商 ROM）')
+  assert.ok(tc.notes.includes('IT ROM'), '供应商信息进备注')
   const pp = d1.items.find((i) => i.quoteKind === 'prepost')
   assert.ok(pp, '应注入 PRE/POST')
   assert.ok(!pp.notes.includes('€120'), '前后夜金额不显示（用户口径）')
@@ -138,7 +138,7 @@ test('单国法国 → THROUGH COACH 供应商 FR PAR', () => {
   assert.equal(tc.cityCode, 'PAR')
 })
 
-test('挪威北极极地城市（特罗姆瑟）→ THROUGH COACH 供应商 NO ALT（北）', () => {
+test('挪威北极极地城市（特罗姆瑟）→ THROUGH COACH 段起始城市 TOS；供应商 NO ALT（北）进备注', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -150,7 +150,8 @@ test('挪威北极极地城市（特罗姆瑟）→ THROUGH COACH 供应商 NO A
   const tc = out.days[0].items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')
   assert.equal(tc.countryCode, 'NO')
-  assert.equal(tc.cityCode, 'ALT', '北极极地 → NO ALT，而非 NO OSL')
+  assert.equal(tc.cityCode, 'TOS', '段起始城市特罗姆瑟 → TOS（非供应商 ALT）')
+  assert.ok(tc.notes.includes('NO ALT'), '北极极地供应商 NO ALT 进备注')
 })
 
 test('挪威常规城市（奥斯陆）→ THROUGH COACH 供应商 NO OSL（南）', () => {
@@ -168,7 +169,7 @@ test('挪威常规城市（奥斯陆）→ THROUGH COACH 供应商 NO OSL（南�
   assert.equal(tc.cityCode, 'OSL', '常规 → NO OSL，而非 NO ALT')
 })
 
-test('含中国出发日（day 0 上海）不参与 LDC 判定，仍 IT ROM', () => {
+test('含中国出发日（day 0 上海）不参与 LDC 判定，THROUGH COACH 段起始巴黎；供应商仍 IT ROM', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -182,11 +183,12 @@ test('含中国出发日（day 0 上海）不参与 LDC 判定，仍 IT ROM', ()
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, 'day 0 不影响分段与 THROUGH COACH')
-  assert.equal(tc.countryCode, 'IT')
-  assert.equal(tc.cityCode, 'ROM')
+  assert.equal(tc.countryCode, 'FR')
+  assert.equal(tc.cityCode, 'PAR')
+  assert.ok(tc.notes.includes('IT ROM'), '供应商 IT ROM 进备注')
 })
 
-test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判定，仍 IT ROM NGS', () => {
+test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判定；THROUGH COACH 段起始巴黎，备注仍 IT ROM NGS', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -201,8 +203,8 @@ test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '返程日不应影响 THROUGH COACH')
-  assert.equal(tc.countryCode, 'IT', '返程上海混入 → 应排除 CN')
-  assert.equal(tc.cityCode, 'ROM')
+  assert.equal(tc.countryCode, 'FR', '段起始巴黎 → FR（返程上海混入应排除 CN）')
+  assert.equal(tc.cityCode, 'PAR')
   assert.ok(tc.notes.includes('IT ROM Through Coach (NGS)'), '备注应带完整供应商名（NGS 型）')
 })
 
@@ -343,7 +345,7 @@ test('断开单城停留的返程日 → 加送机 MTC（HTL/APT，无接机）'
   assert.equal(dropoff.locationCategory, 'HTL/APT')
 })
 
-test('返程日与前一 LDC 段同城衔接 → 由 THROUGH COACH 送机，不加单独送机', () => {
+test('返程日（同城衔接或断开）→ 总是单独注入送机 MTC（用户口径 2026-08-18）', () => {
   const parsed = {
     groupSize: 20,
     days: [
@@ -355,14 +357,18 @@ test('返程日与前一 LDC 段同城衔接 → 由 THROUGH COACH 送机，不�
   const out = applyQuoteRules(parsed)
   const d3 = out.days.find((d) => d.dayNumber === 3)
   assert.ok(!d3.items.some((i) => i.quoteKind === 'pickup'), '离境日不应有接机')
-  assert.ok(!d3.items.some((i) => i.quoteKind === 'dropoff'), '同城衔接由 THROUGH COACH 送机 → 不加单独送机')
+  const dropoff = d3.items.find((i) => i.quoteKind === 'dropoff')
+  assert.ok(dropoff, '返程离境日总是加单独送机（THROUGH COACH 段不覆盖离境日）')
+  assert.equal(dropoff.locationCategory, 'HTL/APT')
+  assert.equal(dropoff.cityCode, 'PAR', '送机国/城 = 当天城市')
+  assert.equal(dropoff.countryCode, 'FR')
   const d1 = out.days.find((d) => d.dayNumber === 1)
   assert.ok(d1.items.some((i) => i.quoteKind === 'pickup'), '同城连住第 1 天仍为 STD MTC 接机')
 })
 
-test('长途车一路开到离境城（罗马）→ 返程夜在北京也不单独送机（B线法意瑞场景）', () => {
-  // B 线：长途车从巴黎一路开到罗马过夜，次日罗马飞返北京。返程当晚过夜城=北京（≠离境城罗马），
-  // 但长途车已覆盖罗马酒店→罗马机场，不应再单独安排送机。
+test('长途车一路开到离境城（罗马）→ 返程日仍单独送机（B线法意瑞场景，用户口径更新）', () => {
+  // B 线：长途车从巴黎一路开到罗马过夜，次日罗马飞返北京。旧口径认为顺路送机不加，
+  // 用户 2026-08-18 确认：返程离境日总是单独送机 MTC（THROUGH COACH 段不覆盖离境日）。
   const parsed = {
     groupSize: 25,
     days: [
@@ -373,7 +379,9 @@ test('长途车一路开到离境城（罗马）→ 返程夜在北京也不单�
   }
   const out = applyQuoteRules(parsed)
   const d3 = out.days.find((d) => d.dayNumber === 3)
-  assert.ok(!d3.items.some((i) => i.quoteKind === 'dropoff'), '长途车顺路送机 → 不加单独送机')
+  const dropoff = d3.items.find((i) => i.quoteKind === 'dropoff')
+  assert.ok(dropoff, '返程离境日总是加单独送机')
+  assert.equal(dropoff.cityCode, 'ROM', '送机国/城 = 当天城市（罗马）')
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')

@@ -6,6 +6,7 @@ import { QUOTE_RATES } from './quote-rates.js'
 import { getCityCode } from './quos-mapping.js'
 import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES } from './ldc-mapping.js'
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
+import { DAILY_FEES } from '../data/daily-fees.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
 
@@ -35,59 +36,77 @@ function makeInsurance(groupSize) {
   }
 }
 
-function makePickup(locationCategory) {
+// 接机 STD MTC：国/城 = 当天城市（用户口径 2026-08-18，与 THROUGH COACH 相反），
+// 名称格式 `{城市英文名} - APT/HTL`（如 Warsaw - APT/HTL）。价格城市特定（待价格表补充）。
+function makePickup(locationCategory, day) {
+  const info = getCityCode(day?.cityName, day?.cityNameEn) || {}
+  const cityEn = day?.cityNameEn || ''
   return {
     type: 'transport',
     transportMode: 'bus',
     name: '接机',
-    nameEn: 'MTC',
+    nameEn: cityEn ? `${cityEn} - ${locationCategory || 'APT/HTL'}` : `MTC - ${locationCategory || 'APT/HTL'}`,
     costCategory: 'paid',
     estimatedCost: 0,
     price: 0,
+    priceUnit: 'perGroup',
     quoteKind: 'pickup',
     quoteOrder: 10,
     locationCategory,
+    cityCode: day?.cityCode || info.cityCode || '',
+    countryCode: day?.countryCode || info.countryCode || '',
     notes: 'STD MTC (Local)，单次 Group rate',
   }
 }
 
-// 送机 MTC：返程日与前段 LDC 断开（单城停留）时，酒店 → 机场需要单独用车
-function makeDropoff() {
+// 送机 MTC：返程日与前段 LDC 断开（单城停留）时，酒店 → 机场需要单独用车。
+// 国/城 = 当天城市；名称格式 `{城市英文名} - HTL/APT`（如 Budapest - HTL/APT）。
+function makeDropoff(day) {
+  const info = getCityCode(day?.cityName, day?.cityNameEn) || {}
+  const cityEn = day?.cityNameEn || ''
   return {
     type: 'transport',
     transportMode: 'bus',
     name: '送机',
-    nameEn: 'MTC',
+    nameEn: cityEn ? `${cityEn} - HTL/APT` : 'MTC - HTL/APT',
     costCategory: 'paid',
     estimatedCost: 0,
     price: 0,
+    priceUnit: 'perGroup',
     quoteKind: 'dropoff',
     quoteOrder: 11,
     locationCategory: 'HTL/APT',
+    cityCode: day?.cityCode || info.cityCode || '',
+    countryCode: day?.countryCode || info.countryCode || '',
     notes: 'STD MTC (Local)，单次 Group rate',
   }
 }
 
-// THROUGH COACH 的国/城按 LDC 表格取「供应商所在地」，而非当天城市：
-// 例如法意瑞等西欧多国 → 供应商 IT ROM（NGS 型，ldc-mapping.js 的 westernEurope）。
+// THROUGH COACH：用户口径（2026-08-18）——
+//   - 国/城 = **段起始城市**（调车地，如华沙 → WAW/PL），不再用 LDC 供应商所在地（供应商信息进 notes）；
+//   - 名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS），nameEn 带车型（NGS/GLS）；
+//   - 价格 = 段总价（城市特定，待价格表补充）。
 // from/to 按「段首日白天出发城 → 段末日白天出发城」取（用户口径：非过夜城市）。
 function makeThroughCoach(seg, ldc) {
-  const countryCode = ldc?.supplierCode?.split(' ')[0] || ''
-  const cityCode = ldc?.supplierCode?.split(' ')[1] || ''
+  const info = getCityCode(seg.startCity) || {}
+  const startCityEn = seg.startCityEn || ''
+  const days = seg.endDay - seg.startDay + 1
   return {
     type: 'transport',
     transportMode: 'bus',
-    name: 'THROUGH COACH',
+    name: startCityEn ? `${startCityEn} - ${days} DAYS` : 'THROUGH COACH',
+    nameEn: `THROUGH COACH (${ldc?.vehicleType || 'NGS'})`,
     from: seg.fromCity,
     to: seg.toCity,
     costCategory: 'paid',
     estimatedCost: 0,
-    price: 0,
+    price: 0, // 段总价（如 Warsaw 5000 EUR），待城市价格表补充
+    priceUnit: 'perGroup',
     quoteKind: 'through-coach',
     quoteOrder: 20,
-    cityCode,
-    countryCode,
-    notes: `LDC第${seg.startDay}-${seg.endDay}天，共${seg.endDay - seg.startDay + 1}天${ldc ? `，供应商 ${ldc.fullSelectionName}` : ''}`,
+    cityCode: info.cityCode || '',
+    countryCode: info.countryCode || '',
+    notes: `LDC第${seg.startDay}-${seg.endDay}天，共${days}天${ldc ? `，供应商 ${ldc.fullSelectionName}` : ''}`,
   }
 }
 
@@ -246,10 +265,15 @@ export function applyQuoteRules(parsed) {
       const multiNight = !!nextOvernight && nextOvernight === overnight(d)
       if (multiNight || !next) {
         // 同城连住（或抵达日是最后一天）→ STD MTC 接机
-        d.items.push(makePickup(categoryFor(arrival.transportMode)))
+        d.items.push(makePickup(categoryFor(arrival.transportMode), d))
       } else {
         // 单晚停留的抵达日 → 段从当天开始，fromCity 取抵达城市（如首日飞抵马赛 / 飞抵巴勒莫）
-        cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: arrival.to || overnight(d) }
+        cur = {
+          startDay: d.dayNumber,
+          startCity: overnight(d),
+          startCityEn: d.cityNameEn || d.finalCityNameEn || '',
+          fromCity: arrival.to || overnight(d),
+        }
         cur.endDay = d.dayNumber
         cur.endCity = overnight(d)
       }
@@ -258,7 +282,14 @@ export function applyQuoteRules(parsed) {
       if (cur) { segments.push(cur); cur = null }
     } else {
       // 无跨城交通（含同城一日游的 train/boat）：继续当前段
-      if (!cur) cur = { startDay: d.dayNumber, startCity: overnight(d), fromCity: d.cityName }
+      if (!cur) {
+        cur = {
+          startDay: d.dayNumber,
+          startCity: overnight(d),
+          startCityEn: d.cityNameEn || d.finalCityNameEn || '',
+          fromCity: d.cityName,
+        }
+      }
       cur.endDay = d.dayNumber
       cur.endCity = overnight(d)
     }
@@ -282,18 +313,11 @@ export function applyQuoteRules(parsed) {
   }
 
   // 送机：最后一个返程离境日（终点是中国，如返程航班罗马→上海）。
-  // 若上一个 LDC 段与离境日衔接（段末日=离境日前一天 且 段末城=返程航班出发城，即离境城市）→
-  // 由 THROUGH COACH 顺路送机，不加单独送机；否则（断开单城停留，如飞抵罗马后隔天离境）→ 单独加送机 MTC。
-  // 注意：比对的是「返程航班的出发城」（罗马），不是当晚过夜城（返程夜可能落在北京/飞机上），
-  // 否则长途车一路开到罗马却仍被误判为「断开」而多算一次送机。
+  // 用户口径（2026-08-18）：返程离境日**总是**单独注入送机 MTC（`{城市英文名} - HTL/APT`），
+  // THROUGH COACH 段不覆盖离境日（段 = 用车天数，如 Warsaw - 9 DAYS 止于离境日前一天）。
   const lastDeparture = [...days].reverse().find((d) => (d.dayNumber ?? 0) >= 1 && returnTransitOf(d))
   if (lastDeparture) {
-    const lastSeg = segments[segments.length - 1]
-    const departureFlight = returnTransitOf(lastDeparture)
-    const coachCovers = lastSeg &&
-      lastSeg.endDay === lastDeparture.dayNumber - 1 &&
-      lastSeg.endCity === (departureFlight?.from || overnight(lastDeparture))
-    if (!coachCovers) lastDeparture.items.push(makeDropoff())
+    lastDeparture.items.push(makeDropoff(lastDeparture))
   }
 
   // 5) 每段注入 THROUGH COACH + EMPTY RUN + PRE/POST（用户口径：使用 THROUGH COACH 时三者都要有）。
@@ -310,7 +334,7 @@ export function applyQuoteRules(parsed) {
         !(it.type === 'transport' && ['bus', 'car'].includes(it.transportMode) && !(it.from || it.to)))
     }
 
-    // 无 LDC 供应商（表外国家组合）→ 不注入 THROUGH COACH / EMPTY RUN / PRE-POST
+    // 无 LDC 供应商（表外国家组合）→ 不注入 THROUGH COACH / EMPTY RUN / PRE-POST / 杂费
     if (!ldc) continue
     segStart.items.push(makeThroughCoach(seg, ldc))
     // EMPTY RUN 空驶：每段都有，公里数 = 段起点 → 段终点（下一段交通出发城）的车程
@@ -318,9 +342,42 @@ export function applyQuoteRules(parsed) {
     const lastCity = seg.toCity
     if (firstCity && lastCity) segStart.items.push(makeEmptyRun(firstCity, lastCity, ldc))
     segStart.items.push(makePrePostNight(ldc))
+
+    // 每日用车杂费（部分城市有）：段内每天命中 DAILY_FEES 表则注入（停车费/许可费等）
+    for (let dn = seg.startDay; dn <= seg.endDay; dn++) {
+      const dd = realDays.find((d) => d.dayNumber === dn)
+      if (!dd) continue
+      const fee = dailyFeeFor(dd)
+      if (!fee) continue
+      const feeCountry = getCityCode(fee.city, fee.cityEn)?.countryCode || ''
+      dd.items.push({
+        type: 'transport',
+        transportMode: 'bus',
+        name: fee.cityEn ? `${fee.cityEn} - ${fee.note}` : fee.note,
+        nameEn: 'THROUGH COACH (GLS)',
+        costCategory: 'paid',
+        estimatedCost: 0,
+        price: fee.amount || 0,
+        currency: fee.currency || 'EUR',
+        priceUnit: 'perGroup',
+        quoteKind: 'daily-fee',
+        quoteOrder: 21,
+        cityCode: fee.code,
+        countryCode: feeCountry,
+        notes: fee.note,
+      })
+    }
   }
 
   return { ...parsed, days }
+}
+
+// 命中当天城市的杂费条目（中文名 / 英文名 / 城市码任一匹配）
+function dailyFeeFor(day) {
+  if (!day) return null
+  const names = [day.cityName, day.cityNameEn, day.cityCode, day.finalCityName, day.finalCityNameEn].filter(Boolean)
+  return DAILY_FEES.find((f) =>
+    names.some((n) => n && (n === f.city || n === f.cityEn || n === f.code))) || null
 }
 
 // 解析完成后异步补全 EMPTY RUN 的真实车程（OSRM 驾驶距离；失败时保持估算值）。

@@ -137,12 +137,13 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
 - **改固定费率**（保险）→ 只动 `lib/quote-rates.js`；**前后夜已按 LDC 区域细分**（西欧 €120/荷比卢 €135/英国 £110/北欧 €148…）→ 改 `lib/ldc-mapping.js` 各 SUPPLIERS 条目的 `prepost` 字段（`quote-rates.prepostNight` 仅作未命中 LDC 时的兜底；**界面不显示金额**，只显示区域名）
 - **用车规则**（用户口径，applyQuoteRules 在 coach-plan.js）：
   1. **中国出发/返程日**（上海等 CN 城市，含 day 0）只展示，**不参与分段**（避免返程日产生虚的 THROUGH COACH/PRE-POST）
-  2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；供应商按**全行程国家**查 LDC 表（西欧多国→IT ROM），不看当天城市；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
+  2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = 段起始城市**（调车地，如华沙→WAW/PL，2026-08-18 更新，不再用供应商所在地；供应商信息进 notes，如 IT ROM / CZ PRG）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
   3. **EMPTY RUN 空驶**：**每段都有**（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to **真实车程**（route.js 调 `patchEmptyRunRoadKm` → OSRM 免费路线服务，失败回退 `estimateRoadKmFallback` 直线×1.3）；`quantity`=公里数，quoteOrder 22
-  4. **抵达日分两种**：transit 终点=当晚过夜城市或当天白天城市 → 若**第 1 天与第 2 天住不同城市**（次日换城）则从第 1 天起用 LDC（THROUGH COACH 负责接机，**不加 STD MTC**，如飞抵马赛当夜住瓦朗索勒、飞抵巴勒莫）；若**同城住宿 ≥2 天**则第 1 天单独接机 STD MTC（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），第 2 天起用 LDC
-  5. **送机 MTC**：最后一个离境日（transit 终点≠过夜城市）若与前 LDC 段**断开**（段末日≠离境日前一天 或 段末城≠离境城市）→ 加送机（HTL/APT，quoteKind `dropoff`）；同城衔接则由 THROUGH COACH 顺路送机、不加
+  4. **抵达日分两种**：transit 终点=当晚过夜城市或当天白天城市 → 若**第 1 天与第 2 天住不同城市**（次日换城）则从第 1 天起用 LDC（THROUGH COACH 负责接机，**不加 STD MTC**，如飞抵马赛当夜住瓦朗索勒、飞抵巴勒莫）；若**同城住宿 ≥2 天**则第 1 天单独接机 STD MTC（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），第 2 天起用 LDC；**接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL，2026-08-18 更新）
+  5. **送机 MTC**：最后一个离境日**总是**单独加送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）——THROUGH COACH 段不覆盖离境日（2026-08-18 更新，旧口径"同城衔接顺路送机不加"已废弃）
   6. **PRE/POST 前后夜**：每个 LDC 段首天注入（有 THROUGH COACH 才有），金额不显示
-  7. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入
+  7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21
+  8. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入
 - **酒店推荐**：静态参考库在 `src/data/hotel-recommendations.js`（每城 2-3 家，Booking 评分≥7 + 欧元参考价，非实时）；查询走 `lib/hotel-recommend.js` 的 `recommendHotels(name, nameEn, limit, cityCode)`（中文/英文/别名/城市码均可命中，自动过滤评分<7）。想加城市 → 调研后直接编辑数据文件，或沿用 `scripts/merge-hotel-research.py` 合并子代理 JSON 输出；**UI 在 quos-list（行程详情按天）**
 - **主按钮底色一律用 `var(--accent-strong)`**（不要 `--accent` 配白字：深色模式白字在 #2dd4bf 上仅 1.86:1）；改主题色 → `globals.css` token
 - **QUOS 行程详情**：勾选录入（按天/按类型）+ 底部合计行 + 移动端 CSV 导出；复制功能已移除
