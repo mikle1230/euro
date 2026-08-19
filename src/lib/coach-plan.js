@@ -92,13 +92,16 @@ function makeDropoff(day) {
   }
 }
 
-// THROUGH COACH：用户口径（2026-08-18）——
-//   - 国/城 = **段起始城市**（调车地，如华沙 → WAW/PL），不再用 LDC 供应商所在地（供应商信息进 notes）；
-//   - 名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS），nameEn 带车型（NGS/GLS）；
-//   - 价格 = 段总价（城市特定，待价格表补充）。
+// THROUGH COACH：用户口径（2026-08-19 修正）——
+//   - 国/城 = **LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、
+//     波兰→PL WAW（从华沙调车）。2026-08-18 曾误改为段起始城市，已改回——当时看到的 WAW/PL
+//     正是 polandMono 的供应商码，不是起始城市）；
+//   - 名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市，国/城用供应商）；
+//   - nameEn 带车型（NGS/GLS）；价格 = 段总价（待价格表补充）。
 // from/to 按「段首日白天出发城 → 段末日白天出发城」取（用户口径：非过夜城市）。
 function makeThroughCoach(seg, ldc) {
-  const info = getCityCode(seg.startCity) || {}
+  const countryCode = ldc?.supplierCode?.split(' ')[0] || ''
+  const cityCode = ldc?.supplierCode?.split(' ')[1] || ''
   const startCityEn = seg.startCityEn || ''
   const days = seg.endDay - seg.startDay + 1
   return {
@@ -114,8 +117,8 @@ function makeThroughCoach(seg, ldc) {
     priceUnit: 'perGroup',
     quoteKind: 'through-coach',
     quoteOrder: 20,
-    cityCode: info.cityCode || '',
-    countryCode: info.countryCode || '',
+    cityCode,
+    countryCode,
     notes: `LDC第${seg.startDay}-${seg.endDay}天，共${days}天${ldc ? `，供应商 ${ldc.fullSelectionName}` : ''}`,
   }
 }
