@@ -4,7 +4,7 @@
 // 费率常量集中在 ./quote-rates.js；EMPTY RUN 真实车程在 route.js 用 patchEmptyRunRoadKm 异步补全。
 import { QUOTE_RATES } from './quote-rates.js'
 import { getCityCode } from './quos-mapping.js'
-import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES } from './ldc-mapping.js'
+import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES, ER_RULES } from './ldc-mapping.js'
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
 import { DAILY_FEES } from '../data/daily-fees.js'
 
@@ -120,11 +120,41 @@ function makeThroughCoach(seg, ldc) {
   }
 }
 
+// EMPTY RUN 按 LDC 表计价（ER_RULES）：金额阶梯 / 次数×单价 / 按公里；返回 { price, label }
+// 次数型（1ER/2ER）单次价 unit 表内未给 → price=0 只显示次数，待用户补充 unit 后自动计价
+function erPrice(ldc, km) {
+  const er = ldc?.key ? ER_RULES[ldc.key] : null
+  if (!er || !km) return { price: 0, label: '' }
+  const sym = ldc?.symbol || '€'
+  if (er.type === 'tiers') {
+    for (const [lo, hi, amt] of er.tiers) {
+      if (km >= lo && km <= hi) return { price: amt || 0, label: amt > 0 ? `，ER ${sym}${amt}` : '' }
+    }
+    return { price: 0, label: '' }
+  }
+  if (er.type === 'count') {
+    for (const [lo, hi, cnt] of er.tiers) {
+      if (km >= lo && km <= hi) {
+        if (er.unit) return { price: Math.round(cnt * er.unit * 100) / 100, label: `，ER ×${cnt}（${sym}${er.unit}/次）` }
+        return { price: 0, label: `，ER ×${cnt}` }
+      }
+    }
+    return { price: 0, label: '' }
+  }
+  if (er.type === 'perKm') {
+    const billable = km > er.fromKm ? km - er.fromKm : 0
+    const price = Math.round(billable * er.perKm * 100) / 100
+    return { price, label: price > 0 ? `，ER ${sym}${price}` : '' }
+  }
+  return { price: 0, label: '' }
+}
+
 // MTC EMPTY RUN 空驶：THROUGH COACH 服务开始当天空驶调车。
 // 公里数先按「第一个城市 → 最后一个城市」的估算值注入（同步兜底），
-// route.js 解析完成后调用 patchEmptyRunRoadKm 用 OSRM 真实车程覆盖。
+// route.js 解析完成后调用 patchEmptyRunRoadKm 用 OSRM 真实车程覆盖（价格按新公里数重算）。
 function makeEmptyRun(firstCity, lastCity, ldc) {
   const km = estimateRoadKmFallback(firstCity, lastCity)
+  const er = erPrice(ldc, km)
   const countryCode = ldc?.supplierCode?.split(' ')[0] || ''
   const cityCode = ldc?.supplierCode?.split(' ')[1] || ''
   return {
@@ -136,14 +166,18 @@ function makeEmptyRun(firstCity, lastCity, ldc) {
     to: lastCity,
     costCategory: 'paid',
     estimatedCost: 0,
-    price: 0,
+    price: er.price || 0,
+    currency: er.price > 0 ? (ldc?.symbol || 'EUR') : '',
+    priceUnit: 'perGroup',
     quantity: km,
     quoteKind: 'empty-run',
     quoteOrder: 22,
     cityCode,
     countryCode,
+    erKey: ldc?.key || '', // OSRM 补全公里数后按 ER_RULES 重算价格用
+    erSymbol: ldc?.symbol || '€',
     notes: km > 0
-      ? `MTC EMPTY RUN 空驶：${firstCity} → ${lastCity}，约 ${km} km（车程估算）`
+      ? `MTC EMPTY RUN 空驶：${firstCity} → ${lastCity}，约 ${km} km（车程估算）${er.label}`
       : firstCity === lastCity
         ? `MTC EMPTY RUN 空驶：${firstCity} → ${lastCity}（同城）`
         : `MTC EMPTY RUN 空驶：${firstCity} → ${lastCity}（缺坐标，公里数待补）`,
@@ -220,7 +254,10 @@ export function applyQuoteRules(parsed) {
   //   4) 防御：只保留 LDC 表覆盖的国家（同名城市错配如美国 Syracuse→US 不会搞挂判定）。
   const allFlights = days.flatMap((d) =>
     (d.items || []).filter((it) => it.type === 'transport' && it.transportMode === 'flight' && (it.from || it.to)))
-  const returnCity = allFlights.length ? allFlights[allFlights.length - 1].to : null
+  // 返程终点：只认「终点是中国城市」的航班（罗马→上海）；入境航班（北京→华沙）的 to 不是返程，
+  // 不能拿来过滤 LDC 国家（否则会把华沙从国家集合里剔除，误判区域）。
+  const returnFlights = allFlights.filter((it) => getCityCode(it.to)?.countryCode === 'CN')
+  const returnCity = returnFlights.length ? returnFlights[returnFlights.length - 1].to : null
   const ldcCountries = [...new Set(
     realDays
       .map((d) => ({ name: d.cityName, code: getCityCode(d.cityName, d.cityNameEn)?.countryCode }))
@@ -402,7 +439,11 @@ export async function patchEmptyRunRoadKm(result) {
           const km = await roadKmBetween(it.from, it.to)
           if (km > 0) {
             it.quantity = km
-            it.notes = `MTC EMPTY RUN 空驶：${it.from} → ${it.to}，约 ${km} km（车程）`
+            // 真实公里数出来后按 ER 规则重算价格
+            const er = erPrice({ key: it.erKey, symbol: it.erSymbol }, km)
+            it.price = er.price || 0
+            it.currency = er.price > 0 ? (it.erSymbol || 'EUR') : ''
+            it.notes = `MTC EMPTY RUN 空驶：${it.from} → ${it.to}，约 ${km} km（车程）${er.label}`
           }
         })())
       }
