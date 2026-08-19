@@ -9,6 +9,7 @@ import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
+import { getCityCode } from '@/lib/quos-mapping'
 import { COUNTRY_INTROS } from '@/data/country-intros'
 import { COUNTRY_INFO } from '@/data/country-info'
 
@@ -140,6 +141,7 @@ export default function CountryPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {cities.map((city) => {
                 const cmeta = cityMeta[city.id] || {}
+                const cityQuosCode = getCityCode(city.name, city.nameEn)?.cityCode || ''
                 return (
                   <Link
                     key={city.id}
@@ -152,7 +154,7 @@ export default function CountryPage() {
                       alt={city.name}
                       type="landmark"
                       name={city.name}
-                      subtitle={city.nameEn}
+                      subtitle={[city.nameEn, cityQuosCode].filter(Boolean).join(' · ')}
                       size="card"
                       variant="city"
                     />
@@ -161,7 +163,7 @@ export default function CountryPage() {
                         {city.name}
                       </h3>
                       <p className="text-xs mb-1" style={{ color: 'var(--text-tertiary)' }}>
-                        {city.nameEn}
+                        {[city.nameEn, cityQuosCode].filter(Boolean).join(' · ')}
                       </p>
                       {cmeta.description && (
                         <p className="text-xs line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
