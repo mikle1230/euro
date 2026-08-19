@@ -7,6 +7,7 @@ import { getCityCode } from './quos-mapping.js'
 import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES, ER_RULES } from './ldc-mapping.js'
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
 import { DAILY_FEES } from '../data/daily-fees.js'
+import { STD_MTC_OPTIONS, DEPARTURE_ACTIVITY_MTC } from '../data/std-mtc-options.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
 
@@ -70,15 +71,27 @@ function makePickup(locationCategory, day) {
 }
 
 // 送机 MTC：返程日与前段 LDC 断开（单城停留）时，酒店 → 机场需要单独用车。
-// 国/城 = 当天城市；名称格式 `{城市英文名} - HTL/APT`（如 Budapest - HTL/APT）。
-function makeDropoff(day) {
+// 国/城 = 当天城市。当地独立用车规则（用户口径 2026-08-19）：
+//   - 离境日**有半天行程**（白天活动 + 送机）→ 从该城 KT STD MTC 选项选 `{城市} - APT - X HOURS`
+//     （如 Rome - APT - 05 HOURS = 5 小时用车后送机；X 凭经验选择，默认多留 buffer 取 05，选项表优先）；
+//   - **纯送机**（无白天活动）→ `{城市} - HTL/APT`。
+function makeDropoff(day, hasActivity = false) {
   const info = getCityCode(day?.cityName, day?.cityNameEn) || {}
   const cityEn = day?.cityNameEn || ''
+  const cityCode = day?.cityCode || info.cityCode || ''
+  const options = STD_MTC_OPTIONS[cityCode] || []
+  let nameEn
+  if (hasActivity) {
+    const candidate = `${cityEn} - ${DEPARTURE_ACTIVITY_MTC}`
+    nameEn = options.includes(candidate) ? candidate : (cityEn ? `${cityEn} - APT - 05 HOURS` : 'MTC - APT 05 HOURS')
+  } else {
+    nameEn = cityEn ? `${cityEn} - HTL/APT` : 'MTC - HTL/APT'
+  }
   return {
     type: 'transport',
     transportMode: 'bus',
     name: '送机',
-    nameEn: cityEn ? `${cityEn} - HTL/APT` : 'MTC - HTL/APT',
+    nameEn,
     costCategory: 'paid',
     estimatedCost: 0,
     price: 0,
@@ -86,9 +99,11 @@ function makeDropoff(day) {
     quoteKind: 'dropoff',
     quoteOrder: 11,
     locationCategory: 'HTL/APT',
-    cityCode: day?.cityCode || info.cityCode || '',
+    cityCode,
     countryCode: day?.countryCode || info.countryCode || '',
-    notes: 'STD MTC (Local)，单次 Group rate',
+    notes: hasActivity
+      ? 'STD MTC (Local) 半天用车 + 送机，单次 Group rate'
+      : 'STD MTC (Local)，单次 Group rate',
   }
 }
 
@@ -373,7 +388,11 @@ export function applyQuoteRules(parsed) {
   // THROUGH COACH 段不覆盖离境日（段 = 用车天数，如 Warsaw - 9 DAYS 止于离境日前一天）。
   const lastDeparture = [...days].reverse().find((d) => (d.dayNumber ?? 0) >= 1 && returnTransitOf(d))
   if (lastDeparture) {
-    lastDeparture.items.push(makeDropoff(lastDeparture))
+    // 当地用车规则：离境日有半天行程（白天活动，非交通/住宿）→ APT - X HOURS（X 凭经验）；
+    // 纯送机 → HTL/APT
+    const hasActivity = (lastDeparture.items || []).some((it) =>
+      it.type !== 'transport' && it.type !== 'hotel' && String(it.name || '').trim() !== '')
+    lastDeparture.items.push(makeDropoff(lastDeparture, hasActivity))
   }
 
   // 5) 每段注入 THROUGH COACH + EMPTY RUN + PRE/POST（用户口径：使用 THROUGH COACH 时三者都要有）。
