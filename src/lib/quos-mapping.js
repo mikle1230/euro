@@ -112,6 +112,24 @@ function buildCodeIndex() {
   return codeIndex
 }
 
+// cityCode → 英文名（取首个纯英文键；首都/详情页英文名兜底用）
+let enIndex = null
+function buildEnIndex() {
+  if (enIndex) return enIndex
+  enIndex = new Map()
+  for (const [key, v] of Object.entries(quosCities)) {
+    if (v?.cityCode && /^[A-Za-z .\-\u00C0-\u024F']+$/.test(key) && !enIndex.has(v.cityCode)) {
+      enIndex.set(v.cityCode, key)
+    }
+  }
+  return enIndex
+}
+
+export function getCityEnglishName(cityCode) {
+  if (!cityCode) return ''
+  return buildEnIndex().get(cityCode) || ''
+}
+
 // ---- City Code Lookup ----
 export function getCityCode(cityName, englishName) {
   if (!cityName) return null

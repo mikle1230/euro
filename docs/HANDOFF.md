@@ -163,3 +163,8 @@ curl -I http://localhost:3000/images/cities/<id>.jpg   # 抽查 200
 - 若直连 GitHub 不稳（公司网络），push/pull 用 `git -c http.schannelCheckRevoke=false ...` 或 ghfast.top 镜像（`https://ghfast.top/https://github.com/mikle1230/euro.git`）。
 - 用户会持续更新 `hotel list.xlsx`（酒店 PP 价/星级/评分），更新后跑 `npm run build:hotels` 同步 `src/data/hotel-prices.json`；星级/评分补充表在 `scripts/hotel-extra-data.mjs`（xlsx 有值则优先）。
 - 补城市 → 改 `scripts/add-missing-cities.mjs` 重跑，再跑 `node scripts/build-city-coords.js`，并检查 `npm test` 的「数据漂移」用例（城市名变体走 `src/data/city-aliases.js`）。
+- **新增国家/城市自动带 QUOS 码**（用户口径 2026-08-18）：
+  - 城市码/国家码**运行时从 quos-cities.json 反查**（城市卡片显示三字码、国家卡片/详情页 hero 显示二字码），加入 europe-travel.json 后卡片自动显示，无需手工存码。
+  - Cities.xlsx 表外城市（如以弗所）→ 补 `src/data/manual-codes.js`（`{ '中文名': { cityCode, countryCode } }`），getCityCode 自动兜底。
+  - UI「添加城市」表单保存时自动反查码（查不到 toast 提示补码）；`add-missing-cities.mjs` 加城市时输出码校验。
+  - 首都行（国家详情页）同样带英文名 + QUOS 三字码。
