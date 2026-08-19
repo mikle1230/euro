@@ -31,9 +31,9 @@ export const SUPPLIERS = {
     dailyRate: 800, symbol: '€', prepost: '€120', note: 'High End/Adhoc/VIP 特殊团',
   },
   centralEurope: {
-    region: 'Central Europe (HUN, CZE, SVK, PL)', supplierCode: 'CZ PRG',
+    region: 'Central Europe (HUN, CZE, SVK)', supplierCode: 'CZ PRG',
     fullSelectionName: 'CZ PRG Through Coach (NGS)', vehicleType: 'NGS',
-    dailyRate: 550, symbol: '€', prepost: '€120', note: '中欧（匈/捷/斯洛伐克/波兰，可含奥地利）',
+    dailyRate: 550, symbol: '€', prepost: '€120', note: '中欧（匈/捷/斯洛伐克，可含奥地利）',
   },
   scandinavia: {
     region: 'Scandinavia (South Norway/Sweden/Denmark)', supplierCode: 'SE STO',
@@ -122,6 +122,11 @@ export const SUPPLIERS = {
     fullSelectionName: 'FI ROV Through Coach (NGS)', vehicleType: 'NGS',
     dailyRate: null, symbol: '€', prepost: '€146', note: '芬兰北部 NGS：ON REQUEST（按询价）',
   },
+  polandMono: {
+    region: 'Poland Mono', supplierCode: 'PL WAW',
+    fullSelectionName: 'PL WAW Through Coach (NGS)', vehicleType: 'NGS',
+    dailyRate: null, symbol: '€', prepost: null, note: '波兰单国（从华沙 WAW 调车，费率待补充）',
+  },
 }
 
 const WESTERN_EUROPE_CODES = ['FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'ES', 'PT']
@@ -173,7 +178,7 @@ const MONO_MAP = {
   CZ: 'centralEurope',
   HU: 'centralEurope',
   SK: 'centralEurope',
-  PL: 'centralEurope',
+  PL: 'polandMono',
   AT: 'centralEurope',
   SE: 'swedenMono',
   DK: 'denmarkMono',
@@ -198,9 +203,11 @@ export function resolveLdcSupplier(countries, opts = {}) {
   }
 
   // 多国：明确规则优先，其余西欧多国统一 IT ROM
+  // 含波兰（用户口径 2026-08-18）：从华沙 WAW 调车 → PL WAW（不并入中欧 CZ PRG）
+  if (list.includes('PL')) return SUPPLIERS.polandMono
   if (list.every((c) => ['EE', 'LT', 'LV'].includes(c))) return SUPPLIERS.balticMono
   if (list.every((c) => ['NL', 'BE', 'LU'].includes(c))) return SUPPLIERS.benelux
-  if (list.every((c) => ['HU', 'CZ', 'SK', 'PL', 'AT'].includes(c))) return SUPPLIERS.centralEurope
+  if (list.every((c) => ['HU', 'CZ', 'SK', 'AT'].includes(c))) return SUPPLIERS.centralEurope
   if (list.every((c) => ['NO', 'SE', 'DK'].includes(c))) return SUPPLIERS.scandinavia
   if (list.every((c) => ['GB', 'IE'].includes(c))) return SUPPLIERS.uk
   if (list.every((c) => ['ES', 'PT'].includes(c))) return SUPPLIERS.iberia
