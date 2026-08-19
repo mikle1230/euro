@@ -224,7 +224,9 @@
       {
         "hotel": "AMBASSADOR ZLATA HUSA",
         "month": "10月",
-        "pp": "66.49"
+        "pp": "66.49",
+        "star": 5,
+        "rating": 8.5
       }
     ]
   },
@@ -257,12 +259,16 @@
       {
         "hotel": "ARCHE KRAKOWSKA",
         "month": "10月",
-        "pp": "43.62"
+        "pp": "43.62",
+        "star": 4,
+        "rating": 8.8
       },
       {
         "hotel": "SWING KRK",
         "month": "10月",
-        "pp": "40.96"
+        "pp": "40.96",
+        "star": 4,
+        "rating": 8.9
       }
     ]
   },
@@ -295,7 +301,9 @@
       {
         "hotel": "CLARION CONGRESS BRNO",
         "month": "10月",
-        "pp": "53.19"
+        "pp": "53.19",
+        "star": 4,
+        "rating": 9.2
       }
     ]
   },
@@ -335,7 +343,9 @@
       {
         "hotel": "LEONARDO BUDAPEST",
         "month": "11月",
-        "pp": "35.11"
+        "pp": "35.11",
+        "star": 4,
+        "rating": 8.1
       }
     ]
   },
@@ -578,7 +588,9 @@
       {
         "hotel": "NH SALZBURG CITY",
         "month": "11月",
-        "pp": "62.23"
+        "pp": "62.23",
+        "star": 4,
+        "rating": 8.4
       }
     ]
   },
@@ -891,7 +903,9 @@
       {
         "hotel": "VITA",
         "month": "10月",
-        "pp": "29.79"
+        "pp": "29.79",
+        "star": 4,
+        "rating": 8.4
       }
     ]
   }
