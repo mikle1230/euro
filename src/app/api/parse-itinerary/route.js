@@ -14,10 +14,20 @@ function pdfPageToText(page) {
   const texts = page.Texts || []
   if (!texts.length) return ''
 
+  // pdf2json 的 T 字段是 URI 编码文本，但部分 PDF 含非法编码片段（如孤立 % 或非 UTF-8 字节）
+  // decodeURIComponent 会抛 URIError 导致整个解析 500 —— 解码失败时回退原始文本
+  const safeDecode = (raw) => {
+    try {
+      return decodeURIComponent(raw)
+    } catch {
+      return raw
+    }
+  }
+
   const glyphs = texts.map((t) => ({
     x: t.x || 0,
     y: t.y || 0,
-    text: decodeURIComponent((t.R && t.R[0] && t.R[0].T) || ''),
+    text: safeDecode((t.R && t.R[0] && t.R[0].T) || ''),
   }))
   glyphs.sort((a, b) => (a.y - b.y) || (a.x - b.x))
 
