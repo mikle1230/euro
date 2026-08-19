@@ -157,6 +157,17 @@ export async function POST(request) {
     // 输入降噪（页码/页眉页脚/重复行等）压缩 token，然后截断
     text = cleanText(text)
 
+    // 无逐日行程检测：网页打印版 PDF（如悠哉/众信产品页）只打印了产品简介+费用说明，
+    // 逐日日程是 JS 动态加载的，打印时为空 —— AI 拿到这种输入只能编造城市（如凭空出现"第戎"）。
+    // 检测到无日程标记（第X天 / Day X / 日期）时直接提示，不浪费一次 AI 调用。
+    const hasDaySchedule = /第\s*\d+\s*[天日]|第\s*[一二三四五六七八九十]+\s*[天日]|DAY\s*\d+|D\s*\d+\s*[天、日]|(?<![.\d])\d{1,2}\s*[天、日]\s*[：:]/i.test(text)
+    if (!hasDaySchedule) {
+      return NextResponse.json(
+        { error: '文件未包含逐日行程内容（可能是网页打印版，日程为空）。请提供含详细行程安排的 PDF/Word 文件' },
+        { status: 400 },
+      )
+    }
+
     // Truncate to avoid token limits (DeepSeek context: 128K)。
     // 保留头 + 尾：返程航班/结尾说明常落在文件尾部，盲切头部会丢掉。
     const maxChars = 50000
