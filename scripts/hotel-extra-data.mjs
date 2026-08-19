@@ -53,24 +53,29 @@ export default {
   },
   PRG: {
     'URBAN CREME': { star: 5, rating: 8.6 }, // trivago 聚合
+    'AMBASSADOR ZLATA HUSA': { star: 5, rating: 8.5 },
   },
   WRO: {
     'ALTUS PALACE': { star: 5, rating: 9.3 }, // Priceline/Trip.com
   },
   WAW: {
     'LEONARDO ROYAL': { star: 4, rating: 8.3 },
+    'ARCHE KRAKOWSKA': { star: 4, rating: 8.8 },
+    'SWING KRK': { star: 4, rating: 8.9 },
   },
   KRK: {
     'UNICUS PALACE': { star: 5, rating: 9.1 },
   },
   BRQ: {
     'PALACE BRNO': { star: 5, rating: 9.2 }, // = Barceló Brno Palace
+    'CLARION CONGRESS BRNO': { star: 4, rating: 9.2 },
   },
   VIE: {
     'SENATOR R': { star: 4, rating: 8.2 },
   },
   BUD: {
     'RADISSON BLU BEKE': { star: 4, rating: 8.9 },
+    'LEONARDO BUDAPEST': { star: 4, rating: 8.1 },
   },
   FRA: {
     'DIWOTEL BY TRIP INN': { star: 4, rating: 8.0 },
@@ -120,6 +125,7 @@ export default {
   },
   SZG: {
     'RADISSON BLU SZG': { star: 4, rating: 8.6 }, // = Radisson Blu Hotel & Conference Centre Salzburg（非 Altstadt）
+    'NH SALZBURG CITY': { star: 4, rating: 8.4 },
   },
   FES: {
     'BW PLUS FUESSEN': { star: 4, rating: 9.0 }, // Trip.com
@@ -184,5 +190,9 @@ export default {
   },
   SWI: {
     'HOLIDAY INN SWINDON': { star: 3, rating: 7.9 },
+  },
+  // ---- 用户更新 xlsx 后新增的酒店（2026-08-18 第二轮，已并入上方对应城市）----
+  CSB: {
+    'VITA': { star: 4, rating: 8.4 },
   },
 }
