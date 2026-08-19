@@ -9,6 +9,12 @@ import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
 
+// groupSize 可能是 "40+1"（客人+领队）或 "40"：保险按客人数计（+号前数字，领队不参保口径）
+function parseGuestCount(groupSize) {
+  const n = parseInt(String(groupSize ?? ''), 10)
+  return Number.isFinite(n) && n > 0 ? n : 0
+}
+
 function makeInsurance(groupSize) {
   const rate = QUOTE_RATES.insurance
   return {
@@ -20,7 +26,7 @@ function makeInsurance(groupSize) {
     price: rate.price,
     priceUnit: rate.priceUnit,
     currency: rate.currency,
-    quantity: groupSize || 0,
+    quantity: parseGuestCount(groupSize),
     quoteKind: 'insurance',
     quoteOrder: 0,
     cityCode: rate.cityCode,
