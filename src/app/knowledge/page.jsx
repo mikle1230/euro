@@ -9,6 +9,7 @@ import countryMeta from '@/data/country-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import GlobalSearch from '@/components/global-search'
 import { toast } from '@/components/toast'
+import { getCityCode } from '@/lib/quos-mapping'
 
 export default function KnowledgePage() {
   // getStats / getAllCountries 走模块级缓存（getMergedCountries）；
@@ -20,6 +21,18 @@ export default function KnowledgePage() {
   const [refresh, setRefresh] = useState(0)
   const stats = getStats()
   const countries = getAllCountries()
+
+  // 国家 QUOS 二字码：取该国任一城市反查（不依赖 country-meta 的旧 abbr，如 UK→GB 统一走 QUOS）
+  const countryCodes = {}
+  for (const c of countries) {
+    for (const city of c.cities) {
+      const cc = getCityCode(city.name, city.nameEn)?.countryCode
+      if (cc) {
+        countryCodes[c.id] = cc
+        break
+      }
+    }
+  }
 
   // ---- 「添加城市」弹窗 ----
   const [showAdd, setShowAdd] = useState(false)
@@ -130,6 +143,7 @@ export default function KnowledgePage() {
             const coverSrc = getCountryCoverImage(country.id)
             const cityCount = country.cities?.length || 0
             const attractionCount = country.cities?.reduce((s, c) => s + (c.attractions?.length || 0), 0) || 0
+            const quosCode = countryCodes[country.id] || meta.abbr || ''
 
             return (
               <Link
@@ -142,7 +156,7 @@ export default function KnowledgePage() {
                   src={coverSrc}
                   alt={country.name}
                   name={country.name}
-                  subtitle={[country.nameEn, meta.abbr].filter(Boolean).join(' · ')}
+                  subtitle={[country.nameEn, quosCode].filter(Boolean).join(' · ')}
                   size="card"
                   variant="country"
                   countryName={country.name}
@@ -152,7 +166,7 @@ export default function KnowledgePage() {
                     {country.name}
                   </h3>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-                    {[country.nameEn, meta.abbr].filter(Boolean).join(' · ')}
+                    {[country.nameEn, quosCode].filter(Boolean).join(' · ')}
                   </p>
                   {country.description && (
                     <p className="text-xs mt-2 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
