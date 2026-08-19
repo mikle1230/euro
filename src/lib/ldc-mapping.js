@@ -31,9 +31,9 @@ export const SUPPLIERS = {
     dailyRate: 800, symbol: '€', prepost: '€120', note: 'High End/Adhoc/VIP 特殊团',
   },
   centralEurope: {
-    region: 'Central Europe (HUN, CZE, SVK)', supplierCode: 'CZ PRG',
+    region: 'Central Europe (HUN, CZE, SVK, PL)', supplierCode: 'CZ PRG',
     fullSelectionName: 'CZ PRG Through Coach (NGS)', vehicleType: 'NGS',
-    dailyRate: 550, symbol: '€', prepost: '€120', note: '中欧（匈/捷/斯洛伐克，可含奥地利）',
+    dailyRate: 550, symbol: '€', prepost: '€120', note: '中欧（匈/捷/斯洛伐克/波兰，可含奥地利）',
   },
   scandinavia: {
     region: 'Scandinavia (South Norway/Sweden/Denmark)', supplierCode: 'SE STO',
@@ -131,7 +131,7 @@ const WESTERN_EUROPE_CODES = ['FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'E
 // 直接忽略，不会让整个 LDC 区域判定失败。
 export const KNOWN_COUNTRY_CODES = new Set([
   ...WESTERN_EUROPE_CODES,
-  'GB', 'IE', 'CZ', 'HU', 'SK', 'SE', 'DK', 'NO', 'FI', 'EE', 'LT', 'LV',
+  'GB', 'IE', 'CZ', 'HU', 'SK', 'PL', 'SE', 'DK', 'NO', 'FI', 'EE', 'LT', 'LV',
 ])
 
 // 北极极地城市（挪威/芬兰北部）——命中任一即判定为「北」
@@ -173,6 +173,7 @@ const MONO_MAP = {
   CZ: 'centralEurope',
   HU: 'centralEurope',
   SK: 'centralEurope',
+  PL: 'centralEurope',
   AT: 'centralEurope',
   SE: 'swedenMono',
   DK: 'denmarkMono',
@@ -199,7 +200,7 @@ export function resolveLdcSupplier(countries, opts = {}) {
   // 多国：明确规则优先，其余西欧多国统一 IT ROM
   if (list.every((c) => ['EE', 'LT', 'LV'].includes(c))) return SUPPLIERS.balticMono
   if (list.every((c) => ['NL', 'BE', 'LU'].includes(c))) return SUPPLIERS.benelux
-  if (list.every((c) => ['HU', 'CZ', 'SK', 'AT'].includes(c))) return SUPPLIERS.centralEurope
+  if (list.every((c) => ['HU', 'CZ', 'SK', 'PL', 'AT'].includes(c))) return SUPPLIERS.centralEurope
   if (list.every((c) => ['NO', 'SE', 'DK'].includes(c))) return SUPPLIERS.scandinavia
   if (list.every((c) => ['GB', 'IE'].includes(c))) return SUPPLIERS.uk
   if (list.every((c) => ['ES', 'PT'].includes(c))) return SUPPLIERS.iberia
