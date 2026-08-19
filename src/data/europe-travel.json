@@ -1550,6 +1550,14 @@
           "lat": 48.3705,
           "lng": 10.8978,
           "attractions": []
+        },
+        {
+          "id": "cochem",
+          "name": "科赫姆",
+          "nameEn": "Cochem",
+          "lat": 50.1469,
+          "lng": 7.1656,
+          "attractions": []
         }
       ]
     },
