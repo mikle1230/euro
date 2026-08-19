@@ -98,6 +98,19 @@ function buildNormIndex() {
   return normIndex
 }
 
+// ---- 城市码反查索引 ----
+// AI 可能直接输出城市码/机场码（WAW / ROM / CDG）作为 from/to —— 反查 cityCode → { cityCode, countryCode }，
+// 使 getCityCode('WAW') 也能解析（同一码多城市名时取首个，码/国相同不影响使用）。
+let codeIndex = null
+function buildCodeIndex() {
+  if (codeIndex) return codeIndex
+  codeIndex = new Map()
+  for (const [key, v] of Object.entries(quosCities)) {
+    if (v?.cityCode && !codeIndex.has(v.cityCode)) codeIndex.set(v.cityCode, v)
+  }
+  return codeIndex
+}
+
 // ---- City Code Lookup ----
 export function getCityCode(cityName, englishName) {
   if (!cityName) return null
@@ -129,6 +142,10 @@ export function getCityCode(cityName, englishName) {
     const hit = buildNormIndex().get(normalized)
     if (hit) return hit
   }
+  // 城市码输入（如 'WAW'/'ROM'）反查：AI 的 from/to 可能直接输出城市码/机场码
+  const codeKey = trimmed.toUpperCase()
+  const codeEntry = buildCodeIndex().get(codeKey)
+  if (codeEntry) return codeEntry
   return null
 }
 

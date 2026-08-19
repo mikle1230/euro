@@ -35,6 +35,27 @@ export const CITY_CODE_ALIASES = {
   '深圳': 'Shenzhen',
   '成都': 'Chengdu',
   '西安': 'Xi An',
+  // 机场三字码 → 城市（AI 的 from/to 可能输出机场码；机场码≠城市码的少数，
+  // 避免撞码歧义——如 CDG 在 Cities.xlsx 里是 Cardigan/GB）
+  'PEK': 'Beijing',
+  'PVG': 'Shanghai',
+  'SHA': 'Shanghai',
+  'CAN': 'Guangzhou',
+  'SZX': 'Shenzhen',
+  'CDG': 'Paris',
+  'ORY': 'Paris',
+  'LHR': 'London',
+  'LGW': 'London',
+  'FCO': 'Rome',
+  'CIA': 'Rome',
+  'MXP': 'Milan',
+  'NCE': 'Nice',
+  'MRS': 'Marseille',
+  'LYS': 'Lyon',
+  'TXL': 'Berlin',
+  'HAM': 'Hamburg',
+  'STR': 'Stuttgart',
+  'GVA': 'Geneva',
 }
 
 // ③ 酒店库别名 → 英文规范名（hotel-recommendations.js 的 nameEn 键）
