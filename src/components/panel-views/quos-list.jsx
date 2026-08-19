@@ -83,7 +83,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
       {quotes.length > 0 && (
         <div className={hotels.length > 0 ? 'mt-1.5 pt-1.5 border-t border-dashed' : ''} style={{ borderColor: 'var(--border-color)' }}>
           <div className="text-xs font-semibold mb-0.5" style={{ color: 'var(--text-secondary)' }}>
-            💰 供应商报价{month ? `（${month}）` : ''}（€/间）
+            💰 酒店价格参考{month ? `（${month}）` : ''}（€/间）
           </div>
           <div className="text-[11px] leading-snug flex flex-wrap gap-x-3 gap-y-0.5">
             {quotes.map((q, i) => (
