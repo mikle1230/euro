@@ -10,6 +10,16 @@ import { DAILY_FEES } from '../data/daily-fees.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
 
+// 同城判断（最稳口径）：字符串相同 或 两者都能解析出相同城市码（中文/英文/机场码/城市码均可）。
+// AI 的 from/to/城市名可能是 '华沙' / 'Warsaw' / 'WAW' 任意写法，统一按码比对。
+const isSameCity = (a, b) => {
+  if (!a || !b) return false
+  if (a === b) return true
+  const ca = getCityCode(a)?.cityCode
+  const cb = getCityCode(b)?.cityCode
+  return !!ca && !!cb && ca === cb
+}
+
 // groupSize 可能是 "40+1"（客人+领队）或 "40"：保险按客人数计（+号前数字，领队不参保口径）
 function parseGuestCount(groupSize) {
   const n = parseInt(String(groupSize ?? ''), 10)
@@ -215,7 +225,7 @@ export function applyQuoteRules(parsed) {
     realDays
       .map((d) => ({ name: d.cityName, code: getCityCode(d.cityName, d.cityNameEn)?.countryCode }))
       .filter((x) => x.code && x.code !== 'CN' && KNOWN_COUNTRY_CODES.has(x.code))
-      .filter((x) => !(returnCity && x.name && x.name === returnCity))
+      .filter((x) => !(returnCity && isSameCity(x.name, returnCity)))
       .map((x) => x.code),
   )]
   // 挪威/芬兰：行程含北极极地城市（特罗姆瑟/罗瓦涅米等）→ 北（ALT/ROV），否则 → 南（OSL/HEL）
@@ -231,7 +241,7 @@ export function applyQuoteRules(parsed) {
   // 长途车可空驶跟随到下一站继续接团，不打断用车。
   const arrivalTransitOf = (d) => (d.items || []).find((it) =>
     it.type === 'transport' && it.transportMode === 'flight' &&
-    it.to && (it.to === overnight(d) || it.to === d.cityName) &&
+    it.to && (isSameCity(it.to, overnight(d)) || isSameCity(it.to, d.cityName)) &&
     it.from && getCityCode(it.from) != null)
   // 「返程」transit：终点是中国城市的飞机（返程航班罗马→上海）
   const returnTransitOf = (d) => (d.items || []).find((it) =>
@@ -247,7 +257,7 @@ export function applyQuoteRules(parsed) {
     const d = realDays[i]
     if (!arrivalTransitOf(d)) return false
     const prev = i > 0 ? realDays[i - 1] : null
-    return !prev || overnight(prev) !== overnight(d)
+    return !prev || !isSameCity(overnight(prev), overnight(d))
   }
   const isMoveDay = (d) => isRealArrivalAt(realDays.indexOf(d)) || !!returnTransitOf(d)
 
@@ -262,7 +272,7 @@ export function applyQuoteRules(parsed) {
       const arrival = arrivalTransitOf(d)
       const next = realDays[i + 1]
       const nextOvernight = next ? overnight(next) : null
-      const multiNight = !!nextOvernight && nextOvernight === overnight(d)
+      const multiNight = !!nextOvernight && isSameCity(nextOvernight, overnight(d))
       if (multiNight || !next) {
         // 同城连住（或抵达日是最后一天）→ STD MTC 接机
         d.items.push(makePickup(categoryFor(arrival.transportMode), d))
