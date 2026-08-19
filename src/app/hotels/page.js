@@ -196,7 +196,7 @@ export default function HotelsPage() {
       <div className="mb-4">
         <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>🏨 酒店库</h1>
         <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
-          {merged.length} 国 · {totalHotels} 家酒店 · 推荐库（Booking 评分≥7）+ 供应商报价（€/间，以 hotel list 为准）
+          {merged.length} 国 · {totalHotels} 家酒店 · 推荐库（Booking 评分≥7）+ 酒店价格参考（€/间，以 hotel list 为准）
         </p>
         <div className="mt-3 relative max-w-xl">
           <span
@@ -326,7 +326,7 @@ export default function HotelsPage() {
                 {city.quotes?.hotels?.length > 0 && (
                   <div className="mt-2.5 rounded-lg border border-dashed p-2.5" style={{ borderColor: 'var(--border-color)' }}>
                     <div className="text-[11px] font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                      💰 供应商报价（€/间 · 以 hotel list 为准）
+                      💰 酒店价格参考（€/间 · 以 hotel list 为准）
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                       {city.quotes.hotels.map((h, i) => {
