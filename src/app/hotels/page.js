@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
-import { getHotelQuoteCatalog } from '@/lib/hotel-prices'
+import { getHotelQuoteCatalog, findHotelQuote } from '@/lib/hotel-prices'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -35,7 +35,29 @@ function sortedHotels(hotels, sort) {
   return arr
 }
 
-function HotelCard({ h, showCity = false }) {
+// 来源标签样式：hotel list（权威报价）用品牌色；AI 探索（待替换参考）用中性色
+function SourceBadge({ fromList }) {
+  return fromList ? (
+    <span
+      className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-medium"
+      style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}
+    >
+      📋 hotel list
+    </span>
+  ) : (
+    <span
+      className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-medium"
+      style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}
+    >
+      🤖 AI 探索
+    </span>
+  )
+}
+
+function HotelCard({ h, showCity = false, cityCode = '' }) {
+  // 价格以 hotel list 实际价为准：推荐库酒店若在报价库匹配到 → 显示 €/间（hotel list 价）
+  const quote = findHotelQuote(cityCode, h.name)
+  const fromList = !!quote?.pp
   return (
     <div
       className="rounded-xl border p-3 transition-shadow hover:shadow-md"
@@ -58,6 +80,7 @@ function HotelCard({ h, showCity = false }) {
             </div>
           )}
           <div className="flex items-center gap-1.5 mt-2 flex-wrap">
+            <SourceBadge fromList={fromList} />
             <span
               className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold"
               style={{ background: 'var(--accent-subtle)', color: ratingColor(h.rating) }}
@@ -84,7 +107,9 @@ function HotelCard({ h, showCity = false }) {
           </div>
         </div>
         <div className="shrink-0 text-right whitespace-nowrap">
-          {h.priceEur ? (
+          {fromList ? (
+            <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>€{quote.pp}/间</div>
+          ) : h.priceEur ? (
             <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>€{h.priceEur}/晚</div>
           ) : (
             <div className="text-xs" style={{ color: 'var(--text-tertiary)' }}>价格待定</div>
@@ -256,7 +281,7 @@ export default function HotelsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {visibleResults.map((h, i) => <HotelCard key={i} h={h} showCity />)}
+              {visibleResults.map((h, i) => <HotelCard key={i} h={h} showCity cityCode={h.cityCode} />)}
             </div>
           )}
         </>
@@ -295,7 +320,7 @@ export default function HotelsPage() {
                 )}
                 {city.hotels.length > 0 && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                    {sortedHotels(city.hotels, sort).map((h, i) => <HotelCard key={i} h={h} />)}
+                    {sortedHotels(city.hotels, sort).map((h, i) => <HotelCard key={i} h={h} cityCode={city.cityCode} />)}
                   </div>
                 )}
                 {city.quotes?.hotels?.length > 0 && (
@@ -310,7 +335,10 @@ export default function HotelsPage() {
                         return (
                           <div key={i} className="text-xs rounded-lg px-2 py-1.5 flex items-start justify-between gap-2" style={{ background: 'var(--bg-surface)' }}>
                             <div className="min-w-0">
-                              <div className="font-medium truncate" style={{ color: 'var(--text-primary)' }} title={h.hotel}>{h.hotel}</div>
+                              <div className="font-medium truncate flex items-center gap-1.5" style={{ color: 'var(--text-primary)' }} title={h.hotel}>
+                                <span className="truncate">{h.hotel}</span>
+                                <SourceBadge fromList />
+                              </div>
                               <div className="flex items-center gap-1 mt-0.5">
                                 {h.rating > 0 && <span className="text-[10px] font-semibold" style={{ color: ratingColor(h.rating) }}>★{h.rating}</span>}
                                 {h.star > 0 && <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{h.star}星</span>}
