@@ -137,7 +137,7 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
 - **改固定费率**（保险）→ 只动 `lib/quote-rates.js`；**前后夜已按 LDC 区域细分**（西欧 €120/荷比卢 €135/英国 £110/北欧 €148…）→ 改 `lib/ldc-mapping.js` 各 SUPPLIERS 条目的 `prepost` 字段（`quote-rates.prepostNight` 仅作未命中 LDC 时的兜底；**界面不显示金额**，只显示区域名）
 - **用车规则**（用户口径，applyQuoteRules 在 coach-plan.js）：
   1. **中国出发/返程日**（上海等 CN 城市，含 day 0）只展示，**不参与分段**（避免返程日产生虚的 THROUGH COACH/PRE-POST）
-  2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = 段起始城市**（调车地，如华沙→WAW/PL，2026-08-18 更新，不再用供应商所在地；供应商信息进 notes，如 IT ROM / CZ PRG）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
+  2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、波兰→PL WAW 从华沙调车；2026-08-19 修正，曾误改为段起始城市——用户录入里的 WAW/PL 正是 polandMono 供应商码）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市、国/城用供应商），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
   3. **EMPTY RUN 空驶**：**每段都有**（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to **真实车程**（route.js 调 `patchEmptyRunRoadKm` → OSRM 免费路线服务，失败回退 `estimateRoadKmFallback` 直线×1.3）；`quantity`=公里数，quoteOrder 22
   4. **抵达日分两种**：transit 终点=当晚过夜城市或当天白天城市 → 若**第 1 天与第 2 天住不同城市**（次日换城）则从第 1 天起用 LDC（THROUGH COACH 负责接机，**不加 STD MTC**，如飞抵马赛当夜住瓦朗索勒、飞抵巴勒莫）；若**同城住宿 ≥2 天**则第 1 天单独接机 STD MTC（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），第 2 天起用 LDC；**接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL，2026-08-18 更新）
   5. **送机 MTC**：最后一个离境日**总是**单独加送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）——THROUGH COACH 段不覆盖离境日（2026-08-18 更新，旧口径"同城衔接顺路送机不加"已废弃）

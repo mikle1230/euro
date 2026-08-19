@@ -102,7 +102,7 @@ test('空输入/无 days 原样返回', () => {
   assert.deepEqual(applyQuoteRules({ groupSize: 10 }), { groupSize: 10 })
 })
 
-test('THROUGH COACH 国/城=段起始城市；供应商（西欧多国 IT ROM）进备注', () => {
+test('THROUGH COACH 国/城=LDC 供应商所在地（西欧多国 → IT ROM）', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -115,9 +115,9 @@ test('THROUGH COACH 国/城=段起始城市；供应商（西欧多国 IT ROM）
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应该有 THROUGH COACH')
-  assert.equal(tc.countryCode, 'FR', '段起始城市巴黎 → 国家 FR（非供应商 IT）')
-  assert.equal(tc.cityCode, 'PAR', '段起始城市巴黎 → 城市 PAR（非供应商 ROM）')
-  assert.ok(tc.notes.includes('IT ROM'), '供应商信息进备注')
+  assert.equal(tc.countryCode, 'IT', '西欧多国 → 国家 IT（LDC 供应商）')
+  assert.equal(tc.cityCode, 'ROM', '西欧多国 → 城市 ROM（LDC 供应商）')
+  assert.ok(tc.notes.includes('IT ROM'), '备注带供应商')
   const pp = d1.items.find((i) => i.quoteKind === 'prepost')
   assert.ok(pp, '应注入 PRE/POST')
   assert.ok(!pp.notes.includes('€120'), '前后夜金额不显示（用户口径）')
@@ -138,7 +138,7 @@ test('单国法国 → THROUGH COACH 供应商 FR PAR', () => {
   assert.equal(tc.cityCode, 'PAR')
 })
 
-test('挪威北极极地城市（特罗姆瑟）→ THROUGH COACH 段起始城市 TOS；供应商 NO ALT（北）进备注', () => {
+test('挪威北极极地城市（特罗姆瑟）→ THROUGH COACH 供应商 NO ALT（北）', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -150,8 +150,7 @@ test('挪威北极极地城市（特罗姆瑟）→ THROUGH COACH 段起始城�
   const tc = out.days[0].items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')
   assert.equal(tc.countryCode, 'NO')
-  assert.equal(tc.cityCode, 'TOS', '段起始城市特罗姆瑟 → TOS（非供应商 ALT）')
-  assert.ok(tc.notes.includes('NO ALT'), '北极极地供应商 NO ALT 进备注')
+  assert.equal(tc.cityCode, 'ALT', '北极极地 → NO ALT（供应商），而非 TOS')
 })
 
 test('挪威常规城市（奥斯陆）→ THROUGH COACH 供应商 NO OSL（南）', () => {
@@ -169,7 +168,7 @@ test('挪威常规城市（奥斯陆）→ THROUGH COACH 供应商 NO OSL（南�
   assert.equal(tc.cityCode, 'OSL', '常规 → NO OSL，而非 NO ALT')
 })
 
-test('含中国出发日（day 0 上海）不参与 LDC 判定，THROUGH COACH 段起始巴黎；供应商仍 IT ROM', () => {
+test('含中国出发日（day 0 上海）不参与 LDC 判定，THROUGH COACH 仍 IT ROM', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -183,12 +182,12 @@ test('含中国出发日（day 0 上海）不参与 LDC 判定，THROUGH COACH �
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, 'day 0 不影响分段与 THROUGH COACH')
-  assert.equal(tc.countryCode, 'FR')
-  assert.equal(tc.cityCode, 'PAR')
+  assert.equal(tc.countryCode, 'IT')
+  assert.equal(tc.cityCode, 'ROM')
   assert.ok(tc.notes.includes('IT ROM'), '供应商 IT ROM 进备注')
 })
 
-test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判定；THROUGH COACH 段起始巴黎，备注仍 IT ROM NGS', () => {
+test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判定；THROUGH COACH 仍 IT ROM NGS', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -203,8 +202,8 @@ test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判
   const d1 = out.days.find((d) => d.dayNumber === 1)
   const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '返程日不应影响 THROUGH COACH')
-  assert.equal(tc.countryCode, 'FR', '段起始巴黎 → FR（返程上海混入应排除 CN）')
-  assert.equal(tc.cityCode, 'PAR')
+  assert.equal(tc.countryCode, 'IT', '返程上海混入 → 应排除 CN')
+  assert.equal(tc.cityCode, 'ROM')
   assert.ok(tc.notes.includes('IT ROM Through Coach (NGS)'), '备注应带完整供应商名（NGS 型）')
 })
 
