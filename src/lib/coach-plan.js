@@ -292,9 +292,15 @@ export function applyQuoteRules(parsed) {
   //    返程 = transit 终点是中国（如罗马→上海）。
   const isRealArrivalAt = (i) => {
     const d = realDays[i]
-    if (!arrivalTransitOf(d)) return false
-    const prev = i > 0 ? realDays[i - 1] : null
-    return !prev || !isSameCity(overnight(prev), overnight(d))
+    if (arrivalTransitOf(d)) {
+      const prev = i > 0 ? realDays[i - 1] : null
+      return !prev || !isSameCity(overnight(prev), overnight(d))
+    }
+    // 兜底：行程第一个真实日（realDays[0]）在**行程里有航班**时，即使 Day1 漏了入境航班
+    // （简单行程 PDF 可能没写航班细节），也视为抵达日 —— 中国出发的团第一个欧洲日必为飞机抵达，
+    // 否则段会从第 1 天误开 THROUGH COACH。完全无航班的纯本地行程不兜底（无法判断抵达）。
+    if (i === 0 && allFlights.length > 0) return true
+    return false
   }
   const isMoveDay = (d) => isRealArrivalAt(realDays.indexOf(d)) || !!returnTransitOf(d)
 
@@ -311,15 +317,15 @@ export function applyQuoteRules(parsed) {
       const nextOvernight = next ? overnight(next) : null
       const multiNight = !!nextOvernight && isSameCity(nextOvernight, overnight(d))
       if (multiNight || !next) {
-        // 同城连住（或抵达日是最后一天）→ STD MTC 接机
-        d.items.push(makePickup(categoryFor(arrival.transportMode), d))
+        // 同城连住（或抵达日是最后一天）→ STD MTC 接机（arrival 可能为空：i=0 兜底路径，中国出发默认 APT/HTL）
+        d.items.push(makePickup(categoryFor(arrival?.transportMode) || 'APT/HTL', d))
       } else {
         // 单晚停留的抵达日 → 段从当天开始，fromCity 取抵达城市（如首日飞抵马赛 / 飞抵巴勒莫）
         cur = {
           startDay: d.dayNumber,
           startCity: overnight(d),
           startCityEn: d.cityNameEn || d.finalCityNameEn || '',
-          fromCity: arrival.to || overnight(d),
+          fromCity: arrival?.to || overnight(d),
         }
         cur.endDay = d.dayNumber
         cur.endCity = overnight(d)
