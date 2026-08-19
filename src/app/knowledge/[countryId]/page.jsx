@@ -9,7 +9,7 @@ import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
-import { getCityCode } from '@/lib/quos-mapping'
+import { getCityCode, getCityEnglishName } from '@/lib/quos-mapping'
 import { COUNTRY_INTROS } from '@/data/country-intros'
 import { COUNTRY_INFO } from '@/data/country-info'
 
@@ -44,8 +44,19 @@ export default function CountryPage() {
   const cities = country.cities || []
   const intro = COUNTRY_INTROS[countryId] || country.description || ''
   const info = COUNTRY_INFO[countryId]
+
+  // 国家 QUOS 二字码：取该国任一城市反查
+  let countryCode = ''
+  for (const city of cities) {
+    countryCode = getCityCode(city.name, city.nameEn)?.countryCode || ''
+    if (countryCode) break
+  }
+  // 首都：英文名 + QUOS 三字码（首都一般在 europe-travel 城市列表内；英文名兜底按码反查）
+  const capCity = cities.find((c) => c.name === info?.capital)
+  const capCode = getCityCode(info?.capital, capCity?.nameEn)?.cityCode || ''
+  const capEn = capCity?.nameEn || getCityEnglishName(capCode)
   const infoRows = [
-    info?.capital && { label: '首都', value: info.capital },
+    info?.capital && { label: '首都', value: [info.capital, capEn, capCode].filter(Boolean).join(' · ') },
     info?.nationalDay && { label: '国庆日', value: info.nationalDay },
     info?.language && { label: '官方语言', value: info.language },
     info?.currency && { label: '货币', value: info.currency, symbol: currencySymbol(info.currency) },
@@ -90,6 +101,8 @@ export default function CountryPage() {
           >
             <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3">
               {country.name}
+              {country.nameEn && <span className="text-lg md:text-2xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{country.nameEn}</span>}
+              {countryCode && <span className="text-lg md:text-2xl font-mono font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{countryCode}</span>}
             </h1>
             {intro && (
               <p
