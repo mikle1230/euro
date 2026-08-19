@@ -1,6 +1,6 @@
-// 供应商酒店报价查询：hotel list.xlsx → hotel-prices.json（城市码 → 酒店 → 按月标间价）。
-// 注意：xlsx 的 PP 是「标间价格」= €/间（per room），不是人均价（用户口径 2026-08-18）。
-// 与 hotel-recommendations.js（推荐库：评分/位置/参考价 €/晚）互补：这里是实际供应商报价（€/间）。
+// 供应商酒店报价查询：hotel list.xlsx → hotel-prices.json（城市码 → 酒店 → 按月标间单人价）。
+// 注意：xlsx 的 PP 是「标间里的单人价格」= €/人（per person），用户按单人参考报价（口径 2026-08-19）。
+// 与 hotel-recommendations.js（推荐库：评分/位置/参考价 €/晚）互补：这里是历史使用酒店报价（€/人）。
 // 纯函数、无 'use client'，服务端/客户端通用。
 // 数据由 scripts/build-hotel-prices.js 生成（npm run build:hotels）。
 import hotelPrices from '../data/hotel-prices.json' with { type: 'json' }
@@ -29,7 +29,7 @@ export function getHotelQuotes(cityCode, month = null) {
   return list.filter((h) => h.month === month)
 }
 
-// PP 区间字符串：'€31.91–56.38/间'；同价 '€31.91/间'；无数据 ''
+// PP 区间字符串：'€31.91–56.38/人'；同价 '€31.91/人'；无数据 ''
 // pp 可能是 '50/55.32'（双价格）——按 parseFloat 取第一档参与区间
 export function getQuoteRange(cityCode, month = null) {
   const quotes = getHotelQuotes(cityCode, month).filter((h) => h.pp && !isNaN(parseFloat(h.pp)))
@@ -37,7 +37,7 @@ export function getQuoteRange(cityCode, month = null) {
   const nums = quotes.map((h) => parseFloat(h.pp))
   const min = Math.min(...nums)
   const max = Math.max(...nums)
-  return min === max ? `€${min}/间` : `€${min}–${max}/间`
+  return min === max ? `€${min}/人` : `€${min}–${max}/人`
 }
 
 // 按酒店名匹配该城报价（大小写/空格/连字符归一化，宽松 contains 兜底），用于推荐库酒店→报价库价格对照
