@@ -329,7 +329,9 @@
       {
         "hotel": "RAINERS 21 R",
         "month": "9月",
-        "pp": "63.83"
+        "pp": "63.83",
+        "star": 4,
+        "rating": 8.7
       },
       {
         "hotel": "BLAGUSS R",
@@ -381,7 +383,9 @@
       {
         "hotel": "CROWNE PLAZA CONGRESS R",
         "month": "9月",
-        "pp": "43.35"
+        "pp": "43.35",
+        "star": 4,
+        "rating": 7.3
       }
     ]
   },
@@ -589,7 +593,9 @@
       {
         "hotel": "MARITIM MUNICH",
         "month": "9月",
-        "pp": "72.34"
+        "pp": "72.34",
+        "star": 4,
+        "rating": 8
       }
     ]
   },
@@ -615,7 +621,9 @@
       {
         "hotel": "MERCURE SZG CITY",
         "month": "9月",
-        "pp": "85.11"
+        "pp": "85.11",
+        "star": 4,
+        "rating": 8.4
       }
     ]
   },
@@ -949,7 +957,9 @@
       {
         "hotel": "MERCURE STUTTGART AIRPORT MESSE",
         "month": "9月",
-        "pp": "43.56"
+        "pp": "43.56",
+        "star": 4,
+        "rating": 8.2
       }
     ]
   },
@@ -961,7 +971,9 @@
       {
         "hotel": "EDELWEISS",
         "month": "9月",
-        "pp": "150"
+        "pp": "150",
+        "star": 4,
+        "rating": 9.3
       }
     ]
   },
@@ -973,7 +985,9 @@
       {
         "hotel": "SCHLOSS MONDSEE",
         "month": "9月",
-        "pp": "117.02"
+        "pp": "117.02",
+        "star": 4,
+        "rating": 8.8
       }
     ]
   },
@@ -985,7 +999,9 @@
       {
         "hotel": "RADISSON GRAZ",
         "month": "9月",
-        "pp": "54.26"
+        "pp": "54.26",
+        "star": 4,
+        "rating": 8.9
       }
     ]
   }

@@ -72,6 +72,8 @@ export default {
   },
   VIE: {
     'SENATOR R': { star: 4, rating: 8.2 },
+    'RAINERS 21 R': { star: 4, rating: 8.7 },
+    // 'BLAGUSS R': 任何预订平台查不到（xlsx 疑为笔误），待用户确认
   },
   BUD: {
     'RADISSON BLU BEKE': { star: 4, rating: 8.9 },
@@ -79,6 +81,7 @@ export default {
   },
   FRA: {
     'DIWOTEL BY TRIP INN': { star: 4, rating: 8.0 },
+    'CROWNE PLAZA CONGRESS R': { star: 4, rating: 7.3 },
   },
   BFT: {
     'MERCURE BELFORT CENTRE': { star: 4, rating: 8.4 },
@@ -122,10 +125,24 @@ export default {
   MUC: {
     'MERCURE NEUPERLACH SUED': { star: 4, rating: 8.1 }, // Trip.com（Booking 被拦）
     'FERINGAPARK': { star: 4, rating: 8.1 }, // Trip.com
+    'MARITIM MUNICH': { star: 4, rating: 8.0 },
   },
   SZG: {
     'RADISSON BLU SZG': { star: 4, rating: 8.6 }, // = Radisson Blu Hotel & Conference Centre Salzburg（非 Altstadt）
     'NH SALZBURG CITY': { star: 4, rating: 8.4 },
+    'MERCURE SZG CITY': { star: 4, rating: 8.4 },
+  },
+  STR: {
+    'MERCURE STUTTGART AIRPORT MESSE': { star: 4, rating: 8.2 },
+  },
+  BGA: {
+    'EDELWEISS': { star: 4, rating: 9.3 },
+  },
+  SZM: {
+    'SCHLOSS MONDSEE': { star: 4, rating: 8.8 },
+  },
+  GRZ: {
+    'RADISSON GRAZ': { star: 4, rating: 8.9 },
   },
   FES: {
     'BW PLUS FUESSEN': { star: 4, rating: 9.0 }, // Trip.com
