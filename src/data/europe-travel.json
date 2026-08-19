@@ -5232,6 +5232,14 @@
               "lng": 16.6048
             }
           ]
+        },
+        {
+          "id": "ceske-budejovice",
+          "name": "布杰约维采",
+          "nameEn": "Ceske Budejovice",
+          "lat": 48.9747,
+          "lng": 14.4743,
+          "attractions": []
         }
       ]
     },
