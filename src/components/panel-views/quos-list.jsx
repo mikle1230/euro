@@ -101,11 +101,17 @@ function HotelRecommend({ day, aligned = false, month = null }) {
                   </span>
                 )}
               </div>
-              {r.price > 0 && (
-                <div className="text-xs mt-0.5 pl-9 font-semibold" style={{ color: 'var(--gold)' }}>
-                  €{r.price}{r.unit}
-                </div>
-              )}
+              {(() => {
+                // pp 可能是 '43.62' 或 '50/55.32'（双价格）或 '/'（空）——用 parseFloat 判断有效价，
+                // 不能 `r.price > 0`（'50/55.32' 转数字是 NaN，会误判不显示）
+                const p = parseFloat(String(r.price))
+                if (isNaN(p) || p <= 0) return null
+                return (
+                  <div className="text-xs mt-0.5 pl-9 font-semibold" style={{ color: 'var(--gold)' }}>
+                    €{r.price}{r.unit}
+                  </div>
+                )
+              })()}
             </div>
             {/* 酒店特点 → 备注列 */}
             <div className="min-w-0 text-xs mt-0.5 sm:mt-0" style={{ ...areaCol, color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
