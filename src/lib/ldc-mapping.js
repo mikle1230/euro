@@ -129,6 +129,90 @@ export const SUPPLIERS = {
   },
 }
 
+// ── EMPTY RUN / 超公里规则（LDC Summer 2026 CN ACTIVE 表，用户口径 2026-08-18）──
+// er.type：
+//   'tiers' —— 金额阶梯 [fromKm, toKm, 金额]（西欧/德国/中欧：0-350 无、351-600=450、601-1000=800、1001-1400=1000、1401-1999=1500）
+//   'count' —— ER 次数阶梯 [fromKm, toKm, 次数]（1ER/1.5ER/2ER/3ER；unit=单次价，**表内未给，待用户补充**，null 时只显示次数不计价）
+//   'perKm' —— 超 fromKm 部分按 perKm 单价（芬兰南部 151km 起 €1.9/km）
+//   'none'  —— 无空驶费（葡萄牙/特殊区域）
+// maxKmPerDay / excessPerKm：每日包公里数与超公里单价（表内数据，暂未在报价注入中计费）
+export const ER_RULES = {
+  westernEurope: {
+    type: 'tiers', tiers: [[0, 350, 0], [351, 600, 450], [601, 1000, 800], [1001, 1400, 1000], [1401, 1999, 1500]],
+    maxKmPerDay: 375, excessPerKm: 2,
+  },
+  benelux: {
+    type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    maxKmPerDay: 350, excessPerKm: 1.4,
+  },
+  germanyNgs: {
+    type: 'tiers', tiers: [[0, 350, 0], [351, 600, 450], [601, 1000, 800], [1001, 1400, 1000], [1401, 1999, 1500]],
+    maxKmPerDay: 375, excessPerKm: 2,
+  },
+  germanyGls: {
+    type: 'count', tiers: [[200, 400, 1], [401, 599, 1.5], [600, 999, 2], [1000, 99999, 3]], unit: null, // 1000+ 阶梯尾部待确认
+    maxKmPerDay: 375, excessPerKm: 2,
+  },
+  franceMono: {
+    type: 'count', tiers: [[200, 600, 1], [601, 900, 1.5], [901, 1500, 2], [1501, 99999, 3]], unit: null, // 1500+ 阶梯尾部待确认
+    maxKmPerDay: 350, excessPerKm: 1.5,
+  },
+  italyMono: {
+    type: 'count', tiers: [[351, 600, 1], [601, 999, 1.5], [1000, 1200, 2], [1201, 99999, 2.5]], unit: null, // 1200+ 阶梯尾部待确认
+    maxKmPerDay: 350, excessPerKm: 1.8,
+  },
+  sicilyMono: { type: 'none', maxKmPerDay: 300, excessPerKm: 1.8, note: '≥3 live days 无 ER（仅 2 天时询价）' },
+  switzerlandMono: { type: 'none', maxKmPerDay: 250, excessPerKm: 1.5, note: 'GVA-GVA/ZRH-ZRH 无 ER；ZRH-SM 固定 450 CHF' },
+  centralEurope: {
+    type: 'tiers', tiers: [[0, 350, 0], [351, 600, 450], [601, 1000, 800], [1001, 1400, 1000], [1401, 1999, 1500]],
+    maxKmPerDay: 375, excessPerKm: 2,
+  },
+  iberia: {
+    type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    maxKmPerDay: 350, excessPerKm: 1.6,
+  },
+  portugalMono: { type: 'none', maxKmPerDay: 350, excessPerKm: 1.6, note: 'NO empty run within Portugal' },
+  balticMono: {
+    type: 'count', tiers: [[220, 600, 1], [601, 1200, 2], [1201, 99999, 3]], unit: null,
+    maxKmPerDay: 300, excessPerKm: 1.2,
+  },
+  uk: {
+    type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    maxKmPerDay: 350, excessPerKm: 1.5,
+  },
+  irelandMono: { type: 'count', tiers: [[0, 99999, 1]], unit: null, maxKmPerDay: 250, excessPerKm: 1.3, note: 'ER 需按起终点询价' },
+  scandinavia: {
+    type: 'count', tiers: [[200, 600, 1], [601, 1150, 2], [1151, 1900, 3], [1901, 99999, 4]], unit: null,
+    maxKmPerDay: 370, excessPerKm: 1.6,
+  },
+  denmarkMono: {
+    type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    maxKmPerDay: 330, excessPerKm: 20,
+  },
+  swedenMono: {
+    type: 'count', tiers: [[200, 600, 1], [601, 1200, 2], [1201, 99999, 3]], unit: null,
+    maxKmPerDay: 330, excessPerKm: 14,
+  },
+  norwaySouthMono: {
+    type: 'count', tiers: [[200, 500, 1], [501, 850, 2], [851, 1100, 3], [1101, 99999, 4]], unit: null,
+    maxKmPerDay: 300, excessPerKm: 20,
+  },
+  norwayNorthMono: {
+    type: 'count', tiers: [[0, 200, 1], [201, 400, 1.5], [401, 99999, 2]], unit: null,
+    maxKmPerDay: 300, excessPerKm: 28,
+  },
+  finlandSouthMono: { type: 'perKm', fromKm: 151, perKm: 1.9, maxKmPerDay: 350, excessPerKm: 1.9, note: '150km 内无 ER' },
+  finlandNorthMono: {
+    type: 'count', tiers: [[151, 499, 1], [500, 999, 2], [1000, 1499, 3], [1500, 99999, 4]], unit: null,
+    maxKmPerDay: 350, excessPerKm: 1.9,
+  },
+  finlandNorthNgs: {
+    type: 'count', tiers: [[151, 499, 1], [500, 999, 2], [1000, 1499, 3], [1500, 99999, 4]], unit: null,
+    maxKmPerDay: 350, excessPerKm: 1.9,
+  },
+  polandMono: { type: 'none', note: '波兰表外，ER 费率待补充' },
+}
+
 const WESTERN_EUROPE_CODES = ['FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'ES', 'PT']
 
 // LDC 表覆盖的国家集合（单国 Mono + 多国区域 + 西欧）。
@@ -193,24 +277,27 @@ export function resolveLdcSupplier(countries, opts = {}) {
   const list = [...new Set(countries)].filter(Boolean).sort()
   if (list.length === 0) return null
 
+  // 返回供应商对象并携带 key（供 coach-plan 查 ER_RULES）
+  const withKey = (k) => ({ ...SUPPLIERS[k], key: k })
+
   // 单国
   if (list.length === 1) {
     const c = list[0]
-    if (c === 'NO') return arctic ? SUPPLIERS.norwayNorthMono : SUPPLIERS.norwaySouthMono
-    if (c === 'FI') return arctic ? SUPPLIERS.finlandNorthMono : SUPPLIERS.finlandSouthMono
+    if (c === 'NO') return withKey(arctic ? 'norwayNorthMono' : 'norwaySouthMono')
+    if (c === 'FI') return withKey(arctic ? 'finlandNorthMono' : 'finlandSouthMono')
     const key = MONO_MAP[c]
-    return key ? SUPPLIERS[key] : null
+    return key ? withKey(key) : null
   }
 
   // 多国：明确规则优先，其余西欧多国统一 IT ROM
   // 含波兰（用户口径 2026-08-18）：从华沙 WAW 调车 → PL WAW（不并入中欧 CZ PRG）
-  if (list.includes('PL')) return SUPPLIERS.polandMono
-  if (list.every((c) => ['EE', 'LT', 'LV'].includes(c))) return SUPPLIERS.balticMono
-  if (list.every((c) => ['NL', 'BE', 'LU'].includes(c))) return SUPPLIERS.benelux
-  if (list.every((c) => ['HU', 'CZ', 'SK', 'AT'].includes(c))) return SUPPLIERS.centralEurope
-  if (list.every((c) => ['NO', 'SE', 'DK'].includes(c))) return SUPPLIERS.scandinavia
-  if (list.every((c) => ['GB', 'IE'].includes(c))) return SUPPLIERS.uk
-  if (list.every((c) => ['ES', 'PT'].includes(c))) return SUPPLIERS.iberia
-  if (list.every((c) => WESTERN_EUROPE_CODES.includes(c))) return SUPPLIERS.westernEurope
+  if (list.includes('PL')) return withKey('polandMono')
+  if (list.every((c) => ['EE', 'LT', 'LV'].includes(c))) return withKey('balticMono')
+  if (list.every((c) => ['NL', 'BE', 'LU'].includes(c))) return withKey('benelux')
+  if (list.every((c) => ['HU', 'CZ', 'SK', 'AT'].includes(c))) return withKey('centralEurope')
+  if (list.every((c) => ['NO', 'SE', 'DK'].includes(c))) return withKey('scandinavia')
+  if (list.every((c) => ['GB', 'IE'].includes(c))) return withKey('uk')
+  if (list.every((c) => ['ES', 'PT'].includes(c))) return withKey('iberia')
+  if (list.every((c) => WESTERN_EUROPE_CODES.includes(c))) return withKey('westernEurope')
   return null
 }
