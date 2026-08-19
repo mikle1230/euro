@@ -30,7 +30,7 @@ export const SYSTEM_PROMPT = `你是欧洲地接行程解析助手：从行程�
       "transportSubtype": "仅 transport：day/overnight（train/boat 区分日/夜，大巴飞机不填）",
       "from": "城际交通出发城市（用城市名，不要机场三字码如 PEK/CDG）", "to": "城际交通到达城市",
       "distance": "城际公里（原文有则填，否则省略）", "duration": "耗时（原文有则填）",
-      "costCategory": "free|paid（交通永远 paid）", "estimatedCost": "人均¥估算（免费=0；酒店不填，前端按供应商报价€/间显示）",
+      "costCategory": "free|paid（交通永远 paid）", "estimatedCost": "人均¥估算（免费=0；酒店不填，前端按历史使用价€/人显示）",
       "notes": "备注（交通注明：市区游览用车/城际交通/接驳）"
     }]
   }]
@@ -43,7 +43,7 @@ export const SYSTEM_PROMPT = `你是欧洲地接行程解析助手：从行程�
 4. 酒店→hotel；早/午/晚餐各一条 item
 5. 同城游览日（非转机）必须加市区用车：type=transport, transportMode=bus, name="XX市区游览用车", paid, 人均¥600-1200；原文有"全天用车"等照原文
 6. 城际交通按原文：大巴bus/火车train(日day|夜overnight)/飞机flight/船boat(日day|夜overnight)；from/to 用城市名（如 北京→巴黎、罗马→上海），不要机场三字码；航班有航班号（如 CA933）就写入 name 或 notes；distance/duration 原文有则必填；永远 paid
-7. 费用人民币估算，仅供参考；**酒店（type=hotel）不估¥价**（estimatedCost 省略，前端按供应商报价 €/间 显示）
+7. 费用人民币估算，仅供参考；**酒店（type=hotel）不估¥价**（estimatedCost 省略，前端按历史使用价 €/人 显示）
 8. 城市英文名务必准确（卢塞恩/琉森→Lucerne、米兰→Milan、佛罗伦萨→Florence）；finalCityName/finalCityNameEn 仅当过夜城市 ≠ 当天 cityName 时才输出；城际 from/to 精确到起终点城市
 9. 只输出 JSON，不要解释文字
 10. 景点/酒店英文名：卢浮宫→Louvre、埃菲尔铁塔→Eiffel Tower、凡尔赛宫→Palace of Versailles、圣母院→Notre Dame

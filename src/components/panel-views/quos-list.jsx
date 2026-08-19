@@ -20,7 +20,7 @@ const ratingColor = (r) => {
 }
 
 // 推荐入住酒店块：历史使用（hotel list，实际用过的）+ AI 探索合并为一个列表，
-// 各自带来源标签（📋 历史使用 / 🤖 AI 探索），价格以 hotel list 实际价（€/间）为准。
+// 各自带来源标签（📋 历史使用 / 🤖 AI 探索），历史使用价格 = 标间单人价（€/人，用户按单人参考报价）。
 // aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
 // aligned=false（移动端卡片）：纵向堆叠
 // month：行程出发月份（'9月'），用于历史使用价过滤；空则显示该城全部
@@ -50,7 +50,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
       area: '',
       near: '',
       price: q.pp,
-      unit: '/间',
+      unit: '/人', // 标间单人价（per person），用户按单人参考报价
       source: 'history',
     })
   }
@@ -66,7 +66,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
       area: h.area || '',
       near: h.near || '',
       price: q?.pp || h.priceEur || 0,
-      unit: q?.pp ? '/间' : '/晚',
+      unit: q?.pp ? '/人' : '/晚',
       source: q?.pp ? 'history' : 'ai',
     })
   }
@@ -133,7 +133,7 @@ function fmtPrice(row) {
 }
 
 // 备注列的元信息行：时间 · 收费/价格 · 预估 · 数量（与备注文字合并为一列展示）
-// 酒店项：价格优先供应商报价库（€/间，以 hotel list.xlsx 为准），无则回退调研酒店库区间（€/晚）
+// 酒店项：价格优先供应商报价库（标间单人价 €/人，以 hotel list.xlsx 为准），无则回退调研酒店库区间（€/晚）
 function rowMeta(row, month) {
   const parts = []
   const t = [row.startTime, row.endTime].filter(Boolean).join('-')

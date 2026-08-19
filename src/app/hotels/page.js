@@ -55,7 +55,7 @@ function SourceBadge({ fromList }) {
 }
 
 function HotelCard({ h, showCity = false, cityCode = '' }) {
-  // 价格以 hotel list 实际价为准：推荐库酒店若在报价库匹配到 → 显示 €/间（hotel list 价）
+  // 价格以 hotel list 实际价为准：推荐库酒店若在报价库匹配到 → 显示 €/人（标间单人价）
   const quote = findHotelQuote(cityCode, h.name)
   const fromList = !!quote?.pp
   return (
@@ -108,7 +108,7 @@ function HotelCard({ h, showCity = false, cityCode = '' }) {
         </div>
         <div className="shrink-0 text-right whitespace-nowrap">
           {fromList ? (
-            <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>€{quote.pp}/间</div>
+            <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>€{quote.pp}/人</div>
           ) : h.priceEur ? (
             <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>€{h.priceEur}/晚</div>
           ) : (
@@ -196,7 +196,7 @@ export default function HotelsPage() {
       <div className="mb-4">
         <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>🏨 酒店库</h1>
         <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
-          {merged.length} 国 · {totalHotels} 家酒店 · 推荐库（Booking 评分≥7）+ 酒店价格参考（€/间，以 hotel list 为准）
+          {merged.length} 国 · {totalHotels} 家酒店 · 推荐库（Booking 评分≥7）+ 酒店价格参考（€/人，以 hotel list 为准）
         </p>
         <div className="mt-3 relative max-w-xl">
           <span
@@ -326,7 +326,7 @@ export default function HotelsPage() {
                 {city.quotes?.hotels?.length > 0 && (
                   <div className="mt-2.5 rounded-lg border border-dashed p-2.5" style={{ borderColor: 'var(--border-color)' }}>
                     <div className="text-[11px] font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>
-                      💰 酒店价格参考（€/间 · 以 hotel list 为准）
+                      💰 酒店价格参考（€/人 · 以 hotel list 为准）
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                       {city.quotes.hotels.map((h, i) => {
