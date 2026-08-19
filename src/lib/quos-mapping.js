@@ -143,17 +143,19 @@ export function getCityCode(cityName, englishName) {
     const trimEntry = quosCities[trimmed]
     if (trimEntry) return trimEntry
   }
-  // English name — direct match against Cities.xlsx (8300+ entries)
-  if (englishName) {
-    const entry = quosCities[englishName]
-    if (entry) return entry
-  }
-  // Try alias chain (follow aliases recursively, max 3 hops to avoid loops)
+  // 别名链（中文名/trimmed 起，最多 3 跳）——放在英文精确匹配**之前**：
+  // 中文译名歧义小，别名应优先；避免英文精确命中歧义条目
+  // （如 quos 里 'Salzkammergut'→ZSK 是城镇、'Salzkammergut (area)'→SZM 是湖区，中文别名应命中区域码）。
   let alias = CITY_ALIASES[cityName] || CITY_ALIASES[trimmed]
   for (let i = 0; i < 3 && alias; i++) {
     const aliasEntry = quosCities[alias]
     if (aliasEntry) return aliasEntry
     alias = CITY_ALIASES[alias]
+  }
+  // English name — direct match against Cities.xlsx (8300+ entries)
+  if (englishName) {
+    const entry = quosCities[englishName]
+    if (entry) return entry
   }
   // 兜底：归一化匹配（去空格/连字符/撇号/点），覆盖写法变体（中英文都试）
   const normalized = normCity(trimmed) || (englishName ? normCity(englishName) : '')

@@ -16,6 +16,8 @@ export const CITY_CODE_ALIASES = {
   '锡拉库萨': 'Siracusa',
   '索菲亚': '索非亚', // 保加利亚首都（country-info 用索菲亚，城市库用索非亚）
   '卢森堡市': '卢森堡', // 卢森堡首都（城市与国同名）
+  'Salzkammergut': 'Salzkammergut (area)', // 萨尔茨卡默古特（quos 键带 (area) 后缀）
+  '萨尔茨卡默古特': 'Salzkammergut (area)',
   // 英文 → 本地拼写（Cities.xlsx 用本地名）
   'Milan': 'Milano',
   'Genoa': 'Genova',
