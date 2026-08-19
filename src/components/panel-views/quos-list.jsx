@@ -19,7 +19,7 @@ const ratingColor = (r) => {
   return '#b8860b'
 }
 
-// 推荐入住酒店块：按「当天所在城市」取静态库（Booking 评分≥7 + 推荐参考，显示前2家）
+// 推荐入住酒店块：按「当天所在城市」取推荐库酒店（不限制数量）
 // aligned=true（桌面表格）：用与表格列宽一致的 6 列网格，酒店名对齐「项目」列、特点对齐「备注」列
 // aligned=false（移动端卡片）：纵向堆叠
 // month：行程出发月份（'9月'），用于供应商报价过滤；空则显示该城全部报价
@@ -28,7 +28,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
   const hotels = recommendHotels(
     day.cityName || day.finalCityName,
     day.cityNameEn || day.finalCityNameEn,
-    2,
+    99, // 不限制每城酒店数量
     day.cityCode,
   )
   // 供应商报价：按城市码（item/天优先，兜底 getCityCode 反查）

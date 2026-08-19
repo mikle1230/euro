@@ -37,12 +37,11 @@ function findCity(cityName, cityNameEn, cityCode = '') {
 }
 
 // recommendHotels(cityName, cityNameEn, limit=5, cityCode='')
-// 命中城市 → 返回按评分降序、评分≥7 的酒店（含 rating / priceEur / area / near）
+// 命中城市 → 按评分降序返回酒店（不限制评分——hotel list 的报价酒店必须全部可见）
 export function recommendHotels(cityName, cityNameEn, limit = 5, cityCode = '') {
   const entry = findCity(cityName, cityNameEn, cityCode)
   if (!entry) return []
   return (entry.hotels || [])
-    .filter((h) => (h.rating || 0) >= 7)
     .sort((a, b) => (b.rating || 0) - (a.rating || 0))
     .slice(0, limit)
 }
@@ -70,7 +69,7 @@ export function hasHotelData(cityName, cityNameEn, cityCode = '') {
 // 国家码 → 中文名 / 货币，已收敛到 src/data/countries.js（国家注册表单一数据源）
 export { COUNTRY_NAMES, COUNTRY_CURRENCIES }
 
-// 全部酒店按「国家 → 城市 → 酒店」分组（评分≥7，按评分降序）
+// 全部酒店按「国家 → 城市 → 酒店」分组（不限制数量/评分）
 export function getHotelCatalog() {
   const byCountry = {}
   for (const c of Object.values(hotelData)) {
@@ -82,7 +81,6 @@ export function getHotelCatalog() {
       cityCode: c.cityCode,
       note: c.note,
       hotels: (c.hotels || [])
-        .filter((h) => (h.rating || 0) >= 7)
         .sort((a, b) => (b.rating || 0) - (a.rating || 0)),
     })
   }
@@ -103,7 +101,6 @@ export function searchHotels(query) {
   for (const c of Object.values(hotelData)) {
     const cityHit = [c.name, c.nameEn, c.cityCode].some((s) => String(s || '').toLowerCase().includes(q))
     for (const h of (c.hotels || [])) {
-      if ((h.rating || 0) < 7) continue
       const nameHit = [h.name, h.nameZh].some((s) => String(s || '').toLowerCase().includes(q))
       if (cityHit || nameHit) {
         results.push({
