@@ -5,6 +5,7 @@ import quosCities from '../data/quos-cities.json' with { type: 'json' }
 import quosAttractions from '../data/quos-attractions.json' with { type: 'json' }
 import { normalizeCityName as normCity } from './normalize.js'
 import { CITY_CODE_ALIASES as CITY_ALIASES } from '../data/city-aliases.js'
+import { MANUAL_CODES } from '../data/manual-codes.js'
 
 // ---- QUOS Type Definitions ----
 export const DEFAULT_QUOS_ORDER = [
@@ -146,6 +147,9 @@ export function getCityCode(cityName, englishName) {
   const codeKey = trimmed.toUpperCase()
   const codeEntry = buildCodeIndex().get(codeKey)
   if (codeEntry) return codeEntry
+  // 手动补码表（Cities.xlsx 表外城市，如以弗所）：用户给码后自动兜底
+  const manual = MANUAL_CODES[cityName] || MANUAL_CODES[trimmed] || (englishName ? MANUAL_CODES[englishName] : null)
+  if (manual) return manual
   return null
 }
 
