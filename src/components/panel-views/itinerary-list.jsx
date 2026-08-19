@@ -312,7 +312,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
                     <div className="px-3 py-2 text-xs flex flex-wrap gap-x-3 gap-y-0.5" style={{ color: 'var(--text-tertiary)' }}>
                       {dateText && <span>📅 {dateText}</span>}
                       <span>🗓 {it.days.length}天</span>
-                      {it.groupSize > 0 && <span>👥 {it.groupSize}人</span>}
+                      {it.groupSize ? <span>👥 {it.groupSize}人</span> : null}
                       {status.total > 0 && (
                         <span style={{ color: 'var(--text-secondary)' }}>📋 已录 {status.done}/{status.total}</span>
                       )}
