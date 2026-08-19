@@ -68,6 +68,8 @@ export default function KnowledgePage() {
     if (latN != null && (isNaN(latN) || latN < -90 || latN > 90)) return setFormError('纬度需在 -90~90 之间')
     if (lngN != null && (isNaN(lngN) || lngN < -180 || lngN > 180)) return setFormError('经度需在 -180~180 之间')
     const list = getCustomCities()
+    // 自动补齐 QUOS 码：保存时反查城市三字码 + 国家二字码（查不到留空，toast 提示）
+    const codeInfo = getCityCode(cityZh.trim(), cityEn.trim()) || {}
     list.push({
       countryId: '',
       countryName: countrySel,
@@ -75,6 +77,8 @@ export default function KnowledgePage() {
         id,
         name: cityZh.trim(),
         nameEn: cityEn.trim(),
+        cityCode: codeInfo.cityCode || '',
+        countryCode: codeInfo.countryCode || '',
         lat: latN,
         lng: lngN,
         attractions: [],
@@ -85,7 +89,10 @@ export default function KnowledgePage() {
     setShowAdd(false)
     resetForm()
     setRefresh((v) => v + 1)
-    toast(`已添加「${cityZh.trim()}」到 ${countrySel}（本机可见；如需全端生效请导出补丁）`, 'success')
+    const codeSuffix = codeInfo.cityCode
+      ? `（QUOS：${codeInfo.cityCode}/${codeInfo.countryCode}）`
+      : '（⚠️ 未查到 QUOS 码，导出补丁时请附上城市码）'
+    toast(`已添加「${cityZh.trim()}」到 ${countrySel}${codeSuffix}`, 'success')
   }, [countrySel, cityZh, cityEn, lat, lng, resetForm])
 
   const handleExport = useCallback(() => {

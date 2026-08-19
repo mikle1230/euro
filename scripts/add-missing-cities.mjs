@@ -1,9 +1,11 @@
-// 一次性脚本：把 hotel list.xlsx 里缺失的 12 城补进 europe-travel.json（城市骨架，attractions 留空）。
+// 脚本：把缺失城市补进 europe-travel.json（城市骨架，attractions 留空）。
 // 运行：node scripts/add-missing-cities.mjs
 // 之后重跑 node scripts/build-city-coords.js 同步坐标表。
+// 每个城市加入时自动反查并输出 QUOS 码（三字码/二字码），查不到会提示（表外城市 → src/data/manual-codes.js 补码）。
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { getCityCode } from '../src/lib/quos-mapping.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
@@ -53,7 +55,11 @@ for (const country of travel.countries) {
     }
     country.cities.push(city)
     added++
-    console.log(`added: ${country.id}/${city.id} (${city.name})`)
+    const info = getCityCode(city.name, city.nameEn)
+    const codeText = info?.cityCode
+      ? `QUOS ${info.cityCode}/${info.countryCode}`
+      : '⚠️ 未查到 QUOS 码（请补 src/data/manual-codes.js）'
+    console.log(`added: ${country.id}/${city.id} (${city.name}) | ${codeText}`)
   }
 }
 
