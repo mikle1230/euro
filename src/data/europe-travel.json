@@ -1558,6 +1558,14 @@
           "lat": 50.1469,
           "lng": 7.1656,
           "attractions": []
+        },
+        {
+          "id": "berchtesgaden",
+          "name": "贝希特斯加登",
+          "nameEn": "Berchtesgaden",
+          "lat": 47.632,
+          "lng": 13.0019,
+          "attractions": []
         }
       ]
     },
@@ -4045,6 +4053,14 @@
               "lng": 14.2838
             }
           ]
+        },
+        {
+          "id": "salzkammergut",
+          "name": "萨尔茨卡默古特",
+          "nameEn": "Salzkammergut",
+          "lat": 47.8566,
+          "lng": 13.3529,
+          "attractions": []
         }
       ]
     },

@@ -325,6 +325,16 @@
         "pp": "48.94",
         "star": 4,
         "rating": 8.2
+      },
+      {
+        "hotel": "RAINERS 21 R",
+        "month": "9月",
+        "pp": "63.83"
+      },
+      {
+        "hotel": "BLAGUSS R",
+        "month": "9月",
+        "pp": "13.04"
       }
     ]
   },
@@ -367,6 +377,11 @@
         "pp": "32.45",
         "star": 4,
         "rating": 8
+      },
+      {
+        "hotel": "CROWNE PLAZA CONGRESS R",
+        "month": "9月",
+        "pp": "43.35"
       }
     ]
   },
@@ -570,6 +585,11 @@
         "pp": "47.34",
         "star": 4,
         "rating": 8.1
+      },
+      {
+        "hotel": "MARITIM MUNICH",
+        "month": "9月",
+        "pp": "72.34"
       }
     ]
   },
@@ -591,6 +611,11 @@
         "pp": "62.23",
         "star": 4,
         "rating": 8.4
+      },
+      {
+        "hotel": "MERCURE SZG CITY",
+        "month": "9月",
+        "pp": "85.11"
       }
     ]
   },
@@ -659,6 +684,13 @@
         "hotel": "LEONARDO HEIDELBERG",
         "month": "9月",
         "pp": "90.43",
+        "star": 4,
+        "rating": 8.1
+      },
+      {
+        "hotel": "LEONARDO HEIDELBERG",
+        "month": "9月",
+        "pp": "62.23",
         "star": 4,
         "rating": 8.1
       }
@@ -906,6 +938,54 @@
         "pp": "29.79",
         "star": 4,
         "rating": 8.4
+      }
+    ]
+  },
+  "STR": {
+    "countryCode": "DE",
+    "name": "斯图加特",
+    "nameEn": "Stuttgart",
+    "hotels": [
+      {
+        "hotel": "MERCURE STUTTGART AIRPORT MESSE",
+        "month": "9月",
+        "pp": "43.56"
+      }
+    ]
+  },
+  "BGA": {
+    "countryCode": "DE",
+    "name": "贝希特斯加登",
+    "nameEn": "Berchtesgaden",
+    "hotels": [
+      {
+        "hotel": "EDELWEISS",
+        "month": "9月",
+        "pp": "150"
+      }
+    ]
+  },
+  "SZM": {
+    "countryCode": "AT",
+    "name": "萨尔茨卡默古特",
+    "nameEn": "",
+    "hotels": [
+      {
+        "hotel": "SCHLOSS MONDSEE",
+        "month": "9月",
+        "pp": "117.02"
+      }
+    ]
+  },
+  "GRZ": {
+    "countryCode": "AT",
+    "name": "格拉茨",
+    "nameEn": "Graz",
+    "hotels": [
+      {
+        "hotel": "RADISSON GRAZ",
+        "month": "9月",
+        "pp": "54.26"
       }
     ]
   }
