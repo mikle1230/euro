@@ -50,6 +50,7 @@ export const SYSTEM_PROMPT = `你是欧洲地接行程解析助手：从行程�
 11. cityCode/countryCode 可省略（前端自动补码），不要编造；cityNameEn 务必准确兜底
 12. 输出压缩：没内容的字段省略不写（不输出 ""/null）；前端自动补默认值；costCategory 不确定可省
 13. 时间：原文有开始和结束时间就都填（startTime+endTime）；只有开始就只填 startTime
+14. **城市名必须来自原文**：不得编造原文没有的城市/天数。原文缺少逐日行程时，days 按实际可确认的信息输出（缺的留空），宁可少不可假
 
 **示例（1 天）：**
 {"dayNumber":3,"cityName":"巴黎","cityNameEn":"Paris","items":[
