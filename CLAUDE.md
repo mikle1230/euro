@@ -144,6 +144,12 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
   6. **PRE/POST 前后夜**：每个 LDC 段首天注入（有 THROUGH COACH 才有），金额不显示
   7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21
   8. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入
+  9. **当地独立用车规则**（2026-08-19 新增，参数在 `src/data/coach-rules.js`，说明见 `docs/coach-rules.md`）：
+     - **R1 单接送机**：首日仅接机 → `{城} - APT/HTL`；末日仅送机 → `{城} - HTL/APT`（有半天活动 → `{城} - APT - X HOURS`）
+     - **R2 落地同城段**：被飞机/火车断开后、同城停留多天且无地面跨城移动（段首日前一天是抵达日且段首尾同城）→ **当地车**（每天一条 `{城} - X HOURS`，quoteKind `local-mtc`，脱离 LDC，不注入 THROUGH COACH/EMPTY RUN/PRE-POST）
+     - **R3 断开 ≤400km**（`estimateRoadKmFallback` 断开 from→to）：默认 `local-then-ldc`（落地后开始 THROUGH COACH）；可切 `ldc-continuous`（THROUGH COACH 跨断开连续，**不换车**，高端团/客户指定团）
+     - **R4 断开 >400km**：落地后开始 THROUGH COACH（断开前当地车在 AI 数据含出发城当天时注入 `{城} - APT - X HOURS`）
+     - 当地车小时数默认 `05 HOURS`（`localMtcHours`，凭经验多留 buffer；从 `std-mtc-options.js` 城市选项表精确匹配）
 - **酒店推荐**：静态参考库在 `src/data/hotel-recommendations.js`（每城 2-3 家，Booking 评分≥7 + 欧元参考价，非实时）；查询走 `lib/hotel-recommend.js` 的 `recommendHotels(name, nameEn, limit, cityCode)`（中文/英文/别名/城市码均可命中，自动过滤评分<7）。想加城市 → 调研后直接编辑数据文件，或沿用 `scripts/merge-hotel-research.py` 合并子代理 JSON 输出；**UI 在 quos-list（行程详情按天）**
 - **主按钮底色一律用 `var(--accent-strong)`**（不要 `--accent` 配白字：深色模式白字在 #2dd4bf 上仅 1.86:1）；改主题色 → `globals.css` token
 - **QUOS 行程详情**：勾选录入（按天/按类型）+ 底部合计行 + 移动端 CSV 导出；复制功能已移除

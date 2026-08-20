@@ -8,6 +8,7 @@ import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES, ER_RULES } from
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
 import { DAILY_FEES } from '../data/daily-fees.js'
 import { STD_MTC_OPTIONS, DEPARTURE_ACTIVITY_MTC } from '../data/std-mtc-options.js'
+import { COACH_RULES } from '../data/coach-rules.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
 
@@ -67,6 +68,32 @@ function makePickup(locationCategory, day) {
     cityCode: day?.cityCode || info.cityCode || '',
     countryCode: day?.countryCode || info.countryCode || '',
     notes: 'STD MTC (Local)，单次 Group rate',
+  }
+}
+
+// 当地用车（R2/R3a/R4，脱离 LDC）：`{城} - X HOURS`（当地车）或 `{城} - APT - X HOURS`（半天+送机），
+// 从城市 KT STD MTC 选项表精确匹配，兜底拼写。X 凭经验（COACH_RULES.localMtcHours，默认多留 buffer 05 HOURS）。
+function makeLocalMtc(day, suffix = '') {
+  const info = getCityCode(day?.cityName, day?.cityNameEn) || {}
+  const cityEn = day?.cityNameEn || ''
+  const cityCode = day?.cityCode || info.cityCode || ''
+  const base = `${cityEn} - ${suffix ? `${suffix} - ` : ''}${COACH_RULES.localMtcHours}`
+  const options = STD_MTC_OPTIONS[cityCode] || []
+  const nameEn = options.includes(base) ? base : (cityEn ? base : `MTC - ${COACH_RULES.localMtcHours}`)
+  return {
+    type: 'transport',
+    transportMode: 'bus',
+    name: '当地用车',
+    nameEn,
+    costCategory: 'paid',
+    estimatedCost: 0,
+    price: 0,
+    priceUnit: 'perGroup',
+    quoteKind: 'local-mtc',
+    quoteOrder: 12, // pickup(10) / dropoff(11) 之后，THROUGH COACH(20) 之前
+    cityCode,
+    countryCode: day?.countryCode || info.countryCode || '',
+    notes: suffix === 'APT' ? 'STD MTC (Local) 当地用车 + 送机' : 'STD MTC (Local) 当地用车',
   }
 }
 
@@ -328,13 +355,36 @@ export function applyQuoteRules(parsed) {
     const d = realDays[i]
     const returnTransit = returnTransitOf(d)
     if (isRealArrivalAt(i)) {
-      // 跨城抵达：断段
-      if (cur) { segments.push(cur); cur = null }
+      // 跨城抵达：计算断开距离，按 R3/R4 决定是否断段
       const arrival = arrivalTransitOf(d)
+      const breakKm = arrival ? estimateRoadKmFallback(arrival.from, arrival.to) : 0
+      // R3b：断开 ≤ 阈值 且 策略 ldc-continuous（高端团不换车）→ 不断段，THROUGH COACH 跨断开连续覆盖
+      const ldcContinuous = COACH_RULES.breakStrategy === 'ldc-continuous' &&
+        breakKm > 0 && breakKm <= COACH_RULES.breakThresholdKm
+      if (!ldcContinuous) {
+        if (cur) { segments.push(cur); cur = null }
+        // R3a / R4：断开前「起始城市」当地车（断开当天白天还在起始城市 → 当地车 + 送机到机场）
+        // 例：Day3 巴黎→飞机→罗马，Day3 cityName=巴黎 → 注入 Paris - APT - X HOURS
+        if (arrival && arrival.from && isSameCity(d.cityName, arrival.from) && getCityCode(arrival.from)) {
+          d.items.push(makeLocalMtc(d, 'APT'))
+        }
+      }
       const next = realDays[i + 1]
       const nextOvernight = next ? overnight(next) : null
       const multiNight = !!nextOvernight && isSameCity(nextOvernight, overnight(d))
-      if (multiNight || !next) {
+      if (ldcContinuous) {
+        // R3b：段继续（不换车），覆盖到落地城市
+        if (!cur) {
+          cur = {
+            startDay: d.dayNumber,
+            startCity: overnight(d),
+            startCityEn: d.cityNameEn || d.finalCityNameEn || '',
+            fromCity: d.cityName,
+          }
+        }
+        cur.endDay = d.dayNumber
+        cur.endCity = overnight(d)
+      } else if (multiNight || !next) {
         // 同城连住（或抵达日是最后一天）→ STD MTC 接机（arrival 可能为空：i=0 兜底路径，中国出发默认 APT/HTL）
         d.items.push(makePickup(categoryFor(arrival?.transportMode) || 'APT/HTL', d))
       } else {
@@ -395,7 +445,9 @@ export function applyQuoteRules(parsed) {
     lastDeparture.items.push(makeDropoff(lastDeparture, hasActivity))
   }
 
-  // 5) 每段注入 THROUGH COACH + EMPTY RUN + PRE/POST（用户口径：使用 THROUGH COACH 时三者都要有）。
+  // 5) 每段注入用车项。
+  //    非 LDC 段（R2 同城段：断开后同城停留、无地面跨城移动）→ 当地车（每天一条，脱离 LDC）；
+  //    LDC 段 → THROUGH COACH + EMPTY RUN + PRE/POST（用户口径：使用 THROUGH COACH 时三者都要有）。
   //    THROUGH COACH 覆盖区间内（同一辆车跑到底），单天市区游览用车不再单独录入
   for (const seg of segments) {
     const segStart = realDays.find((d) => d.dayNumber === seg.startDay)
@@ -407,6 +459,21 @@ export function applyQuoteRules(parsed) {
       if (!dd) continue
       dd.items = dd.items.filter((it) =>
         !(it.type === 'transport' && ['bus', 'car'].includes(it.transportMode) && !(it.from || it.to)))
+    }
+
+    // R2：落地同城段（被飞机/火车断开后、同城停留多天、无地面跨城移动）→ 当地车，脱离 LDC。
+    // 判定：段首日前一天是「抵达日」（跨城抵达落地）→ 该段是落地停留段（startCity==endCity 同城）。
+    // 纯本地行程（无断开，如特罗姆瑟 2 天）不适用 —— 段首日前无抵达 → 保持正常 LDC 段。
+    const prevDay = realDays.find((d) => d.dayNumber === seg.startDay - 1)
+    const isArrivalLanding = prevDay ? isRealArrivalAt(realDays.indexOf(prevDay)) : false
+    const isLocalSegment = isSameCity(seg.startCity, seg.endCity) && isArrivalLanding
+    if (isLocalSegment) {
+      for (let dn = seg.startDay; dn <= seg.endDay; dn++) {
+        const dd = realDays.find((d) => d.dayNumber === dn)
+        if (!dd) continue
+        dd.items.push(makeLocalMtc(dd))
+      }
+      continue // 不注入 THROUGH COACH / EMPTY RUN / PRE-POST / 杂费
     }
 
     // 无 LDC 供应商（表外国家组合）→ 不注入 THROUGH COACH / EMPTY RUN / PRE-POST / 杂费

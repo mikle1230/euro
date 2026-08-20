@@ -79,7 +79,7 @@ test('连续无飞机段注入 THROUGH COACH + PRE/POST（火车是地面交通�
   assert.ok(d1.items.some((i) => i.quoteKind === 'prepost'), '应注入 PRE/POST')
 })
 
-test('到达停留多晚时：第 1 天接机，THROUGH COACH 从第 2 天开始', () => {
+test('到达停留多晚时：第 1 天接机，第 2 天断开前城市当地车（R4，断开>400km）', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -94,7 +94,8 @@ test('到达停留多晚时：第 1 天接机，THROUGH COACH 从第 2 天开始
   assert.ok(pickup, '到达停留>1晚时第 1 天应为接机')
   assert.equal(pickup.locationCategory, 'APT/HTL')
   const d2 = out.days.find((d) => d.dayNumber === 2)
-  assert.ok(d2.items.some((i) => i.quoteKind === 'through-coach'), 'THROUGH COACH 从第 2 天起')
+  assert.ok(d2.items.some((i) => i.quoteKind === 'local-mtc'), 'Day2 断开前城市（次日飞尼斯>400km）→ 当地车（R4）')
+  assert.ok(!d2.items.some((i) => i.quoteKind === 'through-coach'), '断开前城市不注入 THROUGH COACH')
 })
 
 test('空输入/无 days 原样返回', () => {
@@ -241,7 +242,7 @@ test('使用 THROUGH COACH 时首段首天注入 MTC EMPTY RUN 空驶（首城�
   assert.deepEqual(orders, [20, 22, 25])
 })
 
-test('多段行程：每段都有 THROUGH COACH + EMPTY RUN + PRE/POST（按各自段起终点）', () => {
+test('多段行程：连续地面段 THROUGH COACH；落地同城段当地车（R2）', () => {
   const parsed = {
     groupSize: 20,
     days: [
@@ -253,15 +254,15 @@ test('多段行程：每段都有 THROUGH COACH + EMPTY RUN + PRE/POST（按各�
   }
   const out = applyQuoteRules(parsed)
   const runs = out.days.flatMap((d) => d.items).filter((i) => i.quoteKind === 'empty-run')
-  assert.equal(runs.length, 2, '每段都应有一个 EMPTY RUN')
+  assert.equal(runs.length, 1, '只有连续地面段有 EMPTY RUN（落地同城段是当地车）')
   const seg1 = out.days.find((d) => d.dayNumber === 1)
   const er1 = seg1.items.find((i) => i.quoteKind === 'empty-run')
   assert.equal(er1.from, '巴黎')
   assert.equal(er1.to, '尼斯', '首段终点 = 下一段交通出发城（尼斯）')
   const d4 = out.days.find((d) => d.dayNumber === 4)
-  const er2 = d4.items.find((i) => i.quoteKind === 'empty-run')
-  assert.ok(er2, '第二段也有 EMPTY RUN')
-  assert.equal(d4.items.filter((i) => i.quoteKind === 'prepost').length, 1, '第二段也有 PRE/POST')
+  assert.ok(d4.items.some((i) => i.quoteKind === 'local-mtc'), 'Day4 落地同城段 → 当地车（R2，脱离 LDC）')
+  assert.ok(!d4.items.some((i) => i.quoteKind === 'empty-run'), '当地段无 EMPTY RUN')
+  assert.equal(d4.items.filter((i) => i.quoteKind === 'prepost').length, 0, '当地段无 PRE/POST')
   // D3 为同城连住到达（罗马住 2 晚）→ 接机
   const d3 = out.days.find((d) => d.dayNumber === 3)
   assert.ok(d3.items.some((i) => i.quoteKind === 'pickup'), '多晚同城到达 → 接机')
@@ -494,4 +495,62 @@ test('同城一日游的火车/船不打断长途车段（含返程腿，如少�
   const tcs = out.days.flatMap((d) => d.items).filter((i) => i.quoteKind === 'through-coach')
   assert.equal(tcs.length, 1, '一日游火车（含返程腿）不应断段 → 只应有一个 THROUGH COACH 段')
   assert.ok(tcs[0].notes.includes('LDC第1-4天'), '长途车应连续覆盖 1-4 天')
+})
+
+test('R3a：断开≤400km（日内瓦→苏黎世 ~300km）默认策略 local-then-ldc → 落地后开始 THROUGH COACH', () => {
+  const parsed = {
+    groupSize: 30,
+    days: [
+      day(1, '日内瓦', [], { cityNameEn: 'Geneva', finalCityName: '日内瓦' }),
+      day(2, '苏黎世', [item({ type: 'transport', transportMode: 'flight', from: '日内瓦', to: '苏黎世' })], { cityNameEn: 'Zurich', finalCityName: '苏黎世' }),
+      day(3, '卢塞恩', [], { cityNameEn: 'Lucerne', finalCityName: '卢塞恩' }),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const d2 = out.days.find((d) => d.dayNumber === 2)
+  const tc = d2.items.find((i) => i.quoteKind === 'through-coach')
+  assert.ok(tc, '落地（苏黎世）后开始 THROUGH COACH（R3a）')
+  assert.equal(tc.countryCode, 'CH', '瑞士供应商 CH ZRH')
+  assert.equal(tc.cityCode, 'ZRH')
+  assert.ok(tc.notes.includes('LDC第2-3天'), '段从落地日开始')
+})
+
+test('R3b：断开≤400km（日内瓦→苏黎世 ~300km）策略 ldc-continuous → THROUGH COACH 跨断开连续（不换车）', async () => {
+  // 临时切换策略配置（直接改模块配置验证；正式场景由 coach-rules.js 控制）
+  const rules = await import('../../src/data/coach-rules.js')
+  const orig = rules.COACH_RULES.breakStrategy
+  rules.COACH_RULES.breakStrategy = 'ldc-continuous'
+  try {
+    const parsed = {
+      groupSize: 30,
+      days: [
+        day(1, '日内瓦', [], { cityNameEn: 'Geneva', finalCityName: '日内瓦' }),
+        day(2, '苏黎世', [item({ type: 'transport', transportMode: 'flight', from: '日内瓦', to: '苏黎世' })], { cityNameEn: 'Zurich', finalCityName: '苏黎世' }),
+        day(3, '卢塞恩', [], { cityNameEn: 'Lucerne', finalCityName: '卢塞恩' }),
+      ],
+    }
+    const out = applyQuoteRules(parsed)
+    const tcs = out.days.flatMap((d) => d.items).filter((i) => i.quoteKind === 'through-coach')
+    assert.equal(tcs.length, 1, 'R3b 不断段 → 只有一个 THROUGH COACH（跨断开连续）')
+    assert.ok(tcs[0].notes.includes('LDC第1-3天'), 'THROUGH COACH 覆盖到落地城市（不换车）')
+  } finally {
+    rules.COACH_RULES.breakStrategy = orig
+  }
+})
+
+test('R4：断开>400km（巴黎→罗马 690km）→ 落地后开始 THROUGH COACH', () => {
+  const parsed = {
+    groupSize: 30,
+    days: [
+      day(1, '巴黎'),
+      day(2, '罗马', [item({ type: 'transport', transportMode: 'flight', from: '巴黎', to: '罗马' })], { cityNameEn: 'Rome', finalCityName: '罗马' }),
+      day(3, '佛罗伦萨', [], { cityNameEn: 'Florence', finalCityName: '佛罗伦萨' }),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const d2 = out.days.find((d) => d.dayNumber === 2)
+  const tc = d2.items.find((i) => i.quoteKind === 'through-coach')
+  assert.ok(tc, '落地（罗马）后开始 THROUGH COACH（R4）')
+  assert.equal(tc.countryCode, 'IT')
+  assert.equal(tc.cityCode, 'ROM')
 })
