@@ -12,6 +12,13 @@ import { COACH_RULES } from '../data/coach-rules.js'
 
 const overnight = (d) => d.finalCityName || d.cityName || ''
 
+// 离境日「有行程内容」判定：游览/活动项（attraction/other 等）才算；
+// 餐饮（早/午/晚餐）、交通、住宿不算 —— 第 12 天只有早餐+送机 → 视为纯送机，单独注入送机 MTC。
+const hasDayActivity = (d) => (d.items || []).some((it) =>
+  it.type !== 'transport' && it.type !== 'hotel' &&
+  !['breakfast', 'lunch', 'dinner'].includes(it.type) &&
+  String(it.name || '').trim() !== '')
+
 // 同城判断（最稳口径）：字符串相同 或 两者都能解析出相同城市码（中文/英文/机场码/城市码均可）。
 // AI 的 from/to/城市名可能是 '华沙' / 'Warsaw' / 'WAW' 任意写法，统一按码比对。
 const isSameCity = (a, b) => {
@@ -259,25 +266,70 @@ export function applyQuoteRules(parsed) {
   const days = (parsed.days || []).map((d) => ({ ...d, items: (d.items || []).slice() }))
   days.sort((a, b) => (a.dayNumber ?? 0) - (b.dayNumber ?? 0))
 
+  // 1.6) transit 日过夜城市兜底：当天有换城城际交通且 AI 未输出 finalCityName 时，
+  //      当晚过夜城市 = 交通终点城市（如「巴黎→日内瓦」火车、「日内瓦→伯尔尼」大巴、「苏黎世→米兰」航班）。
+  //      识别不依赖 transportMode 白名单：type=transport 且有 from/to 且两端解析出**不同城市码**即为换城
+  //      （walk/metro/市区游览用车的 from/to 多为景点名，解析不到城市码自动排除）；
+  //      当天多段交通取**最后一段**（终点 = 最终到达城市，如 卢塞恩→苏黎世 + 苏黎世→米兰 → 米兰）。
+  //      finalCityName 为空或与 cityName 相同（AI 冗余输出）都视为未指定；
+  //      to 解析不到城市码 / 终点=当天城市（同城住宿）/ 中国出发或返程日（to 或当天城市为 CN）
+  //      / 最后一段回到当天出发城市（一日游往返，如 巴黎→凡尔赛→巴黎）不补。
+  //      必须放在规则 1（删城际 bus/car）之前执行，否则大巴换城项已被删除无法识别。
+  days.forEach((d) => {
+    if (d.finalCityName && d.finalCityName !== d.cityName) return
+    const dayCountry = getCityCode(d.cityName, d.cityNameEn)?.countryCode
+    if (dayCountry === 'CN') return
+    const transits = (d.items || []).filter((it) =>
+      it.type === 'transport' &&
+      it.from && it.to &&
+      String(it.from).trim() !== String(it.to).trim())
+    if (!transits.length) return
+    const transit = transits[transits.length - 1] // 取最后一段：终点 = 最终到达城市
+    const toName = String(transit.to).trim()
+    const toInfo = getCityCode(toName)
+    if (!toInfo?.cityCode || toInfo.countryCode === 'CN') return
+    const dayCode = getCityCode(d.cityName, d.cityNameEn)?.cityCode
+    if (dayCode && toInfo.cityCode === dayCode) return
+    // 一日游往返：最后一段回到当天第一段出发城市（巴黎→凡尔赛→巴黎），按城市码比较
+    const first = transits[0]
+    const fromCode = getCityCode(String(first.from || '').trim())?.cityCode
+    if (fromCode && toInfo.cityCode === fromCode) return
+    d.finalCityName = toName
+    if (/^[A-Za-z]/.test(toName)) d.finalCityNameEn = toName
+  })
+
   // 1) 去掉城际 bus/car 项（被 THROUGH COACH 合并替代）；flight/train/boat 保留
   days.forEach((d) => {
     d.items = (d.items || []).filter((it) =>
       !(it.type === 'transport' && ['bus', 'car'].includes(it.transportMode) && (it.from || it.to)))
   })
 
-  // 1.5) 规范化酒店项名称：跟随「当天所在城市」cityName（而非 AI 有时用错的过夜城市 finalCityName），
-  //       避免出现城市码=MRS（马赛）但酒店名却是「瓦朗索勒酒店」的错位。
+  // 1.5) 规范化酒店项名称：跟随「当晚过夜城市」（finalCityName 优先，与 overnight() 口径一致）。
+  //      如第4天巴黎→日内瓦火车、晚上住日内瓦 → 酒店应为「日内瓦酒店」而非「巴黎酒店」。
+  //      过夜城市缺英文名时不编造（码表无英文名），保留 AI 原 nameEn。
   days.forEach((d) => {
-    if (!d.cityName) return
-    const cityEn = (d.cityNameEn || '').trim()
+    const nightName = d.finalCityName || d.cityName
+    const nightEn = (d.finalCityNameEn || '').trim()
+    if (!nightName) return
     d.items = (d.items || []).map((it) => {
       if (it.type !== 'hotel') return it
       return {
         ...it,
-        name: `${d.cityName}酒店`,
-        nameEn: cityEn ? `Hotel in ${cityEn}` : it.nameEn || '',
+        name: `${nightName}酒店`,
+        nameEn: nightEn ? `Hotel in ${nightEn}` : it.nameEn || '',
       }
     })
+  })
+
+  // 1.7) 无游览日删除市区游览用车：市区用车（无 from/to 的本地 bus，name 含「用车/游览」）只在当天
+  //      实际有景点游览（attraction 项）时保留。抵达日/自由活动日 AI 常误加（如落地巴黎没有游览
+  //      却出现「巴黎市区游览用车」），当天只有接机 MTC 就够，这里统一移除。
+  days.forEach((d) => {
+    const hasAttraction = (d.items || []).some((it) => it.type === 'attraction')
+    if (hasAttraction) return
+    d.items = (d.items || []).filter((it) =>
+      !(it.type === 'transport' && ['bus', 'car'].includes(it.transportMode) && !(it.from || it.to) &&
+        /用车|游览/.test(it.name || '')))
   })
 
   // 中国出发/返程日（如 day 0/day 16 上海）只做展示，不参与地面用车分段，
@@ -399,8 +451,27 @@ export function applyQuoteRules(parsed) {
         cur.endCity = overnight(d)
       }
     } else if (returnTransit) {
-      // 返程离境：断段，不新开段（送机后续处理）
-      if (cur) { segments.push(cur); cur = null }
+      // 返程离境日（用户口径 2026-08-21）：
+      //   当天**有行程内容**（白天游览/活动）→ THROUGH COACH 段覆盖到返程日当天（大巴白天仍用、
+      //     送机场也由大巴完成），不断段 —— 如 B线法意瑞 D11 罗马→北京：上午游览斗兽场/许愿池，
+      //     晚上航班，大巴应算 10 天（覆盖 D11）而非 9 天；
+      //   **纯送机**（无白天活动）→ 断段，送机 MTC 单独安排（HTL/APT）。
+      const hasActivity = hasDayActivity(d)
+      if (hasActivity) {
+        if (!cur) {
+          cur = {
+            startDay: d.dayNumber,
+            startCity: overnight(d),
+            startCityEn: d.cityNameEn || d.finalCityNameEn || '',
+            fromCity: d.cityName,
+          }
+        }
+        cur.endDay = d.dayNumber
+        cur.endCity = overnight(d)
+      } else {
+        // 纯送机：断段，不新开段（送机后续处理）
+        if (cur) { segments.push(cur); cur = null }
+      }
     } else {
       // 无跨城交通（含同城一日游的 train/boat）：继续当前段
       if (!cur) {
@@ -434,15 +505,15 @@ export function applyQuoteRules(parsed) {
   }
 
   // 送机：最后一个返程离境日（终点是中国，如返程航班罗马→上海）。
-  // 用户口径（2026-08-18）：返程离境日**总是**单独注入送机 MTC（`{城市英文名} - HTL/APT`），
-  // THROUGH COACH 段不覆盖离境日（段 = 用车天数，如 Warsaw - 9 DAYS 止于离境日前一天）。
+  // 用户口径（2026-08-21 更新）：
+  //   - 离境日**有行程内容**（白天游览/活动）→ THROUGH COACH 段已覆盖到当天（大巴送机场），不再单独注入送机 MTC；
+  //   - 离境日**纯送机**（无白天活动）→ 单独注入送机 MTC（`{城市英文名} - HTL/APT`）。
   const lastDeparture = [...days].reverse().find((d) => (d.dayNumber ?? 0) >= 1 && returnTransitOf(d))
   if (lastDeparture) {
-    // 当地用车规则：离境日有半天行程（白天活动，非交通/住宿）→ APT - X HOURS（X 凭经验）；
-    // 纯送机 → HTL/APT
-    const hasActivity = (lastDeparture.items || []).some((it) =>
-      it.type !== 'transport' && it.type !== 'hotel' && String(it.name || '').trim() !== '')
-    lastDeparture.items.push(makeDropoff(lastDeparture, hasActivity))
+    const hasActivity = hasDayActivity(lastDeparture)
+    if (!hasActivity) {
+      lastDeparture.items.push(makeDropoff(lastDeparture, false))
+    }
   }
 
   // 5) 每段注入用车项。

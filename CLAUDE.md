@@ -140,7 +140,7 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
   2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、波兰→PL WAW 从华沙调车；2026-08-19 修正，曾误改为段起始城市——用户录入里的 WAW/PL 正是 polandMono 供应商码）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市、国/城用供应商），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
   3. **EMPTY RUN 空驶**：**每段都有**（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to **真实车程**（route.js 调 `patchEmptyRunRoadKm` → OSRM 免费路线服务，失败回退 `estimateRoadKmFallback` 直线×1.3）；`quantity`=公里数，quoteOrder 22
   4. **抵达日分两种**：transit 终点=当晚过夜城市或当天白天城市 → 若**第 1 天与第 2 天住不同城市**（次日换城）则从第 1 天起用 LDC（THROUGH COACH 负责接机，**不加 STD MTC**，如飞抵马赛当夜住瓦朗索勒、飞抵巴勒莫）；若**同城住宿 ≥2 天**则第 1 天单独接机 STD MTC（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），第 2 天起用 LDC；**接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL，2026-08-18 更新）
-  5. **送机 MTC**：最后一个离境日**总是**单独加送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）——THROUGH COACH 段不覆盖离境日（2026-08-18 更新，旧口径"同城衔接顺路送机不加"已废弃）
+  5. **送机 MTC**（2026-08-21 更新，替代 8-18 的"总是单独送机"）：离境日（返程航班日）**当天有行程内容**（白天游览/活动）→ THROUGH COACH 段**覆盖到返程日当天**（大巴白天仍用、送机场也由大巴完成，不单独注入送机，如 B线法意瑞 D11 罗马→北京上午游览）；**纯送机**（无白天活动）→ 断段，THROUGH COACH 止于前一天，单独注入送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）
   6. **PRE/POST 前后夜**：每个 LDC 段首天注入（有 THROUGH COACH 才有），金额不显示
   7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21
   8. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入

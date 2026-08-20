@@ -29,6 +29,13 @@ export function getHotelQuotes(cityCode, month = null) {
   return list.filter((h) => h.month === month)
 }
 
+// 当月无报价 → 回退该城全部历史报价（去重）。
+// 用途：历史使用（hotel list）酒店必须始终可见，如巴黎仅 7/9 月有价，8/10 月行程不得凭空消失。
+export function getHotelQuotesOrAll(cityCode, month = null) {
+  const quotes = getHotelQuotes(cityCode, month)
+  return quotes.length ? quotes : getHotelQuotes(cityCode)
+}
+
 // PP 区间字符串：'€31.91–56.38/人'；同价 '€31.91/人'；无数据 ''
 // pp 可能是 '50/55.32'（双价格）——按 parseFloat 取第一档参与区间
 export function getQuoteRange(cityCode, month = null) {
@@ -38,6 +45,11 @@ export function getQuoteRange(cityCode, month = null) {
   const min = Math.min(...nums)
   const max = Math.max(...nums)
   return min === max ? `€${min}/人` : `€${min}–${max}/人`
+}
+
+// 区间回退：当月无报价 → 全量历史区间（与 getHotelQuotesOrAll 同一口径）
+export function getQuoteRangeOrAll(cityCode, month = null) {
+  return getQuoteRange(cityCode, month) || getQuoteRange(cityCode)
 }
 
 // 按酒店名匹配该城报价（大小写/空格/连字符归一化，宽松 contains 兜底），用于推荐库酒店→报价库价格对照
