@@ -6,7 +6,7 @@ import { useIsMobile } from '@/lib/use-is-mobile'
 import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
 import { getItemNameEn } from '@/lib/item-name'
 import { recommendHotels, getHotelPriceRange } from '@/lib/hotel-recommend'
-import { getMonthFromDate, getHotelQuotes, getQuoteRange, findHotelQuote } from '@/lib/hotel-prices'
+import { getMonthFromDate, getHotelQuotes, getHotelQuotesOrAll, getQuoteRange, getQuoteRangeOrAll, findHotelQuote } from '@/lib/hotel-prices'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
 
 // ---- helpers ----
@@ -26,13 +26,19 @@ const ratingColor = (r) => {
 // aligned=false（移动端卡片）：纵向堆叠
 // month：行程出发月份（'9月'），用于历史使用价过滤；空则显示该城全部
 function HotelRecommend({ day, aligned = false, month = null }) {
-  const quoteCityCode = day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || ''
-  const quotes = getHotelQuotes(quoteCityCode, month)
+  // 推荐/报价按「当晚过夜城市」（finalCityName 优先）：第4天巴黎→日内瓦火车、住日内瓦 → 显示日内瓦酒店
+  const nightName = day.finalCityName || day.cityName
+  const nightNameEn = day.finalCityNameEn || day.cityNameEn || ''
+  const nightInfo = getCityCode(nightName, nightNameEn)
+  const quoteCityCode = nightInfo?.cityCode || day.cityCode || ''
+  // 当月无报价 → 回退全量历史报价（历史使用酒店必须始终可见，如巴黎仅 7/9 月有价）
+  const quotes = getHotelQuotesOrAll(quoteCityCode, month)
+  const monthHasQuotes = getHotelQuotes(quoteCityCode, month).length > 0
   const hotels = recommendHotels(
-    day.cityName || day.finalCityName,
-    day.cityNameEn || day.finalCityNameEn,
+    nightName,
+    nightNameEn,
     99, // 不限制每城酒店数量
-    day.cityCode,
+    quoteCityCode,
   )
   if (!hotels.length && !quotes.length) return null
 
@@ -52,6 +58,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
       near: '',
       price: q.pp,
       unit: '/人', // 标间单人价（per person），用户按单人参考报价
+      month: q.month,
       source: 'history',
     })
   }
@@ -78,7 +85,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
   return (
     <div className="px-2.5 py-1.5 rounded-lg border border-dashed" style={{ borderColor: 'var(--border-color)' }}>
       <div className="text-xs font-semibold mb-1" style={{ color: 'var(--text-secondary)' }}>
-        🏨 推荐入住酒店{month ? `（${month} 价格）` : ''}
+        🏨 推荐入住酒店{month && monthHasQuotes ? `（${month} 价格）` : month && quotes.length ? '（历史月份价格）' : ''}
       </div>
       <div className="grid gap-y-1.5" style={gridStyle}>
         {rows.slice(0, 5).map((r, i) => (
@@ -107,9 +114,11 @@ function HotelRecommend({ day, aligned = false, month = null }) {
                 // 不能 `r.price > 0`（'50/55.32' 转数字是 NaN，会误判不显示）
                 const p = parseFloat(String(r.price))
                 if (isNaN(p) || p <= 0) return null
+                // 回退到历史月份时，价格后标注月份，避免误解为当月价
+                const monthTag = r.source === 'history' && r.month && !monthHasQuotes ? ` · ${r.month}` : ''
                 return (
                   <div className="text-xs mt-0.5 pl-9 font-semibold" style={{ color: 'var(--gold)' }}>
-                    €{r.price}{r.unit}
+                    €{r.price}{r.unit}{monthTag}
                   </div>
                 )
               })()}
@@ -146,7 +155,7 @@ function rowMeta(row, month) {
   const t = [row.startTime, row.endTime].filter(Boolean).join('-')
   if (t) parts.push(`🕐${t}`)
   if (row.type === 'hotel') {
-    const qRange = getQuoteRange(row.cityCode, month)
+    const qRange = getQuoteRangeOrAll(row.cityCode, month)
     const range = qRange || getHotelPriceRange(row.cityName || row.finalCityName, row.cityNameEn || row.finalCityNameEn, row.cityCode)
     parts.push(range || '收费')
   } else if (isFreeItem(row)) {
@@ -170,7 +179,7 @@ function downloadCSV(rows, itineraryName, month) {
   rows.forEach((r) => {
     const time = [r.startTime, r.endTime].filter(Boolean).join('-')
     const priceCell = r.type === 'hotel'
-      ? (getQuoteRange(r.cityCode, month) || getHotelPriceRange(r.cityName || r.finalCityName, r.cityNameEn || r.finalCityNameEn, r.cityCode))
+      ? (getQuoteRangeOrAll(r.cityCode, month) || getHotelPriceRange(r.cityName || r.finalCityName, r.cityNameEn || r.finalCityNameEn, r.cityCode))
       : fmtPrice(r)
     const estimateCell = r.type === 'hotel' ? '' : (r.estimatedCost || 0)
     lines.push([
@@ -242,16 +251,21 @@ export default function QUOSList({ itinerary }) {
       if (shouldHideItem(item, { hideFree, hideMeals, hideAttractions, hideInlandTransit })) return
       const autoQUOS = getQUOSType(item)
       const cityInfo = getCityCode(day.cityName, day.cityNameEn)
+      // 酒店项归属「当晚过夜城市」（finalCityName 优先）：第4天巴黎→日内瓦火车、住日内瓦 → 酒店按日内瓦报价/推荐
+      const nightName = day.finalCityName || day.cityName
+      const nightNameEn = day.finalCityNameEn || day.cityNameEn || ''
+      const nightInfo = getCityCode(nightName, nightNameEn)
+      const isHotel = item.type === 'hotel'
       flatItems.push({
         ...item,
         dayNumber: day.dayNumber,
         dayId: day.id,
-        cityName: day.cityName,
-        cityNameEn: day.cityNameEn || '',
+        cityName: isHotel ? nightName : day.cityName,
+        cityNameEn: isHotel ? nightNameEn : (day.cityNameEn || ''),
         finalCityName: day.finalCityName || day.cityName,
         finalCityNameEn: day.finalCityNameEn || day.cityNameEn || '',
-        cityCode: item.cityCode || day.cityCode || cityInfo?.cityCode || '',
-        countryCode: item.countryCode || day.countryCode || cityInfo?.countryCode || '',
+        cityCode: item.cityCode || (isHotel ? nightInfo?.cityCode : day.cityCode) || cityInfo?.cityCode || '',
+        countryCode: item.countryCode || (isHotel ? nightInfo?.countryCode : day.countryCode) || cityInfo?.countryCode || '',
         quosCode: autoQUOS.code,
         nameEn: getItemNameEn(item),
       })
@@ -442,7 +456,7 @@ export default function QUOSList({ itinerary }) {
                       <div className="shrink-0 text-right">
                         {it.type === 'hotel' ? (
                           <div className="text-xs font-semibold" style={{ color: 'var(--gold)' }}>
-                            {getQuoteRange(it.cityCode, month) || getHotelPriceRange(it.cityName || it.finalCityName, it.cityNameEn || it.finalCityNameEn, it.cityCode)}
+                            {getQuoteRangeOrAll(it.cityCode, month) || getHotelPriceRange(it.cityName || it.finalCityName, it.cityNameEn || it.finalCityNameEn, it.cityCode)}
                           </div>
                         ) : it.price > 0 ? (
                           <div className="text-sm font-semibold" style={{ color: 'var(--gold)' }}>
@@ -573,14 +587,13 @@ export default function QUOSList({ itinerary }) {
       } else {
         dayItems.forEach((row) => tableBody.push(renderRow(row)))
       }
-      // 推荐入住酒店（当天所在城市）
-      const hasHotels = recommendHotels(
-        day.cityName || day.finalCityName,
-        day.cityNameEn || day.finalCityNameEn,
-        1,
-        day.cityCode,
-      ).length > 0
-      if (hasHotels || getHotelQuotes(day.cityCode || getCityCode(day.cityName, day.cityNameEn)?.cityCode || '', month).length > 0) {
+      // 推荐入住酒店（当晚过夜城市，finalCityName 优先）
+      const nightName = day.finalCityName || day.cityName
+      const nightNameEn = day.finalCityNameEn || day.cityNameEn || ''
+      const nightInfo = getCityCode(nightName, nightNameEn)
+      const nightCode = nightInfo?.cityCode || day.cityCode || ''
+      const hasHotels = recommendHotels(nightName, nightNameEn, 1, nightCode).length > 0
+      if (hasHotels || getHotelQuotesOrAll(nightCode, month).length > 0) {
         tableBody.push(
           <tr key={`hotels-${day.id}`}>
             <td colSpan={6} className="px-1.5 pb-1.5">
