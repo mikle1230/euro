@@ -844,21 +844,21 @@ test('德奥行程：DE BER 供应商 + 德国境内每天 GERMAN VAT（KT 实�
   const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')
   assert.equal(tc.notes.split('供应商 ')[1], 'DE BER Through Coach (NGS)', '德奥 → DE BER 柏林车，非 IT ROM')
-  // 德国境内（D2-D5）每天 GERMAN VAT（D1 首日接机不在段内、D6 萨尔茨堡在奥地利，均无 VAT）
+  // 按「过夜城市」判国家：D2-D4 德国过夜 → GERMAN VAT（D1 首日接机不在段内）；D5 慕尼黑→当晚萨尔茨堡 → 算奥地利
   const vatDays = out.days.filter((d) =>
     d.dayNumber >= 1 && d.dayNumber <= 7 &&
     (d.items || []).some((i) => i.notes === 'GERMAN VAT'))
-  assert.equal(vatDays.length, 4, '德国境内 4 天每天注入 GERMAN VAT（D1 接机日与 D6 奥地利无）')
+  assert.equal(vatDays.length, 3, '德国过夜 3 天每天注入 GERMAN VAT（D1 接机日无、D5 起过夜萨尔茨堡）')
   const vat = out.days.flatMap((d) => d.items).find((i) => i.notes === 'GERMAN VAT')
   assert.ok(vat, 'GERMAN VAT 条目存在')
   assert.equal(vat.name, 'Base - GERMAN VAT')
   assert.equal(vat.price, 90.43)
   assert.equal(vat.countryCode, 'DE')
-  // 奥地利境内每天 Austria ROAD TAX（D6 萨尔茨堡 1 天；德国境内无）
+  // 奥地利过夜每天 Austria ROAD TAX（D5 当晚萨尔茨堡 + D6 萨尔茨堡）
   const taxDays = out.days.filter((d) =>
     d.dayNumber >= 1 && d.dayNumber <= 7 &&
     (d.items || []).some((i) => i.notes === 'Austria ROAD TAX PAID BY DRIVER'))
-  assert.equal(taxDays.length, 1, '奥地利境内 1 天注入 Austria ROAD TAX（D6 萨尔茨堡）')
+  assert.equal(taxDays.length, 2, '奥地利过夜 2 天注入 Austria ROAD TAX（D5 当晚萨尔茨堡、D6 萨尔茨堡）')
   const tax = out.days.flatMap((d) => d.items).find((i) => i.notes === 'Austria ROAD TAX PAID BY DRIVER')
   assert.ok(tax, 'ROAD TAX 条目存在')
   assert.equal(tax.name, 'Austria ROAD TAX PAID BY DRIVER')
