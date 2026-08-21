@@ -3,6 +3,7 @@
 import { use } from 'react'
 import Link from 'next/link'
 import { getMiceActivityById, resolveCountry } from '@/lib/mice'
+import MiceImage from '@/components/mice-image'
 import { toast } from '@/components/toast'
 
 const CATEGORY_STYLE = {
@@ -78,15 +79,8 @@ export default function MiceDetailPage({ params }) {
         </div>
 
         {/* 大图 */}
-        <div className="rounded-2xl overflow-hidden border relative" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)' }}>
-          {a.previewImageUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={a.previewImageUrl} alt={a.title} className="w-full max-h-80 object-cover" onError={(e) => { e.currentTarget.style.display = 'none' }} />
-          ) : (
-            <div className="w-full h-48 flex items-center justify-center text-5xl" style={{ color: 'var(--text-tertiary)' }}>
-              {a.category === 'Technical Visit' ? '🏭' : '🎪'}
-            </div>
-          )}
+        <div className="rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)' }}>
+          <MiceImage activity={a} className="w-full max-h-80" fallbackEmoji={a.category === 'Technical Visit' ? '🏭' : '🎪'} />
         </div>
 
         {/* 标题 + 状态 */}
