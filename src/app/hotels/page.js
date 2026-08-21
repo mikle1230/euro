@@ -56,10 +56,29 @@ function SourceBadge({ fromList }) {
   )
 }
 
-function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
-  // 价格以 hotel list 实际价为准：推荐库酒店若在报价库匹配到 → 显示 €/人（标间单人价）
-  const quote = findHotelQuote(cityCode, h.name)
-  const fromList = !!quote?.pp
+function HotelCard({ h, showCity = false, cityCode = '', idx = 0, priceRef = false }) {
+  // 推荐库酒店：找报价库匹配价（€/人）；priceRef 的酒店自带 prices[]/pp（€/人）
+  const quote = priceRef ? null : findHotelQuote(cityCode, h.name)
+  const fromList = priceRef || !!quote?.pp
+
+  // 名称
+  const name = priceRef ? h.hotel : h.name
+  const nameZh = h.nameZh
+
+  // 价格 + 单位 + 月份（priceRef 才有月份）
+  let price, unit, month
+  if (priceRef) {
+    const prices = h.prices || []
+    price = prices[0]?.pp != null ? `€${prices[0].pp}` : null
+    unit = '/人'
+    month = prices.length ? prices.map((p) => p.month).filter(Boolean).join('/') : ''
+  } else if (quote?.pp) {
+    price = `€${quote.pp}`
+    unit = '/人'
+  } else if (h.priceEur) {
+    price = `€${h.priceEur}`
+    unit = '/晚'
+  }
 
   return (
     <article
@@ -75,18 +94,19 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
       <div className="shrink-0 px-4 py-3" style={{ background: 'linear-gradient(120deg, #0a7aa6, #075e83)' }}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <h3 className="font-semibold text-[15px] leading-snug" style={{ color: '#fff' }} title={h.name}>
-              {h.name}
+            <h3 className="font-semibold text-[15px] leading-snug" style={{ color: '#fff' }} title={name}>
+              {name}
             </h3>
-            {h.nameZh && (
-              <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.86)' }}>{h.nameZh}</div>
+            {nameZh && (
+              <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.86)' }}>{nameZh}</div>
             )}
           </div>
           <div className="shrink-0 text-right whitespace-nowrap">
-            {fromList ? (
-              <div className="text-sm font-bold leading-none" style={{ color: '#fff' }}>€{quote.pp}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>/人</span></div>
-            ) : h.priceEur ? (
-              <div className="text-sm font-bold leading-none" style={{ color: '#fff' }}>€{h.priceEur}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>/晚</span></div>
+            {price ? (
+              <>
+                <div className="text-sm font-bold leading-none" style={{ color: '#fff' }}>{price}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>{unit}</span></div>
+                {month && <div className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.72)' }}>{month}</div>}
+              </>
             ) : (
               <div className="text-[11px]" style={{ color: 'rgba(255,255,255,0.72)' }}>价格待定</div>
             )}
@@ -96,7 +116,7 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
 
       {/* 白色区：城市/介绍 + 标签 */}
       <div className="p-3.5 flex flex-col flex-1">
-        {showCity && (
+        {showCity && !priceRef && (
           <div className="text-[11px] mb-2 font-medium" style={{ color: 'var(--text-tertiary)' }}>
             {h.countryName} · {h.city}
           </div>
@@ -110,12 +130,14 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
 
         <div className="flex items-center gap-1.5 mt-3 flex-wrap">
           <SourceBadge fromList={fromList} />
-          <span
-            className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold"
-            style={{ background: 'var(--accent-subtle)', color: ratingColor(h.rating) }}
-          >
-            ★{h.rating}
-          </span>
+          {h.rating > 0 && (
+            <span
+              className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold"
+              style={{ background: 'var(--accent-subtle)', color: ratingColor(h.rating) }}
+            >
+              ★{h.rating}
+            </span>
+          )}
           {h.star > 0 && (
             <span
               className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px]"
@@ -124,7 +146,7 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
               {h.star}星
             </span>
           )}
-          {nearTags(h.near).map((n, i) => (
+          {!priceRef && nearTags(h.near).map((n, i) => (
             <span
               key={i}
               className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px]"
@@ -345,33 +367,12 @@ export default function HotelsPage() {
                       )}
 
                       {city.quotes?.hotels?.length > 0 && (
-                        <div className="mt-3 rounded-xl border border-dashed p-3" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-card)' }}>
-                          <div className="text-[11px] font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>
+                        <div className="mt-4">
+                          <div className="flex items-center gap-1.5 mb-2 text-[11px] font-semibold" style={{ color: 'var(--text-secondary)' }}>
                             💰 酒店价格参考（€/人 · 以 hotel list 为准）
                           </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                            {city.quotes.hotels.map((h, i) => {
-                              const prices = h.prices || []
-                              const monthLabel = prices.length === 1 ? prices[0]?.month : prices.map((p) => p.month).join('/')
-                              return (
-                                <div key={i} className="text-xs rounded-lg px-2.5 py-2 flex items-start justify-between gap-2" style={{ background: 'var(--bg-surface)' }}>
-                                  <div className="min-w-0">
-                                    <div className="font-medium truncate flex items-center gap-1.5" style={{ color: 'var(--text-primary)' }} title={h.hotel}>
-                                      <span className="truncate">{h.hotel}</span>
-                                      <SourceBadge fromList />
-                                    </div>
-                                    <div className="flex items-center gap-1 mt-0.5">
-                                      {h.rating > 0 && <span className="text-[10px] font-semibold" style={{ color: ratingColor(h.rating) }}>★{h.rating}</span>}
-                                      {h.star > 0 && <span className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{h.star}星</span>}
-                                    </div>
-                                  </div>
-                                  <div className="shrink-0 text-right whitespace-nowrap">
-                                    <div className="font-semibold" style={{ color: 'var(--gold)' }}>{prices[0]?.pp ? `€${prices[0].pp}` : ''}</div>
-                                    {monthLabel && <div className="text-[10px]" style={{ color: 'var(--text-tertiary)' }}>{monthLabel}</div>}
-                                  </div>
-                                </div>
-                              )
-                            })}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {city.quotes.hotels.map((h, i) => <HotelCard key={i} h={h} priceRef cityCode={city.cityCode} idx={i} />)}
                           </div>
                         </div>
                       )}
