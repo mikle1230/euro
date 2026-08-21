@@ -200,9 +200,12 @@ test('返程日（罗马→上海飞回）也是中国城市，不参与 LDC 判
     ],
   }
   const out = applyQuoteRules(parsed)
+  // D1 是首个地面日且行程含航班 → 按抵达日当地接机；THROUGH COACH 段从 D2 起
   const d1 = out.days.find((d) => d.dayNumber === 1)
-  const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
-  assert.ok(tc, '返程日不应影响 THROUGH COACH')
+  assert.ok(d1.items.some((i) => i.quoteKind === 'pickup'), '首个地面日（行程含航班）→ 当地接机')
+  const d2 = out.days.find((d) => d.dayNumber === 2)
+  const tc = d2.items.find((i) => i.quoteKind === 'through-coach')
+  assert.ok(tc, 'THROUGH COACH 从第 2 个地面日开始')
   assert.equal(tc.countryCode, 'IT', '返程上海混入 → 应排除 CN')
   assert.equal(tc.cityCode, 'ROM')
   assert.ok(tc.notes.includes('IT ROM Through Coach (NGS)'), '备注应带完整供应商名（NGS 型）')
@@ -246,19 +249,22 @@ test('多段行程：连续地面段 THROUGH COACH；落地同城段当地车（
   const parsed = {
     groupSize: 20,
     days: [
-      day(1, '巴黎'),
+      day(1, '巴黎', [item({ type: 'transport', transportMode: 'flight', from: '北京', to: '巴黎' })], { cityNameEn: 'Paris' }),
       day(2, '尼斯'),
-      day(3, '罗马', [item({ type: 'transport', transportMode: 'flight', from: '尼斯', to: '罗马' })]),
+      day(3, '罗马', [item({ type: 'transport', transportMode: 'flight', from: '尼斯', to: '罗马' })], { cityNameEn: 'Rome' }),
       day(4, '罗马'),
     ],
   }
   const out = applyQuoteRules(parsed)
+  // D1 抵达日（明确入境航班）→ 当地接机；连续地面段从 D2 起
+  const d1 = out.days.find((d) => d.dayNumber === 1)
+  assert.ok(d1.items.some((i) => i.quoteKind === 'pickup'), 'D1 抵达 → 当地接机')
   const runs = out.days.flatMap((d) => d.items).filter((i) => i.quoteKind === 'empty-run')
   assert.equal(runs.length, 1, '只有连续地面段有 EMPTY RUN（落地同城段是当地车）')
-  const seg1 = out.days.find((d) => d.dayNumber === 1)
+  const seg1 = out.days.find((d) => d.dayNumber === 2)
   const er1 = seg1.items.find((i) => i.quoteKind === 'empty-run')
-  assert.equal(er1.from, '巴黎')
-  assert.equal(er1.to, '尼斯', '首段终点 = 下一段交通出发城（尼斯）')
+  assert.equal(er1.from, '尼斯')
+  assert.equal(er1.to, '尼斯', '首段终点 = 下一段交通（D3 飞罗马）出发城')
   const d4 = out.days.find((d) => d.dayNumber === 4)
   assert.ok(d4.items.some((i) => i.quoteKind === 'local-mtc'), 'Day4 落地同城段 → 当地车（R2，脱离 LDC）')
   assert.ok(!d4.items.some((i) => i.quoteKind === 'empty-run'), '当地段无 EMPTY RUN')
@@ -300,15 +306,16 @@ test('离境日（返程航班终点≠过夜城市）不注入接机 MTC', () =
     groupSize: 20,
     days: [
       day(1, '巴黎'),
-      day(2, '罗马', [item({ type: 'transport', transportMode: 'flight', from: '罗马', to: '上海' })]),
+      day(2, '尼斯'),
+      day(3, '罗马', [item({ type: 'transport', transportMode: 'flight', from: '罗马', to: '上海' })]),
     ],
   }
   const out = applyQuoteRules(parsed)
+  const d3 = out.days.find((d) => d.dayNumber === 3)
+  assert.ok(!d3.items.some((i) => i.quoteKind === 'pickup'), '离境日不应有接机')
+  assert.ok(!d3.items.some((i) => i.quoteKind === 'through-coach'), 'transit 日不产生 THROUGH COACH 段')
   const d2 = out.days.find((d) => d.dayNumber === 2)
-  assert.ok(!d2.items.some((i) => i.quoteKind === 'pickup'), '离境日不应有接机')
-  assert.ok(!d2.items.some((i) => i.quoteKind === 'through-coach'), 'transit 日不产生 THROUGH COACH 段')
-  const d1 = out.days.find((d) => d.dayNumber === 1)
-  assert.ok(d1.items.some((i) => i.quoteKind === 'through-coach'), '真实地面日仍有 THROUGH COACH')
+  assert.ok(d2.items.some((i) => i.quoteKind === 'through-coach'), '真实地面日仍有 THROUGH COACH')
 })
 
 test('抵达日接机类型取「抵达过夜城市的交通工具」（同日有船有飞机 → APT/HTL）', () => {
@@ -382,10 +389,13 @@ test('长途车一路开到离境城（罗马）→ 返程日仍单独送机（B
   const dropoff = d3.items.find((i) => i.quoteKind === 'dropoff')
   assert.ok(dropoff, '返程离境日总是加单独送机')
   assert.equal(dropoff.cityCode, 'ROM', '送机国/城 = 当天城市（罗马）')
+  // D1 是首个地面日（行程含航班）→ 当地接机；THROUGH COACH 段从 D2 起
   const d1 = out.days.find((d) => d.dayNumber === 1)
-  const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
+  assert.ok(d1.items.some((i) => i.quoteKind === 'pickup'), 'D1 首日抵达 → 当地接机')
+  const d2 = out.days.find((d) => d.dayNumber === 2)
+  const tc = d2.items.find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')
-  assert.ok(tc.notes.includes('LDC第1-2天'), '长途车覆盖到罗马（最后地面日）')
+  assert.ok(tc.notes.includes('LDC第2-2天'), '长途车覆盖到罗马（最后地面日）')
 })
 
 test('单晚停留的抵达日（如飞抵巴勒莫）→ THROUGH COACH 从抵达日开始，不加接机', () => {
@@ -414,7 +424,7 @@ test('单晚停留的抵达日（如飞抵巴勒莫）→ THROUGH COACH 从抵�
   assert.ok(d2.items.some((i) => i.quoteKind === 'prepost'), '该段也有 PRE/POST')
 })
 
-test('首日飞抵白天城市（马赛）当夜住瓦朗索勒 → THROUGH COACH 从第 1 天开始（from=马赛）', () => {
+test('首日飞抵白天城市（马赛）当夜住瓦朗索勒 → Day1 当地 STD MTC 接机，段从第 2 天起（2026-08-21 口径）', () => {
   const parsed = {
     groupSize: 30,
     days: [
@@ -423,17 +433,22 @@ test('首日飞抵白天城市（马赛）当夜住瓦朗索勒 → THROUGH COAC
         finalCityName: '瓦朗索勒', cityNameEn: 'Marseille',
       }),
       day(2, '瓦朗索勒', [], { finalCityName: '圣特罗佩' }),
-      day(3, '圣特罗佩'),
+      day(3, '圣特罗佩', [], { finalCityName: '尼斯' }),
+      day(4, '尼斯'),
     ],
   }
   const out = applyQuoteRules(parsed)
   const d1 = out.days.find((d) => d.dayNumber === 1)
-  const tc = d1.items.find((i) => i.quoteKind === 'through-coach')
-  assert.ok(tc, '第 1 天应有 THROUGH COACH')
-  assert.equal(tc.from, '马赛', 'from 取抵达的白天城市（马赛）')
-  assert.ok(tc.notes.includes('LDC第1-'), '长途车从第 1 天开始')
-  assert.ok(d1.items.some((i) => i.quoteKind === 'empty-run'), '第 1 天也有 EMPTY RUN')
-  assert.ok(!d1.items.some((i) => i.quoteKind === 'pickup'), '首日单晚换城 → 无 STD MTC 接机')
+  const pickup = d1.items.find((i) => i.quoteKind === 'pickup')
+  assert.ok(pickup, 'Day1 单独当地 STD MTC 接机')
+  assert.equal(pickup.locationCategory, 'APT/HTL', '飞机抵达 → APT/HTL')
+  assert.ok(!d1.items.some((i) => i.quoteKind === 'through-coach'), 'Day1 不开 THROUGH COACH 段')
+  const d2 = out.days.find((d) => d.dayNumber === 2)
+  const tc = d2.items.find((i) => i.quoteKind === 'through-coach')
+  assert.ok(tc, 'THROUGH COACH 段从第 2 天开始')
+  assert.equal(tc.from, '瓦朗索勒')
+  assert.ok(tc.notes.includes('LDC第2-4天'), '长途车从第 2 天开始')
+  assert.ok(d2.items.some((i) => i.quoteKind === 'empty-run'), '第 2 天也有 EMPTY RUN')
 })
 
 test('观光列车跨城（金色山口 因特拉肯→琉森）不打断长途车段', () => {
@@ -625,7 +640,7 @@ test('R3b：断开≤400km（日内瓦→苏黎世 ~300km）策略 ldc-continuou
     const out = applyQuoteRules(parsed)
     const tcs = out.days.flatMap((d) => d.items).filter((i) => i.quoteKind === 'through-coach')
     assert.equal(tcs.length, 1, 'R3b 不断段 → 只有一个 THROUGH COACH（跨断开连续）')
-    assert.ok(tcs[0].notes.includes('LDC第1-3天'), 'THROUGH COACH 覆盖到落地城市（不换车）')
+    assert.ok(tcs[0].notes.includes('LDC第2-3天'), 'D1 首日接机 → THROUGH COACH 从 D2 起并跨断开连续覆盖')
   } finally {
     rules.COACH_RULES.breakStrategy = orig
   }
@@ -721,7 +736,7 @@ test('返程日有行程内容 → THROUGH COACH 段覆盖到返程日（大巴�
   const out = applyQuoteRules(parsed)
   const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')
-  assert.equal(tc.notes, 'LDC第2-5天，共4天，供应商 IT ROM Through Coach (NGS)', '段覆盖到返程日（D5），大巴 4 天而非 3 天')
+  assert.equal(tc.notes, 'LDC第3-5天，共3天，供应商 IT ROM Through Coach (NGS)', 'D2 首日接机 → 段 D3 起并覆盖到返程日（D5）')
   const d5 = out.days.find((d) => d.dayNumber === 5)
   assert.ok(!d5.items.some((i) => i.quoteKind === 'dropoff'), '返程日有活动 → 大巴覆盖，不再单独注入送机')
 })
@@ -751,7 +766,7 @@ test('返程日纯送机（无活动）→ 段止于前一天，单独注入送�
   const out = applyQuoteRules(parsed)
   const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
   assert.ok(tc, '应有 THROUGH COACH')
-  assert.equal(tc.notes, 'LDC第2-4天，共3天，供应商 IT ROM Through Coach (NGS)', '纯送机 → 段止于前一天')
+  assert.equal(tc.notes, 'LDC第3-4天，共2天，供应商 IT ROM Through Coach (NGS)', 'D2 首日接机 → 段 D3 起、止于返程日前一天')
   const d5 = out.days.find((d) => d.dayNumber === 5)
   const dropoff = d5.items.find((i) => i.quoteKind === 'dropoff')
   assert.ok(dropoff, '纯送机 → 单独注入送机 MTC')
@@ -783,8 +798,70 @@ test('离境日只有早餐+返程航班（无游览）→ 仍视为纯送机，
   }
   const out = applyQuoteRules(parsed)
   const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
-  assert.equal(tc.notes, 'LDC第2-4天，共3天，供应商 IT ROM Through Coach (NGS)', '早餐不算活动 → 段仍止于前一天')
+  assert.equal(tc.notes, 'LDC第3-4天，共2天，供应商 IT ROM Through Coach (NGS)', '早餐不算活动 → 段仍止于前一天')
   const d5 = out.days.find((d) => d.dayNumber === 5)
   const dropoff = d5.items.find((i) => i.quoteKind === 'dropoff')
   assert.ok(dropoff, '只有早餐+航班 → 仍单独注入送机 MTC')
+})
+
+test('德奥行程：DE BER 供应商 + 德国境内每天 GERMAN VAT（KT 实操口径 2026-08-21）', () => {
+  const parsed = {
+    groupSize: 25,
+    days: [
+      day(1, '法兰克福', [
+        item({ type: 'transport', transportMode: 'flight', from: '北京', to: '法兰克福' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Frankfurt' }),
+      day(2, '法兰克福', [
+        item({ type: 'attraction', name: '罗马贝格广场' }),
+        item({ type: 'transport', transportMode: 'bus', from: '法兰克福', to: '海德堡' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Frankfurt', finalCityName: '海德堡' }),
+      day(3, '海德堡', [
+        item({ type: 'attraction', name: '海德堡城堡' }),
+        item({ type: 'transport', transportMode: 'bus', from: '海德堡', to: '斯图加特' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Heidelberg', finalCityName: '斯图加特' }),
+      day(4, '斯图加特', [
+        item({ type: 'transport', transportMode: 'bus', from: '斯图加特', to: '慕尼黑' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Stuttgart', finalCityName: '慕尼黑' }),
+      day(5, '慕尼黑', [
+        item({ type: 'transport', transportMode: 'bus', from: '慕尼黑', to: '萨尔茨堡' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Munich', finalCityName: '萨尔茨堡' }),
+      day(6, '萨尔茨堡', [
+        item({ type: 'attraction', name: '萨尔茨堡城堡' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Salzburg' }),
+      day(7, '萨尔茨堡', [
+        item({ type: 'transport', transportMode: 'flight', from: '萨尔茨堡', to: '北京' }),
+      ], { cityNameEn: 'Salzburg' }),
+      day(8, '北京'),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
+  assert.ok(tc, '应有 THROUGH COACH')
+  assert.equal(tc.notes.split('供应商 ')[1], 'DE BER Through Coach (NGS)', '德奥 → DE BER 柏林车，非 IT ROM')
+  // 德国境内（D2-D5）每天 GERMAN VAT（D1 首日接机不在段内、D6 萨尔茨堡在奥地利，均无 VAT）
+  const vatDays = out.days.filter((d) =>
+    d.dayNumber >= 1 && d.dayNumber <= 7 &&
+    (d.items || []).some((i) => i.notes === 'GERMAN VAT'))
+  assert.equal(vatDays.length, 4, '德国境内 4 天每天注入 GERMAN VAT（D1 接机日与 D6 奥地利无）')
+  const vat = out.days.flatMap((d) => d.items).find((i) => i.notes === 'GERMAN VAT')
+  assert.ok(vat, 'GERMAN VAT 条目存在')
+  assert.equal(vat.name, 'Base - GERMAN VAT')
+  assert.equal(vat.price, 90.43)
+  assert.equal(vat.countryCode, 'DE')
+  // 奥地利境内每天 Austria ROAD TAX（D6 萨尔茨堡 1 天；德国境内无）
+  const taxDays = out.days.filter((d) =>
+    d.dayNumber >= 1 && d.dayNumber <= 7 &&
+    (d.items || []).some((i) => i.notes === 'Austria ROAD TAX PAID BY DRIVER'))
+  assert.equal(taxDays.length, 1, '奥地利境内 1 天注入 Austria ROAD TAX（D6 萨尔茨堡）')
+  const tax = out.days.flatMap((d) => d.items).find((i) => i.notes === 'Austria ROAD TAX PAID BY DRIVER')
+  assert.ok(tax, 'ROAD TAX 条目存在')
+  assert.equal(tax.name, 'Austria ROAD TAX PAID BY DRIVER')
+  assert.equal(tax.price, 47.87)
+  assert.equal(tax.countryCode, 'AT')
 })

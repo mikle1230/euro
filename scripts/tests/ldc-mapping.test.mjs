@@ -31,6 +31,14 @@ test('其余西欧多国统一 IT ROM', () => {
   assert.equal(resolveLdcSupplier(['FR', 'IT', 'DE', 'CH']).supplierCode, 'IT ROM')
 })
 
+test('德奥组合 → DE BER（柏林车），绝不落入 IT ROM（KT 实操校准 2026-08-21）', () => {
+  assert.equal(resolveLdcSupplier(['DE', 'AT']).supplierCode, 'DE BER')
+  assert.equal(resolveLdcSupplier(['DE', 'AT']).fullSelectionName, 'DE BER Through Coach (NGS)')
+  assert.equal(resolveLdcSupplier(['DE', 'AT', 'CH']).supplierCode, 'DE BER', '德奥含瑞士 → 仍 DE BER')
+  // 纯奥地利（无德国）→ 保持中欧 CZ PRG；纯德国 → 已单国 DE BER
+  assert.equal(resolveLdcSupplier(['AT']).supplierCode, 'CZ PRG')
+})
+
 test('挪威/芬兰：北极极地城市 → 北，常规 → 南', () => {
   assert.equal(resolveLdcSupplier(['NO'], { arctic: false }).supplierCode, 'NO OSL')
   assert.equal(resolveLdcSupplier(['NO'], { arctic: true }).supplierCode, 'NO ALT')

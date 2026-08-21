@@ -9,7 +9,7 @@ import { getApiToken } from '@/lib/api-config'
 import { matchCity } from '@/lib/city-match'
 import { toast } from '@/components/toast'
 
-const ACCEPTED = '.pdf,.docx,.xlsx,.xls'
+const ACCEPTED = '.pdf,.doc,.docx,.xlsx,.xls'
 const MAX_SIZE = 10 * 1024 * 1024 // 10MB
 
 export default function UploadModal({ open, onClose, pendingFile = null, onPendingHandled }) {
@@ -134,8 +134,8 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
   const handleFile = useCallback(async (file) => {
     // Validate
     const ext = file.name.split('.').pop().toLowerCase()
-    if (!['pdf', 'docx', 'xlsx', 'xls'].includes(ext)) {
-      setError('不支持的文件格式，请上传 PDF、Word (.docx) 或 Excel (.xlsx) 文件')
+    if (!['pdf', 'doc', 'docx', 'xlsx', 'xls'].includes(ext)) {
+      setError('不支持的文件格式，请上传 PDF、Word (.doc/.docx) 或 Excel (.xlsx) 文件')
       return
     }
     if (file.size > MAX_SIZE) {
@@ -283,7 +283,7 @@ export default function UploadModal({ open, onClose, pendingFile = null, onPendi
                   拖拽文件到此处，或点击选择文件
                 </p>
                 <p className="text-xs mt-2" style={{ color: 'var(--text-tertiary)' }}>
-                  支持 PDF、Word (.docx)、Excel (.xlsx) — 最大 10MB
+                  支持 PDF、Word (.doc/.docx)、Excel (.xlsx) — 最大 10MB
                 </p>
               </div>
               <input

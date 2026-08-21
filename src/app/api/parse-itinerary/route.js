@@ -125,6 +125,13 @@ export async function POST(request) {
       const result = await mammoth.extractRawText({ buffer })
       text = result.value
     }
+    // ---- Word .doc（97-2003 老格式，OLE 复合文档；word-extractor 纯 Node 解析）----
+    else if (fileName.endsWith('.doc') || mimeType === 'application/msword') {
+      const WordExtractor = (await import('word-extractor')).default
+      const extractor = new WordExtractor()
+      const extracted = await extractor.extract(buffer)
+      text = extracted.getBody()
+    }
     // ---- Excel .xlsx / .xls ----
     else if (
       fileName.endsWith('.xlsx') ||
@@ -142,7 +149,7 @@ export async function POST(request) {
     // ---- Unsupported ----
     else {
       return NextResponse.json(
-        { error: '不支持的文件格式，请上传 PDF、Word (.docx) 或 Excel (.xlsx) 文件' },
+        { error: '不支持的文件格式，请上传 PDF、Word (.doc/.docx) 或 Excel (.xlsx) 文件' },
         { status: 400 },
       )
     }

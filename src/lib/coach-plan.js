@@ -439,8 +439,12 @@ export function applyQuoteRules(parsed) {
       } else if (multiNight || !next) {
         // 同城连住（或抵达日是最后一天）→ STD MTC 接机（arrival 可能为空：i=0 兜底路径，中国出发默认 APT/HTL）
         d.items.push(makePickup(categoryFor(arrival?.transportMode) || 'APT/HTL', d))
+      } else if (i === 0) {
+        // 首个地面日抵达（单晚换城，如德奥 Day1 法兰克福、次日海德堡）→ 当地 STD MTC 接机（APT/HTL），
+        // 段从第 2 天起（用户口径 2026-08-21，KT 实操校准：Day1 只接机，大巴从 Day2 开始）
+        d.items.push(makePickup(categoryFor(arrival?.transportMode) || 'APT/HTL', d))
       } else {
-        // 单晚停留的抵达日 → 段从当天开始，fromCity 取抵达城市（如首日飞抵马赛 / 飞抵巴勒莫）
+        // 中途单晚停留的抵达日（R3/R4 断开落地等）→ 段从当天开始，fromCity 取抵达城市（如飞抵巴勒莫）
         cur = {
           startDay: d.dayNumber,
           startCity: overnight(d),
@@ -533,11 +537,17 @@ export function applyQuoteRules(parsed) {
     }
 
     // R2：落地同城段（被飞机/火车断开后、同城停留多天、无地面跨城移动）→ 当地车，脱离 LDC。
-    // 判定：段首日前一天是「抵达日」（跨城抵达落地）→ 该段是落地停留段（startCity==endCity 同城）。
+    // 判定：段首日前一天是「抵达日」（跨城抵达落地）且**段内每天过夜城市都与抵达日同城**
+    //   （落地后原地停留，无地面跨城移动）→ 落地同城段。
+    // 注意：不能只比 seg.startCity==seg.endCity —— 首日抵达后第 2 天起的新段若当天换城
+    //   （如 D1 巴黎落地、D2 尼斯），段首尾可能同城但实际已跨城，误判为 R2 会吞掉 THROUGH COACH。
     // 纯本地行程（无断开，如特罗姆瑟 2 天）不适用 —— 段首日前无抵达 → 保持正常 LDC 段。
     const prevDay = realDays.find((d) => d.dayNumber === seg.startDay - 1)
     const isArrivalLanding = prevDay ? isRealArrivalAt(realDays.indexOf(prevDay)) : false
-    const isLocalSegment = isSameCity(seg.startCity, seg.endCity) && isArrivalLanding
+    const isLocalSegment = isArrivalLanding && !!prevDay &&
+      realDays
+        .filter((d) => d.dayNumber >= seg.startDay && d.dayNumber <= seg.endDay)
+        .every((d) => isSameCity(overnight(d), overnight(prevDay)))
     if (isLocalSegment) {
       for (let dn = seg.startDay; dn <= seg.endDay; dn++) {
         const dd = realDays.find((d) => d.dayNumber === dn)
@@ -561,24 +571,68 @@ export function applyQuoteRules(parsed) {
       const dd = realDays.find((d) => d.dayNumber === dn)
       if (!dd) continue
       const fee = dailyFeeFor(dd)
-      if (!fee) continue
-      const feeCountry = getCityCode(fee.city, fee.cityEn)?.countryCode || ''
-      dd.items.push({
-        type: 'transport',
-        transportMode: 'bus',
-        name: fee.cityEn ? `${fee.cityEn} - ${fee.note}` : fee.note,
-        nameEn: 'THROUGH COACH (GLS)',
-        costCategory: 'paid',
-        estimatedCost: 0,
-        price: fee.amount || 0,
-        currency: fee.currency || 'EUR',
-        priceUnit: 'perGroup',
-        quoteKind: 'daily-fee',
-        quoteOrder: 21,
-        cityCode: fee.code,
-        countryCode: feeCountry,
-        notes: fee.note,
-      })
+      if (fee) {
+        const feeCountry = getCityCode(fee.city, fee.cityEn)?.countryCode || ''
+        dd.items.push({
+          type: 'transport',
+          transportMode: 'bus',
+          name: fee.cityEn ? `${fee.cityEn} - ${fee.note}` : fee.note,
+          nameEn: 'THROUGH COACH (GLS)',
+          costCategory: 'paid',
+          estimatedCost: 0,
+          price: fee.amount || 0,
+          currency: fee.currency || 'EUR',
+          priceUnit: 'perGroup',
+          quoteKind: 'daily-fee',
+          quoteOrder: 21,
+          cityCode: fee.code,
+          countryCode: feeCountry,
+          notes: fee.note,
+        })
+      }
+      // 德国境内每天增值税附加费（KT 录入口径 2026-08-21：Base - GERMAN VAT，€90.43/天）
+      const dayCountry = getCityCode(dd.cityName, dd.cityNameEn)?.countryCode
+      if (dayCountry === 'DE') {
+        const vat = QUOTE_RATES.germanVat
+        const dayCode = dd.cityCode || getCityCode(dd.cityName, dd.cityNameEn)?.cityCode || ''
+        dd.items.push({
+          type: 'transport',
+          transportMode: 'bus',
+          name: 'Base - GERMAN VAT',
+          nameEn: 'THROUGH COACH (GLS)',
+          costCategory: 'paid',
+          estimatedCost: 0,
+          price: vat.price,
+          currency: vat.currency,
+          priceUnit: vat.priceUnit,
+          quoteKind: 'daily-fee',
+          quoteOrder: 21,
+          cityCode: dayCode,
+          countryCode: 'DE',
+          notes: vat.note,
+        })
+      }
+      // 奥地利境内每天道路通行费（KT 录入口径 2026-08-21：Austria ROAD TAX PAID BY DRIVER，€47.87/天）
+      if (dayCountry === 'AT') {
+        const tax = QUOTE_RATES.austriaRoadTax
+        const dayCode = dd.cityCode || getCityCode(dd.cityName, dd.cityNameEn)?.cityCode || ''
+        dd.items.push({
+          type: 'transport',
+          transportMode: 'bus',
+          name: 'Austria ROAD TAX PAID BY DRIVER',
+          nameEn: 'THROUGH COACH (GLS)',
+          costCategory: 'paid',
+          estimatedCost: 0,
+          price: tax.price,
+          currency: tax.currency,
+          priceUnit: tax.priceUnit,
+          quoteKind: 'daily-fee',
+          quoteOrder: 21,
+          cityCode: dayCode,
+          countryCode: 'AT',
+          notes: tax.note,
+        })
+      }
     }
   }
 
