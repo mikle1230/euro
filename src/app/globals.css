@@ -212,12 +212,12 @@ button:not(:disabled),
   animation: fade-up 0.4s ease-out both;
 }
 
-/* ---- 统一 focus-visible（键盘可感知，触控不闪烁） ---- */
-.focus-ring {
+/* ---- 统一 focus-visible（仅键盘聚焦时显示，避免常驻描边） ---- */
+.focus-ring:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-.focus-ring-mice {
+.focus-ring-mice:focus-visible {
   outline: 2px solid var(--mice-accent);
   outline-offset: 2px;
 }
