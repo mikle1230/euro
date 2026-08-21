@@ -17,13 +17,6 @@ function nearTags(near) {
   return String(near).split(/[/、,，]/).map((s) => s.trim()).filter(Boolean)
 }
 
-// 卡片首字（供 monogram 视觉锚点）：中文取首字，拉丁取首字母
-function initialOf(name, nameZh) {
-  const src = (nameZh || name || '').trim()
-  if (!src) return '🏨'
-  return src.charAt(0).toUpperCase()
-}
-
 // 排序：评分（默认）/ 价格升 / 价格降 / 星级；价格 0（待定）始终排最后
 function sortedHotels(hotels, sort) {
   const arr = [...hotels]
@@ -67,7 +60,6 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
   // 价格以 hotel list 实际价为准：推荐库酒店若在报价库匹配到 → 显示 €/人（标间单人价）
   const quote = findHotelQuote(cityCode, h.name)
   const fromList = !!quote?.pp
-  const init = initialOf(h.name, h.nameZh)
 
   return (
     <article
@@ -79,12 +71,30 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
         animationDelay: stagger(idx).animationDelay,
       }}
     >
-      {/* Monogram 视觉锚点 */}
-      <div className="relative h-16 shrink-0 flex items-center px-4" style={{ background: 'linear-gradient(120deg, var(--accent), var(--accent-dim))' }}>
-        <span className="font-display font-bold text-2xl text-white leading-none select-none" aria-hidden="true">{init}</span>
-        <span className="ml-auto font-mono text-[10px] text-white/80" style={{ letterSpacing: '0.02em' }}>{showCity ? h.cityCode : ''}</span>
+      {/* 深蓝条：酒店名称（中英文）+ 价格 */}
+      <div className="shrink-0 px-4 py-3" style={{ background: 'linear-gradient(120deg, #0a7aa6, #075e83)' }}>
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <h3 className="font-semibold text-[15px] leading-snug" style={{ color: '#fff' }} title={h.name}>
+              {h.name}
+            </h3>
+            {h.nameZh && (
+              <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.86)' }}>{h.nameZh}</div>
+            )}
+          </div>
+          <div className="shrink-0 text-right whitespace-nowrap">
+            {fromList ? (
+              <div className="text-sm font-bold leading-none" style={{ color: '#fff' }}>€{quote.pp}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>/人</span></div>
+            ) : h.priceEur ? (
+              <div className="text-sm font-bold leading-none" style={{ color: '#fff' }}>€{h.priceEur}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>/晚</span></div>
+            ) : (
+              <div className="text-[11px]" style={{ color: 'rgba(255,255,255,0.72)' }}>价格待定</div>
+            )}
+          </div>
+        </div>
       </div>
 
+      {/* 白色区：城市/介绍 + 标签 */}
       <div className="p-3.5 flex flex-col flex-1">
         {showCity && (
           <div className="text-[11px] mb-2 font-medium" style={{ color: 'var(--text-tertiary)' }}>
@@ -92,30 +102,8 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
           </div>
         )}
 
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <h3
-              className="font-semibold text-[15px] leading-snug"
-              style={{ color: 'var(--text-primary)' }}
-              title={h.name}
-            >
-              {h.name}
-            </h3>
-            {h.nameZh && <div className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>{h.nameZh}</div>}
-          </div>
-          <div className="shrink-0 text-right whitespace-nowrap">
-            {fromList ? (
-              <div className="text-sm font-semibold leading-none" style={{ color: 'var(--gold)' }}>€{quote.pp}<span className="text-[10px] font-normal">/人</span></div>
-            ) : h.priceEur ? (
-              <div className="text-sm font-semibold leading-none" style={{ color: 'var(--gold)' }}>€{h.priceEur}<span className="text-[10px] font-normal">/晚</span></div>
-            ) : (
-              <div className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>价格待定</div>
-            )}
-          </div>
-        </div>
-
         {h.area && (
-          <div className="text-xs mt-2 leading-snug" style={{ color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
+          <div className="text-xs leading-snug" style={{ color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
             {h.area}
           </div>
         )}
