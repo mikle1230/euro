@@ -40,6 +40,13 @@ body {
   --gold: #5f7113;
   --gold-dim: #e9efcf;
 
+  /* MICE 专属暖色点缀（与酒店库冷蓝区分）：#C2410C = 5.9:1 on card / 5.5:1 on surface */
+  --mice-accent: #C2410C;
+  --mice-accent-hover: #B13A0A;
+  --mice-accent-subtle: rgba(194, 65, 12, 0.12);
+  /* 保证白字 ≥4.5:1 的按钮/强调底色（深浅主题同用） */
+  --mice-accent-strong: #C2410C;
+
   --border-color: #c3d5e8;
   --border-light: #d3e0ef;
 
@@ -73,6 +80,12 @@ body {
   /* 青柠在深底 8.67:1，直接用作价格/高亮 */
   --gold: #AEC60C;
   --gold-dim: #262f0e;
+
+  /* MICE 暖色在深底提亮：#F2762E = 6.0:1 on card */
+  --mice-accent: #F2762E;
+  --mice-accent-hover: #F28A4D;
+  --mice-accent-subtle: rgba(242, 118, 46, 0.16);
+  --mice-accent-strong: #C2410C;
 
   --border-color: #1b3350;
   --border-light: #233f5e;
@@ -189,3 +202,31 @@ button:not(:disabled),
 :root[data-theme="dark"] .badge-restaurant { color: #f0906a; }
 :root[data-theme="dark"] .badge-transport { color: #a78bfa; }
 :root[data-theme="dark"] .badge-guide { color: #a0aec0; }
+
+/* ---- 目录/资料库卡片入场动效（克制，reduced-motion 关闭） ---- */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up {
+  animation: fade-up 0.4s ease-out both;
+}
+
+/* ---- 统一 focus-visible（键盘可感知，触控不闪烁） ---- */
+.focus-ring {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.focus-ring-mice {
+  outline: 2px solid var(--mice-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none !important;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}

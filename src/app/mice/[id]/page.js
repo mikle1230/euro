@@ -7,8 +7,8 @@ import MiceImage from '@/components/mice-image'
 import { toast } from '@/components/toast'
 
 const CATEGORY_STYLE = {
-  'Activity': { label: '🎪 活动', color: 'var(--accent)' },
-  'Technical Visit': { label: '🏭 技术参访', color: '#8b5cf6' },
+  'Activity': { label: '🎪 活动', color: 'var(--mice-accent)', bg: 'var(--mice-accent-subtle)' },
+  'Technical Visit': { label: '🏭 技术参访', color: '#7c5cff', bg: 'rgba(124, 92, 255, 0.14)' },
 }
 
 function statusBadge(status) {
@@ -17,13 +17,26 @@ function statusBadge(status) {
   return null
 }
 
-function MetaItem({ icon, label, value }) {
+function SpecItem({ icon, label, value }) {
   if (!value) return null
   return (
-    <div className="flex items-start gap-2 text-sm py-1.5">
+    <div className="flex items-start gap-2.5 py-2">
       <span className="w-5 shrink-0 text-center" style={{ color: 'var(--text-tertiary)' }}>{icon}</span>
-      <span className="text-xs w-20 shrink-0 font-medium" style={{ color: 'var(--text-tertiary)' }}>{label}</span>
-      <span style={{ color: 'var(--text-primary)', overflowWrap: 'break-word' }}>{value}</span>
+      <div className="min-w-0 flex-1">
+        <div className="text-[11px] font-medium" style={{ color: 'var(--text-tertiary)' }}>{label}</div>
+        <div className="text-sm mt-0.5" style={{ color: 'var(--text-primary)', overflowWrap: 'break-word' }}>{value}</div>
+      </div>
+    </div>
+  )
+}
+
+function InfoCard({ icon, title, children, empty }) {
+  return (
+    <div className="rounded-2xl border p-5" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
+      <h2 className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>
+        <span className="text-base">{icon}</span>{title}
+      </h2>
+      {children || <p className="text-sm leading-relaxed" style={{ color: 'var(--text-tertiary)' }}>{empty}</p>}
     </div>
   )
 }
@@ -38,13 +51,13 @@ export default function MiceDetailPage({ params }) {
         <div className="text-center">
           <p className="text-3xl mb-3">🤷</p>
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>未找到该活动</p>
-          <Link href="/mice" className="inline-block mt-4 text-xs underline" style={{ color: 'var(--accent)' }}>← 返回活动目录</Link>
+          <Link href="/mice" className="inline-block mt-4 text-xs underline" style={{ color: 'var(--mice-accent)' }}>← 返回活动目录</Link>
         </div>
       </div>
     )
   }
 
-  const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)' }
+  const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)', bg: 'var(--bg-surface)' }
   const closed = statusBadge(a.productStatus)
   const country = resolveCountry(a.country)
   const priceUnitLabel = { pax: '按人', group: '按团', hour: '按小时', course: '按课程', rental: '按租赁', 'set menus/pax': '按套餐/人' }
@@ -68,45 +81,48 @@ export default function MiceDetailPage({ params }) {
     }
   }
 
+  const address = [a.streetAddress, a.city, country?.nameZh || a.country].filter(Boolean).join('，')
+
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-4">
         {/* 面包屑 */}
         <div className="text-xs mb-4 flex items-center gap-2" style={{ color: 'var(--text-tertiary)' }}>
-          <Link href="/mice" className="hover:text-[var(--accent)] transition-colors">🎪 MICE 活动</Link>
+          <Link href="/mice" className="hover:text-[var(--mice-accent)] transition-colors">🎪 MICE 活动</Link>
           <span>/</span>
           <span className="truncate max-w-64">{a.title}</span>
         </div>
 
-        {/* 大图 */}
-        <div className="rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)' }}>
-          <MiceImage activity={a} className="w-full max-h-80" fallbackEmoji={a.category === 'Technical Visit' ? '🏭' : '🎪'} />
+        {/* 大图 Hero */}
+        <div className="relative overflow-hidden rounded-2xl border" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)' }}>
+          <div className="aspect-[16/9] md:aspect-[21/9]">
+            <MiceImage activity={a} className="w-full h-full object-cover" fallbackEmoji={a.category === 'Technical Visit' ? '🏭' : '🎪'} />
+          </div>
+          <div className="absolute inset-x-0 top-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7,21,33,0.35), transparent)' }} />
+          <div className="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
+            <span className="text-xs px-2.5 py-1 rounded-full font-semibold backdrop-blur" style={{ background: cat.bg, color: cat.color }}>{cat.label}</span>
+            {closed && <span className="text-xs px-2.5 py-1 rounded-full font-semibold backdrop-blur" style={closed.cls}>{closed.text}</span>}
+          </div>
         </div>
 
-        {/* 标题 + 状态 */}
-        <div className="mt-4 flex items-start justify-between gap-3 flex-wrap">
+        {/* 标题 + 价格 */}
+        <div className="mt-5 flex items-start justify-between gap-3 flex-wrap">
           <div className="min-w-0 flex-1">
-            <h1 className="font-display font-bold text-xl leading-snug" style={{ color: 'var(--text-primary)' }}>
+            <h1 className="font-display font-bold text-2xl leading-snug" style={{ color: 'var(--text-primary)', textWrap: 'balance' }}>
               {a.title}
             </h1>
-            <div className="flex items-center gap-1.5 mt-2 flex-wrap">
-              <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: cat.color + '20', color: cat.color }}>
-                {cat.label}
-              </span>
-              <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
+            <div className="flex items-center gap-1.5 mt-3 flex-wrap">
+              <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
                 {country?.flag || ''} {country?.nameZh || a.country}
               </span>
               {a.targetTourCategories.map((t) => (
-                <span key={t} className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>
-                  {t}
-                </span>
+                <span key={t} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>{t}</span>
               ))}
-              {closed && <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={closed.cls}>{closed.text}</span>}
             </div>
           </div>
           <div className="text-right shrink-0">
-            <div className="text-lg font-bold" style={{ color: 'var(--gold)' }}>{price}<span className="text-xs font-normal">{unit}</span></div>
-            {a.officeInCharge && <div className="text-[10px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>负责：{a.officeInCharge}</div>}
+            <div className="text-2xl font-bold leading-none" style={{ color: 'var(--mice-accent)' }}>{price}<span className="text-sm font-normal">{unit}</span></div>
+            {a.officeInCharge && <div className="text-[11px] mt-1.5" style={{ color: 'var(--text-tertiary)' }}>负责：{a.officeInCharge}</div>}
           </div>
         </div>
 
@@ -115,59 +131,62 @@ export default function MiceDetailPage({ params }) {
           <button
             onClick={handleAddToDraft}
             disabled={!!closed}
-            className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all disabled:opacity-50"
-            style={{ background: 'var(--accent-strong)', color: '#fff' }}
+            className="inline-flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-medium transition-all disabled:opacity-50 focus-ring-mice hover:-translate-y-0.5"
+            style={{ background: 'var(--mice-accent-strong)', color: '#fff' }}
           >
             ➕ 复制到报价单（行程草稿）
           </button>
           {a.officialWebsite && (
             <a href={a.officialWebsite} target="_blank" rel="noreferrer"
-               className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium border transition-all"
+               className="inline-flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-medium border transition-all hover:-translate-y-0.5 focus-ring-mice"
                style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
               🌐 官网
             </a>
           )}
           {a.googleMapLink && (
             <a href={a.googleMapLink} target="_blank" rel="noreferrer"
-               className="inline-flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium border transition-all"
+               className="inline-flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-medium border transition-all hover:-translate-y-0.5 focus-ring-mice"
                style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
               🗺️ Google 地图
             </a>
           )}
         </div>
 
-        {/* 详情 */}
+        {/* 介绍 + 行程示例 */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* 描述 */}
-          <div className="rounded-xl border p-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-            <h2 className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>📋 活动介绍</h2>
-            <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-secondary)' }}>
-              {a.description || '暂无描述'}
-            </p>
-          </div>
-          {/* 行程示例 */}
-          <div className="rounded-xl border p-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-            <h2 className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>🗓️ 行程示例（Tour Program）</h2>
-            <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-secondary)' }}>
-              {a.tourProgramExample || '暂无行程示例'}
-            </p>
-          </div>
+          <InfoCard icon="📋" title="活动介绍" empty="暂无描述">
+            <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-secondary)' }}>{a.description || ''}</p>
+          </InfoCard>
+          <InfoCard icon="🗓️" title="行程示例（Tour Program）" empty="暂无行程示例">
+            <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-secondary)' }}>{a.tourProgramExample || ''}</p>
+          </InfoCard>
         </div>
 
-        {/* 资源信息 */}
-        <div className="mt-4 rounded-xl border p-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-          <h2 className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>ℹ️ 资源与信息</h2>
-          <MetaItem icon="👥" label="容量" value={a.capacityMin > 0 || a.capacityMax > 0 ? `${a.capacityMin || '?'}–${a.capacityMax || '?'} 人${a.capacityDetails ? `（${a.capacityDetails}）` : ''}` : (a.capacityDetails || '')} />
-          <MetaItem icon="💰" label="价格" value={`${price}${unit ? `（${unit}）` : ''}`} />
-          <MetaItem icon="⏱️" label="时长" value={a.activityDuration} />
-          <MetaItem icon="🕐" label="营业时间" value={a.openingHours} />
-          <MetaItem icon="📅" label="最佳季节" value={a.bestTimeToVisit.length ? a.bestTimeToVisit.join('、') : ''} />
-          <MetaItem icon="📍" label="地址" value={[a.streetAddress, a.city, country?.nameZh || a.country].filter(Boolean).join('，')} />
-          <MetaItem icon="🏷️" label="标签" value={a.tags.length ? a.tags.map((t) => `#${t}`).join(' ') : ''} />
-          {a.subCategoryForActivity && <MetaItem icon="🗂️" label="子类目" value={a.subCategoryForActivity} />}
-          {a.salesNotes && <MetaItem icon="💡" label="销售提示" value={a.salesNotes} />}
-          {a.productStatus && <MetaItem icon="📌" label="状态" value={a.productStatus} />}
-          {a.officeInCharge && <MetaItem icon="🏢" label="负责办公室" value={a.officeInCharge} />}
+        {/* 资源与信息 */}
+        <div className="mt-4 rounded-2xl border p-5" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
+          <h2 className="flex items-center gap-2 text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>
+            <span className="text-base">ℹ️</span> 资源与信息
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0 mt-2">
+            <div>
+              <SpecItem icon="👥" label="容量" value={a.capacityMin > 0 || a.capacityMax > 0 ? `${a.capacityMin || '?'}–${a.capacityMax || '?'} 人${a.capacityDetails ? `（${a.capacityDetails}）` : ''}` : (a.capacityDetails || '')} />
+              <SpecItem icon="💰" label="价格" value={`${price}${unit ? `（${unit}）` : ''}`} />
+              <SpecItem icon="⏱️" label="时长" value={a.activityDuration} />
+              <SpecItem icon="🕐" label="营业时间" value={a.openingHours} />
+            </div>
+            <div>
+              <SpecItem icon="📅" label="最佳季节" value={a.bestTimeToVisit.length ? a.bestTimeToVisit.join('、') : ''} />
+              <SpecItem icon="📍" label="地址" value={address} />
+              <SpecItem icon="🏷️" label="标签" value={a.tags.length ? a.tags.map((t) => `#${t}`).join(' ') : ''} />
+              <SpecItem icon="🗂️" label="子类目" value={a.subCategoryForActivity} />
+            </div>
+          </div>
+          {(a.salesNotes || a.productStatus) && (
+            <div className="mt-3 pt-3 border-t" style={{ borderColor: 'var(--border-color)' }}>
+              <SpecItem icon="💡" label="销售提示" value={a.salesNotes} />
+              <SpecItem icon="📌" label="状态" value={a.productStatus} />
+            </div>
+          )}
         </div>
       </div>
     </div>
