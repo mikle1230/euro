@@ -590,11 +590,14 @@ export function applyQuoteRules(parsed) {
           notes: fee.note,
         })
       }
-      // 德国境内每天增值税附加费（KT 录入口径 2026-08-21：Base - GERMAN VAT，€90.43/天）
-      const dayCountry = getCityCode(dd.cityName, dd.cityNameEn)?.countryCode
+      // 国家判定用「当晚过夜城市」（finalCityName || cityName）：当天进入奥地利住萨尔茨堡 → 算奥地利日。
+      // 如 D6 贝斯特斯加登（DE）白天、当晚住萨尔茨堡（AT）→ Austria ROAD TAX 而非 GERMAN VAT。
+      const overnightName = overnight(dd)
+      const overnightEn = dd.finalCityNameEn || dd.cityNameEn || ''
+      const dayCountry = getCityCode(overnightName, overnightEn)?.countryCode
       if (dayCountry === 'DE') {
         const vat = QUOTE_RATES.germanVat
-        const dayCode = dd.cityCode || getCityCode(dd.cityName, dd.cityNameEn)?.cityCode || ''
+        const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
         dd.items.push({
           type: 'transport',
           transportMode: 'bus',
@@ -615,7 +618,7 @@ export function applyQuoteRules(parsed) {
       // 奥地利境内每天道路通行费（KT 录入口径 2026-08-21：Austria ROAD TAX PAID BY DRIVER，€47.87/天）
       if (dayCountry === 'AT') {
         const tax = QUOTE_RATES.austriaRoadTax
-        const dayCode = dd.cityCode || getCityCode(dd.cityName, dd.cityNameEn)?.cityCode || ''
+        const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
         dd.items.push({
           type: 'transport',
           transportMode: 'bus',
