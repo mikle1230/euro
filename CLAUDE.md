@@ -137,16 +137,20 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
 - **改固定费率**（保险）→ 只动 `lib/quote-rates.js`；**前后夜已按 LDC 区域细分**（西欧 €120/荷比卢 €135/英国 £110/北欧 €148…）→ 改 `lib/ldc-mapping.js` 各 SUPPLIERS 条目的 `prepost` 字段（`quote-rates.prepostNight` 仅作未命中 LDC 时的兜底；**界面不显示金额**，只显示区域名）
 - **用车规则**（用户口径，applyQuoteRules 在 coach-plan.js）：
   1. **中国出发/返程日**（上海等 CN 城市，含 day 0）只展示，**不参与分段**（避免返程日产生虚的 THROUGH COACH/PRE-POST）
-  2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、波兰→PL WAW 从华沙调车；2026-08-19 修正，曾误改为段起始城市——用户录入里的 WAW/PL 正是 polandMono 供应商码）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市、国/城用供应商），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
+  2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、**德奥组合→DE BER**、波兰→PL WAW 从华沙调车；2026-08-19 修正，曾误改为段起始城市——用户录入里的 WAW/PL 正是 polandMono 供应商码；2026-08-21 修正：德奥行程 KT 曾误录 IT ROM，必须 DE BER）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市、国/城用供应商），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
   3. **EMPTY RUN 空驶**：**每段都有**（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to **真实车程**（route.js 调 `patchEmptyRunRoadKm` → OSRM 免费路线服务，失败回退 `estimateRoadKmFallback` 直线×1.3）；`quantity`=公里数，quoteOrder 22
-  4. **抵达日分两种**：transit 终点=当晚过夜城市或当天白天城市 → 若**第 1 天与第 2 天住不同城市**（次日换城）则从第 1 天起用 LDC（THROUGH COACH 负责接机，**不加 STD MTC**，如飞抵马赛当夜住瓦朗索勒、飞抵巴勒莫）；若**同城住宿 ≥2 天**则第 1 天单独接机 STD MTC（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），第 2 天起用 LDC；**接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL，2026-08-18 更新）
-  5. **送机 MTC**（2026-08-21 更新，替代 8-18 的"总是单独送机"）：离境日（返程航班日）**当天有行程内容**（白天游览/活动）→ THROUGH COACH 段**覆盖到返程日当天**（大巴白天仍用、送机场也由大巴完成，不单独注入送机，如 B线法意瑞 D11 罗马→北京上午游览）；**纯送机**（无白天活动）→ 断段，THROUGH COACH 止于前一天，单独注入送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）
+  4. **抵达日分两种**（2026-08-21 更新，KT 实操校准，替代 8-18 口径）：
+     - **首个地面日抵达**（行程含航班；realDays 首日）→ **第 1 天单独当地 STD MTC 接机**（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），**不开 THROUGH COACH 段，段从第 2 天起**（如德奥 Day1 法兰克福接机；原"单晚换城从第 1 天起用 LDC 接机"已废弃）
+     - **中途单晚停留的抵达日**（R3/R4 断开落地，realDays 非首日）→ 段从当天开始（THROUGH COACH 负责接机）
+     - **同城住宿 ≥2 天** → 第 1 天接机 STD MTC、第 2 天起 LDC
+     - **接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL）
+  5. **送机 MTC**（2026-08-21 更新，替代 8-18 的"总是单独送机"）：离境日（返程航班日）**当天有行程内容**（白天游览/活动）→ THROUGH COACH 段**覆盖到返程日当天**（大巴白天仍用、送机场也由大巴完成，不单独注入送机，如 B线法意瑞 D11 罗马→北京上午游览）；**纯送机**（无白天活动，早餐不算）→ 断段，THROUGH COACH 止于前一天，单独注入送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）
   6. **PRE/POST 前后夜**：每个 LDC 段首天注入（有 THROUGH COACH 才有），金额不显示
-  7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21
+  7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21；**德国境内每天另注 GERMAN VAT**（`Base - GERMAN VAT`，€90.43/天，quote-rates.js `germanVat`，quoteOrder 21）；**奥地利境内每天另注 ROAD TAX**（`Austria ROAD TAX PAID BY DRIVER`，€47.87/天，quote-rates.js `austriaRoadTax`，quoteOrder 21）
   8. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入
   9. **当地独立用车规则**（2026-08-19 新增，参数在 `src/data/coach-rules.js`，说明见 `docs/coach-rules.md`）：
      - **R1 单接送机**：首日仅接机 → `{城} - APT/HTL`；末日仅送机 → `{城} - HTL/APT`（有半天活动 → `{城} - APT - X HOURS`）
-     - **R2 落地同城段**：被飞机/火车断开后、同城停留多天且无地面跨城移动（段首日前一天是抵达日且段首尾同城）→ **当地车**（每天一条 `{城} - X HOURS`，quoteKind `local-mtc`，脱离 LDC，不注入 THROUGH COACH/EMPTY RUN/PRE-POST）
+     - **R2 落地同城段**：被飞机/火车断开后、同城停留多天且无地面跨城移动（段首日前一天是抵达日且**段内每天过夜城市都与抵达日同城**）→ **当地车**（每天一条 `{城} - X HOURS`，quoteKind `local-mtc`，脱离 LDC，不注入 THROUGH COACH/EMPTY RUN/PRE-POST；只比段首尾同城会误判首日抵达后次日换城的段）
      - **R3 断开 ≤400km**（`estimateRoadKmFallback` 断开 from→to）：默认 `local-then-ldc`（落地后开始 THROUGH COACH）；可切 `ldc-continuous`（THROUGH COACH 跨断开连续，**不换车**，高端团/客户指定团）
      - **R4 断开 >400km**：落地后开始 THROUGH COACH（断开前当地车在 AI 数据含出发城当天时注入 `{城} - APT - X HOURS`）
      - 当地车小时数默认 `05 HOURS`（`localMtcHours`，凭经验多留 buffer；从 `std-mtc-options.js` 城市选项表精确匹配）

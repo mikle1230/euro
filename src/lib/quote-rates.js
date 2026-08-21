@@ -17,4 +17,18 @@ export const QUOTE_RATES = {
     currency: 'EUR',
     note: '€120/晚',
   },
+  // 德国境内每日增值税附加费（KT 录入口径 2026-08-21：Base - GERMAN VAT，每天约 €90.43）
+  germanVat: {
+    price: 90.43,
+    currency: 'EUR',
+    priceUnit: 'perGroup',
+    note: 'GERMAN VAT',
+  },
+  // 奥地利境内每日道路通行费（KT 录入口径 2026-08-21：Austria ROAD TAX PAID BY DRIVER，€47.87/天）
+  austriaRoadTax: {
+    price: 47.87,
+    currency: 'EUR',
+    priceUnit: 'perGroup',
+    note: 'Austria ROAD TAX PAID BY DRIVER',
+  },
 }
