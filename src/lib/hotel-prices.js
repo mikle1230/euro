@@ -4,6 +4,7 @@
 // 纯函数、无 'use client'，服务端/客户端通用。
 // 数据由 scripts/build-hotel-prices.js 生成（npm run build:hotels）。
 import hotelPrices from '../data/hotel-prices.json' with { type: 'json' }
+import hotelPriceIntros from '../data/hotel-price-intros.json' with { type: 'json' }
 import { COUNTRY_NAMES } from '../data/countries.js'
 
 // '2026-09-08' → '9月'；解析失败/空返回 null
@@ -83,7 +84,14 @@ export function getHotelQuoteCatalog() {
     const hotelMap = new Map()
     for (const h of c.hotels || []) {
       if (!hotelMap.has(h.hotel)) {
-        hotelMap.set(h.hotel, { hotel: h.hotel, star: h.star || 0, rating: h.rating || 0, prices: [] })
+        hotelMap.set(h.hotel, {
+          hotel: h.hotel,
+          star: h.star || 0,
+          rating: h.rating || 0,
+          // 简介/位置：hotel-price-intros.json 补充（若缺则空，卡片自动省略该行）
+          area: hotelPriceIntros[`${cityCode}|${h.hotel}`] || '',
+          prices: [],
+        })
       }
       hotelMap.get(h.hotel).prices.push({ month: h.month, pp: h.pp })
     }
