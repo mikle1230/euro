@@ -24,11 +24,17 @@ export const QUOTE_RATES = {
     priceUnit: 'perGroup',
     note: 'GERMAN VAT',
   },
-  // 奥地利境内每日道路通行费（KT 录入口径 2026-08-21：Austria ROAD TAX PAID BY DRIVER，€47.87/天）
-  austriaRoadTax: {
-    price: 47.87,
-    currency: 'EUR',
-    priceUnit: 'perGroup',
-    note: 'Austria ROAD TAX PAID BY DRIVER',
+  // LDC 路税/过路费（KT 国家映射表 2026-08-21）：行程经过下列国家**强制生成**路税项目（不可遗漏），
+  // 金额/计费单位暂未确认 → price=0，由操作员在真实 KT 录入时按当地政策/实际费用手填（按天/按次/打包）。
+  roadTax: {
+    NO: { name: 'LDC路税', note: 'LDC路税（金额待操作员实填）' },
+    CH: { name: 'LDC路税', note: 'LDC路税（金额待操作员实填）' },
+    DE: { name: 'LDC路税', note: 'LDC路税（金额待操作员实填）' },
+    AT: { name: 'Austria ROAD TAX PAID BY DRIVER', note: 'Austria ROAD TAX（金额待操作员实填）' },
+    HU: { name: 'Budapest - HUGO ROAD TOLL', note: 'Hungary ROAD TOLL（金额待操作员实填）' },
+    CZ: { name: 'Prague - CZ ROAD TAX', note: 'Czech ROAD TAX（金额待操作员实填）' },
+    SI: { name: 'Ljubljana - ROAD TAX', note: 'Slovenia ROAD TAX（金额待操作员实填）' },
+    SK: { name: 'Bratislava - ROAD TAX PER DAY', note: 'Slovakia ROAD TAX（金额待操作员实填）' },
+    CR: { name: 'Zagreb - Croatian Road Tax', note: 'Croatia Road Tax（金额待操作员实填）' },
   },
 }
