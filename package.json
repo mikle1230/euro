@@ -11,6 +11,7 @@
     "build:data": "node scripts/build-quos-cities.js && node scripts/build-city-hints.js && node scripts/build-city-coords.js",
     "build:hotels": "node scripts/build-hotel-prices.js",
     "build:ancillary": "node scripts/build-ancillary-fees.js",
+    "mice:images": "node scripts/mice-images-optimize.js",
     "images:check": "node scripts/normalize-images.mjs --check",
     "images:fix": "node scripts/normalize-images.mjs --fix",
     "images:watch": "node scripts/normalize-images.mjs --watch"
@@ -24,6 +25,7 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-leaflet": "^5.0.0",
+    "sharp": "^0.35.3",
     "word-extractor": "^1.0.4",
     "xlsx": "^0.18.5"
   },
