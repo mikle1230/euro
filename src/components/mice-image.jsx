@@ -9,6 +9,7 @@ export default function MiceImage({ activity, alt, className, fallbackEmoji = 'ð
   const [idx, setIdx] = useState(0)
   const candidates = [
     `/mice-images/${activity.id}.jpg`,
+    `/mice-images/${activity.id}.jpeg`,
     `/mice-images/${activity.id}.png`,
     `/mice-images/${activity.id}.webp`,
     activity.previewImageUrl,
