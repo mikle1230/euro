@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
+import MiceImage from '@/components/mice-image'
 
 const CATEGORY_STYLE = {
   'Activity': { label: '🎪 活动', color: 'var(--accent)' },
@@ -37,21 +38,8 @@ function ActivityCard({ a }) {
         opacity: closed ? 0.7 : 1,
       }}
     >
-      <div className="h-32 relative bg-elevated overflow-hidden" style={{ background: 'var(--bg-elevated)' }}>
-        {a.previewImageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={a.previewImageUrl}
-            alt={a.title}
-            loading="lazy"
-            className="w-full h-full object-cover"
-            onError={(e) => { e.currentTarget.style.display = 'none' }}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-3xl" style={{ color: 'var(--text-tertiary)' }}>
-            {a.category === 'Technical Visit' ? '🏭' : '🎪'}
-          </div>
-        )}
+      <div className="h-32 relative overflow-hidden" style={{ background: 'var(--bg-elevated)' }}>
+        <MiceImage activity={a} className="w-full h-full" />
         {closed && (
           <span
             className="absolute top-2 left-2 text-[10px] px-1.5 py-0.5 rounded font-medium"
