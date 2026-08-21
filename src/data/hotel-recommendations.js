@@ -572,7 +572,7 @@ export default {
     ],
   },
   "milan": {
-    name: "米兰", nameEn: "Milan", country: "IT", cityCode: "MXP", note: "住米兰大教堂（Duomo）周边或中央火车站附近最方便，地铁直达大教堂、斯福尔扎城堡与布雷拉美术馆等主要景点。", hotels: [
+    name: "米兰", nameEn: "Milan", country: "IT", cityCode: "MIL", note: "住米兰大教堂（Duomo）周边或中央火车站附近最方便，地铁直达大教堂、斯福尔扎城堡与布雷拉美术馆等主要景点。", hotels: [
       {
         name: "Room Mate Collection Giulia",
         nameZh: "",

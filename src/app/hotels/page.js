@@ -308,7 +308,7 @@ export default function HotelsPage() {
               })()}
             </div>
             {countryItem.cities.map((city) => (
-              <div key={city.city} className="mb-5">
+              <div key={city.cityCode || city.city} className="mb-5">
                 <div className="flex items-baseline gap-2">
                   <h3 className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{city.city}</h3>
                   {city.nameEn && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>{city.nameEn}</span>}
