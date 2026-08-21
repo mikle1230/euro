@@ -118,7 +118,7 @@ export default function Header() {
             }}
             className={tabClass}
           >
-            🎪 MICE
+            MICE
           </Link>
         </nav>
         {/* 导入行程文件（点一下直接打开本地文件选择器） */}
