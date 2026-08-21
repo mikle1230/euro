@@ -51,6 +51,7 @@ src/
     id.js                            # 共享 uid()
   data/
     hotel-recommendations.js         # 酒店参考静态库（Booking 评分≥7 + 欧元参考价，非实时）
+    mice-activities.js               # MICE 特色活动目录（scripts/build-mice.js 从 Excel 生成，勿手改）
 ```
 
 ## 面板架构
@@ -155,6 +156,7 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
      - **R4 断开 >400km**：落地后开始 THROUGH COACH（断开前当地车在 AI 数据含出发城当天时注入 `{城} - APT - X HOURS`）
      - 当地车小时数默认 `05 HOURS`（`localMtcHours`，凭经验多留 buffer；从 `std-mtc-options.js` 城市选项表精确匹配）
 - **酒店推荐**：静态参考库在 `src/data/hotel-recommendations.js`（每城 2-3 家，Booking 评分≥7 + 欧元参考价，非实时）；查询走 `lib/hotel-recommend.js` 的 `recommendHotels(name, nameEn, limit, cityCode)`（中文/英文/别名/城市码均可命中，自动过滤评分<7）。想加城市 → 调研后直接编辑数据文件，或沿用 `scripts/merge-hotel-research.py` 合并子代理 JSON 输出；**UI 在 quos-list（行程详情按天）**
+- **MICE 特色活动**：活动目录在 `src/data/mice-activities.js`（由 `scripts/build-mice.js` 从 `../MICE/*.xlsx` 解析生成，**勿手改**）；查询走 `lib/mice.js`（`getAllMiceActivities` / `getMiceActivityById` / `filterMiceActivities` / `resolveCountry` 国家智能解析）；页面 `/mice`（列表+搜索+筛选）与 `/mice/[id]`（详情，含「复制到报价单」入口）。**扩充数据**：新国家活动 Excel（同列结构）放入 `../MICE/` 后重跑 `node scripts/build-mice.js` 自动并入；国家/标签/团型列表从数据自动生成。详见 `docs/mice.md`
 - **主按钮底色一律用 `var(--accent-strong)`**（不要 `--accent` 配白字：深色模式白字在 #2dd4bf 上仅 1.86:1）；改主题色 → `globals.css` token
 - **QUOS 行程详情**：勾选录入（按天/按类型）+ 底部合计行 + 移动端 CSV 导出；复制功能已移除
 - **JSON import**：纯 Node 环境（测试脚本）要求 `with { type: 'json' }` + 相对路径；Next 里两种写法都支持
