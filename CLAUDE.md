@@ -146,7 +146,7 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
      - **接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL）
   5. **送机 MTC**（2026-08-21 更新，替代 8-18 的"总是单独送机"）：离境日（返程航班日）**当天有行程内容**（白天游览/活动）→ THROUGH COACH 段**覆盖到返程日当天**（大巴白天仍用、送机场也由大巴完成，不单独注入送机，如 B线法意瑞 D11 罗马→北京上午游览）；**纯送机**（无白天活动，早餐不算）→ 断段，THROUGH COACH 止于前一天，单独注入送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）
   6. **PRE/POST 前后夜**：每个 LDC 段首天注入（有 THROUGH COACH 才有），金额不显示
-  7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21；**德国境内每天另注 GERMAN VAT**（`Base - GERMAN VAT`，€90.43/天，quote-rates.js `germanVat`，quoteOrder 21）；**奥地利境内每天另注 ROAD TAX**（`Austria ROAD TAX PAID BY DRIVER`，€47.87/天，quote-rates.js `austriaRoadTax`，quoteOrder 21）
+  7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21；**德国境内每天另注 GERMAN VAT**（`Base - GERMAN VAT`，€90.43/天，quote-rates.js `germanVat`，quoteOrder 21）；**LDC 路税**（quote-rates.js `roadTax`，quoteOrder 21，quoteKind `road-tax`）：按**过夜国家**命中 `[NO,CH,AT,DE,HU,CZ,SI,SK,CR]` 强制生成（不可遗漏），名称按 KT 映射表（如 AT→`Austria ROAD TAX PAID BY DRIVER`、DE/NO/CH→`LDC路税`、HU→`Budapest - HUGO ROAD TOLL`、CZ→`Prague - CZ ROAD TAX`、SI→`Ljubljana - ROAD TAX`、SK→`Bratislava - ROAD TAX PER DAY`、CR→`Zagreb - Croatian Road Tax`），**金额/计费单位待操作员实填（price=0）**
   8. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入
   9. **当地独立用车规则**（2026-08-19 新增，参数在 `src/data/coach-rules.js`，说明见 `docs/coach-rules.md`）：
      - **R1 单接送机**：首日仅接机 → `{城} - APT/HTL`；末日仅送机 → `{城} - HTL/APT`（有半天活动 → `{城} - APT - X HOURS`）

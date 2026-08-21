@@ -615,25 +615,26 @@ export function applyQuoteRules(parsed) {
           notes: vat.note,
         })
       }
-      // 奥地利境内每天道路通行费（KT 录入口径 2026-08-21：Austria ROAD TAX PAID BY DRIVER，€47.87/天）
-      if (dayCountry === 'AT') {
-        const tax = QUOTE_RATES.austriaRoadTax
+      // LDC 路税（KT 国家映射表 2026-08-21）：按过夜国家命中 [NO,CH,AT,DE,HU,CZ,SI,SK,CR] 强制生成，
+      // 金额待操作员实填（price=0，备注注明）。德国另有 GERMAN VAT（增值税），两者并存。
+      const roadTax = QUOTE_RATES.roadTax[dayCountry]
+      if (roadTax) {
         const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
         dd.items.push({
           type: 'transport',
           transportMode: 'bus',
-          name: 'Austria ROAD TAX PAID BY DRIVER',
+          name: roadTax.name,
           nameEn: 'THROUGH COACH (GLS)',
           costCategory: 'paid',
           estimatedCost: 0,
-          price: tax.price,
-          currency: tax.currency,
-          priceUnit: tax.priceUnit,
-          quoteKind: 'daily-fee',
+          price: 0, // 金额/计费单位待 KT 录入时实填
+          currency: 'EUR',
+          priceUnit: 'perGroup',
+          quoteKind: 'road-tax',
           quoteOrder: 21,
           cityCode: dayCode,
-          countryCode: 'AT',
-          notes: tax.note,
+          countryCode: dayCountry,
+          notes: roadTax.note,
         })
       }
     }
