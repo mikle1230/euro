@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { getAllCountries, getAllCitiesWithCoords, getAllAttractionsFlat } from '@/lib/data'
 import { getAllEntities, ensureSeeded } from '@/lib/entity-store'
+import { getCityCode } from '@/lib/quos-mapping'
 
 const TYPE_CONFIG = {
   country: { icon: '🗺️', label: '国家', color: '#08739D' },
@@ -47,9 +48,14 @@ export default function GlobalSearch({ wide = false }) {
   const index = useMemo(() => {
     const items = []
 
-    // Countries
+    // Countries（QUOS 国家二字码：取该国任一可解析城市的 countryCode 反查）
     const countries = getAllCountries()
     countries.forEach((c) => {
+      let quosCode = ''
+      for (const city of c.cities) {
+        const cc = getCityCode(city.name, city.nameEn)?.countryCode
+        if (cc) { quosCode = cc; break }
+      }
       items.push({
         id: c.id,
         name: c.name,
@@ -57,12 +63,14 @@ export default function GlobalSearch({ wide = false }) {
         type: 'country',
         path: `/knowledge/${c.id}`,
         parentName: '',
+        quosCode,
       })
     })
 
-    // Cities
+    // Cities（QUOS 城市三字码）
     const cities = getAllCitiesWithCoords()
     cities.forEach((c) => {
+      const cityInfo = getCityCode(c.name, c.nameEn)
       items.push({
         id: c.id,
         name: c.name,
@@ -70,6 +78,8 @@ export default function GlobalSearch({ wide = false }) {
         type: 'city',
         path: `/knowledge/${c.country.id}/${c.id}`,
         parentName: c.country.name,
+        quosCode: cityInfo?.cityCode || '',
+        parentCode: cityInfo?.countryCode || '',
       })
     })
 
@@ -109,6 +119,7 @@ export default function GlobalSearch({ wide = false }) {
         const nameLow = item.name.toLowerCase()
         const nameEnLow = item.nameEn.toLowerCase()
         const parentLow = item.parentName.toLowerCase()
+        const quosLow = (item.quosCode || '').toLowerCase()
         const typeLabel = (TYPE_CONFIG[item.type]?.label || '').toLowerCase()
 
         if (nameLow === q) score += 100
@@ -118,6 +129,11 @@ export default function GlobalSearch({ wide = false }) {
         if (nameEnLow.includes(q)) score += 15
         if (parentLow.includes(q)) score += 10
         if (typeLabel.includes(q)) score += 5
+
+        // QUOS 码匹配（如 PAR/VIE/FR/DE）：精确命中高权重，支持前缀/包含
+        if (quosLow === q) score += 40
+        else if (quosLow.startsWith(q)) score += 20
+        else if (quosLow.includes(q)) score += 10
 
         return { ...item, score }
       })
@@ -271,9 +287,15 @@ export default function GlobalSearch({ wide = false }) {
                   <div className="min-w-0 flex-1">
                     <div className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
                       {item.name}
+                      {item.quosCode && (
+                        <span className="ml-1.5 text-xs font-mono" style={{ color: 'var(--accent)' }}>
+                          {item.quosCode}
+                        </span>
+                      )}
                     </div>
                     <div className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>
                       {item.parentName || cfg.label}
+                      {item.parentCode && <span className="ml-1 font-mono">{item.parentCode}</span>}
                     </div>
                   </div>
                   {/* Type label */}
