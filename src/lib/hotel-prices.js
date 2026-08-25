@@ -8,11 +8,22 @@ import hotelPriceIntros from '../data/hotel-price-intros.json' with { type: 'jso
 import { HOTEL_BOOKING_MAP, hotelBookingKey } from '../data/hotel-booking-map.js'
 import { COUNTRY_NAMES } from '../data/countries.js'
 
-// QUOS 酒店名 → Booking 实际名称/链接（hotel-booking-map.js）
+// QUOS 酒店名 → Booking 实际名称/链接。
+// 数据源（按优先级聚合）：
+//   1) hotel-booking-map.js 手动映射（name + link：用于补链接/纠正名称）
+//   2) hotel-prices.json 里该城市该酒店的 bookingName / link（来自 hotel list.xlsx 的「booking名称」列）
 // 无匹配返回 null；页面据此并排显示 Booking 名与可点击链接。
 export function getBookingInfo(cityCode, hotelName) {
   if (!cityCode || !hotelName) return null
-  return HOTEL_BOOKING_MAP[hotelBookingKey(cityCode, hotelName)] || null
+  const manual = HOTEL_BOOKING_MAP[hotelBookingKey(cityCode, hotelName)]
+  const city = hotelPrices[String(cityCode).toUpperCase()]
+  const row = city?.hotels?.find((h) => String(h.hotel).trim() === String(hotelName).trim())
+  const xlsxName = row?.bookingName
+  const xlsxLink = row?.link
+  const name = manual?.name || xlsxName || null
+  const link = manual?.link || xlsxLink || null
+  if (!name && !link) return null
+  return { name, link }
 }
 
 // '2026-09-08' → '9月'；解析失败/空返回 null
