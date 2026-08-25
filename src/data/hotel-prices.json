@@ -526,6 +526,18 @@
         "pp": "42.88-66.26",
         "star": 4,
         "rating": 8.2
+      },
+      {
+        "hotel": "X HOTEL",
+        "month": "11月",
+        "pp": "43.11",
+        "star": 4,
+        "rating": 8.2
+      },
+      {
+        "hotel": "BEST WESTERN LETO ARENA",
+        "month": "11月",
+        "pp": "49.58"
       }
     ]
   },
@@ -554,6 +566,11 @@
         "pp": "43.42",
         "star": 4,
         "rating": 7.3
+      },
+      {
+        "hotel": "BEST WESTERN PLUS ABY",
+        "month": "11月",
+        "pp": "46.25"
       }
     ]
   },
@@ -566,6 +583,13 @@
         "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
         "month": "12月",
         "pp": "56.89",
+        "star": 4,
+        "rating": 7.6
+      },
+      {
+        "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
+        "month": "11月",
+        "pp": "56.94",
         "star": 4,
         "rating": 7.6
       }
@@ -1002,6 +1026,30 @@
         "pp": "54.26",
         "star": 4,
         "rating": 8.9
+      }
+    ]
+  },
+  "ULV": {
+    "countryCode": "NO",
+    "name": "于尔维克",
+    "nameEn": "Ulvik",
+    "hotels": [
+      {
+        "hotel": "STRAND FJORDHOTEL",
+        "month": "11月",
+        "pp": "84.26"
+      }
+    ]
+  },
+  "VAT": {
+    "countryCode": "FI",
+    "name": "赫尔辛基",
+    "nameEn": "Vantaa",
+    "hotels": [
+      {
+        "hotel": "SOKOS FLAMINGO",
+        "month": "11月",
+        "pp": "39.89"
       }
     ]
   }
