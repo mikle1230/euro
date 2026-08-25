@@ -20,8 +20,13 @@ export default function HotelMap({ height = '100%' }) {
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
 
-    const map = L.map(containerRef.current, { minZoom: 3, maxZoom: 12, zoomControl: true })
+    const map = L.map(containerRef.current, { minZoom: 3, maxZoom: 14, zoomControl: true })
     mapRef.current = map
+
+    // 动态加载的容器初始尺寸可能为 0，必须 invalidateSize 否则无法缩放/交互
+    requestAnimationFrame(() => map.invalidateSize())
+    const resizeObserver = new ResizeObserver(() => map.invalidateSize())
+    resizeObserver.observe(containerRef.current)
 
     // 底图（暗色/明色瓦片，与首页一致的 CartoDB）
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -107,6 +112,7 @@ export default function HotelMap({ height = '100%' }) {
     }
 
     return () => {
+      resizeObserver.disconnect()
       map.remove()
       mapRef.current = null
     }
