@@ -8,6 +8,8 @@
         "hotel": "EUROPA",
         "month": "12月",
         "pp": "37.41",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/ee/europe.html",
         "bookingName": "Hestia Hotel Europa"
       }
@@ -22,6 +24,8 @@
         "hotel": "GRAUER BAER",
         "month": "10月",
         "pp": "72.34",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/at/htelgrauerbaerinnsbr.html",
         "bookingName": "Hotel Grauer Bär"
       }
@@ -36,6 +40,8 @@
         "hotel": "HARRYS HOME LNZ",
         "month": "10月",
         "pp": "59.57",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/at/harry-s-home-linz.html",
         "bookingName": "harry's home Linz-Urfahr hotel & apartments"
       }
@@ -50,6 +56,8 @@
         "hotel": "SENATOR R",
         "month": "10月",
         "pp": "55.32",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/at/senator.html",
         "bookingName": "Senator Hotel Vienna"
       },
@@ -57,6 +65,8 @@
         "hotel": "SENATOR R",
         "month": "11月",
         "pp": "48.94",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/at/senator.html",
         "bookingName": "Senator Hotel Vienna"
       },
@@ -64,6 +74,8 @@
         "hotel": "RAINERS 21 R",
         "month": "9月",
         "pp": "63.83",
+        "star": 4,
+        "rating": 8.7,
         "link": "https://www.booking.com/hotel/at/rainers21.html",
         "bookingName": "Hotel Rainers21"
       }
@@ -78,6 +90,8 @@
         "hotel": "RADISSON BLU SZG",
         "month": "9月",
         "pp": "93.62",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/at/wyndham-grand-salzburg-conference-center.en-us.html",
         "bookingName": "Radisson Blu Hotel & Conference Centre, Salzburg"
       },
@@ -85,6 +99,8 @@
         "hotel": "NH SALZBURG CITY",
         "month": "11月",
         "pp": "62.23",
+        "star": 4,
+        "rating": 8.4,
         "link": "https://www.booking.com/hotel/at/nhsalzburg.html",
         "bookingName": "NH Collection Salzburg City"
       },
@@ -92,6 +108,8 @@
         "hotel": "MERCURE SZG CITY",
         "month": "9月",
         "pp": "85.11",
+        "star": 4,
+        "rating": 8.4,
         "link": "https://www.booking.com/hotel/at/salzburg-city.html",
         "bookingName": "Mercure Salzburg City"
       }
@@ -106,6 +124,8 @@
         "hotel": "SCHLOSS MONDSEE",
         "month": "9月",
         "pp": "117.02",
+        "star": 4,
+        "rating": 8.8,
         "link": "https://www.booking.com/hotel/at/schloss-mondsee.html",
         "bookingName": "Schlosshotel Mondsee"
       }
@@ -120,6 +140,8 @@
         "hotel": "RADISSON GRAZ",
         "month": "9月",
         "pp": "54.26",
+        "star": 4,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/at/radisson-graz.html",
         "bookingName": "Radisson Hotel Graz"
       }
@@ -134,6 +156,8 @@
         "hotel": "ALTUS PALACE",
         "month": "10月",
         "pp": "82.98",
+        "star": 5,
+        "rating": 9.3,
         "link": "https://www.booking.com/hotel/pl/altus-palace.html",
         "bookingName": "Hotel Altus Palace - Destigo Hotels"
       }
@@ -148,6 +172,8 @@
         "hotel": "LEONARDO ROYAL",
         "month": "10月",
         "pp": "65.96",
+        "star": 4,
+        "rating": 8.3,
         "link": "https://www.booking.com/hotel/pl/leonardo-royal-hotel-warszawa.html",
         "bookingName": "Leonardo Royal Hotel Warsaw"
       },
@@ -155,6 +181,8 @@
         "hotel": "ARCHE KRAKOWSKA",
         "month": "10月",
         "pp": "43.62",
+        "star": 4,
+        "rating": 8.8,
         "link": "https://www.booking.com/hotel/pl/arche-krakowska-warszawa.html",
         "bookingName": "Arche Hotel Krakowska"
       }
@@ -169,6 +197,8 @@
         "hotel": "UNICUS PALACE",
         "month": "10月",
         "pp": "129.79",
+        "star": 5,
+        "rating": 9.1,
         "link": "https://www.booking.com/hotel/pl/unicus-palace-krakow.html",
         "bookingName": "Hotel Unicus Palace Old Town"
       },
@@ -190,6 +220,8 @@
         "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
         "month": "12月",
         "pp": "56.89",
+        "star": 4,
+        "rating": 7.6,
         "link": "https://www.booking.com/hotel/dk/scandic-hvidovre.html",
         "bookingName": "Scandic Hvidovre"
       },
@@ -197,6 +229,8 @@
         "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
         "month": "11月",
         "pp": "56.94",
+        "star": 4,
+        "rating": 7.6,
         "link": "https://www.booking.com/hotel/dk/scandic-hvidovre.html",
         "bookingName": "Scandic Hvidovre"
       }
@@ -211,6 +245,8 @@
         "hotel": "DIWOTEL BY TRIP INN",
         "month": "9月",
         "pp": "32.45",
+        "star": 4,
+        "rating": 8,
         "link": "https://www.booking.com/hotel/de/diwotel.html",
         "bookingName": "DIWOTEL by Trip Inn Frankfurt Airport Dreieich"
       },
@@ -218,6 +254,8 @@
         "hotel": "DIWOTEL BY TRIP INN",
         "month": "9月",
         "pp": "32.45",
+        "star": 4,
+        "rating": 8,
         "link": "https://www.booking.com/hotel/de/diwotel.html",
         "bookingName": "DIWOTEL by Trip Inn Frankfurt Airport Dreieich"
       },
@@ -225,6 +263,8 @@
         "hotel": "CROWNE PLAZA CONGRESS R",
         "month": "9月",
         "pp": "43.35",
+        "star": 4,
+        "rating": 7.3,
         "link": "https://www.booking.com/hotel/de/crowne-plaza-frankfurt-congress-hotel-by-ihg.html",
         "bookingName": "Crowne Plaza Frankfurt Congress Hotel by IHG"
       }
@@ -239,6 +279,8 @@
         "hotel": "MERCURE NEUPERLACH SUED",
         "month": "9月",
         "pp": "98.94",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/de/mercuremunchenper.html",
         "bookingName": "Mercure Hotel München Neuperlach Süd"
       },
@@ -246,6 +288,8 @@
         "hotel": "FERINGAPARK",
         "month": "10月",
         "pp": "47.34",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/de/feringaparkhotel.html",
         "bookingName": "Feringapark Hotel Unterföhring"
       },
@@ -253,6 +297,8 @@
         "hotel": "MARITIM MUNICH",
         "month": "9月",
         "pp": "72.34",
+        "star": 4,
+        "rating": 8,
         "link": "https://www.booking.com/hotel/de/maritimmuenchen.html",
         "bookingName": "Maritim Hotel München"
       }
@@ -267,6 +313,8 @@
         "hotel": "BW PLUS FUESSEN",
         "month": "9月",
         "pp": "84.57",
+        "star": 4,
+        "rating": 9,
         "link": "https://www.booking.com/hotel/de/best-western-fussen.html",
         "bookingName": "Best Western Plus Hotel Füssen"
       }
@@ -281,6 +329,8 @@
         "hotel": "AN DER KONGRESSHALLE AUGSBURG",
         "month": "9月",
         "pp": "67.02",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/de/an-der-kongresshalle.html",
         "bookingName": "Dorint An der Kongresshalle Augsburg"
       }
@@ -295,6 +345,8 @@
         "hotel": "MOEVENPICK NUERNBERG",
         "month": "9月",
         "pp": "57.45",
+        "star": 4,
+        "rating": 8.5,
         "link": "https://www.booking.com/hotel/de/movenpickhotelnurnbergairport.html",
         "bookingName": "Mövenpick Hotel Nürnberg Airport"
       }
@@ -309,6 +361,8 @@
         "hotel": "PRINZHOTEL",
         "month": "9月",
         "pp": "80.85",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/de/prinzhotel-rothenburg.html",
         "bookingName": "Prinzhotel Rothenburg"
       }
@@ -323,6 +377,8 @@
         "hotel": "LEONARDO HEIDELBERG",
         "month": "9月",
         "pp": "90.43",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/de/leonardohotelheidelberg.html",
         "bookingName": "Leonardo Hotel Heidelberg"
       },
@@ -330,6 +386,8 @@
         "hotel": "LEONARDO HEIDELBERG",
         "month": "9月",
         "pp": "62.23",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/de/leonardohotelheidelberg.html",
         "bookingName": "Leonardo Hotel Heidelberg"
       }
@@ -344,6 +402,8 @@
         "hotel": "MERCURE WEST",
         "month": "10月",
         "pp": "58.56",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/de/mercure-hotel-koln-west.html",
         "bookingName": "Mercure Hotel Köln West"
       }
@@ -358,6 +418,8 @@
         "hotel": "PRIZE BY RADISSON HAMBURG CITY",
         "month": "10月",
         "pp": "55.85",
+        "star": 3,
+        "rating": 7.9,
         "link": "https://www.booking.com/hotel/de/prizeotel-hamburg-city.html",
         "bookingName": "Prize by Radisson, Hamburg City"
       }
@@ -372,6 +434,8 @@
         "hotel": "PARK INN ALEXANDERPLATZ",
         "month": "10月",
         "pp": "59.57",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/de/park-inn-berlin-alexanderplatz.html",
         "bookingName": "Park Inn by Radisson Berlin Alexanderplatz"
       }
@@ -386,6 +450,8 @@
         "hotel": "STEIGENBERGER DE SAXE",
         "month": "10月",
         "pp": "55.05",
+        "star": 5,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/de/steigenberger-de-saxe.html",
         "bookingName": "Steigenberger Hotel de Saxe"
       }
@@ -400,6 +466,8 @@
         "hotel": "MERCURE STUTTGART AIRPORT MESSE",
         "month": "9月",
         "pp": "43.56",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/de/mercure-stuttgart-airport.html",
         "bookingName": "Mercure Hotel Stuttgart Airport Messe"
       }
@@ -414,6 +482,8 @@
         "hotel": "EDELWEISS",
         "month": "9月",
         "pp": "150",
+        "star": 4,
+        "rating": 9.3,
         "link": "https://www.booking.com/hotel/de/edelweiss-berchtesgaden.html",
         "bookingName": "Hotel EDELWEISS Berchtesgaden Superior"
       }
@@ -428,6 +498,8 @@
         "hotel": "MERCURE LA DEFENSE",
         "month": "9月",
         "pp": "50/55.32",
+        "star": 4,
+        "rating": 7.5,
         "link": "https://www.booking.com/hotel/fr/mercure-la-defense5.html",
         "bookingName": "Mercure Paris La Défense"
       },
@@ -435,6 +507,8 @@
         "hotel": "PULLMAN LA DEFENSE",
         "month": "9月",
         "pp": "101.6/127.66",
+        "star": 5,
+        "rating": 7.7,
         "link": "https://www.booking.com/hotel/fr/paris-la-defense-grande-arche.html",
         "bookingName": "Pullman Paris La Défense"
       },
@@ -442,6 +516,8 @@
         "hotel": "MERCURE VAL DE FONTENAY",
         "month": "7月",
         "pp": "46.28/60.11/100.53",
+        "star": 4,
+        "rating": 8.5,
         "link": "https://www.booking.com/hotel/fr/mercure-fontenay-sous-bois.html",
         "bookingName": "Mercure Paris Val de Fontenay"
       }
@@ -456,6 +532,8 @@
         "hotel": "NOVOTEL DIJON SUD",
         "month": "9月",
         "pp": "/",
+        "star": 4,
+        "rating": 7.2,
         "link": "https://www.booking.com/hotel/fr/novotel-dijon-sud.html",
         "bookingName": "Novotel Dijon Sud"
       }
@@ -470,6 +548,8 @@
         "hotel": "MERCURE BELFORT CENTRE",
         "month": "9月",
         "pp": "52.13",
+        "star": 4,
+        "rating": 8.4,
         "link": "https://www.booking.com/hotel/fr/quality-belfort-centre.html",
         "bookingName": "Mercure Belfort Centre"
       }
@@ -484,6 +564,8 @@
         "hotel": "SANTAS IGLOOS ARCTIC CIRCLE",
         "month": "11月",
         "pp": "413.83",
+        "star": 5,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/fi/santas-igloos-arctic-circle.html",
         "bookingName": "Santa's Igloos Arctic Circle"
       },
@@ -491,6 +573,8 @@
         "hotel": "SANTA CLAUS",
         "month": "11月",
         "pp": "101.6-198.4",
+        "star": 4,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/fi/santas-hotel-santa-claus.html",
         "bookingName": "Santa's Hotel Santa Claus"
       }
@@ -505,6 +589,8 @@
         "hotel": "RIEKONLINNA",
         "month": "11月",
         "pp": "101.06",
+        "star": 4,
+        "rating": 8,
         "link": "https://www.booking.com/hotel/fi/lapland-riekonlinna.html",
         "bookingName": "Lapland Hotels Riekonlinna"
       }
@@ -519,6 +605,8 @@
         "hotel": "SOKOS LEVI",
         "month": "12月",
         "pp": "98.94",
+        "star": 4,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/fi/sokos-levi.html",
         "bookingName": "Break Sokos Hotel Levi"
       }
@@ -533,6 +621,8 @@
         "hotel": "SCANDIC KEMI",
         "month": "12月",
         "pp": "93.62",
+        "star": 4,
+        "rating": 7.6,
         "link": "https://www.booking.com/hotel/fi/scandic-kemi.html",
         "bookingName": "Scandic Kemi"
       }
@@ -547,6 +637,8 @@
         "hotel": "HILTON HELSINKI STRAND",
         "month": "12月",
         "pp": "92.55",
+        "star": 5,
+        "rating": 8.3,
         "link": "https://www.booking.com/hotel/fi/hilton-helsinki-strand.html",
         "bookingName": "Hilton Helsinki Strand"
       }
@@ -575,6 +667,8 @@
         "hotel": "NOVOTEL SCHIPHOL AIRPORT",
         "month": "11月",
         "pp": "61.65",
+        "star": 4,
+        "rating": 8.3,
         "link": "https://www.booking.com/hotel/nl/novotel-amsterdam-schiphol-airport.html",
         "bookingName": "Novotel Amsterdam Schiphol Airport"
       }
@@ -589,6 +683,8 @@
         "hotel": "URBAN CREME",
         "month": "10月",
         "pp": "55.85",
+        "star": 5,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/cz/urban-creme.html",
         "bookingName": "Urban Creme"
       },
@@ -596,6 +692,8 @@
         "hotel": "AMBASSADOR ZLATA HUSA",
         "month": "10月",
         "pp": "66.49",
+        "star": 5,
+        "rating": 8.5,
         "link": "https://www.booking.com/hotel/cz/ambassador.html",
         "bookingName": "Ambassador Zlata Husa"
       }
@@ -610,6 +708,8 @@
         "hotel": "PALACE BRNO",
         "month": "10月",
         "pp": "109.02",
+        "star": 5,
+        "rating": 9.2,
         "link": "https://www.booking.com/hotel/cz/barcelo-brno-palace-brno.html",
         "bookingName": "Grand Palace Brno"
       },
@@ -617,6 +717,8 @@
         "hotel": "CLARION CONGRESS BRNO",
         "month": "10月",
         "pp": "53.19",
+        "star": 4,
+        "rating": 9.2,
         "link": "https://www.booking.com/hotel/cz/clarion-congress-brno.html",
         "bookingName": "Clarion Congress Hotel Brno"
       }
@@ -631,6 +733,8 @@
         "hotel": "VITA",
         "month": "10月",
         "pp": "29.79",
+        "star": 4,
+        "rating": 8.4,
         "link": "https://www.booking.com/hotel/cz/albatros-vita.html",
         "bookingName": "Spa Hotel Vita"
       }
@@ -645,6 +749,8 @@
         "hotel": "BELLEVUE",
         "month": "12月",
         "pp": "27.66",
+        "star": 4,
+        "rating": 8.7,
         "link": "https://www.booking.com/hotel/lv/bellevue-park-riga.html",
         "bookingName": "Bellevue Park Hotel Riga"
       }
@@ -659,6 +765,8 @@
         "hotel": "RADISSON LIETUVA",
         "month": "12月",
         "pp": "47.87",
+        "star": 4,
+        "rating": 9,
         "link": "https://www.booking.com/hotel/lt/hotellietuva-vilnius.html",
         "bookingName": "Radisson Blu Hotel Lietuva"
       }
@@ -673,6 +781,8 @@
         "hotel": "X HOTEL",
         "month": "12月",
         "pp": "42.88-66.26",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/no/moxy-oslo-x.html",
         "bookingName": "X Hotel"
       },
@@ -680,6 +790,8 @@
         "hotel": "X HOTEL",
         "month": "11月",
         "pp": "43.11",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/no/moxy-oslo-x.html",
         "bookingName": "X Hotel"
       },
@@ -701,6 +813,8 @@
         "hotel": "SCANDIC VOSS",
         "month": "12月",
         "pp": "109.14",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/no/scandic-voss.html",
         "bookingName": "Scandic Voss"
       }
@@ -715,6 +829,8 @@
         "hotel": "THON KIRKENES",
         "month": "12月",
         "pp": "107.35",
+        "star": 4,
+        "rating": 8.7,
         "link": "https://www.booking.com/hotel/no/thon-kirkenes.html",
         "bookingName": "Thon Hotel Kirkenes"
       }
@@ -743,6 +859,8 @@
         "hotel": "BW TEN",
         "month": "10月",
         "pp": "395.74",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/se/ten.html",
         "bookingName": "Best Western Plus Ten Hotel"
       }
@@ -757,6 +875,8 @@
         "hotel": "SCANDIC WINN",
         "month": "12月",
         "pp": "46.8",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/se/scandic-winn.html",
         "bookingName": "Scandic Winn"
       }
@@ -771,6 +891,8 @@
         "hotel": "SCANDIC BACKADAL / MOLNDAL - BEDBANK",
         "month": "12月",
         "pp": "43.42",
+        "star": 4,
+        "rating": 7.3,
         "link": "https://www.booking.com/hotel/se/scandic-backadal.html",
         "bookingName": "Scandic Backadal"
       },
@@ -792,6 +914,8 @@
         "hotel": "HOLIDAY INN MESSE",
         "month": "9月",
         "pp": "77.13",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/ch/holiday-inn-zurich-messe.html",
         "bookingName": "Holiday Inn Zürich Messe, an IHG Hotel"
       }
@@ -806,6 +930,8 @@
         "hotel": "SUNSTAR GRINDELWALD",
         "month": "9月",
         "pp": "136.7",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/ch/sunstar-grindelwald.html",
         "bookingName": "Sunstar Hotel & SPA Grindelwald"
       }
@@ -820,6 +946,8 @@
         "hotel": "MOEVENPICK-GENEVE",
         "month": "9月",
         "pp": "71.8",
+        "star": 4,
+        "rating": 8.4,
         "link": "https://www.booking.com/hotel/ch/movenpick-casino-geneva.html",
         "bookingName": "Mövenpick Hotel Geneva"
       }
@@ -834,6 +962,8 @@
         "hotel": "AVA",
         "month": "9月",
         "pp": "93.09",
+        "star": 4,
+        "rating": 8.4,
         "link": "https://www.booking.com/hotel/ch/birdland-the.html",
         "bookingName": "Hotel AVA"
       }
@@ -848,6 +978,8 @@
         "hotel": "RADISSON BLU BEKE",
         "month": "10月",
         "pp": "90.43",
+        "star": 4,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/hu/radissonsasbeke.html",
         "bookingName": "Radisson Blu Béke Hotel, Budapest"
       },
@@ -855,6 +987,8 @@
         "hotel": "LEONARDO BUDAPEST",
         "month": "11月",
         "pp": "35.11",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/hu/leonardo-hotels.html",
         "bookingName": "Leonardo Hotel Budapest"
       }
@@ -869,6 +1003,8 @@
         "hotel": "HOLIDAY INN NORD ZARA",
         "month": "9月",
         "pp": "31.91",
+        "star": 4,
+        "rating": 8.2,
         "link": "https://www.booking.com/hotel/it/holiday-inn-milan-nord-zara.html",
         "bookingName": "Holiday Inn Milan Nord Zara by IHG"
       },
@@ -876,6 +1012,8 @@
         "hotel": "CROWNE PLAZA LINATE",
         "month": "9月",
         "pp": "46.81",
+        "star": 4,
+        "rating": 7.8,
         "link": "https://www.booking.com/hotel/it/crowneplazamilan.html",
         "bookingName": "Crowne Plaza Milan Linate by IHG"
       },
@@ -883,6 +1021,8 @@
         "hotel": "BELSTAY ASSAGO",
         "month": "9月",
         "pp": "47.87",
+        "star": 4,
+        "rating": 8.1,
         "link": "https://www.booking.com/hotel/it/holidayinnassago.html",
         "bookingName": "Belstay Milano Assago"
       }
@@ -897,6 +1037,8 @@
         "hotel": "NOVOTEL MESTRE CASTELLANA",
         "month": "9月",
         "pp": "56.38",
+        "star": 4,
+        "rating": 8,
         "link": "https://www.booking.com/hotel/it/nvtlveneziamestrecastel.html",
         "bookingName": "Novotel Venezia Mestre Castellana"
       },
@@ -904,6 +1046,8 @@
         "hotel": "BELSTAY MESTRE",
         "month": "9月",
         "pp": "41.49",
+        "star": 4,
+        "rating": 8.3,
         "link": "https://www.booking.com/hotel/it/belstayveneziamestre.html",
         "bookingName": "Belstay Venezia Mestre"
       }
@@ -918,6 +1062,8 @@
         "hotel": "ART MUSEO",
         "month": "9月",
         "pp": "38.3",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/it/arthotelmuseo.html",
         "bookingName": "Art Hotel Museo"
       },
@@ -925,6 +1071,8 @@
         "hotel": "DATINI",
         "month": "9月",
         "pp": "41.49",
+        "star": 4,
+        "rating": 8.6,
         "link": "https://www.booking.com/hotel/it/datini.html",
         "bookingName": "Hotel Datini"
       }
@@ -939,6 +1087,8 @@
         "hotel": "THE CAESAR",
         "month": "9月",
         "pp": "33.51",
+        "star": 4,
+        "rating": 7.9,
         "link": "https://www.booking.com/hotel/it/holiday-inn-rome-pisana.html",
         "bookingName": "The Caesar Roma"
       },
@@ -946,6 +1096,8 @@
         "hotel": "PRECISE HOUSE MANTEGNA ROMA",
         "month": "9月",
         "pp": "77.13",
+        "star": 4,
+        "rating": 9.3,
         "link": "https://www.booking.com/hotel/it/precise-mantegna.html",
         "bookingName": "Precise House Mantegna Roma"
       },
@@ -953,6 +1105,8 @@
         "hotel": "WARMTHOTEL",
         "month": "10月",
         "pp": "50",
+        "star": 4,
+        "rating": 8.9,
         "link": "https://www.booking.com/hotel/it/warmth-hotel.html",
         "bookingName": "Warmthotel"
       }
@@ -967,6 +1121,8 @@
         "hotel": "NH BOLOGNA VILLANOVA",
         "month": "9月",
         "pp": "50",
+        "star": 4,
+        "rating": 8.5,
         "link": "https://www.booking.com/hotel/it/jollyhotelvillanovavillanovadicastenaso.html",
         "bookingName": "NH Bologna Villanova"
       }
@@ -981,6 +1137,8 @@
         "hotel": "SAN MARCO / PARMA E CONGRESSI BED BANK",
         "month": "10月",
         "pp": "35.64",
+        "star": 4,
+        "rating": 7.6,
         "link": "https://www.booking.com/hotel/it/san-marco-formula-club.html",
         "bookingName": "Hotel San Marco & Formula Club"
       }
@@ -995,6 +1153,8 @@
         "hotel": "HOLIDAY INN EXPRESS HEATHROW T4",
         "month": "9月",
         "pp": "55.32",
+        "star": 4,
+        "rating": 8.7,
         "link": "https://www.booking.com/hotel/gb/holiday-inn-express-london-heathrow-t4.html",
         "bookingName": "Holiday Inn Express - London Heathrow T4, an IHG Hotel"
       }
@@ -1009,6 +1169,8 @@
         "hotel": "RAMADA WAKEFIELD",
         "month": "9月",
         "pp": "49.73",
+        "star": 4,
+        "rating": 7.5,
         "link": "https://www.booking.com/hotel/gb/fryers-way-wakefield.html",
         "bookingName": "Ramada Wakefield"
       }
@@ -1023,6 +1185,8 @@
         "hotel": "HOLIDAY INN EAST KILBRIDE",
         "month": "9月",
         "pp": "55.94",
+        "star": 4,
+        "rating": 7.9,
         "link": "https://www.booking.com/hotel/gb/holidayinneastkilbride.html",
         "bookingName": "Holiday Inn Glasgow - East Kilbride, an IHG Hotel"
       }
@@ -1037,6 +1201,8 @@
         "hotel": "COURTYARD BY MARRIOTT KEELE-STAFFORDSHIRE",
         "month": "9月",
         "pp": "44.75",
+        "star": 4,
+        "rating": 8.8,
         "link": "https://www.booking.com/hotel/gb/courtyard-by-marriott-keele-staffordshire.html",
         "bookingName": "Courtyard by Marriott Keele Staffordshire"
       }
@@ -1051,6 +1217,8 @@
         "hotel": "HOLIDAY INN SWINDON",
         "month": "9月",
         "pp": "57.2",
+        "star": 3,
+        "rating": 7.9,
         "link": "https://www.booking.com/hotel/gb/holiday-inn-swindon.html",
         "bookingName": "Holiday Inn Swindon by IHG"
       }
