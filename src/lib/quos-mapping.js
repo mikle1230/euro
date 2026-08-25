@@ -1,6 +1,11 @@
 // 纯函数模块：类型映射 / 免费判定 / 城市代码查找 / QUOS 排序。
 // 无 'use client' —— 服务端（route.js / coach-plan.js）与客户端均可 import，
 // localStorage 访问全部带 typeof window 守卫。
+//
+// ⚠️ QUOS 码注意（Cities.xlsx 有的城市有「多个码」，其中部分是内部/员工数据库专用码，
+//    绝不是 QUOS 码，切勿用于报价/行程）：
+//    - 塔林 Tallinn：QUOS 码 = TLL；TLX 是公司员工数据库专用码，不要用（只用 TLL）
+//    - 万塔 Vantaa：QUOS 码 = VAT（赫尔辛基机场城市），国家 FI
 import quosCities from '../data/quos-cities.json' with { type: 'json' }
 import quosAttractions from '../data/quos-attractions.json' with { type: 'json' }
 import { normalizeCityName as normCity } from './normalize.js'
