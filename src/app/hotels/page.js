@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
-import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo } from '@/lib/hotel-prices'
+import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -56,13 +56,15 @@ function SourceBadge({ fromList }) {
   )
 }
 
-function HotelCard({ h, showCity = false, cityCode = '', idx = 0, priceRef = false }) {
-  // 推荐库酒店：找报价库匹配价（€/人）；priceRef 的酒店自带 prices[]/pp（€/人）
+function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
+  // 报价库对象（有 hotel 字段，来自 hotel list）→ 按报价库样式；推荐库对象（有 name）→ 推荐库样式
+  const priceRef = !!h.hotel
+  // 推荐库酒店：找报价库匹配价（€/人）
   const quote = priceRef ? null : findHotelQuote(cityCode, h.name)
   const fromList = priceRef || !!quote?.pp
 
   // 名称
-  const name = priceRef ? h.hotel : h.name
+  const name = h.hotel || h.name
   const nameZh = h.nameZh
   // QUOS 名 → Booking 实际名/链接（hotel-booking-map.js），帮助识别 Booking 上的对应酒店
   const booking = getBookingInfo(cityCode, name)
@@ -189,7 +191,21 @@ export default function HotelsPage() {
   const [sort, setSort] = useState('rating')
   const catalog = useMemo(() => getHotelCatalog(), [])
   const quoteCatalog = useMemo(() => getHotelQuoteCatalog(), [])
-  const results = useMemo(() => searchHotels(query), [query])
+  const results = useMemo(() => {
+    if (!query.trim()) return []
+    // 合并推荐库 + 报价库（hotel list 来源）结果：推荐库常缺报价库独有城市（如斯德哥尔摩 BW TEN）
+    const rec = searchHotels(query)
+    const quote = searchHotelQuotes(query)
+    // 去重（同名酒店若两边都有，保留推荐库）
+    const seen = new Set()
+    const merged = [...rec, ...quote].filter((h) => {
+      const key = (h.hotel || h.name || '').toLowerCase()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    return merged
+  }, [query])
   const searching = query.trim().length > 0
 
   // 合并目录：推荐库 ∪ 报价库（同一城市两种数据都挂上；报价库独有城市也显示）

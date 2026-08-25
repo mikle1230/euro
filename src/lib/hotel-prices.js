@@ -87,6 +87,36 @@ export function findHotelQuote(cityCode, hotelName, month = null) {
   )
 }
 
+// 按酒店名/Booking名/城市名/城市码搜索报价库（hotel list 来源），返回 quote 结构。
+// 供 /hotels 页搜索框合并推荐库结果一起展示（推荐库常缺报价库独有城市如斯德哥尔摩）。
+export function searchHotelQuotes(query) {
+  const q = String(query || '').trim().toLowerCase()
+  if (!q) return []
+  const out = []
+  for (const [cityCode, c] of Object.entries(hotelPrices)) {
+    const cityHit = [c.name, c.nameEn, cityCode].some((s) => String(s || '').toLowerCase().includes(q))
+    for (const h of c.hotels) {
+      const nameHit = [h.hotel, h.bookingName].some((s) => String(s || '').toLowerCase().includes(q))
+      if (cityHit || nameHit) {
+        out.push({
+          hotel: h.hotel,
+          bookingName: h.bookingName || '',
+          link: h.link || '',
+          star: h.star || 0,
+          rating: h.rating || 0,
+          cityCode,
+          city: c.name,
+          cityNameEn: c.nameEn || '',
+          country: c.countryCode,
+          countryName: COUNTRY_NAMES[c.countryCode] || c.countryCode,
+          prices: [{ month: h.month, pp: h.pp }],
+        })
+      }
+    }
+  }
+  return out.sort((a, b) => (b.rating || 0) - (a.rating || 0))
+}
+
 // ---- 目录分组（/hotels 页用）----
 // 按「国家 → 城市」输出供应商报价酒店；同酒店多月份合并（价格按月列出）
 // 返回 [{ country, countryName, cities: [{ city, nameEn, cityCode, hotels: [{ hotel, star?, rating?, prices: [{ month, pp }] }] }] }]
