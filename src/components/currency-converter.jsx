@@ -3,11 +3,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { toast } from '@/components/toast'
 
-// ⚠️ 安全提醒：API Key 请勿直接写死在前端（会被浏览器可见，易泄露/被盗刷）。
-// 建议：生产环境放到后端 / 环境变量（如 .env.local 的 EXCHANGE_RATE_API_KEY），
-// 通过服务端代理请求；或用 Next.js 的 server route。此处为便于本地使用，先把 Key 定义成变量，
-// 上线前务必抽离到后端。你的 Key 改这里即可。
-const EXCHANGE_RATE_API_KEY = '你的API_KEY'
+// ⚠️ 安全说明：API Key 不写在前端（可被任何浏览器查看）。已改为服务端代理：
+//   前端调 /api/fx → Next 服务端路由读 .env.local 的 EXCHANGE_RATE_API_KEY → 调 exchange-rate-api.com。
+//   Key 在项目根 .env.local 配置（已被 gitignore，不会入库），换 Key 只需改 .env.local。移除前端 Key 常量。
 
 // 常用货币（下拉用；加入更多货币时在 CURRENCIES 里追加）
 const CURRENCIES = [
@@ -77,19 +75,19 @@ export default function CurrencyConverter() {
 
     setLoading(true)
     try {
-      // Pair Conversion（免费版）：https://v6.exchangerate-api.com/v6/{API_KEY}/pair/{from}/{to}
-      const res = await fetch(`https://v6.exchangerate-api.com/v6/${EXCHANGE_RATE_API_KEY}/pair/${from}/${to}`)
+      // 调服务端代理（Key 在后端），不暴露前端
+      const res = await fetch(`/api/fx?from=${from}&to=${to}&amount=${amt}`)
       // 429 / 配额超限
       if (res.status === 429) {
         setError('请求过多，请稍后再试')
         return
       }
       const data = await res.json()
-      if (data.result !== 'success' || !data.conversion_rate) {
-        setError('汇率获取失败，请稍后再试')
+      if (!data.rate) {
+        setError(data.error || '汇率获取失败，请稍后再试')
         return
       }
-      const r = data.conversion_rate
+      const r = data.rate
       setRate(r)
       setResult(amt * r)
       setFromCache(false)
