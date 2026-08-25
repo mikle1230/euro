@@ -71,7 +71,7 @@ export default function HotelMap({ height = '100%' }) {
       marker.bindTooltip(`${cap.nameZh} · ${cap.hotelCount} 家酒店`, { direction: 'top', offset: [0, -14] })
     }
 
-    // ---- 城市层：酒店点位（zoom 高时显示）----
+    // ---- 城市层：每家酒店一个准确坐标点（zoom 高时显示）----
     cityLayerRef.current = L.layerGroup()
     for (const cinfo of data.cityHotels) {
       const icon = L.divIcon({
@@ -80,9 +80,15 @@ export default function HotelMap({ height = '100%' }) {
         iconSize: [14, 14],
         iconAnchor: [7, 7],
       })
-      const marker = L.marker([cinfo.lat, cinfo.lng], { icon }).addTo(cityLayerRef.current)
-      const names = cinfo.hotels.map((h) => h.bookingName || h.hotel).join('<br/>')
-      marker.bindTooltip(`<b>${cinfo.cityZh}</b><br/>${names}`, { direction: 'top', offset: [0, -10] })
+      for (const h of cinfo.hotels) {
+        // 有酒店坐标则用之（准确点位），否则回退城市坐标
+        const lat = h.lat != null ? h.lat : cinfo.lat
+        const lng = h.lng != null ? h.lng : cinfo.lng
+        const marker = L.marker([lat, lng], { icon }).addTo(cityLayerRef.current)
+        const title = h.bookingName || h.hotel
+        const rating = h.rating ? ` ★${h.rating}` : ''
+        marker.bindTooltip(`<b>${title}</b><br/>${cinfo.cityZh}${rating}`, { direction: 'top', offset: [0, -10] })
+      }
     }
 
     // 初始按 zoom 切层

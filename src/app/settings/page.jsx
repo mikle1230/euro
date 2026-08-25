@@ -5,6 +5,7 @@ import { exportAllData, importAllData } from '@/lib/itinerary-store'
 import { getApiToken, setApiToken } from '@/lib/api-config'
 import { getQUOSOrder, saveQUOSOrder, DEFAULT_QUOS_ORDER, QUOS_LABELS } from '@/lib/quos-mapping'
 import { toast } from '@/components/toast'
+import CurrencyConverter from '@/components/currency-converter'
 
 // QUOS 类型排序（设置页内联卡片）：行程详情按此顺序排列
 function QUOSSortSection() {
@@ -208,6 +209,9 @@ export default function SettingsPage() {
           />
         </div>
       </div>
+
+      {/* 汇率转换 */}
+      <CurrencyConverter />
     </div>
   )
 }

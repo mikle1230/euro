@@ -4,6 +4,7 @@
 // 数据源：报价库（hotel-prices.json，hotel list 来源）+ 推荐库（hotel-recommendations.js）+ 城市坐标（city-coords.js）。
 import hotelPrices from '../data/hotel-prices.json' with { type: 'json' }
 import hotelData from '../data/hotel-recommendations.js'
+import { HOTEL_COORDS } from '../data/hotel-coords.js'
 import { COUNTRIES } from '../data/countries.js'
 import { getCityCoords } from './city-coords.js'
 
@@ -79,6 +80,14 @@ export function getHotelMapData() {
     if (!capCoord) continue
     const info = countryInfo(cc)
     capitals.push({ ...info, lat: capCoord[0], lng: capCoord[1], hotelCount: countryCount[cc] || 0 })
+  }
+
+  // 每家酒店坐标（从 HOTEL_COORDS；按 bookingName/酒店名 + 城市码）
+  for (const e of byCity.values()) {
+    for (const h of e.hotels) {
+      const c = HOTEL_COORDS[`${e.cityCode}|${h.bookingName || h.hotel}`] || HOTEL_COORDS[`${e.cityCode}|${h.hotel}`]
+      if (c) { h.lat = c[0]; h.lng = c[1] }
+    }
   }
 
   const cityHotels = [...byCity.values()]
