@@ -6,7 +6,7 @@ import { useIsMobile } from '@/lib/use-is-mobile'
 import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
 import { getItemNameEn } from '@/lib/item-name'
 import { recommendHotels, getHotelPriceRange } from '@/lib/hotel-recommend'
-import { getMonthFromDate, getHotelQuotes, getHotelQuotesOrAll, getQuoteRange, getQuoteRangeOrAll, findHotelQuote } from '@/lib/hotel-prices'
+import { getMonthFromDate, getHotelQuotes, getHotelQuotesOrAll, getQuoteRange, getQuoteRangeOrAll, findHotelQuote, getBookingInfo } from '@/lib/hotel-prices'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
 
 // ---- helpers ----
@@ -109,6 +109,24 @@ function HotelRecommend({ day, aligned = false, month = null }) {
                   </span>
                 )}
               </div>
+              {/* QUOS 名 → Booking 实际名/链接（hotel-booking-map.js） */}
+              {(() => {
+                const bi = getBookingInfo(quoteCityCode, r.name)
+                if (!bi) return null
+                return (
+                  <a
+                    href={bi.link || undefined}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => { if (!bi.link) e.preventDefault() }}
+                    className="block text-[10px] mt-0.5 pl-9 truncate"
+                    style={{ color: 'var(--accent)', textDecoration: 'underline' }}
+                    title={bi.link ? '打开 Booking 页面' : `Booking 名：${bi.name}`}
+                  >
+                    🔗 {bi.name}{bi.link ? ' ↗' : ''}
+                  </a>
+                )
+              })()}
               {(() => {
                 // pp 可能是 '43.62' 或 '50/55.32'（双价格）或 '/'（空）——用 parseFloat 判断有效价，
                 // 不能 `r.price > 0`（'50/55.32' 转数字是 NaN，会误判不显示）

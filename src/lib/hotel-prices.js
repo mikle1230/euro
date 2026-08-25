@@ -5,7 +5,15 @@
 // 数据由 scripts/build-hotel-prices.js 生成（npm run build:hotels）。
 import hotelPrices from '../data/hotel-prices.json' with { type: 'json' }
 import hotelPriceIntros from '../data/hotel-price-intros.json' with { type: 'json' }
+import { HOTEL_BOOKING_MAP, hotelBookingKey } from '../data/hotel-booking-map.js'
 import { COUNTRY_NAMES } from '../data/countries.js'
+
+// QUOS 酒店名 → Booking 实际名称/链接（hotel-booking-map.js）
+// 无匹配返回 null；页面据此并排显示 Booking 名与可点击链接。
+export function getBookingInfo(cityCode, hotelName) {
+  if (!cityCode || !hotelName) return null
+  return HOTEL_BOOKING_MAP[hotelBookingKey(cityCode, hotelName)] || null
+}
 
 // '2026-09-08' → '9月'；解析失败/空返回 null
 export function getMonthFromDate(dateStr) {

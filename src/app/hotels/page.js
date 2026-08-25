@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
-import { getHotelQuoteCatalog, findHotelQuote } from '@/lib/hotel-prices'
+import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo } from '@/lib/hotel-prices'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -64,6 +64,8 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0, priceRef = fal
   // 名称
   const name = priceRef ? h.hotel : h.name
   const nameZh = h.nameZh
+  // QUOS 名 → Booking 实际名/链接（hotel-booking-map.js），帮助识别 Booking 上的对应酒店
+  const booking = getBookingInfo(cityCode, name)
 
   // 价格 + 单位 + 月份（priceRef 才有月份）
   let price, unit, month
@@ -99,6 +101,19 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0, priceRef = fal
             </h3>
             {nameZh && (
               <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.86)' }}>{nameZh}</div>
+            )}
+            {booking && (
+              <a
+                href={booking.link || undefined}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => { if (!booking.link) e.preventDefault() }}
+                className="block text-[11px] mt-0.5 truncate"
+                style={{ color: 'rgba(255,255,255,0.92)', textDecoration: 'underline' }}
+                title={booking.link ? '打开 Booking 页面' : `Booking 名：${booking.name}`}
+              >
+                🔗 {booking.name}{booking.link ? ' ↗' : ''}
+              </a>
             )}
           </div>
           <div className="shrink-0 text-right whitespace-nowrap">
