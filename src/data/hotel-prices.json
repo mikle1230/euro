@@ -66,13 +66,6 @@
         "pp": "63.83",
         "link": "https://www.booking.com/hotel/at/rainers21.html",
         "bookingName": "Hotel Rainers21"
-      },
-      {
-        "hotel": "BLAGUSS R",
-        "month": "9月",
-        "pp": "13.04",
-        "link": "https://www.booking.com/hotel/at/bajazzovienna.html",
-        "bookingName": "Hotel Bajazzo"
       }
     ]
   },
@@ -86,7 +79,7 @@
         "month": "9月",
         "pp": "93.62",
         "link": "https://www.booking.com/hotel/at/wyndham-grand-salzburg-conference-center.html",
-        "bookingName": "Wyndham Grand Salzburg Conference Centre"
+        "bookingName": "Radisson Blu Hotel & Conference Centre, Salzburg"
       },
       {
         "hotel": "NH SALZBURG CITY",
@@ -164,13 +157,6 @@
         "pp": "43.62",
         "link": "https://www.booking.com/hotel/pl/arche-krakowska-warszawa.html",
         "bookingName": "Arche Hotel Krakowska"
-      },
-      {
-        "hotel": "SWING KRK",
-        "month": "10月",
-        "pp": "40.96",
-        "link": "https://www.booking.com/hotel/pl/swing-krakow.html",
-        "bookingName": "Hotel Swing"
       }
     ]
   },
@@ -185,6 +171,13 @@
         "pp": "129.79",
         "link": "https://www.booking.com/hotel/pl/unicus-palace-krakow.html",
         "bookingName": "Hotel Unicus Palace Old Town"
+      },
+      {
+        "hotel": "SWING KRK",
+        "month": "10月",
+        "pp": "40.96",
+        "link": "https://www.booking.com/hotel/pl/swing-krakow.html",
+        "bookingName": "Hotel Swing"
       }
     ]
   },
@@ -351,7 +344,7 @@
         "hotel": "MERCURE WEST",
         "month": "10月",
         "pp": "58.56",
-        "link": "https://www.booking.com/hotel/de/novotelkoelncitywest.html",
+        "link": "https://www.booking.com/hotel/de/mercure-hotel-koln-west.html",
         "bookingName": "Mercure Hotel Köln West"
       }
     ]
