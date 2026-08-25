@@ -127,6 +127,9 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
 - **纯函数库（quos-mapping / coach-plan / ldc-mapping / quote-rates / geo）不要加 `'use client'`**，服务端 route.js 才能复用；localStorage 访问一律 `typeof window` 守卫
 - **测试**：`npm test`（node:test，scripts/tests/）。改报价规则 / LDC 判定 / QUOS 映射后必须跑
 - **城市/码表**：精选城市表在 `scripts/curated-cities.cjs`（中文→英文），两个构建脚本共用：`build-quos-cities.js` 用它给 quos-cities.json 加中文键（配合 `Cities.xlsx` + europe-travel.json），`build-city-hints.js` 用它生成 AI 提示码表 `city-hints.js`。想给某个城市加中文识别 → 改 `curated-cities.cjs`，再跑两个构建脚本
+  - **QUOS 码注意**：`Cities.xlsx` 里有的城市有「多个码」，其中部分是**内部/员工数据库专用码，不是 QUOS 码**，绝不能用于报价。已确认的：
+    - **塔林 Tallinn**：QUOS 码 = **`TLL`**；`TLX` 是描述公司员工的数据库专用码，**不要用**（只用 TLL）
+    - **万塔 Vantaa**：QUOS 码 = **`VAT`**（赫尔辛基机场城市），国家 FIN
 - **AI 解析字段保持「有内容才填」**（prompt 规则 12 省略空字段，导入端 `makeItem()` 补默认值）——否则大行程输出超 token 上限被截断，报"AI 返回格式异常"（finish_reason=length）
 - **AI 识别持续优化闭环**（省 token 优先，改识别问题按此分流）：
   1. **城市名变体/中文名没匹配上** → 加 `quos-mapping.js` 的 `CITY_ALIASES`（如 圣特罗佩→Saint Tropez）；连字符/空格写法变体已被 `getCityCode` 归一化兜底自动覆盖
