@@ -1,0 +1,21 @@
+[
+  {"cityCode":"AMS","hotel":"NOVOTEL SCHIPHOL AIRPORT","name":"Novotel Amsterdam Schiphol Airport","link":"https://www.booking.com/hotel/nl/novotel-amsterdam-schiphol-airport.html","note":""},
+  {"cityCode":"PRG","hotel":"URBAN CREME","name":"Urban Creme","link":"https://www.booking.com/hotel/cz/urban-creme.html","note":""},
+  {"cityCode":"BRQ","hotel":"PALACE BRNO","name":"Grand Palace Brno","link":"https://www.booking.com/hotel/cz/barcelo-brno-palace-brno.html","note":""},
+  {"cityCode":"BRQ","hotel":"CLARION CONGRESS BRNO","name":"Clarion Congress Hotel Brno","link":"https://www.booking.com/hotel/cz/clarion-congress-brno.html","note":""},
+  {"cityCode":"PRG","hotel":"AMBASSADOR ZLATA HUSA","name":"Ambassador Zlata Husa","link":"https://www.booking.com/hotel/cz/ambassador.html","note":""},
+  {"cityCode":"CSB","hotel":"VITA","name":"Spa Hotel Vita","link":"https://www.booking.com/hotel/cz/albatros-vita.html","note":""},
+  {"cityCode":"RIX","hotel":"BELLEVUE","name":"Bellevue Park Hotel Riga","link":"https://www.booking.com/hotel/lv/bellevue-park-riga.html","note":""},
+  {"cityCode":"VNO","hotel":"RADISSON LIETUVA","name":"Radisson Blu Hotel Lietuva","link":"https://www.booking.com/hotel/lt/hotellietuva-vilnius.html","note":""},
+  {"cityCode":"KKN","hotel":"THON KIRKENES","name":"Thon Hotel Kirkenes","link":"https://www.booking.com/hotel/no/thon-kirkenes.html","note":""},
+  {"cityCode":"OSL","hotel":"X HOTEL","name":"X Hotel","link":"https://www.booking.com/hotel/no/moxy-oslo-x.html","note":""},
+  {"cityCode":"ULV","hotel":"STRAND FJORDHOTEL","name":"Strand Fjordhotel","link":"https://www.booking.com/hotel/no/strand-fjordhotel.html","note":""},
+  {"cityCode":"OSL","hotel":"BEST WESTERN LETO ARENA","name":"Best Western Leto Arena","link":"https://www.booking.com/hotel/no/letohallen-hotell-gardermoen-messe-og-konfereansesenter.html","note":""},
+  {"cityCode":"STO","hotel":"BW TEN","name":"Best Western Plus Ten Hotel","link":"https://www.booking.com/hotel/se/ten.html","note":""},
+  {"cityCode":"KSD","hotel":"SCANDIC WINN","name":"Scandic Winn","link":"https://www.booking.com/hotel/se/scandic-winn.html","note":""},
+  {"cityCode":"GOT","hotel":"SCANDIC BACKADAL MOLNDAL BEDBANK","name":"Scandic Backadal","link":"https://www.booking.com/hotel/se/scandic-backadal.html","note":""},
+  {"cityCode":"GOT","hotel":"BEST WESTERN PLUS ABY","name":"Best Western Plus Åby Hotel","link":"https://www.booking.com/hotel/se/best-western-plus-aby.html","note":""},
+  {"cityCode":"ZRH","hotel":"HOLIDAY INN MESSE","name":"Holiday Inn Zürich Messe, an IHG Hotel","link":"https://www.booking.com/hotel/ch/holiday-inn-zurich-messe.html","note":""},
+  {"cityCode":"GRW","hotel":"SUNSTAR GRINDELWALD","name":"Sunstar Hotel & SPA Grindelwald","link":"https://www.booking.com/hotel/ch/sunstar-grindelwald.html","note":""},
+  {"cityCode":"GVA","hotel":"MOEVENPICK-GENEVE","name":"Mövenpick Hotel Geneva","link":"https://www.booking.com/hotel/ch/movenpick-casino-geneva.html","note":""}
+]

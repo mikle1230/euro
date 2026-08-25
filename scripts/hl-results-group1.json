@@ -1,0 +1,20 @@
+[
+  {"cityCode":"INN","hotel":"GRAUER BAER","name":"Hotel Grauer Bär","link":"https://www.booking.com/hotel/at/htelgrauerbaerinnsbr.html","note":""},
+  {"cityCode":"LNZ","hotel":"HARRYS HOME LNZ","name":"harry's home Linz-Urfahr hotel & apartments","link":"https://www.booking.com/hotel/at/harry-s-home-linz.html","note":""},
+  {"cityCode":"VIE","hotel":"SENATOR R","name":"Senator Hotel Vienna","link":"https://www.booking.com/hotel/at/senator.html","note":""},
+  {"cityCode":"SZG","hotel":"RADISSON BLU SZG","name":"Wyndham Grand Salzburg Conference Centre","link":"https://www.booking.com/hotel/at/wyndham-grand-salzburg-conference-center.html","note":"▲Booking 现名（原 Radisson Blu Hotel & Conference Centre, Salzburg）"},
+  {"cityCode":"SZG","hotel":"NH SALZBURG CITY","name":"NH Collection Salzburg City","link":"https://www.booking.com/hotel/at/nhsalzburg.html","note":""},
+  {"cityCode":"SZG","hotel":"MERCURE SZG CITY","name":"Mercure Salzburg City","link":"https://www.booking.com/hotel/at/salzburg-city.html","note":""},
+  {"cityCode":"SZM","hotel":"SCHLOSS MONDSEE","name":"Schlosshotel Mondsee","link":"https://www.booking.com/hotel/at/schloss-mondsee.html","note":""},
+  {"cityCode":"GRZ","hotel":"RADISSON GRAZ","name":"Radisson Hotel Graz","link":"https://www.booking.com/hotel/at/radisson-graz.html","note":""},
+  {"cityCode":"VIE","hotel":"RAINERS 21 R","name":"Hotel Rainers21","link":"https://www.booking.com/hotel/at/rainers21.html","note":""},
+  {"cityCode":"VIE","hotel":"BLAGUSS R","name":"Hotel Bajazzo","link":"https://www.booking.com/hotel/at/bajazzovienna.html","note":"▲Booking 名为 Hotel Bajazzo（疑为原 Blaguss 酒店，未找到 Blaguss 独立页面）"},
+  {"cityCode":"WRO","hotel":"ALTUS PALACE","name":"Hotel Altus Palace - Destigo Hotels","link":"https://www.booking.com/hotel/pl/altus-palace.html","note":""},
+  {"cityCode":"WAW","hotel":"LEONARDO ROYAL","name":"Leonardo Royal Hotel Warsaw","link":"https://www.booking.com/hotel/pl/leonardo-royal-hotel-warszawa.html","note":""},
+  {"cityCode":"KRK","hotel":"UNICUS PALACE","name":"Hotel Unicus Palace Old Town","link":"https://www.booking.com/hotel/pl/unicus-palace-krakow.html","note":""},
+  {"cityCode":"WAW","hotel":"ARCHE KRAKOWSKA","name":"Arche Hotel Krakowska","link":"https://www.booking.com/hotel/pl/arche-krakowska-warszawa.html","note":""},
+  {"cityCode":"WAW","hotel":"SWING KRK","name":"Hotel Swing","link":"https://www.booking.com/hotel/pl/swing-krakow.html","note":"▲Booking 名 Hotel Swing（subagent 标注位于克拉科夫，非华沙）"},
+  {"cityCode":"CPH","hotel":"SCANDIC HVIDOVRE GLOSTRUP BEDBANK","name":"Scandic Hvidovre","link":"https://www.booking.com/hotel/dk/scandic-hvidovre.html","note":""},
+  {"cityCode":"FRA","hotel":"DIWOTEL BY TRIP INN","name":"DIWOTEL by Trip Inn Frankfurt Airport Dreieich","link":"https://www.booking.com/hotel/de/diwotel.html","note":""},
+  {"cityCode":"MUC","hotel":"MERCURE NEUPERLACH SUED","name":"Mercure Hotel München Neuperlach Süd","link":"https://www.booking.com/hotel/de/mercuremunchenper.html","note":""}
+]

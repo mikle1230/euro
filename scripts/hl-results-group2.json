@@ -1,0 +1,21 @@
+[
+  {"cityCode":"FES","hotel":"BW PLUS FUESSEN","name":"Best Western Plus Hotel Füssen","link":"https://www.booking.com/hotel/de/best-western-fussen.html","note":""},
+  {"cityCode":"AGB","hotel":"AN DER KONGRESSHALLE AUGSBURG","name":"Dorint An der Kongresshalle Augsburg","link":"https://www.booking.com/hotel/de/an-der-kongresshalle.html","note":""},
+  {"cityCode":"NUE","hotel":"MOEVENPICK NUERNBERG","name":"Mövenpick Hotel Nürnberg Airport","link":"https://www.booking.com/hotel/de/movenpickhotelnurnbergairport.html","note":""},
+  {"cityCode":"RTB","hotel":"PRINZHOTEL","name":"Prinzhotel Rothenburg","link":"https://www.booking.com/hotel/de/prinzhotel-rothenburg.html","note":""},
+  {"cityCode":"HDB","hotel":"LEONARDO HEIDELBERG","name":"Leonardo Hotel Heidelberg","link":"https://www.booking.com/hotel/de/leonardohotelheidelberg.html","note":""},
+  {"cityCode":"CGN","hotel":"MERCURE WEST","name":"Mercure Hotel Köln West","link":"https://www.booking.com/hotel/de/novotelkoelncitywest.html","note":"▲名称与链接不一致，需复核：Mercure West 链接指向 Novotel Köln"},
+  {"cityCode":"HAM","hotel":"PRIZE BY RADISSON HAMBURG CITY","name":"Prize by Radisson, Hamburg City","link":"https://www.booking.com/hotel/de/prizeotel-hamburg-city.html","note":""},
+  {"cityCode":"BER","hotel":"PARK INN ALEXANDERPLATZ","name":"Park Inn by Radisson Berlin Alexanderplatz","link":"https://www.booking.com/hotel/de/park-inn-berlin-alexanderplatz.html","note":""},
+  {"cityCode":"DRS","hotel":"STEIGENBERGER DE SAXE","name":"Steigenberger Hotel de Saxe","link":"https://www.booking.com/hotel/de/steigenberger-de-saxe.html","note":""},
+  {"cityCode":"MUC","hotel":"FERINGAPARK","name":"Feringapark Hotel Unterföhring","link":"https://www.booking.com/hotel/de/feringaparkhotel.html","note":""},
+  {"cityCode":"FRA","hotel":"CROWNE PLAZA CONGRESS R","name":"Crowne Plaza Frankfurt Congress Hotel by IHG","link":"https://www.booking.com/hotel/de/crowne-plaza-frankfurt-congress-hotel-by-ihg.html","note":""},
+  {"cityCode":"STR","hotel":"MERCURE STUTTGART AIRPORT MESSE","name":"Mercure Hotel Stuttgart Airport Messe","link":"https://www.booking.com/hotel/de/mercure-stuttgart-airport.html","note":""},
+  {"cityCode":"MUC","hotel":"MARITIM MUNICH","name":"Maritim Hotel München","link":"https://www.booking.com/hotel/de/maritimmuenchen.html","note":""},
+  {"cityCode":"BGA","hotel":"EDELWEISS","name":"Hotel EDELWEISS Berchtesgaden Superior","link":"https://www.booking.com/hotel/de/edelweiss-berchtesgaden.html","note":""},
+  {"cityCode":"PAR","hotel":"MERCURE LA DEFENSE","name":"Mercure Paris La Défense","link":"https://www.booking.com/hotel/fr/mercure-la-defense5.html","note":""},
+  {"cityCode":"DIJ","hotel":"NOVOTEL DIJON SUD","name":"Novotel Dijon Sud","link":"https://www.booking.com/hotel/fr/novotel-dijon-sud.html","note":""},
+  {"cityCode":"PAR","hotel":"PULLMAN LA DEFENSE","name":"Pullman Paris La Défense","link":"https://www.booking.com/hotel/fr/paris-la-defense-grande-arche.html","note":""},
+  {"cityCode":"BFT","hotel":"MERCURE BELFORT CENTRE","name":"Mercure Belfort Centre","link":"https://www.booking.com/hotel/fr/quality-belfort-centre.html","note":"▲名称与链接不一致，需复核：Mercure Belfort 链接指向 Quality"},
+  {"cityCode":"PAR","hotel":"MERCURE VAL DE FONTENAY","name":"Mercure Paris Val de Fontenay","link":"https://www.booking.com/hotel/fr/mercure-fontenay-sous-bois.html","note":""}
+]

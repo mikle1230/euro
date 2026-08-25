@@ -1,183 +1,15 @@
 {
-  "MIL": {
-    "countryCode": "IT",
-    "name": "米兰",
-    "nameEn": "Milano",
+  "TLL": {
+    "countryCode": "EE",
+    "name": "塔林",
+    "nameEn": "Tallinn",
     "hotels": [
       {
-        "hotel": "HOLIDAY INN NORD ZARA",
-        "month": "9月",
-        "pp": "31.91",
-        "star": 4,
-        "rating": 8.2
-      },
-      {
-        "hotel": "CROWNE PLAZA LINATE",
-        "month": "9月",
-        "pp": "46.81",
-        "star": 4,
-        "rating": 7.8
-      },
-      {
-        "hotel": "BELSTAY ASSAGO",
-        "month": "9月",
-        "pp": "47.87",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "VCE": {
-    "countryCode": "IT",
-    "name": "威尼斯",
-    "nameEn": "Venice",
-    "hotels": [
-      {
-        "hotel": "NOVOTEL MESTRE CASTELLANA",
-        "month": "9月",
-        "pp": "56.38",
-        "star": 4,
-        "rating": 8
-      },
-      {
-        "hotel": "BELSTAY MESTRE",
-        "month": "9月",
-        "pp": "41.49",
-        "star": 4,
-        "rating": 8.3
-      }
-    ]
-  },
-  "FLR": {
-    "countryCode": "IT",
-    "name": "佛罗伦萨",
-    "nameEn": "Florence",
-    "hotels": [
-      {
-        "hotel": "ART MUSEO",
-        "month": "9月",
-        "pp": "38.3",
-        "star": 4,
-        "rating": 8.6
-      },
-      {
-        "hotel": "DATINI",
-        "month": "9月",
-        "pp": "41.49",
-        "star": 4,
-        "rating": 8.6
-      }
-    ]
-  },
-  "ROM": {
-    "countryCode": "IT",
-    "name": "罗马",
-    "nameEn": "Rome",
-    "hotels": [
-      {
-        "hotel": "THE CAESAR",
-        "month": "9月",
-        "pp": "33.51",
-        "star": 4,
-        "rating": 7.9
-      },
-      {
-        "hotel": "PRECISE HOUSE MANTEGNA ROMA",
-        "month": "9月",
-        "pp": "77.13",
-        "star": 4,
-        "rating": 9.3
-      },
-      {
-        "hotel": "WARMTHOTEL",
-        "month": "10月",
-        "pp": "50",
-        "star": 4,
-        "rating": 8.9
-      }
-    ]
-  },
-  "PAR": {
-    "countryCode": "FR",
-    "name": "巴黎",
-    "nameEn": "Paris",
-    "hotels": [
-      {
-        "hotel": "MERCURE LA DEFENSE",
-        "month": "9月",
-        "pp": "50/55.32",
-        "star": 4,
-        "rating": 7.5
-      },
-      {
-        "hotel": "PULLMAN LA DEFENSE",
-        "month": "9月",
-        "pp": "101.6/127.66",
-        "star": 5,
-        "rating": 7.7
-      },
-      {
-        "hotel": "MERCURE VAL DE FONTENAY",
-        "month": "7月",
-        "pp": "46.28/60.11/100.53",
-        "star": 4,
-        "rating": 8.5
-      }
-    ]
-  },
-  "ZRH": {
-    "countryCode": "CH",
-    "name": "苏黎世",
-    "nameEn": "Zurich",
-    "hotels": [
-      {
-        "hotel": "HOLIDAY INN MESSE",
-        "month": "9月",
-        "pp": "77.13",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "GRW": {
-    "countryCode": "CH",
-    "name": "格林德瓦",
-    "nameEn": "Grindelwald",
-    "hotels": [
-      {
-        "hotel": "SUNSTAR GRINDELWALD",
-        "month": "9月",
-        "pp": "136.7",
-        "star": 4,
-        "rating": 8.6
-      }
-    ]
-  },
-  "GVA": {
-    "countryCode": "CH",
-    "name": "日内瓦",
-    "nameEn": "Geneva",
-    "hotels": [
-      {
-        "hotel": "MOEVENPICK-GENEVE",
-        "month": "9月",
-        "pp": "71.8",
-        "star": 4,
-        "rating": 8.4
-      }
-    ]
-  },
-  "DIJ": {
-    "countryCode": "FR",
-    "name": "第戎",
-    "nameEn": "Dijon",
-    "hotels": [
-      {
-        "hotel": "NOVOTEL DIJON SUD",
-        "month": "9月",
-        "pp": "/",
-        "star": 4,
-        "rating": 7.2
+        "hotel": "EUROPA",
+        "month": "12月",
+        "pp": "37.41",
+        "link": "https://www.booking.com/hotel/ee/europe.html",
+        "bookingName": "Hestia Hotel Europa"
       }
     ]
   },
@@ -190,8 +22,8 @@
         "hotel": "GRAUER BAER",
         "month": "10月",
         "pp": "72.34",
-        "star": 4,
-        "rating": 8.6
+        "link": "https://www.booking.com/hotel/at/htelgrauerbaerinnsbr.html",
+        "bookingName": "Hotel Grauer Bär"
       }
     ]
   },
@@ -204,106 +36,8 @@
         "hotel": "HARRYS HOME LNZ",
         "month": "10月",
         "pp": "59.57",
-        "star": 4,
-        "rating": 8.6
-      }
-    ]
-  },
-  "PRG": {
-    "countryCode": "CZ",
-    "name": "布拉格",
-    "nameEn": "Prague",
-    "hotels": [
-      {
-        "hotel": "URBAN CREME",
-        "month": "10月",
-        "pp": "55.85",
-        "star": 5,
-        "rating": 8.6
-      },
-      {
-        "hotel": "AMBASSADOR ZLATA HUSA",
-        "month": "10月",
-        "pp": "66.49",
-        "star": 5,
-        "rating": 8.5
-      }
-    ]
-  },
-  "WRO": {
-    "countryCode": "PL",
-    "name": "弗罗茨瓦夫",
-    "nameEn": "Wroclaw",
-    "hotels": [
-      {
-        "hotel": "ALTUS PALACE",
-        "month": "10月",
-        "pp": "82.98",
-        "star": 5,
-        "rating": 9.3
-      }
-    ]
-  },
-  "WAW": {
-    "countryCode": "PL",
-    "name": "华沙",
-    "nameEn": "Warsaw",
-    "hotels": [
-      {
-        "hotel": "LEONARDO ROYAL",
-        "month": "10月",
-        "pp": "65.96",
-        "star": 4,
-        "rating": 8.3
-      },
-      {
-        "hotel": "ARCHE KRAKOWSKA",
-        "month": "10月",
-        "pp": "43.62",
-        "star": 4,
-        "rating": 8.8
-      },
-      {
-        "hotel": "SWING KRK",
-        "month": "10月",
-        "pp": "40.96",
-        "star": 4,
-        "rating": 8.9
-      }
-    ]
-  },
-  "KRK": {
-    "countryCode": "PL",
-    "name": "克拉科夫",
-    "nameEn": "Krakow",
-    "hotels": [
-      {
-        "hotel": "UNICUS PALACE",
-        "month": "10月",
-        "pp": "129.79",
-        "star": 5,
-        "rating": 9.1
-      }
-    ]
-  },
-  "BRQ": {
-    "countryCode": "CZ",
-    "name": "布尔诺",
-    "nameEn": "Brno",
-    "hotels": [
-      {
-        "hotel": "PALACE BRNO",
-        "month": "10月",
-        "pp": "109.02",
-        "star": 5,
-        "rating": 9.2
-      },
-      {
-        "hotel": "CLARION CONGRESS BRNO",
-        "month": "10月",
-        "pp": "53.19",
-        "star": 4,
-        "rating": 9.2
+        "link": "https://www.booking.com/hotel/at/harry-s-home-linz.html",
+        "bookingName": "harry's home Linz-Urfahr hotel & apartments"
       }
     ]
   },
@@ -316,310 +50,29 @@
         "hotel": "SENATOR R",
         "month": "10月",
         "pp": "55.32",
-        "star": 4,
-        "rating": 8.2
+        "link": "https://www.booking.com/hotel/at/senator.html",
+        "bookingName": "Senator Hotel Vienna"
       },
       {
         "hotel": "SENATOR R",
         "month": "11月",
         "pp": "48.94",
-        "star": 4,
-        "rating": 8.2
+        "link": "https://www.booking.com/hotel/at/senator.html",
+        "bookingName": "Senator Hotel Vienna"
       },
       {
         "hotel": "RAINERS 21 R",
         "month": "9月",
         "pp": "63.83",
-        "star": 4,
-        "rating": 8.7
+        "link": "https://www.booking.com/hotel/at/rainers21.html",
+        "bookingName": "Hotel Rainers21"
       },
       {
         "hotel": "BLAGUSS R",
         "month": "9月",
-        "pp": "13.04"
-      }
-    ]
-  },
-  "BUD": {
-    "countryCode": "HU",
-    "name": "布达佩斯",
-    "nameEn": "Budapest",
-    "hotels": [
-      {
-        "hotel": "RADISSON BLU BEKE",
-        "month": "10月",
-        "pp": "90.43",
-        "star": 4,
-        "rating": 8.9
-      },
-      {
-        "hotel": "LEONARDO BUDAPEST",
-        "month": "11月",
-        "pp": "35.11",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "FRA": {
-    "countryCode": "DE",
-    "name": "法兰克福",
-    "nameEn": "Frankfurt am Main",
-    "hotels": [
-      {
-        "hotel": "DIWOTEL BY TRIP INN",
-        "month": "9月",
-        "pp": "32.45",
-        "star": 4,
-        "rating": 8
-      },
-      {
-        "hotel": "DIWOTEL BY TRIP INN",
-        "month": "9月",
-        "pp": "32.45",
-        "star": 4,
-        "rating": 8
-      },
-      {
-        "hotel": "CROWNE PLAZA CONGRESS R",
-        "month": "9月",
-        "pp": "43.35",
-        "star": 4,
-        "rating": 7.3
-      }
-    ]
-  },
-  "BFT": {
-    "countryCode": "FR",
-    "name": "贝尔福",
-    "nameEn": "Belfort",
-    "hotels": [
-      {
-        "hotel": "MERCURE BELFORT CENTRE",
-        "month": "9月",
-        "pp": "52.13",
-        "star": 4,
-        "rating": 8.4
-      }
-    ]
-  },
-  "LUZ": {
-    "countryCode": "CH",
-    "name": "琉森",
-    "nameEn": "Lucerne",
-    "hotels": [
-      {
-        "hotel": "AVA",
-        "month": "9月",
-        "pp": "93.09",
-        "star": 4,
-        "rating": 8.4
-      }
-    ]
-  },
-  "BLQ": {
-    "countryCode": "IT",
-    "name": "博洛尼亚",
-    "nameEn": "Bologna",
-    "hotels": [
-      {
-        "hotel": "NH BOLOGNA VILLANOVA",
-        "month": "9月",
-        "pp": "50",
-        "star": 4,
-        "rating": 8.5
-      }
-    ]
-  },
-  "PMF": {
-    "countryCode": "IT",
-    "name": "帕尔马",
-    "nameEn": "Parma",
-    "hotels": [
-      {
-        "hotel": "SAN MARCO / PARMA E CONGRESSI BED BANK",
-        "month": "10月",
-        "pp": "35.64",
-        "star": 4,
-        "rating": 7.6
-      }
-    ]
-  },
-  "STO": {
-    "countryCode": "SE",
-    "name": "斯德哥尔摩",
-    "nameEn": "Stockholm",
-    "hotels": [
-      {
-        "hotel": "BW TEN",
-        "month": "10月",
-        "pp": "395.74",
-        "star": 4,
-        "rating": 8.6
-      }
-    ]
-  },
-  "TLL": {
-    "countryCode": "EE",
-    "name": "塔林",
-    "nameEn": "Tallinn",
-    "hotels": [
-      {
-        "hotel": "EUROPA",
-        "month": "12月",
-        "pp": "37.41",
-        "star": 4,
-        "rating": 8.6
-      }
-    ]
-  },
-  "RIX": {
-    "countryCode": "LV",
-    "name": "里加",
-    "nameEn": "Riga",
-    "hotels": [
-      {
-        "hotel": "BELLEVUE",
-        "month": "12月",
-        "pp": "27.66",
-        "star": 4,
-        "rating": 8.7
-      }
-    ]
-  },
-  "VNO": {
-    "countryCode": "LT",
-    "name": "维尔纽斯",
-    "nameEn": "Vilnius",
-    "hotels": [
-      {
-        "hotel": "RADISSON LIETUVA",
-        "month": "12月",
-        "pp": "47.87",
-        "star": 4,
-        "rating": 9
-      }
-    ]
-  },
-  "KSD": {
-    "countryCode": "SE",
-    "name": "卡尔斯塔德",
-    "nameEn": "Karlstad",
-    "hotels": [
-      {
-        "hotel": "SCANDIC WINN",
-        "month": "12月",
-        "pp": "46.8",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "OSL": {
-    "countryCode": "NO",
-    "name": "奥斯陆",
-    "nameEn": "Oslo",
-    "hotels": [
-      {
-        "hotel": "X HOTEL",
-        "month": "12月",
-        "pp": "42.88-66.26",
-        "star": 4,
-        "rating": 8.2
-      },
-      {
-        "hotel": "X HOTEL",
-        "month": "11月",
-        "pp": "43.11",
-        "star": 4,
-        "rating": 8.2
-      },
-      {
-        "hotel": "BEST WESTERN LETO ARENA",
-        "month": "11月",
-        "pp": "49.58"
-      }
-    ]
-  },
-  "VOS": {
-    "countryCode": "NO",
-    "name": "沃斯",
-    "nameEn": "Voss",
-    "hotels": [
-      {
-        "hotel": "SCANDIC VOSS",
-        "month": "12月",
-        "pp": "109.14",
-        "star": 4,
-        "rating": 8.2
-      }
-    ]
-  },
-  "GOT": {
-    "countryCode": "SE",
-    "name": "哥德堡",
-    "nameEn": "Gothenburg",
-    "hotels": [
-      {
-        "hotel": "SCANDIC BACKADAL / MOLNDAL - BEDBANK",
-        "month": "12月",
-        "pp": "43.42",
-        "star": 4,
-        "rating": 7.3
-      },
-      {
-        "hotel": "BEST WESTERN PLUS ABY",
-        "month": "11月",
-        "pp": "46.25"
-      }
-    ]
-  },
-  "CPH": {
-    "countryCode": "DK",
-    "name": "哥本哈根",
-    "nameEn": "Copenhagen",
-    "hotels": [
-      {
-        "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
-        "month": "12月",
-        "pp": "56.89",
-        "star": 4,
-        "rating": 7.6
-      },
-      {
-        "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
-        "month": "11月",
-        "pp": "56.94",
-        "star": 4,
-        "rating": 7.6
-      }
-    ]
-  },
-  "MUC": {
-    "countryCode": "DE",
-    "name": "慕尼黑",
-    "nameEn": "Munich",
-    "hotels": [
-      {
-        "hotel": "MERCURE NEUPERLACH SUED",
-        "month": "9月",
-        "pp": "98.94",
-        "star": 4,
-        "rating": 8.1
-      },
-      {
-        "hotel": "FERINGAPARK",
-        "month": "10月",
-        "pp": "47.34",
-        "star": 4,
-        "rating": 8.1
-      },
-      {
-        "hotel": "MARITIM MUNICH",
-        "month": "9月",
-        "pp": "72.34",
-        "star": 4,
-        "rating": 8
+        "pp": "13.04",
+        "link": "https://www.booking.com/hotel/at/bajazzovienna.html",
+        "bookingName": "Hotel Bajazzo"
       }
     ]
   },
@@ -632,372 +85,22 @@
         "hotel": "RADISSON BLU SZG",
         "month": "9月",
         "pp": "93.62",
-        "star": 4,
-        "rating": 8.6
+        "link": "https://www.booking.com/hotel/at/wyndham-grand-salzburg-conference-center.html",
+        "bookingName": "Wyndham Grand Salzburg Conference Centre"
       },
       {
         "hotel": "NH SALZBURG CITY",
         "month": "11月",
         "pp": "62.23",
-        "star": 4,
-        "rating": 8.4
+        "link": "https://www.booking.com/hotel/at/nhsalzburg.html",
+        "bookingName": "NH Collection Salzburg City"
       },
       {
         "hotel": "MERCURE SZG CITY",
         "month": "9月",
         "pp": "85.11",
-        "star": 4,
-        "rating": 8.4
-      }
-    ]
-  },
-  "FES": {
-    "countryCode": "DE",
-    "name": "菲森",
-    "nameEn": "Fuessen",
-    "hotels": [
-      {
-        "hotel": "BW PLUS FUESSEN",
-        "month": "9月",
-        "pp": "84.57",
-        "star": 4,
-        "rating": 9
-      }
-    ]
-  },
-  "AGB": {
-    "countryCode": "DE",
-    "name": "奥格斯堡",
-    "nameEn": "Augsburg",
-    "hotels": [
-      {
-        "hotel": "AN DER KONGRESSHALLE AUGSBURG",
-        "month": "9月",
-        "pp": "67.02",
-        "star": 4,
-        "rating": 8.6
-      }
-    ]
-  },
-  "NUE": {
-    "countryCode": "DE",
-    "name": "纽伦堡",
-    "nameEn": "Nuernberg",
-    "hotels": [
-      {
-        "hotel": "MOEVENPICK NUERNBERG",
-        "month": "9月",
-        "pp": "57.45",
-        "star": 4,
-        "rating": 8.5
-      }
-    ]
-  },
-  "RTB": {
-    "countryCode": "DE",
-    "name": "罗腾堡",
-    "nameEn": "Rothenburg ob der Tauber",
-    "hotels": [
-      {
-        "hotel": "PRINZHOTEL",
-        "month": "9月",
-        "pp": "80.85",
-        "star": 4,
-        "rating": 8.2
-      }
-    ]
-  },
-  "HDB": {
-    "countryCode": "DE",
-    "name": "海德堡",
-    "nameEn": "Heidelberg",
-    "hotels": [
-      {
-        "hotel": "LEONARDO HEIDELBERG",
-        "month": "9月",
-        "pp": "90.43",
-        "star": 4,
-        "rating": 8.1
-      },
-      {
-        "hotel": "LEONARDO HEIDELBERG",
-        "month": "9月",
-        "pp": "62.23",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "CGN": {
-    "countryCode": "DE",
-    "name": "科隆",
-    "nameEn": "Cologne",
-    "hotels": [
-      {
-        "hotel": "MERCURE WEST",
-        "month": "10月",
-        "pp": "58.56",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "HAM": {
-    "countryCode": "DE",
-    "name": "汉堡",
-    "nameEn": "Hamburg",
-    "hotels": [
-      {
-        "hotel": "PRIZE BY RADISSON HAMBURG CITY",
-        "month": "10月",
-        "pp": "55.85",
-        "star": 3,
-        "rating": 7.9
-      }
-    ]
-  },
-  "BER": {
-    "countryCode": "DE",
-    "name": "柏林",
-    "nameEn": "Berlin",
-    "hotels": [
-      {
-        "hotel": "PARK INN ALEXANDERPLATZ",
-        "month": "10月",
-        "pp": "59.57",
-        "star": 4,
-        "rating": 8.1
-      }
-    ]
-  },
-  "DRS": {
-    "countryCode": "DE",
-    "name": "德累斯顿",
-    "nameEn": "Dresden",
-    "hotels": [
-      {
-        "hotel": "STEIGENBERGER DE SAXE",
-        "month": "10月",
-        "pp": "55.05",
-        "star": 5,
-        "rating": 8.9
-      }
-    ]
-  },
-  "AMS": {
-    "countryCode": "NL",
-    "name": "阿姆斯特丹",
-    "nameEn": "Amsterdam",
-    "hotels": [
-      {
-        "hotel": "NOVOTEL SCHIPHOL AIRPORT",
-        "month": "11月",
-        "pp": "61.65",
-        "star": 4,
-        "rating": 8.3
-      }
-    ]
-  },
-  "RVN": {
-    "countryCode": "FI",
-    "name": "罗瓦涅米",
-    "nameEn": "Rovaniemi",
-    "hotels": [
-      {
-        "hotel": "SANTAS IGLOOS ARCTIC CIRCLE",
-        "month": "11月",
-        "pp": "413.83",
-        "star": 5,
-        "rating": 8.9
-      },
-      {
-        "hotel": "SANTA CLAUS",
-        "month": "11月",
-        "pp": "101.6-198.4",
-        "star": 4,
-        "rating": 8.9
-      }
-    ]
-  },
-  "SRS": {
-    "countryCode": "FI",
-    "name": "萨利色尔卡",
-    "nameEn": "Saariselka",
-    "hotels": [
-      {
-        "hotel": "RIEKONLINNA",
-        "month": "11月",
-        "pp": "101.06",
-        "star": 4,
-        "rating": 8
-      }
-    ]
-  },
-  "KKN": {
-    "countryCode": "NO",
-    "name": "希尔克内斯",
-    "nameEn": "Kirkenes",
-    "hotels": [
-      {
-        "hotel": "THON KIRKENES",
-        "month": "12月",
-        "pp": "107.35",
-        "star": 4,
-        "rating": 8.7
-      }
-    ]
-  },
-  "LEV": {
-    "countryCode": "FI",
-    "name": "列维",
-    "nameEn": "Levi",
-    "hotels": [
-      {
-        "hotel": "SOKOS LEVI",
-        "month": "12月",
-        "pp": "98.94",
-        "star": 4,
-        "rating": 8.9
-      }
-    ]
-  },
-  "KEM": {
-    "countryCode": "FI",
-    "name": "凯米",
-    "nameEn": "Kemi",
-    "hotels": [
-      {
-        "hotel": "SCANDIC KEMI",
-        "month": "12月",
-        "pp": "93.62",
-        "star": 4,
-        "rating": 7.6
-      }
-    ]
-  },
-  "HEL": {
-    "countryCode": "FI",
-    "name": "赫尔辛基",
-    "nameEn": "Helsinki",
-    "hotels": [
-      {
-        "hotel": "HILTON HELSINKI STRAND",
-        "month": "12月",
-        "pp": "92.55",
-        "star": 5,
-        "rating": 8.3
-      }
-    ]
-  },
-  "LON": {
-    "countryCode": "GB",
-    "name": "伦敦",
-    "nameEn": "London",
-    "hotels": [
-      {
-        "hotel": "HOLIDAY INN EXPRESS HEATHROW T4",
-        "month": "9月",
-        "pp": "55.32",
-        "star": 4,
-        "rating": 8.7
-      }
-    ]
-  },
-  "LBA": {
-    "countryCode": "GB",
-    "name": "利兹",
-    "nameEn": "Leeds",
-    "hotels": [
-      {
-        "hotel": "RAMADA WAKEFIELD",
-        "month": "9月",
-        "pp": "49.73",
-        "star": 4,
-        "rating": 7.5
-      }
-    ]
-  },
-  "GLA": {
-    "countryCode": "GB",
-    "name": "格拉斯哥",
-    "nameEn": "Glasgow",
-    "hotels": [
-      {
-        "hotel": "HOLIDAY INN EAST KILBRIDE",
-        "month": "9月",
-        "pp": "55.94",
-        "star": 4,
-        "rating": 7.9
-      }
-    ]
-  },
-  "SXT": {
-    "countryCode": "GB",
-    "name": "特伦特河畔斯托克",
-    "nameEn": "Stoke on Trent",
-    "hotels": [
-      {
-        "hotel": "COURTYARD BY MARRIOTT KEELE-STAFFORDSHIRE",
-        "month": "9月",
-        "pp": "44.75",
-        "star": 4,
-        "rating": 8.8
-      }
-    ]
-  },
-  "SWI": {
-    "countryCode": "GB",
-    "name": "斯温顿",
-    "nameEn": "Swindon",
-    "hotels": [
-      {
-        "hotel": "HOLIDAY INN SWINDON",
-        "month": "9月",
-        "pp": "57.2",
-        "star": 3,
-        "rating": 7.9
-      }
-    ]
-  },
-  "CSB": {
-    "countryCode": "CZ",
-    "name": "布杰约维采",
-    "nameEn": "Ceske Budejovice",
-    "hotels": [
-      {
-        "hotel": "VITA",
-        "month": "10月",
-        "pp": "29.79",
-        "star": 4,
-        "rating": 8.4
-      }
-    ]
-  },
-  "STR": {
-    "countryCode": "DE",
-    "name": "斯图加特",
-    "nameEn": "Stuttgart",
-    "hotels": [
-      {
-        "hotel": "MERCURE STUTTGART AIRPORT MESSE",
-        "month": "9月",
-        "pp": "43.56",
-        "star": 4,
-        "rating": 8.2
-      }
-    ]
-  },
-  "BGA": {
-    "countryCode": "DE",
-    "name": "贝希特斯加登",
-    "nameEn": "Berchtesgaden",
-    "hotels": [
-      {
-        "hotel": "EDELWEISS",
-        "month": "9月",
-        "pp": "150",
-        "star": 4,
-        "rating": 9.3
+        "link": "https://www.booking.com/hotel/at/salzburg-city.html",
+        "bookingName": "Mercure Salzburg City"
       }
     ]
   },
@@ -1010,8 +113,8 @@
         "hotel": "SCHLOSS MONDSEE",
         "month": "9月",
         "pp": "117.02",
-        "star": 4,
-        "rating": 8.8
+        "link": "https://www.booking.com/hotel/at/schloss-mondsee.html",
+        "bookingName": "Schlosshotel Mondsee"
       }
     ]
   },
@@ -1024,20 +127,435 @@
         "hotel": "RADISSON GRAZ",
         "month": "9月",
         "pp": "54.26",
-        "star": 4,
-        "rating": 8.9
+        "link": "https://www.booking.com/hotel/at/radisson-graz.html",
+        "bookingName": "Radisson Hotel Graz"
       }
     ]
   },
-  "ULV": {
-    "countryCode": "NO",
-    "name": "于尔维克",
-    "nameEn": "Ulvik",
+  "WRO": {
+    "countryCode": "PL",
+    "name": "弗罗茨瓦夫",
+    "nameEn": "Wroclaw",
     "hotels": [
       {
-        "hotel": "STRAND FJORDHOTEL",
+        "hotel": "ALTUS PALACE",
+        "month": "10月",
+        "pp": "82.98",
+        "link": "https://www.booking.com/hotel/pl/altus-palace.html",
+        "bookingName": "Hotel Altus Palace - Destigo Hotels"
+      }
+    ]
+  },
+  "WAW": {
+    "countryCode": "PL",
+    "name": "华沙",
+    "nameEn": "Warsaw",
+    "hotels": [
+      {
+        "hotel": "LEONARDO ROYAL",
+        "month": "10月",
+        "pp": "65.96",
+        "link": "https://www.booking.com/hotel/pl/leonardo-royal-hotel-warszawa.html",
+        "bookingName": "Leonardo Royal Hotel Warsaw"
+      },
+      {
+        "hotel": "ARCHE KRAKOWSKA",
+        "month": "10月",
+        "pp": "43.62",
+        "link": "https://www.booking.com/hotel/pl/arche-krakowska-warszawa.html",
+        "bookingName": "Arche Hotel Krakowska"
+      },
+      {
+        "hotel": "SWING KRK",
+        "month": "10月",
+        "pp": "40.96",
+        "link": "https://www.booking.com/hotel/pl/swing-krakow.html",
+        "bookingName": "Hotel Swing"
+      }
+    ]
+  },
+  "KRK": {
+    "countryCode": "PL",
+    "name": "克拉科夫",
+    "nameEn": "Krakow",
+    "hotels": [
+      {
+        "hotel": "UNICUS PALACE",
+        "month": "10月",
+        "pp": "129.79",
+        "link": "https://www.booking.com/hotel/pl/unicus-palace-krakow.html",
+        "bookingName": "Hotel Unicus Palace Old Town"
+      }
+    ]
+  },
+  "CPH": {
+    "countryCode": "DK",
+    "name": "哥本哈根",
+    "nameEn": "Copenhagen",
+    "hotels": [
+      {
+        "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
+        "month": "12月",
+        "pp": "56.89",
+        "link": "https://www.booking.com/hotel/dk/scandic-hvidovre.html",
+        "bookingName": "Scandic Hvidovre"
+      },
+      {
+        "hotel": "SCANDIC HVIDOVRE/GLOSTRUP - BEDBANK",
         "month": "11月",
-        "pp": "84.26"
+        "pp": "56.94",
+        "link": "https://www.booking.com/hotel/dk/scandic-hvidovre.html",
+        "bookingName": "Scandic Hvidovre"
+      }
+    ]
+  },
+  "FRA": {
+    "countryCode": "DE",
+    "name": "法兰克福",
+    "nameEn": "Frankfurt am Main",
+    "hotels": [
+      {
+        "hotel": "DIWOTEL BY TRIP INN",
+        "month": "9月",
+        "pp": "32.45",
+        "link": "https://www.booking.com/hotel/de/diwotel.html",
+        "bookingName": "DIWOTEL by Trip Inn Frankfurt Airport Dreieich"
+      },
+      {
+        "hotel": "DIWOTEL BY TRIP INN",
+        "month": "9月",
+        "pp": "32.45",
+        "link": "https://www.booking.com/hotel/de/diwotel.html",
+        "bookingName": "DIWOTEL by Trip Inn Frankfurt Airport Dreieich"
+      },
+      {
+        "hotel": "CROWNE PLAZA CONGRESS R",
+        "month": "9月",
+        "pp": "43.35",
+        "link": "https://www.booking.com/hotel/de/crowne-plaza-frankfurt-congress-hotel-by-ihg.html",
+        "bookingName": "Crowne Plaza Frankfurt Congress Hotel by IHG"
+      }
+    ]
+  },
+  "MUC": {
+    "countryCode": "DE",
+    "name": "慕尼黑",
+    "nameEn": "Munich",
+    "hotels": [
+      {
+        "hotel": "MERCURE NEUPERLACH SUED",
+        "month": "9月",
+        "pp": "98.94",
+        "link": "https://www.booking.com/hotel/de/mercuremunchenper.html",
+        "bookingName": "Mercure Hotel München Neuperlach Süd"
+      },
+      {
+        "hotel": "FERINGAPARK",
+        "month": "10月",
+        "pp": "47.34",
+        "link": "https://www.booking.com/hotel/de/feringaparkhotel.html",
+        "bookingName": "Feringapark Hotel Unterföhring"
+      },
+      {
+        "hotel": "MARITIM MUNICH",
+        "month": "9月",
+        "pp": "72.34",
+        "link": "https://www.booking.com/hotel/de/maritimmuenchen.html",
+        "bookingName": "Maritim Hotel München"
+      }
+    ]
+  },
+  "FES": {
+    "countryCode": "DE",
+    "name": "菲森",
+    "nameEn": "Fuessen",
+    "hotels": [
+      {
+        "hotel": "BW PLUS FUESSEN",
+        "month": "9月",
+        "pp": "84.57",
+        "link": "https://www.booking.com/hotel/de/best-western-fussen.html",
+        "bookingName": "Best Western Plus Hotel Füssen"
+      }
+    ]
+  },
+  "AGB": {
+    "countryCode": "DE",
+    "name": "奥格斯堡",
+    "nameEn": "Augsburg",
+    "hotels": [
+      {
+        "hotel": "AN DER KONGRESSHALLE AUGSBURG",
+        "month": "9月",
+        "pp": "67.02",
+        "link": "https://www.booking.com/hotel/de/an-der-kongresshalle.html",
+        "bookingName": "Dorint An der Kongresshalle Augsburg"
+      }
+    ]
+  },
+  "NUE": {
+    "countryCode": "DE",
+    "name": "纽伦堡",
+    "nameEn": "Nuernberg",
+    "hotels": [
+      {
+        "hotel": "MOEVENPICK NUERNBERG",
+        "month": "9月",
+        "pp": "57.45",
+        "link": "https://www.booking.com/hotel/de/movenpickhotelnurnbergairport.html",
+        "bookingName": "Mövenpick Hotel Nürnberg Airport"
+      }
+    ]
+  },
+  "RTB": {
+    "countryCode": "DE",
+    "name": "罗腾堡",
+    "nameEn": "Rothenburg ob der Tauber",
+    "hotels": [
+      {
+        "hotel": "PRINZHOTEL",
+        "month": "9月",
+        "pp": "80.85",
+        "link": "https://www.booking.com/hotel/de/prinzhotel-rothenburg.html",
+        "bookingName": "Prinzhotel Rothenburg"
+      }
+    ]
+  },
+  "HDB": {
+    "countryCode": "DE",
+    "name": "海德堡",
+    "nameEn": "Heidelberg",
+    "hotels": [
+      {
+        "hotel": "LEONARDO HEIDELBERG",
+        "month": "9月",
+        "pp": "90.43",
+        "link": "https://www.booking.com/hotel/de/leonardohotelheidelberg.html",
+        "bookingName": "Leonardo Hotel Heidelberg"
+      },
+      {
+        "hotel": "LEONARDO HEIDELBERG",
+        "month": "9月",
+        "pp": "62.23",
+        "link": "https://www.booking.com/hotel/de/leonardohotelheidelberg.html",
+        "bookingName": "Leonardo Hotel Heidelberg"
+      }
+    ]
+  },
+  "CGN": {
+    "countryCode": "DE",
+    "name": "科隆",
+    "nameEn": "Cologne",
+    "hotels": [
+      {
+        "hotel": "MERCURE WEST",
+        "month": "10月",
+        "pp": "58.56",
+        "link": "https://www.booking.com/hotel/de/novotelkoelncitywest.html",
+        "bookingName": "Mercure Hotel Köln West"
+      }
+    ]
+  },
+  "HAM": {
+    "countryCode": "DE",
+    "name": "汉堡",
+    "nameEn": "Hamburg",
+    "hotels": [
+      {
+        "hotel": "PRIZE BY RADISSON HAMBURG CITY",
+        "month": "10月",
+        "pp": "55.85",
+        "link": "https://www.booking.com/hotel/de/prizeotel-hamburg-city.html",
+        "bookingName": "Prize by Radisson, Hamburg City"
+      }
+    ]
+  },
+  "BER": {
+    "countryCode": "DE",
+    "name": "柏林",
+    "nameEn": "Berlin",
+    "hotels": [
+      {
+        "hotel": "PARK INN ALEXANDERPLATZ",
+        "month": "10月",
+        "pp": "59.57",
+        "link": "https://www.booking.com/hotel/de/park-inn-berlin-alexanderplatz.html",
+        "bookingName": "Park Inn by Radisson Berlin Alexanderplatz"
+      }
+    ]
+  },
+  "DRS": {
+    "countryCode": "DE",
+    "name": "德累斯顿",
+    "nameEn": "Dresden",
+    "hotels": [
+      {
+        "hotel": "STEIGENBERGER DE SAXE",
+        "month": "10月",
+        "pp": "55.05",
+        "link": "https://www.booking.com/hotel/de/steigenberger-de-saxe.html",
+        "bookingName": "Steigenberger Hotel de Saxe"
+      }
+    ]
+  },
+  "STR": {
+    "countryCode": "DE",
+    "name": "斯图加特",
+    "nameEn": "Stuttgart",
+    "hotels": [
+      {
+        "hotel": "MERCURE STUTTGART AIRPORT MESSE",
+        "month": "9月",
+        "pp": "43.56",
+        "link": "https://www.booking.com/hotel/de/mercure-stuttgart-airport.html",
+        "bookingName": "Mercure Hotel Stuttgart Airport Messe"
+      }
+    ]
+  },
+  "BGA": {
+    "countryCode": "DE",
+    "name": "贝希特斯加登",
+    "nameEn": "Berchtesgaden",
+    "hotels": [
+      {
+        "hotel": "EDELWEISS",
+        "month": "9月",
+        "pp": "150",
+        "link": "https://www.booking.com/hotel/de/edelweiss-berchtesgaden.html",
+        "bookingName": "Hotel EDELWEISS Berchtesgaden Superior"
+      }
+    ]
+  },
+  "PAR": {
+    "countryCode": "FR",
+    "name": "巴黎",
+    "nameEn": "Paris",
+    "hotels": [
+      {
+        "hotel": "MERCURE LA DEFENSE",
+        "month": "9月",
+        "pp": "50/55.32",
+        "link": "https://www.booking.com/hotel/fr/mercure-la-defense5.html",
+        "bookingName": "Mercure Paris La Défense"
+      },
+      {
+        "hotel": "PULLMAN LA DEFENSE",
+        "month": "9月",
+        "pp": "101.6/127.66",
+        "link": "https://www.booking.com/hotel/fr/paris-la-defense-grande-arche.html",
+        "bookingName": "Pullman Paris La Défense"
+      },
+      {
+        "hotel": "MERCURE VAL DE FONTENAY",
+        "month": "7月",
+        "pp": "46.28/60.11/100.53",
+        "link": "https://www.booking.com/hotel/fr/mercure-fontenay-sous-bois.html",
+        "bookingName": "Mercure Paris Val de Fontenay"
+      }
+    ]
+  },
+  "DIJ": {
+    "countryCode": "FR",
+    "name": "第戎",
+    "nameEn": "Dijon",
+    "hotels": [
+      {
+        "hotel": "NOVOTEL DIJON SUD",
+        "month": "9月",
+        "pp": "/",
+        "link": "https://www.booking.com/hotel/fr/novotel-dijon-sud.html",
+        "bookingName": "Novotel Dijon Sud"
+      }
+    ]
+  },
+  "BFT": {
+    "countryCode": "FR",
+    "name": "贝尔福",
+    "nameEn": "Belfort",
+    "hotels": [
+      {
+        "hotel": "MERCURE BELFORT CENTRE",
+        "month": "9月",
+        "pp": "52.13",
+        "link": "https://www.booking.com/hotel/fr/quality-belfort-centre.html",
+        "bookingName": "Mercure Belfort Centre"
+      }
+    ]
+  },
+  "RVN": {
+    "countryCode": "FI",
+    "name": "罗瓦涅米",
+    "nameEn": "Rovaniemi",
+    "hotels": [
+      {
+        "hotel": "SANTAS IGLOOS ARCTIC CIRCLE",
+        "month": "11月",
+        "pp": "413.83",
+        "link": "https://www.booking.com/hotel/fi/santas-igloos-arctic-circle.html",
+        "bookingName": "Santa's Igloos Arctic Circle"
+      },
+      {
+        "hotel": "SANTA CLAUS",
+        "month": "11月",
+        "pp": "101.6-198.4",
+        "link": "https://www.booking.com/hotel/fi/santas-hotel-santa-claus.html",
+        "bookingName": "Santa's Hotel Santa Claus"
+      }
+    ]
+  },
+  "SRS": {
+    "countryCode": "FI",
+    "name": "萨利色尔卡",
+    "nameEn": "Saariselka",
+    "hotels": [
+      {
+        "hotel": "RIEKONLINNA",
+        "month": "11月",
+        "pp": "101.06",
+        "link": "https://www.booking.com/hotel/fi/lapland-riekonlinna.html",
+        "bookingName": "Lapland Hotels Riekonlinna"
+      }
+    ]
+  },
+  "LEV": {
+    "countryCode": "FI",
+    "name": "列维",
+    "nameEn": "Levi",
+    "hotels": [
+      {
+        "hotel": "SOKOS LEVI",
+        "month": "12月",
+        "pp": "98.94",
+        "link": "https://www.booking.com/hotel/fi/sokos-levi.html",
+        "bookingName": "Break Sokos Hotel Levi"
+      }
+    ]
+  },
+  "KEM": {
+    "countryCode": "FI",
+    "name": "凯米",
+    "nameEn": "Kemi",
+    "hotels": [
+      {
+        "hotel": "SCANDIC KEMI",
+        "month": "12月",
+        "pp": "93.62",
+        "link": "https://www.booking.com/hotel/fi/scandic-kemi.html",
+        "bookingName": "Scandic Kemi"
+      }
+    ]
+  },
+  "HEL": {
+    "countryCode": "FI",
+    "name": "赫尔辛基",
+    "nameEn": "Helsinki",
+    "hotels": [
+      {
+        "hotel": "HILTON HELSINKI STRAND",
+        "month": "12月",
+        "pp": "92.55",
+        "link": "https://www.booking.com/hotel/fi/hilton-helsinki-strand.html",
+        "bookingName": "Hilton Helsinki Strand"
       }
     ]
   },
@@ -1049,7 +567,499 @@
       {
         "hotel": "SOKOS FLAMINGO",
         "month": "11月",
-        "pp": "39.89"
+        "pp": "39.89",
+        "link": "https://www.booking.com/hotel/fi/sokos-flamingo.html",
+        "bookingName": "Break Sokos Hotel Flamingo"
+      }
+    ]
+  },
+  "AMS": {
+    "countryCode": "NL",
+    "name": "阿姆斯特丹",
+    "nameEn": "Amsterdam",
+    "hotels": [
+      {
+        "hotel": "NOVOTEL SCHIPHOL AIRPORT",
+        "month": "11月",
+        "pp": "61.65",
+        "link": "https://www.booking.com/hotel/nl/novotel-amsterdam-schiphol-airport.html",
+        "bookingName": "Novotel Amsterdam Schiphol Airport"
+      }
+    ]
+  },
+  "PRG": {
+    "countryCode": "CZ",
+    "name": "布拉格",
+    "nameEn": "Prague",
+    "hotels": [
+      {
+        "hotel": "URBAN CREME",
+        "month": "10月",
+        "pp": "55.85",
+        "link": "https://www.booking.com/hotel/cz/urban-creme.html",
+        "bookingName": "Urban Creme"
+      },
+      {
+        "hotel": "AMBASSADOR ZLATA HUSA",
+        "month": "10月",
+        "pp": "66.49",
+        "link": "https://www.booking.com/hotel/cz/ambassador.html",
+        "bookingName": "Ambassador Zlata Husa"
+      }
+    ]
+  },
+  "BRQ": {
+    "countryCode": "CZ",
+    "name": "布尔诺",
+    "nameEn": "Brno",
+    "hotels": [
+      {
+        "hotel": "PALACE BRNO",
+        "month": "10月",
+        "pp": "109.02",
+        "link": "https://www.booking.com/hotel/cz/barcelo-brno-palace-brno.html",
+        "bookingName": "Grand Palace Brno"
+      },
+      {
+        "hotel": "CLARION CONGRESS BRNO",
+        "month": "10月",
+        "pp": "53.19",
+        "link": "https://www.booking.com/hotel/cz/clarion-congress-brno.html",
+        "bookingName": "Clarion Congress Hotel Brno"
+      }
+    ]
+  },
+  "CSB": {
+    "countryCode": "CZ",
+    "name": "布杰约维采",
+    "nameEn": "Ceske Budejovice",
+    "hotels": [
+      {
+        "hotel": "VITA",
+        "month": "10月",
+        "pp": "29.79",
+        "link": "https://www.booking.com/hotel/cz/albatros-vita.html",
+        "bookingName": "Spa Hotel Vita"
+      }
+    ]
+  },
+  "RIX": {
+    "countryCode": "LV",
+    "name": "里加",
+    "nameEn": "Riga",
+    "hotels": [
+      {
+        "hotel": "BELLEVUE",
+        "month": "12月",
+        "pp": "27.66",
+        "link": "https://www.booking.com/hotel/lv/bellevue-park-riga.html",
+        "bookingName": "Bellevue Park Hotel Riga"
+      }
+    ]
+  },
+  "VNO": {
+    "countryCode": "LT",
+    "name": "维尔纽斯",
+    "nameEn": "Vilnius",
+    "hotels": [
+      {
+        "hotel": "RADISSON LIETUVA",
+        "month": "12月",
+        "pp": "47.87",
+        "link": "https://www.booking.com/hotel/lt/hotellietuva-vilnius.html",
+        "bookingName": "Radisson Blu Hotel Lietuva"
+      }
+    ]
+  },
+  "OSL": {
+    "countryCode": "NO",
+    "name": "奥斯陆",
+    "nameEn": "Oslo",
+    "hotels": [
+      {
+        "hotel": "X HOTEL",
+        "month": "12月",
+        "pp": "42.88-66.26",
+        "link": "https://www.booking.com/hotel/no/moxy-oslo-x.html",
+        "bookingName": "X Hotel"
+      },
+      {
+        "hotel": "X HOTEL",
+        "month": "11月",
+        "pp": "43.11",
+        "link": "https://www.booking.com/hotel/no/moxy-oslo-x.html",
+        "bookingName": "X Hotel"
+      },
+      {
+        "hotel": "BEST WESTERN LETO ARENA",
+        "month": "11月",
+        "pp": "49.58",
+        "link": "https://www.booking.com/hotel/no/letohallen-hotell-gardermoen-messe-og-konfereansesenter.html",
+        "bookingName": "Best Western Leto Arena"
+      }
+    ]
+  },
+  "VOS": {
+    "countryCode": "NO",
+    "name": "沃斯",
+    "nameEn": "Voss",
+    "hotels": [
+      {
+        "hotel": "SCANDIC VOSS",
+        "month": "12月",
+        "pp": "109.14",
+        "link": "https://www.booking.com/hotel/no/scandic-voss.html",
+        "bookingName": "Scandic Voss"
+      }
+    ]
+  },
+  "KKN": {
+    "countryCode": "NO",
+    "name": "希尔克内斯",
+    "nameEn": "Kirkenes",
+    "hotels": [
+      {
+        "hotel": "THON KIRKENES",
+        "month": "12月",
+        "pp": "107.35",
+        "link": "https://www.booking.com/hotel/no/thon-kirkenes.html",
+        "bookingName": "Thon Hotel Kirkenes"
+      }
+    ]
+  },
+  "ULV": {
+    "countryCode": "NO",
+    "name": "于尔维克",
+    "nameEn": "Ulvik",
+    "hotels": [
+      {
+        "hotel": "STRAND FJORDHOTEL",
+        "month": "11月",
+        "pp": "84.26",
+        "link": "https://www.booking.com/hotel/no/strand-fjordhotel.html",
+        "bookingName": "Strand Fjordhotel"
+      }
+    ]
+  },
+  "STO": {
+    "countryCode": "SE",
+    "name": "斯德哥尔摩",
+    "nameEn": "Stockholm",
+    "hotels": [
+      {
+        "hotel": "BW TEN",
+        "month": "10月",
+        "pp": "395.74",
+        "link": "https://www.booking.com/hotel/se/ten.html",
+        "bookingName": "Best Western Plus Ten Hotel"
+      }
+    ]
+  },
+  "KSD": {
+    "countryCode": "SE",
+    "name": "卡尔斯塔德",
+    "nameEn": "Karlstad",
+    "hotels": [
+      {
+        "hotel": "SCANDIC WINN",
+        "month": "12月",
+        "pp": "46.8",
+        "link": "https://www.booking.com/hotel/se/scandic-winn.html",
+        "bookingName": "Scandic Winn"
+      }
+    ]
+  },
+  "GOT": {
+    "countryCode": "SE",
+    "name": "哥德堡",
+    "nameEn": "Gothenburg",
+    "hotels": [
+      {
+        "hotel": "SCANDIC BACKADAL / MOLNDAL - BEDBANK",
+        "month": "12月",
+        "pp": "43.42",
+        "link": "https://www.booking.com/hotel/se/scandic-backadal.html",
+        "bookingName": "Scandic Backadal"
+      },
+      {
+        "hotel": "BEST WESTERN PLUS ABY",
+        "month": "11月",
+        "pp": "46.25",
+        "link": "https://www.booking.com/hotel/se/best-western-plus-aby.html",
+        "bookingName": "Best Western Plus Åby Hotel"
+      }
+    ]
+  },
+  "ZRH": {
+    "countryCode": "CH",
+    "name": "苏黎世",
+    "nameEn": "Zurich",
+    "hotels": [
+      {
+        "hotel": "HOLIDAY INN MESSE",
+        "month": "9月",
+        "pp": "77.13",
+        "link": "https://www.booking.com/hotel/ch/holiday-inn-zurich-messe.html",
+        "bookingName": "Holiday Inn Zürich Messe, an IHG Hotel"
+      }
+    ]
+  },
+  "GRW": {
+    "countryCode": "CH",
+    "name": "格林德瓦",
+    "nameEn": "Grindelwald",
+    "hotels": [
+      {
+        "hotel": "SUNSTAR GRINDELWALD",
+        "month": "9月",
+        "pp": "136.7",
+        "link": "https://www.booking.com/hotel/ch/sunstar-grindelwald.html",
+        "bookingName": "Sunstar Hotel & SPA Grindelwald"
+      }
+    ]
+  },
+  "GVA": {
+    "countryCode": "CH",
+    "name": "日内瓦",
+    "nameEn": "Geneva",
+    "hotels": [
+      {
+        "hotel": "MOEVENPICK-GENEVE",
+        "month": "9月",
+        "pp": "71.8",
+        "link": "https://www.booking.com/hotel/ch/movenpick-casino-geneva.html",
+        "bookingName": "Mövenpick Hotel Geneva"
+      }
+    ]
+  },
+  "LUZ": {
+    "countryCode": "CH",
+    "name": "琉森",
+    "nameEn": "Lucerne",
+    "hotels": [
+      {
+        "hotel": "AVA",
+        "month": "9月",
+        "pp": "93.09",
+        "link": "https://www.booking.com/hotel/ch/birdland-the.html",
+        "bookingName": "Hotel AVA"
+      }
+    ]
+  },
+  "BUD": {
+    "countryCode": "HU",
+    "name": "布达佩斯",
+    "nameEn": "Budapest",
+    "hotels": [
+      {
+        "hotel": "RADISSON BLU BEKE",
+        "month": "10月",
+        "pp": "90.43",
+        "link": "https://www.booking.com/hotel/hu/radissonsasbeke.html",
+        "bookingName": "Radisson Blu Béke Hotel, Budapest"
+      },
+      {
+        "hotel": "LEONARDO BUDAPEST",
+        "month": "11月",
+        "pp": "35.11",
+        "link": "https://www.booking.com/hotel/hu/leonardo-hotels.html",
+        "bookingName": "Leonardo Hotel Budapest"
+      }
+    ]
+  },
+  "MIL": {
+    "countryCode": "IT",
+    "name": "米兰",
+    "nameEn": "Milano",
+    "hotels": [
+      {
+        "hotel": "HOLIDAY INN NORD ZARA",
+        "month": "9月",
+        "pp": "31.91",
+        "link": "https://www.booking.com/hotel/it/holiday-inn-milan-nord-zara.html",
+        "bookingName": "Holiday Inn Milan Nord Zara by IHG"
+      },
+      {
+        "hotel": "CROWNE PLAZA LINATE",
+        "month": "9月",
+        "pp": "46.81",
+        "link": "https://www.booking.com/hotel/it/crowneplazamilan.html",
+        "bookingName": "Crowne Plaza Milan Linate by IHG"
+      },
+      {
+        "hotel": "BELSTAY ASSAGO",
+        "month": "9月",
+        "pp": "47.87",
+        "link": "https://www.booking.com/hotel/it/holidayinnassago.html",
+        "bookingName": "Belstay Milano Assago"
+      }
+    ]
+  },
+  "VCE": {
+    "countryCode": "IT",
+    "name": "威尼斯",
+    "nameEn": "Venice",
+    "hotels": [
+      {
+        "hotel": "NOVOTEL MESTRE CASTELLANA",
+        "month": "9月",
+        "pp": "56.38",
+        "link": "https://www.booking.com/hotel/it/nvtlveneziamestrecastel.html",
+        "bookingName": "Novotel Venezia Mestre Castellana"
+      },
+      {
+        "hotel": "BELSTAY MESTRE",
+        "month": "9月",
+        "pp": "41.49",
+        "link": "https://www.booking.com/hotel/it/belstayveneziamestre.html",
+        "bookingName": "Belstay Venezia Mestre"
+      }
+    ]
+  },
+  "FLR": {
+    "countryCode": "IT",
+    "name": "佛罗伦萨",
+    "nameEn": "Florence",
+    "hotels": [
+      {
+        "hotel": "ART MUSEO",
+        "month": "9月",
+        "pp": "38.3",
+        "link": "https://www.booking.com/hotel/it/arthotelmuseo.html",
+        "bookingName": "Art Hotel Museo"
+      },
+      {
+        "hotel": "DATINI",
+        "month": "9月",
+        "pp": "41.49",
+        "link": "https://www.booking.com/hotel/it/datini.html",
+        "bookingName": "Hotel Datini"
+      }
+    ]
+  },
+  "ROM": {
+    "countryCode": "IT",
+    "name": "罗马",
+    "nameEn": "Rome",
+    "hotels": [
+      {
+        "hotel": "THE CAESAR",
+        "month": "9月",
+        "pp": "33.51",
+        "link": "https://www.booking.com/hotel/it/holiday-inn-rome-pisana.html",
+        "bookingName": "The Caesar Roma"
+      },
+      {
+        "hotel": "PRECISE HOUSE MANTEGNA ROMA",
+        "month": "9月",
+        "pp": "77.13",
+        "link": "https://www.booking.com/hotel/it/precise-mantegna.html",
+        "bookingName": "Precise House Mantegna Roma"
+      },
+      {
+        "hotel": "WARMTHOTEL",
+        "month": "10月",
+        "pp": "50",
+        "link": "https://www.booking.com/hotel/it/warmth-hotel.html",
+        "bookingName": "Warmthotel"
+      }
+    ]
+  },
+  "BLQ": {
+    "countryCode": "IT",
+    "name": "博洛尼亚",
+    "nameEn": "Bologna",
+    "hotels": [
+      {
+        "hotel": "NH BOLOGNA VILLANOVA",
+        "month": "9月",
+        "pp": "50",
+        "link": "https://www.booking.com/hotel/it/jollyhotelvillanovavillanovadicastenaso.html",
+        "bookingName": "NH Bologna Villanova"
+      }
+    ]
+  },
+  "PMF": {
+    "countryCode": "IT",
+    "name": "帕尔马",
+    "nameEn": "Parma",
+    "hotels": [
+      {
+        "hotel": "SAN MARCO / PARMA E CONGRESSI BED BANK",
+        "month": "10月",
+        "pp": "35.64",
+        "link": "https://www.booking.com/hotel/it/san-marco-formula-club.html",
+        "bookingName": "Hotel San Marco & Formula Club"
+      }
+    ]
+  },
+  "LON": {
+    "countryCode": "GB",
+    "name": "伦敦",
+    "nameEn": "London",
+    "hotels": [
+      {
+        "hotel": "HOLIDAY INN EXPRESS HEATHROW T4",
+        "month": "9月",
+        "pp": "55.32",
+        "link": "https://www.booking.com/hotel/gb/holiday-inn-express-london-heathrow-t4.html",
+        "bookingName": "Holiday Inn Express - London Heathrow T4, an IHG Hotel"
+      }
+    ]
+  },
+  "LBA": {
+    "countryCode": "GB",
+    "name": "利兹",
+    "nameEn": "Leeds",
+    "hotels": [
+      {
+        "hotel": "RAMADA WAKEFIELD",
+        "month": "9月",
+        "pp": "49.73",
+        "link": "https://www.booking.com/hotel/gb/fryers-way-wakefield.html",
+        "bookingName": "Ramada Wakefield"
+      }
+    ]
+  },
+  "GLA": {
+    "countryCode": "GB",
+    "name": "格拉斯哥",
+    "nameEn": "Glasgow",
+    "hotels": [
+      {
+        "hotel": "HOLIDAY INN EAST KILBRIDE",
+        "month": "9月",
+        "pp": "55.94",
+        "link": "https://www.booking.com/hotel/gb/holidayinneastkilbride.html",
+        "bookingName": "Holiday Inn Glasgow - East Kilbride, an IHG Hotel"
+      }
+    ]
+  },
+  "SXT": {
+    "countryCode": "GB",
+    "name": "特伦特河畔斯托克",
+    "nameEn": "Stoke on Trent",
+    "hotels": [
+      {
+        "hotel": "COURTYARD BY MARRIOTT KEELE-STAFFORDSHIRE",
+        "month": "9月",
+        "pp": "44.75",
+        "link": "https://www.booking.com/hotel/gb/courtyard-by-marriott-keele-staffordshire.html",
+        "bookingName": "Courtyard by Marriott Keele Staffordshire"
+      }
+    ]
+  },
+  "SWI": {
+    "countryCode": "GB",
+    "name": "斯温顿",
+    "nameEn": "Swindon",
+    "hotels": [
+      {
+        "hotel": "HOLIDAY INN SWINDON",
+        "month": "9月",
+        "pp": "57.2",
+        "link": "https://www.booking.com/hotel/gb/holiday-inn-swindon.html",
+        "bookingName": "Holiday Inn Swindon by IHG"
       }
     ]
   }

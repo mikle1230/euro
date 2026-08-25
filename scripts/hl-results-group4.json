@@ -1,0 +1,22 @@
+[
+  {"cityCode":"LUZ","hotel":"AVA","name":"Hotel AVA","link":"https://www.booking.com/hotel/ch/birdland-the.html","note":"▲链接 slug 为 birdland-the（Hotel AVA 位于卢塞恩州 Neuenkirch）"},
+  {"cityCode":"BUD","hotel":"RADISSON BLU BEKE","name":"Radisson Blu Béke Hotel, Budapest","link":"https://www.booking.com/hotel/hu/radissonsasbeke.html","note":""},
+  {"cityCode":"BUD","hotel":"LEONARDO BUDAPEST","name":"Leonardo Hotel Budapest","link":"https://www.booking.com/hotel/hu/leonardo-hotels.html","note":""},
+  {"cityCode":"MIL","hotel":"HOLIDAY INN NORD ZARA","name":"Holiday Inn Milan Nord Zara by IHG","link":"https://www.booking.com/hotel/it/holiday-inn-milan-nord-zara.html","note":""},
+  {"cityCode":"VCE","hotel":"NOVOTEL MESTRE CASTELLANA","name":"Novotel Venezia Mestre Castellana","link":"https://www.booking.com/hotel/it/nvtlveneziamestrecastel.html","note":""},
+  {"cityCode":"FLR","hotel":"ART MUSEO","name":"Art Hotel Museo","link":"https://www.booking.com/hotel/it/arthotelmuseo.html","note":"位于普拉托（Prato，近佛罗伦萨）"},
+  {"cityCode":"ROM","hotel":"THE CAESAR","name":"The Caesar Roma","link":"https://www.booking.com/hotel/it/holiday-inn-rome-pisana.html","note":"▲链接 slug 为旧名 holiday-inn-rome-pisana，页面标题为 The Caesar Roma"},
+  {"cityCode":"ROM","hotel":"PRECISE HOUSE MANTEGNA ROMA","name":"Precise House Mantegna Roma","link":"https://www.booking.com/hotel/it/precise-mantegna.html","note":""},
+  {"cityCode":"FLR","hotel":"DATINI","name":"Hotel Datini","link":"https://www.booking.com/hotel/it/datini.html","note":"位于普拉托（Prato，近佛罗伦萨）"},
+  {"cityCode":"VCE","hotel":"BELSTAY MESTRE","name":"Belstay Venezia Mestre","link":"https://www.booking.com/hotel/it/belstayveneziamestre.html","note":""},
+  {"cityCode":"MIL","hotel":"CROWNE PLAZA LINATE","name":"Crowne Plaza Milan Linate by IHG","link":"https://www.booking.com/hotel/it/crowneplazamilan.html","note":""},
+  {"cityCode":"MIL","hotel":"BELSTAY ASSAGO","name":"Belstay Milano Assago","link":"https://www.booking.com/hotel/it/holidayinnassago.html","note":""},
+  {"cityCode":"BLQ","hotel":"NH BOLOGNA VILLANOVA","name":"NH Bologna Villanova","link":"https://www.booking.com/hotel/it/jollyhotelvillanovavillanovadicastenaso.html","note":""},
+  {"cityCode":"ROM","hotel":"WARMTHOTEL","name":"Warmthotel","link":"https://www.booking.com/hotel/it/warmth-hotel.html","note":""},
+  {"cityCode":"PMF","hotel":"SAN MARCO PARMA E CONGRESSI BED BANK","name":"Hotel San Marco & Formula Club","link":"https://www.booking.com/hotel/it/san-marco-formula-club.html","note":""},
+  {"cityCode":"LON","hotel":"HOLIDAY INN EXPRESS HEATHROW T4","name":"Holiday Inn Express - London Heathrow T4, an IHG Hotel","link":"https://www.booking.com/hotel/gb/holiday-inn-express-london-heathrow-t4.html","note":""},
+  {"cityCode":"LBA","hotel":"RAMADA WAKEFIELD","name":"Ramada Wakefield","link":"https://www.booking.com/hotel/gb/fryers-way-wakefield.html","note":""},
+  {"cityCode":"GLA","hotel":"HOLIDAY INN EAST KILBRIDE","name":"Holiday Inn Glasgow - East Kilbride, an IHG Hotel","link":"https://www.booking.com/hotel/gb/holidayinneastkilbride.html","note":""},
+  {"cityCode":"SXT","hotel":"COURTYARD BY MARRIOTT KEELE-STAFFORDSHIRE","name":"Courtyard by Marriott Keele Staffordshire","link":"https://www.booking.com/hotel/gb/courtyard-by-marriott-keele-staffordshire.html","note":""},
+  {"cityCode":"SWI","hotel":"HOLIDAY INN SWINDON","name":"Holiday Inn Swindon by IHG","link":"https://www.booking.com/hotel/gb/holiday-inn-swindon.html","note":""}
+]

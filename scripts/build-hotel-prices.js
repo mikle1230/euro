@@ -62,7 +62,7 @@ const iMonth = colIdx['月份']
 const iStar = colIdx['星级']
 const iRating = resolveCol('booking评分', '评分', 'Booking评分')
 const iLink = resolveCol('booking链接', '链接', 'Booking链接')
-const iBookingName = resolveCol('booking名称', 'Booking名称', 'BookingName', 'booking name')
+const iBookingName = resolveCol('booking名称', 'Booking名称', 'BookingName', 'booking name', 'hotel name on Booking.com', 'Hotel name on Booking.com')
 
 const data = rows.slice(1).filter((r) => r[0] && r[iCityCode] && r[iHotel])
 

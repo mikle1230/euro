@@ -1,0 +1,10 @@
+[
+  { "cityCode": "TLL", "hotel": "Hestia Hotel Europa", "link": "https://www.booking.com/hotel/ee/europe.html", "note": "" },
+  { "cityCode": "RVN", "hotel": "Santa's Igloos Arctic Circle", "link": "https://www.booking.com/hotel/fi/santas-igloos-arctic-circle.html", "note": "" },
+  { "cityCode": "RVN", "hotel": "Santa's Hotel Santa Claus", "link": "https://www.booking.com/hotel/fi/santas-hotel-santa-claus.html", "note": "" },
+  { "cityCode": "SRS", "hotel": "Lapland Hotels Riekonlinna", "link": "https://www.booking.com/hotel/fi/lapland-riekonlinna.html", "note": "" },
+  { "cityCode": "LEV", "hotel": "Break Sokos Hotel Levi", "link": "https://www.booking.com/hotel/fi/sokos-levi.html", "note": "" },
+  { "cityCode": "KEM", "hotel": "Scandic Kemi", "link": "https://www.booking.com/hotel/fi/scandic-kemi.html", "note": "" },
+  { "cityCode": "HEL", "hotel": "Hilton Helsinki Strand", "link": "https://www.booking.com/hotel/fi/hilton-helsinki-strand.html", "note": "" },
+  { "cityCode": "VAT", "hotel": "Break Sokos Hotel Flamingo", "link": "https://www.booking.com/hotel/fi/sokos-flamingo.html", "note": "" }
+]
