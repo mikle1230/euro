@@ -139,6 +139,7 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
   5. **用户反馈** → 行程行 🤖 反馈重解析（原文+反馈+上次结果）
   - token 控制：输入走 `cleanText` 降噪；输出靠规则 12 省略空字段；系统提示词保持精简
 - **改固定费率**（保险）→ 只动 `lib/quote-rates.js`；**前后夜已按 LDC 区域细分**（西欧 €120/荷比卢 €135/英国 £110/北欧 €148…）→ 改 `lib/ldc-mapping.js` 各 SUPPLIERS 条目的 `prepost` 字段（`quote-rates.prepostNight` 仅作未命中 LDC 时的兜底；**界面不显示金额**，只显示区域名）
+- **北欧 MICE 行程规则**（Viking Line 渡轮、瑞典本地 NGS 大巴、挪威路桥税、哈当厄尔/厄勒海峡大桥费、酒店/保险录入口径）见 **[context.md](context.md)**，沉淀自 Tour Maker 练习团 BJSJ.H00005；处理北欧行程前先读。
 - **用车规则**（用户口径，applyQuoteRules 在 coach-plan.js）：
   1. **中国出发/返程日**（上海等 CN 城市，含 day 0）只展示，**不参与分段**（避免返程日产生虚的 THROUGH COACH/PRE-POST）
   2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、**德奥组合→DE BER**、波兰→PL WAW 从华沙调车；2026-08-19 修正，曾误改为段起始城市——用户录入里的 WAW/PL 正是 polandMono 供应商码；2026-08-21 修正：德奥行程 KT 曾误录 IT ROM，必须 DE BER）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市、国/城用供应商），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
