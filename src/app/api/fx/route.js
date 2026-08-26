@@ -10,7 +10,11 @@ export async function GET(request) {
 
   const apiKey = process.env.EXCHANGE_RATE_API_KEY
   if (!apiKey) {
-    return NextResponse.json({ error: '缺少 API Key，请在 .env.local 配置 EXCHANGE_RATE_API_KEY' }, { status: 500 })
+    // 本地开发 vs 线上部署：给出正确的配置位置（.env.local 只在本地存在，且被 gitignore，不会随仓库上线）
+    const hint = process.env.NODE_ENV === 'production'
+      ? '线上未配置 EXCHANGE_RATE_API_KEY：请在托管平台（如 Vercel）的环境变量里添加该 Key'
+      : '缺少 EXCHANGE_RATE_API_KEY：请在 .env.local 配置该 Key'
+    return NextResponse.json({ error: hint }, { status: 500 })
   }
   if (!from || !to) {
     return NextResponse.json({ error: '缺少币种参数' }, { status: 400 })
