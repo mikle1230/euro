@@ -1,30 +1,12 @@
 'use client'
 
-import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ThemeToggle from './theme-toggle'
-import UploadModal from './upload-modal'
 import { SITE } from '@/lib/config'
 
 export default function Header() {
   const pathname = usePathname()
-  const [uploadOpen, setUploadOpen] = useState(false)
-  const [pendingFile, setPendingFile] = useState(null)
-  const importFileRef = useRef(null)
-
-  // 点「导入」直接打开本地文件选择器；选中文件后再弹上传弹窗（只显示进度条）
-  const handleImportClick = () => {
-    importFileRef.current?.click()
-  }
-
-  const handleImportChange = (e) => {
-    const file = e.target.files?.[0]
-    e.target.value = ''
-    if (!file) return
-    setPendingFile(file)
-    setUploadOpen(true)
-  }
 
   const isActive = (href) => {
     // 首页 = /（重定向到 /explore 工作台）
@@ -121,21 +103,6 @@ export default function Header() {
             MICE
           </Link>
         </nav>
-        {/* 导入行程文件（点一下直接打开本地文件选择器） */}
-        <button
-          onClick={handleImportClick}
-          className="inline-flex items-center gap-1 self-end mb-1 sm:mb-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all border"
-          style={{
-            background: 'var(--bg-surface)',
-            borderColor: 'var(--border-color)',
-            color: 'var(--text-secondary)',
-          }}
-          title="导入行程文件"
-          aria-label="导入行程文件"
-        >
-          <span className="text-sm">📤</span>
-          <span className="hidden sm:inline">导入</span>
-        </button>
         {/* 设置（独立页面 /settings） */}
         <Link
           href="/settings"
@@ -154,21 +121,6 @@ export default function Header() {
           <ThemeToggle />
         </div>
       </div>
-
-      {/* 隐藏的文件选择器：点「导入」直接打开本地文件夹 */}
-      <input
-        ref={importFileRef}
-        type="file"
-        accept=".pdf,.docx,.xlsx,.xls"
-        className="hidden"
-        onChange={handleImportChange}
-      />
-      <UploadModal
-        open={uploadOpen}
-        pendingFile={pendingFile}
-        onPendingHandled={() => setPendingFile(null)}
-        onClose={() => setUploadOpen(false)}
-      />
     </header>
   )
 }
