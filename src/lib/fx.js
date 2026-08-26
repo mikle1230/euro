@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import { toast } from '@/components/toast'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 // ⚠️ 安全说明：API Key 不写在前端（可被任何浏览器查看）。已改为服务端代理：
 //   前端调 /api/fx → Next 服务端路由读 .env.local 的 EXCHANGE_RATE_API_KEY → 调 exchange-rate-api.com。
 //   Key 在项目根 .env.local 配置（已被 gitignore，不会入库），换 Key 只需改 .env.local。移除前端 Key 常量。
 
 // 常用货币（下拉用；加入更多货币时在 CURRENCIES 里追加）
-const CURRENCIES = [
+export const CURRENCIES = [
   { code: 'USD', label: '美元 USD' },
   { code: 'CNY', label: '人民币 CNY' },
   { code: 'EUR', label: '欧元 EUR' },
@@ -49,7 +48,9 @@ function writeCache(from, to, rate) {
   try { localStorage.setItem(CACHE_KEY(from, to), JSON.stringify({ rate, ts: Date.now() })) } catch { /* ignore */ }
 }
 
-export default function CurrencyConverter() {
+// 汇率转换的共享逻辑（hook）。供浮层转换条与任何需要转换的 UI 复用。
+// 返回：from/to/amount 状态、result/rate/loading/error/fromCache、convert()。
+export function useFx() {
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('CNY')
   const [amount, setAmount] = useState('100')
@@ -99,69 +100,13 @@ export default function CurrencyConverter() {
     }
   }, [from, to, amount])
 
-  // 初始：尝试加载缓存显示（避免刷新就请求）
+  // 初始/切换币种：先用缓存回填显示（避免刷新就请求）；无缓存则清空结果
   useEffect(() => {
     const cached = readCache(from, to)
     if (cached) { setRate(cached.rate); setFromCache(true) }
     else { setRate(null); setResult(null) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to])
 
-  const inputCls = 'px-3 py-2 rounded-xl text-sm border outline-none'
-  const inputStyle = { background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }
-
-  return (
-    <div className="rounded-xl border p-4 mt-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-      <h2 className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>💱 汇率转换</h2>
-      <p className="text-xs mb-3" style={{ color: 'var(--text-tertiary)' }}>
-        实时汇率（Pair Conversion · exchange-rate-api.com），结果本地缓存 5 分钟
-      </p>
-      <div className="flex items-end gap-2 flex-wrap">
-        <div className="flex flex-col gap-1">
-          <label className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>金额</label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="100"
-            className={inputCls} style={inputStyle}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>源货币</label>
-          <select value={from} onChange={(e) => setFrom(e.target.value)} className={inputCls} style={inputStyle}>
-            {CURRENCIES.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}
-          </select>
-        </div>
-        <div className="text-xs font-bold pt-5" style={{ color: 'var(--text-tertiary)' }}>⇄</div>
-        <div className="flex flex-col gap-1">
-          <label className="text-[11px]" style={{ color: 'var(--text-tertiary)' }}>目标货币</label>
-          <select value={to} onChange={(e) => setTo(e.target.value)} className={inputCls} style={inputStyle}>
-            {CURRENCIES.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}
-          </select>
-        </div>
-        <button
-          onClick={convert}
-          disabled={loading}
-          className="px-4 py-2 rounded-xl text-sm font-medium transition-all disabled:opacity-50"
-          style={{ background: 'var(--accent-strong)', color: '#fff' }}
-        >
-          {loading ? '转换中…' : '转换'}
-        </button>
-      </div>
-      {error && (
-        <p className="text-xs mt-2" style={{ color: '#ef4444' }}>⚠️ {error}</p>
-      )}
-      {result != null && rate != null && (
-        <div className="mt-3 px-3 py-2 rounded-lg text-sm" style={{ background: 'var(--bg-surface)' }}>
-          <div style={{ color: 'var(--text-primary)' }}>
-            <b>{parseFloat(amount) || ''}</b> {from} ≈ <b className="text-[var(--accent)]">{result.toLocaleString('zh-CN', { maximumFractionDigits: 2 })}</b> {to}
-          </div>
-          <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-            汇率 1 {from} = {rate.toFixed(4)} {to}
-            {fromCache && ' ·（缓存）'}
-          </div>
-        </div>
-      )}
-    </div>
-  )
+  return { from, setFrom, to, setTo, amount, setAmount, result, rate, loading, error, fromCache, convert }
 }
