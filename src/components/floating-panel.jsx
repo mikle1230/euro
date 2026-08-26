@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import ItineraryList from './panel-views/itinerary-list'
 import QUOSList from './panel-views/quos-list'
+import UploadModal from './upload-modal'
 
 const ICONS = [
   { key: 'itineraries', icon: '🗂️', label: '行程列表' },
@@ -30,6 +31,22 @@ export default function FloatingPanel({
   const [dragging, setDragging] = useState(false)
   const panelRef = useRef(null)
   const prevItinIdRef = useRef(null)
+  // 导入（复用 header 逻辑）：隐藏 file input + 上传弹窗
+  const [uploadOpen, setUploadOpen] = useState(false)
+  const [pendingFile, setPendingFile] = useState(null)
+  const importFileRef = useRef(null)
+
+  const handleImportClick = useCallback(() => {
+    importFileRef.current?.click()
+  }, [])
+
+  const handleImportChange = useCallback((e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    setPendingFile(file)
+    setUploadOpen(true)
+  }, [])
 
   // Left-edge resize logic
   const startResize = useCallback((e) => {
@@ -167,6 +184,21 @@ export default function FloatingPanel({
         style={{ borderColor: 'var(--border-color)' }}
       >
         <div className="flex items-center gap-2">
+          {/* 导入按钮（放在「行程列表」标签前） */}
+          <button
+            onClick={handleImportClick}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all"
+            style={{
+              background: 'var(--accent-strong)',
+              borderColor: 'transparent',
+              color: '#fff',
+            }}
+            title="导入行程文件"
+            aria-label="导入行程文件"
+          >
+            <span className="text-sm">📤</span>
+            <span>导入</span>
+          </button>
           {activeItinerary && view !== 'itineraries' && (
             <button
               onClick={() => setView('itineraries')}
@@ -221,6 +253,21 @@ export default function FloatingPanel({
           <QUOSList itinerary={activeItinerary} />
         )}
       </div>
+
+      {/* 导入文件选择器 + 上传弹窗（与 header 一致的导入流程） */}
+      <input
+        ref={importFileRef}
+        type="file"
+        accept=".pdf,.doc,.docx,.xlsx,.xls"
+        className="hidden"
+        onChange={handleImportChange}
+      />
+      <UploadModal
+        open={uploadOpen}
+        pendingFile={pendingFile}
+        onPendingHandled={() => setPendingFile(null)}
+        onClose={() => setUploadOpen(false)}
+      />
     </div>
   )
 }
