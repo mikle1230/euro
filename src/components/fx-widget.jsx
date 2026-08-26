@@ -30,7 +30,7 @@ export default function FxWidget() {
   const pill = (
     <button
       onClick={() => setOpen(true)}
-      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border shadow-lg text-xs font-medium transition-all hover:bg-[var(--bg-surface)] whitespace-nowrap"
+      className="fixed bottom-3 left-3 z-[1100] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border shadow-lg text-xs font-medium transition-all hover:bg-[var(--bg-surface)] whitespace-nowrap"
       style={{
         background: 'var(--bg-card)',
         borderColor: 'var(--border-color)',
