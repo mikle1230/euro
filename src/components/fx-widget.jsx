@@ -3,6 +3,30 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useFx, CURRENCIES } from '@/lib/fx'
 
+// 让 <select> 按「最宽 option 的文字宽度」自适应宽度，避免文字被截断（如“波兰兹罗提 PLN”）。
+// 用离屏 span 量出最宽 label，返回含内边距/下拉箭头/边框的像素宽度。仅在客户端测量，
+// 未测得前用 CSS 宽度兜底，避免 SSR 水合不一致。
+function useSelectWidth() {
+  const [w, setW] = useState(null)
+  useEffect(() => {
+    const span = document.createElement('span')
+    const s = span.style
+    s.position = 'absolute'
+    s.visibility = 'hidden'
+    s.whiteSpace = 'nowrap'
+    s.font = '12px system-ui, -apple-system, "Segoe UI", sans-serif' // 与 text-xs 一致
+    document.body.appendChild(span)
+    let max = 0
+    for (const c of CURRENCIES) {
+      span.textContent = c.label
+      max = Math.max(max, span.getBoundingClientRect().width)
+    }
+    document.body.removeChild(span)
+    setW(Math.ceil(max) + 42) // 内边距 + 下拉箭头 + 边框 的余量
+  }, [])
+  return w
+}
+
 // 常驻底部角落的微型汇率转换条。
 //   - fixed bottom-left，避开 /explore 右侧面板与地图控件（缩放左上、归属右下）。
 //   - 默认展开可直接转换；可收起成小药丸（显示当前结果），避免遮挡内容。
@@ -15,6 +39,7 @@ export default function FxWidget() {
 
   const [open, setOpen] = useState(true)
   const amountTimer = useRef(null)
+  const selectW = useSelectWidth()
 
   // 金额防抖：输入停止 400ms 后自动转换
   useEffect(() => {
@@ -51,7 +76,7 @@ export default function FxWidget() {
     <div
       className="fixed bottom-3 left-3 z-[1100] rounded-xl border shadow-2xl overflow-hidden"
       style={{
-        width: '300px',
+        width: '424px',
         maxWidth: 'calc(100vw - 24px)',
         background: 'var(--bg-card)',
         borderColor: 'var(--border-color)',
@@ -73,14 +98,14 @@ export default function FxWidget() {
       </div>
 
       <div className="p-3">
-        {/* 输入行：金额 + 源币种 + 目标币种（紧凑适配 300px） */}
+        {/* 输入行：金额 + 源币种 + 目标币种（金额框加宽，select 按文字宽度自适应） */}
         <div className="flex items-center gap-1.5">
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="金额"
-            className="w-[64px] px-2 py-1 rounded-lg text-xs border outline-none"
+            className="w-[92px] h-9 px-2.5 py-1 rounded-lg text-xs border outline-none shrink-0"
             style={{
               background: 'var(--bg-surface)',
               borderColor: 'var(--border-color)',
@@ -90,8 +115,9 @@ export default function FxWidget() {
           <select
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="flex-1 min-w-0 px-2 py-1 rounded-lg text-xs border outline-none"
+            className="h-9 px-2.5 py-1 rounded-lg text-xs border outline-none shrink-0"
             style={{
+              width: selectW ? `${selectW}px` : '122px',
               background: 'var(--bg-surface)',
               borderColor: 'var(--border-color)',
               color: 'var(--text-primary)',
@@ -104,8 +130,9 @@ export default function FxWidget() {
           <select
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="flex-1 min-w-0 px-2 py-1 rounded-lg text-xs border outline-none"
+            className="h-9 px-2.5 py-1 rounded-lg text-xs border outline-none shrink-0"
             style={{
+              width: selectW ? `${selectW}px` : '122px',
               background: 'var(--bg-surface)',
               borderColor: 'var(--border-color)',
               color: 'var(--text-primary)',
