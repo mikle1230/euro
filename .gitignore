@@ -46,3 +46,6 @@ public/pagefind/
 /*.xlsx
 /*.xls
 /deepseek_typescript_*.ts
+
+# dev server log
+/.dsh-dev.log
