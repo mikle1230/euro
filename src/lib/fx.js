@@ -51,8 +51,8 @@ function writeCache(from, to, rate) {
 // 汇率转换的共享逻辑（hook）。供浮层转换条与任何需要转换的 UI 复用。
 // 返回：from/to/amount 状态、result/rate/loading/error/fromCache、convert()。
 export function useFx() {
-  const [from, setFrom] = useState('USD')
-  const [to, setTo] = useState('CNY')
+  const [from, setFrom] = useState('SEK')
+  const [to, setTo] = useState('EUR')
   const [amount, setAmount] = useState('100')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState(null)
