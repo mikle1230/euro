@@ -183,22 +183,8 @@ export default function FloatingPanel({
         className="flex items-center justify-between px-4 py-3 border-b shrink-0"
         style={{ borderColor: 'var(--border-color)' }}
       >
-        <div className="flex items-center gap-2">
-          {/* 导入按钮（放在「行程列表」标签前） */}
-          <button
-            onClick={handleImportClick}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all"
-            style={{
-              background: 'var(--accent-strong)',
-              borderColor: 'transparent',
-              color: '#fff',
-            }}
-            title="导入行程文件"
-            aria-label="导入行程文件"
-          >
-            <span className="text-sm">📤</span>
-            <span>导入</span>
-          </button>
+        <div className="flex items-center">
+          {/* 返回箭头放第一位（仅行程详情视图显示） */}
           {activeItinerary && view !== 'itineraries' && (
             <button
               onClick={() => setView('itineraries')}
@@ -215,7 +201,22 @@ export default function FloatingPanel({
             </button>
           )}
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
+          {/* 导入按钮（靠右，位于导航状态指示之前） */}
+          <button
+            onClick={handleImportClick}
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all"
+            style={{
+              background: 'var(--accent-strong)',
+              borderColor: 'transparent',
+              color: '#fff',
+            }}
+            title="导入行程文件"
+            aria-label="导入行程文件"
+          >
+            <span className="text-sm">📤</span>
+            <span>导入</span>
+          </button>
           {/* 导航状态指示（非按钮，图标+文字表示当前位置，悬停显示提示） */}
           <div className="flex items-center gap-1 select-none">
             {['itineraries', 'quos'].map((key) => {
