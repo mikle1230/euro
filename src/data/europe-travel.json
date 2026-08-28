@@ -4520,6 +4520,22 @@
           "lat": 59.4022,
           "lng": 13.5115,
           "attractions": []
+        },
+        {
+          "id": "linkoping",
+          "name": "林雪平",
+          "nameEn": "Linkoping",
+          "lat": 58.4108,
+          "lng": 15.6214,
+          "attractions": []
+        },
+        {
+          "id": "charlottenberg",
+          "name": "夏洛滕贝里",
+          "nameEn": "Charlottenberg",
+          "lat": 59.8844,
+          "lng": 12.3056,
+          "attractions": []
         }
       ]
     },
@@ -4726,6 +4742,22 @@
           "nameEn": "Kirkenes",
           "lat": 69.7271,
           "lng": 30.0447,
+          "attractions": []
+        },
+        {
+          "id": "ulvik",
+          "name": "乌尔维克",
+          "nameEn": "Ulvik",
+          "lat": 60.5678,
+          "lng": 6.9167,
+          "attractions": []
+        },
+        {
+          "id": "brimnes",
+          "name": "布里姆内斯",
+          "nameEn": "Brimnes",
+          "lat": 60.4639,
+          "lng": 6.8794,
           "attractions": []
         }
       ]
@@ -6569,6 +6601,14 @@
           "nameEn": "Kemi",
           "lat": 65.7365,
           "lng": 24.5637,
+          "attractions": []
+        },
+        {
+          "id": "vantaa",
+          "name": "万塔",
+          "nameEn": "Vantaa",
+          "lat": 60.2944,
+          "lng": 25.0408,
           "attractions": []
         }
       ]

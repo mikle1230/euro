@@ -39,6 +39,12 @@ export const CITY_CODE_ALIASES = {
   '深圳': 'Shenzhen',
   '成都': 'Chengdu',
   '西安': 'Xi An',
+  // 北欧新增城市：中文 → 英文规范名
+  '林雪平': 'Linkoping',
+  '夏洛滕贝里': 'Charlottenberg',
+  '乌尔维克': 'Ulvik',
+  '布里姆内斯': 'Brimnes',
+  '万塔': 'Vantaa',
   // 机场三字码 → 城市（AI 的 from/to 可能输出机场码；机场码≠城市码的少数，
   // 避免撞码歧义——如 CDG 在 Cities.xlsx 里是 Cardigan/GB）
   'PEK': 'Beijing',
