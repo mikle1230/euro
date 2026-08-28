@@ -9,6 +9,7 @@ import countryMeta from '@/data/country-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import GlobalSearch from '@/components/global-search'
 import CountryFlag from '@/components/country-flag'
+import SearchToolbar from '@/components/search-toolbar'
 import { toast } from '@/components/toast'
 import { getCityCode } from '@/lib/quos-mapping'
 
@@ -126,9 +127,6 @@ export default function KnowledgePage() {
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="w-full sm:w-72 shrink-0">
-              <GlobalSearch wide />
-            </div>
             <button
               onClick={handleExport}
               title="把本机自定义城市补丁导出为 JSON（发给开发者合并进 git 全端生效）"
@@ -147,6 +145,13 @@ export default function KnowledgePage() {
           </div>
         </div>
       </div>
+
+      {/* 搜索工具栏：汇率转换 + 全局搜索（吸顶，任何滚动位置都能用） */}
+      <SearchToolbar
+        stickyTop="top-0"
+        maxWidth="max-w-7xl"
+        search={<div><GlobalSearch wide /></div>}
+      />
 
       {/* 内容区 */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">

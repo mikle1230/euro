@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
 import MiceImage from '@/components/mice-image'
+import SearchToolbar from '@/components/search-toolbar'
 
 const CATEGORY_STYLE = {
   'Activity': { label: '🎪 活动', color: 'var(--mice-accent)', bg: 'var(--mice-accent-subtle)' },
@@ -161,21 +162,27 @@ export default function MicePage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
-        {/* 搜索 */}
-        <div className="relative max-w-2xl">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-xs" style={{ color: 'var(--text-tertiary)' }}>🔍</span>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => { setQuery(e.target.value); setShown(60) }}
-            placeholder="搜索活动标题、国家、城市、标签…"
-            className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm border outline-none focus-ring-mice"
-            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-            aria-label="搜索活动"
-          />
-        </div>
+      {/* 搜索工具栏：汇率转换 + MICE 搜索（吸顶，任何滚动位置都能用） */}
+      <SearchToolbar
+        stickyTop="top-14"
+        maxWidth="max-w-7xl"
+        search={
+          <div className="relative max-w-2xl">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-xs" style={{ color: 'var(--text-tertiary)' }}>🔍</span>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => { setQuery(e.target.value); setShown(60) }}
+              placeholder="搜索活动标题、国家、城市、标签…"
+              className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm border outline-none focus-ring-mice"
+              style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
+              aria-label="搜索活动"
+            />
+          </div>
+        }
+      />
 
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
         {/* 类别 chips */}
         <div className="flex items-center gap-1.5 mt-4 mb-3 flex-wrap">
           {Object.keys(CATEGORY_STYLE).map((c) => (

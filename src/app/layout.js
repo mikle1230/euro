@@ -4,7 +4,6 @@ import './globals.css'
 import { SITE } from '@/lib/config'
 import Header from '@/components/header'
 import ToastHost from '@/components/toast'
-import FxWidget from '@/components/fx-widget'
 
 const geist = Geist({
   subsets: ['latin'],
@@ -49,7 +48,6 @@ export default function RootLayout({ children }) {
         </Script>
         <Header />
         {children}
-        <FxWidget />
         <ToastHost />
       </body>
     </html>

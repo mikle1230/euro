@@ -4,6 +4,7 @@ import { useState, useMemo, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
 import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
+import SearchToolbar from '@/components/search-toolbar'
 
 // 地图 CSR only（Leaflet 需浏览器环境）
 const HotelMap = dynamic(() => import('@/components/hotel-map'), {
@@ -305,6 +306,41 @@ export default function HotelsPage() {
         </div>
       </div>
 
+      {/* 搜索工具栏：汇率转换 + 酒店搜索（吸顶，任何滚动位置都能用） */}
+      <SearchToolbar
+        stickyTop="top-14"
+        maxWidth="max-w-6xl"
+        search={
+          <div className="relative max-w-2xl">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center" style={{ color: 'var(--text-tertiary)' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="搜索酒店名或城市（如 Nice、尼斯、罗马、Hôtel Carré）"
+              className="w-full pl-10 pr-10 py-2.5 rounded-xl text-sm border outline-none focus-ring"
+              style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
+              aria-label="搜索酒店"
+            />
+            {searching && (
+              <button
+                onClick={() => setQuery('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-xs focus-ring"
+                style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}
+                aria-label="清空搜索"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        }
+      />
+
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-6">
         {/* 酒店分布地图：默认显示有酒店的国家首都点（hover 高亮轮廓），放大到城市级显示酒店点位 */}
         <div className="rounded-2xl overflow-hidden border mb-6" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)', height: 380, position: 'relative' }}>
@@ -314,35 +350,6 @@ export default function HotelsPage() {
           <div className="absolute top-2 left-2 z-[1000] text-[11px] px-2 py-1 rounded-md pointer-events-none" style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}>
             🗺️ 有酒店的国家首都点 · 放大到城市显示酒店点位
           </div>
-        </div>
-
-        {/* 搜索 */}
-        <div className="relative max-w-2xl">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center" style={{ color: 'var(--text-tertiary)' }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </span>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="搜索酒店名或城市（如 Nice、尼斯、罗马、Hôtel Carré）"
-            className="w-full pl-10 pr-10 py-2.5 rounded-xl text-sm border outline-none focus-ring"
-            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-            aria-label="搜索酒店"
-          />
-          {searching && (
-            <button
-              onClick={() => setQuery('')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-xs focus-ring"
-              style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}
-              aria-label="清空搜索"
-            >
-              ✕
-            </button>
-          )}
         </div>
 
         {/* 筛选 + 排序 */}
