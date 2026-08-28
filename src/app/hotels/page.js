@@ -19,10 +19,21 @@ function nearTags(near) {
   return String(near).split(/[/、,，]/).map((s) => s.trim()).filter(Boolean)
 }
 
-// 排序：评分（默认）/ 价格升 / 价格降 / 星级；价格 0（待定）始终排最后
+// 排序：hotel list（报价项）优先，AI 探索靠后；同来源内按评分（默认）/ 价格升 / 价格降 / 星级；
+// 价格 0（待定）始终排最后
+function isFromList(h) {
+  // 报价库（hotel list）对象：有 hotel + prices 字段；或推荐库对象能匹配到报价库价格（€/人）
+  if (!!h.hotel) return true
+  return !!findHotelQuote(h.cityCode, h.name)?.pp
+}
 function sortedHotels(hotels, sort) {
   const arr = [...hotels]
   const ratingDesc = (a, b) => (b.rating || 0) - (a.rating || 0)
+  const listFirst = (a, b) => {
+    const la = isFromList(a) ? 0 : 1
+    const lb = isFromList(b) ? 0 : 1
+    return la - lb
+  }
   if (sort === 'priceAsc') {
     arr.sort((a, b) => (a.priceEur || 0) - (b.priceEur || 0))
     arr.sort((a, b) => ((a.priceEur || 0) === 0 ? 1 : 0) - ((b.priceEur || 0) === 0 ? 1 : 0))
@@ -34,6 +45,8 @@ function sortedHotels(hotels, sort) {
   } else {
     arr.sort(ratingDesc)
   }
+  // 无论哪种排序，hotel list 来源始终排在 AI 探索之前（稳定排序保留组内顺序）
+  arr.sort(listFirst)
   return arr
 }
 
