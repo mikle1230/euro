@@ -9,6 +9,7 @@ import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import KnowledgeTopBar from '@/components/knowledge-top-bar'
+import CountryFlag from '@/components/country-flag'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
 import { getCityCode, getCityEnglishName } from '@/lib/quos-mapping'
 import { COUNTRY_INTROS } from '@/data/country-intros'
@@ -84,6 +85,7 @@ export default function CountryPage() {
           { label: '城市库', href: '/knowledge' },
           { label: country.name },
         ]}
+        flagCountryId={country.id}
       />
 
       {/* Hero postcard：封面图 + 深灰蒙版 + 国家介绍 */}
@@ -99,10 +101,13 @@ export default function CountryPage() {
             className="absolute inset-0 flex flex-col justify-center p-6 md:p-10"
             style={{ background: 'rgba(23, 32, 42, 0.62)' }}
           >
-            <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3">
-              {country.name}
-              {country.nameEn && <span className="text-lg md:text-2xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{country.nameEn}</span>}
-              {countryCode && <span className="text-lg md:text-2xl font-mono font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{countryCode}</span>}
+            <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3 flex items-center gap-3">
+              <span className="inline-flex items-center gap-2">
+                <CountryFlag countryId={country.id} size="lg" />
+                {country.name}
+                {country.nameEn && <span className="text-lg md:text-2xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{country.nameEn}</span>}
+                {countryCode && <span className="text-lg md:text-2xl font-mono font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{countryCode}</span>}
+              </span>
             </h1>
             {intro && (
               <p

@@ -2,11 +2,14 @@
 
 import Link from 'next/link'
 import GlobalSearch from './global-search'
+import CountryFlag from './country-flag'
 
 // 城市库各级页面共用的「吸顶工具条」：面包屑（左）+ 全局搜索（右）。
 // 让搜索框在浏览 国家 → 城市 → 景点 时始终停留在页面顶部同一位置，随时可检索。
 // crumbs = [{ label, href? }]，最后一项为当前页（无 href，不可点）。
-export default function KnowledgeTopBar({ crumbs }) {
+// flagCountryId：给「当前项」（最后一项）显示国旗；传国家库 ID 即可。
+export default function KnowledgeTopBar({ crumbs, flagCountryId }) {
+  const last = crumbs[crumbs.length - 1]
   return (
     <div
       className="sticky top-0 z-40 border-b px-4 md:px-6 py-2.5"
@@ -29,7 +32,12 @@ export default function KnowledgeTopBar({ crumbs }) {
                   {c.label}
                 </Link>
               ) : (
-                <span className="truncate" style={{ color: 'var(--text-primary)' }}>{c.label}</span>
+                <span className="flex items-center gap-1.5 truncate" style={{ color: 'var(--text-primary)' }}>
+                  {i === crumbs.length - 1 && flagCountryId && (
+                    <CountryFlag countryId={flagCountryId} size="xs" />
+                  )}
+                  <span className="truncate">{c.label}</span>
+                </span>
               )}
             </span>
           ))}
@@ -42,3 +50,4 @@ export default function KnowledgeTopBar({ crumbs }) {
     </div>
   )
 }
+

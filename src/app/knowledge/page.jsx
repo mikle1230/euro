@@ -8,6 +8,7 @@ import { ensureSeeded } from '@/lib/entity-store'
 import countryMeta from '@/data/country-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import GlobalSearch from '@/components/global-search'
+import CountryFlag from '@/components/country-flag'
 import { toast } from '@/components/toast'
 import { getCityCode } from '@/lib/quos-mapping'
 
@@ -175,8 +176,9 @@ export default function KnowledgePage() {
                   countryName={country.name}
                 />
                 <div className="p-3">
-                  <h3 className="font-display font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>
-                    {country.name}
+                  <h3 className="font-display font-semibold text-sm flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+                    <CountryFlag countryId={country.id} size="md" />
+                    <span className="truncate">{country.name}</span>
                   </h3>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
                     {[country.nameEn, quosCode].filter(Boolean).join(' · ')}

@@ -63,6 +63,7 @@ export default function AttractionPage() {
           { label: attraction.city?.name || cityId, href: `/knowledge/${countryId}/${cityId}` },
           { label: attraction.name },
         ]}
+        flagCountryId={attraction.country?.id || countryId}
       />
 
       {/* Hero */}

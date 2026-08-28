@@ -73,6 +73,7 @@ export default function CityPage() {
           { label: city.country?.name || countryId, href: `/knowledge/${countryId}` },
           { label: city.name },
         ]}
+        flagCountryId={city.country?.id || countryId}
       />
 
       {/* Hero postcard */}
