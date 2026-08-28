@@ -117,39 +117,29 @@ export default function CountryPage() {
                 {intro}
               </p>
             )}
+            {/* 国家信息：首都 / 国庆日 / 官方语言 / 货币（反白显示在图片区下方） */}
+            {infoRows.length > 0 && (
+              <div className="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
+                {infoRows.map((row) => (
+                  <div key={row.label}>
+                    <div className="text-[11px] uppercase tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                      {row.label}
+                    </div>
+                    <div className="font-medium mt-0.5 leading-snug" style={{ color: '#fff' }}>
+                      {row.symbol && (
+                        <span className="mr-1 font-semibold" style={{ color: 'rgba(255,255,255,0.95)' }}>{row.symbol}</span>
+                      )}
+                      {row.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
-        {/* 国家信息栏：表格排版，标签与内容均左对齐（与 hero 同用 p-6/md:p-10 边距） */}
-        {infoRows.length > 0 && (
-          <div
-            className="rounded-xl border overflow-hidden mb-6 p-6 md:p-10"
-            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
-          >
-            {infoRows.map((row, i) => (
-              <div
-                key={row.label}
-                className="grid text-sm"
-                style={{
-                  gridTemplateColumns: '104px 1fr',
-                  padding: '10px 0',
-                  ...(i < infoRows.length - 1 ? { borderBottom: '1px solid var(--border-color)' } : {}),
-                }}
-              >
-                <span style={{ color: 'var(--text-tertiary)' }}>{row.label}</span>
-                <span className="font-medium" style={{ color: 'var(--text-primary)' }}>
-                  {row.symbol && (
-                    <span className="mr-1.5 font-semibold" style={{ color: 'var(--accent)' }}>{row.symbol}</span>
-                  )}
-                  {row.value}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-
         {/* Cities grid */}
         {cities.length > 0 && (
           <div className="mb-8">
