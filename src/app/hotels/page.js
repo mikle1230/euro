@@ -1,17 +1,10 @@
 'use client'
 
-import { useState, useMemo, Suspense } from 'react'
-import dynamic from 'next/dynamic'
+import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
 import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
-
-// 地图 CSR only（Leaflet 需浏览器环境）
-const HotelMap = dynamic(() => import('@/components/hotel-map'), {
-  ssr: false,
-  loading: () => <div style={{ height: '100%', background: 'var(--bg-elevated)' }} />,
-})
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -319,16 +312,6 @@ export default function HotelsPage() {
       />
 
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-6">
-        {/* 酒店分布地图：默认显示有酒店的国家首都点（hover 高亮轮廓），放大到城市级显示酒店点位 */}
-        <div className="rounded-2xl overflow-hidden border mb-6" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)', height: 380, position: 'relative' }}>
-          <Suspense fallback={<div style={{ height: '100%', background: 'var(--bg-elevated)' }} />}>
-            <HotelMap height="100%" />
-          </Suspense>
-          <div className="absolute top-2 left-2 z-[1000] text-[11px] px-2 py-1 rounded-md pointer-events-none" style={{ background: 'rgba(0,0,0,0.5)', color: '#fff' }}>
-            🗺️ 有酒店的国家首都点 · 放大到城市显示酒店点位
-          </div>
-        </div>
-
         {/* 筛选 + 排序 */}
         <div className="flex items-start justify-between gap-3 flex-wrap mt-4 mb-6">
           <div className="flex flex-wrap gap-1.5">
