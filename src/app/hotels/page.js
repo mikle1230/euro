@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
 import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
 import SearchToolbar from '@/components/search-toolbar'
+import PageHero from '@/components/page-hero'
 
 // 地图 CSR only（Leaflet 需浏览器环境）
 const HotelMap = dynamic(() => import('@/components/hotel-map'), {
@@ -270,41 +271,17 @@ export default function HotelsPage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Masthead — 编辑/展示风 */}
-      <div
-        className="border-b"
-        style={{
-          borderColor: 'var(--border-color)',
-          background: 'linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%)',
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-9">
-          <div className="flex items-center gap-2">
-            <h1 className="font-display font-bold text-2xl md:text-3xl" style={{ color: 'var(--text-primary)', textWrap: 'balance' }}>
-              酒店库
-            </h1>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium" style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}>
-              <span className="text-sm leading-none">🏨</span> 地接报价参考
-            </span>
-          </div>
-          <p className="text-xs md:text-sm mt-1.5" style={{ color: 'var(--text-secondary)' }}>
-            Booking 评分 ≥7 推荐库 + 酒店价格参考（€/人，以 hotel list 为准）
-          </p>
-
-          {/* 统计 */}
-          <div className="flex items-center gap-2 mt-4 flex-wrap">
-            {[
-              { label: '国家', value: merged.length },
-              { label: '酒店', value: totalHotels },
-            ].map((s) => (
-              <div key={s.label} className="px-3 py-1.5 rounded-xl border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-                <span className="font-mono text-base font-bold" style={{ color: 'var(--text-primary)' }}>{s.value}</span>
-                <span className="text-[11px] ml-1.5" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Hero — 与城市库统一风格/高度 */}
+      <PageHero
+        maxWidth="max-w-6xl"
+        title="酒店库"
+        badge={
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium" style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}>
+            <span className="text-sm leading-none">🏨</span> 地接报价参考
+          </span>
+        }
+        subtitle={`共 ${merged.length} 个国家 · ${totalHotels} 家酒店 · Booking 评分 ≥7 推荐库 + 酒店价格参考（€/人，以 hotel list 为准）`}
+      />
 
       {/* 搜索工具栏：汇率转换 + 酒店搜索（吸顶，任何滚动位置都能用） */}
       <SearchToolbar

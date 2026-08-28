@@ -10,6 +10,7 @@ import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import GlobalSearch from '@/components/global-search'
 import CountryFlag from '@/components/country-flag'
 import SearchToolbar from '@/components/search-toolbar'
+import PageHero from '@/components/page-hero'
 import { toast } from '@/components/toast'
 import { getCityCode } from '@/lib/quos-mapping'
 
@@ -113,20 +114,13 @@ export default function KnowledgePage() {
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
       {/* Breadcrumb + stats + 搜索（吸顶，浏览国家/城市/景点时搜索框一直在顶部） */}
-      <div
-        className="sticky top-0 z-40 border-b px-4 md:px-6 py-3"
-        style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
-      >
-        <div className="max-w-7xl mx-auto flex items-start justify-between gap-3 flex-wrap">
-          <div>
-            <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
-              📖 城市库
-            </h1>
-            <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>
-              共 {stats.countryCount} 个国家 · {stats.cityCount} 个城市 · {stats.attractionCount}+ 个景点
-            </p>
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
+      <PageHero
+        sticky
+        maxWidth="max-w-7xl"
+        title="📖 城市库"
+        subtitle={`共 ${stats.countryCount} 个国家 · ${stats.cityCount} 个城市 · ${stats.attractionCount}+ 个景点`}
+        right={
+          <>
             <button
               onClick={handleExport}
               title="把本机自定义城市补丁导出为 JSON（发给开发者合并进 git 全端生效）"
@@ -142,9 +136,9 @@ export default function KnowledgePage() {
             >
               ➕ 添加城市
             </button>
-          </div>
-        </div>
-      </div>
+          </>
+        }
+      />
 
       {/* 搜索工具栏：汇率转换 + 全局搜索（吸顶，任何滚动位置都能用） */}
       <SearchToolbar

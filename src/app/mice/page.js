@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
 import MiceImage from '@/components/mice-image'
 import SearchToolbar from '@/components/search-toolbar'
+import PageHero from '@/components/page-hero'
 
 const CATEGORY_STYLE = {
   'Activity': { label: '🎪 活动', color: 'var(--mice-accent)', bg: 'var(--mice-accent-subtle)' },
@@ -137,30 +138,17 @@ export default function MicePage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Masthead — MICE 暖色展示风 */}
-      <div className="border-b" style={{ borderColor: 'var(--border-color)', background: 'linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%)' }}>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-9">
-          <div className="flex items-center gap-2">
-            <h1 className="font-display font-bold text-2xl md:text-3xl" style={{ color: 'var(--text-primary)', textWrap: 'balance' }}>
-              MICE 特色活动
-            </h1>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold" style={{ background: 'var(--mice-accent-subtle)', color: 'var(--mice-accent)' }}>
-              <span className="text-sm leading-none">🎪</span> 活动 / 技术参访
-            </span>
-          </div>
-          <p className="text-xs md:text-sm mt-1.5" style={{ color: 'var(--text-secondary)' }}>
-            为地接团组精选的可落地特色活动与技术参访，可直接复制进报价单
-          </p>
-          <div className="flex items-center gap-2 mt-4 flex-wrap">
-            {[{ label: '总活动', value: stats.total }, { label: '活动', value: stats.activity }, { label: '技术参访', value: stats.tv }].map((s) => (
-              <div key={s.label} className="px-3 py-1.5 rounded-xl border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-                <span className="font-mono text-base font-bold" style={{ color: 'var(--text-primary)' }}>{s.value}</span>
-                <span className="text-[11px] ml-1.5" style={{ color: 'var(--text-tertiary)' }}>{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Hero — 与城市库统一风格/高度 */}
+      <PageHero
+        maxWidth="max-w-7xl"
+        title="MICE 特色活动"
+        badge={
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold" style={{ background: 'var(--mice-accent-subtle)', color: 'var(--mice-accent)' }}>
+            <span className="text-sm leading-none">🎪</span> 活动 / 技术参访
+          </span>
+        }
+        subtitle={`共 ${stats.total} 项（${stats.activity} 活动 · ${stats.tv} 技术参访）· 为地接团组精选的可落地特色活动与技术参访，可直接复制进报价单`}
+      />
 
       {/* 搜索工具栏：汇率转换 + MICE 搜索（吸顶，任何滚动位置都能用） */}
       <SearchToolbar
