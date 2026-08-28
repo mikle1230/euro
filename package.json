@@ -14,7 +14,10 @@
     "mice:images": "node scripts/mice-images-optimize.js",
     "images:check": "node scripts/normalize-images.mjs --check",
     "images:fix": "node scripts/normalize-images.mjs --fix",
-    "images:watch": "node scripts/normalize-images.mjs --watch"
+    "images:watch": "node scripts/normalize-images.mjs --watch",
+    "images:check:sharp": "node scripts/normalize-images-sharp.mjs --check",
+    "images:fix:sharp": "node scripts/normalize-images-sharp.mjs --fix",
+    "images:watch:sharp": "node scripts/normalize-images-sharp.mjs --watch"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
