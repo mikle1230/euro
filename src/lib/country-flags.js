@@ -27,6 +27,18 @@ const COUNTRY_ISO = {
   'iceland': 'is',
   'estonia': 'ee',
   'montenegro': 'me',
+  'russia': 'ru',
+  'bulgaria': 'bg',
+  'luxembourg': 'lu',
+  'serbia': 'rs',
+  'cyprus': 'cy',
+  'latvia': 'lv',
+  'monaco': 'mc',
+  'slovakia': 'sk',
+  'slovenia': 'si',
+  'lithuania': 'lt',
+  'romania': 'ro',
+  'malta': 'mt',
 }
 
 // 根据国家库 ID 返回 ISO 二字码；未知国家返回 null（调用方自行回退）。
