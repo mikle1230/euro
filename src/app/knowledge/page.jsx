@@ -113,9 +113,8 @@ export default function KnowledgePage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb + stats + 搜索（吸顶，浏览国家/城市/景点时搜索框一直在顶部） */}
+      {/* Breadcrumb + stats */}
       <PageHero
-        sticky
         maxWidth="max-w-7xl"
         title="📖 城市库"
         subtitle={`共 ${stats.countryCount} 个国家 · ${stats.cityCount} 个城市 · ${stats.attractionCount}+ 个景点`}
@@ -142,7 +141,7 @@ export default function KnowledgePage() {
 
       {/* 搜索工具栏：汇率转换 + 全局搜索（吸顶，任何滚动位置都能用） */}
       <SearchToolbar
-        stickyTop="top-0"
+        stickyTop="top-14"
         maxWidth="max-w-7xl"
         search={<div><GlobalSearch wide /></div>}
       />

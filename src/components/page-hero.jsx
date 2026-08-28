@@ -5,10 +5,10 @@
 //   - right：右侧操作区（ReactNode，如 导出/添加 按钮）。
 //   - maxWidth：内容宽度；sticky：是否吸顶（默认否——搜索栏负责吸顶；城市库 header 为 relative 时用 true）。
 // 高度对齐知识库 hero：title text-xl + subtitle text-xs + py-3 + border-b + bg-secondary。
-export default function PageHero({ title, badge, subtitle, right, maxWidth = 'max-w-7xl', sticky = false }) {
+export default function PageHero({ title, badge, subtitle, right, maxWidth = 'max-w-7xl', sticky = false, stickyTop = 'top-0' }) {
   return (
     <div
-      className={`${sticky ? 'sticky top-0 ' : ''}border-b px-4 md:px-6 py-3`}
+      className={`${sticky ? `sticky ${stickyTop} ` : ''}border-b px-4 md:px-6 py-3`}
       style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
     >
       <div className={`${maxWidth} mx-auto flex items-start justify-between gap-3 flex-wrap`}>

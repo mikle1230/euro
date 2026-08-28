@@ -27,12 +27,10 @@ export default function Header() {
   const tabClass =
     'inline-flex items-center justify-center font-medium transition-all w-[60px] h-[36px] text-xs sm:w-[88px] sm:h-[40px] sm:text-sm md:w-[110px] md:h-[45px] md:text-sm'
 
-  // 城市库（/knowledge）页面：顶栏随页面滚动收起，让面包屑吸顶常驻，留出浏览空间
-  const isKnowledge = pathname.startsWith('/knowledge')
-
+  // 顶部导航始终吸顶：任何页面滚动时 tab 都保持在顶部，方便随时切换（不再依赖路径特殊处理）
   return (
     <header
-      className={`${isKnowledge ? 'relative' : 'sticky top-0'} z-[900] border-b flex items-center justify-between px-2 sm:px-4 md:px-6 shrink-0 h-14`}
+      className="sticky top-0 z-[900] border-b flex items-center justify-between px-2 sm:px-4 md:px-6 shrink-0 h-14"
       style={{
         background: 'var(--bg-primary)',
         borderColor: 'var(--border-color)',

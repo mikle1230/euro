@@ -12,7 +12,7 @@ import CurrencyInline from './currency-inline'
 export default function KnowledgeTopBar({ crumbs, flagCountryId }) {
   return (
     <div
-      className="sticky top-0 z-40 border-b px-4 md:px-6 py-2.5"
+      className="sticky top-14 z-40 border-b px-4 md:px-6 py-2.5"
       style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
     >
       <div className="max-w-5xl mx-auto flex items-center gap-2.5 flex-wrap">
