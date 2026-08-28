@@ -110,9 +110,12 @@ export default function KnowledgePage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb + stats + 搜索（从顶部导航栏移入城市库内部） */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
-        <div className="flex items-start justify-between gap-3 mb-6 flex-wrap">
+      {/* Breadcrumb + stats + 搜索（吸顶，浏览国家/城市/景点时搜索框一直在顶部） */}
+      <div
+        className="sticky top-0 z-40 border-b px-4 md:px-6 py-3"
+        style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
+      >
+        <div className="max-w-7xl mx-auto flex items-start justify-between gap-3 flex-wrap">
           <div>
             <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-primary)' }}>
               📖 城市库
@@ -142,7 +145,10 @@ export default function KnowledgePage() {
             </button>
           </div>
         </div>
+      </div>
 
+      {/* 内容区 */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         {/* Country grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {countries.map((country) => {

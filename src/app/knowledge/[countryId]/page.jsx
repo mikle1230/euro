@@ -8,6 +8,7 @@ import countryMeta from '@/data/country-meta.json'
 import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
+import KnowledgeTopBar from '@/components/knowledge-top-bar'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
 import { getCityCode, getCityEnglishName } from '@/lib/quos-mapping'
 import { COUNTRY_INTROS } from '@/data/country-intros'
@@ -77,14 +78,13 @@ export default function CountryPage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb（吸顶，滚动时随时返回上级） */}
-      <div className="sticky top-0 z-40 border-b px-4 md:px-6 py-3" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
-        <div className="max-w-5xl mx-auto flex items-center gap-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          <Link href="/knowledge" className="hover:text-[var(--accent)] transition-colors">城市库</Link>
-          <span>/</span>
-          <span style={{ color: 'var(--text-primary)' }}>{country.name}</span>
-        </div>
-      </div>
+      {/* 吸顶工具条：面包屑 + 全局搜索（搜索框全程停留在顶部，随时可检索） */}
+      <KnowledgeTopBar
+        crumbs={[
+          { label: '城市库', href: '/knowledge' },
+          { label: country.name },
+        ]}
+      />
 
       {/* Hero postcard：封面图 + 深灰蒙版 + 国家介绍 */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">

@@ -7,6 +7,7 @@ import attractionInfo from '@/data/attraction-info.json'
 import { ATTRACTION_DETAILS } from '@/data/attraction-details'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
+import KnowledgeTopBar from '@/components/knowledge-top-bar'
 import { haversineKm } from '@/lib/geo'
 
 export default function AttractionPage() {
@@ -54,22 +55,15 @@ export default function AttractionPage() {
 
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
-      {/* Breadcrumb（吸顶，滚动时随时返回上级） */}
-      <div className="sticky top-0 z-40 border-b px-4 md:px-6 py-3" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}>
-        <div className="max-w-5xl mx-auto flex items-center gap-2 text-xs" style={{ color: 'var(--text-tertiary)' }}>
-          <Link href="/knowledge" className="hover:text-[var(--accent)] transition-colors">城市库</Link>
-          <span>/</span>
-          <Link href={`/knowledge/${countryId}`} className="hover:text-[var(--accent)] transition-colors">
-            {attraction.country?.name || countryId}
-          </Link>
-          <span>/</span>
-          <Link href={`/knowledge/${countryId}/${cityId}`} className="hover:text-[var(--accent)] transition-colors">
-            {attraction.city?.name || cityId}
-          </Link>
-          <span>/</span>
-          <span style={{ color: 'var(--text-primary)' }}>{attraction.name}</span>
-        </div>
-      </div>
+      {/* 吸顶工具条：面包屑 + 全局搜索（搜索框全程停留在顶部，随时可检索） */}
+      <KnowledgeTopBar
+        crumbs={[
+          { label: '城市库', href: '/knowledge' },
+          { label: attraction.country?.name || countryId, href: `/knowledge/${countryId}` },
+          { label: attraction.city?.name || cityId, href: `/knowledge/${countryId}/${cityId}` },
+          { label: attraction.name },
+        ]}
+      />
 
       {/* Hero */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
