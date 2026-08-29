@@ -2,6 +2,7 @@
 // 数据由 scripts/build-mice.js 从 Excel 生成（src/data/mice-activities.js）；
 // 后续补充其他国家活动文件 → 重跑构建脚本即自动扩充，无需改代码结构。
 import miceActivities from '../data/mice-activities.js'
+import { MICE_ZH } from '../data/mice-zh.js'
 import { COUNTRIES } from '../data/countries.js'
 
 // ---- 国家智能解析：英文名（Excel 写法）→ { code, nameZh } ----
@@ -134,7 +135,13 @@ export function filterMiceActivities(f = {}) {
     if (q) {
       const hay = [a.title, a.country, a.city, a.category, a.subCategoryForActivity, ...a.tags, ...a.targetTourCategories, a.id]
         .filter(Boolean).join(' ').toLowerCase()
-      if (!hay.includes(q)) return false
+      // 中文搜索：标题/城市/子类目中文映射一并纳入匹配
+      const zh = [
+        MICE_ZH.titles[a.id],
+        MICE_ZH.cities[a.city],
+        (a.subCategoryForActivity || '').split(';#').map((s) => MICE_ZH.subCategories[s.trim()]).filter(Boolean).join(' '),
+      ].filter(Boolean).join(' ').toLowerCase()
+      if (!hay.includes(q) && !zh.includes(q)) return false
     }
     return true
   })

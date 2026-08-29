@@ -4,6 +4,7 @@ import { useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
+import { MICE_ZH } from '@/data/mice-zh'
 import MiceImage from '@/components/mice-image'
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
@@ -24,6 +25,8 @@ function ActivityCard({ a, idx = 0 }) {
   const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)', bg: 'var(--bg-surface)' }
   const closed = statusBadge(a.productStatus)
   const country = resolveCountry(a.country)
+  const titleZh = MICE_ZH.titles[a.id] || ''
+  const cityZh = MICE_ZH.cities[a.city] || ''
   const price = a.priceMax > 0
     ? `€${a.priceMin || '?'}–${a.priceMax}`
     : a.priceMin > 0
@@ -62,16 +65,21 @@ function ActivityCard({ a, idx = 0 }) {
             {cat.label}
           </span>
           <span className="text-[10px] px-2 py-0.5 rounded-full font-medium shrink-0" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>
-            {country?.flag || ''} {country?.nameZh || a.country}
+            {country?.flag || ''} {country?.nameZh || a.country}{cityZh ? ` · ${cityZh}` : ''}
           </span>
         </div>
 
-        <h3 className="text-sm font-semibold leading-snug line-clamp-2" style={{ color: 'var(--text-primary)', textWrap: 'balance' }} title={a.title}>
-          {a.title}
-        </h3>
+        <div>
+          <h3 className="text-sm font-semibold leading-snug line-clamp-1" style={{ color: 'var(--text-primary)', textWrap: 'balance' }} title={a.title}>
+            {titleZh || a.title}
+          </h3>
+          {titleZh && (
+            <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-tertiary)' }}>{a.title}</div>
+          )}
+        </div>
 
         <div className="text-xs flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
-          {a.city && <span className="inline-flex items-center gap-1">📍 <span className="truncate max-w-28">{a.city}</span></span>}
+          {a.city && <span className="inline-flex items-center gap-1">📍 <span className="truncate max-w-28">{cityZh || a.city}</span></span>}
           {cap && <span>{cap}</span>}
         </div>
 

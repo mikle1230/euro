@@ -4,6 +4,7 @@ import { use, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getMiceActivityById, resolveCountry } from '@/lib/mice'
+import { MICE_ZH } from '@/data/mice-zh'
 import MiceImage from '@/components/mice-image'
 import { toast } from '@/components/toast'
 
@@ -69,6 +70,9 @@ export default function MiceDetailPage({ params }) {
   const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)', bg: 'var(--bg-surface)' }
   const closed = statusBadge(a.productStatus)
   const country = resolveCountry(a.country)
+  const titleZh = MICE_ZH.titles[a.id] || ''
+  const cityZh = MICE_ZH.cities[a.city] || ''
+  const subZh = (a.subCategoryForActivity || '').split(';#').map((s) => MICE_ZH.subCategories[s.trim()] || s.trim()).filter(Boolean).join('、')
   const priceUnitLabel = { pax: '按人', group: '按团', hour: '按小时', course: '按课程', rental: '按租赁', 'set menus/pax': '按套餐/人' }
   const price = a.priceMax > 0
     ? `€${a.priceMin || '?'}–${a.priceMax}`
@@ -135,15 +139,18 @@ export default function MiceDetailPage({ params }) {
           </div>
         </div>
 
-        {/* 标题 + 价格 */}
+        {/* 标题 + 价格（中英对照：中文主标题，英文副标题） */}
         <div className="mt-5 flex items-start justify-between gap-3 flex-wrap">
           <div className="min-w-0 flex-1">
             <h1 className="font-display font-bold text-2xl leading-snug" style={{ color: 'var(--text-primary)', textWrap: 'balance' }}>
-              {a.title}
+              {titleZh || a.title}
             </h1>
+            {titleZh && (
+              <div className="text-sm mt-1" style={{ color: 'var(--text-tertiary)' }}>{a.title}</div>
+            )}
             <div className="flex items-center gap-1.5 mt-3 flex-wrap">
               <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
-                {country?.flag || ''} {country?.nameZh || a.country}
+                {country?.flag || ''} {country?.nameZh || a.country}{cityZh ? ` · ${cityZh}` : ` · ${a.city}`}
               </span>
               {a.targetTourCategories.map((t) => (
                 <span key={t} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>{t}</span>
@@ -208,7 +215,7 @@ export default function MiceDetailPage({ params }) {
               <SpecItem icon="📅" label="最佳季节" value={a.bestTimeToVisit.length ? a.bestTimeToVisit.join('、') : ''} />
               <SpecItem icon="📍" label="地址" value={address} />
               <SpecItem icon="🏷️" label="标签" value={a.tags.length ? a.tags.map((t) => `#${t}`).join(' ') : ''} />
-              <SpecItem icon="🗂️" label="子类目" value={a.subCategoryForActivity} />
+              <SpecItem icon="🗂️" label="子类目" value={subZh || a.subCategoryForActivity} />
             </div>
           </div>
           {(a.salesNotes || a.productStatus) && (
