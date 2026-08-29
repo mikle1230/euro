@@ -7,8 +7,11 @@
 
 | # | 场景 | 规则 | 用车选择 |
 |---|---|---|---|
-| R1 | 行程**首日抵达，仅接机** | 单接机 STD MTC | `{城} - APT/HTL` |
-| R1 | 行程**末日离境，仅送机** | 单送机 STD MTC | `{城} - HTL/APT`；离境日有半天活动 → `{城} - APT - X HOURS` |
+| R1 | 首日抵达，**当天无活动**（纯抵达） | 单接机 STD MTC | `{城} - APT/HTL` |
+| R1 | 首日抵达，**当天活动少**（约 1-2 小时） | 接机 + 几小时活动，然后送酒店（STD MTC） | `{城} - APT/HTL` + `{城} - X HOURS` |
+| R1 | 首日抵达，**当天活动多** | **直接用 LDC，THROUGH COACH 段从 Day 1 起**（不一律 STD MTC） | THROUGH COACH (LDC) |
+| R1 | 末日离境，**当天纯送机** | 单送机 STD MTC | `{城} - HTL/APT` |
+| R1 | 末日离境，**当天仍有大量活动** | LDC 一路穿到最后一天（THROUGH COACH 覆盖离境日，不换车） | THROUGH COACH (LDC) |
 | R2 | **断开后同城停留多天**（落地后无地面跨城移动，下次移动是飞机/火车断开） | **当地车，脱离 LDC** | 每天 `{城} - X HOURS`（当地 STD MTC，不注入 THROUGH COACH） |
 | R3 | **断开 ≤ 400km**（上飞机/火车后行进距离 ≤ 阈值） | 两策略可选：<br>a) `local-then-ldc`：断开前城市当地车 + 落地后开始 THROUGH COACH（普通团默认）<br>b) `ldc-continuous`：断开前直接起 THROUGH COACH 跨断开连续（**不换车**，适合高端团/客户指定团） | `breakStrategy` 配置 |
 | R4 | **断开 > 400km** | 断开前**起始城市当地车** + 落地城市开始 THROUGH COACH | 强制 |

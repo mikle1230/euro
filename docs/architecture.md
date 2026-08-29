@@ -22,9 +22,9 @@
 **⚠️ 重要推论**：因为对象是原地 mutate 的，`itinerary`/`activeItinerary` 的**引用始终稳定**。因此：
 
 - 组件里派生数据（routeLine、dayLabels 等）要 **memo 依赖 `useStoreVersion()` 的 version**，不要 `useMemo` 依赖对象引用，否则不会在变更后重算。
-- 子组件（day-detail / quos-list / itinerary-list）**不需要手动 refresh**，也不需要 `onItineraryChange` 回调 —— mutation 后父组件订阅触发整棵树重渲染，子组件重新读 `itinerary.days` 即得新数据。
+- 子组件（quos-list / itinerary-list）**不需要手动 refresh**，也不需要 `onItineraryChange` 回调 —— mutation 后父组件订阅触发整棵树重渲染，子组件重新读 `itinerary.days` 即得新数据。
 
-订阅链：`explore/page.js`（`useItineraries()`）→ 重渲染 → `FloatingPanel` → `DayDetail`/`ItineraryList`/`QUOSList`（非 memo，跟随重渲染）。
+订阅链：`explore/page.js`（`useItineraries()`）→ 重渲染 → `FloatingPanel` → `ItineraryList`/`QUOSList`（非 memo，跟随重渲染）。
 
 `activeId` 驱动当前行程；`deleteItinerary` 会自动把 `activeId` 指向剩余首个。
 
@@ -45,7 +45,7 @@ itinerary = {
 
 item 统一由 `makeItem()` 工厂（itinerary-store 内部）创建，AI 导入与手动添加共用，避免字段漂移。item 关键字段：`type / name / nameEn / costCategory / estimatedCost / price / priceUnit / quantity / quosChecked / quosOverride / transportMode / transportSubtype`。
 
-**免费/收费判定 `isFreeItem(item)`**（唯一实现，`src/lib/quos-mapping.js`，day-detail 与 quos-list 均 import）：
+**免费/收费判定 `isFreeItem(item)`**（唯一实现，`src/lib/quos-mapping.js`，quos-list 引用）：
 1. `costCategory === 'free'` → 免费
 2. `costCategory === 'paid'` → 收费
 3. 无 costCategory → `!price || price === 0` 为免费

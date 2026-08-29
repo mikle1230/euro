@@ -144,12 +144,15 @@ KT 知识库位于 `/Users/michael/Projects/KT`（纯文档项目，非代码）
   1. **中国出发/返程日**（上海等 CN 城市，含 day 0）只展示，**不参与分段**（避免返程日产生虚的 THROUGH COACH/PRE-POST）
   2. **THROUGH COACH（LDC）**：每段首天注入，显示 `LDC第{起}-{止}天`（止 = 下次用飞机/火车/船的前一天）；**国/城 = LDC 供应商所在地**（遵从 LDC Summer 2026 表：西欧多国→IT ROM、中欧→CZ PRG、**德奥组合→DE BER**、波兰→PL WAW 从华沙调车；2026-08-19 修正，曾误改为段起始城市——用户录入里的 WAW/PL 正是 polandMono 供应商码；2026-08-21 修正：德奥行程 KT 曾误录 IT ROM，必须 DE BER）；名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS，名称用起始城市、国/城用供应商），nameEn 带车型（NGS/GLS）；**from 取段首日出发城（cityName；抵达日开段则取抵达城），to 取下一段交通日的「出发城」**（车把团送到机场/车站/码头，如巴勒莫→卡塔尼亚；无后续 transit 回退段末日 cityName）
   3. **EMPTY RUN 空驶**：**每段都有**（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to **真实车程**（route.js 调 `patchEmptyRunRoadKm` → OSRM 免费路线服务，失败回退 `estimateRoadKmFallback` 直线×1.3）；`quantity`=公里数，quoteOrder 22
-  4. **抵达日分两种**（2026-08-21 更新，KT 实操校准，替代 8-18 口径）：
-     - **首个地面日抵达**（行程含航班；realDays 首日）→ **第 1 天单独当地 STD MTC 接机**（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER），**不开 THROUGH COACH 段，段从第 2 天起**（如德奥 Day1 法兰克福接机；原"单晚换城从第 1 天起用 LDC 接机"已废弃）
+  4. **抵达日用车**（2026-08-29 更新，Michael 口述口径，替代 8-21 版；核心原则：**成本性价比，活动量决定用车档次**）：
+     - **首日抵达，当天无活动**（纯抵达）→ 单独当地 STD MTC 接机：`{城} - APT/HTL`（flight→APT/HTL、train→HTL-STA、boat→HTL-PIER）
+     - **首日抵达，当天活动少**（约 1-2 小时）→ 当地 STD MTC：接机 + 几小时活动后送酒店（`{城} - APT/HTL` + `{城} - X HOURS`）
+     - **首日抵达，当天活动多** → **直接用 LDC 长途车，THROUGH COACH 段从 Day 1 开始**（不再一律 STD MTC 接机）
      - **中途单晚停留的抵达日**（R3/R4 断开落地，realDays 非首日）→ 段从当天开始（THROUGH COACH 负责接机）
-     - **同城住宿 ≥2 天** → 第 1 天接机 STD MTC、第 2 天起 LDC
+     - **同城住宿 ≥2 天** → 第 1 天接机 STD MTC、第 2 天起 LDC（除非首日活动多，按上述口径直接 LDC）
      - **接机/送机的国/城 = 当天城市**（如 Warsaw - APT/HTL → WAW/PL）
-  5. **送机 MTC**（2026-08-21 更新，替代 8-18 的"总是单独送机"）：离境日（返程航班日）**当天有行程内容**（白天游览/活动）→ THROUGH COACH 段**覆盖到返程日当天**（大巴白天仍用、送机场也由大巴完成，不单独注入送机，如 B线法意瑞 D11 罗马→北京上午游览）；**纯送机**（无白天活动，早餐不算）→ 断段，THROUGH COACH 止于前一天，单独注入送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）
+     - 「活动多 vs 少」量化阈值待定（暂按活动总时长 ≥4h 为多，待 Michael 确认）
+  5. **送机 MTC**（2026-08-29 更新，Michael 口述口径）：离境日（返程航班日）**当天仍有大量活动** → THROUGH COACH 段**覆盖到返程日当天**（大巴白天仍用、送机场也由大巴完成，不单独注入送机，如 B线法意瑞 D11 罗马→北京上午游览）；**纯送机**（无白天活动，早餐不算）→ 断段，THROUGH COACH 止于前一天，单独注入送机（`{城市英文名} - HTL/APT`，国/城=当天城市，quoteKind `dropoff`）；「大量活动」阈值待定
   6. **PRE/POST 前后夜**：每个 LDC 段首天注入（有 THROUGH COACH 才有），金额不显示
   7. **每日用车杂费**（部分城市有，`src/data/daily-fees.js`）：段内每天命中 DAILY_FEES 表（中文名/英文名/城市码）则注入 `{城市英文名} - {备注}`，THROUGH COACH (GLS)，国/城=杂费城市，quoteOrder 21；**德国境内每天另注 GERMAN VAT**（`Base - GERMAN VAT`，€90.43/天，quote-rates.js `germanVat`，quoteOrder 21）；**LDC 路税**（quote-rates.js `roadTax`，quoteOrder 21，quoteKind `road-tax`）：按**过夜国家**命中 `[NO,CH,AT,DE,HU,CZ,SI,SK,CR]` 强制生成（不可遗漏），名称按 KT 映射表（如 AT→`Austria ROAD TAX PAID BY DRIVER`、DE/NO/CH→`LDC路税`、HU→`Budapest - HUGO ROAD TOLL`、CZ→`Prague - CZ ROAD TAX`、SI→`Ljubljana - ROAD TAX`、SK→`Bratislava - ROAD TAX PER DAY`、CR→`Zagreb - Croatian Road Tax`），**金额/计费单位待操作员实填（price=0）**
   8. 无 LDC 供应商（表外国家）→ 上述用车项全部不注入

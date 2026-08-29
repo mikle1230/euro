@@ -1,5 +1,7 @@
 # Euro Atlas — 对话上下文
 
+> ⚠️ **历史快照（2026-08-09）**：本文记录的是定位转变期的早期实现状态。其中提到的部分组件（`day-detail.jsx` / `interactive-map.jsx` / `database.jsx` / `overview.jsx`）**已被删除或重构**，当前实现以 `CLAUDE.md`（权威开发规则）与 `docs/architecture.md`（架构速览）为准。保留本文作为产品演进背景参考。
+
 ## 项目概述
 
 **Euro Atlas** — 欧洲地接行程规划工作台。独立 GitHub 仓库 `mikle1230/euro`，Vercel 部署。
