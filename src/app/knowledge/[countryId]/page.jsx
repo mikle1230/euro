@@ -98,43 +98,46 @@ export default function CountryPage() {
             variant="country"
           />
           <div
-            className="absolute inset-0 flex flex-col justify-center p-6 md:p-10"
+            className="absolute inset-0 flex flex-col overflow-y-auto p-6 md:p-10"
             style={{ background: 'rgba(23, 32, 42, 0.62)' }}
           >
-            <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3 flex items-center gap-3">
-              <span className="inline-flex items-center gap-2">
-                <CountryFlag countryId={country.id} size="lg" />
-                {country.name}
-                {country.nameEn && <span className="text-lg md:text-2xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{country.nameEn}</span>}
-                {countryCode && <span className="text-lg md:text-2xl font-mono font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{countryCode}</span>}
-              </span>
-            </h1>
-            {intro && (
-              <p
-                className="text-sm md:text-base leading-relaxed"
-                style={{ color: 'rgba(255,255,255,0.94)' }}
-              >
-                {intro}
-              </p>
-            )}
-            {/* 国家信息：首都 / 国庆日 / 官方语言 / 货币（反白显示在图片区下方） */}
-            {infoRows.length > 0 && (
-              <div className="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-                {infoRows.map((row) => (
-                  <div key={row.label}>
-                    <div className="text-[11px] uppercase tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                      {row.label}
+            {/* my-auto：内容少时垂直居中；内容超出 Hero 高度时顶部对齐、可上下滚动 */}
+            <div className="my-auto">
+              <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3 flex items-center gap-3">
+                <span className="inline-flex items-center gap-2">
+                  <CountryFlag countryId={country.id} size="lg" />
+                  {country.name}
+                  {country.nameEn && <span className="text-lg md:text-2xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{country.nameEn}</span>}
+                  {countryCode && <span className="text-lg md:text-2xl font-mono font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{countryCode}</span>}
+                </span>
+              </h1>
+              {intro && (
+                <p
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{ color: 'rgba(255,255,255,0.94)' }}
+                >
+                  {intro}
+                </p>
+              )}
+              {/* 国家信息：首都 / 国庆日 / 官方语言 / 货币（反白显示在图片区下方） */}
+              {infoRows.length > 0 && (
+                <div className="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
+                  {infoRows.map((row) => (
+                    <div key={row.label}>
+                      <div className="text-[11px] uppercase tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                        {row.label}
+                      </div>
+                      <div className="font-medium mt-0.5 leading-snug" style={{ color: 'var(--on-accent-strong)' }}>
+                        {row.symbol && (
+                          <span className="mr-1 font-semibold" style={{ color: 'rgba(255,255,255,0.95)' }}>{row.symbol}</span>
+                        )}
+                        {row.value}
+                      </div>
                     </div>
-                    <div className="font-medium mt-0.5 leading-snug" style={{ color: 'var(--on-accent-strong)' }}>
-                      {row.symbol && (
-                        <span className="mr-1 font-semibold" style={{ color: 'rgba(255,255,255,0.95)' }}>{row.symbol}</span>
-                      )}
-                      {row.value}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
