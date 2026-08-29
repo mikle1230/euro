@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { getMiceActivityById, resolveCountry } from '@/lib/mice'
 import { MICE_ZH } from '@/data/mice-zh'
 import MiceImage from '@/components/mice-image'
+import BilingualText from '@/components/bilingual-text'
 import { toast } from '@/components/toast'
 
 const CATEGORY_STYLE = {
@@ -189,13 +190,13 @@ export default function MiceDetailPage({ params }) {
           )}
         </div>
 
-        {/* 介绍 + 行程示例 */}
+        {/* 介绍 + 行程示例（中英对照：中文为主，英文原文可展开） */}
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <InfoCard icon="📋" title="活动介绍" empty="暂无描述">
-            <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-secondary)' }}>{a.description || ''}</p>
+            <BilingualText zh={MICE_ZH.descriptions?.[a.id] || ''} en={a.description || ''} />
           </InfoCard>
           <InfoCard icon="🗓️" title="行程示例（Tour Program）" empty="暂无行程示例">
-            <p className="text-sm leading-relaxed whitespace-pre-wrap" style={{ color: 'var(--text-secondary)' }}>{a.tourProgramExample || ''}</p>
+            <BilingualText zh={MICE_ZH.tourPrograms?.[a.id] || ''} en={a.tourProgramExample || ''} />
           </InfoCard>
         </div>
 
