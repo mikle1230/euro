@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
 import MiceImage from '@/components/mice-image'
@@ -97,6 +97,14 @@ const selectStyle = { background: 'var(--bg-card)', borderColor: 'var(--border-c
 
 export default function MicePage() {
   const [query, setQuery] = useState('')
+  // 支持从详情页搜索框跳转过来：/mice?q=关键词 → 自动初始化搜索
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q')
+    if (q) {
+      setQuery(q)
+      setShown(60)
+    }
+  }, [])
   const [country, setCountry] = useState('')
   const [categories, setCategories] = useState([])
   const [tourCat, setTourCat] = useState('')

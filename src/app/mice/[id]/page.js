@@ -1,7 +1,8 @@
 'use client'
 
-import { use } from 'react'
+import { use, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { getMiceActivityById, resolveCountry } from '@/lib/mice'
 import MiceImage from '@/components/mice-image'
 import { toast } from '@/components/toast'
@@ -43,7 +44,15 @@ function InfoCard({ icon, title, children, empty }) {
 
 export default function MiceDetailPage({ params }) {
   const { id } = use(params)
+  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState('')
   const a = getMiceActivityById(id)
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const q = searchQuery.trim()
+    router.push(q ? `/mice?q=${encodeURIComponent(q)}` : '/mice')
+  }
 
   if (!a) {
     return (
@@ -86,6 +95,27 @@ export default function MiceDetailPage({ params }) {
   return (
     <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
       <div className="max-w-4xl mx-auto px-4 md:px-6 py-4">
+        {/* 搜索框：随时检索其他活动，回车跳到列表页并带上关键词 */}
+        <form onSubmit={handleSearch} className="relative mb-4">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-xs" style={{ color: 'var(--text-tertiary)' }}>🔍</span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="搜索其他活动：标题、国家、城市、标签…"
+            className="w-full pl-9 pr-16 py-2.5 rounded-xl text-sm border outline-none focus-ring-mice"
+            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
+            aria-label="搜索活动"
+          />
+          <button
+            type="submit"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors"
+            style={{ background: 'var(--mice-accent-strong)', color: '#fff' }}
+          >
+            搜索
+          </button>
+        </form>
+
         {/* 面包屑 */}
         <div className="text-xs mb-4 flex items-center gap-2" style={{ color: 'var(--text-tertiary)' }}>
           <Link href="/mice" className="hover:text-[var(--mice-accent)] transition-colors">🎪 MICE 活动</Link>
