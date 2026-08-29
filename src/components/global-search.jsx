@@ -203,10 +203,14 @@ export default function GlobalSearch({ wide = false }) {
     return () => document.removeEventListener('mousedown', handler)
   }, [open])
 
-  // 滚动时收起，避免下拉悬空错位
+  // 滚动时收起，避免下拉悬空错位；但下拉框**内部**滚动（滚动结果列表）不关闭
   useEffect(() => {
     if (!open) return
-    const onScroll = () => setOpen(false)
+    const onScroll = (e) => {
+      // 滚动源在下拉框内部（滚动结果列表）→ 不关闭；否则收起
+      if (dropdownRef.current && dropdownRef.current.contains(e.target)) return
+      setOpen(false)
+    }
     window.addEventListener('scroll', onScroll, true)
     return () => window.removeEventListener('scroll', onScroll, true)
   }, [open])

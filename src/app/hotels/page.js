@@ -5,6 +5,7 @@ import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-r
 import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
+import InstantSearchDropdown from '@/components/instant-search-dropdown'
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -289,37 +290,44 @@ export default function HotelsPage() {
         subtitle={`共 ${merged.length} 个国家 · ${totalHotels} 家酒店 · Booking 评分 ≥7 推荐库 + 酒店价格参考（€/人，以 hotel list 为准）`}
       />
 
-      {/* 搜索工具栏：汇率转换 + 酒店搜索（吸顶，任何滚动位置都能用） */}
+      {/* 搜索工具栏：汇率转换 + 酒店搜索（吸顶，任何滚动位置都能用，输入即下拉） */}
       <SearchToolbar
         stickyTop="top-14"
         maxWidth="max-w-6xl"
         search={
           <div className="relative max-w-2xl">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center" style={{ color: 'var(--text-tertiary)' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </span>
-            <input
-              type="text"
+            <InstantSearchDropdown
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={setQuery}
               placeholder="搜索酒店名或城市（如 Nice、尼斯、罗马、Hôtel Carré）"
-              className="w-full pl-10 pr-10 py-2.5 rounded-xl text-sm border outline-none focus-ring"
-              style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-              aria-label="搜索酒店"
+              results={results.slice(0, 8)}
+              getKey={(h) => h.hotel || h.name || `${h.city}-${h.name}`}
+              onSelect={(h) => setQuery(h.name || h.hotel || '')}
+              renderItem={(h) => (
+                <div className="flex items-center gap-3 px-3 py-2">
+                  <span
+                    className="w-7 h-7 rounded-lg flex items-center justify-center text-sm shrink-0"
+                    style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}
+                  >
+                    🏨
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+                      {h.name || h.hotel}
+                    </div>
+                    <div className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>
+                      {[h.countryName, h.city, h.cityNameEn].filter(Boolean).join(' · ')}
+                    </div>
+                  </div>
+                  <span
+                    className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0"
+                    style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}
+                  >
+                    {h.rating ? `⭐ ${h.rating}` : h.priceEur ? `€${h.priceEur}` : ''}
+                  </span>
+                </div>
+              )}
             />
-            {searching && (
-              <button
-                onClick={() => setQuery('')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-xs focus-ring"
-                style={{ background: 'var(--bg-elevated)', color: 'var(--text-secondary)' }}
-                aria-label="清空搜索"
-              >
-                ✕
-              </button>
-            )}
           </div>
         }
       />

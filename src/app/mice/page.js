@@ -2,10 +2,12 @@
 
 import { useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
 import MiceImage from '@/components/mice-image'
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
+import InstantSearchDropdown from '@/components/instant-search-dropdown'
 
 const CATEGORY_STYLE = {
   'Activity': { label: '🎪 活动', color: 'var(--mice-accent)', bg: 'var(--mice-accent-subtle)' },
@@ -96,6 +98,7 @@ const selectClass = 'px-2.5 py-1.5 rounded-lg text-xs border outline-none focus-
 const selectStyle = { background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }
 
 export default function MicePage() {
+  const router = useRouter()
   const [query, setQuery] = useState('')
   // 支持从详情页搜索框跳转过来：/mice?q=关键词 → 自动初始化搜索
   useEffect(() => {
@@ -158,21 +161,49 @@ export default function MicePage() {
         subtitle={`共 ${stats.total} 项（${stats.activity} 活动 · ${stats.tv} 技术参访）· 为地接团组精选的可落地特色活动与技术参访，可直接复制进报价单`}
       />
 
-      {/* 搜索工具栏：汇率转换 + MICE 搜索（吸顶，任何滚动位置都能用） */}
+      {/* 搜索工具栏：汇率转换 + MICE 搜索（吸顶，任何滚动位置都能用，输入即下拉） */}
       <SearchToolbar
         stickyTop="top-14"
         maxWidth="max-w-7xl"
         search={
           <div className="relative max-w-2xl">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-xs" style={{ color: 'var(--text-tertiary)' }}>🔍</span>
-            <input
-              type="text"
+            <InstantSearchDropdown
               value={query}
-              onChange={(e) => { setQuery(e.target.value); setShown(60) }}
+              onChange={(v) => { setQuery(v); setShown(60) }}
               placeholder="搜索活动标题、国家、城市、标签…"
-              className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm border outline-none focus-ring-mice"
-              style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
-              aria-label="搜索活动"
+              results={results.slice(0, 8)}
+              getKey={(a) => a.id}
+              onSelect={(a) => router.push(`/mice/${a.id}`)}
+              accentVar="var(--mice-accent)"
+              renderItem={(a) => {
+                const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)', bg: 'var(--bg-surface)' }
+                const country = resolveCountry(a.country)
+                const price = a.priceMax > 0 ? `€${a.priceMin || '?'}–${a.priceMax}` : a.priceMin > 0 ? `€${a.priceMin}` : '价格待询'
+                return (
+                  <div className="flex items-center gap-3 px-3 py-2">
+                    <span
+                      className="w-7 h-7 rounded-lg flex items-center justify-center text-sm shrink-0"
+                      style={{ background: cat.bg, color: cat.color }}
+                    >
+                      {a.category === 'Technical Visit' ? '🏭' : '🎪'}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+                        {a.title}
+                      </div>
+                      <div className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>
+                        {[country?.flag, country?.nameZh || a.country, a.city].filter(Boolean).join(' · ')}
+                      </div>
+                    </div>
+                    <span
+                      className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0"
+                      style={{ background: 'var(--bg-surface)', color: 'var(--mice-accent)' }}
+                    >
+                      {price}
+                    </span>
+                  </div>
+                )
+              }}
             />
           </div>
         }
