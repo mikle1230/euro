@@ -76,32 +76,45 @@ export default function CityPage() {
         flagCountryId={city.country?.id || countryId}
       />
 
-      {/* Hero postcard */}
+      {/* Hero postcard：PPT 式左右分栏 —— 左半边城市图，右半边蒙版文字（与国家页全幅蒙版区分） */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
-        <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
-          <ImageWithPlaceholder
-            src={`/images/cities/${cityId}.jpg`}
-            alt={city.name}
-            name={city.name}
-            subtitle={city.nameEn ? `${city.nameEn} · ${city.country?.name || ''}` : city.country?.name}
-            size="hero"
-            variant="city"
-            cityName={city.name}
-            countryName={city.country?.name}
-          />
+        <div className="rounded-2xl overflow-hidden border shadow-lg md:flex" style={{ borderColor: 'var(--border-color)' }}>
+          {/* 左：城市图（移动端在上，16/9；桌面端填满左栏高度） */}
+          <div className="md:w-1/2 shrink-0">
+            <ImageWithPlaceholder
+              src={`/images/cities/${cityId}.jpg`}
+              alt={city.name}
+              name={city.name}
+              subtitle={city.nameEn ? `${city.nameEn} · ${city.country?.name || ''}` : city.country?.name}
+              size="hero"
+              variant="city"
+              className="md:h-full md:aspect-auto"
+            />
+          </div>
+          {/* 右：蒙版 + 文字（城市名/英文名/国家/描述） */}
+          <div
+            className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center"
+            style={{ background: 'rgba(23, 32, 42, 0.62)' }}
+          >
+            <h1 className="text-white font-display font-bold text-2xl md:text-3xl mb-2">
+              {city.name}
+              {city.nameEn && (
+                <span className="text-lg md:text-xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{city.nameEn}</span>
+              )}
+            </h1>
+            <p className="text-sm mb-4" style={{ color: 'rgba(255,255,255,0.75)' }}>
+              {city.country?.flag || ''} {city.country?.name || ''}
+            </p>
+            {meta.description && (
+              <p className="text-sm md:text-base leading-relaxed" style={{ color: 'rgba(255,255,255,0.94)' }}>
+                {meta.description}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
-        {/* Description */}
-        {meta.description && (
-          <div className="mb-8">
-            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-              {meta.description}
-            </p>
-          </div>
-        )}
-
         {/* Type filter chips */}
         {availableTypes.length > 1 && (
           <div className="flex items-center gap-1.5 flex-wrap mb-4">

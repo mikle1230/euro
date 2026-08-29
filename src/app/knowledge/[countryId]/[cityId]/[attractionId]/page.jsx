@@ -6,6 +6,7 @@ import { getAttractionById, getAllAttractionsFlat } from '@/lib/data'
 import attractionInfo from '@/data/attraction-info.json'
 import { ATTRACTION_DETAILS } from '@/data/attraction-details'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
+import AttractionGallery from '@/components/attraction-gallery'
 import TypeBadge from '@/components/type-badge'
 import KnowledgeTopBar from '@/components/knowledge-top-bar'
 import { haversineKm } from '@/lib/geo'
@@ -66,27 +67,13 @@ export default function AttractionPage() {
         flagCountryId={attraction.country?.id || countryId}
       />
 
-      {/* Hero */}
-      <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
-        <div className="rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
-          <ImageWithPlaceholder
-            src={`/images/attractions/${attraction.id}.jpg`}
-            alt={attraction.name}
-            type={type}
-            name={attraction.name}
-            subtitle={`${attraction.city?.name || ''}${attraction.country?.name ? ' · ' + attraction.country.name : ''}`}
-            size="hero"
-            variant="attraction"
-          />
-        </div>
-      </div>
-
+      {/* 主区：左文右图 —— 左侧详情为主（3/4），右侧图片参考组（1/4，可多图轮播） */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main content */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* 左侧：详情描述为主 */}
+          <div className="lg:col-span-3">
             {/* Title */}
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-2">
               <TypeBadge type={type} />
             </div>
             <h1 className="font-display font-bold text-2xl mb-2" style={{ color: 'var(--text-primary)' }}>
@@ -95,6 +82,11 @@ export default function AttractionPage() {
             <p className="text-xs mb-6" style={{ color: 'var(--text-tertiary)' }}>
               {attraction.city?.name} · {attraction.country?.name}
             </p>
+
+            {/* 移动端图片组：详情前展示（桌面端在右侧栏） */}
+            <div className="mb-6 lg:hidden">
+              <AttractionGallery id={attraction.id} name={attraction.name} type={type} />
+            </div>
 
             {/* 简介（富文本优先，回退到短描述） */}
             {(detail?.intro || attraction.description) && (
@@ -149,60 +141,65 @@ export default function AttractionPage() {
                 </a>
               </div>
             )}
-          </div>
 
-          {/* Sidebar: info card */}
-          <div>
+            {/* 实用信息（桌面端整合到左侧底部，避免右侧栏拥挤） */}
             <div
-              className="rounded-xl border p-4 sticky top-14"
+              className="rounded-xl border p-4 mt-2"
               style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
             >
               <h3 className="font-display font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
                 实用信息
               </h3>
-
-              {(detail?.visit?.ticket || info.ticketPrice) && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>门票</p>
-                  <p style={fieldValue}>{detail?.visit?.ticket || info.ticketPrice}</p>
-                </div>
-              )}
-              {(detail?.visit?.hours || info.hours) && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>开放时间</p>
-                  <p style={fieldValue}>{detail?.visit?.hours || info.hours}</p>
-                </div>
-              )}
-              {(detail?.visit?.transport || info.transport) && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>交通</p>
-                  <p style={fieldValue}>{detail?.visit?.transport || info.transport}</p>
-                </div>
-              )}
-              {info.bestTime && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>最佳时间</p>
-                  <p style={fieldValue}>{info.bestTime}</p>
-                </div>
-              )}
-              {(detail?.officialUrl || info.officialUrl) && (
-                <div className="mb-3">
-                  <p style={fieldLabel}>官网</p>
-                  <a
-                    href={detail?.officialUrl || info.officialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ ...fieldValue, color: 'var(--accent)' }}
-                    className="hover:underline break-all text-xs"
-                  >
-                    {detail?.officialUrl || info.officialUrl}
-                  </a>
-                </div>
-              )}
-
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">
+                {(detail?.visit?.ticket || info.ticketPrice) && (
+                  <div className="mb-3">
+                    <p style={fieldLabel}>门票</p>
+                    <p style={fieldValue}>{detail?.visit?.ticket || info.ticketPrice}</p>
+                  </div>
+                )}
+                {(detail?.visit?.hours || info.hours) && (
+                  <div className="mb-3">
+                    <p style={fieldLabel}>开放时间</p>
+                    <p style={fieldValue}>{detail?.visit?.hours || info.hours}</p>
+                  </div>
+                )}
+                {(detail?.visit?.transport || info.transport) && (
+                  <div className="mb-3">
+                    <p style={fieldLabel}>交通</p>
+                    <p style={fieldValue}>{detail?.visit?.transport || info.transport}</p>
+                  </div>
+                )}
+                {info.bestTime && (
+                  <div className="mb-3">
+                    <p style={fieldLabel}>最佳时间</p>
+                    <p style={fieldValue}>{info.bestTime}</p>
+                  </div>
+                )}
+                {(detail?.officialUrl || info.officialUrl) && (
+                  <div className="mb-3">
+                    <p style={fieldLabel}>官网</p>
+                    <a
+                      href={detail?.officialUrl || info.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ ...fieldValue, color: 'var(--accent)' }}
+                      className="hover:underline break-all text-xs"
+                    >
+                      {detail?.officialUrl || info.officialUrl}
+                    </a>
+                  </div>
+                )}
+              </div>
               {!detail && !info.hours && !info.ticketPrice && !info.bestTime && !info.transport && !info.officialUrl && (
                 <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>暂无详细信息</p>
               )}
+            </div>
+          </div>
+
+          {/* 右侧：图片参考组（1/4，sticky；移动端已在上方展示） */}
+          <div className="lg:col-span-1">
+            <div className="hidden lg:block lg:sticky lg:top-14">
+              <AttractionGallery id={attraction.id} name={attraction.name} type={type} />
             </div>
           </div>
         </div>
