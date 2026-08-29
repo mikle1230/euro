@@ -181,6 +181,7 @@ export default function CityPage() {
                     </div>
                     <h3 className="font-display font-semibold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>
                       {item.name}
+                      {item.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{item.nameEn}</span>}
                     </h3>
                     {item.description && (
                       <p className="text-xs line-clamp-2" style={{ color: 'var(--text-secondary)' }}>

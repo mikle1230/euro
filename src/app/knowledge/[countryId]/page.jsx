@@ -260,6 +260,7 @@ export default function CountryPage() {
                       </div>
                       <h3 className="font-display font-semibold text-sm mb-0.5" style={{ color: 'var(--text-primary)' }}>
                         {attr.name}
+                        {attr.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{attr.nameEn}</span>}
                       </h3>
                       <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
                         {attr.city?.name || ''}

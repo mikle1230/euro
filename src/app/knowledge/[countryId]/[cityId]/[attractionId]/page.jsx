@@ -78,6 +78,9 @@ export default function AttractionPage() {
             </div>
             <h1 className="font-display font-bold text-2xl mb-2" style={{ color: 'var(--text-primary)' }}>
               {attraction.name}
+              {attraction.nameEn && (
+                <span className="text-lg md:text-xl font-normal ml-2" style={{ color: 'var(--text-tertiary)' }}>{attraction.nameEn}</span>
+              )}
             </h1>
             <p className="text-xs mb-6" style={{ color: 'var(--text-tertiary)' }}>
               {attraction.city?.name} · {attraction.country?.name}
@@ -220,7 +223,10 @@ export default function AttractionPage() {
                 >
                   <ImageWithPlaceholder src={`/images/attractions/${a.id}.jpg`} alt={a.name} type={a.type || 'landmark'} name={a.name} size="card" variant="attraction" />
                   <div className="p-2">
-                    <p className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>{a.name}</p>
+                    <p className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+                      {a.name}
+                      {a.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{a.nameEn}</span>}
+                    </p>
                   </div>
                 </Link>
               ))}
@@ -243,6 +249,7 @@ export default function AttractionPage() {
                   style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
                 >
                   {a.name}
+                  {a.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{a.nameEn}</span>}
                   <span className="text-xs ml-1" style={{ color: 'var(--text-tertiary)' }}>
                     {a.city?.name} · {Math.round(a.distance)}km
                   </span>
