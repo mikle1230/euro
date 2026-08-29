@@ -42,7 +42,7 @@ export default function ToastHost() {
         <div
           key={t.id}
           className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium shadow-lg whitespace-nowrap pointer-events-auto"
-          style={{ background: BG[t.type] || BG.info, color: '#fff' }}
+          style={{ background: BG[t.type] || BG.info, color: 'var(--on-accent-strong)' }}
         >
           <span>{t.message}</span>
           {t.actionLabel && (

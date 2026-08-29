@@ -125,7 +125,7 @@ export default function CountryPage() {
                     <div className="text-[11px] uppercase tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
                       {row.label}
                     </div>
-                    <div className="font-medium mt-0.5 leading-snug" style={{ color: '#fff' }}>
+                    <div className="font-medium mt-0.5 leading-snug" style={{ color: 'var(--on-accent-strong)' }}>
                       {row.symbol && (
                         <span className="mr-1 font-semibold" style={{ color: 'rgba(255,255,255,0.95)' }}>{row.symbol}</span>
                       )}
@@ -154,7 +154,7 @@ export default function CountryPage() {
                   <Link
                     key={city.id}
                     href={`/knowledge/${countryId}/${city.id}`}
-                    className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                    className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
                     style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                   >
                     <ImageWithPlaceholder
@@ -206,7 +206,7 @@ export default function CountryPage() {
                 className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
                 style={
                   attrFilter.length === 0
-                    ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                    ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
                     : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
                 }
               >
@@ -227,7 +227,7 @@ export default function CountryPage() {
                   className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
                   style={
                     attrFilter.includes(key)
-                      ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                      ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
                       : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
                   }
                 >
@@ -240,7 +240,7 @@ export default function CountryPage() {
                   <Link
                     key={attr.id}
                     href={`/knowledge/${countryId}/${attr.city?.id || 'unknown'}/${attr.id}`}
-                    className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                    className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
                     style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                   >
                     <ImageWithPlaceholder

@@ -131,7 +131,7 @@ export default function KnowledgePage() {
             <button
               onClick={() => setShowAdd(true)}
               className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all"
-              style={{ background: 'var(--accent-strong)', color: '#fff' }}
+              style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
             >
               ➕ 添加城市
             </button>
@@ -161,7 +161,7 @@ export default function KnowledgePage() {
               <Link
                 key={country.id}
                 href={`/knowledge/${country.id}`}
-                className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
                 style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
               >
                 <ImageWithPlaceholder
@@ -314,7 +314,7 @@ export default function KnowledgePage() {
                   <button
                     onClick={handleSave}
                     className="flex-1 px-3 py-2 rounded-lg text-xs font-medium"
-                    style={{ background: 'var(--accent-strong)', color: '#fff' }}
+                    style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
                   >
                     保存
                   </button>

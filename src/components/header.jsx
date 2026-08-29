@@ -14,6 +14,18 @@ export default function Header() {
     return pathname.startsWith(href)
   }
 
+  const tabActive = {
+    background: 'var(--accent-subtle)',
+    color: 'var(--accent)',
+    boxShadow: 'var(--shadow-card)',
+    border: '1px solid var(--border-color)',
+    borderBottom: 'none',
+  }
+  const tabInactive = {
+    background: 'rgba(148, 163, 184, 0.08)',
+    color: 'var(--text-tertiary)',
+  }
+
   const tabGlass = {
     borderTopLeftRadius: '10px',
     borderTopRightRadius: '10px',
@@ -56,9 +68,7 @@ export default function Header() {
             href="/"
             style={{
               ...tabGlass,
-              ...(isActive('/')
-                ? { background: 'rgba(8, 115, 157, 0.18)', color: 'var(--accent)', boxShadow: '0 -1px 8px rgba(0,0,0,0.04)', border: '1px solid var(--border-color)', borderBottom: 'none' }
-                : { background: 'rgba(148, 163, 184, 0.08)', color: 'var(--text-tertiary)' }),
+              ...(isActive('/') ? tabActive : tabInactive),
             }}
             className={tabClass}
           >
@@ -68,9 +78,7 @@ export default function Header() {
             href="/knowledge"
             style={{
               ...tabGlass,
-              ...(isActive('/knowledge')
-                ? { background: 'rgba(8, 115, 157, 0.18)', color: 'var(--accent)', boxShadow: '0 -1px 8px rgba(0,0,0,0.04)', border: '1px solid var(--border-color)', borderBottom: 'none' }
-                : { background: 'rgba(148, 163, 184, 0.08)', color: 'var(--text-tertiary)' }),
+              ...(isActive('/knowledge') ? tabActive : tabInactive),
             }}
             className={tabClass}
           >
@@ -80,9 +88,7 @@ export default function Header() {
             href="/hotels"
             style={{
               ...tabGlass,
-              ...(isActive('/hotels')
-                ? { background: 'rgba(8, 115, 157, 0.18)', color: 'var(--accent)', boxShadow: '0 -1px 8px rgba(0,0,0,0.04)', border: '1px solid var(--border-color)', borderBottom: 'none' }
-                : { background: 'rgba(148, 163, 184, 0.08)', color: 'var(--text-tertiary)' }),
+              ...(isActive('/hotels') ? tabActive : tabInactive),
             }}
             className={tabClass}
           >
@@ -92,9 +98,7 @@ export default function Header() {
             href="/mice"
             style={{
               ...tabGlass,
-              ...(isActive('/mice')
-                ? { background: 'rgba(8, 115, 157, 0.18)', color: 'var(--accent)', boxShadow: '0 -1px 8px rgba(0,0,0,0.04)', border: '1px solid var(--border-color)', borderBottom: 'none' }
-                : { background: 'rgba(148, 163, 184, 0.08)', color: 'var(--text-tertiary)' }),
+              ...(isActive('/mice') ? tabActive : tabInactive),
             }}
             className={tabClass}
           >

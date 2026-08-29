@@ -33,13 +33,13 @@ function ActivityCard({ a, idx = 0 }) {
   return (
     <Link
       href={`/mice/${a.id}`}
-      className="fade-up group flex flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-lg focus-ring-mice"
+      className="fade-up group flex flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-hover)] focus-ring-mice"
       style={{
         background: 'var(--bg-card)',
         borderColor: 'var(--border-color)',
         opacity: closed ? 0.72 : 1,
         animationDelay: `${Math.min(idx * 40, 360)}ms`,
-        boxShadow: '0 1px 2px rgba(23,40,61,0.04)',
+        boxShadow: 'var(--shadow-card)',
       }}
     >
       <div className="h-36 relative overflow-hidden" style={{ background: 'var(--bg-elevated)' }}>

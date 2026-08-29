@@ -209,7 +209,7 @@ export default function FloatingPanel({
             style={{
               background: 'var(--accent-strong)',
               borderColor: 'transparent',
-              color: '#fff',
+              color: 'var(--on-accent-strong)',
             }}
             title="导入行程文件"
             aria-label="导入行程文件"
@@ -230,7 +230,7 @@ export default function FloatingPanel({
                     active ? '' : 'opacity-40'
                   }`}
                   style={active
-                    ? { background: 'var(--accent-strong)', color: '#fff' }
+                    ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }
                     : { color: 'var(--text-tertiary)' }}
                 >
                   <span className="text-sm">{cfg.icon}</span>

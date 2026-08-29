@@ -226,7 +226,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
           <button
             onClick={() => document.querySelector('header [aria-label="导入行程文件"]')?.click()}
             className="inline-flex items-center gap-1.5 px-4 h-10 rounded-full text-sm font-medium transition-all"
-            style={{ background: 'var(--accent-strong)', color: '#fff' }}
+            style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
           >
             📤 导入行程
           </button>
@@ -422,7 +422,7 @@ export default function ItineraryList({ activeItinerary, onNavigate }) {
               onClick={handleFeedbackSubmit}
               disabled={feedbackLoading}
               className="px-4 py-1.5 rounded-lg text-xs font-medium disabled:opacity-60"
-              style={{ background: 'var(--accent-strong)', color: '#fff' }}
+              style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
             >
               {feedbackLoading ? 'AI 重新解析中...' : '提交反馈并重解析'}
             </button>

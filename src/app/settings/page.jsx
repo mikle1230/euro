@@ -75,7 +75,7 @@ function QUOSSortSection() {
         <button
           onClick={save}
           className="flex-1 px-3 py-1.5 rounded-lg text-xs font-medium"
-          style={{ background: 'var(--accent-strong)', color: '#fff' }}
+          style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
         >
           保存
         </button>
@@ -149,7 +149,7 @@ export default function SettingsPage() {
             <button
               onClick={handleExport}
               className="flex-1 px-3 py-2 rounded-lg text-xs font-medium transition-all hover:opacity-90"
-              style={{ background: 'var(--accent-strong)', color: '#fff' }}
+              style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
             >
               💾 导出备份
             </button>

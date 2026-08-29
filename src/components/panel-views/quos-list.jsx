@@ -316,7 +316,7 @@ export default function QUOSList({ itinerary }) {
                 onClick={() => setHideFree(!hideFree)}
                 className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
                 style={!hideFree
-                  ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                  ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
                   : { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
               >
                 <span>{hideFree ? '👁️' : '👁️‍🗨️'}</span>
@@ -327,7 +327,7 @@ export default function QUOSList({ itinerary }) {
                 className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
                 style={hideMeals
                   ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-                  : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+                  : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }}
               >
                 <span>🍽️</span>
                 <span style={hideMeals ? { textDecoration: 'line-through' } : {}}>用餐</span>
@@ -337,7 +337,7 @@ export default function QUOSList({ itinerary }) {
                 className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
                 style={hideAttractions
                   ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-                  : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+                  : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }}
               >
                 <span>🎫</span>
                 <span style={hideAttractions ? { textDecoration: 'line-through' } : {}}>景点</span>
@@ -347,7 +347,7 @@ export default function QUOSList({ itinerary }) {
                 className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
                 style={hideInlandTransit
                   ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-                  : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+                  : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }}
               >
                 <span>🚄</span>
                 <span style={hideInlandTransit ? { textDecoration: 'line-through' } : {}}>内陆</span>
@@ -356,7 +356,7 @@ export default function QUOSList({ itinerary }) {
                 onClick={() => setOnlyUnchecked((v) => !v)}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
                 style={onlyUnchecked
-                  ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                  ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
                   : { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
               >
                 <span>{onlyUnchecked ? '✅' : '☑️'}</span>
@@ -408,7 +408,7 @@ export default function QUOSList({ itinerary }) {
             return (
               <div key={day.id}>
                 <div className="flex items-center gap-2 mt-3 mb-1.5">
-                  <span className="px-2 py-0.5 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style={{ background: 'var(--accent-strong)', color: '#fff' }}>
+                  <span className="px-2 py-0.5 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}>
                     第{day.dayNumber}天
                   </span>
                   <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{day.cityName}</span>
@@ -438,7 +438,7 @@ export default function QUOSList({ itinerary }) {
                         style={{
                           background: it.quosChecked ? 'var(--accent)' : 'transparent',
                           border: `2px solid ${it.quosChecked ? 'var(--accent)' : 'var(--border-color)'}`,
-                          color: '#fff',
+                          color: 'var(--on-accent-strong)',
                         }}
                       >
                         {it.quosChecked ? '✓' : ''}
@@ -573,7 +573,7 @@ export default function QUOSList({ itinerary }) {
               className="w-3.5 h-3.5 cursor-pointer"
             />
           </td>
-          <td colSpan={5} className="px-2 py-1.5 text-xs font-bold whitespace-nowrap overflow-hidden" style={{ background: 'linear-gradient(90deg, var(--accent-strong), var(--accent-dim))', color: '#fff' }}>
+          <td colSpan={5} className="px-2 py-1.5 text-xs font-bold whitespace-nowrap overflow-hidden" style={{ background: 'linear-gradient(90deg, var(--accent-strong), var(--accent-dim))', color: 'var(--on-accent-strong)' }}>
             <span className="align-middle">
               第{day.dayNumber}天 — {day.cityName}
             </span>
@@ -703,7 +703,7 @@ export default function QUOSList({ itinerary }) {
             style={
               hideFree
                 ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-                : { background: 'var(--accent-strong)', color: '#fff' }
+                : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }
             }
             title={hideFree ? '显示免费项目' : '隐藏免费项目'}
           >
@@ -715,7 +715,7 @@ export default function QUOSList({ itinerary }) {
             className="inline-flex items-center gap-1 px-1.5 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
             style={hideMeals
               ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-              : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+              : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }}
           >
             <span>🍽️</span>
             <span style={hideMeals ? { textDecoration: 'line-through' } : {}}>用餐</span>
@@ -725,7 +725,7 @@ export default function QUOSList({ itinerary }) {
             className="inline-flex items-center gap-1 px-1.5 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
             style={hideAttractions
               ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-              : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+              : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }}
           >
             <span>🎫</span>
             <span style={hideAttractions ? { textDecoration: 'line-through' } : {}}>景点</span>
@@ -735,7 +735,7 @@ export default function QUOSList({ itinerary }) {
             className="inline-flex items-center gap-1 px-1.5 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
             style={hideInlandTransit
               ? { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
-              : { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }}
+              : { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }}
           >
             <span>🚄</span>
             <span style={hideInlandTransit ? { textDecoration: 'line-through' } : {}}>内陆</span>
@@ -744,7 +744,7 @@ export default function QUOSList({ itinerary }) {
             onClick={() => setOnlyUnchecked((v) => !v)}
             className="inline-flex items-center gap-1 px-1.5 py-1 rounded-full text-xs font-medium border transition-all whitespace-nowrap"
             style={onlyUnchecked
-              ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+              ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
               : { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
           >
             <span>{onlyUnchecked ? '✅' : '☑️'}</span>

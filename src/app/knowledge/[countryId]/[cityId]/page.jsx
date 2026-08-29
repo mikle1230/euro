@@ -110,7 +110,7 @@ export default function CityPage() {
               className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
               style={
                 typeFilter.length === 0
-                  ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                  ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
                   : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
               }
             >
@@ -129,7 +129,7 @@ export default function CityPage() {
                   className="text-xs px-3 py-1 rounded-full border font-medium transition-all"
                   style={
                     typeFilter.includes(key)
-                      ? { background: 'var(--accent-strong)', color: '#fff', borderColor: 'var(--accent)' }
+                      ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'var(--accent)' }
                       : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
                   }
                 >
@@ -151,7 +151,7 @@ export default function CityPage() {
                 <Link
                   key={item.id}
                   href={item._href}
-                  className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+                  className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
                   style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
                 >
                   <ImageWithPlaceholder

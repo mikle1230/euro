@@ -101,19 +101,19 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
 
   return (
     <article
-      className="fade-up overflow-hidden rounded-2xl border flex flex-col transition-all duration-200 hover:-translate-y-0.5"
+      className="fade-up overflow-hidden rounded-2xl border flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
       style={{
         background: 'var(--bg-card)',
         borderColor: 'var(--border-color)',
-        boxShadow: '0 1px 2px rgba(23,40,61,0.04)',
+        boxShadow: 'var(--shadow-card)',
         animationDelay: stagger(idx).animationDelay,
       }}
     >
       {/* 深蓝条：酒店名称（中英文）+ 价格 */}
-      <div className="shrink-0 px-4 py-3" style={{ background: 'linear-gradient(120deg, #0a7aa6, #075e83)' }}>
+      <div className="shrink-0 px-4 py-3" style={{ background: 'var(--accent-gradient)' }}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <h3 className="font-semibold text-[15px] leading-snug" style={{ color: '#fff' }} title={name}>
+            <h3 className="font-semibold text-[15px] leading-snug" style={{ color: 'var(--on-accent)' }} title={name}>
               {name}
             </h3>
             {nameZh && (
@@ -136,7 +136,7 @@ function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
           <div className="shrink-0 text-right whitespace-nowrap">
             {price ? (
               <>
-                <div className="text-sm font-bold leading-none" style={{ color: '#fff' }}>{price}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>{unit}</span></div>
+                <div className="text-sm font-bold leading-none" style={{ color: 'var(--on-accent)' }}>{price}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>{unit}</span></div>
                 {month && <div className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.72)' }}>{month}</div>}
               </>
             ) : (
