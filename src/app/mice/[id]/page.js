@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getMiceActivityById, resolveCountry } from '@/lib/mice'
 import { MICE_ZH } from '@/data/mice-zh'
-import MiceImage from '@/components/mice-image'
+import MiceGallery from '@/components/mice-gallery'
 import BilingualText from '@/components/bilingual-text'
 import { toast } from '@/components/toast'
 
@@ -128,18 +128,6 @@ export default function MiceDetailPage({ params }) {
           <span className="truncate max-w-64">{a.title}</span>
         </div>
 
-        {/* 大图 Hero */}
-        <div className="relative overflow-hidden rounded-2xl border" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)' }}>
-          <div className="aspect-[16/9] md:aspect-[21/9]">
-            <MiceImage activity={a} className="w-full h-full object-cover" fallbackEmoji={a.category === 'Technical Visit' ? '🏭' : '🎪'} />
-          </div>
-          <div className="absolute inset-x-0 top-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(180deg, rgba(7,21,33,0.35), transparent)' }} />
-          <div className="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
-            <span className="text-xs px-2.5 py-1 rounded-full font-semibold backdrop-blur" style={{ background: cat.bg, color: cat.color }}>{cat.label}</span>
-            {closed && <span className="text-xs px-2.5 py-1 rounded-full font-semibold backdrop-blur" style={closed.cls}>{closed.text}</span>}
-          </div>
-        </div>
-
         {/* 标题 + 价格（中英对照：中文主标题，英文副标题） */}
         <div className="mt-5 flex items-start justify-between gap-3 flex-wrap">
           <div className="min-w-0 flex-1">
@@ -190,14 +178,16 @@ export default function MiceDetailPage({ params }) {
           )}
         </div>
 
-        {/* 介绍 + 行程示例（中英对照：中文为主，英文原文可展开） */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <InfoCard icon="📋" title="活动介绍" empty="暂无描述">
-            <BilingualText zh={MICE_ZH.descriptions?.[a.id] || ''} en={a.description || ''} />
-          </InfoCard>
-          <InfoCard icon="🗓️" title="行程示例（Tour Program）" empty="暂无行程示例">
-            <BilingualText zh={MICE_ZH.tourPrograms?.[a.id] || ''} en={a.tourProgramExample || ''} />
-          </InfoCard>
+        {/* 活动介绍（2/3）+ 图片组（1/3，可多张点击放大）——替代原 Hero 大图与行程示例块 */}
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
+          <div className="lg:col-span-2">
+            <InfoCard icon="📋" title="活动介绍" empty="暂无描述">
+              <BilingualText zh={MICE_ZH.descriptions?.[a.id] || ''} en={a.description || ''} />
+            </InfoCard>
+          </div>
+          <div className="lg:col-span-1">
+            <MiceGallery activity={a} />
+          </div>
         </div>
 
         {/* 资源与信息 */}
