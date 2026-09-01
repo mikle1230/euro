@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { getCountryById, getCountryCoverImage, getAllAttractionsFlat } from '@/lib/data'
+import dynamic from 'next/dynamic'
+import { getCountryById, getAllAttractionsFlat } from '@/lib/data'
 import countryMeta from '@/data/country-meta.json'
 import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
@@ -14,6 +15,12 @@ import { CURRENCY_SYMBOLS } from '@/lib/config'
 import { getCityCode, getCityEnglishName } from '@/lib/quos-mapping'
 import { COUNTRY_INTROS } from '@/data/country-intros'
 import { COUNTRY_INFO } from '@/data/country-info'
+
+// 地图组件动态加载（leaflet 需客户端初始化，SSR 关闭）
+const CountryMap = dynamic(() => import('@/components/country-map'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0" style={{ background: 'var(--bg-surface)' }} />,
+})
 
 // 从「货币名 码」字符串（如「欧元 EUR」）提取货币符号
 function currencySymbol(currency) {
@@ -42,8 +49,8 @@ export default function CountryPage() {
   }
 
   const meta = countryMeta[countryId] || {}
-  const coverSrc = getCountryCoverImage(countryId)
   const cities = country.cities || []
+  const mapCities = cities.filter((c) => c.lat != null && c.lng != null)
   const intro = COUNTRY_INTROS[countryId] || country.description || ''
   const info = COUNTRY_INFO[countryId]
 
@@ -88,56 +95,53 @@ export default function CountryPage() {
         flagCountryId={country.id}
       />
 
-      {/* Hero postcard：封面图 + 深灰蒙版 + 国家介绍 */}
+      {/* Hero：左 3/5 国家地图（含城市点位）+ 右 2/5 国家介绍 */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
-        <div className="relative rounded-2xl overflow-hidden border shadow-lg" style={{ borderColor: 'var(--border-color)' }}>
-          <ImageWithPlaceholder
-            src={coverSrc}
-            alt={country.name}
-            size="hero"
-            variant="country"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          {/* 左：地图 */}
           <div
-            className="absolute inset-0 flex flex-col overflow-y-auto p-6 md:p-10"
-            style={{ background: 'rgba(23, 32, 42, 0.62)' }}
+
+            className="md:col-span-3 relative rounded-2xl overflow-hidden border shadow-lg"
+            style={{ minHeight: '300px', borderColor: 'var(--border-color)' }}
           >
-            {/* my-auto：内容少时垂直居中；内容超出 Hero 高度时顶部对齐、可上下滚动 */}
-            <div className="my-auto">
-              <h1 className="text-white font-display font-bold text-2xl md:text-4xl mb-3 flex items-center gap-3">
-                <span className="inline-flex items-center gap-2">
-                  <CountryFlag countryId={country.id} size="lg" />
-                  {country.name}
-                  {country.nameEn && <span className="text-lg md:text-2xl font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{country.nameEn}</span>}
-                  {countryCode && <span className="text-lg md:text-2xl font-mono font-normal ml-2" style={{ color: 'rgba(255,255,255,0.85)' }}>{countryCode}</span>}
-                </span>
-              </h1>
-              {intro && (
-                <p
-                  className="text-sm md:text-base leading-relaxed"
-                  style={{ color: 'rgba(255,255,255,0.94)' }}
-                >
-                  {intro}
-                </p>
-              )}
-              {/* 国家信息：首都 / 国庆日 / 官方语言 / 货币（反白显示在图片区下方） */}
-              {infoRows.length > 0 && (
-                <div className="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-4">
-                  {infoRows.map((row) => (
-                    <div key={row.label}>
-                      <div className="text-[11px] uppercase tracking-wide" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                        {row.label}
-                      </div>
-                      <div className="font-medium mt-0.5 leading-snug" style={{ color: 'var(--on-accent-strong)' }}>
-                        {row.symbol && (
-                          <span className="mr-1 font-semibold" style={{ color: 'rgba(255,255,255,0.95)' }}>{row.symbol}</span>
-                        )}
-                        {row.value}
-                      </div>
+            <CountryMap countryId={country.id} cities={mapCities} />
+          </div>
+          {/* 右：国家介绍 */}
+          <div
+            className="md:col-span-2 rounded-2xl border shadow-lg p-5 md:p-6 flex flex-col justify-center"
+            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+          >
+            <h1 className="font-display font-bold text-xl md:text-2xl mb-3 flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-primary)' }}>
+              <span className="inline-flex items-center gap-2">
+                <CountryFlag countryId={country.id} size="lg" />
+                {country.name}
+                {country.nameEn && <span className="text-base md:text-lg font-normal" style={{ color: 'var(--text-secondary)' }}>{country.nameEn}</span>}
+                {countryCode && <span className="text-base md:text-lg font-mono font-normal" style={{ color: 'var(--text-tertiary)' }}>{countryCode}</span>}
+              </span>
+            </h1>
+            {intro && (
+              <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                {intro}
+              </p>
+            )}
+            {infoRows.length > 0 && (
+              <div className="grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+                {infoRows.map((row) => (
+                  <div key={row.label}>
+                    <div className="text-[11px] uppercase tracking-wide" style={{ color: 'var(--text-tertiary)' }}>
+                      {row.label}
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                    <div className="font-medium mt-0.5 leading-snug" style={{ color: 'var(--text-primary)' }}>
+                      {row.symbol && (
+                        <span className="mr-1 font-semibold">{row.symbol}</span>
+                      )}
+                      {row.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
           </div>
         </div>
       </div>
