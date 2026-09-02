@@ -7262,6 +7262,72 @@
           ]
         }
       ]
+    },
+    {
+      "id": "liechtenstein",
+      "name": "列支敦士登",
+      "nameEn": "Liechtenstein",
+      "description": "阿尔卑斯山间的袖珍公国，世界知名金融中心",
+      "cities": [
+        {
+          "id": "vaduz",
+          "name": "瓦杜兹",
+          "nameEn": "Vaduz",
+          "lat": 47.141,
+          "lng": 9.52,
+          "attractions": [
+            {
+              "id": "vaduz-castle",
+              "name": "瓦杜兹城堡",
+              "nameEn": "Vaduz Castle",
+              "type": "landmark",
+              "lat": 47.141,
+              "lng": 9.52
+            },
+            {
+              "id": "vaduz-cathedral",
+              "name": "瓦杜兹大教堂",
+              "nameEn": "Vaduz Cathedral",
+              "type": "landmark",
+              "lat": 47.139,
+              "lng": 9.522
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "andorra",
+      "name": "安道尔",
+      "nameEn": "Andorra",
+      "description": "比利牛斯山间的滑雪与购物免税国",
+      "cities": [
+        {
+          "id": "andorra-la-vella",
+          "name": "安道尔城",
+          "nameEn": "Andorra la Vella",
+          "lat": 42.507,
+          "lng": 1.521,
+          "attractions": [
+            {
+              "id": "andorra-casa-vall",
+              "name": "卡萨德维斯议会旧址",
+              "nameEn": "Casa de la Vall",
+              "type": "landmark",
+              "lat": 42.507,
+              "lng": 1.521
+            },
+            {
+              "id": "andorra-st-esteve",
+              "name": "圣埃斯特韦教堂",
+              "nameEn": "Sant Esteve Church",
+              "type": "landmark",
+              "lat": 42.506,
+              "lng": 1.522
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -33758,5 +33758,21 @@
   "基希讷乌": {
     "cityCode": "KIV",
     "countryCode": "MD"
+  },
+  "瓦杜兹": {
+    "cityCode": "QVU",
+    "countryCode": "LI"
+  },
+  "安道尔": {
+    "cityCode": "ANO",
+    "countryCode": "AD"
+  },
+  "安道尔城": {
+    "cityCode": "ANO",
+    "countryCode": "AD"
+  },
+  "Andorra la Vella": {
+    "cityCode": "ANO",
+    "countryCode": "AD"
   }
 }

@@ -348,5 +348,31 @@
       "romania",
       "ukraine"
     ]
+  },
+  "liechtenstein": {
+    "abbr": "LI",
+    "currency": {
+      "name": "瑞士法郎",
+      "code": "CHF",
+      "symbol": "Fr",
+      "rateToCny": 8.0
+    },
+    "neighbors": [
+      "switzerland",
+      "austria"
+    ]
+  },
+  "andorra": {
+    "abbr": "AD",
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "france",
+      "spain"
+    ]
   }
 }
