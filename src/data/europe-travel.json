@@ -449,8 +449,8 @@
               "type": "landmark",
               "lat": 48.853,
               "lng": 2.35,
-              "description": "",
-              "tips": ""
+              "description": "哥特式教堂,雨果同名小说背景",
+              "tips": "修复后开放,注意限流"
             },
             {
               "id": "奥赛博物馆",
@@ -459,8 +459,8 @@
               "type": "museum",
               "lat": 48.86,
               "lng": 2.326,
-              "description": "",
-              "tips": ""
+              "description": "火车站改建的印象派殿堂",
+              "tips": "看梵高/莫奈"
             },
             {
               "id": "凯旋门",
@@ -469,8 +469,8 @@
               "type": "landmark",
               "lat": 48.874,
               "lng": 2.295,
-              "description": "",
-              "tips": ""
+              "description": "纪念拿破仑胜利的凯旋门",
+              "tips": "可登顶俯瞰香榭丽舍"
             },
             {
               "id": "香榭丽舍大道",
@@ -479,8 +479,8 @@
               "type": "landmark",
               "lat": 48.869,
               "lng": 2.308,
-              "description": "",
-              "tips": ""
+              "description": "巴黎最著名大道,购物可逛",
+              "tips": "可步行或观光车"
             },
             {
               "id": "塞纳河游船",
@@ -489,8 +489,8 @@
               "type": "activity",
               "lat": 48.857,
               "lng": 2.348,
-              "description": "",
-              "tips": ""
+              "description": "乘船游览塞纳河两岸风光",
+              "tips": "傍晚夜景最佳"
             }
           ]
         },
@@ -1680,8 +1680,8 @@
               "type": "landmark",
               "lat": 41.892,
               "lng": 12.485,
-              "description": "",
-              "tips": ""
+              "description": "古罗马政治宗教中心遗址",
+              "tips": "与斗兽场同游"
             },
             {
               "id": "许愿泉",
@@ -1690,8 +1690,8 @@
               "type": "landmark",
               "lat": 41.9,
               "lng": 12.483,
-              "description": "",
-              "tips": ""
+              "description": "特莱维喷泉,抛硬币许愿",
+              "tips": "右手越过左肩抛币"
             }
           ]
         },
@@ -1721,8 +1721,8 @@
               "type": "landmark",
               "lat": 45.434,
               "lng": 12.339,
-              "description": "",
-              "tips": ""
+              "description": "威尼斯拜占庭风格主教座堂",
+              "tips": "金顶马赛克,注意着装"
             },
             {
               "id": "贡多拉游船",
@@ -1731,8 +1731,8 @@
               "type": "activity",
               "lat": 45.434,
               "lng": 12.338,
-              "description": "",
-              "tips": ""
+              "description": "威尼斯传统小船,游运河",
+              "tips": "价格先谈好"
             }
           ]
         },
@@ -1773,8 +1773,8 @@
               "type": "landmark",
               "lat": 43.769,
               "lng": 11.256,
-              "description": "",
-              "tips": ""
+              "description": "佛罗伦萨标志广场,露天雕塑",
+              "tips": "看大卫像复制品"
             }
           ]
         },
@@ -4526,8 +4526,8 @@
               "type": "landmark",
               "lat": 59.327,
               "lng": 18.052,
-              "description": "",
-              "tips": ""
+              "description": "诺贝尔奖晚宴举办地,塔楼可俯瞰全城",
+              "tips": "塔楼开放时段有限,建议提前"
             },
             {
               "id": "斯德哥尔摩老城",
@@ -4536,8 +4536,8 @@
               "type": "landmark",
               "lat": 59.325,
               "lng": 18.071,
-              "description": "",
-              "tips": ""
+              "description": "中世纪老城,鹅卵石街道与彩色建筑",
+              "tips": "步行游览,留意小巷"
             },
             {
               "id": "诺贝尔博物馆",
@@ -4546,8 +4546,8 @@
               "type": "museum",
               "lat": 59.325,
               "lng": 18.071,
-              "description": "",
-              "tips": ""
+              "description": "展示诺贝尔奖历史与获奖者成就",
+              "tips": "可听中文讲解"
             },
             {
               "id": "斯德哥尔摩皇宫",
@@ -4556,8 +4556,8 @@
               "type": "landmark",
               "lat": 59.326,
               "lng": 18.071,
-              "description": "",
-              "tips": ""
+              "description": "瑞典王室官邸,可看卫兵换岗",
+              "tips": "换岗仪式正午最隆重"
             },
             {
               "id": "月光男孩雕塑",
@@ -4566,8 +4566,8 @@
               "type": "art",
               "lat": 59.325,
               "lng": 18.071,
-              "description": "",
-              "tips": ""
+              "description": "被誉为\"世上最忧郁的男孩\"的小雕像",
+              "tips": "在老城小巷,留意寻找"
             },
             {
               "id": "斯德哥尔摩大教堂",
@@ -4576,8 +4576,8 @@
               "type": "landmark",
               "lat": 59.325,
               "lng": 18.071,
-              "description": "",
-              "tips": ""
+              "description": "斯德哥尔摩最古老的教堂之一",
+              "tips": "内部油画值得一看"
             },
             {
               "id": "【游客自费】菲耶巴卡-60欧",
@@ -4586,8 +4586,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "瑞典西海岸渔村小镇(游客自费)",
+              "tips": "英格玛·伯格曼电影取景地"
             },
             {
               "id": "【游客自费】皇后岛花园-55欧",
@@ -4596,8 +4596,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "瑞典王室夏宫花园(游客自费)",
+              "tips": "看中式宫/花园"
             },
             {
               "id": "【游客自费】斯德哥尔摩深度游-80欧",
@@ -4606,8 +4606,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "斯德哥尔摩深入游览(游客自费)",
+              "tips": "含更多街区与博物馆"
             },
             {
               "id": "【游客自费】斯德哥尔摩游船-50欧",
@@ -4616,8 +4616,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "乘船游斯德哥尔摩群岛(游客自费)",
+              "tips": "水上视角看城市"
             }
           ]
         },
@@ -4659,8 +4659,8 @@
               "type": "landmark",
               "lat": 57.706,
               "lng": 11.966,
-              "description": "",
-              "tips": ""
+              "description": "哥德堡市中心广场,周边市政厅",
+              "tips": "广场周围建筑值得一逛"
             }
           ]
         },
@@ -4828,8 +4828,8 @@
               "type": "landmark",
               "lat": 59.911,
               "lng": 10.733,
-              "description": "",
-              "tips": ""
+              "description": "诺贝尔和平奖颁奖地",
+              "tips": "壁画讲述挪威历史"
             },
             {
               "id": "阿克斯胡斯城堡",
@@ -4838,8 +4838,8 @@
               "type": "landmark",
               "lat": 59.905,
               "lng": 10.736,
-              "description": "",
-              "tips": ""
+              "description": "中世纪城堡,守卫海港",
+              "tips": "可俯瞰奥斯陆峡湾"
             },
             {
               "id": "新蒙克博物馆",
@@ -4848,8 +4848,8 @@
               "type": "museum",
               "lat": 59.906,
               "lng": 10.763,
-              "description": "",
-              "tips": ""
+              "description": "收藏《呐喊》等蒙克作品",
+              "tips": "需购票,旺季预约"
             },
             {
               "id": "维格兰雕刻公园",
@@ -4858,8 +4858,8 @@
               "type": "park",
               "lat": 59.927,
               "lng": 10.7,
-              "description": "",
-              "tips": ""
+              "description": "露天雕塑公园,生命主题群雕",
+              "tips": "免费开放,适合细逛"
             },
             {
               "id": "斗兽场电影博物馆",
@@ -4868,8 +4868,8 @@
               "type": "museum",
               "lat": 59.913,
               "lng": 10.75,
-              "description": "",
-              "tips": ""
+              "description": "由老电影院改造的电影主题馆",
+              "tips": "看展需购票"
             },
             {
               "id": "【游客自费】挪威峡湾游船-100欧",
@@ -4878,8 +4878,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "乘船深入挪威峡湾(游客自费)",
+              "tips": "看峡湾两岸瀑布村庄"
             },
             {
               "id": "【游客自费】挪威峡湾观光火车-120欧",
@@ -4888,8 +4888,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "挪威高山观光火车(游客自费)",
+              "tips": "沿途风景壮丽"
             },
             {
               "id": "【游客自费】挪威民俗文化园-50欧",
@@ -4898,8 +4898,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "挪威民俗村(游客自费)",
+              "tips": "看传统木屋与民俗"
             },
             {
               "id": "【游客自费】哈当厄尔峡湾特色农庄-65欧",
@@ -4908,8 +4908,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "哈当厄尔峡湾当地农庄体验(游客自费)",
+              "tips": "品当地水果/农产"
             }
           ]
         },
@@ -5152,8 +5152,8 @@
               "type": "landmark",
               "lat": 55.676,
               "lng": 12.569,
-              "description": "",
-              "tips": ""
+              "description": "哥本哈根市中心地标广场",
+              "tips": "可看安徒生雕像"
             },
             {
               "id": "小美人鱼雕像",
@@ -5162,8 +5162,8 @@
               "type": "landmark",
               "lat": 55.692,
               "lng": 12.599,
-              "description": "",
-              "tips": ""
+              "description": "哥本哈根象征,安徒生童话海的女儿",
+              "tips": "游人众多,清晨人少"
             },
             {
               "id": "安徒生铜像",
@@ -5172,8 +5172,8 @@
               "type": "art",
               "lat": 55.679,
               "lng": 12.568,
-              "description": "",
-              "tips": ""
+              "description": "童话作家安徒生雕像",
+              "tips": "位于市政厅旁"
             },
             {
               "id": "丹麦宪法之父克里斯蒂安十世国王雕像",
@@ -5182,8 +5182,8 @@
               "type": "art",
               "lat": 55.68,
               "lng": 12.594,
-              "description": "",
-              "tips": ""
+              "description": "丹麦国王克里斯蒂安十世骑马像",
+              "tips": "广场拍照打卡"
             },
             {
               "id": "管风琴教堂",
@@ -5192,8 +5192,8 @@
               "type": "landmark",
               "lat": 55.716,
               "lng": 12.534,
-              "description": "",
-              "tips": ""
+              "description": "造型独特,形似管风琴的现代教堂",
+              "tips": "建筑感强,值得一看"
             },
             {
               "id": "神农喷泉",
@@ -5202,8 +5202,8 @@
               "type": "landmark",
               "lat": 55.69,
               "lng": 12.597,
-              "description": "",
-              "tips": ""
+              "description": "北欧神话主题喷泉",
+              "tips": "可与小美人鱼同游"
             },
             {
               "id": "阿美琳堡宫",
@@ -5212,8 +5212,8 @@
               "type": "landmark",
               "lat": 55.684,
               "lng": 12.593,
-              "description": "",
-              "tips": ""
+              "description": "丹麦王室冬宫,卫兵换岗",
+              "tips": "看换岗,广场免费"
             },
             {
               "id": "腓特烈教堂",
@@ -5222,8 +5222,8 @@
               "type": "landmark",
               "lat": 55.685,
               "lng": 12.594,
-              "description": "",
-              "tips": ""
+              "description": "大理石教堂,圆顶宏伟",
+              "tips": "与阿美琳堡相望"
             },
             {
               "id": "国会大厦(克里斯蒂安堡宫)",
@@ -5232,8 +5232,8 @@
               "type": "landmark",
               "lat": 55.676,
               "lng": 12.581,
-              "description": "",
-              "tips": ""
+              "description": "丹麦国会与王室办公地",
+              "tips": "可参观塔楼/皇家马厩"
             },
             {
               "id": "【游客自费】哈姆雷特城堡-65欧",
@@ -5242,8 +5242,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "莎剧哈姆雷特原型城堡(游客自费)",
+              "tips": "厄勒海峡旁"
             },
             {
               "id": "【游客自费】腓特烈城堡-60欧",
@@ -5252,8 +5252,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "丹麦文艺复兴城堡(游客自费)",
+              "tips": "看丹麦王室历史"
             },
             {
               "id": "【游客自费】玫瑰宫-60欧",
@@ -5262,8 +5262,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "丹麦王室珠宝与文物(游客自费)",
+              "tips": "看皇冠与藏品"
             }
           ]
         },
@@ -6863,8 +6863,8 @@
               "type": "landmark",
               "lat": 59.438,
               "lng": 24.753,
-              "description": "",
-              "tips": ""
+              "description": "中世纪老城标志性城门",
+              "tips": "老城入口,适合拍照"
             },
             {
               "id": "圣凯瑟琳通道",
@@ -6873,8 +6873,8 @@
               "type": "landmark",
               "lat": 59.438,
               "lng": 24.747,
-              "description": "",
-              "tips": ""
+              "description": "老城内的中世纪小巷",
+              "tips": "连接多明我会修道院"
             }
           ]
         }
@@ -7039,8 +7039,8 @@
               "type": "market",
               "lat": 60.168,
               "lng": 24.952,
-              "description": "",
-              "tips": ""
+              "description": "临海露天集市,卖纪念品与芬兰美食",
+              "tips": "清晨最热闹,注意保暖"
             },
             {
               "id": "乌斯别斯基教堂",
@@ -7049,8 +7049,8 @@
               "type": "landmark",
               "lat": 60.168,
               "lng": 24.959,
-              "description": "",
-              "tips": ""
+              "description": "芬兰最大东正教堂,红砖金顶",
+              "tips": "外观拍照佳,入内宜安静"
             },
             {
               "id": "颂歌图书馆",
@@ -7059,8 +7059,8 @@
               "type": "landmark",
               "lat": 60.168,
               "lng": 24.938,
-              "description": "",
-              "tips": ""
+              "description": "现代设计的中央图书馆,免费开放",
+              "tips": "顶层可俯瞰市区"
             },
             {
               "id": "赫尔辛基阿莫斯瑞克斯",
@@ -7069,8 +7069,8 @@
               "type": "museum",
               "lat": 60.171,
               "lng": 24.937,
-              "description": "",
-              "tips": ""
+              "description": "地下艺术馆,穹顶天窗采光",
+              "tips": "看展需购票"
             },
             {
               "id": "赫尔辛基之眼",
@@ -7079,8 +7079,8 @@
               "type": "attraction",
               "lat": 60.166,
               "lng": 24.956,
-              "description": "",
-              "tips": ""
+              "description": "滨海摩天轮,俯瞰城市与海",
+              "tips": "日落时分景色佳"
             },
             {
               "id": "【游客自费】芬兰城堡-45欧",
@@ -7089,8 +7089,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "芬兰堡海上要塞(游客自费)",
+              "tips": "渡轮前往,历史/风光"
             },
             {
               "id": "【游客自费】波尔沃古镇-45欧",
@@ -7099,8 +7099,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "芬兰中世界古镇(游客自费)",
+              "tips": "彩色木屋老街"
             },
             {
               "id": "【游客自费】塔林-260欧",
@@ -7109,8 +7109,8 @@
               "type": "optional",
               "lat": null,
               "lng": null,
-              "description": "",
-              "tips": ""
+              "description": "塔林一日游(游客自费)",
+              "tips": "老城+中世纪氛围"
             }
           ]
         },
