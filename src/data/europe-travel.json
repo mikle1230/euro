@@ -6301,6 +6301,39 @@
       ]
     },
     {
+      "id": "moldova",
+      "name": "摩尔多瓦",
+      "nameEn": "Moldova",
+      "description": "东欧葡萄园与修道院之国，首都基希讷乌近年咖啡与葡萄酒文化兴起",
+      "cities": [
+        {
+          "id": "chisinau",
+          "name": "基希讷乌",
+          "nameEn": "Chisinau",
+          "lat": 47.0105,
+          "lng": 28.8638,
+          "attractions": [
+            {
+              "id": "chisinau-historic-center",
+              "name": "基希讷乌历史中心",
+              "nameEn": "Historic Center",
+              "type": "landmark",
+              "lat": 47.01,
+              "lng": 28.86
+            },
+            {
+              "id": "chisinau-stephan-great",
+              "name": "斯特凡大公纪念碑",
+              "nameEn": "Stefan cel Mare",
+              "type": "landmark",
+              "lat": 47.0125,
+              "lng": 28.8381
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "romania",
       "name": "罗马尼亚",
       "nameEn": "Romania",

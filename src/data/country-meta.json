@@ -1,122 +1,352 @@
 {
   "united-kingdom": {
     "abbr": "UK",
-    "currency": { "name": "英镑", "code": "GBP", "symbol": "£", "rateToCny": 9.1 },
-    "neighbors": ["france", "ireland"]
+    "currency": {
+      "name": "英镑",
+      "code": "GBP",
+      "symbol": "£",
+      "rateToCny": 9.1
+    },
+    "neighbors": [
+      "france",
+      "ireland"
+    ]
   },
   "france": {
     "abbr": "FR",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["united-kingdom", "germany", "italy", "spain", "belgium", "switzerland", "netherlands"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "united-kingdom",
+      "germany",
+      "italy",
+      "spain",
+      "belgium",
+      "switzerland",
+      "netherlands"
+    ]
   },
   "germany": {
     "abbr": "DE",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["france", "italy", "switzerland", "austria", "netherlands", "belgium", "czech-republic", "poland", "denmark"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "france",
+      "italy",
+      "switzerland",
+      "austria",
+      "netherlands",
+      "belgium",
+      "czech-republic",
+      "poland",
+      "denmark"
+    ]
   },
   "italy": {
     "abbr": "IT",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["france", "switzerland", "austria", "greece", "croatia"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "france",
+      "switzerland",
+      "austria",
+      "greece",
+      "croatia"
+    ]
   },
   "spain": {
     "abbr": "ES",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["france", "portugal"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "france",
+      "portugal"
+    ]
   },
   "portugal": {
     "abbr": "PT",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["spain"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "spain"
+    ]
   },
   "netherlands": {
     "abbr": "NL",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["germany", "belgium", "france"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "germany",
+      "belgium",
+      "france"
+    ]
   },
   "belgium": {
     "abbr": "BE",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["france", "germany", "netherlands"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "france",
+      "germany",
+      "netherlands"
+    ]
   },
   "switzerland": {
     "abbr": "CH",
-    "currency": { "name": "瑞士法郎", "code": "CHF", "symbol": "Fr", "rateToCny": 7.9 },
-    "neighbors": ["france", "germany", "italy", "austria"]
+    "currency": {
+      "name": "瑞士法郎",
+      "code": "CHF",
+      "symbol": "Fr",
+      "rateToCny": 7.9
+    },
+    "neighbors": [
+      "france",
+      "germany",
+      "italy",
+      "austria"
+    ]
   },
   "austria": {
     "abbr": "AT",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["germany", "italy", "switzerland", "czech-republic", "hungary"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "germany",
+      "italy",
+      "switzerland",
+      "czech-republic",
+      "hungary"
+    ]
   },
   "greece": {
     "abbr": "GR",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["italy", "croatia", "turkey"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "italy",
+      "croatia",
+      "turkey"
+    ]
   },
   "sweden": {
     "abbr": "SE",
-    "currency": { "name": "瑞典克朗", "code": "SEK", "symbol": "kr", "rateToCny": 0.68 },
-    "neighbors": ["norway", "denmark", "finland"]
+    "currency": {
+      "name": "瑞典克朗",
+      "code": "SEK",
+      "symbol": "kr",
+      "rateToCny": 0.68
+    },
+    "neighbors": [
+      "norway",
+      "denmark",
+      "finland"
+    ]
   },
   "norway": {
     "abbr": "NO",
-    "currency": { "name": "挪威克朗", "code": "NOK", "symbol": "kr", "rateToCny": 0.66 },
-    "neighbors": ["sweden", "denmark"]
+    "currency": {
+      "name": "挪威克朗",
+      "code": "NOK",
+      "symbol": "kr",
+      "rateToCny": 0.66
+    },
+    "neighbors": [
+      "sweden",
+      "denmark"
+    ]
   },
   "denmark": {
     "abbr": "DK",
-    "currency": { "name": "丹麦克朗", "code": "DKK", "symbol": "kr", "rateToCny": 1.05 },
-    "neighbors": ["germany", "sweden", "norway"]
+    "currency": {
+      "name": "丹麦克朗",
+      "code": "DKK",
+      "symbol": "kr",
+      "rateToCny": 1.05
+    },
+    "neighbors": [
+      "germany",
+      "sweden",
+      "norway"
+    ]
   },
   "ireland": {
     "abbr": "IE",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["united-kingdom"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "united-kingdom"
+    ]
   },
   "poland": {
     "abbr": "PL",
-    "currency": { "name": "兹罗提", "code": "PLN", "symbol": "zł", "rateToCny": 1.75 },
-    "neighbors": ["germany", "czech-republic", "hungary"]
+    "currency": {
+      "name": "兹罗提",
+      "code": "PLN",
+      "symbol": "zł",
+      "rateToCny": 1.75
+    },
+    "neighbors": [
+      "germany",
+      "czech-republic",
+      "hungary"
+    ]
   },
   "czech-republic": {
     "abbr": "CZ",
-    "currency": { "name": "捷克克朗", "code": "CZK", "symbol": "Kč", "rateToCny": 0.32 },
-    "neighbors": ["germany", "austria", "poland", "hungary"]
+    "currency": {
+      "name": "捷克克朗",
+      "code": "CZK",
+      "symbol": "Kč",
+      "rateToCny": 0.32
+    },
+    "neighbors": [
+      "germany",
+      "austria",
+      "poland",
+      "hungary"
+    ]
   },
   "hungary": {
     "abbr": "HU",
-    "currency": { "name": "福林", "code": "HUF", "symbol": "Ft", "rateToCny": 0.02 },
-    "neighbors": ["austria", "czech-republic", "poland", "croatia"]
+    "currency": {
+      "name": "福林",
+      "code": "HUF",
+      "symbol": "Ft",
+      "rateToCny": 0.02
+    },
+    "neighbors": [
+      "austria",
+      "czech-republic",
+      "poland",
+      "croatia"
+    ]
   },
   "croatia": {
     "abbr": "HR",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["italy", "hungary", "greece"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "italy",
+      "hungary",
+      "greece"
+    ]
   },
   "turkey": {
     "abbr": "TR",
-    "currency": { "name": "土耳其里拉", "code": "TRY", "symbol": "₺", "rateToCny": 0.24 },
-    "neighbors": ["greece"]
+    "currency": {
+      "name": "土耳其里拉",
+      "code": "TRY",
+      "symbol": "₺",
+      "rateToCny": 0.24
+    },
+    "neighbors": [
+      "greece"
+    ]
   },
   "finland": {
     "abbr": "FI",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["sweden", "norway"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "sweden",
+      "norway"
+    ]
   },
   "iceland": {
     "abbr": "IS",
-    "currency": { "name": "冰岛克朗", "code": "ISK", "symbol": "kr", "rateToCny": 0.052 },
+    "currency": {
+      "name": "冰岛克朗",
+      "code": "ISK",
+      "symbol": "kr",
+      "rateToCny": 0.052
+    },
     "neighbors": []
   },
   "estonia": {
     "abbr": "EE",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["sweden", "finland"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "sweden",
+      "finland"
+    ]
   },
   "montenegro": {
     "abbr": "ME",
-    "currency": { "name": "欧元", "code": "EUR", "symbol": "€", "rateToCny": 7.8 },
-    "neighbors": ["croatia", "greece"]
+    "currency": {
+      "name": "欧元",
+      "code": "EUR",
+      "symbol": "€",
+      "rateToCny": 7.8
+    },
+    "neighbors": [
+      "croatia",
+      "greece"
+    ]
+  },
+  "moldova": {
+    "abbr": "MD",
+    "currency": {
+      "name": "摩尔多瓦列伊",
+      "code": "MDL",
+      "symbol": "L",
+      "rateToCny": 0.39
+    },
+    "neighbors": [
+      "romania",
+      "ukraine"
+    ]
   }
 }

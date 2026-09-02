@@ -33754,5 +33754,9 @@
   "格雷梅": {
     "cityCode": "GE1",
     "countryCode": "TR"
+  },
+  "基希讷乌": {
+    "cityCode": "RMO",
+    "countryCode": "MD"
   }
 }
