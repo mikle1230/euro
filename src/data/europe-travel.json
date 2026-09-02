@@ -443,7 +443,7 @@
               "nameEn": "Palace of Versailles"
             },
             {
-              "id": "巴黎圣母院",
+              "id": "notre-dame",
               "name": "巴黎圣母院",
               "nameEn": "Notre-Dame Cathedral",
               "type": "landmark",
@@ -453,7 +453,7 @@
               "tips": "修复后开放,注意限流"
             },
             {
-              "id": "奥赛博物馆",
+              "id": "musee-dorsay",
               "name": "奥赛博物馆",
               "nameEn": "Musee d'Orsay",
               "type": "museum",
@@ -463,7 +463,7 @@
               "tips": "看梵高/莫奈"
             },
             {
-              "id": "凯旋门",
+              "id": "arc-de-triomphe",
               "name": "凯旋门",
               "nameEn": "Arc de Triomphe",
               "type": "landmark",
@@ -473,7 +473,7 @@
               "tips": "可登顶俯瞰香榭丽舍"
             },
             {
-              "id": "香榭丽舍大道",
+              "id": "champs-elysees",
               "name": "香榭丽舍大道",
               "nameEn": "Champs-Elysees",
               "type": "landmark",
@@ -483,7 +483,7 @@
               "tips": "可步行或观光车"
             },
             {
-              "id": "塞纳河游船",
+              "id": "seine-cruise",
               "name": "塞纳河游船",
               "nameEn": "Seine Cruise",
               "type": "activity",
@@ -753,7 +753,7 @@
           "lng": 1.4442,
           "attractions": [
             {
-              "id": "toulouse-capitole-de-toulouse",
+              "id": "piazza-signoria",
               "name": "市政厅广场",
               "nameEn": "Capitole de Toulouse",
               "type": "landmark",
@@ -1674,7 +1674,7 @@
               "nameEn": "Trevi Fountain"
             },
             {
-              "id": "古罗马广场",
+              "id": "roman-forum",
               "name": "古罗马广场",
               "nameEn": "Roman Forum",
               "type": "landmark",
@@ -1684,7 +1684,7 @@
               "tips": "与斗兽场同游"
             },
             {
-              "id": "许愿泉",
+              "id": "trevi-fountain",
               "name": "许愿泉",
               "nameEn": "Trevi Fountain",
               "type": "landmark",
@@ -1715,7 +1715,7 @@
               "nameEn": "St. Mark's Square"
             },
             {
-              "id": "圣马可教堂",
+              "id": "st-marks-basilica-venice",
               "name": "圣马可教堂",
               "nameEn": "St Mark's Basilica",
               "type": "landmark",
@@ -1725,7 +1725,7 @@
               "tips": "金顶马赛克,注意着装"
             },
             {
-              "id": "贡多拉游船",
+              "id": "gondola-ride",
               "name": "贡多拉游船",
               "nameEn": "Gondola Ride",
               "type": "activity",
@@ -1767,7 +1767,7 @@
               "nameEn": "Uffizi Gallery"
             },
             {
-              "id": "市政厅广场",
+              "id": "piazza-signoria",
               "name": "市政厅广场",
               "nameEn": "Piazza della Signoria",
               "type": "landmark",
@@ -4520,7 +4520,7 @@
               "nameEn": "Vasa Museum"
             },
             {
-              "id": "斯德哥尔摩市政厅",
+              "id": "stockholm-city-hall",
               "name": "斯德哥尔摩市政厅",
               "nameEn": "Stockholm City Hall",
               "type": "landmark",
@@ -4530,7 +4530,7 @@
               "tips": "塔楼开放时段有限,建议提前"
             },
             {
-              "id": "斯德哥尔摩老城",
+              "id": "gamla-stan",
               "name": "斯德哥尔摩老城",
               "nameEn": "Gamla Stan",
               "type": "landmark",
@@ -4540,7 +4540,7 @@
               "tips": "步行游览,留意小巷"
             },
             {
-              "id": "诺贝尔博物馆",
+              "id": "nobel-prize-museum",
               "name": "诺贝尔博物馆",
               "nameEn": "Nobel Prize Museum",
               "type": "museum",
@@ -4550,7 +4550,7 @@
               "tips": "可听中文讲解"
             },
             {
-              "id": "斯德哥尔摩皇宫",
+              "id": "stockholm-palace",
               "name": "斯德哥尔摩皇宫",
               "nameEn": "Stockholm Palace",
               "type": "landmark",
@@ -4560,7 +4560,7 @@
               "tips": "换岗仪式正午最隆重"
             },
             {
-              "id": "月光男孩雕塑",
+              "id": "moon-boy-sculpture",
               "name": "月光男孩雕塑",
               "nameEn": "Moon Boy Sculpture",
               "type": "art",
@@ -4570,7 +4570,7 @@
               "tips": "在老城小巷,留意寻找"
             },
             {
-              "id": "斯德哥尔摩大教堂",
+              "id": "stockholm-cathedral",
               "name": "斯德哥尔摩大教堂",
               "nameEn": "Stockholm Cathedral",
               "type": "landmark",
@@ -4653,7 +4653,7 @@
               "lng": 11.9726
             },
             {
-              "id": "古斯塔夫阿道夫广场",
+              "id": "gustaf-adolfs-torg",
               "name": "古斯塔夫阿道夫广场",
               "nameEn": "Gustaf Adolfs torg",
               "type": "landmark",
@@ -4822,7 +4822,7 @@
               "nameEn": "Oslo Opera House"
             },
             {
-              "id": "奥斯陆市政厅",
+              "id": "oslo-city-hall",
               "name": "奥斯陆市政厅",
               "nameEn": "Oslo City Hall",
               "type": "landmark",
@@ -4832,7 +4832,7 @@
               "tips": "壁画讲述挪威历史"
             },
             {
-              "id": "阿克斯胡斯城堡",
+              "id": "akershus-fortress",
               "name": "阿克斯胡斯城堡",
               "nameEn": "Akershus Fortress",
               "type": "landmark",
@@ -4842,7 +4842,7 @@
               "tips": "可俯瞰奥斯陆峡湾"
             },
             {
-              "id": "新蒙克博物馆",
+              "id": "munch-museum",
               "name": "新蒙克博物馆",
               "nameEn": "Munch Museum",
               "type": "museum",
@@ -4852,7 +4852,7 @@
               "tips": "需购票,旺季预约"
             },
             {
-              "id": "维格兰雕刻公园",
+              "id": "vigeland-park",
               "name": "维格兰雕刻公园",
               "nameEn": "Vigeland Sculpture Park",
               "type": "park",
@@ -4862,7 +4862,7 @@
               "tips": "免费开放,适合细逛"
             },
             {
-              "id": "斗兽场电影博物馆",
+              "id": "colosseum-cinema-oslo",
               "name": "斗兽场电影博物馆",
               "nameEn": "Colosseum Cinema",
               "type": "museum",
@@ -5146,7 +5146,7 @@
               "nameEn": "Tivoli Gardens"
             },
             {
-              "id": "哥本哈根市政厅广场",
+              "id": "copenhagen-city-hall-square",
               "name": "哥本哈根市政厅广场",
               "nameEn": "Copenhagen City Hall Square",
               "type": "landmark",
@@ -5156,7 +5156,7 @@
               "tips": "可看安徒生雕像"
             },
             {
-              "id": "小美人鱼雕像",
+              "id": "little-mermaid",
               "name": "小美人鱼雕像",
               "nameEn": "The Little Mermaid",
               "type": "landmark",
@@ -5166,7 +5166,7 @@
               "tips": "游人众多,清晨人少"
             },
             {
-              "id": "安徒生铜像",
+              "id": "hc-andersen-statue",
               "name": "安徒生铜像",
               "nameEn": "Hans Christian Andersen Statue",
               "type": "art",
@@ -5176,7 +5176,7 @@
               "tips": "位于市政厅旁"
             },
             {
-              "id": "丹麦宪法之父克里斯蒂安十世国王雕像",
+              "id": "christian-x-statue",
               "name": "丹麦宪法之父克里斯蒂安十世国王雕像",
               "nameEn": "King Christian X Statue",
               "type": "art",
@@ -5186,7 +5186,7 @@
               "tips": "广场拍照打卡"
             },
             {
-              "id": "管风琴教堂",
+              "id": "grundtvig-church",
               "name": "管风琴教堂",
               "nameEn": "Grundtvig Church",
               "type": "landmark",
@@ -5196,7 +5196,7 @@
               "tips": "建筑感强,值得一看"
             },
             {
-              "id": "神农喷泉",
+              "id": "gefion-fountain",
               "name": "神农喷泉",
               "nameEn": "Gefion Fountain",
               "type": "landmark",
@@ -5206,7 +5206,7 @@
               "tips": "可与小美人鱼同游"
             },
             {
-              "id": "阿美琳堡宫",
+              "id": "amalienborg",
               "name": "阿美琳堡宫",
               "nameEn": "Amalienborg Palace",
               "type": "landmark",
@@ -5216,7 +5216,7 @@
               "tips": "看换岗,广场免费"
             },
             {
-              "id": "腓特烈教堂",
+              "id": "frederiks-church",
               "name": "腓特烈教堂",
               "nameEn": "Frederik's Church",
               "type": "landmark",
@@ -5226,7 +5226,7 @@
               "tips": "与阿美琳堡相望"
             },
             {
-              "id": "国会大厦(克里斯蒂安堡宫)",
+              "id": "christiansborg-palace",
               "name": "国会大厦(克里斯蒂安堡宫)",
               "nameEn": "Christiansborg Palace",
               "type": "landmark",
@@ -5931,7 +5931,7 @@
           "lng": 15.9819,
           "attractions": [
             {
-              "id": "zagreb-st-mark-s-church",
+              "id": "st-marks-basilica-venice",
               "name": "圣马可教堂",
               "nameEn": "St. Mark's Church",
               "type": "landmark",
@@ -6857,7 +6857,7 @@
               "lng": 24.7515
             },
             {
-              "id": "爱沙尼亚之门",
+              "id": "viru-gate",
               "name": "爱沙尼亚之门",
               "nameEn": "Viru Gate",
               "type": "landmark",
@@ -6867,7 +6867,7 @@
               "tips": "老城入口,适合拍照"
             },
             {
-              "id": "圣凯瑟琳通道",
+              "id": "st-catherine-passage",
               "name": "圣凯瑟琳通道",
               "nameEn": "St Catherine Passage",
               "type": "landmark",
@@ -7033,7 +7033,7 @@
               "lng": 24.9364
             },
             {
-              "id": "南码头露天自由市场",
+              "id": "market-square-helsinki",
               "name": "南码头露天自由市场",
               "nameEn": "Market Square",
               "type": "market",
@@ -7043,7 +7043,7 @@
               "tips": "清晨最热闹,注意保暖"
             },
             {
-              "id": "乌斯别斯基教堂",
+              "id": "uspenski-cathedral",
               "name": "乌斯别斯基教堂",
               "nameEn": "Uspenski Cathedral",
               "type": "landmark",
@@ -7053,7 +7053,7 @@
               "tips": "外观拍照佳,入内宜安静"
             },
             {
-              "id": "颂歌图书馆",
+              "id": "oodi-library",
               "name": "颂歌图书馆",
               "nameEn": "Oodi Library",
               "type": "landmark",
@@ -7063,7 +7063,7 @@
               "tips": "顶层可俯瞰市区"
             },
             {
-              "id": "赫尔辛基阿莫斯瑞克斯",
+              "id": "amos-rex",
               "name": "赫尔辛基阿莫斯瑞克斯",
               "nameEn": "Amos Rex",
               "type": "museum",
@@ -7073,7 +7073,7 @@
               "tips": "看展需购票"
             },
             {
-              "id": "赫尔辛基之眼",
+              "id": "skywheel-helsinki",
               "name": "赫尔辛基之眼",
               "nameEn": "SkyWheel Helsinki",
               "type": "attraction",
