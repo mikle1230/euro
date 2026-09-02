@@ -441,6 +441,56 @@
               "description": "法国王权的极致象征，镜厅举世闻名",
               "tips": "建议预留一整天，周二闭馆",
               "nameEn": "Palace of Versailles"
+            },
+            {
+              "id": "巴黎圣母院",
+              "name": "巴黎圣母院",
+              "nameEn": "Notre-Dame Cathedral",
+              "type": "landmark",
+              "lat": 48.853,
+              "lng": 2.35,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "奥赛博物馆",
+              "name": "奥赛博物馆",
+              "nameEn": "Musee d'Orsay",
+              "type": "museum",
+              "lat": 48.86,
+              "lng": 2.326,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "凯旋门",
+              "name": "凯旋门",
+              "nameEn": "Arc de Triomphe",
+              "type": "landmark",
+              "lat": 48.874,
+              "lng": 2.295,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "香榭丽舍大道",
+              "name": "香榭丽舍大道",
+              "nameEn": "Champs-Elysees",
+              "type": "landmark",
+              "lat": 48.869,
+              "lng": 2.308,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "塞纳河游船",
+              "name": "塞纳河游船",
+              "nameEn": "Seine Cruise",
+              "type": "activity",
+              "lat": 48.857,
+              "lng": 2.348,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -1065,6 +1115,14 @@
           "lat": 47.6396,
           "lng": 6.8638,
           "attractions": []
+        },
+        {
+          "id": "versailles",
+          "name": "凡尔赛",
+          "nameEn": "Versailles",
+          "lat": 48.8,
+          "lng": 2.13,
+          "attractions": []
         }
       ]
     },
@@ -1614,6 +1672,26 @@
               "description": "罗马最大的巴洛克喷泉",
               "tips": "清晨6-7点前往可避开人潮",
               "nameEn": "Trevi Fountain"
+            },
+            {
+              "id": "古罗马广场",
+              "name": "古罗马广场",
+              "nameEn": "Roman Forum",
+              "type": "landmark",
+              "lat": 41.892,
+              "lng": 12.485,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "许愿泉",
+              "name": "许愿泉",
+              "nameEn": "Trevi Fountain",
+              "type": "landmark",
+              "lat": 41.9,
+              "lng": 12.483,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -1635,6 +1713,26 @@
               "tips": "清晨或深夜前往可避开人潮",
               "image_search_url": "https://www.bing.com/images/search?q=St+Marks+Square+Venice",
               "nameEn": "St. Mark's Square"
+            },
+            {
+              "id": "圣马可教堂",
+              "name": "圣马可教堂",
+              "nameEn": "St Mark's Basilica",
+              "type": "landmark",
+              "lat": 45.434,
+              "lng": 12.339,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "贡多拉游船",
+              "name": "贡多拉游船",
+              "nameEn": "Gondola Ride",
+              "type": "activity",
+              "lat": 45.434,
+              "lng": 12.338,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -1667,6 +1765,16 @@
               "description": "收藏波提切利、达芬奇等大师作品",
               "tips": "旺季需提前数周预约",
               "nameEn": "Uffizi Gallery"
+            },
+            {
+              "id": "市政厅广场",
+              "name": "市政厅广场",
+              "nameEn": "Piazza della Signoria",
+              "type": "landmark",
+              "lat": 43.769,
+              "lng": 11.256,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -2402,6 +2510,30 @@
           "nameEn": "Parma",
           "lat": 44.8015,
           "lng": 10.3279,
+          "attractions": []
+        },
+        {
+          "id": "cinque-terre",
+          "name": "五渔村",
+          "nameEn": "Cinque Terre",
+          "lat": 44.11,
+          "lng": 9.71,
+          "attractions": []
+        },
+        {
+          "id": "sirmione",
+          "name": "锡尔苗内",
+          "nameEn": "Sirmione",
+          "lat": 45.49,
+          "lng": 10.61,
+          "attractions": []
+        },
+        {
+          "id": "dolomites",
+          "name": "多洛米蒂",
+          "nameEn": "Dolomites",
+          "lat": 46.41,
+          "lng": 11.84,
           "attractions": []
         }
       ]
@@ -3860,6 +3992,14 @@
               "lng": 8.0393
             }
           ]
+        },
+        {
+          "id": "lucerne",
+          "name": "琉森",
+          "nameEn": "Lucerne",
+          "lat": 47.05,
+          "lng": 8.31,
+          "attractions": []
         }
       ]
     },
@@ -4378,6 +4518,106 @@
               "description": "1628年首航即沉没的完整战船",
               "tips": "博物馆光线较暗",
               "nameEn": "Vasa Museum"
+            },
+            {
+              "id": "斯德哥尔摩市政厅",
+              "name": "斯德哥尔摩市政厅",
+              "nameEn": "Stockholm City Hall",
+              "type": "landmark",
+              "lat": 59.327,
+              "lng": 18.052,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "斯德哥尔摩老城",
+              "name": "斯德哥尔摩老城",
+              "nameEn": "Gamla Stan",
+              "type": "landmark",
+              "lat": 59.325,
+              "lng": 18.071,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "诺贝尔博物馆",
+              "name": "诺贝尔博物馆",
+              "nameEn": "Nobel Prize Museum",
+              "type": "museum",
+              "lat": 59.325,
+              "lng": 18.071,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "斯德哥尔摩皇宫",
+              "name": "斯德哥尔摩皇宫",
+              "nameEn": "Stockholm Palace",
+              "type": "landmark",
+              "lat": 59.326,
+              "lng": 18.071,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "月光男孩雕塑",
+              "name": "月光男孩雕塑",
+              "nameEn": "Moon Boy Sculpture",
+              "type": "art",
+              "lat": 59.325,
+              "lng": 18.071,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "斯德哥尔摩大教堂",
+              "name": "斯德哥尔摩大教堂",
+              "nameEn": "Stockholm Cathedral",
+              "type": "landmark",
+              "lat": 59.325,
+              "lng": 18.071,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】菲耶巴卡-60欧",
+              "name": "【游客自费】菲耶巴卡 60欧",
+              "nameEn": "【游客自费】菲耶巴卡 60欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】皇后岛花园-55欧",
+              "name": "【游客自费】皇后岛花园 55欧",
+              "nameEn": "【游客自费】皇后岛花园 55欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】斯德哥尔摩深度游-80欧",
+              "name": "【游客自费】斯德哥尔摩深度游 80欧",
+              "nameEn": "【游客自费】斯德哥尔摩深度游 80欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】斯德哥尔摩游船-50欧",
+              "name": "【游客自费】斯德哥尔摩游船 50欧",
+              "nameEn": "【游客自费】斯德哥尔摩游船 50欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -4411,6 +4651,16 @@
               "type": "landmark",
               "lat": 57.7109,
               "lng": 11.9726
+            },
+            {
+              "id": "古斯塔夫阿道夫广场",
+              "name": "古斯塔夫阿道夫广场",
+              "nameEn": "Gustaf Adolfs torg",
+              "type": "landmark",
+              "lat": 57.706,
+              "lng": 11.966,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -4536,6 +4786,14 @@
           "lat": 59.8844,
           "lng": 12.3056,
           "attractions": []
+        },
+        {
+          "id": "sigtuna",
+          "name": "西格图纳",
+          "nameEn": "Sigtuna",
+          "lat": 59.62,
+          "lng": 17.72,
+          "attractions": []
         }
       ]
     },
@@ -4562,6 +4820,96 @@
               "description": "白色大理石建筑从峡湾中升起",
               "tips": "屋顶24小时开放",
               "nameEn": "Oslo Opera House"
+            },
+            {
+              "id": "奥斯陆市政厅",
+              "name": "奥斯陆市政厅",
+              "nameEn": "Oslo City Hall",
+              "type": "landmark",
+              "lat": 59.911,
+              "lng": 10.733,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "阿克斯胡斯城堡",
+              "name": "阿克斯胡斯城堡",
+              "nameEn": "Akershus Fortress",
+              "type": "landmark",
+              "lat": 59.905,
+              "lng": 10.736,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "新蒙克博物馆",
+              "name": "新蒙克博物馆",
+              "nameEn": "Munch Museum",
+              "type": "museum",
+              "lat": 59.906,
+              "lng": 10.763,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "维格兰雕刻公园",
+              "name": "维格兰雕刻公园",
+              "nameEn": "Vigeland Sculpture Park",
+              "type": "park",
+              "lat": 59.927,
+              "lng": 10.7,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "斗兽场电影博物馆",
+              "name": "斗兽场电影博物馆",
+              "nameEn": "Colosseum Cinema",
+              "type": "museum",
+              "lat": 59.913,
+              "lng": 10.75,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】挪威峡湾游船-100欧",
+              "name": "【游客自费】挪威峡湾游船 100欧",
+              "nameEn": "【游客自费】挪威峡湾游船 100欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】挪威峡湾观光火车-120欧",
+              "name": "【游客自费】挪威峡湾观光火车 120欧",
+              "nameEn": "【游客自费】挪威峡湾观光火车 120欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】挪威民俗文化园-50欧",
+              "name": "【游客自费】挪威民俗文化园 50欧",
+              "nameEn": "【游客自费】挪威民俗文化园 50欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】哈当厄尔峡湾特色农庄-65欧",
+              "name": "【游客自费】哈当厄尔峡湾特色农庄 65欧",
+              "nameEn": "【游客自费】哈当厄尔峡湾特色农庄 65欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -4796,6 +5144,126 @@
               "description": "迪士尼的灵感来源之一",
               "tips": "夜间灯光秀尤为梦幻",
               "nameEn": "Tivoli Gardens"
+            },
+            {
+              "id": "哥本哈根市政厅广场",
+              "name": "哥本哈根市政厅广场",
+              "nameEn": "Copenhagen City Hall Square",
+              "type": "landmark",
+              "lat": 55.676,
+              "lng": 12.569,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "小美人鱼雕像",
+              "name": "小美人鱼雕像",
+              "nameEn": "The Little Mermaid",
+              "type": "landmark",
+              "lat": 55.692,
+              "lng": 12.599,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "安徒生铜像",
+              "name": "安徒生铜像",
+              "nameEn": "Hans Christian Andersen Statue",
+              "type": "art",
+              "lat": 55.679,
+              "lng": 12.568,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "丹麦宪法之父克里斯蒂安十世国王雕像",
+              "name": "丹麦宪法之父克里斯蒂安十世国王雕像",
+              "nameEn": "King Christian X Statue",
+              "type": "art",
+              "lat": 55.68,
+              "lng": 12.594,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "管风琴教堂",
+              "name": "管风琴教堂",
+              "nameEn": "Grundtvig Church",
+              "type": "landmark",
+              "lat": 55.716,
+              "lng": 12.534,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "神农喷泉",
+              "name": "神农喷泉",
+              "nameEn": "Gefion Fountain",
+              "type": "landmark",
+              "lat": 55.69,
+              "lng": 12.597,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "阿美琳堡宫",
+              "name": "阿美琳堡宫",
+              "nameEn": "Amalienborg Palace",
+              "type": "landmark",
+              "lat": 55.684,
+              "lng": 12.593,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "腓特烈教堂",
+              "name": "腓特烈教堂",
+              "nameEn": "Frederik's Church",
+              "type": "landmark",
+              "lat": 55.685,
+              "lng": 12.594,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "国会大厦(克里斯蒂安堡宫)",
+              "name": "国会大厦(克里斯蒂安堡宫)",
+              "nameEn": "Christiansborg Palace",
+              "type": "landmark",
+              "lat": 55.676,
+              "lng": 12.581,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】哈姆雷特城堡-65欧",
+              "name": "【游客自费】哈姆雷特城堡 65欧",
+              "nameEn": "【游客自费】哈姆雷特城堡 65欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】腓特烈城堡-60欧",
+              "name": "【游客自费】腓特烈城堡 60欧",
+              "nameEn": "【游客自费】腓特烈城堡 60欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】玫瑰宫-60欧",
+              "name": "【游客自费】玫瑰宫 60欧",
+              "nameEn": "【游客自费】玫瑰宫 60欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -6387,6 +6855,26 @@
               "type": "landmark",
               "lat": 59.439,
               "lng": 24.7515
+            },
+            {
+              "id": "爱沙尼亚之门",
+              "name": "爱沙尼亚之门",
+              "nameEn": "Viru Gate",
+              "type": "landmark",
+              "lat": 59.438,
+              "lng": 24.753,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "圣凯瑟琳通道",
+              "name": "圣凯瑟琳通道",
+              "nameEn": "St Catherine Passage",
+              "type": "landmark",
+              "lat": 59.438,
+              "lng": 24.747,
+              "description": "",
+              "tips": ""
             }
           ]
         }
@@ -6543,6 +7031,86 @@
               "type": "landmark",
               "lat": 60.1719,
               "lng": 24.9364
+            },
+            {
+              "id": "南码头露天自由市场",
+              "name": "南码头露天自由市场",
+              "nameEn": "Market Square",
+              "type": "market",
+              "lat": 60.168,
+              "lng": 24.952,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "乌斯别斯基教堂",
+              "name": "乌斯别斯基教堂",
+              "nameEn": "Uspenski Cathedral",
+              "type": "landmark",
+              "lat": 60.168,
+              "lng": 24.959,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "颂歌图书馆",
+              "name": "颂歌图书馆",
+              "nameEn": "Oodi Library",
+              "type": "landmark",
+              "lat": 60.168,
+              "lng": 24.938,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "赫尔辛基阿莫斯瑞克斯",
+              "name": "赫尔辛基阿莫斯瑞克斯",
+              "nameEn": "Amos Rex",
+              "type": "museum",
+              "lat": 60.171,
+              "lng": 24.937,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "赫尔辛基之眼",
+              "name": "赫尔辛基之眼",
+              "nameEn": "SkyWheel Helsinki",
+              "type": "attraction",
+              "lat": 60.166,
+              "lng": 24.956,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】芬兰城堡-45欧",
+              "name": "【游客自费】芬兰城堡 45欧",
+              "nameEn": "【游客自费】芬兰城堡 45欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】波尔沃古镇-45欧",
+              "name": "【游客自费】波尔沃古镇 45欧",
+              "nameEn": "【游客自费】波尔沃古镇 45欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
+            },
+            {
+              "id": "【游客自费】塔林-260欧",
+              "name": "【游客自费】塔林 260欧",
+              "nameEn": "【游客自费】塔林 260欧",
+              "type": "optional",
+              "lat": null,
+              "lng": null,
+              "description": "",
+              "tips": ""
             }
           ]
         },
@@ -6609,6 +7177,14 @@
           "nameEn": "Vantaa",
           "lat": 60.2944,
           "lng": 25.0408,
+          "attractions": []
+        },
+        {
+          "id": "turku",
+          "name": "图尔库",
+          "nameEn": "Turku",
+          "lat": 60.45,
+          "lng": 22.27,
           "attractions": []
         }
       ]
