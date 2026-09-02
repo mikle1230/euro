@@ -14566,7 +14566,7 @@ export const ATTRACTION_DETAILS = {
       "hours": "通常白天开放，具体以现场或官网为准",
       "transport": "位于红场南端，与克里姆林宫隔广场相望，从红场步行即到"
     }
-  }
+  },
 
 
   "stockholm-city-hall": {"officialUrl":"https://international.stockholm.se","intro":"斯德哥尔摩市政厅（Stockholm City Hall）位于国王岛，是斯德哥尔摩的地标与诺贝尔奖晚宴举办地，红砖塔楼高 106 米，可俯瞰全城。","sections":[{"title":"建筑与功能","items":[{"h":"诺贝尔晚宴","p":"每年 12 月 10 日诺贝尔奖颁奖后，晚宴在市政厅的蓝厅举行，金厅则以百万块金箔马赛克装饰，藏有象征瑞典历史的神话场面。"},{"h":"塔楼观光","p":"106 米高的塔楼顶部可登高远眺，将梅拉伦湖与老城尽收眼底，但需留意开放时段与购票。"}]}],"visit":{"ticket":"需购票（塔楼/内部导览，价格随季节浮动，旺季需预约）","hours":"通常 8:30–18:00 开放（部分厅室受活动影响，以官网为准）","transport":"地铁蓝线至 Rådhuset 站步行数百米，或乘 3/62 路公交至 Stadshuset 站"}},
