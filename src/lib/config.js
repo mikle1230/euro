@@ -14,6 +14,7 @@ const TYPE_LABELS = {
   restaurant: '餐厅',
   transport: '交通',
   guide: '导游',
+  optional: '游客自费',
 }
 
 const TYPE_ICONS = {
