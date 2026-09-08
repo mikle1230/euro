@@ -91,7 +91,8 @@ test('DEFAULT_QUOS_ORDER 为 12 个码且与标签表一致', () => {
 
 test('数据漂移：每个 europe-travel 城市都能经 getCityCode 解析（无码遗址列白名单）', () => {
   // 以弗所是考古遗址，Cities.xlsx 无对应城市码，属预期无码
-  const NO_CODE_ALLOWLIST = new Set(['以弗所'])
+  // 多洛米蒂是山区/区域，无单一城市码，同理列入白名单
+  const NO_CODE_ALLOWLIST = new Set(['以弗所', '多洛米蒂'])
   const missing = []
   for (const country of travelData.countries) {
     for (const city of country.cities) {
