@@ -1,0 +1,158 @@
+{
+  "cities": [
+    {
+      "zh": "斯德哥尔摩",
+      "en": "Stockholm",
+      "country": "SE",
+      "cityCode": "STO",
+      "note": "大斯德哥尔摩区(SE/STO)。所有 rating 为 0-10 制 Booking 口径(经 zenhotels.com / hotelclub.net 转述观察)；priceEur 为 zenhotels 德区(de-de)无日期 in 页 'ab X €' 起步参考价(真实观察 EUR，随日期/房型浮动)；star 依据 Booking 评星或 Kayak 等 OTA 分类。",
+      "hotels": [
+        {
+          "name": "Hilton Stockholm Slussen",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 214,
+          "area": "南城 Södermalm 南岸 Slussen(Guldgränd 8)，过桥即老城，距市中心约550m",
+          "near": "Slussen 地铁站(196m)、Gamla Stan 老城(337m)、诺贝尔博物馆",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，4413 条点评)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid7539453/hilton_stockholm_slussen/?dateless_form=yes",
+            "https://www.booking.com/hotel/se/hilton-stockholm-slussen.en-gb.html",
+            "https://www.kayak.com/Stockholm-Hotels-Hilton-Stockholm-Slussen.60078.ksp",
+            "https://www.hilton.com/en/hotels/stoslhi-hilton-stockholm-slussen/"
+          ],
+          "note": "现名未改，仍在营业(Booking/Kayak/Trip.com 2026 在售且有近期点评)；1989年开业、2013年翻新，289间房/8层；Slussen 城市更新期酒店持续运营。Booking 星级未直接显示，按 Kayak '4 stars' 取 4 星。"
+        },
+        {
+          "name": "Hobo Stockholm",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.8,
+          "priceEur": 171,
+          "area": "市中心 Norrmalm 王后花园广场 Brunkebergstorg 4(距市中心约660m)",
+          "near": "T-Centralen 地铁(283m)、Kungsträdgården、皇家歌剧院、赛格尔广场",
+          "ratingSource": "Booking.com(hotelclub.net 转述，0-10 制，2785 条；zenhotels 同值 8.8/1938 条)",
+          "sources": [
+            "https://www.hotelclub.net/h/hobo.html",
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid8623624/hobo/?dateless_form=yes",
+            "https://www.booking.com/hotel/se/hobo.en.html"
+          ],
+          "note": "Booking/hotelclub 均标 4 星、8.8 分；2017 年开业(前建筑改造，2017 翻新)，201间房/12层，设计酒店，楼上 TAK 屋顶餐厅；booking.com/hotel/se/hobo 即其页面。"
+        },
+        {
+          "name": "Hotel C Stockholm",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 150,
+          "area": "市中心 Norrmalm 瓦萨广场 Vasaplan 4，紧邻中央车站(距市中心约1.1km)",
+          "near": "斯德哥尔摩中央车站(225m)、T-Centralen 地铁(361m)、ICEBAR 冰酒吧在店内",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，4714 条点评)",
+          "sources": [
+            "https://hotelcstockholm.se/stockholm/alla-vara-namn/",
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid7539328/nordic_sea_hotel/?dateless_form=yes",
+            "https://www.booking.com/reviews/se/hotel/nordic-sea.zh-cn.html"
+          ],
+          "note": "改名史(官网核实)：2001 年以 Nordic Sea 开业(前警察局大楼)→2013 年更名 Nordic C Hotel→2017 年更名 Hotel C Stockholm；现属 Strawberry 旗下 NHR(Nordic Hotels & Resorts)，i Prefer/Preferred Hotels 合作；Booking 星级 4(评页标题'4星级')，367间房。Booking 内部页 slug 仍为 nordic-sea。"
+        },
+        {
+          "name": "Hotel Kung Carl, WorldHotels Crafted",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 191,
+          "area": "Norrmalm/Östermalm 一带 Birger Jarlsgatan 21(距市中心约1.3km)",
+          "near": "Östermalmstorg 地铁(337m)、Östermalms Saluhall 市场(465m)、Stureplan",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，1497 条点评)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid7539425/best_western_premier_hotell_kung_carl/?dateless_form=yes",
+            "https://www.booking.com/hotel/se/hotell-kung-carl.en-us.html",
+            "https://www.kayak.com.au/Stockholm-Hotels-Hotel-Kung-Carl-BW-Premier-Collection.20740.ksp"
+          ],
+          "note": "1903 年建筑、2015 年装修的 143 间房老牌经典酒店；曾挂 Best Western Premier(Booking/Kayak 旧 slug 含 bw-premier)，现运营名 'Hotel Kung Carl, WorldHotels Crafted'(WorldHotels Crafted 成员)；Booking 星级未直接显示，按 Kayak '4 stars' 取 4 星。"
+        },
+        {
+          "name": "Motel L Älvsjö",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.6,
+          "priceEur": 85,
+          "area": "南郊 Älvsjö(Götalandsvägen 209，斯德哥尔摩南 7km，近 Stockholmsmässan 会展中心)",
+          "near": "Älvsjö 火车站(通勤线约9分钟到中央站)、E4 高速、Hagsätra 地铁约2km",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，248 条点评)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/de-de/sweden/alvsjo/mid8781345/motel_l_alvsjo/?dateless_form=yes",
+            "https://www.kayak.com.mx/Estocolmo-Hoteles-Motel-L-Stockholm-AElvsjoe.882342.ksp",
+            "https://sp.booking.com/hotel/se/motel-l-alvsjo.he.html"
+          ],
+          "note": "Strawberry 旗下 Motel L 概念汽车旅馆(免费大堂咖啡/茶/水、平价自助)，Booking 归类 Motel；169间房/9层。Booking 星级未直接显示，按 Kayak '3 estrellas' 取 3 星。与 Motel L Hammarby Sjöstad 是两家不同物业。"
+        },
+        {
+          "name": "Motel L Hammarby Sjöstad",
+          "nameZh": "",
+          "star": 3,
+          "rating": 9.0,
+          "priceEur": 97,
+          "area": "Hammarby Sjöstad 湖滨新城(市中心东南约2.7km，Hammarby Allé 41)",
+          "near": "Gullmarsplan 地铁枢纽(548m)、Fotografiska 摄影博物馆(1.7km)、Skanstull",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，4127 条点评)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid8295566/motel_l/?dateless_form=yes",
+            "https://www.kayak.co.uk/Stockholm-Hotels-Motel-L.2077408.ksp",
+            "https://hotels.qatarairways.com/hotel/se/motel-l.zh-tw.html"
+          ],
+          "note": "Strawberry Motel L 品牌门店，Booking 归类 Motel、页 slug 为 motel-l；2014年建/2017年翻新，226间房/4层。Booking 星级未直接显示，按 Kayak '3 stars' 取 3 星。与 Motel L Älvsjö(Götalandsvägen 209)确认为不同物业。"
+        },
+        {
+          "name": "NOFO Hotel, WorldHotels Crafted",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.9,
+          "priceEur": 231,
+          "area": "南城 Södermalm SoFo 区 Tjärhovsgatan 11(距市中心约1.2km，非老城)",
+          "near": "Medborgarplatsen 地铁(329m)、Fotografiska(494m)、Slussen",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，424 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/se/nofo.html",
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid7539339/columbus_hotell/?dateless_form=yes",
+            "https://www.hotelscombined.ca/Hotel/NOFO_Hotel_BW_Premier_Collection.htm",
+            "https://nofohotel.se/"
+          ],
+          "note": "核实：位于 Södermalm SoFo(Tjärhovsgatan 11，109间房，2019 装修)，并非老城；前身 Hotel Columbus，曾以 'Nofo Hotel & Wine Bar' 运营，现 Booking/WorldHotels 名为 'NOFO Hotel, WorldHotels Crafted'(Booking 页 slug nofo)；星级按 HotelsCombined '4 stars'(前 BW Premier Collection 分类)取 4。"
+        },
+        {
+          "name": "Nordic Light Hotel",
+          "nameZh": "",
+          "star": 4,
+          "rating": 9.3,
+          "priceEur": 241,
+          "area": "Norrmalm 瓦萨广场 Vasaplan 7，中央车站正对面(距市中心约1.2km)",
+          "near": "斯德哥尔摩中央车站(294m)、T-Centralen 地铁(337m)、Arlanda Express 进城口",
+          "ratingSource": "Booking.com(zenhotels.com 转述，0-10 制，1610 条点评)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid7537993/nordic_light_hotel_an_ascend_hotel_collection_member/?dateless_form=yes",
+            "https://www.hotelclub.net/h/nordic-light.html",
+            "https://www.booking.com/hotel/se/nordic-light.html",
+            "https://nordiclighthotel.com/"
+          ],
+          "note": "与 Hotel C(前 Nordic Sea) 为姊妹店，同属 Strawberry 旗下 NHR；Booking 4 星(评页标题 '4 yıldız')；zenhotels 转述 9.3/1610 条，hotelclub 转述 8.8/884 条(较旧快照)，取较新 9.3；部分渠道后缀 'an Ascend Hotel Collection member'(zenhotels slug 旧缀)；169间房/7层。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Home Hotel Tapetfabriken",
+      "reason": "现状已核实：该店仍在营，现运营名 Clarion Collection Hotel Tapetfabriken(Strawberry，Booking 页 slug clarion-collection-tapetfabriken，Booking 合作页标题 ★★★★=4星)；位置核实为 Nacka(斯德哥尔摩东南郊，旧墙纸厂改造物业，TripAdvisor 归属 Stockholm County/Nacka)，并非任务假设的 Södermalm Hornstull。因 booking.com 反爬(直连均 HTTP 202 无内容)，且 hotelclub.net/zenhotels.com 未收录该店、Wayback 不可达，≤4次抓取内未取得 Booking 0-10 评分与 EUR/SEK 参考价 → 按'禁止编造'规则未入库，待补 rating/priceEur 后可入 hotels。参考佐证：https://www.booking.com/hotel/se/clarion-collection-tapetfabriken.en.html 、https://www.tripadvisor.com/Hotel_Review-g672753-d23162657-Reviews-Clarion_Collection_Hotel_Tapetfabriken-Nacka.html 、https://hotels.turkishairlines.com/hotel/se/clarion-collection-tapetfabriken.en-gb.html"
+    },
+    {
+      "name": "Home Hotel Tapto",
+      "reason": "核实结论：'TAPTO' 确为一独立在营酒店，现运营名 Clarion Collection Hotel Tapto(Booking 页 slug clarion-collection-tapto，标题 ★★★★=4星；Agoda 区位显示市中心/Östermalm；TripAdvisor d206394)，并非 Tapetfabriken 的公寓(后者为 Nacka 的 CC Tapetfabriken)。因 booking.com 反爬(HTTP 202)且 hotelclub.net/zenhotels.com 未收录该店、hotels.com/agoda/wayback 等均无法在限次内给出 Booking 0-10 评分与 EUR 参考价 → 按规则未入库，待补数据后可入 hotels。参考佐证：https://www.booking.com/hotel/se/clarion-collection-tapto.en-gb.html 、https://sg.trip.com/hotels/stockholm-hotel-detail-2577457/clarion-collection-hotel-tapto-stockholm/review.html 、https://www.hotels.com/ho117535/clarion-collection-hotel-tapto-stockholm-sweden/"
+    },
+    {
+      "name": "ProfilHotels Stockholm Haga (doc 'PROFIL HACKA EX QUALITY HACKA')",
+      "reason": "未能核实到对应在营酒店：Booking/Kayak/Trip.com 等均无 'ProfilHotels Haga' 或 'Quality Hotel Haga'(Stockholm) 在售条目，ProfilHotels 品牌约2020-2021年淡出斯德哥尔摩市场(其 Nacka Strand 门店现以 Quality Hotel Nacka 名义在 Trip.com 等销售，slug quality-hotel-nacka-stockholm，原 ProfilHotels Nacka)。doc 'PROFIL HACKA EX QUALITY HACKA' 疑为 'NACKA' 门店内部码的误读或已停业/更名无残留。若指 Haga 公园方向另有酒店，请提供内部码/地址后重查。参考：https://es.trip.com/hotels/nacka-hotel-detail-2576929/quality-hotel-nacka-stockholm/ 、https://www.hotels.com/ho160976/profilhotels-nacka-nacka-sweden/"
+    }
+  ]
+}

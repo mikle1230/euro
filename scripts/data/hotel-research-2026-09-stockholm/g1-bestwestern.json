@@ -1,0 +1,177 @@
+{
+  "cities": [
+    {
+      "zh": "斯德哥尔摩",
+      "en": "Stockholm",
+      "country": "SE",
+      "cityCode": "STO",
+      "note": "Best Western/Aiden/Sure 系参考酒店(市区 Norrmalm + 北郊 Kista/Solna/Bromma/Spånga/Danderyd/Arlanda/哈马碧生态城)。多家经历 CONNECT→Aiden、Ibis→Sure 等换牌,按现行运营名收录;rating/priceEur 为 2026 年调研时观测值。",
+      "hotels": [
+        {
+          "name": "Aiden by Best Western Stockholm Kista",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.8,
+          "priceEur": 84,
+          "area": "北郊基斯塔(Kista Science City,Isafjordsgatan 7,约11km 市区)",
+          "near": "Kista 地铁站约530m(Kista Galleria/科学城)",
+          "ratingSource": "ZenHotels.com(0-10,505 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/connect-kista.en-gb.html",
+            "https://www.bestwestern.com/en_US/book/hotels-in-kista/aiden-by-best-western-stockholm-kista/propertyCode.88265.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/kista/mid6480455/connect_hotel_kista/",
+            "https://connectkistastockholm.se-hotels.com/en/"
+          ],
+          "note": "EX. Connect Hotel Kista——Booking/OTA 页 slug 仍为 connect-kista(中文旧译\"基斯塔联络酒店\"),现运营 Aiden by Best Western"
+        },
+        {
+          "name": "Aiden by Best Western Stockholm Solna",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.0,
+          "priceEur": 123,
+          "area": "北郊索尔纳-桑德比贝里交界的商务区(Smidesvägen 1-3)",
+          "near": "Sundbybergs centrum 地铁站约610m;Friends Arena/索尔纳商务区约2km",
+          "ratingSource": "ZenHotels.com(0-10,238 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/by-maud.en-gb.html",
+            "https://www.aidenhotels.com/aiden-solna",
+            "https://www.zenhotels.com/hotel/en-de/sweden/solna/mid7725593/hotel_by_maude/",
+            "https://www.trip.com/hotels/danderyd-hotel-detail-3123507/aiden-by-best-western-stockholm-solna"
+          ],
+          "note": "EX. Hotel by Maud(e) Solna(OTA 旧名\"莫德/莫德苏纳酒店\");与 Best Western Solna Business Park 是两家不同店,勿混"
+        },
+        {
+          "name": "Best Western Plus Sthlm Bromma",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.5,
+          "priceEur": 107,
+          "area": "西郊布罗马 Bromma(Ulvsundavägen 193,近桑德比贝里界)",
+          "near": "Bromma Stockholm Airport 航站楼旁约300m(BW 官网称首家直连该机场的酒店)",
+          "ratingSource": "ZenHotels.com(0-10,825 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/best-western-plus-stockholm-bromma.zh-cn.html",
+            "https://www.bestwestern.co.uk/hotels/best-western-plus-sthlm-bromma-88191",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7832673/best_western_plus_sthlm_bromma/"
+          ],
+          "note": "即种子所指\"BroMMA Hotel\"——官方无此现名,现行运营名 Sthlm Bromma(Booking 页另作 Stockholm Bromma);HSU 4 星"
+        },
+        {
+          "name": "Best Western Plus Park City Hammarby Sjöstad",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.0,
+          "priceEur": 126,
+          "area": "市区东南 Hammarby Sjöstad 生态城(Midskeppsgatan 6)",
+          "near": "Hammarbyhöjden 地铁站约750m;Avicii 竞技场/Globen 商圈",
+          "ratingSource": "ZenHotels.com(0-10,1688 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/park-inn-hammarby-sjostad-stockholm.zh-cn.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7398618/park_inn_by_radisson_stockholm_hammarby_sjostad/",
+            "https://www.hrs.com/en/hotel/486017",
+            "https://ostrovok.ru/hotel/sweden/stockholm/mid7398618/park_inn_by_radisson_stockholm_hammarby_sjostad/"
+          ],
+          "note": "EX. Park Inn by Radisson Stockholm Hammarby Sjöstad——Booking 页 slug 仍 park-inn-hammarby-sjostad-stockholm;现挂 BW Plus 4 星"
+        },
+        {
+          "name": "Sure Hotel by Best Western Spånga",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.0,
+          "priceEur": 129,
+          "area": "西北郊 Spånga(Finspångsgatan 54,斯德哥尔摩西北)",
+          "near": "Hjulsta 地铁站约1km(蓝线)",
+          "ratingSource": "ZenHotels.com(0-10,215 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/ibis-stockholm-spanga.zh-cn.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/spanga/mid7539639/ibis_stockholm_spanga/",
+            "https://hotels.easyjet.com/hotel/se/ibis-stockholm-spanga.en-gb.html"
+          ],
+          "note": "EX. Ibis Stockholm Spånga——原 Accor ibis 换牌 Sure Hotel by Best Western(Booking/OTA 页 slug 仍为 ibis-stockholm-spanga),沿用 3 星口径"
+        },
+        {
+          "name": "Best Western Hotel Danderyd",
+          "nameZh": "",
+          "star": 3,
+          "rating": 9.8,
+          "priceEur": 171,
+          "area": "斯德哥尔摩北郊 Danderyd 市(Svärdvägen 31,近 Mörby centrum)",
+          "near": "Mörby centrum 地铁站约440m(红线)",
+          "ratingSource": "ZenHotels.com(0-10,200 条)",
+          "sources": [
+            "https://www.booking.com/reviewlist.zh-cn.html?aid=349369&cc1=se&pagename=danderyd&tmpl=reviewlistpopup",
+            "https://www.bestwestern.se/hotel/88256",
+            "https://www.bestwestern.com/en_US/book/hotels-in-danderyd/best-western-hotel-danderyd/propertyCode.88256.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/danderyd/mid7397486/danderyds_gasteri/"
+          ],
+          "note": "更名:原老牌客栈 Hotell Danderyds Gästeri/Danderyds gästgivaregård(Booking 页 slug 为 danderyd);2022 装修后现名 Best Western Hotel Danderyd——核实为普通 BW,并非 Plus 亦非 Aiden 系"
+        },
+        {
+          "name": "Best Western Plus Grow Hotel",
+          "nameZh": "贝斯特韦斯特优质格罗酒店",
+          "star": 4,
+          "rating": 9.0,
+          "priceEur": 143,
+          "area": "北郊索尔纳(Landsvägen 30,索尔纳商务区/近 Solna strand)",
+          "near": "Solna strand 地铁站约340m、Sundbybergs centrum 约420m",
+          "ratingSource": "ZenHotels.com(0-10,225 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/best-western-plus-grow.zh-cn.html",
+            "https://www.bestwestern.se/hotell/best-western-plus-grow-hotel-88238",
+            "https://www.bestwestern.com/en_US/book/hotels-in-stockholm/best-western-plus-grow-hotel/propertyCode.88238.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/solna/mid8882599/best_western_plus_grow_hotel/",
+            "https://hotels.ctrip.com/hotels/21888275.html"
+          ],
+          "note": "种子标注\"Kista\"有误——核实位于索尔纳 Solna(近 Solna Business Park 商务区);运营名未换牌,Booking 索引页 4 星(4 Sterne);携程中文名贝斯特韦斯特优质格罗酒店"
+        },
+        {
+          "name": "Best Western Kom Hotel Stockholm",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.9,
+          "priceEur": 155,
+          "area": "市区 Norrmalm(Dobelnsgatan 17,近 Hötorget 购物区)",
+          "near": "Rådmansgatan 地铁站约200m、Hötorget 约430m;步行至皇后大街",
+          "ratingSource": "ZenHotels.com(0-10,1589 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/komhotel.en-gb.html",
+            "https://www.bestwestern.com/en_US/book/hotel-details.88161.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539473/best_western_kom_hotel/"
+          ],
+          "note": "HSU 官方星级 3 星 Superior(Booking 显示 3.5);未更名(Booking slug 长期为 komhotel)"
+        },
+        {
+          "name": "Best Western Solna Business Park",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.5,
+          "priceEur": 108,
+          "area": "北郊索尔纳 Frösunda/索尔纳商务园(Englundavägen 2)",
+          "near": "Sundbybergs centrum 地铁站约310m",
+          "ratingSource": "ZenHotels.com(0-10,245 条)",
+          "sources": [
+            "https://www.booking.com/hotel/se/maude-s-solna-business-park.en-gb.html",
+            "https://www.bestwestern.com/en_US/book/hotel-details.88261.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/solna/mid7539439/maudes_hotel_solna_business_park/"
+          ],
+          "note": "核实未更名 Aiden/其他,现仍 Best Western Solna Business Park;Booking slug 沿自旧运营名 Maude's(...maude-s-solna-business-park);HSU 3 星 Superior(Booking 显示 3.5),Kayak 亦标 3 星;与 Aiden Stockholm Solna 非同店"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Aiden by Best Western Stockholm Arlanda Airport(EX. Connect Arlanda)",
+      "reason": "现运营名已核实(Aiden by Best Western Stockholm Arlanda Airport,机场区 Arlandastad,Lindberghs gata 10,19561 Märsta/Sigtuna;BW 官网 88264 与 Booking 页 booking.com/hotel/se/connect.* 同页),星级核实为 3 星(HRS,hrs.de/de/hotel/216231)。但 0-10 评分与 EUR 参考价未获可核验观测:Booking 直连/评分页反爬(hotelclub.net 已停、site: 无收录),ZenHotels/Ostrovok 无此店收录,其余 OTA(from 价 €37-91 为单人/特惠口径,不可作标准双人间参考)。建议人工在 Booking 页或 Trip.com(au.trip.com/hotels/arlandastad-hotel-detail-2134117/connect-hotel-arlanda)补录后列入。"
+    },
+    {
+      "name": "Best Western Royal Star",
+      "reason": "星级与位置已核实:Booking 索引页标题为 ★★★★ 4 星(booking.com/hotel/se/royal-star.en-gb.html),官网微站 bestwesternroyalstarstockholm.se-hotels.com 亦标 4*,位于斯德哥尔摩南郊 Älvsjö/Årsta 一带(携程中文名皇家之星贝斯特韦斯特酒店,hotels.ctrip.com/hotels/3293949.html;BW 官网页面 bestwestern.fr/.../BEST-WESTERN-Royal-Star-88213)。但 0-10 评分与 EUR 参考价未能观测:Booking 反爬、ZenHotels/Agoda 无有效 0-10 数据、hotelclub.net 已停。建议以 Booking 页或 Agoda(cn 页,评分 0-10)人工补录。"
+    },
+    {
+      "name": "Stockholm Aido by Best Western(种子#8)",
+      "reason": "查无此店:瑞典 BWH/Best Western 全系现无 \"Aido\" 酒店或子品牌(多轮检索仅见无关的 AIDO Rentals 民宿公司)。判定为 \"Aiden\" 的笔误或旧名单残留;若意图是市区 Aiden 店,对应为 Aiden by Best Western Stockholm City(EX. Connect Hotel City,3 星,Booking 页 booking.com/hotel/se/connect-city.*、Trip.com id 2138032),与种子 #1-3 的 Aiden(Arlanda/Kista/Solna)非同店;因该店不在本次清单内且未能获取其 0-10 评分/EUR 价,未单独收录,请按需人工补录。"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "cities": [
+    {
+      "zh": "斯德哥尔摩",
+      "en": "Stockholm",
+      "country": "SE",
+      "cityCode": "STO",
+      "note": "组1(SE/STO)补数据：4 家 Best Western Plus（机场/南郊/索尔纳/Upplands Väsby）+ 市区及机场 Clarion + Comfort(Arlanda/Kista)。rating 为 2026-09 调研观察值（Booking 口径 0-10，经 zenhotels.com 转述——Booking 官网直连反爬 HTTP 202，无法直读）；priceEur 为 zenhotels 无日期 from 起价（EUR 直读，随日期/房型浮动，仅供参考）。",
+      "hotels": [
+        {
+          "name": "Best Western Plus Park Airport Hotel",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 81,
+          "area": "阿兰达机场区 Arlandastad（Bristagatan 16，斯德哥尔摩以北，距机场约 4.7km）",
+          "near": "Stockholm Arlanda Airport（约 4.7km，酒店有 Transfer 班车；机场快线/自驾）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.1，430条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/arlandastad/mid7539660/park_inn_by_radisson_stockholm_arlanda/",
+            "https://www.hotelscombined.com.au/Hotel/Best_Western_Plus_Park_Airport_Hotel.htm",
+            "https://www.cn.kayak.com/hotels/Best_Western_Plus_Park_Airport_Hotel%2CMarsta-c-h869920-details/2024-07-22/2024-07-29/"
+          ],
+          "note": "改名（种子标 EX? 已核实）：前 Park Inn by Radisson Stockholm Arlanda Hotel → 现挂 Best Western Plus Park Airport Hotel（zenhotels/Google 路由 slug 仍 park_inn_by_radisson_stockholm_arlanda 佐证原品牌；HotelsCombined 标题『Best Western Plus Park Airport Hotel 4 stars』）。124间/4层。Booking/OTA 现行名不带 Arlanda 后缀（部分渠道写作 Best Western Arlanda Plus Park Airport Hotel）。€81 为 zenhotels from 起价。"
+        },
+        {
+          "name": "Best Western Plus Kungens Kurva",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.0,
+          "priceEur": 90,
+          "area": "斯德哥尔摩南郊 Kungens Kurva/Segeltorp（Huddinge 市），Gamla Södertäljevägen 214",
+          "near": "Skärholmen 地铁站（约860m）；宜家 Kungens Kurva 商圈",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.0，153条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/huddinge/mid10653071/best_western_plus_hotel_kungens_kurva/",
+            "https://www.booking.com/hotel/se/best-western-plus-kungens-kurva.zh-cn.html",
+            "https://www.bestwestern.com/en_US/book/hotel-details.88259.html"
+          ],
+          "note": "BW 官方页写『Best Western Plus Hotel Kungens Kurva』；Booking 现行挂牌名『Best Western Plus Kungens Kurva』（去 Hotel）。2023 年开业新楼（91间/5层，zenhotels 数据），非换牌店。地址 Segeltorp 14170（Huddinge 市/近 Kungens Kurva）。星级按 Best Western Plus 档位 4★（Booking 索尔纳-南郊同档店一致），€90 为 zenhotels from 起价。"
+        },
+        {
+          "name": "Best Western Plus Park City Solna",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.8,
+          "priceEur": 110,
+          "area": "北郊索尔纳 Solna（Hotellgatan 11，紧邻 Solna centrum 商圈）",
+          "near": "Solna Centrum 地铁站（约99m）；Haga Park 约1.8km；西郊 Bromma 机场约3.1km",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.8，1347条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/solna/mid7539504/park_inn_by_radisson_solna/",
+            "https://www.booking.com/reviews/se/hotel/winnsolna.html",
+            "https://www.bestwestern.fr/en/hotel-Solna-Best-Western-Plus-Park-City-Solna-88272"
+          ],
+          "note": "改名：前 Park Inn by Radisson Solna（zenhotels slug 佐证）→ Best Western Plus Park City Solna；Booking 页 id 为 winnsolna，说明 Booking 最早曾以『...Winn』名收录（更早历史名）。256间/14层，商场楼上。星级 4：Booking reviews 页标题『Best Western Plus Park City Solna 4 stars』。€110 为 zenhotels(en-de) from 起价（en-gb 页约 £94）。"
+        },
+        {
+          "name": "Best Western Plus Ten Hotel",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.6,
+          "priceEur": 105,
+          "area": "阿兰达方向 Upplands Väsby（Johanneslundsvägen 11；非机场酒店，距 Arlanda 约 16km）",
+          "near": "Upplands Väsby 镇中心（约1km）；Stockholm Arlanda Airport 约16km",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.6，147条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/upplands_vasby/mid9917916/ten_hotel_upplands_vasby/",
+            "https://us.trip.com/hotels/detail/?cityEnName=Upplands-Vasby&cityId=39709&hotelId=69355001",
+            "https://www.hotwire.com/Stockholm-Hotels-TEN-Hotel.h46220288.Hotel-Information"
+          ],
+          "note": "地址核实：Johanneslundsvägen 11, Upplands Väsby（种子『Arlanda/Upplands Väsby 方向』正确，但该店在镇上、不在机场）。2021 年开业（194间/8层，zenhotels 数据）。星级按 Best Western Plus 档位（Booking 有 Upplands-Väsby 4星城市列表页，该镇大型酒店即此店）。€105 为 zenhotels(en-de) from 起价（en-us 约 $123）。"
+        },
+        {
+          "name": "Clarion Hotel Amaranten",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.5,
+          "priceEur": 149,
+          "area": "市中心国王岛 Kungsholmen（Kungsholmsgatan 31）",
+          "near": "Rådhuset 地铁站（约248m）；斯德哥尔摩市政厅约672m；中央车站约641m",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.5，3722条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539262/clarion_hotel_amaranten/",
+            "https://www.booking.com/city/se/stockholm.en-gb.html"
+          ],
+          "note": "现名未变（Strawberry 旗下 Clarion 在营；1969 建，461间/7层，近 Rådhuset 地铁）。星级：Clarion 品牌斯京店为 4 星档（Booking 斯德哥尔摩 4星索引收录）。€149 为 zenhotels(en-de) from 起价（参考）。"
+        },
+        {
+          "name": "Clarion Hotel Stockholm",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 117,
+          "area": "南城 Södermalm（Ringvägen 98）",
+          "near": "Skanstull 地铁站（约183m）；Fotografiska 约1.4km；Medborgarplatsen 约890m",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.1，4647条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539311/clarion_hotel_stockholm/",
+            "https://www.booking.com/hotel/se/clarion-stockholm.html"
+          ],
+          "note": "现名未变（Strawberry Clarion，532间/8层，2003 建，含室内外泳池/SPA）。种子位置 Södermalm Ringvägen 正确。星级：Clarion 品牌 4 星档。€117 为 zenhotels(en-de) from 起价（参考；Trabber 亦见 from €101）。"
+        },
+        {
+          "name": "Comfort Hotel Arlanda Airport Terminal",
+          "nameZh": "",
+          "star": 4,
+          "rating": 9.0,
+          "priceEur": 121,
+          "area": "阿兰达机场区 Arlandastad（Tornvägen 19A，机场西南侧）",
+          "near": "Stockholm Arlanda Airport 航站楼区（机场接驳；距市区约 35km）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：9.0，447条，0-10制；Trip.fr 另见 9.3/311条佐证）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/arlandastad/mid9244881/comfort_arlanda_airport/",
+            "https://www.strawberryhotels.com/hotels/sweden/stockholm-arlanda-airport/comfort-hotel-arlanda-airport/",
+            "https://www.swedavia.se/arlanda/nyheter/comfort-hotel-arlanda-airport-oppnar-pa-arlanda/",
+            "https://www.tripadvisor.com/Hotel_Review-g968417-d17768834-Reviews-Comfort_Hotel_Arlanda_Airport_Terminal-Arlandastad_Sigtuna_Municipality.html"
+          ],
+          "note": "改名核实（种子疑改 Quality/Clarion）：未改挂 Quality/Clarion；现行官方/OTA 名 = Comfort Hotel Arlanda Airport Terminal（Strawberry 官方页标题『Comfort Hotel™ Arlanda Airport Terminal』；Booking/Trip/zenhotels/TripAdvisor 同），旧名 Comfort Hotel Arlanda Airport 不再使用（Swedavia 曾发布其开业消息，TripAdvisor 2024 起已用 Terminal 后缀）。503间/13层大体量新塔（约2020 起运营，近年更名+翻新）。星级 4 为推断（Booking 直读被反爬未能直接验证页标题星级；该店为机场区大型 4 星档，建议合并前人工复核一次）。€121 为 zenhotels(en-de) from 起价。"
+        },
+        {
+          "name": "Comfort Hotel Kista",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.6,
+          "priceEur": 111,
+          "area": "北部科技城 Kista（Isafjordsgatan 21，斯德哥尔摩西北约 10km）",
+          "near": "Kista 地铁站（约413m）；Kista Galleria/科学城商圈",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.6，185条，0-10制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/kista/mid8903869/comfort_hotel_kista/",
+            "https://www.booking.com/hotel/se/comfort-kista.zh-cn.html",
+            "https://www.hotelscombined.com.au/Hotel/Comfort_Hotel_Kista.htm"
+          ],
+          "note": "现名未变（Booking comfort-kista 在售；Strawberry 旗下）。2018 年开业（194间/4层）。星级 3：HotelsCombined 标题『Comfort Hotel Kista 3 stars』。€111 为 zenhotels(en-de) from 起价。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Clarion Hotel Sign",
+      "reason": "0-10 评分未能在每家≤4次抓取配额内从可抓取源核验：Booking 酒店页直连 HTTP 202（反爬）、zenhotels 的 Sign 页在 en-us/en-gb/en-de/nl-nl/zh-cn 各语言均重定向回城市列表、hotelclub.net www↔apex 跳转死循环、Agoda/Checkfelix/Wego 空壳或验证码/反爬。已核实事实（供直接补录）：现名 Clarion Hotel Sign 未更名（Strawberry 官方页标题『Clarion Hotel® Sign | Stockholm』）；4★（HotelsCombined 标题『4 stars』）；中心诺尔玛尔姆 Östra Järnvägsgatan 35（近中央车站/T-Centralen，2008 开业）；priceEur 参考 ab €126（checkfelix 2026 EUR 观察）。建议由 Booking 直连渠道复核评分后补录。"
+    },
+    {
+      "name": "Clarion Hotel Arlanda Airport Terminal",
+      "reason": "评分核验同 Clarion Hotel Sign 失败（Booking 202 / zenhotels 各语言重定向 / hotelclub 死循环 / Wego Cloudflare 403）。已核实核心改名结论：原 Clarion Hotel Arlanda → 现行官方/OTA 名 Clarion Hotel Arlanda Airport Terminal（Strawberry 官方页标题『Clarion Hotel® Arlanda Airport Terminal』，位于机场 Sky City 航站楼区；Booking slug clarion-arlanda-airport 标题同、Trip.com『Clarion Hotel Arlanda Airport Terminal Stockholm-Arlanda』、Priceline 同，均 2024-2026 在售）；4★（Booking 联盟页 hotels.turkishairlines.com 标题『★★★★ Clarion Hotel Arlanda Airport Terminal』）。priceEur 参考约 €107（Priceline from $117 USD 观察，按 1USD≈0.92EUR 折算）。建议补录 0-10 评分。"
+    },
+    {
+      "name": "Comfort Hotel Stockholm",
+      "reason": "核实结论：斯德哥尔摩现无独立在营的 Comfort Hotel Stockholm（Strawberry 官网与 Booking 在售组合均无此独立店）。历史上确有名为 Comfort Hotel Stockholm 的店（官方 PR 通稿『Jessica Carlde ny hotellchef för Comfort Hotel Stockholm』mynewsdesk.com/se/comforthotels 及 ICSTRVL/OrangeSmile/酒店黄页快照可见）。今日中心城区 Comfort 品牌在营店 = Comfort Hotel Xpress Stockholm Central（Booking/zenhotels 在售，Kungsbron 1，3★，前身即 Comfort Hotel Stockholm，zenhotels/agoda 链接 slug 仍为 comfort_hotel_stockholm 佐证），该店按分工已由组3收录（见同目录 stockholm-hotel-research.json），本组不重复收录。"
+    }
+  ]
+}

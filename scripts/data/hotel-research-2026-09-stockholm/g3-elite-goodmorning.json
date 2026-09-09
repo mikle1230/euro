@@ -1,0 +1,210 @@
+{
+  "cities": [
+    {
+      "zh": "斯德哥尔摩",
+      "en": "Stockholm",
+      "country": "SE",
+      "cityCode": "STO",
+      "note": "大斯德哥尔摩口径：市区 Norrmalm/Vasastan/Östermalm/Hagastaden，及近郊 Nacka Strand、Kista、Hägersten(Västertorp)、Arlanda 机场区(Arlandastad)、Värmdö(群岛方向)。",
+      "hotels": [
+        {
+          "name": "Comfort Hotel Xpress Stockholm Central",
+          "nameZh": "舒适快捷酒店斯德哥尔摩中心酒店",
+          "star": 3,
+          "rating": 7.6,
+          "priceEur": 102,
+          "area": "市中心 Norrmalm，Kungsbron 1，紧邻中央车站（约320m）",
+          "near": "斯德哥尔摩中央车站 / T-Centralen（约432m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.6，3494条，0-10制）",
+          "sources": [
+            "https://www.booking.com/hotel/se/comfort-hotel-xpress-stockholm-central.en-gb.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539309/comfort_hotel_stockholm/",
+            "https://www.zenhotels.com/hotel/en-cn/sweden/stockholm/mid7539309/comfort_hotel_stockholm/",
+            "https://www.cleartrip.com/hotels/details/comfort-hotel-xpress-stockholm-central-131335",
+            "https://www.agoda.cn/zh-tw/comfort-hotel-stockholm/hotel/stockholm-se.html"
+          ],
+          "note": "现名确认 = Comfort Hotel Xpress Stockholm Central（Booking/zenhotels/携程 2026 均在售）；前身名 Comfort Hotel Stockholm（zenhotels/agoda 链接 slug 仍为 comfort_hotel_stockholm 佐证改名）。Strawberry(Comfort Hotel Xpress)品牌。三星依据 Booking 评论页标题（en 页 3 stars / vi 页 3 sao）。现址 Kungsbron 1（zenhotels 页面 + cleartrip 标题一致；种子提示地址 Brunkebergstorg 9 检索无佐证，未采纳）。€102 为 zenhotels 无日期 from 起价（参考，随日期/房型浮动）。"
+        },
+        {
+          "name": "Elite Hotel Adlon",
+          "nameZh": "阿德龙精英酒店",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 209,
+          "area": "市中心 Norrmalm，Vasagatan 42，中央车站旁",
+          "near": "斯德哥尔摩中央车站（381m）/ T-Centralen（359m）/ Hötorget（443m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.1，1524条，0-10制）",
+          "sources": [
+            "https://www.elite.se/en/hotels/stockholm/elite-hotel-adlon-stockholm/",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539367/adlon_hotel/",
+            "https://www.booking.com/hotel/se/adlon-hotell.en-gb.html",
+            "https://hotels.ctrip.com/hotels/2195502.html"
+          ],
+          "note": "Elite Hotels of Sweden（elite.se）直营。4星：zenhotels 转述 Hotelstars Union 评级 4 stars + Booking 搜索显示 ★★★★。213间/5层，2023翻新。中文名『阿德龙精英酒店』见携程中文页。Booking URL slug 仍为 adlon-hotell（历史名痕迹）。€209 为 zenhotels 无日期 from 起价（参考）。"
+        },
+        {
+          "name": "Elite Hotel Arcadia",
+          "nameZh": "阿卡迪亚精品酒店",
+          "star": 4,
+          "rating": 8.0,
+          "priceEur": 211,
+          "area": "Östermalm 东侧 / Gärdet（Ladugårdsgärdet）大学区，Körsbärsvägen 1",
+          "near": "Tekniska högskolan 地铁站（469m）/ KTH；Östermalms Saluhall 1.6km",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.0，985条，0-10制）",
+          "sources": [
+            "https://www.elite.se/en/hotels/stockholm/elite-hotel-arcadia-stockholm/",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539357/elite_hotel_arcadia/",
+            "https://www.booking.com/hotel/se/elite-arcadia.en-gb.html",
+            "https://www.trivago.com.my/en-GB/oar/elite-hotel-arcadia-stockholm"
+          ],
+          "note": "Elite Hotels of Sweden 直营。地址 Körsbärsvägen 1, 114 23 Stockholm（trivago 确认拼写；zenhotels 区属标 Ladugårdsgärdet/Gärdet 大学区，非海滨使馆区 Diplomatstaden——注意与种子『Östermalm 使馆区』表述的差别）。4星：zenhotels 转述 Hotelstars Union 4 stars。90间/5层（1950建、2008翻新）。中文名『阿卡迪亚精品酒店』见中文 OTA（同程/agoda 用『精品』）。€211 为 zenhotels 无日期 from 起价（参考）。"
+        },
+        {
+          "name": "Elite Hotel Carolina Tower",
+          "nameZh": "卡罗林纳塔依利特酒店",
+          "star": 4,
+          "rating": 8.7,
+          "priceEur": 175,
+          "area": "Hagastaden 新区（Solna 市一侧，斯德哥尔摩北部），Eugeniavägen 6，紧邻卡罗林斯卡",
+          "near": "Karolinska 大学医院 / Karolinska Institutet（Sankt Eriksplan 地铁 926m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.7，552条，0-10制）",
+          "sources": [
+            "https://www.elite.se/en/hotels/stockholm/elite-hotel-carolina-tower-stockholm/",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid8737423/elite_hotel_carolina_tower/",
+            "https://www.booking.com/hotel/se/elite-carolina-tower.zh-cn.html",
+            "https://www.trip.com/hotels/solna-hotel-detail-10574195/elite-hotel-carolina-tower"
+          ],
+          "note": "Elite Hotels of Sweden 直营（elite.se 归入 Stockholm 营销）。位置核实：Eugeniavägen 6 位于 Hagastaden、Solna 市一侧（Trip/cleartrip 均列 Solna 城），紧邻新卡罗林斯卡大学医院与 KI，距市中心约 3.4km——并非南城。4星证据较弱：仅 Booking 联盟站搜索摘要显示 ★★★★，官方页未直验，建议复核。221间/16层（zenhotels 标 2017 建，未见明确开业年份）。Booking zh-cn 名『卡罗林纳塔依利特酒店』；另有中文 OTA 写作『卡罗林纳大楼精英酒店』。€175 为 zenhotels 无日期 from 起价（参考）。"
+        },
+        {
+          "name": "Elite Hotel Marina Tower, Spa & Resort",
+          "nameZh": "码头大厦精品酒店",
+          "star": 4,
+          "rating": 8.7,
+          "priceEur": 183,
+          "area": "Nacka Strand 海滨（斯德哥尔摩东南 Nacka 市，临 Saltsjön），Saltsjöqvarns Kaj 25",
+          "near": "Nacka Strand 码头 / 社区（距市中心约 2.4km）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.7，2052条，0-10制）",
+          "sources": [
+            "https://www.elite.se/en/hotels/stockholm/elite-hotel-marina-tower-stockholm/",
+            "https://www.zenhotels.com/hotel/nl-nl/sweden/stockholm/mid7466867/elite_hotel_marina_tower/",
+            "https://www.booking.com/hotel/se/elite-marina-tower.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/6166793.html"
+          ],
+          "note": "Elite Hotels of Sweden 直营（elite.se slug elite-hotel-marina-tower-stockholm）。Booking/Trip 现行挂牌名带『Spa & Resort』后缀，种子简称 Elite Marina Tower 即此店。4星：Booking reviews 页标 4 stars。186间。中文名『码头大厦精品酒店』见携程(6166793)。€183 为 zenhotels 无日期 from 起价（参考；momondo 亦见 from €114 档）。"
+        },
+        {
+          "name": "Elite Palace Hotel & Spa",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.9,
+          "priceEur": 157,
+          "area": "瓦萨斯坦 Vasastan（市中心西北），Sankt Eriksgatan 115",
+          "near": "Odenplan 地铁站（约670m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.9，1807条，0-10制）",
+          "sources": [
+            "https://www.elite.se/en/hotels/stockholm/elite-palace-hotel-stockholm/",
+            "https://www.zenhotels.com/hotel/de-de/sweden/stockholm/mid7539234/elite_palace_hotel/",
+            "https://www.booking.com/hotel/se/elite-palace.html",
+            "https://dev-1.silpovoyage.ua/uk/shveciya/stokgolm/elite-palace-4"
+          ],
+          "note": "Elite Hotels of Sweden 直营。现行官方常用名含『& Spa』（增 Spa 后更名；Booking/zenhotels/Trip 均显示 Elite Palace Hotel & Spa，elite.se slug 仍为 elite-palace-hotel）。种子所列『Norra Bantorget』位置有误：实际地址 Sankt Eriksgatan 115, Vasastan。284间、2024翻新。4星：乌克兰 OTA 标题 Elite Palace 4*（官方 Hotelstars 分级未直验，建议复核）。€157 为 zenhotels 无日期 from 起价（参考）。"
+        },
+        {
+          "name": "Elite Hotel Stockholm Plaza",
+          "nameZh": "斯德哥尔摩广场精英酒店",
+          "star": 4,
+          "rating": 7.8,
+          "priceEur": 184,
+          "area": "诺尔马尔姆 Norrmalm（Birger Jarlsgatan 29，市中心区）",
+          "near": "Hötorget 市场/地铁（约410m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.8，1135条，0-10制）",
+          "sources": [
+            "https://www.elite.se/en/hotels/stockholm/elite-hotel-stockholm-plaza/",
+            "https://www.zenhotels.com/hotel/en-us/sweden/stockholm/mid7539235/elite_hotel_stockholm_plaza/",
+            "https://www.booking.com/hotel/se/elite-stockholm-plaza.en-gb.html",
+            "https://career.elite.se/locations/elite-hotel-stockholm-plaza-stockholm",
+            "https://www.cn.kayak.com/hotels/Elite_Hotel_Stockholm_Plaza%2CStockholm-c9880-h36609-details/2024-06-03/2024-06-10/2adults"
+          ],
+          "note": "种子勘误：『Elite Plaza Hotel at Norra Bantorget』不准确——Elite Hotels of Sweden 的『Elite Plaza』是其哥德堡门店；斯德哥尔摩对应店实为 Elite Hotel Stockholm Plaza（elite.se + career.elite.se 确认为 Elite Hotels 斯京门店，booking slug elite-stockholm-plaza）。地址 Birger Jarlsgatan 29, Norrmalm（近 Hötorget 413m、Östermalms Saluhall 598m、中央车站 1.1km），非 Norra Bantorget。4星：zenhotels 注明 Hotelstars Union 4星（143间、2015翻新）。中文名『斯德哥尔摩广场精英酒店』见 Booking zh-cn/Kayak 中国版。€184 为 zenhotels 无日期 from 起价（参考）。"
+        },
+        {
+          "name": "Fågelbro Säteri Hotell & Spa",
+          "nameZh": "福格尔布罗庄园",
+          "star": 4,
+          "rating": 8.2,
+          "priceEur": 159,
+          "area": "斯德哥尔摩东郊 Värmdö（群岛方向，Gustavsberg），Fågelbrovägen 20",
+          "near": "Gustavsberg 镇（约4.7km）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.2，192条，0-10制）",
+          "sources": [
+            "https://hotellorestaurang.se/fagelbrohus-blir-fagelbro-sateri-hotell-spa/",
+            "https://www.travelnews.se/hotell/fagelbrohus-byter-namn-till-fagelbro-sateri/",
+            "https://www.booking.com/hotel/se/fagelbrohus.html",
+            "https://www.zenhotels.com/hotel/nl-nl/sweden/varmdo/mid7466034/fagelbrohus/",
+            "https://www.fagelbrosateri.se/hotellet/om-oss/kontakt-hitta-hit/",
+            "https://hotels.ctrip.com/hotels/9069437.html"
+          ],
+          "note": "更名/正名：现营 = 原 Fågelbrohus（Hotell & Konferens）→ 已更名『Fågelbro Säteri Hotell & Spa』（hotellorestaurang.se / travelnews.se 报道；Booking/zenhotels/Trip/官网 fagelbrosateri.se 均以 Fågelbro Säteri 挂牌，Booking 旧页名 fagelbrohus 沿用）。来源文档乱码名『FAGELRIDO SATERI』即 Fågelbro Säteri（庄园式乡间度假酒店），已归入此店。4星：zenhotels 注明 Hotelstars Union 4星（68间、2023翻新）。中文名『福格尔布罗庄园』见携程(9069437)。€159 为 zenhotels 无日期 from 起价（参考）。种子名『Fågelbro Gård』未能独立核实为现有分店名。"
+        },
+        {
+          "name": "Good Morning Arlanda",
+          "nameZh": "早安阿兰达酒店",
+          "star": 3,
+          "rating": 8.2,
+          "priceEur": 82,
+          "area": "阿兰达机场区 Arlandastad（Sigtuna 市），Lindskrogsvägen 7",
+          "near": "斯德哥尔摩阿兰达机场（约2.2km）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.2，2219条，0-10制）",
+          "sources": [
+            "https://www.booking.com/hotel/se/hotel-arlanda.en-gb.html",
+            "https://www.booking.com/reviews/se/hotel/hotel-arlanda.nl.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/arlandastad/mid7544940/ibis_styles_stockholm_arlanda_airport/",
+            "https://www.agoda.com/zh-cn/good-morning-arlanda/hotel/arlanda-se.html",
+            "https://www.momondo.com/hotels/arlanda/Good-Morning-Hotel-Arlanda.mhd166183.ksp",
+            "https://ligula.se/en/about-us/"
+          ],
+          "note": "现名 Good Morning Arlanda（Booking 评论页 nl/hu 标题『Good Morning Arlanda 3 stars』+ zenhotels 页现名 8.2/2219条，均 2026-09 直验）。品牌 Good Morning Hotels 现属 Ligula Hospitality Group（非 Elite、非 Strawberry；ligula.se 佐证）。178间/2层，1990建/2019装修。地址 Lindskrogsvägen 7（Box 51）；注意机场区另有 ibis Styles Stockholm Arlanda Airport 记录（渠道地址 190 45 Stockholm-Arlanda Airport，与此店地址不同），swedenhotel24/cleartrip 个别页面曾以该 ibis 名挂接本店内容——zenhotels/agoda 旧 slug 仍为 ibis_style(原名/换牌痕迹)，勿混。€82 为 zenhotels 无日期 from 起价（参考）。"
+        },
+        {
+          "name": "Good Morning Kista",
+          "nameZh": "早安希斯塔酒店",
+          "star": 3,
+          "rating": 6.8,
+          "priceEur": 76,
+          "area": "斯德哥尔摩西北 Kista（科技城/购物区），Finlandsgatan 7，经济型 87间",
+          "near": "Husby 地铁站（590m）；Kista Galleria 约1.3km",
+          "ratingSource": "Booking.com（zenhotels.com 转述：6.8，531条，0-10制）",
+          "sources": [
+            "https://www.booking.com/hotel/se/hotel-stockholm-kista.en-gb.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/kista/mid7539222/ibis_styles_stockholm_kista/",
+            "https://good-morning-kista.swedenhotel24.com/zh/",
+            "https://www.cn.kayak.com/hotels/Good_Morning_Kista%2cStockholm-c9880-h16937-details/2024-08-05/2024-08-12/2adults",
+            "https://ligula.se/en/about-us/"
+          ],
+          "note": "名称渠道分歧提示：Booking 评分记录（6.8/531条，2026-09 zenhotels 现名直验）挂 Good Morning Kista 名下；但同址 Finlandsgatan 7 在部分渠道仍以旧品牌 ibis Styles Stockholm Kista（Accor）命名（swedenhotel24 本店页自注 ex. Ibis Styles Stockholm Kista；zenhotels/百度百科有旧记录），下单前应核对现用品牌。按 Booking 现行记录名收录 Good Morning Kista。Good Morning Hotels 属 Ligula Hospitality Group。€76 为 zenhotels(en-de) 无日期 from 起价（参考，en-us 页见 €78）。"
+        },
+        {
+          "name": "Good Morning Plus Hägersten",
+          "nameZh": "哈格斯滕早安酒店",
+          "star": 3,
+          "rating": 7.6,
+          "priceEur": 74,
+          "area": "斯德哥尔摩南部 Hägersten（Västertorp），Västertorpsvägen 131",
+          "near": "Fruängen 地铁站（约726m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.6，760条，0-10制）",
+          "sources": [
+            "https://www.booking.com/hotel/se/stockholm-south.en-gb.html",
+            "https://www.booking.com/reviews/se/hotel/stockholm-south.hu.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/hagersten/mid7539207/mercure_hotel_stockholm_south_previously_ibis_stockholm/",
+            "https://www.trip.com/hotels/stockholm-hotel-detail-2107812/good-morning-plus-h-gersten",
+            "https://www.getaroom.co.uk/accommodation/select-rooms.htm?hotelid=18249",
+            "https://ligula.se/en/about-us/"
+          ],
+          "note": "现名 Good Morning+ Hägersten（Booking 评论页 hu『3 csillag』/nl『3 sterren』、trip.com 2026、zenhotels 一致；Good Morning+ 为 Good Morning Hotels 升级品牌，属 Ligula Hospitality Group）。中文名『哈格斯滕早安酒店』（trip.com hk/wingontravel）。前身：Mercure Hotel Stockholm South（getaroom 注明 formerly Mercure Hotel Stockholm South、地址 Västertorpsvägen 131；种子提示 Mercure South Stockholm 相符）→ 再前身 ibis Stockholm（zenhotels slug mercure_..._previously_ibis_stockholm）。206间，1982建/2010装修。€74 为 zenhotels 无日期 from 起价（参考）。"
+        }
+      ]
+    }
+  ],
+  "skipped": []
+}

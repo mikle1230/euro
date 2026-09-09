@@ -1,0 +1,156 @@
+{
+  "cities": [
+    {
+      "zh": "斯德哥尔摩",
+      "en": "Stockholm",
+      "country": "SE",
+      "cityCode": "STO",
+      "note": "中心酒店多集中在中央火车站/T-Centralen 与 Nybroplan 一带;机场(Arlanda)酒店距市中心约 36km,前/后夜请按行程段就近选择。",
+      "hotels": [
+        {
+          "name": "ProfilHotels Central",
+          "nameZh": "中央酒店",
+          "star": 4,
+          "rating": 8.5,
+          "priceEur": 182,
+          "area": "Norrmalm,Vasagatan 38(中央火车站旁)",
+          "near": "斯德哥尔摩中央火车站/T-Centralen",
+          "ratingSource": "Booking.com(经 ZenHotels 转述,1,756条点评)",
+          "note": "",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7539282/central_hotel_7/",
+            "https://www.booking.com/hotel/se/central-stockholm.html",
+            "https://www.booking.com/reviews/se/hotel/central-stockholm.html"
+          ]
+        },
+        {
+          "name": "Quality Hotel Arlanda XPO",
+          "nameZh": "阿兰达 XPO 品质酒店",
+          "star": 4,
+          "rating": 8.3,
+          "priceEur": 86,
+          "area": "Arlandastad 机场南缘(Cederströmsslinga 11,距航站楼约 5km)",
+          "near": "Arlanda 机场(约10分钟车程/班车)",
+          "ratingSource": "Booking.com(经 ZenHotels 转述,359条点评)",
+          "note": "Booking/Strawberry 现挂牌名带 XPO 后缀(旧称 Quality Hotel Arlanda);位于机场旁的 Arlandastad/Rosersberg,非航站楼内酒店。",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/arlandastad/mid7539304/quality_hotel_airport_arlanda/",
+            "https://www.booking.com/reviews/se/hotel/quality-airport-arlanda.html",
+            "https://www.hotels.com/ho218693/quality-hotel-arlanda-xpo-arlandastad-sweden/"
+          ]
+        },
+        {
+          "name": "Quality Hotel Globe",
+          "nameZh": "品质环球酒店",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 90,
+          "area": "南城 Johanneshov,Arenaslingan 7",
+          "near": "Avicii Arena(Globen)/Tele2 竞技场区",
+          "ratingSource": "Booking.com(经 Trabber 转述,7,699条点评)",
+          "note": "",
+          "sources": [
+            "https://www.booking.com/hotel/se/quality-globe.html",
+            "https://www.trabber.ie/hotels/sweden-se/stockholm-2673730/quality-hotel-globe-124049510/",
+            "https://www.booking.com/reviews/se/hotel/quality-globe.en-gb.html"
+          ]
+        },
+        {
+          "name": "Quality Hotel Strawberry Arena",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.6,
+          "priceEur": 121,
+          "area": "Solna 市,Råsta Strandväg 1",
+          "near": "Strawberry Arena(前 Friends Arena)/Mall of Scandinavia",
+          "ratingSource": "Booking.com(经 ZenHotels 转述,2,635条点评)",
+          "note": "2024 年随场馆由 Friends Arena 更名 Strawberry Arena 而更名(前称 Quality Hotel Friends);Booking 页面 URL 仍为 quality-friends。",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/solna/mid8066428/quality_hotel_friends/",
+            "https://www.booking.com/hotel/se/quality-friends.html",
+            "https://www.booking.com/reviews/se/hotel/quality-friends.html"
+          ]
+        },
+        {
+          "name": "Radisson Blu Arlandia Hotel",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.7,
+          "priceEur": 93,
+          "area": "Arlanda 机场区(Kabinvägen 3,距航站楼约 1.3km)",
+          "near": "Arlanda 机场(免费穿梭巴士)",
+          "ratingSource": "Booking.com(经 hotelclub 转述,11,026条点评)",
+          "note": "即行程文档 'RADISSON ARLANDA' 所指酒店;位于机场区 Arlandia(非航站楼内),Booking 现挂牌名不变。",
+          "sources": [
+            "https://www.hotelclub.net/h/radisson-blu-arlandia-hotel-stockholm-arlanda.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm-arlanda/mid7541991/radisson_blu_arlandia_hotel/",
+            "https://www.radissonhotels.com/en-us/hotels/radisson-blu-stockholm-arlandia",
+            "https://www.booking.com/reviews/se/hotel/radisson-sas-arlandia.html"
+          ]
+        },
+        {
+          "name": "Radisson Blu Waterfront Hotel",
+          "nameZh": "斯德哥尔摩水滨丽笙酒店",
+          "star": 4,
+          "rating": 8.9,
+          "priceEur": 220,
+          "area": "市中心 Klara,Nils Ericsons Plan 4(中央车站旁)",
+          "near": "斯德哥尔摩中央火车站/Stockholm Waterfront 会议中心",
+          "ratingSource": "Booking.com(经 hotelclub 转述,9,353条点评)",
+          "note": "",
+          "sources": [
+            "https://www.hotelclub.net/h/radisson-blu-waterfront-hotel.html",
+            "https://www.booking.com/hotel/se/radisson-blu-waterfront.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7815683/radisson_blu_waterfront_hotel/"
+          ]
+        },
+        {
+          "name": "Radisson Blu Royal Viking Hotel, Stockholm",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.6,
+          "priceEur": 231,
+          "area": "Vasagatan 1(Norrmalm,中央火车站正对面)",
+          "near": "斯德哥尔摩中央火车站/T-Centralen",
+          "ratingSource": "Booking.com(经 hotelclub 转述,13,584条点评)",
+          "note": "",
+          "sources": [
+            "https://www.hotelclub.net/h/radisson-blu-royal-viking-hotel.html",
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7541815/radisson_blu_royal_viking_hotel_stockholm/",
+            "https://ca.trip.com/hotels/stockholm-hotel-detail-2195504/radisson-blu-royal-viking-hotel-stockholm/"
+          ]
+        },
+        {
+          "name": "Radisson Collection, Strand Hotel, Stockholm",
+          "nameZh": "",
+          "star": 5,
+          "rating": 8.6,
+          "priceEur": 239,
+          "area": "Nybroplan 水岸边,9 Nybrokajen(Östermalm 边缘)",
+          "near": "Kungsträdgården/皇家戏剧院",
+          "ratingSource": "Booking.com(经 ZenHotels 转述,1,106条点评)",
+          "note": "2019 年前后由 Radisson Blu Strand Hotel 升档改挂 Radisson Collection, Strand Hotel, Stockholm(Booking 现挂牌名,5星);Booking 页面 URL 仍为 radisson-sas-strand。",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/sweden/stockholm/mid7541980/radisson_blu_strand_hotel_stockholm/",
+            "https://www.booking.com/hotel/se/radisson-sas-strand.html",
+            "https://www.booking.com/reviews/se/hotel/radisson-sas-strand.html"
+          ]
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "ProfilHotels Riddargatan",
+      "reason": "已核实存在、Booking 挂牌名未变(ProfilHotels Riddargatan,4星,Riddargatan 14,Östermalm;Booking 点评页标题与 Trip/agoda 佐证),并非更名或停业。但 Booking 直接页反爬(HTTP 202/跳转拒绝),hotelclub.net/zenhotels.com 等 Booking 转述镜像均无此店,无法取得真实 0-10 评分与 EUR 参考价,依规则入 skipped;建议后续直接补 Booking 评分后加入。"
+    },
+    {
+      "name": "Quality Hotel Huvudsta/Solna(文档 'HAVINGE')",
+      "reason": "经多源检索(Solna/Stockholm 全量),现存 Strawberry Quality 系无 'Quality Hotel Huvudsta'(Huvudsta 为 Solna 一区,非酒店名);Solna 的 Strawberry Quality 酒店仅有 Quality Hotel Strawberry Arena(前 Friends,已单列入 hotels)。'HAVINGE' 无法与任何现存酒店对应,依规则 skipped。"
+    },
+    {
+      "name": "Radisson Blu Airport Terminal Hotel(文档 'Radisson Blu ApT Terminal Hotel', EX. Sky City)",
+      "reason": "改名核实完成:Booking 现挂牌名 = Radisson Blu Airport Terminal Hotel(4星,Booking 点评页标题 'Radisson Blu Airport Terminal Hotel評語 4 星級'),位于 Arlanda SkyCity(T4/T5 之间,航站楼内),前称 Radisson Blu Sky City Hotel;Radisson 官网现名 Radisson Blu Stockholm-Arlanda Airport Hotel(radissonhotels.com/en-us/hotels/radisson-blu-stockholm-airport)。但该店 booking.com 直接页反爬,zenhotels.com 仅有空壳旧条目(mid13677439,标注旧名 Sky City、P.O. Box 地址、无评分无点评),hotelclub.net 无此店,无法取得真实 0-10 评分与 EUR 参考价,依规则 skipped;改名结论与官方链接保留供后续补数据。"
+    }
+  ]
+}
