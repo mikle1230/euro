@@ -1,0 +1,208 @@
+{
+  "cities": [
+    {
+      "zh": "哥本哈根",
+      "en": "Copenhagen",
+      "country": "DK",
+      "cityCode": "CPH",
+      "note": "核实日 2026-09-09。①ProfilHotels 哥本哈根三店现均由 Ligula Hospitality Group 以『ProfilHotels by Ligula』品牌运营(ligula.se 官网在售,2025-2026 内容),Plaza/Mercur/Richmond 三家均未关停、未见并入其他品牌。②Radisson Collection Hotel, Royal Copenhagen 为 2018 年起 Radisson Collection 高端档(老 SAS Royal Hotel/Arne Jacobsen 1960 塔楼,Booking 标 5★);Radisson Blu Scandinavia 现名未变。③Scandic 六店均正常运营:注意官方英文拼写为 Scandic Falkoner(2019-08 翻新重开,曾为 Radisson Blu Falconer;用户清单写的 Falconer 系旧名);Scandic Copenhagen(市中心湖畔)、Scandic Front(新港旁 Sankt Annæ Plads 21)、Scandic Kødbyen(2018-09 开业,Vesterbro 肉城 Skelbækgade 3A)、Scandic Glostrup(西郊 Roskildevej 550,OTA 常归 Brøndby 区,店名沿用 Glostrup)、Scandic Hvidovre(西南郊 Kettevej 4)。④booking.com 属性页反爬被拦(HTTP202/403),rating 0-10 与点评数为 zenhotels.com 页面转述的 Booking.com 评分口径(同 Oslo/Stockholm 调研方法,zenhotels 数据源即 Booking 点评);ratingSource 逐店注明。⑤priceEur 为 zenhotels.com en-de(en-us)EUR 直显未选日期时的『from』起价(最低房型,非全年均价,CPH 价格季节波动大,仅粗略参考);均为 EUR 直读,无 DKK 换算。⑥星级按 Booking/主流 OTA 口径(Scandic 官网不自评星,丹麦采用 Hotelstars Union/OTA 展示值)。",
+      "hotels": [
+        {
+          "name": "ProfilHotels Copenhagen Plaza",
+          "nameZh": "普罗菲尔酒店哥本哈根广场",
+          "star": 4,
+          "rating": 7.6,
+          "priceEur": 238,
+          "area": "市中心·中央火车站正对面 Bernstorffsgade 4(蒂沃利公园隔街;注意不在 Vesterbrogade,亦非市政厅广场的 Palace Hotel)",
+          "near": "哥本哈根中央火车站 Hovedbanegården(约240m)、蒂沃利公园(约85m)、市政厅广场/Strøget(约310m)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,2352 条点评)",
+          "sources": [
+            "https://ligula.se/da/profilhotels/profilhotels-copenhagen-plaza/",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543605/copenhagen_plaza/?dateless_form=yes",
+            "https://www.booking.com/reviews/dk/hotel/copenhagen-plaza.html",
+            "https://uk.trip.com/hotels/copenhagen-hotel-detail-1600064/copenhagen-plaza/",
+            "https://hotels.ctrip.com/hotels/1600064.html"
+          ],
+          "note": "现名 ProfilHotels Copenhagen Plaza(ProfilHotels by Ligula 运营);2019 前后直名为 Copenhagen Plaza(『ProfilHotels』为品牌前缀)。1913 年建、93 间 6 层,历史老酒店。与 Rådhuspladsen(市政厅广场)的老 Palace Hotel 是两家不同酒店——本店在中央站/蒂沃利一侧的 Bernstorffsgade 4;Booking 页标题示 4★。"
+        },
+        {
+          "name": "ProfilHotels Mercur",
+          "nameZh": "普罗菲尔水星酒店",
+          "star": 3,
+          "rating": 7.0,
+          "priceEur": 187,
+          "area": "市中心·Vester Farimagsgade 17(Vesterport 站旁,蒂沃利/中央站步行可达)",
+          "near": "Vesterport 火车站(50m)、蒂沃利公园(约313m)、市政厅广场(约407m)、中央火车站(约500m)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,1788 条点评)",
+          "sources": [
+            "https://ligula.se/da/profilhotels/profilhotels-mercur/",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7464537/best_western_mercur_hotel/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/copenhagen-mercur-hotel.en.html",
+            "https://www.hotelscombined.ca/Hotel/Copenhagen_Mercur_Hotel.htm"
+          ],
+          "note": "现名 ProfilHotels Mercur(ProfilHotels by Ligula);Booking 旧 slug 为 copenhagen-mercur-hotel,OTA 亦曾见 Copenhagen Mercur Hotel/Best Western Mercur Hotel 旧称。1956-57 年建、2016 年翻新,119 间;亮点为哥本哈根唯一的屋顶网球场。Booking 页标题示 3★。"
+        },
+        {
+          "name": "ProfilHotels Richmond",
+          "nameZh": "里士满普罗菲尔酒店",
+          "star": 3,
+          "rating": 6.9,
+          "priceEur": 165,
+          "area": "市中心·Vester Farimagsgade 33(Vesterport 站旁,与 Mercur 同街,近蒂沃利/中央站)",
+          "near": "Vesterport 火车站(150m)、市政厅广场(约433m)、蒂沃利公园(约461m)、中央火车站(约710m)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,2029 条点评)",
+          "sources": [
+            "https://ligula.se/da/profilhotels/profilhotels-richmond/",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7572486/richmond_hotel/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/profilhotels-richmond.en-gb.html",
+            "https://www.hotelscombined.ca/Hotel/Richmond_Hotel_Copenhagen.htm",
+            "https://www.ca.kayak.com/Copenhagen-Hotels-Richmond-Hotel.621392.ksp"
+          ],
+          "note": "现名 ProfilHotels Richmond(ProfilHotels by Ligula);旧称 Richmond Hotel/Hotel Richmond(1950 年建、2001 年翻新,127 间,1997 年曾由 Simon Spies 收购,与 Mercur 同批)。Booking 现 slug 为 profilhotels-richmond。KAYAK/HotelsCombined 标 3★。"
+        },
+        {
+          "name": "Radisson Blu Scandinavia Hotel, Copenhagen",
+          "nameZh": "丽笙蓝标酒店-哥本哈根斯堪的纳维亚",
+          "star": 4,
+          "rating": 7.3,
+          "priceEur": 242,
+          "area": "阿迈厄岛(Amager)一侧·Amager Boulevard 70(Islands Brygge 港区,过桥即市中心,蒂沃利/中央站约1.5km)",
+          "near": "Islands Brygge 地铁站(505m)、救主堂 Church of Our Saviour(751m)、新港 Nyhavn(约1.4km)、哥本哈根中央站(约1.5km)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,4393 条点评)",
+          "sources": [
+            "https://www.radissonhotels.com/en-us/hotels/radisson-blu-copenhagen-scandinavia",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7542536/radisson_blu_scandinavia_hotel_copenhagen/?dateless_form=yes",
+            "https://www.booking.com/reviews/dk/hotel/radisson-sas-scandinavia.html",
+            "https://www.agoda.cn/en-ca/radisson-blu-scandinavia-hotel-copenhagen/hotel/copenhagen-dk.html"
+          ],
+          "note": "现名未更名:Radisson Blu Scandinavia Hotel, Copenhagen;Booking/OTA 旧 slug 仍为 radisson-sas-scandinavia(Radisson SAS 时代遗名)。1972 年建、2008 年翻新,544 间 26 层,哥本哈根大型会议型酒店。Booking/OTA 口径 4★。"
+        },
+        {
+          "name": "Radisson Collection Hotel, Royal Copenhagen",
+          "nameZh": "哥本哈根丽筠典藏皇家酒店",
+          "star": 5,
+          "rating": 8.6,
+          "priceEur": 335,
+          "area": "市中心·Hammerichsgade 1(蒂沃利公园北侧、中央火车站旁,Arne Jacobsen 1960 年 20 层圆柱塔楼)",
+          "near": "蒂沃利公园(121m)、中央火车站(290m)、市政厅广场(330m)、Ny Carlsberg Glyptotek(559m)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,1666 条点评)",
+          "sources": [
+            "https://www.radissonhotels.com/en-us/hotels/radisson-collection-copenhagen",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7541157/radisson_blu_royal_hotel_copenhagen/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/radisson-sas-royal.html",
+            "https://hotels.ctrip.com/hotels/2197629.html",
+            "https://guide.michelin.com/at/de/hotels-stays/copenhagen/radisson-collection-hotel-royal-copenhagen-8266"
+          ],
+          "note": "官方现名 Radisson Collection Hotel, Royal Copenhagen(官网 radissonhotels slug radisson-collection-copenhagen;OTA/Booking 亦写 Radisson Collection Royal Hotel, Copenhagen)。系 2018 年起 Radisson Collection 高端档旗舰之一,为全球首批 Collection 酒店。改名链:SAS Royal Hotel(1960,Arne Jacobsen 世界首座『设计酒店』)→ Radisson SAS Royal → Radisson Blu Royal → Radisson Collection Royal(2018)。Booking 页 slug 仍为 radisson-sas-royal,标题标 5★。260 间 20 层。"
+        },
+        {
+          "name": "Scandic Copenhagen",
+          "nameZh": "哥本哈根斯堪迪克酒店",
+          "star": 4,
+          "rating": 7.3,
+          "priceEur": 173,
+          "area": "市中心·Vester Søgade 6(湖畔区,蒂沃利北侧,中央火车站与市政厅广场之间)",
+          "near": "哥本哈根中央火车站(400m)、蒂沃利公园(381m)、市政厅广场(579m)、Strøget 步行街",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,4630 条点评)",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/scandic-copenhagen",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543783/scandic_copenhagen_2/?dateless_form=yes",
+            "https://www.booking.com/reviews/dk/hotel/scandic-copenhagen.html",
+            "https://www.pandox.se/hotel-properties/denmark/scandic-copenhagen/",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/2158610.html"
+          ],
+          "note": "现名 Scandic Copenhagen,未见更名;Booking slug scandic-copenhagen(zenhotels 内部 id 带 _2 后缀),1969-71 年建、2012 年翻新,486 间 18 层;物业属 Pandox、Scandic 运营(官网)。Booking/OTA 口径 4★(momondo 标题示 4 stars)。"
+        },
+        {
+          "name": "Scandic Falkoner",
+          "nameZh": "斯堪迪克法尔科纳酒店",
+          "star": 4,
+          "rating": 8.6,
+          "priceEur": 210,
+          "area": "腓特烈斯贝区 Frederiksberg·Falkoner Allé 9(Falkoner Center 商圈/剧场区,近 Frederiksberg 地铁站)",
+          "near": "Frederiksberg 地铁站(154m)、腓特烈斯贝花园(437m)、哥本哈根动物园(约1.1km)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,341 条点评)",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/scandic-falkoner",
+            "https://www.zenhotels.com/hotel/en-de/denmark/frederiksberg/mid10918614/radisson_blu_falconer/?dateless_form=yes",
+            "https://www.scandichotelsgroup.com/media/press-releases/2019/scandic-reopens-iconic-hotel-and-event-venue-in-copenhagen/",
+            "https://www.booking.com/hotel/dk/scandic-falkoner.html",
+            "https://hotels.ctrip.com/hotels/2134636.html"
+          ],
+          "note": "官方现名(含英文页)为 Scandic Falkoner(2019-08-07 Scandic 新闻稿及官网 slug scandic-falkoner;Booking slug scandic-falkoner)——用户清单所写『Scandic Falconer』系旧 Radisson Blu Falconer 拼写。1959 年建楼,经两年翻新 2019 年以 Scandic Falkoner 重开(334 间/16 层,含 3000 人剧场式会场 Falkoner Center)。ZenHotels 转述评分 8.6(点评数 341 为 zenhotels 收录子集,Booking 总点评数更多);OTA 标 4★。"
+        },
+        {
+          "name": "Scandic Front",
+          "nameZh": "弗朗特斯堪迪克酒店",
+          "star": 4,
+          "rating": 7.4,
+          "priceEur": 315,
+          "area": "市中心东·新港(Nyhavn)旁 Sankt Annæ Plads 21(介于阿美琳堡宫与 Nyhavn/国王新广场之间)",
+          "near": "新港 Nyhavn(190m)、阿美琳堡宫 Amalienborg(274m)、Kongens Nytorv(475m)、Marmorkirken 地铁站(495m)",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,2172 条点评)",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/scandic-front",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7598256/scandic_front/?dateless_form=yes",
+            "https://www.booking.com/reviews/dk/hotel/scandic-front.html",
+            "https://www.momondo.ie/hotels/copenhagen/Scandic-Front.mhd38675.ksp",
+            "https://hotels.ctrip.com/hotels/2195710.html"
+          ],
+          "note": "现名 Scandic Front;丹麦语维基有 Hotel Scandic Front 条目。楼宇 1948 年建(部分资料称 1950 年完工的前 Hotel Codan 建筑)、2016 年翻新,132 间 6 层,前台看新港内湾,位置对应用户提示的『码头新港旁 Sankt Annæ Plads』无误。Booking 页标题示 4★。priceEur 315 为 zenhotels EUR 从价起价(新港地段贵,季节波动大,仅粗略参考)。"
+        },
+        {
+          "name": "Scandic Glostrup",
+          "nameZh": "格洛斯楚普斯堪迪克酒店",
+          "star": 4,
+          "rating": 7.8,
+          "priceEur": 166,
+          "area": "哥本哈根西郊·Roskildevej 550(Glostrup 与 Brøndby 交界,距市中心约9-10km,自驾/大巴方便,带免费停车)",
+          "near": "距蒂沃利/市中心约9km;近 Glostrup 城区;酒店自有免费停车场、自行车出借",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,558 条点评)",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/scandic-glostrup",
+            "https://www.zenhotels.com/hotel/en-de/denmark/brondby/mid7541786/scandic_glostrup/?dateless_form=yes",
+            "https://www.hotelscombined.ca/Hotel/Scandic_Glostrup.htm",
+            "https://hotels.ctrip.com/hotels/3484375.html"
+          ],
+          "note": "现名 Scandic Glostrup(官网)。1990 年建、2018 年翻新,120 间 5 层,会议型;因位处 Roskildevej 550 界址,zenhotels/Trip.com/HotelsCombined 等 OTA 常将地址归到 Brøndby(布隆德比)区、中文携程页挂『布雷内德维斯特尔』,店名沿用 Glostrup(Booking/携程中文名格洛斯楚普斯堪迪克酒店)。HotelsCombined 标 4★。"
+        },
+        {
+          "name": "Scandic Hvidovre",
+          "nameZh": "斯堪迪克哈维德夫酒店",
+          "star": 4,
+          "rating": 6.9,
+          "priceEur": 140,
+          "area": "哥本哈根西南郊·Hvidovre(Kettevej 4,距市中心约7-8km,近 Køge Bugt 高速/公交,自驾方便)",
+          "near": "距市中心/蒂沃利约7.4km;近 Hvidovre 城区;酒店自带室内泳池、桑拿、免费停车",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,1135 条点评)",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/scandic-hvidovre",
+            "https://www.zenhotels.com/hotel/en-de/denmark/hvidovre/mid7541761/scandic_hvidovre/?dateless_form=yes",
+            "https://www.hotelscombined.co.uk/Hotel/Scandic_Hvidovre.htm",
+            "https://hotels.corporatetravel.ctrip.com/hotels/2158888.html"
+          ],
+          "note": "现名 Scandic Hvidovre(官网,中文携程名斯堪迪克哈维德夫酒店)。1978 年建、2017 年翻新,207 间 6 层,带室内泳池(近郊 Scandic 少见)。注意 Trip.com 部分页面曾误挂 Ballerup 城市(实际在 Hvidovre,地址 Kettevej 4)。HotelsCombined 标 4★。"
+        },
+        {
+          "name": "Scandic Kødbyen",
+          "nameZh": "斯堪迪克科德比恩酒店",
+          "star": 4,
+          "rating": 8.6,
+          "priceEur": 160,
+          "area": "Vesterbro·肉类加工区 Kødbyen(肉城)内 Skelbækgade 3A,近中央火车站/蒂沃利",
+          "near": "哥本哈根中央火车站(约628m)、蒂沃利公园(约1km)、Enghave Plads 地铁站(654m)、Kødbyen 餐饮夜生活街区",
+          "ratingSource": "Booking.com(经 zenhotels.com 转述,339 条点评)",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/scandic-kodbyen",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid8813534/scandic_kodbyen/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/scandic-kodbyen.en-gb.html",
+            "https://www.scandichotelsgroup.com/media/press-releases/2019/scandic-reopens-iconic-hotel-and-event-venue-in-copenhagen/",
+            "https://hotels.ctrip.com/hotels/15180958.html"
+          ],
+          "note": "现名 Scandic Kødbyen(官网/Booking;丹麦语 Kødbyen=肉类加工区,中文携程音译斯堪迪克科德比恩酒店)。2018-09 开业新店(370 间 4 层,2018 年建),位于改造后的老肉类加工区 Skelbækgade 3A(zenhotels 写 Skelbaekgade 3a),近 Vesterbro 与中央站,周边为哥本哈根热门餐饮/夜生活带。OTA 标 4★;zenhotels 转述评分 8.6(点评数 339 为 zenhotels 收录子集,Booking 总点评数更多)。"
+        }
+      ]
+    }
+  ],
+  "skipped": []
+}

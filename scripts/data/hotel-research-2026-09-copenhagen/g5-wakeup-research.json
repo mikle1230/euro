@@ -1,0 +1,78 @@
+{
+  "cities": [
+    {
+      "zh": "哥本哈根",
+      "en": "Copenhagen",
+      "country": "DK",
+      "cityCode": "CPH",
+      "note": "核实日 2026-09-09。方法：booking.com 属性/城市页直抓被反爬（HTTP 202 空页/sp.booking 跨域拒绝），rating 采用 trabber.de 元搜索页明示的 booking.com 0-10 评分并注明条数（2026-09 抓取，条数为 Trabber 收录口径，非 Booking 全量）；priceEur 为 zenhotels/trabber 实测 EUR 单晚价（2026-09 抓取：淡季 from 76-81€、2026-11 平季实测约 123-131€/晚、2026-09 旺季实测 159-167€/晚，随日期/房型浮动，仅供报价粗参考）；星级依 OTA 标签（丹麦无官方星级体系；Wakeup 为 Arp-Hansen Hotel Group 旗下经济型连锁，一般按 2★档：Kayak 标 2★，个别渠道如 Trabber/restplass 标 3★，无官方定级）。改名/换牌核实：本组三店现均仍挂 Wakeup Copenhagen 品牌（业主 Arp-Hansen，官网 2026 在售 3 家哥本哈根店 + Aarhus 1 家），均未换牌 Zleep/Moxy；注意丹麦的 Zleep 系（如 Zleep Hotel Copenhagen City/原 Zleep Centrum，Helgolandsgade 14）2024-10 起经 Marriott/H World 合作换牌为 Four Points Flex by Sheraton，属另一连锁与本 Wakeup 品牌无涉。旗舰店 2009 年开业时为 Carsten Niebuhrs Gade 11（当时新闻称位于 Kalvebod Allé 新区、邻 Tivoli Hotel/Congress Center），即本组第 3 条；Bernstorffsgade 店 585 间（2018 前后开业，官方称 waterfront）；Borgergade 店 770 间（老城）。doc 第 4 个名 'H.C. ANDERSENS' 无对应现营实体，见 skipped。",
+      "hotels": [
+        {
+          "name": "Wakeup Copenhagen Bernstorffsgade",
+          "nameZh": "",
+          "star": 2,
+          "rating": 7.8,
+          "priceEur": 125,
+          "area": "中央火车站旁 Vesterbro 水岸区（Bernstorffsgade 35，585 间，2018 前后开业）；距哥本哈根中央火车站（København H）约 563-770m、步行约 5-11 分钟，紧邻蒂沃利乐园（Tivoli）",
+          "near": "蒂沃利乐园 Tivoli Gardens / 哥本哈根中央火车站 / 新嘉士伯美术馆 Ny Carlsberg Glyptotek / 市政厅广场",
+          "ratingSource": "Booking.com（trabber.de 元搜索转述：7.8，Booking 侧约 14,638 条，0-10 制）",
+          "sources": [
+            "https://www.booking.com/hotel/dk/wakeup-copenhagen-bernstorffsgade-kobenhavn1.en-gb.html",
+            "https://www.wakeupcopenhagen.com/the-hotels/copenhagen/bernstorffsgade",
+            "https://www.zenhotels.com/hotel/en-us/denmark/copenhagen/mid8901544/wakeup_copenhagen_bernstorffsgade/",
+            "https://www.trabber.de/hotels/danemark-dk/kopenhagen-2618425/wakeup-copenhagen-bernstorffsgade-383556793/"
+          ],
+          "note": "现名 Wakeup Copenhagen Bernstorffsgade（Booking 挂牌同此，无更名史；Arp-Hansen 系，未换牌 Zleep/Moxy）。doc 'WAKEUP CPH BERNSTORFFSGADE' 对应本条。"
+        },
+        {
+          "name": "Wakeup Copenhagen Borgergade",
+          "nameZh": "",
+          "star": 2,
+          "rating": 8.0,
+          "priceEur": 131,
+          "area": "老城 Indre By 中心（Borgergade 9，770 间，2014 前后重装开业）；距国王新广场约 300m、大理石教堂约 370m，步行可至新港/罗森堡宫/阿美琳堡",
+          "near": "国王新广场 Kongens Nytorv / 大理石教堂 Marmorkirken / 新港 Nyhavn / 罗森堡宫 Rosenborg / 圆塔 Rundetårn",
+          "ratingSource": "Booking.com（trabber.de 元搜索转述：8.0，Booking 侧约 17,464 条，0-10 制）",
+          "sources": [
+            "https://www.booking.com/hotel/dk/wakeup-copenhagen-borgergade.en-gb.html",
+            "https://www.wakeupcopenhagen.com/the-hotels/copenhagen/borgergade",
+            "https://www.zenhotels.com/hotel/en-us/denmark/copenhagen/mid7934683/wakeup_copenhagen__borgergade/",
+            "https://www.trabber.de/en/hotels/denmark-dk/copenhagen-2618425/wakeup-copenhagen-borgergade-116738403/"
+          ],
+          "note": "现名 Wakeup Copenhagen Borgergade（Booking 挂牌同此，无更名史；Arp-Hansen 系，未换牌）。中文无统一译名（Booking zh 音译'沃克阿普-伯格嘉德'，Ctrip 又译'苏醒/起床'），nameZh 留空。doc 'WAKEUP CPH BORGERGADE' 对应本条。"
+        },
+        {
+          "name": "Wakeup Copenhagen Carsten Niebuhrs Gade",
+          "nameZh": "",
+          "star": 2,
+          "rating": 7.7,
+          "priceEur": 123,
+          "area": "中央火车站南侧水岸（Kalvebod/Islands Brygge 方向，Carsten Niebuhrs Gade 11，510 间，2009 年开业的品牌旗舰店）；距中央火车站约 539-630m，步行可至蒂沃利乐园、新嘉士伯美术馆与 Islands Brygge 海港浴场",
+          "near": "哥本哈根中央火车站 / 蒂沃利乐园 Tivoli Gardens / 新嘉士伯美术馆 Ny Carlsberg Glyptotek / Islands Brygge 海港浴场",
+          "ratingSource": "Booking.com（trabber.de 元搜索转述：7.7，Booking 侧约 10,400 条，0-10 制）",
+          "sources": [
+            "https://www.booking.com/hotel/dk/wakeup-copenhagen.en-gb.html",
+            "https://www.wakeupcopenhagen.com/the-hotels/copenhagen/carsten-niebuhrs-gade",
+            "https://www.zenhotels.com/hotel/en-us/denmark/copenhagen/mid7464859/wakeup_copenhagen__carsten_niebuhrs_gade/",
+            "https://www.trabber.de/en/hotels/denmark-dk/copenhagen-2618425/wakeup-copenhagen-carsten-niebuhrs-gade-117148320/"
+          ],
+          "note": "现名 Wakeup Copenhagen Carsten Niebuhrs Gade（Booking slug wakeup-copenhagen，挂牌即旗舰名；Arp-Hansen 系，未换牌）。2009 年开业的首店，曾宣传地址为新设 Kalvebod Allé 区，现门牌 Carsten Niebuhrs Gade 11。doc 'WAKEUP CPH CARSTEN NIEBUHRS' 对应本条。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Wakeup Copenhagen H.C. Andersens Boulevard（doc 'WAKEUP CPH ... H.C. ANDERSENS'）",
+      "reason": "核实 2026-09-09：无对应现营实体。Arp-Hansen（Wakeup 业主）官网现售仅 Bernstorffsgade 35 / Borgergade 9 / Carsten Niebuhrs Gade 11 三家哥本哈根 Wakeup 店（另 Aarhus 1 家），Booking/zenhotels/trabber/Ctrip 各渠道均查无'H.C. Andersens Boulevard'地址的 Wakeup 挂牌酒店，无法取真实 rating/EUR。doc 行 445 四个连名（BERNSTORFFSGADE/BORGERGADE/CARSTEN NIEBUHRS/H.C. ANDERSENS）中的 H.C. ANDERSENS 疑为系统内旧名/历史地址名（旗舰店 2009 开业时宣传位于 Kalvebod Allé 新区，紧邻 H.C. Andersens Blvd 方向）或已下架产品，与上述三店之一重复 → 按 3 店录入，不单列。"
+    },
+    {
+      "name": "Zoku Copenhagen",
+      "reason": "doc 哥本哈根 49 家清单中无此项（非 Wakeup 系）；本组范围外，未取数据。若父级需补录（公寓式/长住型，Booking 评分口径不同），需单独核实。"
+    },
+    {
+      "name": "Four Points Flex by Sheraton Copenhagen City（原 Zleep Hotel Copenhagen City / Zleep Centrum，Helgolandsgade 14）",
+      "reason": "非本组 Wakeup 范围，未取数据。佐证信息：丹麦 Zleep 系 2024-10 起经 Marriott/H World 合作换牌 Four Points Flex by Sheraton（14 家丹麦店更名，含 Copenhagen City），doc 行 415 'FOUR POINTS FLEX BY SHERATON' 若由他组覆盖可参考此线索。"
+    }
+  ]
+}

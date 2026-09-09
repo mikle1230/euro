@@ -1,0 +1,176 @@
+{
+  "cities": [
+    {
+      "zh": "哥本哈根",
+      "en": "Copenhagen",
+      "country": "DK",
+      "cityCode": "CPH",
+      "note": "核实日 2026-09-09。方法：booking.com 属性/城市页直抓被反爬（HTTP 202 空页），rating 采用 zenhotels.com 属性页直读的 Booking 系 0-10 聚合评分并注明条数（条数为该页收录口径，非 Booking 全量）；priceEur 为 zenhotels.com en-de 无日期 from 最低起价（EUR 直读，2026-09 抓取，随日期/房型浮动，仅供报价粗参考）；星级依 HRS/Marriott 官网/Priceline/zenhotels 等 OTA 标签及品牌档位认定（丹麦无官方星级体系）。改名/换牌均已核实：AC Hotel Bella Sky Copenhagen（2014-12 由 Comwell 经营改挂 Marriott AC，业主 Bella Center/BC Hospitality Group）；Clarion Hotel Copenhagen Airport（原 Hilton Copenhagen Airport，2017-04 脱离 Hilton 由 Nordic Choice/Strawberry 改以 Clarion 经营，紧邻机场 T3）；Best Western Plus Airport Hotel Copenhagen（原 Nordic Choice(Quality) 旗下 Quality Hotel Airport Dan，后换牌 Best Western Plus）；Comfort Hotel Copenhagen Airport（2020-08 新建开业，与 Clarion 相邻）；Comwell Copenhagen Portside 现联合挂牌 Dolce by Wyndham。每家酒店抓取 ≤4 次。",
+      "hotels": [
+        {
+          "name": "25hours Hotel Indre By",
+          "nameZh": "因德雷拜25小时酒店",
+          "star": 4,
+          "rating": 9.0,
+          "priceEur": 269,
+          "area": "市中心老城区 Indre By（走街 Strøget/圆塔一带），Pilestræde 65；距圆塔 Rundetårn 约百米、Nørreport 站约 400m，步行可至罗森堡宫",
+          "near": "圆塔 Rundetårn / Nørreport 地铁站 / 罗森堡宫",
+          "ratingSource": "Booking.com（zenhotels.com 转述：9.0，307 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid10107694/25hours_hotel_indre_by/",
+            "https://guide.michelin.com/my/en/hotels-stays/copenhagen/25hours-hotel-indre-by-12530",
+            "https://25hours-hotels.com/de/copenhagen/indre-by/faqs/"
+          ],
+          "note": ""
+        },
+        {
+          "name": "71 Nyhavn Hotel",
+          "nameZh": "新港71酒店",
+          "star": 4,
+          "rating": 9.2,
+          "priceEur": 354,
+          "area": "老城东北新港(Nyhavn)运河港湾区，Nyhavn 71；距国王新广场 Kongens Nytorv（地铁）约 500m，旁为阿美琳堡宫方向",
+          "near": "新港码头 Nyhavn / 阿美琳堡宫 Amalienborg / 歌剧院",
+          "ratingSource": "Booking.com（zenhotels.com 转述：9.2，2,476 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543629/71_nyhavn_hotel/",
+            "https://sg.trip.com/hotels/copenhagen-hotel-detail-2159098/71-nyhavn-hotel/"
+          ],
+          "note": ""
+        },
+        {
+          "name": "Absalon Hotel",
+          "nameZh": "阿布萨隆酒店",
+          "star": 4,
+          "rating": 8.8,
+          "priceEur": 226,
+          "area": "市中心西侧 Vesterbro（火车站/蒂沃利旁），Helgolandsgade 15；距中央火车站 København H 约 150m、蒂沃利乐园约 440m",
+          "near": "哥本哈根中央车站 / 蒂沃利乐园 Tivoli / 市政厅广场",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.8，5,087 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543621/absalon_hotel_3/"
+          ],
+          "note": ""
+        },
+        {
+          "name": "Admiral Hotel Copenhagen",
+          "nameZh": "海军上将酒店",
+          "star": 4,
+          "rating": 8.8,
+          "priceEur": 294,
+          "area": "港口/老城海滨（旧海军仓库区），Toldbodgade 24-28，紧邻码头与皇宫区；距阿美琳堡宫约 220m、新港约 275m、大理石教堂(Marmorkirken)约 490m",
+          "near": "阿美琳堡宫 Amalienborg / 新港 Nyhavn / 大理石教堂",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.8，259 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543562/copenhagen_admiral_hotel/",
+            "https://de.trip.com/hotels/copenhagen-hotel-detail-2159295/admiral-hotel-copenhagen/"
+          ],
+          "note": ""
+        },
+        {
+          "name": "AC Hotel Bella Sky Copenhagen",
+          "nameZh": "贝拉天空AC酒店",
+          "star": 4,
+          "rating": 8.0,
+          "priceEur": 221,
+          "area": "Amager 岛 Ørestad 新区（贝拉中心旁），Martha Christensens Vej 5；距 Bella Center 地铁站约 380m，城中心约 5km、机场约 4.6km，M1 线直达",
+          "near": "Bella Center / 贝拉中心地铁站 / 皇家竞技场(Royal Arena)",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.0，5,352 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7801448/bella_sky_comwell_hotel_copenhagen/",
+            "https://www.marriott.com/en-us/hotels/cphac-ac-hotel-bella-sky-copenhagen/overview/",
+            "https://standby.dk/bella-sky-skifter-navn-midt-i-december/"
+          ],
+          "note": "北欧最大体量酒店（811 间，2011 年建成）；2014-12-15 起由 Bella Sky Comwell 改挂 Marriott AC 品牌，现挂牌名 AC Hotel Bella Sky Copenhagen（AC Hotels by Marriott，业主 Bella Center/BC Hospitality Group），Booking 等 OTA 现名同此，勿再写 Comwell。"
+        },
+        {
+          "name": "Best Western Plus Airport Hotel Copenhagen",
+          "nameZh": "贝斯特韦斯特Plus机场酒店",
+          "star": 4,
+          "rating": 6.8,
+          "priceEur": 183,
+          "area": "Amager 岛 Kastrup 机场区，Kastruplundgade 15；距 CPH 机场航站楼约 1km（有免费定时机场班车）、Kastrup 地铁站约 370m",
+          "near": "哥本哈根机场 CPH / Kastrup 地铁站 / 阿迈厄海滩公园",
+          "ratingSource": "Booking.com（zenhotels.com 转述：6.8，2,156 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/amager_island/mid7543590/quality_hotel_airport_dan/",
+            "https://www.bestwestern.com/content/best-western/en_US/booking-path/hotel-details.96098.html?propertyCode=96098",
+            "https://www.travelnews.dk/nyheder/lufthavnshotel-udskifter-nordic-choice-med-best-western/",
+            "https://www.kayak.com/Kastrup-Hotels-Quality-Hotel-Airport-Dan.7176.ksp"
+          ],
+          "note": "前 Nordic Choice(Quality) 旗下 Quality Hotel Airport Dan，换牌 Best Western 后现挂牌 Best Western Plus Airport Hotel Copenhagen（KAYAK 等 OTA 记录仍沿用旧名 Quality Hotel Airport Dan 作 slug，勿混）。注意其 0-10 评分仅 6.8，低于本项目入库过滤线 7，如进库会被查询自动过滤，请权衡。"
+        },
+        {
+          "name": "Clarion Hotel Copenhagen Airport",
+          "nameZh": "机场克拉丽奥酒店",
+          "star": 4,
+          "rating": 8.6,
+          "priceEur": 259,
+          "area": "Amager 岛 Kastrup 机场区（与机场 T3 直接连通），Ellehammersvej 20；Lufthavnen 地铁站步行约 2 分钟，与 Comfort 机场酒店相邻",
+          "near": "哥本哈根机场 CPH T3 / Lufthavnen 站 / 蓝水族馆(The Blue Planet)",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.6，4,938 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/amager_island/mid7543804/hilton_copenhagen_airport_hotel/",
+            "https://www.nordichotelconsulting.com/cases/hilton-cph-airport-plus-comfort-cph-airport",
+            "https://loyaltylobby.com/2017/02/10/hilton-copenhagen-airport-leaves-chain-on-april-1-2017/",
+            "https://www.hrs.com/en/hotel/75832"
+          ],
+          "note": "原 Hilton Copenhagen Airport（HRS/zenhotels 页面仍残留旧 Hilton 文案），2017-04-01 脱离 Hilton（Hilton Honors 终止），由 Nordic Choice（今 Strawberry）改以 Clarion 品牌经营，现挂牌 Clarion Hotel Copenhagen Airport，383 间，HRS 4 星。"
+        },
+        {
+          "name": "Comfort Hotel Copenhagen Airport",
+          "nameZh": "机场凯富酒店",
+          "star": 3,
+          "rating": 7.8,
+          "priceEur": 231,
+          "area": "Amager 岛 Kastrup 机场区，Ellehammersvej 18；距 CPH 机场约 350m、Lufthavnen 地铁站约 215m，与 Clarion 机场酒店相邻",
+          "near": "哥本哈根机场 CPH / Lufthavnen 站 / 阿迈厄海滩公园",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.8，1,011 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid9854522/comfort_hotel_copenhagen_airport/",
+            "https://www.nordichotelconsulting.com/cases/hilton-cph-airport-plus-comfort-cph-airport",
+            "https://au.trip.com/hotels/kastrup-hotel-detail-61836183/comfort-hotel-copenhagen-airport/review.html"
+          ],
+          "note": "Strawberry（原 Nordic Choice）2020-08 新建开业（605 间、11 层），现挂牌名 Comfort Hotel Copenhagen Airport；与 Clarion 机场店同为机场双子塔酒店，无更名史。"
+        },
+        {
+          "name": "Comfort Hotel Vesterbro",
+          "nameZh": "韦斯特布罗凯富酒店",
+          "star": 3,
+          "rating": 7.7,
+          "priceEur": 165,
+          "area": "Vesterbro（火车站/蒂沃利旁主干道），Vesterbrogade 23-29；距中央火车站 København H 约 320m、蒂沃利乐园约 450m",
+          "near": "哥本哈根中央车站 / 蒂沃利乐园 Tivoli / 市政厅广场",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.7，2,660 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543604/comfort_hotel_vesterbro/",
+            "https://www.hrs.com/en/hotel/70853"
+          ],
+          "note": "现挂牌名 Comfort Hotel Vesterbro（Strawberry 系 Comfort 品牌，400 间），已核实无换牌；3 星按 OTA/品牌档位认定。"
+        },
+        {
+          "name": "Comwell Copenhagen Portside Dolce by Wyndham",
+          "nameZh": "康维尔波特赛德酒店",
+          "star": 4,
+          "rating": 9.0,
+          "priceEur": 219,
+          "area": "Nordhavn 港口新区 Portside（Østerbro 东北港湾），Alexandriagade 1；距 Orientkaj 地铁站约 150m，近 DFDS 轮渡/邮轮码头方向，海港景观",
+          "near": "Orientkaj 地铁站 / Nordhavn / 美人鱼(Little Mermaid)约 2.3km",
+          "ratingSource": "Booking.com（zenhotels.com 转述：9.0，386 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid9716062/comwell_copenhagen_portside_dolce_by_wyndham/",
+            "https://www.hrs.com/en/hotel/1050280",
+            "https://www.comwell.com/en/locations/zealand"
+          ],
+          "note": "原 Comwell Copenhagen Portside（Comwell 系在哥本哈根首家酒店，位于 Nordhavn 港口新区）；Comwell 与 Wyndham 旗下 Dolce Hotels & Resorts 合作后现联合挂牌 Comwell Copenhagen Portside Dolce by Wyndham，HRS 4 星。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "25hours Hotel Paper Island (Copenhagen Paper Island)",
+      "reason": "开业状态已核实：2024-07 开业并正常运营（25hours 官方 2024 公告/媒体包、Booking 已挂牌 25hours Hotel Paper Island、Michelin Guide 收录），位于 Christianshavn 南侧 Papirøen/Paper Island 码头岛（Christiansholm）。但受限反爬下拿不到评分/价格的真实观察值：Booking 属性页直抓 HTTP 202 空页；ZenHotels 未收录该店；Michelin/KAYAK/Booking 伙伴页均无服务端评分内容（KAYAK 页仅有 JS 壳，标题 from $200/146€ 系搜索索引摘要、不可靠）。rating(0-10) 与 priceEur(EUR) 无法给出真实观察值，依规则禁止编造，故不入库，待可用源（如 Booking 伙伴静态页或酒店官网）补采。"
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "cities": [
+    {
+      "zh": "哥本哈根",
+      "en": "Copenhagen",
+      "country": "DK",
+      "cityCode": "CPH",
+      "note": "核实要点:①Copenhagen Island 未更名,仍属 Arp-Hansen Hotel Group(并无 Comwell Islands Brygge 一说);②Four Points Flex by Sheraton 哥本哈根在售为 3 店:Copenhagen City(Helgolandsgade 14,中央车站旁,原 Zleep Hotel Centrum)、Copenhagen Arena(Ørestads Boulevard 124,皇家体育馆旁,原 Zleep Copenhagen Arena)、Copenhagen Airport(Løjtegårdsvej 97A,凯斯楚普,距机场1.5km,原 Zleep Copenhagen Airport);不存在 Nordhavn 门店——Nordhavn 的万豪系物业仅 Fairfield;另北郊 Kongens Lyngby 有区域店(原 Zleep Lyngby);③Høje Taastrup 原 Thon 物业已改挂 Radisson Individuals;④Mayfair(Helgolandsgade 3)现为 Clarion Collection Hotel Mayfair(Strawberry 经营,前 First Hotel Mayfair)。评分口径:booking.com 反爬无法直连,0-10 分取 ZenHotels.com 页面所载综合点评(Booking 风格评分体系),星级综合 Ctrip/elong 钻级、HRS、HotelsCombined 及官方新闻稿实察。价格为 ZenHotels 免日期 'from €X' 参考起价。",
+      "hotels": [
+        {
+          "name": "Copenhagen Island",
+          "nameZh": "哥本哈根岛酒店",
+          "star": 4,
+          "rating": 8.2,
+          "priceEur": 177,
+          "area": "韦斯特伯(Vesterbro)南侧滨水区 Kalvebod Brygge 53,近 Fisketorvet 商场,步行约1公里到中央车站",
+          "near": "蒂沃利公园约1.3公里;中央车站约1公里;Islands Brygge 地铁站约1.4公里",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,8.2/4446条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543665/copenhagen_island_hotel/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/copenhagen-island.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/2139043.html",
+            "https://www.copenhagenisland.com/",
+            "https://www.arp-hansen.com/careers/our-hotels/copenhagen-island"
+          ],
+          "note": "当前品牌名即为 Copenhagen Island(Booking/官网一致),隶属 Arp-Hansen Hotel Group,未更名(疑点 Comwell Islands Brygge 不存在);326房。4星取 Ctrip 4钻与官方资料(Ctrip 钻石4)。"
+        },
+        {
+          "name": "Fairfield by Marriott Copenhagen Nordhavn",
+          "nameZh": "哥本哈根北港万枫酒店",
+          "star": 3,
+          "rating": 8.8,
+          "priceEur": 160,
+          "area": "北港 Nordhavn 新区(奥斯特布罗区北),Tallinngade 10, 2150;2024年开业,222房",
+          "near": "Nordhavn 地铁站约560米;小美人鱼约1.6公里",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,8.8)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid11210074/fairfield_by_marriott_copenhagen_nordhavn/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/fairfield-by-marriott-copenhagen-nordhavn.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/113992904.html",
+            "https://www.hrs.com/en/hotel/1416809"
+          ],
+          "note": "Nordhavn 新区万豪系旗舰,不存在 'Four Points Flex Nordhavn';HRS 标 3星,Ctrip 标 4钻(钻级≠官方星级),官方万枫品牌为3星档。"
+        },
+        {
+          "name": "Four Points Flex by Sheraton Copenhagen City",
+          "nameZh": "哥本哈根城市福朋喜来登灵动酒店",
+          "star": 3,
+          "rating": 6.2,
+          "priceEur": 153,
+          "area": "韦斯特伯(Vesterbro)中心,Helgolandsgade 14, 1653;中央火车站步行约360米;76房",
+          "near": "哥本哈根中央车站约360米;蒂沃利公园约450米",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,6.2/589条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7846701/zleep_hotel_centrum/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/four-points-flex-by-sheraton-copenhagen-city.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/2564755.html",
+            "https://www.hrs.com/en/hotel/1881812"
+          ],
+          "note": "原 Zleep Hotel Centrum,Marriott 收购 Zleep 后改挂 Four Points Flex by Sheraton Copenhagen City;市中央车站旁旗舰店。评分6.2偏低(低于库内7.0推荐门槛,查询时会被过滤),Ctrip 点评3.9/5(135条);星级按 Ctrip 3钻/HRS 未评级实录。"
+        },
+        {
+          "name": "Four Points Flex by Sheraton Copenhagen Arena",
+          "nameZh": "哥本哈根体育场福朋喜来登灵动酒店",
+          "star": 3,
+          "rating": 8.0,
+          "priceEur": 159,
+          "area": "阿迈厄岛西部(Amager Vest)·厄勒斯塔德(Ørestad)区,Ørestads Boulevard 124, 2300;211房,2024年开业",
+          "near": "Ørestad 地铁站约430米;近 Royal Arena 皇家体育馆;机场约4.5公里",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,8.0/345条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid9210386/zleep_hotel_copenhagen_arena/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/four-points-flex-by-sheraton-copenhagen-arena.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/56470963.html",
+            "https://www.hrs.com/en/hotel/1458181"
+          ],
+          "note": "原 Zleep Copenhagen Arena,现为 Four Points Flex by Sheraton Copenhagen Arena(2024);对应行程单 'FOUR POINTS FLEX BY SHERATON/ARENA' 门店。同行区另一店 Copenhagen Airport(凯斯楚普 Løjtegårdsvej 97A,机场1.5km,对应 '/APT',Ctrip 携程id 2564754)因抓取额度未取评分,未单列。"
+        },
+        {
+          "name": "Gentofte Hotel",
+          "nameZh": "金塔夫特酒店",
+          "star": 3,
+          "rating": 7.6,
+          "priceEur": 153,
+          "area": "哥本哈根北郊根托夫特市(Gentofte)镇中心,Gentoftegade 29, 2820;98房",
+          "near": "哥本哈根市中心约8公里(S线通勤);Gentofte 火车站约600米",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,7.6/853条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/gentofte/mid7543626/gentofte_hotel/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/gentofte.html",
+            "https://www.gentoftehotel.com/",
+            "https://hotels.ctrip.com/hotels/3108109.html"
+          ],
+          "note": "以独立 Gentofte Hotel 在营(官网/Booking/Ctrip 均在售),与 Comwell 无关联(Comwell Holte 在邻镇,非本店);地址为 Gentoftegade 29。3星取 Booking 房源页 '3 stars' 及丹麦站 3-stjernet。"
+        },
+        {
+          "name": "Good Morning City Copenhagen Star",
+          "nameZh": "哥本哈根星晨酒店",
+          "star": 3,
+          "rating": 7.2,
+          "priceEur": 207,
+          "area": "韦斯特伯(Vesterbro)Colbjørnsensgade 13, 1652,中央火车站步行1-4分钟",
+          "near": "哥本哈根中央车站、蒂沃利公园(约380米)",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,7.2/2232条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543600/copenhagen_star_hotel_2/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/good-morning-city-copenhagen-star.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/744868.html",
+            "https://www.hrs.com/pl/hotel/62187"
+          ],
+          "note": "现名 Good Morning City Copenhagen Star(Good Morning 经济连锁,HRS 写作 Good Morning + Copenhagen Star);中文名哥本哈根星晨酒店(Ctrip),3星(Ctrip 3钻/HRS 3星图标)。"
+        },
+        {
+          "name": "Hoje Taastrup Hotel Copenhagen West, a member of Radisson Individuals",
+          "nameZh": "措斯楚斯霍耶哥本哈根西部酒店",
+          "star": 3,
+          "rating": 7.1,
+          "priceEur": 105,
+          "area": "西兰岛哥本哈根西郊霍耶-塔斯特鲁普市(Høje-Taastrup)Carl Gustavs Gade 1;哥本哈根市中心约25公里",
+          "near": "Høje-Taastrup 火车站约300米",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,7.1/580条,旧名页实测)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/tastrup/mid7543593/quality_hotel_hoje_taastrup/?dateless_form=yes",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/744894.html",
+            "https://www.radissonhotels.com/en-us/corporate/media/press-releases/The-Radisson-Individuals-brand-expands-into-Denmark-with-the-opening-of-Hoje-Taastrup-Hotel-Copenhagen-West-a-member-of-Radisson-Individuals",
+            "https://www.agoda.com/zh-hk/zleep-hotel-hoje-taastrup/hotel/taastrup-dk.html"
+          ],
+          "note": "已改牌实锤:原 Thon Hotel Høje Taastrup(旧 OTA 别名 Thon Partner/Zleep/Quality Hotel)现为 'Hoje Taastrup Hotel Copenhagen West – a member of Radisson Individuals'(Ctrip 中文 措斯楚斯霍耶哥本哈根西部酒店/丽祺精选)。评分与€105 取同物业旧名 ZenHotels 页;3星据 HotelsCombined '3 stars' 与 Travel Weekly 归类(丽笙官网403未能复核官方星级,建议备注复核)。"
+        },
+        {
+          "name": "Imperial Hotel",
+          "nameZh": "帝国酒店",
+          "star": 4,
+          "rating": 8.2,
+          "priceEur": 207,
+          "area": "市中心(蒂沃利/中央车站旁)Vester Farimagsgade 9, 1606;304房",
+          "near": "蒂沃利公园约260米;市政厅广场约400米;中央车站约430米",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,8.2/411条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7542971/imperial_hotel/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/imperial.html",
+            "https://hotels.ctrip.com/hotels/2195705.html",
+            "https://www.hotelscombined.ca/Hotel/Imperial_Hotel_Copenhagen.htm"
+          ],
+          "note": "地址为 Vester Farimagsgade 9(蒂沃利斜对面,非 Vesterbrogade 上);现名 Imperial Hotel 未改名。4星取 HotelsCombined '4 stars'(Ctrip 中文名 帝国酒店)。"
+        },
+        {
+          "name": "Clarion Collection Hotel Mayfair",
+          "nameZh": "哥本哈根梅费尔号角酒店",
+          "star": 4,
+          "rating": 7.9,
+          "priceEur": 190,
+          "area": "韦斯特伯(Vesterbro)Helgolandsgade 3(OTA 常误显示 Colbjørnsensgade 8),中央车站步行约200米",
+          "near": "哥本哈根中央车站、蒂沃利公园(约370米)、市政厅广场",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,7.9/2589条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543595/clarion_collection_hotel_mayfair/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/clarion-collection-hotel-mayfair.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/744865.html",
+            "https://www.strawberryhotels.com/press-room/press-releases/clarion-collection-rebrands-to-home-hotel-and-launches-the-concept-home-until-youre-home-3362853/"
+          ],
+          "note": "品牌核实:前 First Hotel Mayfair(Helgolandsgade 3)已由 Strawberry 经营并更名 Clarion Collection Hotel Mayfair;2025-02 Strawberry 将 Clarion Collection 更名 Home Hotel 仅限瑞典/挪威/芬兰54店,哥本哈根此店不在列,现名仍为 Clarion Collection Hotel Mayfair(Ctrip 中文 梅费尔号角酒店)。4星(Ctrip 4钻/Agoda 4星)。"
+        },
+        {
+          "name": "NH Collection Copenhagen",
+          "nameZh": "哥本哈根诺翰精选酒店",
+          "star": 5,
+          "rating": 9.4,
+          "priceEur": 307,
+          "area": "市中心 Christianshavn 港口区 Strandgade 7(跨港对岸,近新港/王宫广场),394房",
+          "near": "Christianshavn 地铁站约280米;Kongens Nytorv/新港约650-700米;救主堂约380米",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,9.4/379条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid9880066/nh_collection_copenhagen/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/nh-collection-copenhagen.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/76325348.html",
+            "https://www.wonderfulcopenhagen.com/wonderful-copenhagen/international-press/international-press/nh-hotel-group-opens-its-first-five-star-hotel-copenhagen"
+          ],
+          "note": "现名 NH Collection Copenhagen(NH Hotels/Minor 集团,Ctrip 中文 哥本哈根诺翰精选酒店);NH 集团在哥本哈根首家五星(官方新闻稿,Ctrip 5钻佐证);位置非 Kongens Nytorv 正旁,而在其跨港对岸 Christianshavn Strandgade 7,步行约700米。"
+        },
+        {
+          "name": "Phoenix Copenhagen",
+          "nameZh": "哥本哈根凤凰酒店",
+          "star": 4,
+          "rating": 8.5,
+          "priceEur": 267,
+          "area": "市中心老城 Bredgade 37, 1260(腓特烈教堂/阿美琳堡/新港之间),213房",
+          "near": "大理石教堂约250米;阿美琳堡宫约270米;新港/Kongens Nytorv 约380-460米",
+          "ratingSource": "ZenHotels.com(Booking 风格0-10,8.5/1522条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7542960/phoenix_copenhagen/?dateless_form=yes",
+            "https://www.booking.com/hotel/dk/phoenix.html",
+            "https://m.ctrip.com/html5/hotel/hoteldetail/2157672.html"
+          ],
+          "note": "现名 Phoenix Copenhagen(Booking/OTA 挂牌名一致,中文 哥本哈根凤凰酒店),现运营中;4星(Ctrip 4钻)。"
+        }
+      ]
+    }
+  ],
+  "skipped": []
+}

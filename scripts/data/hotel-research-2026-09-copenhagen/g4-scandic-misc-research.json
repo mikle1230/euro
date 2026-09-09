@@ -1,0 +1,175 @@
+{
+  "cities": [
+    {
+      "zh": "哥本哈根",
+      "en": "Copenhagen",
+      "country": "DK",
+      "cityCode": "CPH",
+      "note": "priceEur 均为 zenhotels.com 英文页 'from €X' 起价(EUR 直接观察,未做 DKK 换算);rating 为 Booking 口径 0-10 分,由 hotelclub.net(转述 Booking 分)或 zenhotels.com 转述,具体数值与出处见各条 ratingSource。",
+      "hotels": [
+        {
+          "name": "Scandic Nørreport",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.5,
+          "priceEur": 208,
+          "area": "市中心 Nørreport 老城西北缘,Frederiksborggade 18",
+          "near": "Nørreport 地铁/城铁枢纽站旁,近圆塔与罗森堡宫",
+          "ratingSource": "Booking.com(hotelclub.net 转述 8.5/1949 条;zenhotels 8.6/312)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid10209519/scandic_norreport/",
+            "https://www.hotelclub.net/h/scandic-norreport.html"
+          ],
+          "note": "核实:在营,无更名;2021-11 开业,4 星精品型(约100 房,2022 翻新),酒店club 页明确标 ★★★★。"
+        },
+        {
+          "name": "Scandic Sluseholmen",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.5,
+          "priceEur": 144,
+          "area": "城南 Sluseholmen 运河半岛(南港 Sydhavnen),Molestien 11,距市中心约 5 km",
+          "near": "Sluseholmen 运河区,近老南港/M4 地铁方向(距 Bella Center 约 2.5 km)",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 7.5/1603;hotelclub 未收录;星级以 HotelsCombined '4 stars' 佐证)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543597/clarion_hotel_copenhagen/",
+            "https://standby.dk/scandic-overtager-first-hotel-i-koebenhavn/"
+          ],
+          "note": "改名说明:原 First Hotel Copenhagen,2017-05-01 起由 Scandic 运营并更名 Scandic Sluseholmen(215 房,Scandic 与 Pandox/Ejendomsspar 八店协议之一);与邻近的 Scandic Sydhavnen 为两家独立酒店。zenhotels 该条目 URL 仍含旧商 clarion_hotel_copenhagen 别名,页面内容已显示现名。"
+        },
+        {
+          "name": "Scandic Spectrum",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.2,
+          "priceEur": 205,
+          "area": "中央火车站西侧滨水区 Kalvebod Brygge 10",
+          "near": "中央火车站约 700 m,Tivoli 乐园/市政厅步行可达",
+          "ratingSource": "Booking.com(hotelclub.net 转述 8.2/8831 条;zenhotels 8.2/672)",
+          "sources": [
+            "https://www.scandichotelsgroup.com/media/press-releases/2022/scandics-largest-hotel-to-date-opens-in-copenhagen---nordic-spa-and-chef-from-michelin-starred-restaurant/",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid10128936/scandic_spectrum/",
+            "https://www.hotelclub.net/h/scandic-spectrum.html"
+          ],
+          "note": "核实:在营且未并入/更名;2022 年开业(Scandic 迄今最大酒店,632 房,6 层,25m 泳池+北欧水疗),酒店club 页明确 ★★★★。"
+        },
+        {
+          "name": "Copenhagen Strand",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.3,
+          "priceEur": 206,
+          "area": "港口(码头)区近新港,Havnegade 37(1869 年老仓库改造),国王新广场与 Nyhavn 之间",
+          "near": "新港 Nyhavn 约 300 m、Kongens Nytorv、Strøget 步行街",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 8.3/3084;hotelclub 未收录)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7542963/copenhagen_strand_hotel/",
+            "https://www.visitcopenhagen.com/copenhagen/planning/copenhagen-strand-gdk760824",
+            "https://www.arp-hansen.com/hotels/copenhagen-strand"
+          ],
+          "note": "核实:现名 Copenhagen Strand,由 Arp-Hansen Hotel Group 运营(联络邮箱 arp-hansen.dk,官网 copenhagenstrand.dk),并非 Scandic 品牌;多轮检索未发现仍在营的 'Scandic Copenhagen Strand' 同名分店——清单中该条若指此码头/新港物业,按现名只出一条。与 Amager 的 Scandic CPH Strandpark 是两家不同酒店。"
+        },
+        {
+          "name": "Scandic CPH Strandpark",
+          "nameZh": "",
+          "star": 0,
+          "rating": 8.4,
+          "priceEur": 187,
+          "area": "Amager 岛东南近机场(Amager Strandvej 401,Kastrup/Scanport 商务区)",
+          "near": "Kastrup 地铁站约 480 m、哥本哈根机场约 800 m、Amager Strandpark 海滩",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 8.4/364;hotelclub 未收录)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/amager_island/mid9768097/scandic_cph_strandpark/",
+            "https://www.visitcopenhagen.com/copenhagen/planning/scandic-cph-strandpark-gdk1151978",
+            "https://standby.dk/saa-har-scandic-28-hoteller-i-danmark/"
+          ],
+          "note": "改名说明:官方现名含 'CPH'——Scandic CPH Strandpark(2021-05 开业,12 层 357 房,Scandic 首个丹麦 wellness 泳池/雪浴 + Seanery 高空酒吧);星级未获允许源(zenhotels/hotelclub/官网被反爬)直接佐证,暂记 0,疑似 4 星,请人工复核。与 #4 Copenhagen Strand(新港)不同店。"
+        },
+        {
+          "name": "Scandic Sydhavnen",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.8,
+          "priceEur": 170,
+          "area": "南港 Sydhavnen(Sydhavns Plads 15,城西南,距市中心约 4 km)",
+          "near": "近 Enghave Plads 地铁站(约 1.4 km),Tivoli/中央车站车程约 10 分钟",
+          "ratingSource": "Booking.com(hotelclub.net 转述 7.8/5367 条;zenhotels 7.6/419)",
+          "sources": [
+            "https://www.hotelclub.net/h/scandic-sydhavnen.html",
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7541804/scandic_hotel_sydhavnen/"
+          ],
+          "note": "核实:在营,无更名;391 房老店(2002 建/2011 翻新),hotelclub 页明确 '4-star/★★★★';与 Scandic Sluseholmen 为相邻但独立的两家店。"
+        },
+        {
+          "name": "Scandic Webers",
+          "nameZh": "",
+          "star": 4,
+          "rating": 6.9,
+          "priceEur": 158,
+          "area": "Vesterbro 区(Vesterbrogade 11 B,中央火车站旁)",
+          "near": "中央火车站约 200-300 m、Tivoli 约 350 m、市政厅广场",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 6.9/2136;hotelclub 未收录;星级以 HotelsCombined '4 stars' 佐证)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543782/scandic_webers/",
+            "https://www.hotelscombined.co.uk/Hotel/Scandic_Webers.htm"
+          ],
+          "note": "核实:现为 Scandic 品牌运营,名 Scandic Webers(原老牌酒店 Hotel Webers,152 房,2006 翻新);评分为该店各调研店中最低(6.9),单源(zenhotels)取得,若与 Booking 现行略有出入请以现场复核为准。"
+        },
+        {
+          "name": "The Square",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.9,
+          "priceEur": 246,
+          "area": "市中心市政厅广场旁(Rådhuspladsen 14,近 Dagmar 剧院)",
+          "near": "市政厅广场(Rådhuspladsen 地铁约 80 m)、Tivoli 约 170 m、中央车站约 480 m",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 7.9/4680;hotelclub 未收录)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7543637/the_square/",
+            "https://www.arp-hansen.com/hotels/the-square",
+            "https://www.thesquarecopenhagen.com"
+          ],
+          "note": "核实:在营,仍为 Arp-Hansen Hotel Group 旗下 'The Square' 设计酒店(集团官网 Hotels 列表在列;thesquarecopenhagen.com 可实时预订,2019 翻新,约 267 房,zenhotels 描述明确 '4-star'),未更名、未转手他牌。"
+        },
+        {
+          "name": "Tivoli Hotel & Congress Center",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.9,
+          "priceEur": 192,
+          "area": "中央车站西侧蒂沃利乐园旁(Arni Magnussons Gade 2)",
+          "near": "中央火车站约 700 m、Tivoli 乐园约 1 km、市政厅广场",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 7.9/7493;hotelclub 未收录;星级以 Booking 条目标题 '★★★★ 蒂沃里酒店' 佐证)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid7464549/tivoli_hotel/",
+            "https://www.tivolihotel.com",
+            "https://www.arp-hansen.com/hotels/tivoli-hotel"
+          ],
+          "note": "核实:Arp-Hansen Hotel Group 旗下 Tivoli Hotel & Congress Center,在营未更名;2010 年开业,679 房 + 大会展中心(该店为 Arp-Hansen 旗舰会议酒店)。"
+        },
+        {
+          "name": "Villa Copenhagen",
+          "nameZh": "",
+          "star": 5,
+          "rating": 9.4,
+          "priceEur": 309,
+          "area": "中央车站对面(Tietgensgade 39,原丹麦中央邮政总局大楼改造)",
+          "near": "中央火车站约 250 m、Tivoli 约 400 m、市政厅广场",
+          "ratingSource": "Booking.com 口径(zenhotels 转述 9.4/302;hotelclub 未收录)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/denmark/copenhagen/mid9210385/villa_copenhagen/",
+            "https://villacopenhagen.com/",
+            "https://www.visitdenmark.com/business-events/news/villa-copenhagen-new-5-star-hotel"
+          ],
+          "note": "改名说明:前丹麦邮政总局大楼(中央邮局)改造,2020 年开业,馆名 Villa Copenhagen(390 房,conscious luxury);VisitDenmark 报道为哥本哈根新 5 星酒店('new 5-star hotel')。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "The Standard Copenhagen",
+      "reason": "查无此酒店:多轮检索('The Standard Copenhagen hotel' 及各变体)未在哥本哈根发现同名酒店——仅命中曼谷/纽约/伦敦等地 The Standard 品牌及哥本哈根同名餐厅/活动场地;若所指为待开业或记忆名错记(如 Zoku/Steel House 等),请提供原名后补录。"
+    }
+  ]
+}
