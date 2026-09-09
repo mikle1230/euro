@@ -21,6 +21,7 @@ export const CURRENCIES = [
   { code: 'SEK', label: '瑞典克朗 SEK' },
   { code: 'NOK', label: '挪威克朗 NOK' },
   { code: 'DKK', label: '丹麦克朗 DKK' },
+  { code: 'ISK', label: '冰岛克朗 ISK' }, // 2026-09-09 A2：补冰岛克朗（北欧四国符号都叫 kr，用名称区分）
   { code: 'PLN', label: '波兰兹罗提 PLN' },
   { code: 'CZK', label: '捷克克朗 CZK' },
   { code: 'HUF', label: '匈牙利福林 HUF' },

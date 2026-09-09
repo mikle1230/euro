@@ -111,7 +111,7 @@
 **核实**:`src/lib/fx.js` 货币下拉缺 **ISK**;`src/data/countries.js` 的 IS 配置正确(ISK 冰岛克朗 kr)——只需往 fx.js 下拉补 ISK 项即可。
 **冰岛货币**:冰岛克朗 Icelandic Króna,代码 ISK,符号 kr(与 DKK/SEK/NOK 同显 kr,注意区分)。
 **涉及**:src/lib/fx.js(currency 下拉数组)。
-**状态**:🟡待集中修改(与冰岛 TEITUR 支持等一起改)。
+**状态**:🛠️ 已实现(2026-09-09 A2:fx.js CURRENCIES 已补 ISK,条目 `{ code: 'ISK', label: '冰岛克朗 ISK' }`,置于 DKK 后北欧组;名称区分 kr 符号;countries.js 的 IS 配置原本正确无需动)。
 
 ---
 
