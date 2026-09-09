@@ -1,0 +1,186 @@
+{
+  "cities": [
+    {
+      "zh": "奥斯陆",
+      "en": "Oslo",
+      "country": "NO",
+      "cityCode": "OSL",
+      "note": "奥斯陆(OSL)补库调研 2026-09(12 家待核→10 家可入、2 家 skipped)。方法:Booking.com 属性/评论页反爬(HTTP 202)无法直读,评分经 zenhotels.com(Booking 点评聚合,0-10 制,2026-09 快照)与 hotelclub.net 转述,个别经 Booking 评论页搜索引擎标题佐证;priceEur 为 zenhotels en-de 页无日期 from 起价(2026-09 观察,会议季偏高,淡季可低 40-60%,各家 note 已注淡季价锚)。挪威无官方强制星级体系,star 为 OTA/聚合标注,其中数家(见 note)与 Booking 官网现页分级可能有出入,建议人工抽核。位置修正(重要):Thon Hotel Snø 实际位于 Lørenskog 市(非奥斯陆市、更非 Tønsberg;OTA 另误标 Skedsmo/Lillestrøm/Kjeller),属奥斯陆大区按大区口径收录并在 area/note 注明;Thon Hotel Vettre 主酒店已更名 Thon Hotel Asker(Asker 市 Konglungveien 201 海滨),'Vettre' 现仅存于公寓产品 Thon Hotel Vettre Apartments;X Hotel Oslo 为 Moxy Oslo X 于 2024-11 更名(见 skipped);'Superior Hotel Central' 在奥斯陆无对应在营酒店(见 skipped)。同城同档参考价:市中心 4★ 会议季 from €180-210,3★/老店 from €150-190,市郊(Asker/Lørenskog)from €150 上下,五星 The Thief from €350。",
+      "hotels": [
+        {
+          "name": "Thon Hotel Panorama",
+          "nameZh": "",
+          "star": 4,
+          "rating": 9.2,
+          "priceEur": 211,
+          "area": "奥斯陆市中心 Sentrum 西缘(Rådhusgata 7b,市政厅/诺贝尔和平中心一带,距市中心约 550m)",
+          "near": "Stortinget 地铁约486m;Oslo S 中央车站约540m;奥斯陆大教堂约390m;Akershus 城堡约530m",
+          "ratingSource": "Booking.com(zenhotels.com 转述:9.2,135 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541244/thon_hotel_oslo_panorama/",
+            "https://www.hotelscombined.ca/Hotel/Thon_Hotel_Oslo_Panorama.htm",
+            "https://www.momondo.com/hotels/oslo/Thon-Hotel-Oslo-Panorama.mhd259397.ksp"
+          ],
+          "note": "核实:Thon Hotel Panorama 为奥斯陆市中心正常在营 Thon 酒店(118 房/13 层,1956 建/2008 翻新),与 X Hotel 是两家不同酒店(doc 提示勿混,Panorama 单独入库)。doc 提及'参考价约 723 NOK 档'≈€63(÷11.5),与 2026-09 zenhotels from €211(会议季)差距大,疑为淡季/旧口径或不同房型,本批录可观测 from €211 并注明随季节大幅浮动,建议按团期复核。star 4 据 HotelsCombined 标题(2026-09);Booking 官网分级待人工核。点评少(135 条)但分高(9.2)。"
+        },
+        {
+          "name": "Thon Hotel Slottsparken",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.9,
+          "priceEur": 179,
+          "area": "Frogner 区王宫西侧(Wergelandsveien 5,距市中心约 715m)",
+          "near": "挪威王宫与王宫公园(约300m);Nationaltheatret 地铁/国家剧院(约330m);国家美术馆(约420m)",
+          "ratingSource": "Booking.com(zenhotels.com 转述:8.9,682 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541115/thon_hotel_slottsparken/",
+            "https://www.hotelscombined.ca/Hotel/Thon_Hotel_Slottsparken.htm",
+            "https://www.trip.com/hotels/oslo-hotel-detail-2509529/thon-hotel-slottsparken"
+          ],
+          "note": "253 房/9 层(1930 建/2015 翻新),王宫旁位置最佳的老牌 Thon。星级:HotelsCombined 标题标 3 stars(2026-09),但该店硬件/档次实为 4★ 水准(带停车/桑拿/健身房),Booking 官网现页分级未能直读,建议人工核后取 Booking 口径(本批暂按聚合标注 3)。€179 为 zenhotels from 起价(2026-09 会议季);Kayak 等淡季可见 €100 上下。评分 8.9/682 条稳定。"
+        },
+        {
+          "name": "Thon Hotel Snø",
+          "nameZh": "",
+          "star": 4,
+          "rating": 9.2,
+          "priceEur": 152,
+          "area": "Lørenskog 市西缘 Snølia 20(奥斯陆东北约 12km、距 Gardermoen 机场约 29km;紧邻 Oslo 东界 Ellingsrudåsen,属奥斯陆大区 Lørenskog 市——非奥斯陆市辖区,也非 Tønsberg)",
+          "near": "Ellingsrudåsen T-bane 约2.3km;E6;奥斯陆市中心约12km 需车程/轨道交通",
+          "ratingSource": "Booking.com(zenhotels.com 转述:9.2,256 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/lorenskog/mid11162096/thon_hotel_sno/",
+            "https://www.trip.com/hotels/skedsmo-hotel-detail-109258061/thon-hotel-sno/",
+            "https://www.momondo.com/hotels/lorenskog/Thon-Hotel-Sno.mhd9817692.ksp",
+            "https://proxy.odeonbeds.com/reviews/no/hotel/thon-sno.html"
+          ],
+          "note": "核实 doc 'THON SNØE':Thon Hotel Snø 位于 Lørenskog(289 房/9 层,约 2021 开业的大型会议/休闲型酒店,含会议中心、宠物友好),不在 Tønsberg、不在奥斯陆城区;Trip.com/携程等 OTA 目的地标 Lørenskog/Skedsmo/Lillestrøm/Oslo 不一(跨市边界地理编码混乱),以官方地址 Snølia 20, Lørenskog 为准。因属奥斯陆大区故按大区口径收录,但距奥斯陆市中心约 12km,团队行程若宿此需计入车程。星级各 OTA 未统一标注(Booking 评论镜像页未显示星级),按同档 Thon 会议酒店估 4★,待人工核。€152 为 zenhotels from(2026-09);momondo 淡季见 from US$52(单人/低促口径,仅参考)。评分 9.2/256 条高。"
+        },
+        {
+          "name": "Thon Hotel Spectrum",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.7,
+          "priceEur": 186,
+          "area": "市中心东缘 Brugata 7(Brugata/Vaterland,老城与 Grünerløkka 交界,Oslo Spektrum 体育馆旁;zenhotels 目的地标 Grünerløkka)",
+          "near": "Oslo S 中央车站约360m;Grønland 地铁约283m;Oslo Spektrum 体育馆同街区;奥斯陆大教堂约525m",
+          "ratingSource": "Booking.com(zenhotels.com 转述:8.7,856 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7464694/thon_hotel_spectrum/",
+            "https://www.booking.com/reviews/no/hotel/thon-spectrum.html",
+            "https://www.hotelscombined.co.uk/Hotel/Thon_Hotel_Spectrum.htm"
+          ],
+          "note": "187 房/6 层(2009 翻新)。星级依据:Booking 评论页标题 'Reviews of Thon Hotel Spectrum 3 stars'(2026-09 索引),可靠性高。位置距中央车站步行约 5 分钟,团队交通方便。€186 为 zenhotels from 起价(2026-09 会议季)。点评量 856 条、8.7 分稳定。"
+        },
+        {
+          "name": "Thon Hotel Storo",
+          "nameZh": "",
+          "star": 4,
+          "rating": 9.4,
+          "priceEur": 179,
+          "area": "奥斯陆北部 Storo 区(Vitaminveien 23,Storo 购物中心/商务区,距市中心约 4.2km)",
+          "near": "Storo T-bane/车站约477m;Nydalen 约490m;Storo 购物中心;奥斯陆市中心电车约15-20分钟",
+          "ratingSource": "Booking.com(zenhotels.com 转述:9.4,271 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid9007563/thon_hotel_storo/",
+            "https://www.hotelscombined.co.nz/Hotel/Thon_Hotel_Storo.htm",
+            "https://www.cn.kayak.com/hotels/Thon_Hotel_Storo%2COslo-c29309-h3935247-details/"
+          ],
+          "note": "322 房/7 层(2018 翻新),北区商务/会奖型(会议中心、停车、充电桩、宠物限重)。星级:HotelsCombined 标题标 4 stars(2026-09);Booking 评论页未索引到,建议人工核。€179 为 zenhotels from 起价(2026-09)。点评 271 条但 9.4 为全批 Thon 最高分。距市中心较远(4km+)但临 Storo T-bane,自团需车。"
+        },
+        {
+          "name": "Thon Hotel Terminus",
+          "nameZh": "涩恩特米纳斯酒店",
+          "star": 4,
+          "rating": 8.5,
+          "priceEur": 196,
+          "area": "市中心中央车站旁(Stenersgata 10,Oslo Spektrum 体育馆对面街区,距市中心约 750m)",
+          "near": "Jernbanetorget 地铁约132m;Oslo S 中央车站约251m;奥斯陆大教堂约334m",
+          "ratingSource": "Booking.com(zenhotels.com 转述:8.5,1962 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541021/thon_hotel_terminus/",
+            "https://www.booking.com/hotel/no/thon-terminus.html",
+            "https://www.booking.com/reviews/no/hotel/thon-terminus.en-gb.html"
+          ],
+          "note": "154 房/7 层(1994 建/2016 翻新),接驳中央车站极便(约 250m),适合首末夜。星级依据:Booking 评论页标题 'Reviews of Thon Hotel Terminus 4 stars'(2026-09 索引)。中文名『涩恩特米纳斯酒店』见 Booking 中文渠道标题。€196 为 zenhotels from 起价(2026-09 会议季);点评量 1962 条为同批 Thon 最多、8.5 稳定。"
+        },
+        {
+          "name": "Thon Hotel Ullevaal Stadion",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.2,
+          "priceEur": 159,
+          "area": "奥斯陆北部 Ullevål 区(Sognsveien 77c,Ullevaal 足球场旁,近大学区与 Ullevål 医院,距市中心约 4km)",
+          "near": "Ullevål stadion T-bane 约421m;Ullevaal 球场;奥斯陆大学/大学医院方向",
+          "ratingSource": "Booking.com(zenhotels.com 转述:8.2,477 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7464614/thon_hotel_ullevaal_stadion/",
+            "https://www.kayak.ie/Oslo-Hotels-Thon-Hotel-Ullevaal-Stadion.309704.ksp",
+            "https://www.tripadvisor.ca/Hotel_Review-g190479-d1488684-Reviews-Thon_Hotel_Ullevaal_Stadion-Oslo_Eastern_Norway.html"
+          ],
+          "note": "144 房/4 层。命名核实:官方/Booking 现名含 'Stadion' 后缀——Thon Hotel Ullevaal Stadion(英文站拼写 Ullevaal),doc 所列 'Thon Hotel Ullevål' 为简称,入库请用全名。星级各源未显示一致标注(Booking 评论页未索引到;HotelsCombined 条目无星),按同城同档 Thon 城市店估 4★,待人工核 Booking。€159 为 zenhotels from(2026-09 会议季);Kayak 淡季见 from €87。评分 8.2 为同批 Thon 偏低(距市中心 4km、位置分 6/10),团体自备车则性价比可。"
+        },
+        {
+          "name": "Thon Hotel Asker",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.6,
+          "priceEur": 154,
+          "area": "Asker 市 Vettre/Konglung 海滨(Konglungveien 201,近 Hvalstrand/Whale Beach 海滩约1.8km),奥斯陆市中心西南约 20km、车程约 25-35 分钟",
+          "near": "Hvalstrand bad 海滩(约1.8km);Asker 中心(约2.3km);奥斯陆市中心需车程",
+          "ratingSource": "Booking.com(zenhotels.com 转述:7.6,463 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/asker/mid7379786/thon_hotel_vettre/",
+            "https://www.thonhotels.com/hotels/norway/asker/thon-hotel-asker/",
+            "https://www.norway-hotel.com/en/asker-hotels-4456/4-stars/",
+            "https://www.agoda.com/en-gb/thon-hotel-vettre/hotel/asker-no.html"
+          ],
+          "note": "改名核实(doc 'Thon Hotel Vettre'):主酒店现官方名 Thon Hotel Asker——zenhotels 该房源页标题与 deep-link hotel_name、Thon 官网(thon-hotel-asker)、Trip.com 均用现名;zenhotels URL slug 与 hotel_id 仍为 thon_hotel_vettre、easyjet/agoda 2026 部分渠道仍沿用旧名 Thon Hotel Vettre,佐证系更名而非新店。'Thon Hotel Vettre Apartments' 为公寓产品、仍用 Vettre 名,勿混淆。155 房/4 层(1979 建/2009 翻新),海滨度假/会议型(室内泳池、水公园、桑拿、免费自行车)。star 4 据 norway-hotel.com '4 star hotels in Asker' 收录(2026),Booking 官网分级待核。€154 为 zenhotels from(2026-09);Agoda 淡季见 from £90。评分 7.6(463 条)为该类型正常水平;位置距奥斯陆市区远,适合奥斯陆西南峡湾行程或团队休闲/会议。"
+        },
+        {
+          "name": "Thon Hotel Vika Atrium",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.4,
+          "priceEur": 186,
+          "area": "奥斯陆西城 Vika(Munkedamsveien 45,Aker Brygge 海滨与王宫之间;zenhotels 目的地 Frogner),距市中心约 814m",
+          "near": "诺贝尔和平中心约300m;Nationaltheatret 地铁约620m;Aker Brygge 海滨、市政厅、王宫步行可达",
+          "ratingSource": "Booking.com(zenhotels.com 转述:8.4,1104 条,0-10 制)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7552280/thon_hotel_vika_atrium/",
+            "https://www.hotelscombined.ca/Hotel/Thon_Hotel_Vika_Atrium.htm",
+            "https://www.cleartrip.com/hotels/details/thon-hotel-vika-atrium-129279"
+          ],
+          "note": "130 房/7 层(1989 建),会奖/商务型(会议厅、停车、充电桩),位置极佳(Aker Brygge/诺贝尔和平中心旁),前台英语/西/德/法多语。星级:HotelsCombined 标题标 3 stars(2026-09),而 TravelWeekly/GDS 老分类作 'First Class'(≈4★ 档),两源不一;Booking 官网现页分级未能直读,建议人工核后取 Booking 口径(暂按聚合标注 3)。€186 为 zenhotels from 起价(2026-09 会议季)。点评 1104 条、8.4 稳定。"
+        },
+        {
+          "name": "The Thief",
+          "nameZh": "西弗酒店",
+          "star": 5,
+          "rating": 9.2,
+          "priceEur": 352,
+          "area": "Tjuvholmen 海滨新区(Landgangen 1,Astrup Fearnley 现代美术馆同区),距市中心约 1.2km",
+          "near": "诺贝尔和平中心约720m;Astrup Fearnley 现代美术馆(同区);Aker Brygge;王宫约1.2km",
+          "ratingSource": "Booking.com(zenhotels.com 转述:9.2,3188 条,0-10 制;hotelclub.net 另见 8.7/388 条旧快照)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7622954/the_thief/",
+            "https://www.hotelclub.net/h/the-thief.html",
+            "https://www.trip.com/hotels/oslo-hotel-detail-2506236/hotel/",
+            "https://www.luxurylink.com/5star/hotels/oslo-norway/thief"
+          ],
+          "note": "核实:正常在营的 Tjuvholmen 网红设计奢华酒店(2013 开业,119 房/8 层,艺术收藏+THIEF Spa+屋顶酒吧,5★ 依 hotelclub '★ ★ ★ ★ ★' 与 zenhotels 描述 '5-star' 一致)。品牌联盟:未能在抓取限额内取得 SLH/其他官方会员页佐证(本批未见 slh.com 条目,部分中文渠道有 SLH 字样但不足以采信),note 中勿写死联盟,建议官网人工确认。中文名:Booking 中文渠道『西弗酒店』,携程/飞客亦作『奥斯陆神偷酒店』。评分两源差异大(zenhotels 9.2/3188 条 vs hotelclub 8.7/388 条),取样本大者 9.2 并注明,Booking 官网现分请人工核。€352 为 zenhotels from(2026-09);五星淡旺季价差大(旺季可 €500+),高端团建议直询协议价。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "X Hotel Oslo",
+      "reason": "核实完成但无法按规则入库。现名/状态核实:X Hotel 于 2024-11 由 Moxy Oslo X 更名(挪威酒店业媒体 no.hotel.report/hotellmagasinet 'Endrer navn og driftsmodell',2024-11-16),转 Norlandia Hotel Group 运营,与 X Meeting Point(挪威最大会展中心之一)同属 'Destination X' 园区(共 436 房含会议配套);OMAAT(2025-10)显示其仍列 Marriott 官网(Marriott 关联保留);OTA(Trip.com/Cleartrip 等)2026 仍在售——未停业,现名即 'X Hotel'(或写作 X Hotel Oslo,奥斯陆机场方向品牌)。位置核实:官方地址 Kragerudveien 50, Skjetten, 谢斯莫/Lillestrøm(Skedsmo 市),位于奥斯陆与 Gardermoen 机场中途(距奥斯陆市中心约 20km+,携程页'距鲁门(Rommen)地铁站约4.3km'),不属于奥斯陆市辖区,仅为奥斯陆大区外缘;OTA 目的地标注混乱(携程/部分 Trip.com 页标 Skedsmo、亦有 Lillestrøm/Oslo 标签)。无法入库原因:Booking 口径评分与 EUR 参考价在每家≤4 次抓取限额内未能取得——Booking 属性/评论页 WAF 反爬(HTTP 202)不可直读,zenhotels/hotelclub 均无该房源页,仅得携程自有点评 4.3/5(57 条,非 0-10 Booking 口径)。如后续要收录:应归 Lillestrøm/Skedsmo 城市(勿归 OSL),并需 Booking 官网人工核分后补录。另 doc '723 NOK 档' 与 X Hotel 的关联未获佐证(该价档疑为 Thon Panorama 参考,已在其 note 说明)。"
+    },
+    {
+      "name": "Superior Hotel Central",
+      "reason": "查无此店:按原名(英文/挪威语/中文)多轮检索,奥斯陆没有名为 'Superior Hotel Central' 的当前在营酒店,Booking/zenhotels/hotelclub/携程均无对应房源。疑似与下列现役/历史实体混淆,请人工确认 doc 所指后再补批:(a) Super Stay Hotel, Oslo——携程中文名『奥斯陆超级住宿酒店』(hotels.ctrip.com/hotels/114968161.html,英文名 Super Stay Hotel,Oslo),'Superior' 疑为 'Super Stay' 的误写;(b) 奥斯陆历史 'Hotel Central' 一脉——Kongens gate 7(Kvadraturen),历经 Hotel Central→Saga Hotel Oslo Central→现 K7 Hotel Oslo(visitoslo 'K7 Hotel Oslo (Former Saga Hotel Oslo Central)' 佐证);(c) Comfort Hotel Xpress Central Station(市中心中央车站旁,Strawberry 旗下)。注意 Oslo 无 'Thon Hotel Central'(Thon Hotel Central 在 Elverum,勿混入奥斯陆)。若确指 (a) Super Stay Hotel Oslo,其 Booking 评分/价格可独立成批补录。"
+    }
+  ]
+}

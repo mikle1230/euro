@@ -1,0 +1,187 @@
+{
+  "cities": [
+    {
+      "zh": "奥斯陆",
+      "en": "Oslo",
+      "country": "NO",
+      "cityCode": "OSL",
+      "note": "方法说明：Booking.com 与 scandichotels.com 静态页反爬（HTTP 202/网络层拒绝）无法直读，rating 采用 Booking 系 0-10 聚合评分、经 ZenHotels.com 页面观察转述（ratingSource 注明条数）；priceEur 为 ZenHotels(en-de) 无日期 from 起价（EUR 直读，随日期/房型浮动）；星级取自 HotelsCombined/KAYAK/Trip.com/Yandex 等聚合标签（4★：Asker/Fornebu/Holmenkollen Park/Oslo Airport；5★：Grand Hotel Oslo by Scandic、Sommerro；3★：Solli/St. Olavs Plass/Helsfyr/Sjølyst）。每家酒店抓取 ≤4 次。本组含奥斯陆市区以外住宿并已写清位置：Asker 城（西南约 20km）、贝鲁姆市 Fornebu（西南约 9km）、Gardermoen 机场区（约 37km）。Scandic 系 9 家中 8 家经核实仍以 doc 名称运营；Scandic Grand 为误名，实际是 Grand Hotel Oslo by Scandic；Sommerro 属 Strawberry(Nordic Hotels & Resorts) 非 Scandic 系。",
+      "hotels": [
+        {
+          "name": "Scandic Asker",
+          "nameZh": "阿斯克尔斯堪迪克酒店",
+          "star": 4,
+          "rating": 7.7,
+          "priceEur": 128,
+          "area": "Asker 城（Asker 市镇，奥斯陆西南约 20km、E18 走廊卫星城）镇中心 Askerveien 61；距奥斯陆市中心车程约 30 分钟",
+          "near": "Asker 火车站/镇中心（Asker stasjon）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.7，801 条，0-10 制）",
+          "sources": [
+            "https://www.booking.com/hotel/no/scandic-asker.en-gb.html",
+            "https://www.zenhotels.com/hotel/en-de/norway/asker/mid7601836/scandic_asker/",
+            "https://www.hotelscombined.co.uk/Hotel/Scandic_Asker.htm",
+            "https://www.trip.com/hotels/asker-hotel-detail-2564720/scandic-asker/"
+          ],
+          "note": "核实：现名仍为 Scandic Asker（doc 一致，未换牌；Trip.com 2026 有售）。关键位置说明：酒店在 Asker 城（Asker 市镇）镇中心而非奥斯陆市区——Asker 位于奥斯陆西南约 20km，本酒店 167 房、近 Asker 火车站，适合作为奥斯陆西郊/峡湾线过夜点，报价需与市区酒店区分（不含接驳时单程约 30 分钟车程）。"
+        },
+        {
+          "name": "Scandic Fornebu",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 111,
+          "area": "奥斯陆西南贝鲁姆市（Bærum）Fornebu 半岛，原 Fornebu 机场旧址上的商务区（Martin Lingesvei 2，Telenor 总部/Fornebu S 一带），距奥斯陆市中心约 9km",
+          "near": "Fornebu 商务区（Fornebu S/Telenor 总部园区）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.1，1523 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/baerum/mid7717834/scandic_fornebu/",
+            "https://www.hotelscombined.co.uk/Hotel/Scandic_Fornebu.htm",
+            "https://sg.trip.com/hotels/oslo-hotel-detail-2548565/",
+            "https://www.visitnorway.de/listings/scandic-fornebu/23172/"
+          ],
+          "note": "核实：现名仍为 Scandic Fornebu（doc 一致，无换牌；Trip.com 2026 有售）。位置在贝鲁姆市 Fornebu 半岛（原 Fornebu 机场旧址、现商务区），距奥斯陆市中心约 9km，334 房大型商务/会议酒店；进市区需巴士或自驾，周边非步行观光区。"
+        },
+        {
+          "name": "Grand Hotel Oslo by Scandic",
+          "nameZh": "",
+          "star": 5,
+          "rating": 8.2,
+          "priceEur": 239,
+          "area": "奥斯陆市中心卡尔·约翰大街 Karl Johans gate 31（国会大厦 Stortinget 旁，皇宫步行约 10 分钟）",
+          "near": "国会大厦 Stortinget（约 100m）/卡尔·约翰大街",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.2，1614 条，0-10 制）",
+          "sources": [
+            "https://www.scandichotels.com/en/hotels/grand-hotel-oslo-by-scandic",
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541119/grand_hotel_rica/",
+            "https://www.hotelscombined.com.au/Hotel/Grand_Hotel_Oslo_by_Scandic.htm",
+            "https://news.cision.com/no/scandic-hotels-norge/r/scandic-overlater-driften-av-grand-hotel-oslo,c3862019"
+          ],
+          "note": "改名核实（重点更正）：奥斯陆老牌 Grand Hotel（1874 年开业、274 房）现行官方名称为「Grand Hotel Oslo by Scandic」——官方预订页在 scandichotels.com，公司注册名亦为 Grand Hotel Oslo By Scandic（proff.no），Scandic 集团挪威新闻室 2024（150 周年）/2026（Grand Spa）持续发布该酒店新闻。不存在名为「Scandic Grand」的奥斯陆酒店：doc 若写 Scandic Grand 应更正为 Grand Hotel Oslo by Scandic。历史：1994-2014 由 Rica Hotels 运营，2014-04 Scandic 收购 Rica 后短暂归入，2014-11 宣布 2015-03 起交还业主 Eiendomsspar AS 自营（cision 新闻稿），后重新以 by Scandic 名义进入 Scandic 体系（现观察为运营中）。OTA 数据源仍保留旧别名 grand_hotel_rica。"
+        },
+        {
+          "name": "Scandic Helsfyr",
+          "nameZh": "斯堪迪克赫尔斯菲酒店",
+          "star": 3,
+          "rating": 8.4,
+          "priceEur": 105,
+          "area": "奥斯陆东区 Helsfyr（Gamle Oslo 区内，Innspurten 7），距市中心约 3.7km",
+          "near": "Helsfyr 地铁站（约 400m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.4，584 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7599928/rica_helsfyr_hotel/",
+            "https://www.scandichotels.com/en/hotels/scandic-helsfyr",
+            "https://travel.yandex.ru/hotels/oslo/scandic-helsfyr/",
+            "https://tw.trip.com/hotels/detail/?hotelId=2195734"
+          ],
+          "note": "核实：现名仍为 Scandic Helsfyr（doc 一致；官网 slug scandic-helsfyr，Trip/携程 2026 有售）。前身 Rica Helsfyr（ZenHotels 数据源旧别名 rica_helsfyr_hotel，2014-2015 随 Scandic 收购 Rica 换牌）；253 房，2020 年翻新。东区商务位置，T-bane 进市中心约 10 分钟，近 E6，适合顺路团/会议团。"
+        },
+        {
+          "name": "Scandic Holmenkollen Park",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.0,
+          "priceEur": 103,
+          "area": "Holmenkollen 山丘老牌度假/会议酒店（Kongeveien 26），距奥斯陆市中心约 7km，Holmenkollen 地铁站约 250m",
+          "near": "Holmenkollen 滑雪跳台（约 300m）/Holmenkollen 地铁站",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.0，556 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7464586/holmenkollen_park_hotel_rica/",
+            "https://www.hotelscombined.co.uk/Hotel/Scandic_Holmenkollen_Park.htm",
+            "https://www.scandichotels.com/en/hotels/scandic-holmenkollen-park"
+          ],
+          "note": "核实：现名仍为 Scandic Holmenkollen Park（doc 一致）。前身 Rica Holmenkollen Park（ZenHotels 数据源旧别名 holmenkollen_park_hotel_rica，2014-2015 换牌）；372 房，2022 年全面翻新，山顶老牌度假会议酒店，带室内泳池/SPA。步行可至霍尔门科伦滑雪跳台与滑雪博物馆，地铁（Holmenkollbanen）进市中心约 25 分钟。参考价 €103 为 ZenHotels 淡季 from 价。"
+        },
+        {
+          "name": "Scandic Oslo Airport",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.8,
+          "priceEur": 97,
+          "area": "Gardermoen 机场区（Ullensaker 市镇，Ravinevegen 15，航站楼西侧 Gardermoen 村），距机场航站楼约 2.1km；距奥斯陆市中心约 37km",
+          "near": "奥斯陆机场 Oslo Airport Gardermoen（约 2km；酒店付费穿梭巴士约 80 NOK/人，站台 39）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.8，1723 条，0-10 制）",
+          "sources": [
+            "https://www.booking.com/hotel/no/scandic-oslo-airport.en-gb.html",
+            "https://www.zenhotels.com/hotel/en-de/norway/gardermoen/mid7469485/scandic_oslo_airport/",
+            "https://pl.trip.com/hotels/gardermoen-hotel-detail-2159126/scandic-oslo-airport-gardermoen/"
+          ],
+          "note": "核实：现名仍为 Scandic Oslo Airport（doc 一致；Trip.com 2026 有售，Trip.com 土耳其站标 4★，GDS 等级 First Class）。注意区分：本店位于航站楼西侧 Gardermoen（距航站楼约 2km，需收费穿梭巴士），并非航站楼直连——机场区航站楼直连的为 Radisson Blu Airport Hotel Oslo 等；Gardermoen 在奥斯陆以北约 37km，作机场过夜/转机酒店。243 房，2010 年翻新。"
+        },
+        {
+          "name": "Scandic Sjølyst",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.4,
+          "priceEur": 161,
+          "area": "奥斯陆西区 Sjølyst（Sjølyst Plass 5，Frogner 以西、海滨一侧），距市中心约 3.3km",
+          "near": "维格兰雕塑公园/Frogner 公园（约 1.2-1.5km）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：8.4，611 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7601814/scandic_sjolyst/",
+            "https://www.trip.com/hotels/fornebu-hotel-detail-2158920/scandic-sj-lyst",
+            "https://travel.yandex.ru/hotels/oslo/scandic-sjolyst/",
+            "https://hotels.ctrip.com/hotels/2158920.html"
+          ],
+          "note": "核实：现名仍为 Scandic Sjølyst（doc 一致；仍在营业，Trip.com/携程 2026 有售、Yandex Travel 2026-05 可订）。注意拼写：旅业数据常写作 Scandic Sjolyst（ø→o）。209 房（1997 年建、2008 年翻新），西区海滨侧、近维格兰雕塑公园与 Frogner 公园，公交进市中心约 10-15 分钟。"
+        },
+        {
+          "name": "Scandic Solli",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.4,
+          "priceEur": 156,
+          "area": "奥斯陆西区 Solli plass/Frogner（Parkveien 68，皇宫西南侧），距市中心约 1km",
+          "near": "皇宫（约 500m）/国家剧院站 Nationaltheatret（约 650m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.4，1953 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541149/scandic_kna/",
+            "https://www.scandichotels.com/en/hotels/scandic-solli",
+            "https://www.hotelscombined.ca/Hotel/Scandic_Solli.htm",
+            "https://staging.oslobyleksikon.no/side/KNA-hotellet"
+          ],
+          "note": "核实：现名仍为 Scandic Solli（doc 一致；官网 slug scandic-solli）。位置/历史说明：大楼即 1932 年建成的原 KNA 大酒店（Kongelig Norsk Automobilklub 总部所在，Oslo byleksikon 载其名曾为 Scandic Hotel KNA、今 Scandic Solli），OTA 数据源仍保留旧别名 scandic_kna，勿据此误判为 KNA 酒店。226 房，2014 年翻新；距皇宫约 500m，观光便利。"
+        },
+        {
+          "name": "Scandic St. Olavs Plass",
+          "nameZh": "圣奥拉夫普拉斯斯堪迪克酒店",
+          "star": 3,
+          "rating": 7.8,
+          "priceEur": 124,
+          "area": "奥斯陆市中心 St. Olavs plass 1（国家美术馆旁），距市中心约 0.5km",
+          "near": "国家美术馆（约 250m）/Nationaltheatret 站（约 530m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：7.8，1476 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541225/scandic_edderkoppen/",
+            "https://www.scandichotels.com/en/hotels/scandic-st-olavs-plass",
+            "https://www.kayak.ie/Oslo-Hotels-Scandic-St-Olavs-plass.31172.ksp",
+            "https://hotels.ctrip.com/hotels/2158644.html"
+          ],
+          "note": "核实：现名仍为 Scandic St. Olavs Plass（doc 一致；官网 slug scandic-st-olavs-plass，Trip/携程 2026 有售）。注意 OTA 数据源存在旧别名 scandic_edderkoppen 遗留，勿混入名单。241 房（2000 年建、2016 年翻新），市中心近国家美术馆/皇宫/国会，位置极佳。"
+        },
+        {
+          "name": "Sommerro",
+          "nameZh": "",
+          "star": 5,
+          "rating": 9.4,
+          "priceEur": 337,
+          "area": "Frogner 区 Solli plass 旁（Sommerrogata 1），距奥斯陆市中心约 1.1km",
+          "near": "Solli plass/皇宫（约 500m）/Nationaltheatret 站（约 700m）",
+          "ratingSource": "Booking.com（zenhotels.com 转述：9.4，261 条，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid10360867/sommerro/",
+            "https://www.strawberryhotels.com/hotels/norway/oslo/sommerro/",
+            "https://www.historichotels.org/hotels-resorts/sommerro/history",
+            "https://www.kayak.com/Oslo-Hotels-Sommerro.8240368.ksp"
+          ],
+          "note": "品牌核实：Sommerro（231 房）属 Strawberry/Nordic Hotels & Resorts（Petter Stordalen），并非 Scandic 系；也是 Choice Hotels「Ascend Hotel Collection」成员与 Historic Hotels Worldwide 成员，2022-09 开业，5★（KAYAK 5 stars / Priceline ★★★★★）。建筑历史更正：大楼为 1932 年落成的奥斯陆电力公司（Oslo Lysverker，后 Oslo Energi）总部改造（含 Vestkantbadet 泳池），并非 doc 所称「旧电话局」，如需对外说明请更正。档次高，参考价 €337 为 ZenHotels from 价。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "The Standard Hotel（Oslo）",
+      "reason": "查无此酒店：奥斯陆（及挪威范围）不存在名为 The Standard / Standard Hotel 的酒店。检索结果仅见 The Standard 集团在伦敦/布鲁塞尔/新加坡/曼谷等地的分号，以及奥斯陆各酒店普通房型名（如 Hotel Continental 的 Standard Double 房型）；奥斯陆也无『Standard 酒店』历史名。doc 中的 STANDARD HOTEL 应为误植或他城（如 The Standard 集团所在城市）错位到奥斯陆，无法核实——skipped，建议从奥斯陆名单删除。"
+    }
+  ]
+}

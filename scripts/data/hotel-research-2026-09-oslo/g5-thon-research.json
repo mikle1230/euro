@@ -1,0 +1,205 @@
+{
+  "cities": [
+    {
+      "zh": "奥斯陆",
+      "en": "Oslo",
+      "country": "NO",
+      "cityCode": "OSL",
+      "note": "本库覆盖奥斯陆大区：市中心（议会/Karl Johans gate/歌剧院 Bjørvika 一带）、机场 Gardermoen（Balder Allé 机场酒店区，距市中心约 40km）、西向 Bærum-Sandvika（约 12km）与南向 Ski 镇（约 21km）。EUR 参考价取 ZenHotels.com 等渠道 'from €' 起价（含早与否随渠道/日期浮动），仅供参考。",
+      "hotels": [
+        {
+          "name": "Thon Hotel Oslo Airport",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.3,
+          "priceEur": 120,
+          "area": "机场区 Gardermoen, Balder Allé 2（杰西姆 Jessheim/乌伦萨克 Ullensaker），紧邻奥斯陆机场航站楼，步行/短驳可达；435 房大型机场酒店",
+          "near": "奥斯陆机场 Gardermoen",
+          "ratingSource": "ZenHotels.com（8.3/1079 条点评，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/jessheim/mid7541199/thon_hotel_oslo_airport/",
+            "https://www.booking.com/hotel/no/thon-oslo-airport.en-gb.html",
+            "https://www.thonhotels.com/hotels/norway/gardermoen/"
+          ],
+          "note": "核实：doc 中的 'Thon Hotel Airport / Thon Airport' 即本店（官方名 Thon Hotel Oslo Airport）。它与 'Thon Hotel Gardermoen'（Balder Allé 22）是两家不同酒店（不同 Booking/ZenHotels 房源、435 vs 260 房），本库两条并列保留，勿合并。"
+        },
+        {
+          "name": "Thon Hotel Astoria",
+          "nameZh": "",
+          "star": 3,
+          "rating": 8.3,
+          "priceEur": 183,
+          "area": "市中心 Dronningens gate 21，紧邻 Karl Johans gate 主街，步行约 3-5 分钟到奥斯陆大教堂与 Oslo S 中央车站",
+          "near": "Karl Johans gate / 奥斯陆大教堂",
+          "ratingSource": "HotelClub.net（8.3/4915 条点评，0-10，与 Booking 同源量纲）；Booking 参考约 8.3-8.4；ZenHotels 旧聚合数据为 7.4",
+          "sources": [
+            "https://www.hotelclub.net/h/thon-astoria.html",
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541184/thon_hotel_astoria/",
+            "https://www.booking.com/hotel/no/thon-astoria.html"
+          ],
+          "note": "Booking 参考分约 8.3-8.4，与 doc 中已有参考值 8.4 吻合。"
+        },
+        {
+          "name": "Hotel Bristol",
+          "nameZh": "布里斯托酒店",
+          "star": 4,
+          "rating": 8.9,
+          "priceEur": 269,
+          "area": "市中心 Kristian IV's gate 7（临 Karl Johans gate），近议会与国家美术馆；1899 年开业的历史酒店，249 房，2025 年起新增三层 Bristol Spa",
+          "near": "Karl Johans gate / 议会 Stortinget",
+          "ratingSource": "ZenHotels.com（8.9/2534 条点评，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541089/hotel_bristol_24/",
+            "https://hotelbristol.no/en/",
+            "https://www.booking.com/hotel/no/bristol.html"
+          ],
+          "note": "改名说明：原 'Thon Hotel Bristol'（奥斯陆店，doc/Booking 旧称），官方现以历史品牌名 'Hotel Bristol' 运营（仍属 Thon Hotels 集团，可经 thonhotels.no 预订，官网 hotelbristol.no）；Booking/Trip 等新列表已更名 'Hotel Bristol'。勿与卑尔根 Thon Hotel Bristol 混淆。"
+        },
+        {
+          "name": "Thon Hotel Cecil",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.4,
+          "priceEur": 195,
+          "area": "市中心 Stortingsgata 8（入口临 Rosenkrantz' gate），议会 Stortinget 旁，步行至国家剧院与国家美术馆",
+          "near": "议会 Stortinget",
+          "ratingSource": "HotelClub.net（8.4/1536 条点评，0-10）；Booking.com 8.4/1743 条经 Trabber 页交叉印证",
+          "sources": [
+            "https://www.hotelclub.net/h/thon-cecil.html",
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541023/thon_hotel_cecil/",
+            "https://www.trabber.es/en/hotels/norway-no/oslo-3143244/thon-hotel-cecil-123975506/"
+          ],
+          "note": ""
+        },
+        {
+          "name": "Thon Hotel Europa",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.3,
+          "priceEur": 182,
+          "area": "市中心 St. Olavs gate 31（Tullinløkka/王宫公园一带，近国家美术馆），2018 年全面翻新，168 房",
+          "near": "国家美术馆 / 王宫",
+          "ratingSource": "ZenHotels.com（8.3/857 条点评，0-10）；HotelClub 页注明 Booking 8.4/10（其自有聚合 8.1/665 条）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7542416/thon_hotel_europa/",
+            "https://www.hotelclub.net/h/thon-europa.html"
+          ],
+          "note": ""
+        },
+        {
+          "name": "Thon Hotel Gardermoen",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.4,
+          "priceEur": 115,
+          "area": "机场区 Gardermoen, Balder Allé 22（杰西姆 Jessheim），与 Thon Hotel Oslo Airport 同一条街的独立酒店（260 房会议型），距奥斯陆机场约 3-5 分钟车程/短驳",
+          "near": "奥斯陆机场 Gardermoen",
+          "ratingSource": "ZenHotels.com（8.4/589 条点评，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/jessheim/mid7541187/thon_hotel_gardermoen/",
+            "https://www.thonhotels.no/konferanse/norge/gardermoen/thon-hotel-gardermoen/",
+            "https://www.thonhotels.com/hotels/norway/gardermoen/"
+          ],
+          "note": "核实结论：与 'Thon Hotel Oslo Airport'（Balder Allé 2, 435 房）是两家不同酒店，doc 中 'Thon Gardermoen' 对应本店、'Thon Airport' 对应 Airport 店，两条均保留、勿合并（机场过夜航班建议按实际航站楼距离选店）。"
+        },
+        {
+          "name": "Thon Hotel Gyldenløve",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.5,
+          "priceEur": 168,
+          "area": "Frogner/Majorstua 一带 Bogstadveien 20（购物街 Bogstadveien 与 Hegdehaugsveien 交汇处附近），步行约 15 分钟到王宫公园；1938 年建筑、2007 年翻新，164 房",
+          "near": "Bogstadveien 商业街 / 王宫公园",
+          "ratingSource": "ZenHotels.com（7.5/846 条点评，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541018/thon_hotel_gyldenlove/",
+            "https://travel.yandex.ru/hotels/oslo/thon-hotel-gyldenlove/",
+            "https://www.hotels.com/ho135234/thon-hotel-gyldenl-ve-oslo-norway/"
+          ],
+          "note": "星级 3★ 参照 Yandex Travel 房源标注（Booking/OTA 渠道分类，未逐项复核）。"
+        },
+        {
+          "name": "Thon Hotel Linne",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.6,
+          "priceEur": 157,
+          "area": "奥斯陆东北部 Vollebekk 地铁站旁 Statsråd Mathiesens vei 12（近 Løren/地铁 5 号线），距市中心约 6km；394 房，适合自驾/近郊会议",
+          "near": "Vollebekk 地铁站",
+          "ratingSource": "ZenHotels.com（7.6/563 条点评，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541017/thon_hotel_linne/",
+            "https://travel.yandex.ru/hotels/oslo/thon-hotel-linne/",
+            "https://www.thonhotels.no/apartments/norge/oslo/thon-hotel-linne-apartments/"
+          ],
+          "note": "核实：本酒店正常运营。注意区分同名 'Thon Hotel Linne Apartments'（Thon 服务式公寓品牌，thonhotels.no 独立分页），报价/搜索时勿混。星级 3★ 参照 Yandex Travel 房源标注。"
+        },
+        {
+          "name": "Thon Hotel Opera",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.8,
+          "priceEur": 223,
+          "area": "新城区 Bjørvika, Dronning Eufemias gate 4，紧邻奥斯陆歌剧院（步行 1-2 分钟），步行约 5 分钟到 Oslo S 中央车站；2001 年开业、480 房，高层可眺峡湾",
+          "near": "奥斯陆歌剧院 / Oslo S",
+          "ratingSource": "ZenHotels.com（8.8/3805 条点评，0-10 制）；HotelClub 聚合 8.6/2598 条",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541019/thon_hotel_opera/",
+            "https://www.hotelclub.net/h/thon-opera.html",
+            "https://www.booking.com/hotel/no/thon-opera.html"
+          ],
+          "note": ""
+        },
+        {
+          "name": "Thon Hotel Oslofjord",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 146,
+          "area": "贝鲁姆（Bærum）Sandvika 峡湾岸边 Sandviksveien 184，距奥斯陆市中心约 12km（奥斯陆西侧），近 Sandvika Storsenter 购物中心与通勤铁路；246 房、Claude Monet 餐厅，会议型",
+          "near": "Sandvika（奥斯陆西郊）",
+          "ratingSource": "HotelClub.net（8.1/1401 条点评，0-10，与 Booking 同源量纲）；ZenHotels 聚合 7.8/809 条",
+          "sources": [
+            "https://www.hotelclub.net/h/thon-oslofjord.html",
+            "https://www.zenhotels.com/hotel/en-de/norway/baerum/mid7597653/thon_hotel_oslofjord/",
+            "https://de.hotels.com/ho17619392/thon-hotel-oslofjord-baerum-norwegen/"
+          ],
+          "note": "录入口径（见 KT/doc）：该店常无 SGL 单人间直接报价，单人一般需按升级 Deluxe（DLX）口径计，报价/录入时注意单人间差。"
+        },
+        {
+          "name": "Thon Hotel Rosenkrantz Oslo",
+          "nameZh": "罗森克兰兹托恩酒店",
+          "star": 4,
+          "rating": 9.4,
+          "priceEur": 229,
+          "area": "市中心 Rosenkrantz' gate 1（议会旁、临 Karl Johans gate），近国家美术馆与国家剧院；获奖设计酒店（Brasserie Paleo），2014 年翻新，151 房",
+          "near": "议会 Stortinget / 国家美术馆",
+          "ratingSource": "ZenHotels.com（9.4/2786 条点评，0-10 制）；HotelClub 页注 Booking 8.9/10（较早快照）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7541020/thon_hotel_rosenkrantz_oslo/",
+            "https://www.hotelclub.net/h/thon-rosenkrantz.html",
+            "https://www.booking.com/hotel/no/thon-rosenkrantz-oslo.html"
+          ],
+          "note": "奥斯陆店；另有卑尔根同名 'Thon Hotel Rosenkrantz'（Bergen），勿混淆。"
+        },
+        {
+          "name": "Thon Hotel Ski",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.4,
+          "priceEur": 194,
+          "area": "Ski 镇中心 Jernbaneveien 8，紧邻 Ski 火车站；Ski 属奥斯陆南郊 Nordre Follo 市（原 Ski 自治市），距奥斯陆市中心约 21km，通勤火车约 20-25 分钟；110 房（2004 年），含保龄球等设施",
+          "near": "Ski 火车站",
+          "ratingSource": "ZenHotels.com（8.4/325 条点评，0-10 制）",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/ski/mid7541016/thon_hotel_ski/",
+            "https://www.thonhotels.no/hoteller/norge/ski/thon-hotel-ski/",
+            "https://www.trip.com/hotels/svartskog-hotel-detail-3327180/thon-hotel-ski/"
+          ],
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "skipped": []
+}

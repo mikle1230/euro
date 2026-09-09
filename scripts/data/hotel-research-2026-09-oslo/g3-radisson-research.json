@@ -1,0 +1,189 @@
+{
+  "cities": [
+    {
+      "zh": "奥斯陆",
+      "en": "Oslo",
+      "country": "NO",
+      "cityCode": "OSL",
+      "note": "奥斯陆为挪威首都。机场三店(Radisson Blu Airport、Radisson Hotel & Conference Centre、Radisson RED)均在市区东北约37km的加勒穆恩(Gardermoen)机场区;市区各店距 Oslo S 约0.2-1km;Radisson Blu Park Hotel 位于西郊福尼布(Fornebu,旧机场方向,Bærum 市),非 Gardermoen 方向。提醒:以下 rating 为 ZenHotels.com 0-10 综合评分(Booking 官网反爬无法直读,数值通常略低于 Booking 自身评分),RED 新店与 Savoy 样本少或暂无,录入前建议抽查 Booking 复核;priceEur 均为 2026-09 观察的 OTA 无日期 from-€ 起价。",
+      "hotels": [
+        {
+          "name": "Radisson Blu Airport Hotel, Oslo",
+          "nameZh": "奥斯陆加勒穆恩丽笙布鲁机场酒店",
+          "star": 4,
+          "rating": 7.7,
+          "priceEur": 208,
+          "area": "加勒穆恩(Gardermoen)奥斯陆机场 OSL 区 Hotellvegen(与 2 号航站楼廊桥直连,距机场约180m),距奥斯陆市中心约37km",
+          "near": "OSL 航站楼(直连)、Gardermoen 机场快线/火车站",
+          "ratingSource": "ZenHotels.com(0-10,4266 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-blu-airport-oslo.zh-cn.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/gardermoen/mid7541141/radisson_blu_airport_hotel_oslo_gardermoen/?dateless_form=yes",
+            "https://www.booking.com/city/no/gardermoen.zh-cn.html"
+          ],
+          "note": "核实:现名与品牌档未变,仍为 Radisson Blu('Radisson Blu Airport Hotel, Oslo',部分渠道写作 ...Oslo Gardermoen),4 星(zenhotels 描述注 4 estrellas),500间/6层(1998建);Booking zh-cn 中文译名含加勒穆恩。与同机场区的 Radisson Hotel & Conference Centre Oslo Airport、Radisson RED Oslo Airport 是三家不同物业,勿混。priceEur 为 zenhotels 无日期 from-€208 起价(参考);评分源为 zenhotels(Booking 官网反爬无法直读,数值通常略保守)。"
+        },
+        {
+          "name": "Radisson Blu Hotel Oslo Alna",
+          "nameZh": "奥斯陆奥纳丽笙酒店",
+          "star": 4,
+          "rating": 7.6,
+          "priceEur": 137,
+          "area": "奥斯陆东部 Alna 区(Tevlingveien 21,近 E6/Lørenskog 界),距市中心约7.4km",
+          "near": "Trosterud 地铁站约378m;蒙克博物馆约5.5km、奥斯陆植物园约5.8km",
+          "ratingSource": "ZenHotels.com(0-10,1393 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-blu-oslo-alna.zh-cn.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/oslo/mid8289252/radisson_blu_hotel_oslo_alna/?dateless_form=yes",
+            "https://www.restplass.no/hotel/858462/280/radisson-blu-hotel-oslo-alna",
+            "https://www.radissonhotels.com/es-es/hoteles/radisson-blu-conference-oslo-alna/habitaciones"
+          ],
+          "note": "核实:现名(Booking/zenhotels)=Radisson Blu Hotel Oslo Alna;Radisson 官网自身页名含 '& Conference Center'(slug radisson-blu-conference-oslo-alna,348间);4 星按 restplass.no。Alna 为奥斯陆东部市区(近 E6),并非机场方向(距 OSL 约32km)。priceEur=zenhotels from-€137 起价。"
+        },
+        {
+          "name": "Radisson Blu Park Hotel, Oslo",
+          "nameZh": "",
+          "star": 3,
+          "rating": 7.4,
+          "priceEur": 131,
+          "area": "西郊福尼布(Fornebu)/吕萨克(Lysaker)侧,Bærum 市 Fornebuveien 80(福尼布商务园旁,旧奥斯陆机场 Fornebu 原址方向),距奥斯陆市中心约8.3km",
+          "near": "Ringstabekk 地铁站约2.4km;福尼布商务区(Fornebu Buss/旧机场区);距 Gardermoen 机场约42km",
+          "ratingSource": "ZenHotels.com(0-10,738 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-blu-park-oslo.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/baerum/mid7544908/radisson_blu_park_hotel_oslo_2/?dateless_form=yes",
+            "https://www.restplass.no/hotel/858410/275/radisson-blu-park-hotel-oslo",
+            "https://www.trip.com/hotels/fornebu-hotel-detail-2137504/radisson-blu-park-hotel-oslo"
+          ],
+          "note": "核实:现名已不带 Fornebu 后缀=Radisson Blu Park Hotel, Oslo(Booking/官网,slug radisson-blu-oslo-park;doc 旧名 Radisson Blu Park Hotel, Fornebu 不再使用)。位置在福尼布商务园旁 Bærum(旧 Fornebu 机场/市中心西南方向),doc 所述'近机场方向'有误——距 Gardermoen 机场约42km。251间/7层(1971建/2017翻新)。星级按 restplass.no 标 3★(Radisson Blu 品牌常规 4★ 档,Booking 现页反爬未直读,建议复核)。Ctrip 系中文名'丽笙蓝标酒店-奥斯陆'为城市泛称、无区分度,留空。priceEur=zenhotels from-€131 起价。"
+        },
+        {
+          "name": "Radisson Blu Plaza Hotel, Oslo",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 227,
+          "area": "中央火车站(Oslo S)旁 Sonja Henies plass 3(车站东侧),奥斯陆地标高塔(37层/678间,1990建)",
+          "near": "Oslo S 约221m、Jernbanetorget/Grønland 地铁约230-240m、奥斯陆大教堂约500m、歌剧院约620m",
+          "ratingSource": "ZenHotels.com(0-10,3412 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-blu-plaza-oslo.zh-cn.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/oslo/mid7541165/radisson_blu_plaza_hotel_oslo/?dateless_form=yes",
+            "https://www.restplass.no/hotel/863413/271/radisson-blu-plaza-hotel-oslo",
+            "https://www.radissonhotels.com/en-us/hotels/radisson-blu-oslo"
+          ],
+          "note": "核实:现名未变,仍为 Radisson Blu Plaza Hotel, Oslo(Radisson 官网 slug radisson-blu-oslo;Booking 评语页标题 4 stars;restplass.no 亦 4 stjerner),doc 名正确。Ctrip 系中文名'丽笙蓝标酒店-奥斯陆'为城市泛称,留空。priceEur=zenhotels from-€227 起价。"
+        },
+        {
+          "name": "Radisson Blu Scandinavia Hotel, Oslo",
+          "nameZh": "丽笙蓝标酒店-奥斯陆斯堪的纳维亚",
+          "star": 4,
+          "rating": 7.5,
+          "priceEur": 202,
+          "area": "市中心西侧 Holbergs plass(Holbergs Gate 30,王宫与国家美术馆之间),距市中心约0.6km,497间/22层(1975建/2017翻新)",
+          "near": "Nationaltheatret 地铁站约289m、国家美术馆约325m、王宫约340m、国家剧院约440m",
+          "ratingSource": "ZenHotels.com(0-10,1417 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-blu-scandinavia-oslo.en-gb.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/oslo/mid7541166/radisson_blu_scandinavia_hotel_oslo/?dateless_form=yes",
+            "https://www.restplass.no/hotel/858377/271/radisson-blu-scandinavia-hotel",
+            "https://www.radissonhotels.com/zh-cn/hotels/radisson-blu-oslo-scandinavia/services"
+          ],
+          "note": "核实:现名未变(Radisson 官网/Booking 均 Radisson Blu Scandinavia Hotel, Oslo),4 星按 restplass.no;doc 位置 Holbergs plass 正确,与 Bygdøy Allé(约1km外的使馆街)并非同址。nameZh 取 Ctrip 系(永安/ezTravel)繁中名简体化。priceEur=zenhotels from-€202 起价。"
+        },
+        {
+          "name": "Radisson Hotel & Conference Centre Oslo Airport",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 173,
+          "area": "加勒穆恩(Gardermoen)机场酒店区 Henrik Ibsens vei(OSL 机场约446m,步行或酒店接驳;与 Radisson RED Oslo Airport 同街),300间/6层(2010建/2019翻新)",
+          "near": "OSL 航站楼约446m(步行约5-10分钟/接驳)、Gardermoen 机场快线站",
+          "ratingSource": "ZenHotels.com(0-10,2097 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/park-inn-oslo-airport.en-gb.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/gardermoen/mid7380691/park_inn_by_radisson_oslo_airport/?dateless_form=yes",
+            "https://www.restplass.no/hotel/785404/261/park-inn-by-radisson-oslo-airport-gardermoen-hotel",
+            "https://www.radissonhotels.com/de-de/hotels/radisson-conference-oslo-airport/bewertungen"
+          ],
+          "note": "核实:独立物业——与 Radisson Blu Airport Hotel(航站楼直连店)及 Radisson RED Oslo Airport(本店同街)均非同一家。现名=Radisson Hotel & Conference Centre Oslo Airport(Booking/OTA 现挂牌名),前身=Park Inn by Radisson Oslo Airport(Booking/zenhotels 页 slug 仍 park-inn-oslo-airport / park_inn_by_radisson_oslo_airport 佐证;restplass 旧记录亦 Park Inn 名、4 stjerner),Radisson 2023-24 品牌整合(Park Inn 系退场)后改挂 'Radisson' 品牌(官网 slug radisson-conference-oslo-airport)。星级沿用 restplass 旧记录 4★,建议 Booking 复核。priceEur=zenhotels from-€173 起价。"
+        },
+        {
+          "name": "Radisson RED Oslo Airport",
+          "nameZh": "",
+          "star": 0,
+          "rating": 8.8,
+          "priceEur": 186,
+          "area": "加勒穆恩(Gardermoen)机场酒店区 Henrik Ibsens Veg(OSL 机场约440m,与 Radisson Hotel & Conference Centre 同街),214间(约2022-2024 开业/翻新)",
+          "near": "OSL 航站楼约440m(接驳/步行)、Gardermoen 机场快线站",
+          "ratingSource": "ZenHotels.com(0-10,292 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-red-oslo-airport.en-us.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/gardermoen/mid10111249/radisson_red_hotel_oslo_airport/?dateless_form=yes",
+            "https://www.radissonhotels.com/de-de/hotels/radisson-red-oslo-airport/zimmer",
+            "https://www.radissonhotels.com/en-us/hotels/radisson-red-oslo-airport/reviews"
+          ],
+          "note": "核实:现名=Radisson RED Oslo Airport(部分 OTA 作 'Radisson RED Hotel, Oslo Airport'),独立新物业(非 Blu Airport 亦非 Conference Centre 改造,Radisson RED 为生活方式新品牌约2022年起挂)。RED 无挪威官方星级(Booking/官网未标星;zenhotels 亦无星级,渠道多按4★看待,待 Booking 复核,暂记 0)。评分 8.8/292 为 zenhotels 综合值,样本偏少,建议复核。priceEur=zenhotels from-€186 起价。"
+        },
+        {
+          "name": "Radisson RED Oslo City Centre",
+          "nameZh": "",
+          "star": 0,
+          "rating": 8.5,
+          "priceEur": 206,
+          "area": "奥斯陆市中心 Øvre Slottsgate 2C(0157 Oslo;议会与国家剧院之间,近 Karl Johans gate),118间/7层",
+          "near": "议会约202m、Stortinget 地铁站约300m、国家剧院约500m、Oslo S 约700m",
+          "ratingSource": "ZenHotels.com(0-10,70 条点评)",
+          "sources": [
+            "https://www.booking.com/hotel/no/radisson-red-oslo.zh-cn.html",
+            "https://www.zenhotels.com/hotel/es-es/norway/oslo/mid7463243/park_inn_by_radisson_2/?dateless_form=yes",
+            "https://www.radissonhotels.com/en-us/corporate/media/press-releases/RED-goes-green-Radisson-RED-Oslo-City-Centre-debuts-as-a-Verified-Net-Zero-hotel",
+            "https://www.hotels.com/ho338914/park-inn-by-radisson-oslo-norway/"
+          ],
+          "note": "核实:doc 所注 'EX Park Inn Oslo' 成立——本店前身=Park Inn by Radisson Oslo(地址未变,Booking 旧页 slug park-inn-by-radisson-oslo-norway/hotels.com ho338914;zenhotels 页 slug 仍 park_inn_by_radisson_2 佐证),2023-24 改挂 Radisson RED 并成为 Verified Net Zero 酒店(2024 官方 press)。现名 Radisson RED Oslo City Centre(Booking/OTA 全名带后缀 'A Verified Net Zero Hotel';Radisson 官网 slug radisson-red-oslo-city-centre-net-zero)。RED 未标星(暂记 0,建议 Booking 复核);评分 8.5/70 样本较少。priceEur=zenhotels from-€206 起价。"
+        },
+        {
+          "name": "Radisson RED Oslo Økern",
+          "nameZh": "奥斯陆奥肯丽芮酒店",
+          "star": 0,
+          "rating": 9.4,
+          "priceEur": 138,
+          "area": "奥斯陆东北 Økern 区 Lørenfaret 3(距市中心约3.9km,近蒙克博物馆约2.1km/植物园约2.4km),204间/12层,约2022 年开业",
+          "near": "Økern 地铁站约470m、Løren 站约510m",
+          "ratingSource": "ZenHotels.com(0-10,264 条点评)",
+          "sources": [
+            "https://www.radissonhotels.com/en-us/hotels/radisson-red-oslo-okern",
+            "https://www.zenhotels.com/hotel/es-es/norway/oslo/mid10118435/radisson_red_oslo_okern/?dateless_form=yes",
+            "https://www.visitoslo.com/en/accommodation/all_accommodation/?tlp=7694353&name=Radisson-RED-Oslo-Okern",
+            "https://hotel.eztravel.com.tw/detail-cityEName-827-92356699/radisson-red-oslo-okern/"
+          ],
+          "note": "核实:现名=Radisson RED Oslo Økern(带 ø;Økern/Løren 区东北部,Radisson 官网在售,visitoslo 收录),约2022 年开业的 RED 新店,独立物业。RED 未标星(暂记 0,建议 Booking 复核)。评分 9.4/264 明显高于同城各家且样本少,疑为 zenhotels 综合样本偏差,录入前务必以 Booking 现页复核。Ctrip 中文名'奥斯陆奥肯丽芮酒店'(丽芮=RED)。priceEur=zenhotels from-€138 起价。"
+        },
+        {
+          "name": "Savoy 1918",
+          "nameZh": "萨沃伊1918酒店",
+          "star": 0,
+          "rating": null,
+          "priceEur": 380,
+          "area": "奥斯陆市中心 Tullinløkka(国家美术馆一侧;1918 年老建筑原地全面修复),92间,2026-06-15 重新开业",
+          "near": "Tullinløkka/国家美术馆、议会、王宫、Karl Johans gate(均步行范围)",
+          "ratingSource": "暂无(2026-06-15 开业仅数月,Booking/OTA 尚未形成稳定 0-10 评分;Booking 已收录该店但评分待积累)",
+          "sources": [
+            "https://www.booking.com/hotel/no/home-hotel-savoy.zh-cn.html",
+            "https://www.booking.com/hotel/no/home-hotel-savoy.html",
+            "https://no.hotel.report/management/savoy-1918-har-apnet-dorene-oslo-far-sitt-forste-hotell-i-small-luxury-hotels-of-the-world",
+            "https://www.trabber.ie/hotels/norway-no/oslo-3143244/savoy-1918-3891632/",
+            "https://www.hotels.com/ho135361/clarion-collection-hotel-savoy-oslo-norway/"
+          ],
+          "note": "核实:现名=Savoy 1918(Booking/OTA 全名 'Savoy 1918, a member of Small Luxury Hotels of The World',Booking 页 slug home-hotel-savoy);doc 疑名 'Savoy Hotel Oslo 1918' 不准确,亦与 Thon 系无关。前身:1918 年老 Savoy 酒店,曾以 Clarion Collection Hotel Savoy 运营(hotels.com slug 佐证),现由 HEIMR Collection(与卑尔根 Opus XVI 同业主,投资方 Endre Tarald Glastad)数亿元级修复后重开,为奥斯陆首家 Small Luxury Hotels of the World(SLH)成员;位置 Tullinløkka(非 Bygdøy allé,与 doc #3 无关联)。92间、无标准化房型、含餐厅酒吧水疗。星级:SLH 精品未官方定星,暂记 0(建议按渠道豪华档复核);评分暂无(2026-06-15 开业,Booking 尚未形成稳定评分)。priceEur=Trabber 聚合 from-€380 起价(2026-09 观察);Priceline 见约 $327 起。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Radisson Blu Bygdøy Allé Hotel(疑记)",
+      "reason": "查无此店,判定为误记,不收录。核实过程:①Booking/Radisson 官网/各 OTA 现无任何 'Radisson Blu Bygdøy Allé' 或 Radisson 系酒店位于 Bygdøy allé;②Bygdøy allé(奥斯陆 Frogner/使馆区街道,西起 Solli plass)现有/曾有的住宿为 Rica Bygdøy Allé(2015 Rica 并入 Scandic)、Frogner House Bygdøy Allé 公寓、Scandic Bygdøy Allé 等,均非 Radisson 系;③奥斯陆所有在营 Radisson/Blu/RED 已逐一核实:市中心 Radisson Blu Scandinavia(Holbergs plass 30,距 Bygdøy allé 北端约数百米,疑与其混淆)、中央站 Radisson Blu Plaza、东区 Radisson Blu Alna、西郊 Radisson Blu Park(Bærum/福尼布)及机场三店,均不在 Bygdøy allé;④Savoy 1918(#11)位于 Tullinløkka,亦不在 Bygdøy allé。故 #3 无对应实体,按 skipped 处理。"
+    }
+  ]
+}

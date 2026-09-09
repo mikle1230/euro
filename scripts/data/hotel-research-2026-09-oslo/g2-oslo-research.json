@@ -1,0 +1,170 @@
+{
+  "cities": [
+    {
+      "zh": "奥斯陆",
+      "en": "Oslo",
+      "country": "NO",
+      "cityCode": "OSL",
+      "note": "含 Gardermoen/Jessheim 机场带酒店(奥斯陆市区北约 35km,机场快线约 20 分钟)。价格为 2026-06 观察的参考价(EUR,多为无日期最低起价,随季浮动);评分为 Booking 口径 0-10(经 ZenHotels.com 展示)。",
+      "hotels": [
+        {
+          "name": "Comfort Hotel Runway",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 101,
+          "area": "Gardermoen 机场区(奥斯陆机场西南侧,Hans Gaarders veg 27)",
+          "near": "距 Oslo Airport 航站楼约 1.7km,提供付费机场班车",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,1854 条)",
+          "sources": [
+            "https://www.strawberryhotels.com/hotels/norway/oslo-airport/comfort-hotel-runway/",
+            "https://www.zenhotels.com/hotel/fr-fr/norway/gardermoen/mid7464631/comfort_hotel_runway/",
+            "https://www.booking.com/hotel/no/comfort-runway.en-gb.html"
+          ],
+          "note": "Strawberry(原 Nordic Choice)Comfort 系机场酒店,2010 年开业(约 300 间房);运营中,名称未变。"
+        },
+        {
+          "name": "Home Hotel Folketeateret",
+          "nameZh": "",
+          "star": 4,
+          "rating": 8.7,
+          "priceEur": 198,
+          "area": "奥斯陆市中心 Storgata(Youngstorget,老 Folketeatret 剧场建筑内)",
+          "near": "Oslo S/中央车站约 350m,Jernbanetorget 地铁约 200m,皇宫约 1km",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,2431 条)",
+          "sources": [
+            "https://www.strawberryhotels.com/hotels/norway/oslo/home-hotel-folketeateret/",
+            "https://www.zenhotels.com/hotel/fr-fr/norway/oslo/mid7464583/clarion_collection_hotel_folketeateret/",
+            "https://www.booking.com/hotel/no/home-hotel-folketeateret.en-gb.html"
+          ],
+          "note": "即旧档所称 Folketeateret Hotel;前身为 Clarion Collection Hotel Folketeateret(Booking/ZenHotels 旧 slug 仍为 clarion-collection-hotel-folketeateret),Strawberry 现以 Home 品牌运营,约 160 间房。"
+        },
+        {
+          "name": "Hobo Oslo",
+          "nameZh": "",
+          "star": 0,
+          "rating": 9.2,
+          "priceEur": 153,
+          "area": "奥斯陆市中心 Dronningens gate 23-25(奥斯陆大教堂旁)",
+          "near": "Jernbanetorget 地铁约 280m、Oslo S 约 350m,奥斯陆大教堂步行 2 分钟",
+          "ratingSource": "Booking.com 等合作网站评分(经 ZenHotels 聚合展示,2026-06 观察)",
+          "sources": [
+            "https://www.strawberryhotels.com/hotels/norway/oslo/hobo-oslo/",
+            "https://www.zenhotels.com/hotel/fr-fr/norway/oslo/mid13325312/hobo_oslo/"
+          ],
+          "note": "Hobo 为 Strawberry 系精品酒店;奥斯陆店在营(市中心,约 181 间房,2025 年重装),非斯德哥尔摩 Hobo 误植(斯京店为同品牌首店)。精品定位无官方星级(0 表示未标注)。"
+        },
+        {
+          "name": "Quality Hotel Hasle Linie",
+          "nameZh": "",
+          "star": 0,
+          "rating": 8.8,
+          "priceEur": 137,
+          "area": "Hasle/Løren(奥斯陆东北,Bokkerveien 15)",
+          "near": "Hasle 地铁站约 390m、Løren 站约 440m;距蒙克美术馆约 1.8km",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,275 条)",
+          "sources": [
+            "https://www.strawberryhotels.com/hotels/norway/oslo/quality-hotel-hasle-linie/",
+            "https://www.zenhotels.com/hotel/fr-fr/norway/oslo/mid9920558/quality_hotel_hasle_linie/",
+            "https://www.booking.com/hotel/no/quality-hasle-linie.en-gb.html"
+          ],
+          "note": "官方现名拼写为 Hasle Linie(旧档写作 Hasle Line 不准确);2021 年开业(211 间房/6 层),运营中,无更名。星级未标注(0)。"
+        },
+        {
+          "name": "Quality Hotel 33",
+          "nameZh": "",
+          "star": 4,
+          "rating": 7.1,
+          "priceEur": 118,
+          "area": "Økern/Risløkka(奥斯陆东北东郊,Østre Aker vei 33)",
+          "near": "Risløkka 地铁约 470m、Økern 站约 670m;市中心约 4.7km",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,943 条)",
+          "sources": [
+            "https://www.strawberryhotels.com/hotels/norway/oslo/quality-hotel-33/",
+            "https://www.zenhotels.com/hotel/fr-fr/norway/oslo/mid7541194/quality_hotel_33/",
+            "https://www.booking.com/hotel/no/quality-33.en-gb.html"
+          ],
+          "note": "酒店名中的 33 为 Østre Aker vei 门牌号(并非 Økern 33 号地址);2008 年开业(242 间房/9 层),运营中。"
+        },
+        {
+          "name": "Quality Hotel Expo",
+          "nameZh": "博览会品质酒店(福尼布)",
+          "star": 4,
+          "rating": 8.1,
+          "priceEur": 123,
+          "area": "Fornebu 半岛(贝鲁姆市 Bærum,奥斯陆西郊原机场旧址)",
+          "near": "Ringstabekk 地铁约 2.4km;近 Telenor Arena、海滨步道,距市中心约 8km",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,934 条)",
+          "sources": [
+            "https://www.strawberryhotels.com/hotels/norway/oslo/quality-hotel-expo/",
+            "https://www.zenhotels.com/hotel/fr-fr/norway/baerum/mid7749030/quality_hotel_expo/",
+            "https://www.booking.com/hotel/no/quality-expo.en-gb.html"
+          ],
+          "note": "Booking 中文页名「福尼布博览会品质酒店」;2012 年开业(约 300 间房/4 层),运营中,名称未变。"
+        },
+        {
+          "name": "Quality Airport Hotel Gardermoen",
+          "nameZh": "加勒穆恩机场品质酒店",
+          "star": 0,
+          "rating": 7.7,
+          "priceEur": 106,
+          "area": "Jessheim(奥斯陆机场东侧镇区,Lokevegen 7)",
+          "near": "距 Oslo Airport 航站楼约 4.7km,提供机场班车;Jessheim 镇中心步行可达",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,1085 条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-de/norway/jessheim/mid7542453/quality_hotel_gardermoen_airport/",
+            "https://www.booking.com/hotel/no/airportgardermoen.html",
+            "https://www.elong.com/hotel/hoteldetail?hotelId=62335662"
+          ],
+          "note": "旧档简称 Quality Hotel Gardermoen,官方现名全称为 Quality Airport Hotel Gardermoen;1985 年建/2018 年翻新(455 间房),运营中,无更名。星级未标注(0)。"
+        },
+        {
+          "name": "Park Inn by Radisson Oslo Airport Hotel West",
+          "nameZh": "",
+          "star": 0,
+          "rating": 7.2,
+          "priceEur": 123,
+          "area": "Gardermoen 机场西区(Museumsvegen 26,近挪威军机博物馆)",
+          "near": "距 Oslo Airport 航站楼约 2km,付费机场班车约 NOK70/人/程",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,1304 条)",
+          "sources": [
+            "https://www.radissonhotels.com/en-us/hotels/park-inn-oslo-airport-west",
+            "https://www.zenhotels.com/hotel/en-de/norway/gardermoen/mid8873271/park_inn_by_radisson_oslo_airport_hotel_west/",
+            "https://www.booking.com/hotel/no/norlandia-oslo-airport-hotell.zh-cn.html"
+          ],
+          "note": "核实结论:现名仍为 Park Inn by Radisson Oslo Airport Hotel West,未见改为 Radisson RED;前身曾用名含 Best Western Oslo Airport Hotel(West)与 Norlandia Oslo Airport Hotell(Booking 页 slug 仍为 norlandia-oslo-airport-hotell);1997 年建/2007 翻新(233 间房),运营中。星级未标注(0)。"
+        },
+        {
+          "name": "First Hotel Millennium",
+          "nameZh": "",
+          "star": 0,
+          "rating": 7.0,
+          "priceEur": 164,
+          "area": "Kvadraturen 老城区(Tollbugaten 25,奥斯陆市中心)",
+          "near": "Stortinget 地铁约 275m、Oslo S 约 680m;议会大厦旁",
+          "ratingSource": "Booking.com(经 ZenHotels 展示,2026-06 观察,1702 条)",
+          "sources": [
+            "https://www.zenhotels.com/hotel/fr-fr/norway/oslo/mid7541116/first_hotel_millennium/",
+            "https://www.booking.com/hotel/no/first-millennium.en-gb.html",
+            "https://www.aspelinreitan.no/aktuelt/kjoeper-first-hotel-millennium"
+          ],
+          "note": "即旧档 Millennium Hotel;官方现名 First Hotel Millennium(114 间房,1997 年建)。2026-02 物业售予 Aspelin Reitan Eiendom+Malling,计划整体升级/可能更名,现仍由 First Hotels 运营——报价前建议复核营业状态与品牌。星级未标注(0)。"
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Quality Hotel Entry",
+      "reason": "已核实真实存在且在营:Booking 页 slug 为 quality-mastemyr,Booking 标注 4 星,地址 Lienga 11, 1414 Trollåsen/Kolbotn(奥斯陆以南约 13km 的 Mastemyr,属 Nordre Follo,并非 Bjørvika),2026 年各 OTA 仍可预订(GDS 码 p55300056)。但 Booking 属性页反爬(HTTP 202)、Expedia/trivago/kayak/hotelcheckout 均被拦截、ZenHotels 无此店数据,未能取得可核验的 0-10 评分与 EUR/NOK 参考价,依规则暂缓入库,建议人工在 Booking 上补一次报价核价。"
+    },
+    {
+      "name": "Sabelhuset",
+      "reason": "查无此酒店/场所:在奥斯陆(含 Gardermoen/Jessheim 机场带)多轮检索未找到名称为 Sabelhuset/SABELSHUS 的酒店或住宿,疑为行程文档识别/转写错误,无法对号入库。"
+    },
+    {
+      "name": "Levy Country Club",
+      "reason": "查无 Levy Country Club;位置/名称最接近的候选为 Gardermoen 方向 Ullensaker 的 Lily Country Club(乡村俱乐部度假村,lilycountryclub.no,含客房/餐饮/SPA/高尔夫,近 Miklagard 高尔夫与机场),但 Levy→Lily 无法确认为同指(名称差异大),且未能取得其可靠 0-10 评分与欧元参考价,依规则暂缓入库。"
+    }
+  ]
+}
