@@ -68,12 +68,12 @@
 ## 2026-09-08 — LDC/用车知识纠偏核对(🟡待集中修改,暂不动代码)
 
 **来源**:Michael 提供 DeepSeek 版 QUOS 知识总结;T 以 euro 代码 + LDC Summer 2026 官方表 + Michael 口述逐条对照(euro 代码本身无此 bug,仅为知识校准;完整记录见 workspace references/euro/ldc-corrections-to-deepseek-20260908.md)
-**状态**:✅ 需求已确认(2026-09-08 Michael:冰岛是重要目的地,euro 需支持冰岛团) | 🛠️ 待集中修改(等 Michael 说"集中修改"时从本条目 + 纠偏文件提出)
+**状态**:✅ 需求已确认 | **🛠️ 已实现(2026-09-09 A1:冰岛 IS→TEITUR 分支入 ldc-mapping.js)**;其余(ER 阶梯尾部等)仍待 LDC 新表核对
 
 ### 校准结论(对 euro 代码的影响)
 1. **中欧 ≠ DE BER**:CZ/HU/SK(含 AT)= CZ PRG €550;DE BER 仅德国单国与 DE+AT 组合。euro 代码已正确(centralEurope→CZ PRG;DE+AT→germanyNgs),**无需改**。
 2. **纯意 Mono = GLS €590 vs 西欧多国 NGS €650**:代码已正确区分(italyMono GLS / westernEurope NGS),**无需改**。
-3. **冰岛 = TEITUR (LDC) 本地打包,非 SE STO**:euro `ldc-mapping.js` **KNOWN_COUNTRY_CODES/MONO_MAP 无 IS** → 纯冰岛团 resolveLdcSupplier=null、不注入 LDC 项。**已确认需求:euro 需支持冰岛团报价 → 集中修改时加 IS→TEITUR 分支(代码现未动)**。
+3. **冰岛 = TEITUR (LDC) 本地打包,非 SE STO**:euro `ldc-mapping.js` 原 KNOWN_COUNTRY_CODES/MONO_MAP 无 IS → 纯冰岛团 resolveLdcSupplier=null、不注入 LDC 项。**🛠️ 2026-09-09 A1 已实现**:KNOWN_COUNTRY_CODES 加 IS、MONO_MAP IS→icelandMono、SUPPLIERS.icelandMono = TEITUR (LDC)(IS REK,vehicleType LDC,dailyRate=null 参考价入 note、prepost=null)、ER_RULES.icelandMono=none(A3 校准前不计价)。
 4. 冰岛 140€/天:官方表无,来源存疑,勿用。
 5. ER 阶梯尾部(germanyGls 1000+/franceMono 1500+/italyMono 1200+)与波兰 PL WAW null:等 LDC 新表核对。
 
@@ -149,7 +149,7 @@
 ## 2026-09-09 — 冰岛北部阿克雷里 SBA 供应商(🟡知识入库,邮轮业务)
 
 **来源**:Melissa Yung(Iceland)→ 2026-09-08,Michael 转。
-**状态**:🟡存档(影响 euro 冰岛支持的供应商边界,待集中修改时考虑)
+**状态**:🟡存档(边界已写入 `ldc-mapping.js` icelandMono 条目注释+note;A1 已落地 IS→TEITUR 分支,**SBA 未编码**——等真实邮轮/阿克雷里起止团型出现再扩展,euro 行程模型暂无「邮轮业务」字段)
 **要点**:
 - 新供应商 **SBA Nordurleid**(ID **CPHMTC2192**):仅阿克雷里(Akureyri)起止、**邮轮业务**;含车+导游(不可单独订)+司机兼导游(≤19座);价期 2027-05-01~09-30;邮轮价>普通价。
 - **边界**:雷克雅未克起止的 LT/LDC 大巴仍 = **TEITUR**,非 SBA。

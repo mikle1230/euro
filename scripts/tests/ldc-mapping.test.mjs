@@ -2,7 +2,7 @@
 // 运行：npm test
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { resolveLdcSupplier, hasArcticCity, SUPPLIERS } from '../../src/lib/ldc-mapping.js'
+import { resolveLdcSupplier, hasArcticCity, SUPPLIERS, KNOWN_COUNTRY_CODES, ER_RULES } from '../../src/lib/ldc-mapping.js'
 
 test('单国 → 对应 Mono/区域供应商', () => {
   assert.equal(resolveLdcSupplier(['FR']).supplierCode, 'FR PAR')
@@ -80,4 +80,23 @@ test('芬兰北部 NGS：ON REQUEST 条目存在且费率齐备', () => {
   assert.equal(ngs.dailyRate, null)
   assert.ok(ngs.note.includes('ON REQUEST'))
   assert.equal(ngs.prepost, '€146')
+})
+
+// A1（2026-09-09）：冰岛 LDC 支持 —— IS → TEITUR (LDC)，SBA 阿克雷里邮轮仅注释挂账（euro 无邮轮字段，不做自动分派）
+test('冰岛单国 → TEITUR (LDC)（A1）', () => {
+  assert.ok(KNOWN_COUNTRY_CODES.has('IS'), 'KNOWN_COUNTRY_CODES 应含 IS')
+  const s = resolveLdcSupplier(['IS'])
+  assert.equal(s.supplierCode, 'IS REK')
+  assert.equal(s.fullSelectionName, 'TEITUR (LDC) - Reykjavik')
+  assert.equal(s.vehicleType, 'LDC')
+  assert.equal(s.symbol, 'ISK')
+  assert.equal(s.dailyRate, null, 'TEITUR 打包价（3天54,222/4天72,297 ISK）作参考价入 note，不设固定日费率')
+  assert.equal(s.prepost, null, '冰岛 PRE/POST 无官方数')
+  assert.ok(s.note.includes('TEITUR'), 'note 应含 TEITUR 参考价')
+  assert.ok(s.note.includes('SBA'), 'SBA 阿克雷里邮轮边界应写进 note（仅挂账，不自动分派）')
+})
+
+test('冰岛 ER：表外 none 型（ER/空驶待 A3 校准统一处理）', () => {
+  assert.equal(ER_RULES.icelandMono.type, 'none')
+  assert.ok(ER_RULES.icelandMono.note.length > 0)
 })

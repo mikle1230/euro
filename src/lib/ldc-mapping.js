@@ -7,6 +7,7 @@
 //   4) 多国：明确规则优先（荷比卢/中欧/斯堪的纳维亚/英国），其余西欧多国统一 IT ROM
 //   5) 西西里岛内 → IT PMO（Mono Sicily）；碰本土 → 意大利 Mono/西欧
 //   6) 挪威/芬兰南北：行程含北极极地 → 北；常规城市 → 南（hasArcticCity 判定）
+//   7) 冰岛 → TEITUR (LDC) 本地打包（雷克雅未克起止；阿克雷里邮轮 SBA 扩展见 SUPPLIERS.icelandMono）
 
 export const SUPPLIERS = {
   // ---- 多国 / 跨国区域 ----
@@ -127,6 +128,18 @@ export const SUPPLIERS = {
     fullSelectionName: 'PL WAW Through Coach (NGS)', vehicleType: 'NGS',
     dailyRate: null, symbol: '€', prepost: null, note: '波兰单国（从华沙 WAW 调车，费率待补充）',
   },
+  // 冰岛（2026-09-09 A1，Michael 确认：冰岛是重要目的地，euro 必须支持冰岛团）。
+  // 供应商边界：
+  //   - 雷克雅未克/南部/环线起止 → TEITUR (LDC)，打包 `Reykjavik - X DAYS`（KT 下拉标准名 TEITUR (LDC) - Reykjavik）；
+  //   - 北部阿克雷里(AEY)起止的**邮轮业务** → SBA Nordurleid（Supplier ID CPHMTC2192），勿用于雷克雅未克段。
+  //     euro 行程模型暂无「邮轮业务」字段，且环线团（雷克雅未克起止、中间过夜阿克雷里）也会命中 AEY，
+  //     故暂不做按城市自动分派——SBA 等真实邮轮/阿克雷里起止团型出现后再扩展（rules-log 2026-09-09 SBA 条目）。
+  icelandMono: {
+    region: 'Iceland (TEITUR LDC)', supplierCode: 'IS REK',
+    fullSelectionName: 'TEITUR (LDC) - Reykjavik', vehicleType: 'LDC',
+    dailyRate: null, symbol: 'ISK', prepost: null,
+    note: '冰岛 LDC：TEITUR (LDC) 本地打包（模板团实测 3天54,222 / 4天72,297 ISK，超公里 0.91 ISK/km，半天机场起 12,651 ISK；单接送机 57,915 ISK 为 TEITUR 非 LDC 档）；阿克雷里(AEY)起止邮轮业务 → SBA Nordurleid（CPHMTC2192），勿用于雷克雅未克段（暂不自动分派）',
+  },
 }
 
 // ── EMPTY RUN / 超公里规则（LDC Summer 2026 CN ACTIVE 表，用户口径 2026-08-18）──
@@ -211,16 +224,17 @@ export const ER_RULES = {
     maxKmPerDay: 350, excessPerKm: 1.9,
   },
   polandMono: { type: 'none', note: '波兰表外，ER 费率待补充' },
+  icelandMono: { type: 'none', note: '冰岛表外（TEITUR 本地打包），ER/空驶按 TEITUR 预设项，待 A3 ER 校准统一处理' },
 }
 
 const WESTERN_EUROPE_CODES = ['FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'ES', 'PT']
 
-// LDC 表覆盖的国家集合（单国 Mono + 多国区域 + 西欧）。
+// LDC 表覆盖的国家集合（单国 Mono + 多国区域 + 西欧）+ 冰岛（TEITUR LDC 本地打包，A1 2026-09-09）。
 // 供 coach-plan 做防御性过滤：行程里出现表外国家（如美国的 Syracuse → US）时
 // 直接忽略，不会让整个 LDC 区域判定失败。
 export const KNOWN_COUNTRY_CODES = new Set([
   ...WESTERN_EUROPE_CODES,
-  'GB', 'IE', 'CZ', 'HU', 'SK', 'PL', 'SE', 'DK', 'NO', 'FI', 'EE', 'LT', 'LV',
+  'GB', 'IE', 'CZ', 'HU', 'SK', 'PL', 'SE', 'DK', 'NO', 'FI', 'IS', 'EE', 'LT', 'LV',
 ])
 
 // 北极极地城市（挪威/芬兰北部）——命中任一即判定为「北」
@@ -266,6 +280,7 @@ const MONO_MAP = {
   AT: 'centralEurope',
   SE: 'swedenMono',
   DK: 'denmarkMono',
+  IS: 'icelandMono', // 冰岛（2026-09-09 A1：TEITUR (LDC) 本地打包）
   // NO / FI 由 resolveLdcSupplier 按北极极地(arctic)在单国分支单独判定
   EE: 'balticMono',
   LT: 'balticMono',
