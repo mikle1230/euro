@@ -1,0 +1,130 @@
+{
+  "cities": [
+    {
+      "zh": "霍尔斯沃德吕尔",
+      "en": "Hvolsvollur",
+      "country": "IS",
+      "cityCode": "HVO",
+      "note": "南岸 1 号公路走廊(Hella–Hvolsvöllur)调研 2026-09:Booking 城市标注各异——Hotel Loa、Hotel Hvolsvollur - Central South Iceland 归 Hvolsvöllur 目的地(860);Stracta Hotel、Hotel Kanslarinn Hella、Hotel Laekur 归 Hella 目的地(850/851,故放 hella_hotels);Hotel Leirubakki 在 Booking 独立目的地 Leirubakki(海拉侧、Road 26 海克拉方向),一并放 hella_hotels 供斟酌。评分均取 Booking 数据,经 is-southerniceland.com 带 Booking 标识的镜像转述(2026-09-10 观察;Booking 属性页反爬 HTTP 202 无法直读,城市页可读)。价格多为'从价'(from)口径,已逐一注明;汇率:CNY÷7.81≈EUR(2026-09)、1EUR≈143ISK。注意:repo 中 'Hella' 键现被挪威海拉(HLN/NO)占用,单建冰岛海拉条目时需另加别名/中文键。",
+      "hotels": [
+        {
+          "name": "Hotel Loa",
+          "nameZh": "洛阿酒店",
+          "star": 3,
+          "rating": 9.2,
+          "priceEur": 175,
+          "area": "Hvolsvöllur 镇中心(Austurvegur 19, 860 Hvolsvöllur),1 号公路主街旁,距 LAVA 火山中心约 1.3km、镇巴士站约 600m;2025-07 新开业 66 房(Booking 现归 Hvolsvöllur 目的地)",
+          "near": "Hvolsvöllur 镇中心 / LAVA 火山中心",
+          "ratingSource": "Booking.com",
+          "sources": [
+            "https://www.is-southerniceland.com/en/property/hotel-loa.html",
+            "https://hotelloa.is/",
+            "https://ca.trip.com/hotels/hvolsvollur-hotel-detail-125651431/hotel-loa",
+            "https://www.trivago.co.uk/en-GB/oar/hotel-loa-rang%C3%A1r%C3%BEing-eystra?search=100-41500494"
+          ],
+          "note": "Booking 评分 9.2/565 条(镜像带 Booking 标识转述,2026-09-10;Booking 属性页反爬无法直读)。3 星为 Booking 系镜像标注。priceEur 口径:Trivago.co.uk 观察'from £149'(≈€175,2026-09);官网地址 Austurvegur 19,860。"
+        },
+        {
+          "name": "Hotel Hvolsvollur - Central South Iceland",
+          "nameZh": "霍尔斯沃德吕尔酒店",
+          "star": 3,
+          "rating": 8.2,
+          "priceEur": 180,
+          "area": "Hvolsvöllur 镇内(Hlíðarvegur 7-11, 860 Hvolsvöllur),距镇中心步行约 5 分钟,LAVA 中心近旁、镇巴士站就在门口(Booking 全名含 'Central South Iceland',城市标注 Hvolsvöllur)",
+          "near": "Hvolsvöllur 镇中心 / LAVA 火山中心",
+          "ratingSource": "Booking.com",
+          "sources": [
+            "https://www.booking.com/hotel/is/hvolvollur.html",
+            "https://www.is-southerniceland.com/en/property/hotel-hvolsvollur.html",
+            "https://www.ca.kayak.com/Hvolsvoellur-Hotels-Hotel-Hvolsvoellur.357810.ksp"
+          ],
+          "note": "Booking 评分 8.2/373 条(镜像带 Booking 标识转述,2026-09-10)。原名/Booking 简名 Hotel Hvolsvöllur。priceEur 口径:Booking 系镜像 CNY1435/晚(2026-09)→≈€184;Kayak 淡季 C$181→≈€122;取 ~€180 参考。"
+        }
+      ]
+    }
+  ],
+  "hella_hotels": [
+    {
+      "name": "Stracta Hotel",
+      "nameZh": "斯特拉克塔酒店",
+      "star": 4,
+      "rating": 8.2,
+      "priceEur": 120,
+      "area": "海拉(Hella)镇东缘 1 号公路旁,Rangarflatir 4, 850 Hella;距海拉镇中心步行约 10 分钟、距霍尔斯沃德吕尔镇约 13-14km/车程约 12-15 分钟(Booking 城市标注 Hella,非 Hvolsvöllur)",
+      "near": "海拉镇",
+      "ratingSource": "Booking.com",
+      "sources": [
+        "https://www.booking.com/hotel/is/stracta.html",
+        "https://stractahotel.com/contact-us/",
+        "https://www.is-southerniceland.com/en/property/stracta-hotel.html",
+        "https://www.trip.com/hotels/hella-hotel-detail-5942569/stracta-hotel-hella/review.html"
+      ],
+      "note": "Booking 评分 8.2/1434 条(镜像带 Booking 标识,2026-09-10)。官方/Booking 地址均为 Rangarflatir 4,850 Hella——位于海拉而非霍尔斯沃德吕尔,勿计入 HVO 城市推荐。priceEur 口径:KT 参考 15,693ISK≈€110(143ISK/EUR);Kayak 'from US$132/双人'(≈€121);Booking 系镜像 CNY590≈€76(淡季低促);取 ~€120 参考。另有一家不同物业 'Stracta Hotel Mosfell'(Þrúðvangur 6,850 Hella)请勿混淆。"
+    },
+    {
+      "name": "Hotel Kanslarinn Hella",
+      "nameZh": "坎斯拉林酒店",
+      "star": 2,
+      "rating": 8.5,
+      "priceEur": 111,
+      "area": "海拉(Hella)镇内 1 号公路(Ring Road)旁,Dynskálar 10c, 850 Hella;距镇中心步行约 5 分钟、距 Hella 巴士站约 150m(Booking 城市标注 Hella)",
+      "near": "海拉镇",
+      "ratingSource": "Booking.com",
+      "sources": [
+        "https://www.booking.com/hotel/is/kanslarinn-hella.html",
+        "https://www.is-southerniceland.com/en/property/kanslarinn.html",
+        "https://kanslarinn.is/",
+        "https://www.ferdalag.is/en/service/hotel-kanslarinn"
+      ],
+      "note": "Booking 评分 8.5/1855 条(镜像带 Booking 标识,2026-09-10)。2 星为 Booking 系镜像标注(21 房小酒店,官方自述位于 Ring Road 1 海拉村内)。priceEur 口径:Kayak.ie 直接观察 EUR '€111/双人 1 房'(from,2026-09)。"
+    },
+    {
+      "name": "Hotel Laekur",
+      "nameZh": "莱库尔酒店",
+      "star": 3,
+      "rating": 8.9,
+      "priceEur": 156,
+      "area": "乡村农场酒店:实际位于 Hróarslækur 农场(851 Hella, Rangárþing ytra),1 号公路以北内陆约 10km(去 Gunnarsholt 方向),距海拉镇与霍尔斯沃德吕尔镇各约 11-12km 直线/车程约 20 分钟,两镇之间偏内陆;Booking 城市标注 Hella",
+      "near": "海拉镇(乡村)",
+      "ratingSource": "Booking.com",
+      "sources": [
+        "https://www.booking.com/hotel/is/ha3tel-la-kur.html",
+        "https://www.is-southerniceland.com/en/property/laekur.html",
+        "https://www.momondo.ie/hotels/hella-south/Hotel-Laekur.mhd493234.ksp",
+        "https://icelandweddingplanner.com/2013/12/14/iceland-wedding-hotel-hotel-laekur-hella-iceland/"
+      ],
+      "note": "Booking 评分 8.9/1062 条(镜像带 Booking 标识,2026-09-10)。Booking/各 OTA 城市均标 Hella,但地理上位于 Hróarslækur 农场、两镇大致中间的内陆,并非海拉镇中心也非 Hvolsvöllur——归口 Hella 供斟酌。官网称 Hótel Lækur。priceEur 口径:momondo.ie 直接观察 EUR 'from €156'(另见 from €135 快照;Booking 系镜像 CNY2334≈€299 或为高配/高期价)。"
+    },
+    {
+      "name": "Hotel Leirubakki",
+      "nameZh": "莱拉鲁巴奇酒店",
+      "star": 4,
+      "rating": 8.1,
+      "priceEur": 140,
+      "area": "海克拉(Hekla)火山脚下乡村度假农场,Leirubakki, 851 Hella(Rangárþing ytra),位于 Road 26(Hekluleið)上、非 1 号公路;距海拉镇约 35km/车程 30-35 分钟,距霍尔斯沃德吕尔约 45-50 分钟;海克拉中心(Hekla Centre)同址,Booking 独立目的地 'Leirubakki'、酒店页中文标注海拉",
+      "near": "海克拉火山方向 / 海克拉中心(Hekla Centre)",
+      "ratingSource": "Booking.com",
+      "sources": [
+        "https://www.booking.com/hotel/is/leirubakki.html",
+        "https://www.is-southerniceland.com/en/property/hotel-leirubakki.html",
+        "https://www.leirubakki.is/",
+        "https://www.kayak.co.uk/Hella-Hotels-Hotel-Leirubakki.632772.ksp"
+      ],
+      "note": "Booking 评分 8.1/372 条(镜像带 Booking 标识,2026-09-10),Booking 现名 Hotel Leirubakki(前称 Guesthouse Leirubakki)。星级:Booking 系镜像标 4★,Kayak 曾标 2★/旧称民宿,以 Booking 4★ 为准待人工复核。离两镇均远(海拉约 30+ 分钟、Hvolsvöllur 约 45+ 分钟),Booking 归海拉侧,放 hella_hotels 供斟酌。priceEur 口径:Kayak UK 'from £120'(≈€140,2026-09);TheTopHotels 标 US$261(≈€240,高期);Booking 中文页名'莱拉鲁巴奇酒店'。"
+    }
+  ],
+  "skipped": [
+    {
+      "name": "HOTEL ÖRK",
+      "reason": "对不上/错区域:Booking(hotel/is/ork.html)与官网 hotelork.is 均确认唯一一家 Hotel Örk 位于 Hveragerði(Hveragerði,810,雷克雅未克东南约 45km、距 Hvolsvöllur 约 90km),本走廊无第二家 'Hótel Örk'(已检索 Hella/Hvolsvöllur 均无)。Booking 4★、Kayak 观察 from US$129/双人(≈€119);Booking 评分因属性页反爬未能直读。备查:https://www.booking.com/hotel/is/ork.html 、https://hotelork.is/en/ 。如后续建 Hveragerði 条目可再补。"
+    },
+    {
+      "name": "HOTEL BURFELL",
+      "reason": "对不上/错区域:唯一可订的 'Hótel Búrfell' 实际位于 Vík í Mýrdal 一侧的农场 Steig, 871 Vík(Mýrdalshreppur,距霍尔斯沃德吕尔约 60-70km/近 1 小时车程 SE),Booking 挂在 Vík 目的地(slug guesthouse-steig),官方 hotelburfell.is;Booking 镜像转述评分 8.3/250 条。非 Hvolsvöllur/Hella 走廊酒店,若后续建 Vík 条目可纳入。备查:https://hotelburfell.is/ 、https://www.booking.com/hotel/is/guesthouse-steig.en-gb.html 。"
+    },
+    {
+      "name": "ARNANES COUNTRY HOTEL",
+      "reason": "对不上/错区域:'Árnanes Country Hotel' 实际位于 Hornafjörður 的 Árnanes 农场、1 号公路旁,距 Höfn í Hornafirði 约 6km(781 Höfn;距霍尔斯沃德吕尔约 340km/4-5 小时,Vatnajökull 区,官网 arnanes.is,Booking slug arnanes-sveitagisting),与本走廊无关;Booking 评分因属性页反爬未能直读。若后续建 Höfn/Skaftafell 条目可再补。备查:https://arnanes.is/ 、https://www.booking.com/hotel/is/arnanes-sveitagisting.html 。"
+    }
+  ]
+}

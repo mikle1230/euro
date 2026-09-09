@@ -120,9 +120,9 @@
 ## 2026-09-08 — 北欧/冰岛竞标参考酒店清单(🟡待集中更新酒店库)
 
 **来源**:Michael 提供客户竞标材料截图 10 张(北欧四国+冰岛+荷比卢产品参考酒店列),2026-09-08。
-**状态**:🟡待集中更新(更新 euro 酒店库时一并处理)
+**状态**:🛠️ **已实现(2026-09-09 B1 Iceland 批)**——冰岛 7 城 51 家已入 `hotel-recommendations.js`(雷克雅未克 27/凯夫拉维克 5/霍芬含冰河湖-斯卡夫塔方向 7/霍尔斯沃德吕尔 2/教堂镇 3/博尔加内斯 5/塞尔福斯 2);调研产物+QA 纠错存档 `scripts/data/hotel-research-2026-09-iceland/`;其余城市(斯德哥尔摩/赫尔辛基/奥斯陆/哥本哈根/卑尔根/哥德堡/塔林 等)留待后续分批。
 **完整清单**:workspace references/euro/nordic-bid-hotels-2026-09.md
-**涉及**:src/data/hotel-recommendations.js、hotel-prices.json 等
+**涉及**:src/data/hotel-recommendations.js(入库)、scripts/data/hotel-research-2026-09-iceland/(调研存档)
 
 ### 摘要
 - 提取 87 条(去重约 70 家),euro 库疑似已有 46、**缺失/未匹配 41 家**。

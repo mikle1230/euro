@@ -1,0 +1,188 @@
+{
+  "cities": [
+    {
+      "zh": "凯夫拉维克",
+      "en": "Keflavik",
+      "country": "IS",
+      "cityCode": "KEF",
+      "note": "凯夫拉维克机场(KEF)周边：机场首末夜/进出港住宿地。",
+      "hotels": [
+        {
+          "name": "Park Inn by Radisson Reykjavik Keflavik Airport",
+          "nameZh": "",
+          "star": 4,
+          "starNote": "携程4钻；Booking/官网星级未能直验（按 Radisson Park Inn 定位暂记4星）",
+          "rating": 7.5,
+          "ratingCount": 670,
+          "ratingSource": "Booking.com（zenhotels.com 转述，0-10 制）",
+          "priceEur": 244,
+          "priceNote": "zenhotels 欧元起价/晚（无日期缺省估算，随日期/房型浮动，仅参考）",
+          "address": "Hafnargata 57, Keflavik（镇中心，已核实）",
+          "area": "Keflavik 镇中心 Hafnargata 57，距 KEF 机场约 3.7km，车程约5分钟",
+          "near": "KEF机场",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-us/iceland/keflavik/mid7349978/icelandair_hotel_in_keflavik/?dateless_form=yes",
+            "https://www.booking.com/hotel/is/park-inn-reykjavik-keflavik-airport.en-gb.html"
+          ]
+        },
+        {
+          "name": "Aurora Hotel at Reykjavik-Keflavik Airport Terminal KEF",
+          "nameZh": "奥罗拉星机场酒店",
+          "star": 3,
+          "rating": 8.6,
+          "ratingCount": 3091,
+          "ratingSource": "Booking.com（zenhotels.com 转述，0-10 制）",
+          "priceEur": 272,
+          "priceNote": "zenhotels 欧元起价/晚（无日期缺省估算，随日期/房型浮动，仅参考）",
+          "address": "Blikavöllur 2, Keflavik（航站楼旁，已核实，距机场约187m）",
+          "area": "KEF 航站楼旁 Blikavöllur 2（距机场187m），72间房",
+          "near": "KEF航站楼",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-us/iceland/keflavik/mid7690237/airport_hotel_aurora_star/?dateless_form=yes",
+            "https://www.booking.com/hotel/is/airport-sma-ri.en-gb.html"
+          ]
+        }
+      ]
+    },
+    {
+      "zh": "霍芬",
+      "en": "Hofn",
+      "country": "IS",
+      "cityCode": "HFN",
+      "note": "霍芬/东南海岸：冰河湖方向过夜镇（Höfn 镇区 + 1号公路沿线）。",
+      "hotels": [
+        {
+          "name": "Höfn - Berjaya Iceland Hotels",
+          "nameZh": "",
+          "aliases": ["Hotel Edda Höfn"],
+          "star": 3,
+          "starNote": "原 Hotel Edda Höfn，约3星（现 Berjaya Iceland Hotels 运营）",
+          "rating": 7.7,
+          "ratingCount": 496,
+          "ratingSource": "Booking.com（zenhotels.com 转述，0-10 制）",
+          "priceEur": 262,
+          "priceNote": "zenhotels 欧元起价/晚（无日期估算）；另有早前 ISK 25,891–30,160≈€175–205（按约147.9 ISK/EUR）参考，两处口径不同",
+          "address": "Ránarslóð 3, Höfn（港边，已核实，36间房）",
+          "area": "Höfn 镇区港边 Ránarslóð 3，夏季运营型酒店（36间）",
+          "near": "Höfn镇中心",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-us/iceland/sveitarfelagid_hornafjordur/mid8061148/hotel_edda_hofn/?dateless_form=yes",
+            "https://www.booking.com/hotel/is/hotel-edda-hofn.en-gb.html"
+          ]
+        }
+      ]
+    },
+    {
+      "zh": "教堂镇",
+      "en": "Kirkjubaejarklaustur",
+      "country": "IS",
+      "cityCode": "KRJ",
+      "note": "教堂镇及东侧1号公路沿线（Kálfafell/Núpar 一带归入本城条目）。",
+      "hotels": [
+        {
+          "name": "Fosshotel Núpar",
+          "nameZh": "努帕尔福斯酒店",
+          "star": 3,
+          "rating": 8.5,
+          "ratingCount": 2347,
+          "ratingSource": "Booking.com（hotelclub.net 转述，0-10 制；hotelclub 描述文本另写 8.4）",
+          "priceEur": 159,
+          "priceNote": "trivago.es 比价 159 €/晚（2026 观察）；Booking/官方 EUR 价未能直取",
+          "address": "Núpar, Kálfafell（1号公路旁，教堂镇东约10km Kálfafell，已核实）",
+          "area": "教堂镇东约10km Kálfafell 一带，1号公路旁，看火山熔岩原/Vatnajökull 景观",
+          "near": "Kálfafell",
+          "sources": [
+            "https://www.hotelclub.net/h/fosshotel-nupar.html",
+            "https://www.trivago.es/es/oar/fosshotel-nupar-k%C3%A1lfafell",
+            "https://www.hotels.com/ho454906/fosshotel-nupar-kalfafell-iceland/"
+          ]
+        },
+        {
+          "name": "Adventure Hotel Geirland",
+          "nameZh": "吉尔兰德酒店",
+          "star": 3,
+          "rating": 8.4,
+          "ratingCount": 728,
+          "ratingSource": "Booking.com（zenhotels.com 转述，0-10 制）",
+          "priceEur": 232,
+          "priceNote": "zenhotels 欧元起价/晚（无日期缺省估算，随日期/房型浮动，仅参考）",
+          "address": "Geirland, Kirkjubaejarklaustur（Geirland 农场，距镇中心约2.5km，已核实，40间房）",
+          "area": "教堂镇近郊 Geirland 农场（距镇约2.5km），40间",
+          "near": "教堂镇",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-us/iceland/kirkjubaejarklaustur/mid7721670/hotel_geirland/?dateless_form=yes",
+            "https://www.booking.com/hotel/is/hotel-geirland.en-gb.html"
+          ]
+        },
+        {
+          "name": "Hotel Klaustur",
+          "nameZh": "",
+          "aliases": ["Icelandair Hotel Klaustur"],
+          "star": 4,
+          "rating": 8.7,
+          "ratingCount": 515,
+          "ratingSource": "Booking.com（zenhotels.com 转述，0-10 制）",
+          "priceEur": 288,
+          "priceNote": "zenhotels 欧元起价/晚（无日期缺省估算，随日期/房型浮动，仅参考）",
+          "address": "Klausturvegur 6, Kirkjubaejarklaustur（已核实，57间房）",
+          "area": "教堂镇中心 Klausturvegur 6（前 Icelandair Hotel Klaustur），57间",
+          "near": "教堂镇中心",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-us/iceland/kirkjubaejarklaustur/mid7484096/icelandair_hotel_klaustur/?dateless_form=yes",
+            "https://www.booking.com/hotel/is/icelandair-hotel-klaustur.en-gb.html"
+          ]
+        }
+      ]
+    },
+    {
+      "zh": "博尔加内斯",
+      "en": "Borgarnes",
+      "country": "IS",
+      "cityCode": "BGG",
+      "note": "博尔加内斯（西冰岛/1号环岛公路过夜点）。",
+      "hotels": [
+        {
+          "name": "Hotel Hamar",
+          "nameZh": "",
+          "aliases": ["Icelandair Hotel Hamar", "Hamar Hotel"],
+          "star": 3,
+          "rating": 8.6,
+          "ratingCount": 821,
+          "ratingSource": "Booking.com（zenhotels.com 转述，0-10 制）",
+          "priceEur": 212,
+          "priceNote": "zenhotels 欧元起价/晚（无日期缺省估算，随日期/房型浮动，仅参考）",
+          "address": "Hamarsvöllur, Borgarnes（1号环岛公路旁，距镇中心约4.4km，44间房）",
+          "area": "Borgarnes 镇外 Hamarsvöllur（1号环岛公路旁，前 Icelandair Hotel Hamar），44间",
+          "near": "1号环岛公路",
+          "sources": [
+            "https://www.zenhotels.com/hotel/en-us/iceland/borgarnes/mid7484101/icelandair_hotel_hamar_3/?dateless_form=yes",
+            "https://www.booking.com/hotel/is/hamar.en-gb.html"
+          ]
+        }
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "name": "Háli Country Hotel（别名 Háli Country Hotel）",
+      "reason": "EUR/CNY 参考价未取到：Booking 官网被反爬拦截(HTTP 202)，hotels.com 全程 429 限流，其余镜像无 EUR 报价（virtualtourist 标 264 USD/晚 2026）。评分与身份已核实，补一个真实 EUR 观察价即可入库。",
+      "verified": {
+        "name": "Hali Country Hotel",
+        "nameZh": "哈利乡村酒店",
+        "star": 3,
+        "rating": 8.8,
+        "ratingCount": 2747,
+        "ratingSource": "Booking.com（is-southerniceland.com 带 Booking 标识转述，0-10 制）",
+        "address": "Hali 2, Reynivellir（1号公路旁，近 Vatnajökull/Jökulsárlón 方向，已核实）",
+        "area": "Höfn 方向 1号公路旁 Hali 2（距 Jökulsárlón 冰河湖约12km），客房+公寓+小屋",
+        "priceEur": null,
+        "priceNote": "见 USD 264/晚（virtualtourist 2026）；EUR/CNY 观察价缺"
+      },
+      "sources": [
+        "https://www.is-southerniceland.com/en/property/hotel-country/rooms.html",
+        "https://www.booking.com/hotel/is/hali-country.en-gb.html",
+        "https://www.virtualtourist.com/hali-country-hotel-gerdi"
+      ]
+    }
+  ]
+}

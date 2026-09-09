@@ -1,0 +1,79 @@
+{
+  "_comment": "冰岛 Hella(海拉)镇酒店——待 euro quos-cities 补 IS 城市码后单独建条目(2026-09-09 Michael 选降级方案先录无歧义城镇;Hella 英文键被挪威海拉占用)。数据来源 is-southerniceland.com 带 Booking 标识镜像转述(2026-09-10)。",
+  "cities": [
+    {
+      "zh": "海拉",
+      "en": "Hella",
+      "country": "IS",
+      "cityCode": null,
+      "note": "南岸 Route 1 过夜镇(850/851 Hella);Booking 将 Stracta/Kanslarinn/Laekur 归 Hella 目的地,Leirubakki 归其自建目的地 Leirubakki(海克拉方向 Road 26)。",
+      "hotels": [
+        {
+          "name": "Stracta Hotel",
+          "nameZh": "斯特拉克塔酒店",
+          "star": 4,
+          "rating": 8.2,
+          "ratingCount": 1434,
+          "ratingSource": "Booking.com(is-southerniceland 镜像转述,2026-09-10)",
+          "priceEur": 120,
+          "priceNote": "KT 参考 15,693 ISK≈€110;Kayak from US$132≈€121;取 ~€120",
+          "address": "Rangarflatir 4, 850 Hella(镇东缘 1 号公路旁,距 Hvolsvöllur 约 12-15 分钟车程)",
+          "sources": [
+            "https://www.booking.com/hotel/is/stracta.html",
+            "https://stractahotel.com/contact-us/",
+            "https://www.is-southerniceland.com/en/property/stracta-hotel.html"
+          ]
+        },
+        {
+          "name": "Hotel Kanslarinn Hella",
+          "nameZh": "坎斯拉林酒店",
+          "star": 2,
+          "rating": 8.5,
+          "ratingCount": 1855,
+          "ratingSource": "Booking.com(is-southerniceland 镜像转述,2026-09-10)",
+          "priceEur": 111,
+          "priceNote": "Kayak.ie 直接观察 EUR €111/双人1房(from)",
+          "address": "Dynskálar 10c, 850 Hella(镇内 Route 1 旁)",
+          "sources": [
+            "https://www.booking.com/hotel/is/kanslarinn-hella.html",
+            "https://kanslarinn.is/"
+          ]
+        },
+        {
+          "name": "Hotel Lækur",
+          "nameZh": "莱库尔酒店",
+          "star": 3,
+          "rating": 8.9,
+          "ratingCount": 1062,
+          "ratingSource": "Booking.com(is-southerniceland 镜像转述,2026-09-10)",
+          "priceEur": 156,
+          "priceNote": "momondo.ie 观察 from €156",
+          "address": "Hróarslækur 农场, 851 Hella(两镇之间偏内陆约 10km,1 号公路以北)",
+          "sources": [
+            "https://www.booking.com/hotel/is/ha3tel-la-kur.html",
+            "https://www.is-southerniceland.com/en/property/laekur.html"
+          ]
+        },
+        {
+          "name": "Hotel Leirubakki",
+          "nameZh": "莱拉鲁巴奇酒店",
+          "star": 4,
+          "rating": 8.1,
+          "ratingCount": 372,
+          "ratingSource": "Booking.com(is-southerniceland 镜像转述,2026-09-10)",
+          "priceEur": 140,
+          "priceNote": "Kayak UK from £120≈€140(Booking 镜像 4★,Kayak 曾标 2★/旧民宿口径,待复核)",
+          "address": "Leirubakki, 851 Hella(海克拉 Hekla 脚下 Road 26,距海拉约 30-35 分钟)",
+          "sources": [
+            "https://www.booking.com/hotel/is/leirubakki.html",
+            "https://www.leirubakki.is/"
+          ]
+        }
+      ]
+    }
+  ],
+  "related_notes": [
+    "Stracta Hotel Mosfell(Þrúðvangur 6, 850 Hella)为 Stracta 另一物业,Booking 归 Hella 目的地,8.3/163 评,4★(勿与雷克雅未克大区 Mosfellsbær 混淆)——可一并入海拉条目。",
+    "Hotel Örk 实际在 Hveragerði(4★),Hotel Búrfell 实际靠 Vík 侧,Árnanes Country Hotel 实际靠 Höfn——均为 knowledge 源清单错置,勿入 Hella/Hvolsvöllur。"
+  ]
+}

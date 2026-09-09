@@ -1278,4 +1278,340 @@ export default {
       },
     ],
   },
+  // ============ 冰岛(2026-09-09 补库,B1 Iceland batch)============
+  // 数据:booking.com 直连被反爬(HTTP 202)环境下,rating 取 hotelclub.net/zenhotels.com 等
+  // 可直抓源转述/聚合的 Booking 分值(每店 ratingSource 注明实际来源),priceEur 多为聚合站 EUR
+  // 起价观察(随季节/日期大幅浮动,仅供参考);更名按 2026 年 9 月现行运营名录入并注旧名。
+  "reykjavik": {
+    name: "雷克雅未克", nameEn: "Reykjavik", country: "IS", cityCode: "REK",
+    note: "冰岛首都与进出港枢纽,住宿分市中心主街 Laugavegur / 老城议会广场 / 旧港码头三大区。市区酒店 2026 年换牌/更名频繁(多家转 Íslandshótel / Center Hotels / Keahotels 系),录单用现行名。", hotels: [
+      {
+        name: "Alda Hotel Reykjavík", nameZh: "雷克雅未克阿尔达酒店", star: 4, rating: 9.2, priceEur: 116,
+        area: "市中心主街 Laugavegur 66-68,哈尔格林姆斯教堂步行可达", near: "哈尔格林姆斯教堂 / 主街购物区",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.booking.com/hotel/is/alda-reykjavik.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid8184554/alda_hotel_reykjavik/", "https://www.kayak.ie/Reykjavik-Hotels-Alda-Hotel-Reykjavik.2079688.ksp"], address: "", chain: "",
+        note: "QUOS 口径曾记 3★,现 Kayak/HotelsCombined 等均标 4★;评分 9.2 为 ZenHotels 聚合(2461 评,非 Booking 直读);€116 为 Kayak.ie 2客1房从价,旺季更高",
+      },
+      {
+        name: "Apótek Hotel Reykjavík by Keahotels", nameZh: "凯亚阿坡泰克雷克雅未克酒店", star: 4, rating: 8.8, priceEur: 220,
+        area: "市中心 Austurstræti 16(老药店改造精品酒店)", near: "议会广场 Austurvöllur / 市政厅",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/apotek.html", "https://www.hotelclub.net/h/apotek-by-keahotels.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid6528750/apotek_hotel/"], address: "", chain: "",
+        note: "评分 8.8 为 hotelclub 页面转述的 Booking.com 分值(该页自聚合 8.7/230 评);€220 为 ZenHotels from 价",
+      },
+      {
+        name: "Center Hotels Arnarhvoll", nameZh: "阿娜尔沃尔中心酒店", star: 4, rating: 8.2, priceEur: 105,
+        area: "市中心 Ingólfsstræti 1,近老港", near: "Harpa 音乐厅约 300 米 / 老港",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/centerhotel-arnarhvoll.html", "https://www.hotelclub.net/h/center-hotels-arnarhvoll.html", "https://www.kayak.ie/Reykjavik-Hotels-Centerhotel-Arnarhvoll.181527.ksp"], address: "", chain: "",
+        note: "Center Hotels 品牌(旧名 Arnarhvoll/ARNARHVÖLL,2026-05-01 起统一);€105 为 Kayak.ie 1房2客标价",
+      },
+      {
+        name: "Reykjavik Marina - Berjaya Iceland Hotels", nameZh: "", star: 4, rating: 8.6, priceEur: 101,
+        area: "老港码头区 Myrargata 2", near: "Harpa 音乐厅 / 观鲸码头",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/icelandair-reykjavik-marina.html", "https://www.hotelclub.net/h/marina-berjaya-iceland-hotels.html", "https://www.kayak.ie/Reykjavik-Hotels-Icelandair-Hotel-Reykjavik-Marina.656166.ksp"], address: "", chain: "",
+        note: "曾用名 Icelandair Hotel Reykjavik Marina(Berjaya 系);与 Hotel Reykjavík Askja(原 Berjaya Reykjavik Natura)是两家不同酒店;€101 为 Kayak.ie 标价",
+      },
+      {
+        name: "Hotel Borg by Keahotels", nameZh: "凯亚博格酒店", star: 4, rating: 8.6, priceEur: 138,
+        area: "市中心议会广场 Austurvöllur 旁(Posthusstraeti 11),老牌 Art Deco 地标", near: "议会大厦 Austurvöllur 广场",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/borg.html", "https://www.hotelclub.net/h/borg-by-keahotels.html", "https://www.kayak.ie/Reykjavik-Hotels-Hotel-Borg-By-Keahotels.19866.ksp"], address: "", chain: "",
+      },
+      {
+        name: "Fosshotel Baron", nameZh: "巴伦福斯酒店", star: 3, rating: 8.0, priceEur: 232,
+        area: "老港(Old Harbour)畔 Barónsstígur 2-4,距主街 Laugavegur 步行几分钟", near: "雷克雅未克老港",
+        ratingSource: "HotelsCombined 收录 Booking.com 分值", sources: ["https://www.booking.com/hotel/is/baron.html", "https://www.islandshotel.is/hotels-in-iceland/fosshotel-baron/", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7350385/fosshotel_baron/"], address: "", chain: "",
+      },
+      {
+        name: "Fosshotel Lind", nameZh: "林德福斯酒店", star: 3, rating: 8.0, priceEur: 199,
+        area: "市中心偏东 Rauðarárstígur 18,近 Hlemmur 公交枢纽,距主街 Laugavegur 约 200 米", near: "劳加维古尔主街 / Hlemmur",
+        ratingSource: "HotelsCombined 收录 Booking.com 分值", sources: ["https://www.booking.com/hotel/is/lind.html", "https://www.islandshotel.is/hotels-in-iceland/fosshotel-lind/", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7350384/fosshotel_lind_2/"], address: "", chain: "",
+      },
+      {
+        name: "Hotel Klettur", nameZh: "凯乐特酒店", star: 3, rating: 8.1, priceEur: 210,
+        area: "Mjölnisholt 14(105),教堂山西南侧,距主街 Laugavegur 步行 3-5 分钟", near: "劳加维古尔主街",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/klettur.html", "https://www.hotelclub.net/h/klettur.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7837422/hotel_klettur/"], address: "", chain: "",
+      },
+      {
+        name: "Midgardur by Center Hotels", nameZh: "米德加德中心酒店", star: 4, rating: 8.7, priceEur: 207,
+        area: "主街 Laugavegur 120 中段,近 Klambratún 公园/Hlemmur", near: "劳加维古尔主街",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/midgardur.html", "https://www.hotelclub.net/h/midgardur-by-center-hotels.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid6354928/centerhotel_midgardur/"], address: "", chain: "",
+        note: "2026-05-01 起纳入 Center Hotels 品牌(旧名 Midgardur);参考评分 8.7 与 doc 一致",
+      },
+      {
+        name: "Radisson Blu 1919 Hotel", nameZh: "1919 丽笙布鲁酒店", star: 4, rating: 8.4, priceEur: 285,
+        area: "老城中心 Pósthússtræti 2,议会广场与老港步行可达", near: "议会广场 / 议会大厦",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/radisson-blu-1919.html", "https://www.hotelclub.net/h/radisson-blu-1919-hotel.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7523555/radisson_blu_1919_hotel_reykjavik/"], address: "", chain: "",
+      },
+      {
+        name: "Canopy by Hilton Reykjavik City Centre", nameZh: "雷克雅未克市中心希尔顿嘉悦里酒店", star: 4, rating: 9.2, priceEur: 318,
+        area: "市中心 Miðborg Smiðjustígur 4(2016 开业,112 房)", near: "Laugavegur 购物街 / Harpa 音乐厅步行约 5 分钟",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid6912674/canopy_by_hilton_reyjavik/", "https://m.ctrip.com/html5/hotel/hoteldetail/5614927.html"], address: "", chain: "",
+        note: "评分 9.2 为 ZenHotels 聚合(2528 评,非 Booking 直读;携程住客 4.5/5 不同分制);€318 为 ZenHotels 起价,Kayak.de 低季从价约 €189,随日期大幅浮动",
+      },
+      {
+        name: "Center Hotels Plaza", nameZh: "广场中心酒店", star: 4, rating: 8.3, priceEur: 262,
+        area: "老城中心 Ingólfstorg 广场(Aðalstræti 4-6,201 房,2024 翻新)", near: "Ingólfstorg 广场 / 议会广场",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/centerhotel-plaza.html", "https://www.hotelclub.net/h/center-hotels-plaza.html", "https://www.centerhotels.com/en/hotel-plaza-reykjavik"], address: "", chain: "",
+        note: "星级口径:priceline/edreams 标 3★,hotelclub/携程/Travelko 标 4★,按 4★ 录;€262 为 ZenHotels 起价,低季 Kayak/momondo 从价约 €88-93",
+      },
+      {
+        name: "Fosshotel Reykjavík", nameZh: "雷克雅未克福斯酒店", star: 4, rating: 8.6, priceEur: 276,
+        area: "Laugardalur 区 Þórunnartún 1(距市中心约 1.6km;全市最大酒店之一,320 房 16 层,2015 年建)", near: "雷克雅未克国内机场约 1.9km",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid6436557/fosshotel_reykjavik/", "https://www.islandshotel.is/", "https://m.ctrip.com/html5/hotel/hoteldetail/3358565.html"], address: "", chain: "",
+        note: "官方名 Fosshotel Reykjavík(fosshotel.is 已跳转 islandshotel.is);评分 8.6 为 ZenHotels 聚合(3505 评);€276 为 ZenHotels 起价(¥2152÷7.81 交叉验证),Kayak 低季从价约 €129",
+      },
+      {
+        name: "Fosshotel Rauðará", nameZh: "劳达拉福斯酒店", star: 3, rating: 7.9, priceEur: 236,
+        area: "Rauðarárstígur 37(105),市区偏东", near: "Hlemmur 公交枢纽一带",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.booking.com/hotel/is/fosshotel-raudara.html", "https://www.islandshotel.is/hotels-in-iceland/fosshotel-raudara/", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7350979/best_western_hotel_reykjavik/"], address: "", chain: "",
+        note: "评分 7.9 为 ZenHotels 聚合(1964 评,挂牌 Fosshotel Raudara);星级按 Fosshotel 系 3★ 惯例,官方页待复核",
+      },
+      {
+        name: "Hilton Reykjavik", nameZh: "雷克雅未克希尔顿酒店", star: 4, rating: 8.6, priceEur: 240,
+        area: "Suðurlandsbraut 2(市南,原 Hilton Reykjavik Nordica 物业)", near: "Laugardalur 温泉区",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7483957/hilton_reykjavik_nordica/"], address: "", chain: "",
+        note: "2026-09 起同物业由 Íslandshótel 运营并更名 Hilton Reykjavik(原 Hilton Reykjavik Nordica,非两家);评分 8.6 取自更名过渡期 Nordica 挂牌,新挂牌评分若另计以 Booking 现页为准",
+      },
+      {
+        name: "Iceland Parliament Hotel, Curio Collection by Hilton", nameZh: "冰岛议会酒店-希尔顿格芮精选", star: 4, rating: 8.9, priceEur: 368,
+        area: "Thorvaldsenstraeti 2-6(老城,近议会大厦)", near: "议会大厦 / 旧城",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.hotelclub.net/h/iceland-parliament-hotel-curio-collection-by-hilton.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid10210610/iceland_parliament_hotel_curio_collection_by_hilton/", "https://www.hilton.com/en/hotels/rekpsqq"], address: "", chain: "",
+      },
+      {
+        name: "Hotel Reykjavík Centrum", nameZh: "雷克雅未克中心酒店", star: 4, rating: 8.8, priceEur: 263,
+        area: "Aðalstræti 16(101),老城中心", near: "Ingólfstorg 广场",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/hotel-reykjavik-centrum.html", "https://www.hotelclub.net/h/centrum.html", "https://www.islandshotel.is/hotels-in-iceland/hotel-reykjavik-centrum/"], address: "", chain: "",
+        note: "现行运营为 Íslandshótel 的 Hotel Reykjavík Centrum(4★);KT 清单旧名 Center Hotels 口径为更名/换运营方前",
+      },
+      {
+        name: "Hotel Reykjavík Askja", nameZh: "雷克雅未克阿斯加酒店", star: 4, rating: 7.8, priceEur: 208,
+        area: "Nauthólsvegur 52(102),市南海岸带(220 房)", near: "Nauthólsvík 海滩",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7349983/icelandair_hotel_reykjavik_natura/", "https://www.islandshotel.is/hotels-in-iceland/hotel-reykjavik-askja/"], address: "", chain: "",
+        note: "2026-09-01 起由 Íslandshótel 运营并更名 Hotel Reykjavík Askja(原 Berjaya Reykjavik Natura,与 Marina 是两家);评分 7.8 取自更名过渡期 Natura 挂牌",
+      },
+      {
+        name: "Center Hotels Laugavegur", nameZh: "劳加维古尔中心酒店", star: 4, rating: 8.6, priceEur: 267,
+        area: "主街 Laugavegur 95-99", near: "劳加维古尔主街",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/centerhotel-laugavegur.html", "https://www.hotelclub.net/h/center-hotels-laugavegur.html", "https://www.centerhotels.com/en/hotel-laugavegur-reykjavik"], address: "", chain: "",
+      },
+      {
+        name: "Grandi by Center Hotels", nameZh: "格兰迪中心酒店", star: 4, rating: 8.7, priceEur: 252,
+        area: "Seljavegur 2,旧港创意区 Grandi(Vesturbær)", near: "旧港 Old Harbour",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/grandi-by-center-hotels.html", "https://www.hotelclub.net/h/grandi-by-center-hotels.html", "https://www.centerhotels.com/en/hotel-grandi-reykjavik"], address: "", chain: "",
+      },
+      {
+        name: "Hotel Reykjavik Grand", nameZh: "雷克雅未克格兰德酒店", star: 4, rating: 8.4, priceEur: 200,
+        area: "市西 Sigtún 28(距市中心约 2.5km,大型会议酒店)", near: "大学区 / Teigar 一带",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/grandhotelreykjavik.html", "https://www.hotelclub.net/h/grand.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7351399/grand_hotel_reykjavik/"], address: "", chain: "",
+        note: "属 Íslandshótel(Icelandair Hotels)系;评分与 doc 参考值 8.4 一致(ZenHotels 现示 8.2/3236 评,更新快照)",
+      },
+      {
+        name: "Reykjavik Lights Hotel by Keahotels", nameZh: "雷克雅未克之光酒店", star: 3, rating: 9.0, priceEur: 170,
+        area: "Suðurlandsbraut 12(108),Laugardalur 区(距市中心约 3km)", near: "Laugardalur 植物园 / Laugardalslaug 温泉",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.booking.com/hotel/is/reykjavik-lights.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid7617693/reykjavik_lights/"], address: "", chain: "",
+      },
+      {
+        name: "Hotel Reykjavík Saga", nameZh: "雷克雅未克 Saga 酒店", star: 4, rating: 9.2, priceEur: 290,
+        area: "Lækjargata 12(101),湖滨老城(Þingholt)", near: "Tjörnin 湖 / Dómkirkjan",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/reykjavik-saga.html", "https://www.hotelclub.net/h/saga.html", "https://www.islandshotel.is/hotels-in-iceland/hotel-reykjavik-saga/"], address: "", chain: "",
+        note: "独立精品实体,属 Íslandshótel;旧 Radisson Blu Saga 物业已改为非酒店用途;€290 为 Trip.com FR 直显起价",
+      },
+      {
+        name: "Sand Hotel by Keahotels", nameZh: "沙德酒店", star: 4, rating: 8.8, priceEur: 254,
+        area: "主街 Laugavegur 34(101)中段", near: "哈尔格林姆斯教堂 / Laugavegur 购物街",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/sandhotel.html", "https://www.hotelclub.net/h/sand-by-keahotels.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid8676557/sandhotel/"], address: "", chain: "",
+        note: "一楼 Sandholt 面包房;ZenHotels 现示 9.4/1953 评(更新快照,hotelclub 快照偏旧)",
+      },
+      {
+        name: "Skuggi Hotel by Keahotels", nameZh: "斯库吉酒店", star: 3, rating: 8.4, priceEur: 183,
+        area: "Hverfisgata 103(101),近主街", near: "Laugavegur / Hlemmur 食集",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/skuggi.html", "https://www.hotelclub.net/h/skuggi-by-keahotels.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid6759527/skuggi_hotel/"], address: "", chain: "",
+        note: "ZenHotels 现示 9.2/3866 评(更新快照)",
+      },
+      {
+        name: "Storm Hotel by Keahotels", nameZh: "凯亚风暴酒店", star: 3, rating: 8.7, priceEur: 199,
+        area: "Þórunnartún 4(105),市中心东南", near: "哈尔格林姆斯教堂约 1km / Hlemmur 0.5km",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/reykjavik-styles.html", "https://www.hotelclub.net/h/storm-by-keahotels.html", "https://www.zenhotels.com/hotel/en-de/iceland/reykjavik/mid6325703/hotel_reykjavik_styles/"], address: "", chain: "",
+        note: "曾用名 Reykjavik Styles(Booking 仍用旧 slug);ZenHotels 现示 9.2/3198 评(更新快照)",
+      },
+      {
+        name: "Reykjavik Konsulat Hotel, Curio Collection by Hilton", nameZh: "雷克雅未克大使馆酒店-希尔顿格芮精选", star: 5, rating: 9.4, priceEur: 348,
+        area: "Hafnarstræti 17-19,老城/港口区(距市中心约 300m)", near: "SÍM 画廊",
+        ratingSource: "ZenHotels(Booking 评论聚合)", sources: ["https://www.zenhotels.com/hotel/en-fr/iceland/reykjavik/mid8876510/reykjavik_konsulat_hotel_curio_collection_by_hilton/", "https://m.ctrip.com/html5/hotel/hoteldetail/13680653.html", "https://www.hilton.com/en/hotels/rekcuqq"], address: "", chain: "",
+        note: "希尔顿 Curio 官方不标星级,★5 为 Trip.com FR/携程标注(建议按内部口径复核);€348 为 ZenHotels en-fr 起价(Trip.com FR 同见 from €349)",
+      },
+    ],
+  },
+  "keflavik": {
+    name: "凯夫拉维克", nameEn: "Keflavik", country: "IS", cityCode: "KEF",
+    note: "凯夫拉维克国际机场(KEF)区,首末夜/进出港住宿地;分航站楼旁(Blikavöllur)与镇中心(Hafnargata/Keilisbraut)两处,多数酒店提供机场班车。", hotels: [
+      {
+        name: "Courtyard by Marriott Reykjavik Keflavik Airport", nameZh: "雷克雅未克凯夫拉未克机场万怡酒店", star: 4, rating: 8.6, priceEur: 150,
+        area: "凯夫拉维克镇 Aðalgata 60(提供机场班车)", near: "凯夫拉维克国际机场 KEF",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/courtyard-reykjavik-keflavik-airport.html", "https://hotels.ctrip.com/hotels/55457615.html"], address: "", chain: "",
+        note: "竞标/行程常客;rating 沿用 doc 参考 8.6;€150 由 Kayak 起价 USD163(2026-09)换算,入库前建议人工核价",
+      },
+      {
+        name: "Hotel Keflavik by Reykjavik Keflavik Airport", nameZh: "凯夫拉未克酒店", star: 4, rating: 8.1, priceEur: 130,
+        area: "凯夫拉维克镇中心 Vatnsnesvegur 12,近雷克雅内斯历史文物博物馆/Duus Hus 文化中心", near: "雷克雅内斯历史文物博物馆",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.booking.com/hotel/is/hotelkeflavik.html", "https://www.hotelclub.net/h/by-reykjavik-airport.html", "https://hotels.ctrip.com/hotels/3152731.html"], address: "", chain: "",
+        note: "现名含后缀 by Reykjavik Keflavik Airport;评分取 HotelClub 页面现值 8.1/1275 评(doc 参考 8.2)",
+      },
+      {
+        name: "Konvin Hotel by Reykjavik Keflavik Airport", nameZh: "雷克雅未克凯夫拉未克机场康文酒店", star: 4, rating: 8.2, priceEur: 95,
+        area: "凯夫拉维克镇区 Keilisbraut 762(官网称距机场车程约 10 分钟)", near: "凯夫拉维克国际机场 KEF",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/gistihus-keflavikur-bed-and-breakfast-keflavik.html", "https://www.konvin.is/", "https://hotels.ctrip.com/hotels/2547428.html"], address: "", chain: "",
+        note: "前身 B&B(Booking slug 仍为旧名);星级:携程4钻/travelko 4 vs Kayak 3★ 冲突,按 4★ 录;rating 沿用 doc 参考 8.2",
+      },
+      {
+        name: "Park Inn by Radisson Reykjavik Keflavik Airport", nameZh: "凯夫拉未克机场丽柏酒店", star: 4, rating: 7.5, priceEur: 244,
+        area: "凯夫拉维克镇中心 Hafnargata 57(距机场约 5 分钟车程,非紧邻航站楼)", near: "凯夫拉维克镇中心",
+        ratingSource: "Booking.com(zenhotels 转述)", sources: ["https://www.zenhotels.com/hotel/en-us/iceland/keflavik/mid7349978/icelandair_hotel_in_keflavik/", "https://www.booking.com/hotel/is/park-inn-reykjavik-keflavik-airport.html"], address: "", chain: "",
+        note: "星级按携程4钻暂记(官网未直验);€244 为 zenhotels 欧元起价/晚(无日期估算,随日期/房型浮动)",
+      },
+      {
+        name: "Aurora Hotel at Reykjavik-Keflavik Airport Terminal KEF", nameZh: "奥罗拉星机场酒店", star: 3, rating: 8.6, priceEur: 272,
+        area: "KEF 航站楼旁 Blikavöllur 2(距机场约 187m,72 房)", near: "凯夫拉维克国际机场航站楼",
+        ratingSource: "Booking.com(zenhotels 转述)", sources: ["https://www.zenhotels.com/hotel/en-us/iceland/keflavik/mid7690237/airport_hotel_aurora_star/", "https://www.booking.com/hotel/is/airport-sma-ri.html"], address: "", chain: "",
+        note: "原 Airport Hotel Smari 改名(Booking slug 仍为 airport-sma-ri);doc 参考价 ~€60 与现价差大(疑淡季/口径差);€272 为 zenhotels 起价,淡季 Kayak 观察约 €129",
+      },
+    ],
+  },
+  "hofn": {
+    name: "霍芬", nameEn: "Hofn", country: "IS", cityCode: "HFN",
+    note: "冰岛东南海岸过夜镇(Höfn 镇区)及 1 号公路沿线至杰古沙龙冰河湖(Jökulsárlón)/斯卡夫塔(Skaftafell)方向住宿(冰河湖附近住宿点按惯例归入本城条目,每家 area 注明实际位置)。", hotels: [
+      {
+        name: "Hotel Höfn", nameZh: "赫本酒店", star: 3, rating: 7.6, priceEur: 115,
+        area: "Höfn 镇中心 Víkurbraut 20(近港区),1 号公路进出镇必经地带", near: "Höfn 镇中心 / 港区",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/hofn.html", "https://hotels.ctrip.com/hotels/9848893.html"], address: "", chain: "",
+        note: "rating 沿用 doc 参考 7.6;€115 为 OTA from 价观察(偏淡季口径),夏季通常更高",
+      },
+      {
+        name: "Fosshotel Vatnajökull", nameZh: "福斯瓦特纳冰原酒店", star: 3, rating: 8.2, priceEur: 196,
+        area: "Höfn 镇边 Lindarbakki 区(近 Hornafjörður 机场/港湾侧,2015 年建 66 房),观瓦特纳冰原与极光方便", near: "Höfn 镇中心约 2km / 机场方向",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/vatnajokull.html", "https://www.zenhotels.com/hotel/en-us/iceland/faskrudsfjordur/mid7350285/fosshotel_vatnajokull_hornafjordur/"], address: "", chain: "",
+        note: "rating 沿用 doc 参考 8.2(聚合 8.1 方向一致);€196 为 Kayak 2026 比价起价观察,旺季更高",
+      },
+      {
+        name: "Fosshotel Glacier Lagoon", nameZh: "冰河泻湖福斯酒店", star: 4, rating: 9.0, priceEur: 187,
+        area: "Hnappavellir 785(1 号公路旁),斯卡夫塔与杰古沙龙之间,距冰河湖车程约 15-20 分钟", near: "杰古沙龙冰河湖 Jökulsárlón",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/fosshotel-glacier-lagoon.html", "https://www.zenhotels.com/hotel/en-gb/iceland/hnappavellir/mid6608472/fosshotel_glacier_lagoon/", "https://www.kayak.de/Hof-Hotels-Fosshotel-Glacier-Lagoon.2544641.ksp"], address: "", chain: "",
+        note: "rating 沿用 doc 参考 9.0(ZenHotels 8.9/2901 评佐证);€187 为 Kayak 起价观察(156-187 依日期),旺季常 €250+",
+      },
+      {
+        name: "Hotel Smyrlabjörg", nameZh: "斯米尔拉柏格酒店", star: 3, rating: 8.2, priceEur: 165,
+        area: "1 号公路旁乡村农场酒店,位于 Höfn 与杰古沙龙之间偏 Höfn 侧(距 Höfn 约 35 分钟、距冰河湖约 30km、瓦特纳冰原南缘约 1km)", near: "瓦特纳冰原南缘 / Höfn–Jökulsárlón 之间",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/country-smyrlabjorg.html", "https://islandhotels.net/hotel/smyrla"], address: "", chain: "",
+        note: "rating 沿用 doc 参考 8.2;€165 由 OTA USD 起价观察换算;注意实际在 Höfn 与冰河湖之间,非斯卡夫塔与冰河湖之间",
+      },
+      {
+        name: "Hotel Skaftafell", nameZh: "斯卡夫塔费德酒店", star: 3, rating: 8.1, priceEur: 210,
+        area: "斯卡夫塔(Skaftafell)村,瓦特纳冰川国家公园斯卡夫塔区入口 1 号公路旁(距 Höfn 约 130km、距冰河湖约 50-60km)", near: "斯卡夫塔游客中心 / Svartifoss 步道",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/hotel/is/fosshotel-skaftafell.html", "https://www.travelko.com/locale/en_US/hotel/121938/", "https://www.kayak.com/Fagurholsmyri-Hotels-Hotel-Skaftafell.372755.ksp"], address: "", chain: "",
+        note: "Booking 收录名 Hotel Skaftafell(曾用名 Fosshotel Skaftafell);rating 沿用 doc 参考 8.1;€210 由 Kayak USD 起价换算",
+      },
+      {
+        name: "Höfn - Berjaya Iceland Hotels", nameZh: "赫本伯嘉雅酒店", star: 3, rating: 7.7, priceEur: 262,
+        area: "Höfn 镇区港边 Ránarslóð 3(36 房,夏季运营型)", near: "Höfn 镇中心 / 港区",
+        ratingSource: "Booking.com(zenhotels 转述)", sources: ["https://www.zenhotels.com/hotel/en-us/iceland/sveitarfelagid_hornafjordur/mid8061148/hotel_edda_hofn/", "https://www.booking.com/hotel/is/hotel-edda-hofn.html"], address: "", chain: "",
+        note: "Booking 现名 Höfn - Berjaya Iceland Hotels(原 Hotel Edda Höfn,夏季型);€262 为 zenhotels 起价,另有 doc ISK 25,891-30,160≈€175-205 口径,两处价差大建议询价时核对",
+      },
+      {
+        name: "Hali Country Hotel", nameZh: "哈利乡村酒店", star: 3, rating: 8.8, priceEur: 163,
+        area: "Hali 2(1 号公路旁,距杰古沙龙冰河湖约 12km、距 Höfn 约 64km,37 房)", near: "杰古沙龙冰河湖 Jökulsárlón",
+        ratingSource: "Booking.com(is-southerniceland 镜像转述)", sources: ["https://www.booking.com/hotel/is/hali-country.html", "https://www.is-southerniceland.com/en/property/hotel-country/rooms.html"], address: "", chain: "",
+        note: "booking.com 标题 ★★★ 确认 3 星;rating 8.8/2747 评(镜像带 Booking 标识);€163 由 OTA USD 176-179 观察换算",
+      },
+    ],
+  },
+  "hvolsvollur": {
+    name: "霍尔斯沃德吕尔", nameEn: "Hvolsvollur", country: "IS", cityCode: "HVO",
+    note: "南岸 1 号公路走廊镇(LAVA 火山中心所在地,去黄金圈/南岸途中过夜);镇内仅两家主流酒店。海拉(Hella)镇及周边酒店待 euro 城市码补齐后单列(暂存 scripts/data/hotel-research-2026-09-iceland/hella-pending-hotels.json)。", hotels: [
+      {
+        name: "Hotel Loa", nameZh: "洛阿酒店", star: 3, rating: 9.2, priceEur: 175,
+        area: "Hvolsvöllur 镇中心 Austurvegur 19(860),1 号公路主街旁(2025-07 新开业 66 房)", near: "LAVA 火山中心",
+        ratingSource: "Booking.com(is-southerniceland 镜像转述)", sources: ["https://www.is-southerniceland.com/en/property/hotel-loa.html", "https://hotelloa.is/", "https://ca.trip.com/hotels/hvolsvollur-hotel-detail-125651431/hotel-loa"], address: "", chain: "",
+        note: "Booking 评分 9.2/565 评(镜像带 Booking 标识转述);€175 由 Trivago.co.uk from £149 观察(2026-09)",
+      },
+      {
+        name: "Hotel Hvolsvollur - Central South Iceland", nameZh: "霍尔斯沃德吕尔酒店", star: 3, rating: 8.2, priceEur: 180,
+        area: "Hvolsvöllur 镇内 Hlíðarvegur 7-11(860),LAVA 中心近旁、镇巴士站门口", near: "Hvolsvöllur 镇中心 / LAVA 火山中心",
+        ratingSource: "Booking.com(is-southerniceland 镜像转述)", sources: ["https://www.booking.com/hotel/is/hvolvollur.html", "https://www.is-southerniceland.com/en/property/hotel-hvolsvollur.html"], address: "", chain: "",
+        note: "Booking 简名 Hotel Hvolsvöllur,全名含 Central South Iceland;Booking 评分 8.2/373 评(镜像转述)",
+      },
+    ],
+  },
+  "kirkjubaejarklaustur": {
+    name: "教堂镇", nameEn: "Kirkjubaejarklaustur", country: "IS", cityCode: "KRJ",
+    note: "冰岛南部环线(Route 1)住宿点,位于 Vík 与斯卡夫塔之间;教堂镇及东侧 Kálfafell/Núpar 一带(如斯卡夫塔→维克途中过夜)。", hotels: [
+      {
+        name: "Fosshotel Núpar", nameZh: "努帕尔福斯酒店", star: 3, rating: 8.5, priceEur: 159,
+        area: "教堂镇东约 10km,Kálfafell 一带 1 号公路旁(火山熔岩原/Vatnajökull 景观)", near: "Kálfafell",
+        ratingSource: "hotelclub.net(转述 Booking.com)", sources: ["https://www.hotelclub.net/h/fosshotel-nupar.html", "https://www.trivago.es/es/oar/fosshotel-nupar-k%C3%A1lfafell", "https://www.booking.com/hotel/is/fosshotel-nupar.html"], address: "", chain: "",
+        note: "hotelclub 描述文本另写 8.4;€159 为 trivago.es 比价观察(2026);doc 称 Single NA/SGL=TSU 口径",
+      },
+      {
+        name: "Adventure Hotel Geirland", nameZh: "吉尔兰德酒店", star: 3, rating: 8.4, priceEur: 232,
+        area: "教堂镇近郊 Geirland 农场(距镇中心约 2.5km,40 房)", near: "教堂镇",
+        ratingSource: "Booking.com(zenhotels 转述)", sources: ["https://www.zenhotels.com/hotel/en-us/iceland/kirkjubaejarklaustur/mid7721670/hotel_geirland/", "https://www.booking.com/hotel/is/hotel-geirland.html"], address: "", chain: "",
+        note: "Booking 现名 Adventure Hotel Geirland(前 Hotel Geirland);€232 为 zenhotels 欧元起价/晚(无日期估算)",
+      },
+      {
+        name: "Hotel Klaustur", nameZh: "克劳斯特尔酒店", star: 4, rating: 8.7, priceEur: 288,
+        area: "教堂镇中心 Klausturvegur 6(57 房)", near: "教堂镇中心 / Systrafoss 瀑布",
+        ratingSource: "Booking.com(zenhotels 转述)", sources: ["https://www.zenhotels.com/hotel/en-us/iceland/kirkjubaejarklaustur/mid7484096/icelandair_hotel_klaustur/", "https://www.booking.com/hotel/is/icelandair-hotel-klaustur.html", "https://hotelklaustur.is/"], address: "", chain: "",
+        note: "前 Icelandair Hotel Klaustur;官方自称 4★ boutique;rating 8.7/515 评(zenhotels 转述,2026-09),淡季 Kayak 促销可低至约 €134",
+      },
+    ],
+  },
+  "borgarnes": {
+    name: "博尔加内斯", nameEn: "Borgarnes", country: "IS", cityCode: "BGG",
+    note: "冰岛西部/斯奈山半岛方向门户镇(Borgarbyggð),1 号环岛公路过夜点;条目含镇中心及一号公路沿线 Borgarfjörður 乡村住宿(Bifröst/Varmaland 均 Borgarnes 东北方向)。", hotels: [
+      {
+        name: "Hótel Borgarnes", nameZh: "博加尔尼斯酒店", star: 3, rating: 8.0, priceEur: 159,
+        area: "博尔加内斯镇中心海滨 Egilsgata 16(75 房),冰岛定居中心步行 10 分钟内", near: "冰岛定居中心(Settlement Centre)",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/borgarnes.en-gb.html", "https://hotelborgarnes.is/the-hotel/"], address: "", chain: "",
+        note: "Booking 现分 8.0/314 评(2026-09,旧参考 7.8 已变);€159 为 Booking 城市页最低起价(CNY 换算,淡季参考,夏季更高)",
+      },
+      {
+        name: "Hótel Vesturland", nameZh: "西部酒店", star: 4, rating: 8.8, priceEur: 138,
+        area: "博尔加内斯镇中心 Borgarbraut 59(2022 年前后开业较新,含餐厅/酒吧/Spa)", near: "镇中心 Borgarbraut",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/borgarnes.en-gb.html", "https://www.hotelvesturland.is/"], address: "", chain: "",
+        note: "Booking 现分 8.8/947 评,文案标 4★;€138 为 Booking 城市页最低起价(CNY 1,080.59 换算)",
+      },
+      {
+        name: "Hótel Bifröst", nameZh: "比弗罗斯特酒店", star: 3, rating: 8.2, priceEur: 143,
+        area: "Bifröst 小镇(Bifröst 大学旁)沿 1 号公路,Borgarnes 东北约 30 分钟车程;近 Grábrók 火山口(51 房,属 Fjord Hotels 集团)", near: "Bifröst 大学 / Grábrók",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/bifrost.en-gb.html", "https://www.hotelbifrost.is/"], address: "", chain: "",
+        note: "Booking 现分 8.2/780 评,官网自称 3★ country hotel;KT 参考价约 11,776 ISK≈€84(合同价低于 OTA),€143 为 Booking 城市页起价换算",
+      },
+      {
+        name: "Hotel Varmaland", nameZh: "瓦尔马兰酒店", star: 4, rating: 8.8, priceEur: 152,
+        area: "Borgarnes 东北乡村酒店 Varmaland(邮编 311 Borgarnes 乡区/Borgarfjörður),1 号公路旁(Booking 归 Varmaland 目的地,近 Bifröst)", near: "1 号公路 / Varmaland 露营地",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/varmaland.en-gb.html", "https://www.hotelvarmaland.is/", "https://www.trip.com/hotels/-23-1-1-1-1-1-1-hotel-detail-24031007/htel-varmaland/"], address: "", chain: "",
+        note: "Booking 现分 8.8/1,006 评;官网+Trip.com 均 4★;€152 为 Booking 城市页起价换算(非 Borgarnes 镇中心,已注实际位置)",
+      },
+      {
+        name: "Hotel Hamar", nameZh: "哈马尔酒店", star: 3, rating: 9.0, priceEur: 212,
+        area: "Hamarsvöllur,1 号环岛公路旁(距 Borgarnes 镇中心约 4.4km,44 房;Booking 归 Borgarnes 目的地)", near: "1 号环岛公路",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/borgarnes.en-gb.html", "https://www.booking.com/hotel/is/hamar.html", "https://www.zenhotels.com/hotel/en-us/iceland/borgarnes/mid7484101/icelandair_hotel_hamar_3/"], address: "", chain: "",
+        note: "前 Icelandair Hotel Hamar;Booking 城市页示 9.0/1253 评(zenhotels 转述 8.6/821 评,两源有差,以 Booking 现页为准);€212 为 zenhotels 欧元起价观察",
+      },
+    ],
+  },
+  "selfoss": {
+    name: "塞尔福斯", nameEn: "Selfoss", country: "IS", cityCode: "SFZ",
+    note: "黄金圈南部门户镇(南部区 Ölfusá 河畔),往辛格维利尔/盖歇尔/黄金瀑布及南岸环岛均方便;两家主流酒店均在镇中心河畔一带。", hotels: [
+      {
+        name: "Hotel Selfoss", nameZh: "塞尔福斯酒店", star: 4, rating: 8.5, priceEur: 151,
+        area: "Selfoss 镇中心 Ölfusá 河畔 Eyravegur 2,近 1 号环岛路;河景房,自设 Riverside Spa(桑拿/蒸汽/热水池)及河景餐厅", near: "Ölfusá 河(镇中心)",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/selfoss.en-gb.html", "https://www.hotelselfoss.is/"], address: "", chain: "",
+        note: "Booking 现分 8.5/3,726 评(2026-09);4★ 见 Booking 分销页标题;€151 为 Booking 城市页起价 CNY1,182.21 换算",
+      },
+      {
+        name: "Hotel South Coast", nameZh: "南海岸酒店", star: 4, rating: 8.6, priceEur: 210,
+        area: "Selfoss 镇中心 Eyravegur 11-13,与 Hotel Selfoss 同街相邻(2021 年前后开业较新,72 房,含餐厅/健身房)", near: "镇中心 Food Hall(美食街)",
+        ratingSource: "Booking.com", sources: ["https://www.booking.com/city/is/selfoss.en-gb.html", "https://hotelsouthcoast.is/", "https://www.trip.com/hotels/Selfoss-hotel-detail-32133172/"], address: "", chain: "",
+        note: "Booking 现分 8.6/2,313 评;Trip.com 标 4★;€210 为 Booking 城市页起价 CNY1,642.16 换算",
+      },
+    ],
+  },
 }

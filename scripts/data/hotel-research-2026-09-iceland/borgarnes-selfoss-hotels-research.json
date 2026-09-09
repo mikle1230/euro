@@ -1,0 +1,132 @@
+{
+ "cities": [
+  {
+   "zh": "博尔加内斯",
+   "en": "Borgarnes",
+   "country": "IS",
+   "cityCode": "BGG",
+   "note": "冰岛西部斯奈山/西岸方向门户小镇(Borgarbyggð);条目含镇中心及一号公路沿线 Borgarfjörður 乡村住宿(Bifröst/Varmaland,均 Borgarnes 东北方向,Booking 评分与起价均取自 Booking.com 静态城市页,2026-09 核实)。",
+   "hotels": [
+    {
+     "name": "Hótel Borgarnes",
+     "nameZh": "博加尔尼斯酒店",
+     "star": 3,
+     "rating": 8.0,
+     "priceEur": 159,
+     "area": "博尔加内斯镇中心海滨 Egilsgata 16,距 Borgarfjörður 湾约200米,Brakarey 岛上的冰岛定居中心(Icelandic Settlement Centre)步行10分钟内,75间客房",
+     "near": "冰岛定居中心(Settlement Centre)/Borgarfjörður 湾",
+     "ratingSource": "Booking.com",
+     "sources": [
+      "https://www.booking.com/city/is/borgarnes.en-gb.html",
+      "https://www.booking.com/city/is/borgarnes.zh-cn.html",
+      "https://hotelborgarnes.is/the-hotel/",
+      "https://www.trip.com/hotels/borgarnes-hotel-detail-3683110/"
+     ],
+     "note": "Booking.com 现分 8.0(314条点评,2026-09);Trip.com 口径为三星。priceEur 为 Booking 城市页最低起价(1晚2成人,CNY 按2026-09-09汇率1€≈7.81CNY换算取整,淡季参考价,冰岛夏季更高)。"
+    },
+    {
+     "name": "Hótel Vesturland",
+     "nameZh": "",
+     "star": 4,
+     "rating": 8.8,
+     "priceEur": 138,
+     "area": "博尔加内斯镇中心 Borgarbraut 59(镇内主干道),海景山景,含餐厅/酒吧/Spa/健身,24小时前台",
+     "near": "镇中心 Borgarbraut",
+     "ratingSource": "Booking.com",
+     "sources": [
+      "https://www.booking.com/city/is/borgarnes.en-gb.html",
+      "https://www.booking.com/city/is/borgarnes.zh-cn.html",
+      "https://www.hotelvesturland.is/"
+     ],
+     "note": "Booking.com 现分 8.8(947条点评),Booking 文案明示四星级;官网地址 Borgarbraut 59, 310 Borgarnes(2022年前后开业较新)。priceEur 同前:Booking 城市页最低起价 CNY1,080.59 换算。"
+    },
+    {
+     "name": "Hótel Bifröst",
+     "nameZh": "",
+     "star": 3,
+     "rating": 8.2,
+     "priceEur": 143,
+     "area": "Bifröst 小镇(Bifröst 大学旁),沿一号公路;Borgarnes 东北约30分钟车程,雷克雅未克约100km/1小时20分;近 Grábrók 火山口,51间客房(属 Fjord Hotels 集团)",
+     "near": "Bifröst 大学 / Grábrók",
+     "ratingSource": "Booking.com",
+     "sources": [
+      "https://www.booking.com/city/is/bifrost.en-gb.html",
+      "https://www.hotelbifrost.is/"
+     ],
+     "note": "Booking.com 现分 8.2(780条点评);官网自称 3-star country hotel。KT 参考价约 11,776 ISK≈€84(按140.4ISK/€,2026-09),为合同价低于 OTA;priceEur 按 Booking 城市页最低起价 CNY1,117.43 换算。"
+    },
+    {
+     "name": "Hotel Varmaland",
+     "nameZh": "",
+     "star": 4,
+     "rating": 8.8,
+     "priceEur": 152,
+     "area": "Borgarnes 镇东北方向乡村酒店(Varmaland,邮编311 Borgarnes 乡区/Borgarfjörður),一号公路旁,近 Varmaland 露营地;Booking 目的地归 Varmaland(Near Bifrost),官网称 4 星、含餐厅/桑拿/热水池",
+     "near": "一号公路(Route 1)/Varmaland 露营地",
+     "ratingSource": "Booking.com",
+     "sources": [
+      "https://www.booking.com/city/is/varmaland.en-gb.html",
+      "https://www.booking.com/city/is/bifrost.en-gb.html",
+      "https://www.hotelvarmaland.is/",
+      "https://www.trip.com/hotels/-23-1-1-1-1-1-1-hotel-detail-24031007/htel-varmaland/"
+     ],
+     "note": "Booking.com 现分 8.8(1,006条点评);Trip.com 亦标 4 星。注意:Booking 将 Varmaland 作为独立目的地(邻近 Bifröst),并非 Borgarnes 镇中心,故列于本条目并以 area 注明实际位置。priceEur 为 Booking 起价 CNY1,186.04 换算。"
+    }
+   ]
+  },
+  {
+   "zh": "塞尔福斯",
+   "en": "Selfoss",
+   "country": "IS",
+   "cityCode": "SFZ",
+   "note": "黄金圈南部门户镇(南部区,Ölfusá 河畔),往辛格维利尔/盖歇尔/黄金瀑布及南岸环岛均方便;两家主流酒店均在镇中心河畔一带(Booking 评分/起价取自 Booking.com 静态城市页,2026-09 核实)。",
+   "hotels": [
+    {
+     "name": "Hotel Selfoss",
+     "nameZh": "塞尔福斯酒店",
+     "star": 4,
+     "rating": 8.5,
+     "priceEur": 151,
+     "area": "Selfoss 镇中心 Ölfusá 河畔(Eyravegur 2),近一号环岛路与镇区,河景房,自设 Riverside Spa(桑拿/蒸汽/热水池)及河景餐厅",
+     "near": "Ölfusá 河(镇中心)",
+     "ratingSource": "Booking.com",
+     "sources": [
+      "https://www.booking.com/city/is/selfoss.en-gb.html",
+      "https://www.booking.com/city/is/selfoss.zh-cn.html",
+      "https://www.hotelselfoss.is/",
+      "https://book.laterooms.com/hotel/is/selfoss.en-gb.html"
+     ],
+     "note": "Booking.com 现分 8.5(3,726条点评);四星级见 Booking 分销页(LateRooms)标题 ★★★★。priceEur 为 Booking 起价 CNY1,182.21 换算;Booking 文案另称酒店沿 1 号环岛路(Route 1)布点。"
+    },
+    {
+     "name": "Hotel South Coast",
+     "nameZh": "南海岸酒店",
+     "star": 4,
+     "rating": 8.6,
+     "priceEur": 210,
+     "area": "Selfoss 镇中心(Eyravegur 11-13),与 Hotel Selfoss 同街相邻,步行约5分钟到美食街 Food Hall,城市景观,72间客房,含餐厅/健身房/Spa(付费)",
+     "near": "镇中心 Food Hall(美食街)",
+     "ratingSource": "Booking.com",
+     "sources": [
+      "https://www.booking.com/city/is/selfoss.en-gb.html",
+      "https://www.booking.com/city/is/selfoss.zh-cn.html",
+      "https://hotelsouthcoast.is/",
+      "https://www.trip.com/hotels/Selfoss-hotel-detail-32133172/"
+     ],
+     "note": "Booking.com 现分 8.6(2,313条点评);Trip.com 标四星(其自评分9.0/81)。为 Selfoss 镇中心第二家主流酒店(2021年前后开业较新)。priceEur 为 Booking 起价 CNY1,642.16 换算。"
+    }
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "name": "Stracta Hotel Mosfell",
+   "reason": "核实该酒店实际位于冰岛南部 Hella(Rangárvallahreppur/Rangárþing ytra)一带,Booking.com 将其归入 Hella 目的地(Booking 城市页文案'Stracta Hotel Mosfell is located in Hella',四星级,现分 8.3/163条点评);Trip.com/Expedia 亦按 Hella/Rangárþing ytra/Hvolsvöllur 归类。名称中 'Mosfell' 是 Hella 附近农场地名,与雷克雅未克大区的 Mosfellsbær 无关——并非'雷克雅未克东北郊',故不放 reykjavik_area_hotels;也不属于 Borgarnes/Selfoss 两城,超出本次范围,记入 skipped(另注:booking.com 上另有主店 Stracta Hotel(Hella),8.2/1428条点评,勿混淆)。",
+   "sources": [
+    "https://www.booking.com/city/is/hella.en-gb.html",
+    "https://www.j2ski.com/ski_hotels/Iceland/Hella/Stracta_Mosfell.html",
+    "https://www.expedia-aarp.com/Rangaring-Ytra-Hotels-Stracta-Hotel-Mosfell.h103173459.Hotel-Information"
+   ]
+  }
+ ]
+}
