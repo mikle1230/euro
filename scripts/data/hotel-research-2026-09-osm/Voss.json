@@ -1,0 +1,49 @@
+{
+  "cities": [
+    {
+      "zh": "Voss",
+      "en": "Voss",
+      "country": "NO",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Fleischer's Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/241804906"
+          ]
+        },
+        {
+          "name": "Park Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/8862821950"
+          ]
+        },
+        {
+          "name": "Scandic Voss",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7996036994"
+          ]
+        }
+      ]
+    }
+  ]
+}

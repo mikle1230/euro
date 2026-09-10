@@ -1,0 +1,25 @@
+{
+  "cities": [
+    {
+      "zh": "Charlottenberg",
+      "en": "Charlottenberg",
+      "country": "SE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Hotell Charlottenberg",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Charlottebergsvägen 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/760665936"
+          ]
+        }
+      ]
+    }
+  ]
+}

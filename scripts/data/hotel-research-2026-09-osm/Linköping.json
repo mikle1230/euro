@@ -1,0 +1,229 @@
+{
+  "cities": [
+    {
+      "zh": "Linköping",
+      "en": "Linköping",
+      "country": "SE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Scandic Linköping City",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Gamla Tanneforsvägen 51",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/117686571"
+          ]
+        },
+        {
+          "name": "Quality Hotel The Box",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Aspögatan 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/575292781"
+          ]
+        },
+        {
+          "name": "ApartDirect",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kallerstads allé 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12542650375"
+          ]
+        },
+        {
+          "name": "ApartDirect Linköping Vasastaden",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Krouthéns gata 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/13123575730"
+          ]
+        },
+        {
+          "name": "Comfort Hotel Linköping City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hantverkaregatan 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1320144569"
+          ]
+        },
+        {
+          "name": "Elite Stora Hotellet",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stora torget 9",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1321358999"
+          ]
+        },
+        {
+          "name": "Home Hotel Slottsparken",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Storgatan 76",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/724369161"
+          ]
+        },
+        {
+          "name": "Linköpings Cityhotell och Vandrarhem",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Klostergatan 52 A",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/282525050"
+          ]
+        },
+        {
+          "name": "Livgrenadjärmässen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/8281932937"
+          ]
+        },
+        {
+          "name": "Park Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Järnvägsgatan 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/45753195"
+          ]
+        },
+        {
+          "name": "Quality Hotel Ekoxen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Klostergatan 68",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/722618025"
+          ]
+        },
+        {
+          "name": "Scandic Frimurarehotellet",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sankt Larsgatan 14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/452303089"
+          ]
+        },
+        {
+          "name": "Scandic Linköping Väst",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mårdtorpsgatan 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/92504639"
+          ]
+        },
+        {
+          "name": "Sky Executive Apartments",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stora Badstugatan 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1305767691"
+          ]
+        },
+        {
+          "name": "Sky Hotel Apartments",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kungsgatan 16",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7724932109"
+          ]
+        },
+        {
+          "name": "Sky Hotel Apartments Linköping",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2685668703"
+          ]
+        },
+        {
+          "name": "VICI Hotels",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tullgränd 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/30838951"
+          ]
+        },
+        {
+          "name": "and hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Storgatan 49",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9195989492"
+          ]
+        }
+      ]
+    }
+  ]
+}

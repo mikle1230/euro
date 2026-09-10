@@ -1,0 +1,205 @@
+{
+  "cities": [
+    {
+      "zh": "Jönköping",
+      "en": "Jönköping",
+      "country": "SE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "City Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/441808148"
+          ]
+        },
+        {
+          "name": "Comfort Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Klostergatan 28",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/254972302"
+          ]
+        },
+        {
+          "name": "Elite Stora Hotellet",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hotellplan 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/254972799"
+          ]
+        },
+        {
+          "name": "First Hotel Eurostop",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1102269404"
+          ]
+        },
+        {
+          "name": "Good Morning Jönköping",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/134327660"
+          ]
+        },
+        {
+          "name": "Grand Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3190715783"
+          ]
+        },
+        {
+          "name": "Home Hotel Victoria",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/254972303"
+          ]
+        },
+        {
+          "name": "Hotel Best Western John Bauer",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sodra Strandgatan 15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/441807098"
+          ]
+        },
+        {
+          "name": "Jönköpings Hotell & Konferens",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/486094225"
+          ]
+        },
+        {
+          "name": "Jönköpings Hotell & Konferens",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/889280062"
+          ]
+        },
+        {
+          "name": "ProfilHotels Savoy",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Brunnsgatan 13-15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/441808922"
+          ]
+        },
+        {
+          "name": "Quality Hotel Match",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9192435222"
+          ]
+        },
+        {
+          "name": "Scandic Elmia",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Elmiavägen 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/105254409"
+          ]
+        },
+        {
+          "name": "Scandic Portalen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/959678066"
+          ]
+        },
+        {
+          "name": "Tokeryds herrgård",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1989013020"
+          ]
+        },
+        {
+          "name": "Vox hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lantmätargränd 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5857284940"
+          ]
+        }
+      ]
+    }
+  ]
+}

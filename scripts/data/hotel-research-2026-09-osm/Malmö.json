@@ -1,0 +1,433 @@
+{
+  "cities": [
+    {
+      "zh": "Malmö",
+      "en": "Malmö",
+      "country": "SE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Story Hotel Studio Malmo, Part of JDV by Hyatt",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1435064303"
+          ]
+        },
+        {
+          "name": "Malmö Arena Hotel",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hyllie boulevard 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/332190875"
+          ]
+        },
+        {
+          "name": "Best Western Hotel Royal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1181418038"
+          ]
+        },
+        {
+          "name": "Best Western Plus Park City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sjömansgatan 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/166505253"
+          ]
+        },
+        {
+          "name": "Clarion Hotel Malmö Live",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Dag Hammarskjölds torg 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3470842010"
+          ]
+        },
+        {
+          "name": "Comfort Hotel Malmö",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Carlsgatan 10C",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/52243638"
+          ]
+        },
+        {
+          "name": "Continental Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hospitalsgatan 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3358053111"
+          ]
+        },
+        {
+          "name": "Elite Hotel Plaza",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Gustav Adolfs torg 49",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2293728921"
+          ]
+        },
+        {
+          "name": "Elite Hotel Savoy Malmö",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Norra Vallgatan 62",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2291411019"
+          ]
+        },
+        {
+          "name": "First Hotel Garden",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/444832884"
+          ]
+        },
+        {
+          "name": "First Hotel Jörgen Kock",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Jörgen Kocksgatan 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/603085817"
+          ]
+        },
+        {
+          "name": "Goodmorning+ Hotel Malmö",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stadiongatan 21",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/52518466"
+          ]
+        },
+        {
+          "name": "Grand Circus Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Södra Bulltoftavägen 51",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/6462975064"
+          ]
+        },
+        {
+          "name": "Havshotellet Limhamn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Strandgatan 50",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4359242138"
+          ]
+        },
+        {
+          "name": "Home Hotel Baltzar",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Baltzarsgatan 45",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1093128509"
+          ]
+        },
+        {
+          "name": "Home Hotel Temperance",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Engelbrektsgatan 16",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1093128529"
+          ]
+        },
+        {
+          "name": "Hotel Noble House",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Per Weijersgatan 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/444865281"
+          ]
+        },
+        {
+          "name": "Hotel Noble House",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2293728948"
+          ]
+        },
+        {
+          "name": "Hotel Scandic Triangeln",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Triangeln 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/29784950"
+          ]
+        },
+        {
+          "name": "Hotell Norrvalla",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2715579189"
+          ]
+        },
+        {
+          "name": "MJs",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mäster Johansgatan 13",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/10737975049"
+          ]
+        },
+        {
+          "name": "Moment Hotels",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Norra Vallgatan 54",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/444869482"
+          ]
+        },
+        {
+          "name": "Mäster Johan",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/30407148"
+          ]
+        },
+        {
+          "name": "Ohboy Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lilla Varvsgatan 24",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/462883288"
+          ]
+        },
+        {
+          "name": "Quality Hotel The Mill",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Amiralsgatan 19",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/102209299"
+          ]
+        },
+        {
+          "name": "Quality Hotel View",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hyllie stationstorg 29",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3786483535"
+          ]
+        },
+        {
+          "name": "Radisson Blu",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Östergatan 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3929741009"
+          ]
+        },
+        {
+          "name": "Scandic Sankt Jörgen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stora Nygatan 35",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3393579536"
+          ]
+        },
+        {
+          "name": "Scandic Stortorget",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stortorget 15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/444868954"
+          ]
+        },
+        {
+          "name": "Sky Hotel Malmö City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3398710390"
+          ]
+        },
+        {
+          "name": "The Bishop’s Arms",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Adelgatan 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/444832888"
+          ]
+        },
+        {
+          "name": "The Mayfair Hotel tunneln",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/444832889"
+          ]
+        },
+        {
+          "name": "The More Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2295943593"
+          ]
+        },
+        {
+          "name": "The More Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lilla Varvsgatan 26",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1094515818"
+          ]
+        },
+        {
+          "name": "The Nooq Malmö",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stora Varvsgatan 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/8606570483"
+          ]
+        }
+      ]
+    }
+  ]
+}

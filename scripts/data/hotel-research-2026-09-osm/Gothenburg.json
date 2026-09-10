@@ -1,0 +1,853 @@
+{
+  "cities": [
+    {
+      "zh": "Gothenburg",
+      "en": "Gothenburg",
+      "country": "SE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Clarion Hotel Post",
+          "star": 5,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Drottningtorget 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/72231334"
+          ]
+        },
+        {
+          "name": "Hotel Bellora",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kungsportsavenyen 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2033520102"
+          ]
+        },
+        {
+          "name": "Hotel Mölndals Bro",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Nämndemansgatan 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/90908498"
+          ]
+        },
+        {
+          "name": "Hotel Riverton",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stora Badhusgatan 26",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2394138616"
+          ]
+        },
+        {
+          "name": "Hyatt Place Gothenburg Central",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Nils Ericsonsgatan 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1430170872"
+          ]
+        },
+        {
+          "name": "Sankt Jörgen Park Resort",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/87340806"
+          ]
+        },
+        {
+          "name": "Hotel Center",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stora Badhusgatan 28",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2394138613"
+          ]
+        },
+        {
+          "name": "Hotel Örgryte",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Danska Vägen 70",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/522516190"
+          ]
+        },
+        {
+          "name": "Hotell Arena",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Baldersgatan 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1924201381"
+          ]
+        },
+        {
+          "name": "Hotell Barken Viking",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lilla Bommens Torg 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1247235430"
+          ]
+        },
+        {
+          "name": "Spar Hotel Gårda",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Norra Kustbanegatan 15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/831298306"
+          ]
+        },
+        {
+          "name": "Spar Hotel Majorna",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Karl Johansgatan 66-70",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3382917840"
+          ]
+        },
+        {
+          "name": "Annes Hus",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hjulmakaregatan 35",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/83669003"
+          ]
+        },
+        {
+          "name": "Apple Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Torpavallsgatan 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1407679945"
+          ]
+        },
+        {
+          "name": "Avalon Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1632019490"
+          ]
+        },
+        {
+          "name": "Best Western Tidbloms Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Olskroksgatan 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1448660682"
+          ]
+        },
+        {
+          "name": "City Lägenhetshotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1020181933"
+          ]
+        },
+        {
+          "name": "Clarion Hotel Draken",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1243458002"
+          ]
+        },
+        {
+          "name": "Clarion Hotel Karlatornet",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/13949676631"
+          ]
+        },
+        {
+          "name": "Comfort Hotel City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Drottninggatan 63-65",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3234360683"
+          ]
+        },
+        {
+          "name": "Comfort Hotel Göteborg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2394138611"
+          ]
+        },
+        {
+          "name": "Comfort Hotel Panorama",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Eklandagatan 51,53",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/36142299"
+          ]
+        },
+        {
+          "name": "Design Apartments",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2152022661"
+          ]
+        },
+        {
+          "name": "Dockyard Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Skeppet Ärans Väg 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/810701761"
+          ]
+        },
+        {
+          "name": "Dorsia",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2151827040"
+          ]
+        },
+        {
+          "name": "Elite Park Avenue",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1211869002"
+          ]
+        },
+        {
+          "name": "Elite Plaza",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Västra Hamngatan 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1118800718"
+          ]
+        },
+        {
+          "name": "Ewa & Maude Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Askimsgatan 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3811026428"
+          ]
+        },
+        {
+          "name": "First Hotel Kviberg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Krutvägen 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4827107924"
+          ]
+        },
+        {
+          "name": "Good Morning Mölndal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/33285062"
+          ]
+        },
+        {
+          "name": "Good Morning+ Göteborg City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Gullbergs Strandgata 15B",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/108654587"
+          ]
+        },
+        {
+          "name": "Gothia Towers",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mässans Gata 24",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/30482977"
+          ]
+        },
+        {
+          "name": "Home Hotel Mektagonen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Falkenbergsgatan 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4829133815"
+          ]
+        },
+        {
+          "name": "Home Hotel Odin",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Odinsgatan 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1644946523"
+          ]
+        },
+        {
+          "name": "Hotel Flora",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3819451857"
+          ]
+        },
+        {
+          "name": "Hotel Lorensberg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Berzeliigatan 15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2931020601"
+          ]
+        },
+        {
+          "name": "Hotel Opera",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Nils Ericsonsgatan 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1352425877"
+          ]
+        },
+        {
+          "name": "Hotel Pigalle",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2318390721"
+          ]
+        },
+        {
+          "name": "Hotel Poseidon",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Storgatan 33",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/158286990"
+          ]
+        },
+        {
+          "name": "Hotel Royal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2141492059"
+          ]
+        },
+        {
+          "name": "Hotel Vanilla",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/552678006"
+          ]
+        },
+        {
+          "name": "Hotel Vasa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Viktoriagatan 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3517229993"
+          ]
+        },
+        {
+          "name": "Hotell Allén",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Parkgatan 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4459840402"
+          ]
+        },
+        {
+          "name": "Hotell Göta Avenyn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lorensbergsgatan 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2637968962"
+          ]
+        },
+        {
+          "name": "Hotell Kusten",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/461443926"
+          ]
+        },
+        {
+          "name": "Hotell Maria Eriksson",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1932729472"
+          ]
+        },
+        {
+          "name": "Hotell Onyxen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sten Sturegatan 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1870550508"
+          ]
+        },
+        {
+          "name": "Hotell Villan",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sjöportsgatan 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/27018051"
+          ]
+        },
+        {
+          "name": "Jacy'z",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Drakegatan 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11100229680"
+          ]
+        },
+        {
+          "name": "La Mare Resort",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9631902017"
+          ]
+        },
+        {
+          "name": "Le Mat B&B",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3181526661"
+          ]
+        },
+        {
+          "name": "Quality Hotel 11",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1679060768"
+          ]
+        },
+        {
+          "name": "Quality Hotel The Weaver",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Göteborgsvägen 91",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/977074654"
+          ]
+        },
+        {
+          "name": "Quality Hotel Waterfront",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Klippan 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/707216336"
+          ]
+        },
+        {
+          "name": "Quality Hotel Winn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/563223066"
+          ]
+        },
+        {
+          "name": "Radisson Blu Scandinavia",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Södra Hamngatan 59-65",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/30483077"
+          ]
+        },
+        {
+          "name": "SGS Veckobostäder",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/971098113"
+          ]
+        },
+        {
+          "name": "Scandic Backadal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Bäckebolsvägen 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/191613704"
+          ]
+        },
+        {
+          "name": "Scandic Crown",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Polhemsplatsen 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/60891328"
+          ]
+        },
+        {
+          "name": "Scandic Europa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Nils Ericsonsgatan 21",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/285734366"
+          ]
+        },
+        {
+          "name": "Scandic Go, Lilla Bommen 5",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lilla Bommen 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/14086421601"
+          ]
+        },
+        {
+          "name": "Scandic Göteborg Central",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vikingsgatan 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9926125620"
+          ]
+        },
+        {
+          "name": "Scandic Mölndal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Barnhemsgatan 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/15531641"
+          ]
+        },
+        {
+          "name": "Scandic No. 25",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3228607561"
+          ]
+        },
+        {
+          "name": "Scandic Opalen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Engelbrektsgatan 73",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1497180954"
+          ]
+        },
+        {
+          "name": "Scandic Rubinen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1932609751"
+          ]
+        },
+        {
+          "name": "The Pier",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pumpgatan 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1055106859"
+          ]
+        },
+        {
+          "name": "Treetop Spa, Hangout & Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/822309152"
+          ]
+        },
+        {
+          "name": "Waterfront Cabins",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kvillepiren 12",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12585542935"
+          ]
+        },
+        {
+          "name": "Åby Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/613927175"
+          ]
+        }
+      ]
+    }
+  ]
+}

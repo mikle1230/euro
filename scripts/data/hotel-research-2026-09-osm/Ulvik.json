@@ -1,0 +1,49 @@
+{
+  "cities": [
+    {
+      "zh": "Ulvik",
+      "en": "Ulvik",
+      "country": "NO",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Brakanes Hotel",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/260447497"
+          ]
+        },
+        {
+          "name": "Strand Fjordhotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/260447511"
+          ]
+        },
+        {
+          "name": "Ulvik Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/260447514"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "cities": [
+    {
+      "zh": "Karlstad",
+      "en": "Karlstad",
+      "country": "SE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Stadshotellet",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/874275165"
+          ]
+        },
+        {
+          "name": "Berling Apartments",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/330548629"
+          ]
+        },
+        {
+          "name": "Carlstad City Hostel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1171125072"
+          ]
+        },
+        {
+          "name": "First Hotel River C",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tage Erlandergatan 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/342063634"
+          ]
+        },
+        {
+          "name": "Gustaf Fröding Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Höjdgatan 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/99590162"
+          ]
+        },
+        {
+          "name": "Home Hotel Bilan",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/879115860"
+          ]
+        },
+        {
+          "name": "Home Hotel Drott",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1168401475"
+          ]
+        },
+        {
+          "name": "Home Hotel Plaza",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/877391726"
+          ]
+        },
+        {
+          "name": "Hotel Ibis - Good Morning Karlstad City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/30731825"
+          ]
+        },
+        {
+          "name": "Hotell Savoy",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1221337657"
+          ]
+        },
+        {
+          "name": "Hotell Solsta",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1044638586"
+          ]
+        },
+        {
+          "name": "Patienthotellet",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1108759606"
+          ]
+        },
+        {
+          "name": "Scandic City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/329992554"
+          ]
+        },
+        {
+          "name": "Scandic Klarälven",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/967160103"
+          ]
+        },
+        {
+          "name": "Scandic Winn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/262390399"
+          ]
+        },
+        {
+          "name": "Solakoop B&B",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4310330233"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,949 @@
+{
+  "cities": [
+    {
+      "zh": "Helsinki",
+      "en": "Helsinki",
+      "country": "FI",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Hotel Kämp",
+          "star": 5,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pohjoisesplanadi 29",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/606996919"
+          ]
+        },
+        {
+          "name": "Clarion Hotel Helsinki",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tyynenmerenkatu 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/441505566"
+          ]
+        },
+        {
+          "name": "Crowne Plaza Helsinki",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mannerheimintie 50",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1389294897"
+          ]
+        },
+        {
+          "name": "Hilton Helsinki Strand",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "John Stenbergin ranta 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/55211772"
+          ]
+        },
+        {
+          "name": "Hotel Helka",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pohjoinen Rautatiekatu 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1382344038"
+          ]
+        },
+        {
+          "name": "Original Sokos Hotel Presidentti",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Eteläinen Rautatiekatu 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/60069595"
+          ]
+        },
+        {
+          "name": "Radisson Blu Seaside",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Ruoholahdenranta 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/248343228"
+          ]
+        },
+        {
+          "name": "Scandic Park Helsinki",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mannerheimintie 46",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/60060852"
+          ]
+        },
+        {
+          "name": "Scandic Kaisaniemi",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kaisaniemenkatu 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/600091159"
+          ]
+        },
+        {
+          "name": "Bob W Kaarti",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12987361412"
+          ]
+        },
+        {
+          "name": "Bob W. Helsinki Katajanokka",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kruunuvuorenkatu 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/13520044501"
+          ]
+        },
+        {
+          "name": "Carlton",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kaisaniemenkatu",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/600091153"
+          ]
+        },
+        {
+          "name": "Citikoti",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5603170617"
+          ]
+        },
+        {
+          "name": "Citybox Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kolmas linja 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12536794846"
+          ]
+        },
+        {
+          "name": "EasyHomes Erottaja",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Erottajankatu 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5671210340"
+          ]
+        },
+        {
+          "name": "Forenom Eerikinkatu",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Eerikinkatu 24",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1513653544"
+          ]
+        },
+        {
+          "name": "Forenom House Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hitsaajankatu 12",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2877385712"
+          ]
+        },
+        {
+          "name": "Hellsten Helsinki Parliament",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1385895257"
+          ]
+        },
+        {
+          "name": "Hiisi Hotel Helsinki Jätkäsaari",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Länsisatamankatu 16",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12860861595"
+          ]
+        },
+        {
+          "name": "Hobo Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kluuvikatu 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/606996918"
+          ]
+        },
+        {
+          "name": "Holiday Inn Helsinki - Messukeskus",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Messuaukio 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/75414201"
+          ]
+        },
+        {
+          "name": "Home Hotel Jugend",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lönnrotinkatu 29",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2283900263"
+          ]
+        },
+        {
+          "name": "Hotel AX",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Välimerenkatu 18",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/815449587"
+          ]
+        },
+        {
+          "name": "Hotel Anna",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Annankatu 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/384826889"
+          ]
+        },
+        {
+          "name": "Hotel Arthur",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vuorikatu 19",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1376356005"
+          ]
+        },
+        {
+          "name": "Hotel Bastian",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11802454998"
+          ]
+        },
+        {
+          "name": "Hotel F6",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Fabianinkatu 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7250288595"
+          ]
+        },
+        {
+          "name": "Hotel Finn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kalevankatu 3 B",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1225404530"
+          ]
+        },
+        {
+          "name": "Hotel Haaga Central Park",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Nuijamiestentie 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/359563337"
+          ]
+        },
+        {
+          "name": "Hotel Haven",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/606944620"
+          ]
+        },
+        {
+          "name": "Hotel Indigo Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Bulevardi 26",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2726670195"
+          ]
+        },
+        {
+          "name": "Hotel Jollasranta",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Jollaksentie 89",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/13340903258"
+          ]
+        },
+        {
+          "name": "Hotel Katajanokka",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Merikasarminkatu 1a",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/23192861"
+          ]
+        },
+        {
+          "name": "Hotel Mestari",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Fredrikinkatu 51-53",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9919307017"
+          ]
+        },
+        {
+          "name": "Hotel St. George",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Yrjönkatu 13",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5747595593"
+          ]
+        },
+        {
+          "name": "Hotel U14",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/10601262465"
+          ]
+        },
+        {
+          "name": "Hotelli Fabian",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/945724472"
+          ]
+        },
+        {
+          "name": "Hotelli NH Collection Helsinki Grand Hansa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mannerheimintie 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1369465695"
+          ]
+        },
+        {
+          "name": "Hotelli Torni",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Yrjönkatu 26",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/123525580"
+          ]
+        },
+        {
+          "name": "Klaus K",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Bulevardi 2-4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/603767089"
+          ]
+        },
+        {
+          "name": "Lapland hotels bulevardi",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Bulevardi 28",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/347376676"
+          ]
+        },
+        {
+          "name": "Lilla Roberts",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pieni Roobertinkatu 1-3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/123915163"
+          ]
+        },
+        {
+          "name": "NoLi Studios Sörnäinen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hämeentie 33",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/8831312080"
+          ]
+        },
+        {
+          "name": "Noli Herttoniemi",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Työnjohtajankatu 11",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/10834069940"
+          ]
+        },
+        {
+          "name": "Noli Katajanokka",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kanavakatu 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7987201386"
+          ]
+        },
+        {
+          "name": "Noli Katajanokka II",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kanavakatu 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/22957664"
+          ]
+        },
+        {
+          "name": "Noli Malmi",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vanha Helsingintie 19",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1051672462"
+          ]
+        },
+        {
+          "name": "Omena-hotelli Helsinki Lönnrotinkatu",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lönnrotinkatu 13",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/648249324"
+          ]
+        },
+        {
+          "name": "Omena-hotelli Helsinki Yrjönkatu",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Yrjönkatu 30",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/903301988"
+          ]
+        },
+        {
+          "name": "Original Sokos Hotel Albert",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Albertinkatu 30",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/173269729"
+          ]
+        },
+        {
+          "name": "Original Sokos Hotel Tripla",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Fredikanterassi 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/621975024"
+          ]
+        },
+        {
+          "name": "Original Sokos Hotel Vaakuna",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Asema-Aukio 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1369465692"
+          ]
+        },
+        {
+          "name": "Park Hotel Käpylä",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/143499899"
+          ]
+        },
+        {
+          "name": "Radisson Blu Aleksanteri Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Albertinkatu 34",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1377610484"
+          ]
+        },
+        {
+          "name": "Radisson Blu Plaza",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mikonkatu 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1369465662"
+          ]
+        },
+        {
+          "name": "Radisson Blu Royal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Runeberginkatu 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/8042297"
+          ]
+        },
+        {
+          "name": "Radisson RED Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vuorikatu 24",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/22327856"
+          ]
+        },
+        {
+          "name": "Rantapuisto",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Furuborginkatu 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/31784286"
+          ]
+        },
+        {
+          "name": "Scandic Grand Central Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vilhonkatu 13",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/661051000"
+          ]
+        },
+        {
+          "name": "Scandic Grand Marina",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Katajanokanlaituri 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/22957630"
+          ]
+        },
+        {
+          "name": "Scandic Hakaniemi",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Siltasaarenkatu 14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/701305091"
+          ]
+        },
+        {
+          "name": "Scandic Helsinki Hub",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Annankatu 18",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/10967431171"
+          ]
+        },
+        {
+          "name": "Scandic Helsinki Station",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Elielinaukio 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/56431685"
+          ]
+        },
+        {
+          "name": "Scandic Kallio",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Läntinen Brahenkatu 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/609212944"
+          ]
+        },
+        {
+          "name": "Scandic Meilahti",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tukholmankatu 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4253223606"
+          ]
+        },
+        {
+          "name": "Scandic Paasi",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Paasivuorenkatu 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1930869351"
+          ]
+        },
+        {
+          "name": "Scandic Pasila",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Maistraatinportti 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/290059775"
+          ]
+        },
+        {
+          "name": "Scandic Ruoholahti",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sulhasenkuja 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/91630171"
+          ]
+        },
+        {
+          "name": "Scandic Simonkenttä",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Simonkatu 9",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1378007297"
+          ]
+        },
+        {
+          "name": "Solo Sokos Hotel Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kluuvikatu 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/606996923"
+          ]
+        },
+        {
+          "name": "Solo Sokos Hotel Pier 4",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12248474488"
+          ]
+        },
+        {
+          "name": "Sweet Dream guest house",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Hämeentie 21",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/8831555668"
+          ]
+        },
+        {
+          "name": "The Folks Hotel Konepaja",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Aleksis Kiven katu 21-23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/8040605624"
+          ]
+        },
+        {
+          "name": "Töölö Towers",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pohjoinen Hesperiankatu 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/23210476"
+          ]
+        },
+        {
+          "name": "Töölön tornit",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/234804200"
+          ]
+        },
+        {
+          "name": "UNITY Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Välimerenkatu 22",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/927256286"
+          ]
+        },
+        {
+          "name": "Valo Hotel & Work",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mannerheimintie 109",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/778584088"
+          ]
+        },
+        {
+          "name": "Waldorf Astoria Helsinki",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Mariankatu 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11712182002"
+          ]
+        }
+      ]
+    }
+  ]
+}

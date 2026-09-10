@@ -1,0 +1,1045 @@
+{
+  "cities": [
+    {
+      "zh": "Tallinn",
+      "en": "Tallinn",
+      "country": "EE",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Swissôtel",
+          "star": 5,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/760064774"
+          ]
+        },
+        {
+          "name": "Telegraaf",
+          "star": 5,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vene 9",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/60418749"
+          ]
+        },
+        {
+          "name": "Centennial Nexus Hotel Tallinn",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Endla 15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9647705340"
+          ]
+        },
+        {
+          "name": "Hestia Hotel Ilmarine",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/80938776"
+          ]
+        },
+        {
+          "name": "Hilton Tallinn Park",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Friedrich Reinhold Kreutzwaldi 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4207141706"
+          ]
+        },
+        {
+          "name": "Hyatt Place Tallinn",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sadama 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26701882"
+          ]
+        },
+        {
+          "name": "Mercure Tallinn",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lennujaama tee 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/48811657"
+          ]
+        },
+        {
+          "name": "Mövenpick",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lembitu 12",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/199715732"
+          ]
+        },
+        {
+          "name": "Park Inn by Radisson Meriton Conference & Spa Hotel Tallinn",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Toompuiestee 27",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/463188654"
+          ]
+        },
+        {
+          "name": "Radisson Collection Hotel",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rävala pst 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/200522984"
+          ]
+        },
+        {
+          "name": "Aquamarine Hotel",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pirita tee 20/3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26870724"
+          ]
+        },
+        {
+          "name": "Gotthard Residents",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pikk 66",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/200690738"
+          ]
+        },
+        {
+          "name": "Olevi Residents",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Olevimägi 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/640445926"
+          ]
+        },
+        {
+          "name": "Tallink Express Hotel",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sadama 9",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26905501"
+          ]
+        },
+        {
+          "name": "ibis Tallinn Center",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Juhkentali 28",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/707014265"
+          ]
+        },
+        {
+          "name": "Lillekula Hotel",
+          "star": 2,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Videviku 18b",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26886434"
+          ]
+        },
+        {
+          "name": "Lillekula Hotel",
+          "star": 2,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Luha 18b",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/215211094"
+          ]
+        },
+        {
+          "name": "Adoryal Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12104692271"
+          ]
+        },
+        {
+          "name": "Beslev",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11799621786"
+          ]
+        },
+        {
+          "name": "Braavo",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5660154921"
+          ]
+        },
+        {
+          "name": "Braavo Spa Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Aia 20",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/825152107"
+          ]
+        },
+        {
+          "name": "Center Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Friedrich Reinhold Kreutzwaldi 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/10012113467"
+          ]
+        },
+        {
+          "name": "City Yard Inn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Narva mnt 9j",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12061678701"
+          ]
+        },
+        {
+          "name": "Citybox",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Laeva 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7940814474"
+          ]
+        },
+        {
+          "name": "Dorell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Karu 39",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2559604048"
+          ]
+        },
+        {
+          "name": "Dunten Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sõjakooli 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/116396684"
+          ]
+        },
+        {
+          "name": "Economy Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kopli 2c",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1741321287"
+          ]
+        },
+        {
+          "name": "Go Hotel Shnelli",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Toompuiestee 37/1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26902587"
+          ]
+        },
+        {
+          "name": "Hampton by Hilton Tallinn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tartu mnt 49",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/202707890"
+          ]
+        },
+        {
+          "name": "Hestia Hotel Barons",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Suur-Karja 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/599669800"
+          ]
+        },
+        {
+          "name": "Hestia Hotel Europa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Paadi 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1878471579"
+          ]
+        },
+        {
+          "name": "Hestia Hotel Kentmanni",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kentmanni 13",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/10816023428"
+          ]
+        },
+        {
+          "name": "Hestia Hotel Seaport",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Uus-Sadama 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/373371337"
+          ]
+        },
+        {
+          "name": "Hotel Ibis Styles Tallinn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Toompuiestee 19",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26889870"
+          ]
+        },
+        {
+          "name": "Hotell Bern",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Aia 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/649891977"
+          ]
+        },
+        {
+          "name": "Hotell Cru",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Viru 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4805497397"
+          ]
+        },
+        {
+          "name": "Hotell Meriton",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pikk 29",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4585097790"
+          ]
+        },
+        {
+          "name": "Hotell Meriton Old Town Garden",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lai 24",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/745640286"
+          ]
+        },
+        {
+          "name": "Hotell St. Olav",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lai 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/60294937"
+          ]
+        },
+        {
+          "name": "Hotell Viru",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Viru väljak 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/28396548"
+          ]
+        },
+        {
+          "name": "Iglupark",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lennusadama 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1235194708"
+          ]
+        },
+        {
+          "name": "Kalev Spa veekeskus",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Aia 18",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/47009171"
+          ]
+        },
+        {
+          "name": "Kreutzwald Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Endla 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26898445"
+          ]
+        },
+        {
+          "name": "Marta 8",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Marta 8",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12153446562"
+          ]
+        },
+        {
+          "name": "Merchant's House",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Dunkri 4/6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3727938325"
+          ]
+        },
+        {
+          "name": "Metropol Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Roseni 13",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/790012845"
+          ]
+        },
+        {
+          "name": "Metropol Spa hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Roseni 9",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5932666108"
+          ]
+        },
+        {
+          "name": "My City Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vana-Posti 11",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/599692566"
+          ]
+        },
+        {
+          "name": "Männiku JK",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Võidu 16",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11035457194"
+          ]
+        },
+        {
+          "name": "Nordic Hotel Forum",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Viru väljak 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26903478"
+          ]
+        },
+        {
+          "name": "Novotel Living korterhotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Poordi 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/1468852740"
+          ]
+        },
+        {
+          "name": "Nunne Boutique Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Nunne 14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/60686492"
+          ]
+        },
+        {
+          "name": "Old Town Maestro",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Suur-Karja 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/732743699"
+          ]
+        },
+        {
+          "name": "Olematu Rüütel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kiriku põik 4a",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4841598787"
+          ]
+        },
+        {
+          "name": "Oru Hub Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Narva mnt 120",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26886981"
+          ]
+        },
+        {
+          "name": "Paivilla",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Laine 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12190005063"
+          ]
+        },
+        {
+          "name": "Palace Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pärnu mnt 14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/234029034"
+          ]
+        },
+        {
+          "name": "Park Inn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Narva mnt 9",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4475834748"
+          ]
+        },
+        {
+          "name": "Pirita",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5686913122"
+          ]
+        },
+        {
+          "name": "Pirita Beach Apartments & Spa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/13194509106"
+          ]
+        },
+        {
+          "name": "Pirita Marina Hotell & Spa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Regati pst 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26875806"
+          ]
+        },
+        {
+          "name": "Radisson Blu Hotel Olümpia Tallinn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Liivalaia 33",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26886588"
+          ]
+        },
+        {
+          "name": "Regent Tallinn",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pikk 69",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7077879217"
+          ]
+        },
+        {
+          "name": "Revelton Suites",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11377410069"
+          ]
+        },
+        {
+          "name": "Rija Fonnental Design Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lydia Koidula 13A",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9808748501"
+          ]
+        },
+        {
+          "name": "Rija Old Town Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Lai 49",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/599679114"
+          ]
+        },
+        {
+          "name": "Rixwell Collection Savoy Boutique Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Suur-Karja 17",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/732765693"
+          ]
+        },
+        {
+          "name": "Rixwell Viru Square Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/710538489"
+          ]
+        },
+        {
+          "name": "Rocca Al Mare",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vabaohumuuseumi tee 11",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1696802164"
+          ]
+        },
+        {
+          "name": "Savoy Boutique",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vabaduse väljak 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11799503634"
+          ]
+        },
+        {
+          "name": "Schlössle",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pühavaimu 13/15",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/710538458"
+          ]
+        },
+        {
+          "name": "St. Barbara",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Roosikrantsi 2a",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26889969"
+          ]
+        },
+        {
+          "name": "St.Barbara Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Roosikrantsi 2a",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5110915622"
+          ]
+        },
+        {
+          "name": "Susi",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Peterburi tee 48",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26877475"
+          ]
+        },
+        {
+          "name": "Taanilinna",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Uus 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/710525563"
+          ]
+        },
+        {
+          "name": "Tallink City Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2603367577"
+          ]
+        },
+        {
+          "name": "Tallink Spa & Conference",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sadama 11a",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26905479"
+          ]
+        },
+        {
+          "name": "Tatari 53 Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tatari 53",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26896390"
+          ]
+        },
+        {
+          "name": "The Burman",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rataskaevu 7",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4805807625"
+          ]
+        },
+        {
+          "name": "The Park Mansion",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11278993659"
+          ]
+        },
+        {
+          "name": "The Three Sisters Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pikk 71",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26873793"
+          ]
+        },
+        {
+          "name": "Three Crowns",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Vene 8/1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/14055763001"
+          ]
+        },
+        {
+          "name": "Tähetorni Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Tähetorni 16",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26873322"
+          ]
+        },
+        {
+          "name": "White Villa",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kännu 26a",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/26893885"
+          ]
+        },
+        {
+          "name": "Yoga Residence",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pärnu mnt 32",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2574345533"
+          ]
+        },
+        {
+          "name": "von Stackelberg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Toompuiestee 23",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1030656708"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "cities": [
+    {
+      "zh": "Flåm",
+      "en": "Flåm",
+      "country": "NO",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Brekke Gard Hostel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/12115204091"
+          ]
+        },
+        {
+          "name": "Flåmsbrygga Hotell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/228153961"
+          ]
+        },
+        {
+          "name": "Fretheim Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/175724372"
+          ]
+        }
+      ]
+    }
+  ]
+}

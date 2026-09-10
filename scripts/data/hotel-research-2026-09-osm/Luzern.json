@@ -1,0 +1,817 @@
+{
+  "cities": [
+    {
+      "zh": "Luzern",
+      "en": "Luzern",
+      "country": "CH",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Mandarin Oriental Palace",
+          "star": 5,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Haldenstrasse 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/35826092"
+          ]
+        },
+        {
+          "name": "Art Deco Hotel Montana",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Adligenswilerstrasse 22",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/35826091"
+          ]
+        },
+        {
+          "name": "Cascada",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Bundesplatz 18",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/507042074"
+          ]
+        },
+        {
+          "name": "Hotel Baslertor Luzern",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pfistergasse 12",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/95985652"
+          ]
+        },
+        {
+          "name": "Hotel Continental-Park",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Murbacherstrasse 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1992013078"
+          ]
+        },
+        {
+          "name": "Hotel des Balances",
+          "star": 4,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Weinmarkt",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3636366305"
+          ]
+        },
+        {
+          "name": "Felmis",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kastanienbaumstrasse 91",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/310470252"
+          ]
+        },
+        {
+          "name": "Hotel de la Paix",
+          "star": 3,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Museggstrasse 2",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1553431812"
+          ]
+        },
+        {
+          "name": "Ibis",
+          "star": 2,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/568470007"
+          ]
+        },
+        {
+          "name": "Ambassador",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Zürichstrasse 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1553431791"
+          ]
+        },
+        {
+          "name": "Anker",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/986527609"
+          ]
+        },
+        {
+          "name": "B&B Bettstadt",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Neustadtstrasse 10",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4147538812"
+          ]
+        },
+        {
+          "name": "B.H.M.S Campus",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/5424997137"
+          ]
+        },
+        {
+          "name": "Bahnhof",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Thorenbergstrasse 20",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/98049239"
+          ]
+        },
+        {
+          "name": "Balm",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Balmstrasse 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1674875398"
+          ]
+        },
+        {
+          "name": "Baslertor",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pfistergasse 19",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11078677505"
+          ]
+        },
+        {
+          "name": "Bellevue",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/626364600"
+          ]
+        },
+        {
+          "name": "Château Gütsch",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Gütsch 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/93508221"
+          ]
+        },
+        {
+          "name": "Flora",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/206381258"
+          ]
+        },
+        {
+          "name": "Gasthaus Badhof",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/6374030919"
+          ]
+        },
+        {
+          "name": "Grand Hotel National",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Haldenstrasse 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/35826094"
+          ]
+        },
+        {
+          "name": "Hermitage",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Seeburgstrasse 72",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/103893232"
+          ]
+        },
+        {
+          "name": "Hofgarten",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stadthofstrasse 14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1236650143"
+          ]
+        },
+        {
+          "name": "Holiday Inn Express Luzern - Kriens",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Am Mattenhof 16",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/6042482523"
+          ]
+        },
+        {
+          "name": "Hotel Alpha",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Zähringerstrasse 24",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1407549881"
+          ]
+        },
+        {
+          "name": "Hotel Alpina",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Frankenstrasse 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4403448366"
+          ]
+        },
+        {
+          "name": "Hotel Astoria",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pilatusstrasse 29",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1365792564"
+          ]
+        },
+        {
+          "name": "Hotel Beau Séjour Lucerne",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Haldenstrasse 53",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/11812537818"
+          ]
+        },
+        {
+          "name": "Hotel Central",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Morgartenstrasse 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1234120659"
+          ]
+        },
+        {
+          "name": "Hotel Des Alpes",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2087718178"
+          ]
+        },
+        {
+          "name": "Hotel Drei Könige",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Bruchstrasse 35",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1292171206"
+          ]
+        },
+        {
+          "name": "Hotel Europe",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2432065444"
+          ]
+        },
+        {
+          "name": "Hotel Falken",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3618126900"
+          ]
+        },
+        {
+          "name": "Hotel Fasan",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rüeggisingerstrasse 69",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/100073190"
+          ]
+        },
+        {
+          "name": "Hotel Hofgarten",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Stadthofstrasse 14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/100873448"
+          ]
+        },
+        {
+          "name": "Hotel Krone",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/87220905"
+          ]
+        },
+        {
+          "name": "Hotel Lux",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Neuenkirchstrasse 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/95545021"
+          ]
+        },
+        {
+          "name": "Hotel Rothaus",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Klosterstrasse 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/96203531"
+          ]
+        },
+        {
+          "name": "Hotel Seeburg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Seeburgstrasse 53-61",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/626367634"
+          ]
+        },
+        {
+          "name": "Hotel Sonnenberg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "258",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/75375909"
+          ]
+        },
+        {
+          "name": "Hotel ibis",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kellerstrasse 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/92016837"
+          ]
+        },
+        {
+          "name": "Hotel zum Weisses Kreuz",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1573053816"
+          ]
+        },
+        {
+          "name": "Ibis Styles Luzern City",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Kellerstrasse 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2304169497"
+          ]
+        },
+        {
+          "name": "Le Stelle",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/87221094"
+          ]
+        },
+        {
+          "name": "Luzernerhof",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Alpenstrasse 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1553431853"
+          ]
+        },
+        {
+          "name": "Löwen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Dorfstrasse 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/385102717"
+          ]
+        },
+        {
+          "name": "Magic Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4119812455"
+          ]
+        },
+        {
+          "name": "Monopol",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Pilatusstrasse 1",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1483240189"
+          ]
+        },
+        {
+          "name": "Radisson Blu Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/506889673"
+          ]
+        },
+        {
+          "name": "Rebstock",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "St.-Leodegar-Strasse 3",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1236650540"
+          ]
+        },
+        {
+          "name": "Renaissance",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1939714683"
+          ]
+        },
+        {
+          "name": "Richemont Gastronomie & Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Seeburgstrasse 51",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/626368024"
+          ]
+        },
+        {
+          "name": "Royal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rigistrasse 22",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/104280925"
+          ]
+        },
+        {
+          "name": "Rösli Guest House",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/95985648"
+          ]
+        },
+        {
+          "name": "Schlüssel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1931871413"
+          ]
+        },
+        {
+          "name": "Schweizerhof",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1518396137"
+          ]
+        },
+        {
+          "name": "Stadthotel Tribschen",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/13347917927"
+          ]
+        },
+        {
+          "name": "The Bed + Breakfast",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/9763386063"
+          ]
+        },
+        {
+          "name": "The Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1308251840"
+          ]
+        },
+        {
+          "name": "The Lubo",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rössligasse 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2710885426"
+          ]
+        },
+        {
+          "name": "The Tourist Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1799671852"
+          ]
+        },
+        {
+          "name": "Thorenberg",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Thorenbergstrasse 5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/7438645860"
+          ]
+        },
+        {
+          "name": "Vison Apartments",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/4910832208"
+          ]
+        },
+        {
+          "name": "Waldstätterhof",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/3545194716"
+          ]
+        },
+        {
+          "name": "Wilden Mann",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/1821541395"
+          ]
+        },
+        {
+          "name": "Zur Linde",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/2710885437"
+          ]
+        },
+        {
+          "name": "feRUS",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rothenburgstrasse 45",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/97409505"
+          ]
+        }
+      ]
+    }
+  ]
+}
