@@ -7435,6 +7435,10 @@
     "cityCode": "PUT",
     "countryCode": "DE"
   },
+  "普特加登": {
+    "cityCode": "PUT",
+    "countryCode": "DE"
+  },
   "Quedlinburg": {
     "cityCode": "QUD",
     "countryCode": "DE"
@@ -8612,6 +8616,10 @@
     "countryCode": "DK"
   },
   "Roedby": {
+    "cityCode": "ROD",
+    "countryCode": "DK"
+  },
+  "勒兹比": {
     "cityCode": "ROD",
     "countryCode": "DK"
   },

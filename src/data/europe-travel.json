@@ -3883,6 +3883,14 @@
           "lat": 56.036,
           "lng": 12.6136,
           "attractions": []
+        }        ,
+        {
+          "id": "roedby",
+          "name": "勒兹比",
+          "nameEn": "Roedby",
+          "lat": 54.6549,
+          "lng": 11.3544,
+          "attractions": []
         }]
     },
     {
@@ -5287,7 +5295,15 @@
           "lng": 13.0019,
           "attractions": []
         }
-      ]
+              ,
+        {
+          "id": "puttgarden",
+          "name": "普特加登",
+          "nameEn": "Puttgarden",
+          "lat": 54.4997,
+          "lng": 11.2192,
+          "attractions": []
+        }]
     },
     {
       "id": "poland",
