@@ -2285,4 +2285,17 @@ export default {
       { name: "Solakoop B&B", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/4310330233"], address: "", chain: "", note: "" },
     ],
   },
+  "hella": {
+    name: "海拉", nameEn: "Hella", country: "IS", cityCode: "HLL", note: "冰岛南部(海拉一带)。数据源 OpenStreetMap 2026-09-10;评分/价格待补。", hotels: [
+      { name: "Hotel Stracta Mosfell", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Þrúðvangur 6", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/225287165"], address: "", chain: "", note: "" },
+      { name: "Stracta Hotel Hella", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Rangárflatir 4", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/689934914"], address: "", chain: "", note: "" },
+    ],
+  },
+  "vik-i-myrdal": {
+    name: "维克", nameEn: "Vík í Mýrdal", country: "IS", cityCode: "VKK", note: "冰岛南部维克镇。数据源 OpenStreetMap 2026-09-10;评分/价格待补。", hotels: [
+      { name: "Hotel Kría", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Sléttuvegur 12-14", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/762209242"], address: "", chain: "", note: "" },
+      { name: "Hótel Vík í Mýrdal", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Klettsvegur 1-5", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/837950425"], address: "", chain: "", note: "" },
+      { name: "Vik Tröll Hotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Víkurbraut 26", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/301399084"], address: "", chain: "", note: "" },
+    ],
+  },
 }

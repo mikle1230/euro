@@ -3593,7 +3593,24 @@
             }
           ]
         }
-      ]
+              ,
+        {
+          "id": "hella",
+          "name": "海拉",
+          "nameEn": "Hella",
+          "lat": 63.8333,
+          "lng": -20.4,
+          "attractions": []
+        },
+        {
+          "id": "vik-i-myrdal",
+          "name": "维克",
+          "nameEn": "Vík í Mýrdal",
+          "lat": 63.4187,
+          "lng": -19.006,
+          "attractions": []
+        }
+]
     },
     {
       "id": "denmark",

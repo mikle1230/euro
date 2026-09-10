@@ -166,3 +166,26 @@
 **酒店 5 家**(Lucerne LUZ):Schweizerhof 5*(已有同名,需核对门店)、Radisson Blu 5*(同名核对)、**Waldstätterhof 4*Sup(缺)**、AVA 4*(同名核对)、**Kreuz by b_smart 3*(缺)**。
 **冬季活动产品**:LILU 灯光节(2027.1.14-24)、狂欢节(2027.2.4-9)、Stoos 滑雪初体验/雪鞋徒步+雪橇、Glasi Hergiswil 玻璃厂、Lindt 巧克力工坊、购物。完整存档 workspace euro-knowledge #21。
 **报价价值**:客户询瑞士冬季团直接套产品包+酒店清单。
+
+---
+
+## 2026-09-10 — 城市码补录 + OSM 酒店补库 + 去重(🛠️ 已实现)
+
+**来源**:Michael 从 KT 系统查到冰岛码
+**状态**:🛠️ 已实现
+
+### 城市码(重要更正)
+- **Hella(冰岛)= HLL**(注:quos-cities 里 "Hella" 原为挪威 HLN,故冰岛用区分名 **"Hella (Iceland)"**)
+- **Vík í Mýrdal(冰岛)= VKK**(原 "Vik" 为挪威 VII,冰岛用 **"Vik i Myrdal"**)
+- **Höfn = HFN**(原有,正确)
+- **更正**:冰岛**没有** Hof 这个城市(我此前备注有误)——`Hof` 是**德国**的(HOF/DE),冰岛只有 Höfn。
+- 已补:`quos-cities.json`(Hella (Iceland)/Vik i Myrdal + 中文键 海拉/维克)、`curated-cities.cjs`、`europe-travel.json`(冰岛城市新增 海拉/维克)
+
+### 酒店补库(OSM 免费路线,替代 AI 研究)
+- 新增 12 城 437 家(赫尔辛基/卑尔根/哥德堡/塔林/马尔默/延雪平/林雪平/Voss/Ulvik/Flåm/夏洛滕贝里/卡尔斯塔德)+ 卢塞恩追加
+- 冰岛 Hella 2 家、Vík í Mýrdal 3 家
+- 工具:`scripts/fetch-hotels-osm.py`(抓取)、`scripts/merge-osm-hotels-2026-09.py`
+
+### 去重(两个维度都归零)
+- 库内重复 10 组 → 0(`scripts/dedupe-hotels-2026-09.py`)
+- 与 KT 报价库重叠 6 条 → 0(保留 KT 报价侧;`scripts/remove-kt-overlaps-2026-09.py`)

@@ -1,0 +1,49 @@
+{
+  "cities": [
+    {
+      "zh": "Vik i Myrdal",
+      "en": "Vik i Myrdal",
+      "country": "IS",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Hotel Kría",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Sléttuvegur 12-14",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/762209242"
+          ]
+        },
+        {
+          "name": "Hótel Vík í Mýrdal",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Klettsvegur 1-5",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/node/837950425"
+          ]
+        },
+        {
+          "name": "Vik Tröll Hotel",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Víkurbraut 26",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/301399084"
+          ]
+        }
+      ]
+    }
+  ]
+}

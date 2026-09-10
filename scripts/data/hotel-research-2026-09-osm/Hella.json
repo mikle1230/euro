@@ -1,0 +1,37 @@
+{
+  "cities": [
+    {
+      "zh": "Hella",
+      "en": "Hella",
+      "country": "IS",
+      "cityCode": "",
+      "note": "来源 OpenStreetMap(Overpass) 2026-09-10；星级取自 OSM tags.stars；评分/价格待补。",
+      "hotels": [
+        {
+          "name": "Hotel Stracta Mosfell",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Þrúðvangur 6",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/225287165"
+          ]
+        },
+        {
+          "name": "Stracta Hotel Hella",
+          "star": 0,
+          "rating": 0,
+          "priceEur": 0,
+          "area": "Rangárflatir 4",
+          "near": "",
+          "ratingSource": "",
+          "sources": [
+            "https://www.openstreetmap.org/way/689934914"
+          ]
+        }
+      ]
+    }
+  ]
+}

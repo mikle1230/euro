@@ -8303,6 +8303,22 @@
     "cityCode": "FRH",
     "countryCode": "DK"
   },
+  "Hella (Iceland)": {
+    "cityCode": "HLL",
+    "countryCode": "IS"
+  },
+  "Vik i Myrdal": {
+    "cityCode": "VKK",
+    "countryCode": "IS"
+  },
+  "海拉": {
+    "cityCode": "HLL",
+    "countryCode": "IS"
+  },
+  "维克": {
+    "cityCode": "VKK",
+    "countryCode": "IS"
+  },
   "Funen": {
     "cityCode": "FYN",
     "countryCode": "DK"
