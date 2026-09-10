@@ -3891,6 +3891,22 @@
           "lat": 54.6549,
           "lng": 11.3544,
           "attractions": []
+        }        ,
+        {
+          "id": "nyborg",
+          "name": "尼堡",
+          "nameEn": "Nyborg",
+          "lat": 55.3127,
+          "lng": 10.7896,
+          "attractions": []
+        }        ,
+        {
+          "id": "holte",
+          "name": "霍尔特",
+          "nameEn": "Holte",
+          "lat": 55.8131,
+          "lng": 12.4673,
+          "attractions": []
         }]
     },
     {
