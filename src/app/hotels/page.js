@@ -6,6 +6,30 @@ import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
 import InstantSearchDropdown from '@/components/instant-search-dropdown'
+import travelData from '@/data/europe-travel.json'
+import { COUNTRIES } from '@/data/countries'
+
+// 国家标签顺序：跟随「城市库」(europe-travel.json) 的国家顺序（而非中文名音序），便于对照查找
+const COUNTRY_ORDER = (() => {
+  const isoByName = new Map()
+  for (const [cc, info] of Object.entries(COUNTRIES)) {
+    isoByName.set(String(info.nameEn || '').toLowerCase(), cc)
+    isoByName.set(String(info.name || ''), cc)
+  }
+  const order = new Map()
+  ;(travelData.countries || []).forEach((c, i) => {
+    const cc =
+      isoByName.get(String(c.nameEn || '').toLowerCase()) ||
+      isoByName.get(String(c.name || '')) ||
+      c.id
+    if (!order.has(cc)) order.set(cc, i)
+  })
+  return order
+})()
+
+function countryRank(cc) {
+  return COUNTRY_ORDER.has(cc) ? COUNTRY_ORDER.get(cc) : 999
+}
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
 function ratingColor(r) {
@@ -255,7 +279,11 @@ export default function HotelsPage() {
       country: cc,
       countryName: [...m.values()][0]?.countryName || cc,
       cities: [...m.values()].sort((a, b) => String(a.city).localeCompare(String(b.city), 'zh')),
-    })).sort((a, b) => String(a.countryName).localeCompare(String(b.countryName), 'zh'))
+    })).sort(
+      (a, b) =>
+        countryRank(a.country) - countryRank(b.country) ||
+        String(a.countryName).localeCompare(String(b.countryName), 'zh'),
+    )
   }, [catalog, quoteCatalog])
 
   const totalHotels = useMemo(
