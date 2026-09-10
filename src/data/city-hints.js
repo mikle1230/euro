@@ -267,6 +267,12 @@ export const CITY_HINTS = [
     "countryCode": "DK"
   },
   {
+    "cn": "胖特烈港",
+    "en": "Frederikshavn",
+    "cityCode": "FRH",
+    "countryCode": "DK"
+  },
+  {
     "cn": "塔林",
     "en": "Tallinn",
     "cityCode": "TLL",

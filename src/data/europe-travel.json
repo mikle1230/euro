@@ -3817,6 +3817,14 @@
               "lng": 10.4004
             }
           ]
+        },
+        {
+          "id": "frederikshavn",
+          "name": "腓特烈港",
+          "nameEn": "Frederikshavn",
+          "lat": 57.4407,
+          "lng": 10.5366,
+          "attractions": []
         }
       ]
     },
