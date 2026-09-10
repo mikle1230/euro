@@ -8375,6 +8375,10 @@
     "cityCode": "HSG",
     "countryCode": "DK"
   },
+  "赫尔辛格": {
+    "cityCode": "HSG",
+    "countryCode": "DK"
+  },
   "Herning": {
     "cityCode": "HNG",
     "countryCode": "DK"
@@ -28264,6 +28268,10 @@
     "countryCode": "SE"
   },
   "Helsingborg": {
+    "cityCode": "AGH",
+    "countryCode": "SE"
+  },
+  "赫尔辛堡": {
     "cityCode": "AGH",
     "countryCode": "SE"
   },

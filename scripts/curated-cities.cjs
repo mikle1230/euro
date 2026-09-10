@@ -51,6 +51,7 @@ module.exports = [
   ['卢森堡', 'Luxembourg'],
   // 北欧
   ['海拉', 'Hella (Iceland)'], ['维克', 'Vik i Myrdal'],
+  ['赫尔辛格', 'Helsingor'], ['赫尔辛堡', 'Helsingborg'],
   ['哥本哈根', 'Copenhagen'], ['斯德哥尔摩', 'Stockholm'], ['哥德堡', 'Gothenburg'], ['马尔默', 'Malmo'],
   ['腓特烈港', 'Frederikshavn'],
   ['斯塔尔海姆', 'Stalheim'], ['盖罗', 'Geilo'], ['弗勒', 'Forde'],

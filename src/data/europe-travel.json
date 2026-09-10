@@ -3382,7 +3382,15 @@
           "lng": 17.72,
           "attractions": []
         }
-      ]
+              ,
+        {
+          "id": "helsingborg",
+          "name": "赫尔辛堡",
+          "nameEn": "Helsingborg",
+          "lat": 56.0465,
+          "lng": 12.6945,
+          "attractions": []
+        }]
     },
     {
       "id": "finland",
@@ -3867,7 +3875,15 @@
           "lng": 10.5366,
           "attractions": []
         }
-      ]
+              ,
+        {
+          "id": "helsingor",
+          "name": "赫尔辛格",
+          "nameEn": "Helsingor",
+          "lat": 56.036,
+          "lng": 12.6136,
+          "attractions": []
+        }]
     },
     {
       "id": "netherlands",
