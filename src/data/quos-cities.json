@@ -24195,6 +24195,10 @@
     "cityCode": "FDE",
     "countryCode": "NO"
   },
+  "弗勒": {
+    "cityCode": "FDE",
+    "countryCode": "NO"
+  },
   "Fornebu": {
     "cityCode": "FBU",
     "countryCode": "NO"
@@ -24252,6 +24256,10 @@
     "countryCode": "NO"
   },
   "Geilo": {
+    "cityCode": "DLD",
+    "countryCode": "NO"
+  },
+  "盖罗": {
     "cityCode": "DLD",
     "countryCode": "NO"
   },
@@ -25448,6 +25456,10 @@
     "countryCode": "NO"
   },
   "Stalheim": {
+    "cityCode": "STH",
+    "countryCode": "NO"
+  },
+  "斯塔尔海姆": {
     "cityCode": "STH",
     "countryCode": "NO"
   },

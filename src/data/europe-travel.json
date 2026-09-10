@@ -3056,7 +3056,31 @@
           "lng": 6.8794,
           "attractions": []
         }
-      ]
+              ,
+        {
+          "id": "stalheim",
+          "name": "斯塔尔海姆",
+          "nameEn": "Stalheim",
+          "lat": 60.9475,
+          "lng": 6.673,
+          "attractions": []
+        }        ,
+        {
+          "id": "geilo",
+          "name": "盖罗",
+          "nameEn": "Geilo",
+          "lat": 60.5333,
+          "lng": 8.2,
+          "attractions": []
+        }        ,
+        {
+          "id": "forde",
+          "name": "弗勒",
+          "nameEn": "Førde",
+          "lat": 61.4522,
+          "lng": 5.8572,
+          "attractions": []
+        }]
     },
     {
       "id": "sweden",

@@ -53,6 +53,7 @@ module.exports = [
   ['海拉', 'Hella (Iceland)'], ['维克', 'Vik i Myrdal'],
   ['哥本哈根', 'Copenhagen'], ['斯德哥尔摩', 'Stockholm'], ['哥德堡', 'Gothenburg'], ['马尔默', 'Malmo'],
   ['腓特烈港', 'Frederikshavn'],
+  ['斯塔尔海姆', 'Stalheim'], ['盖罗', 'Geilo'], ['弗勒', 'Forde'],
   ['奥斯陆', 'Oslo'], ['卑尔根', 'Bergen'], ['斯塔万格', 'Stavanger'], ['特罗姆瑟', 'Tromso'],
   ['奥勒松', 'Alesund'], ['赫尔辛基', 'Helsinki'], ['罗瓦涅米', 'Rovaniemi'],
   // 爱尔兰
