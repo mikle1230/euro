@@ -1601,6 +1601,11 @@ export default {
         ratingSource: "Booking.com(is-southerniceland 镜像转述)", sources: ["https://www.booking.com/hotel/is/hvolvollur.html", "https://www.is-southerniceland.com/en/property/hotel-hvolsvollur.html"], address: "", chain: "",
         note: "Booking 简名 Hotel Hvolsvöllur,全名含 Central South Iceland;Booking 评分 8.2/373 评(镜像转述)",
       },
+      {
+        name: "Hótel Skógafoss", nameZh: "斯科加瀑布酒店", star: 3, rating: 8.9, priceEur: 286,
+        area: "Skógar 村(邮区 861 Hvolsvöllur)1 号环岛公路旁,紧邻斯科加瀑布(Skógafoss)与 Skógar 民俗博物馆;位于霍尔斯沃德吕尔以东、维克以西的南岸中点", near: "斯科加瀑布 Skógafoss / Skógar 博物馆",
+        ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/skogarfoss-hotel-detail-7180522/htel-skgafoss-by-ej-hotels/", "https://hotelskogafoss.is/", "https://www.booking.com/hotel/is/skogafoss.en-gb.html"], address: "Skógar, 861 Hvolsvöllur, Iceland", chain: "EJ Hotels",
+      },
     ],
   },
   "kirkjubaejarklaustur": {
@@ -2296,6 +2301,56 @@ export default {
       { name: "Hotel Kría", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Sléttuvegur 12-14", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/762209242"], address: "", chain: "", note: "" },
       { name: "Hótel Vík í Mýrdal", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Klettsvegur 1-5", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/837950425"], address: "", chain: "", note: "" },
       { name: "Vik Tröll Hotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Víkurbraut 26", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/301399084"], address: "", chain: "", note: "" },
+    ],
+  },
+  "eindhoven": {
+    name: "埃因霍温", nameEn: "Eindhoven", country: "NL", cityCode: "EIN",
+    note: "荷兰北布拉班特省埃因霍温;荷兰南部/布拉班特商务过夜点,费尔德霍芬(Veldhoven)会议酒店归入本城。数据源 Trip.com(2026-09),评分为 10 分制聚合分。", hotels: [
+      {
+        name: "NH Eindhoven Conference Centre Koningshof", nameZh: "康宁小夫埃因霍温会议中心NH酒店", star: 4, rating: 8.6, priceEur: 95,
+        area: "费尔德霍芬(Veldhoven,邮编 5504 RM)De Locht 一带 Locht 117,埃因霍温市中心西南方向、距埃因霍温机场约 6.3km,近 A2/A67 高速", near: "费尔德霍芬 Veldhoven / 埃因霍温机场",
+        ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/veldhoven-hotel-detail-776643/nh-eindhoven-conference-centre-koningshof/"], address: "Locht 117, 5504 RM Veldhoven, Netherlands", chain: "NH Hotels",
+      },
+    ],
+  },
+  "cologne": {
+    name: "科隆", nameEn: "Cologne", country: "DE", cityCode: "CGN",
+    note: "德国北莱茵-威斯特法伦州科隆(莱茵河畔)。数据源 Trip.com(2026-09),评分为 10 分制聚合分。", hotels: [
+      {
+        name: "Leonardo Hotel Köln", nameZh: "科隆莱昂纳多酒店", star: 4, rating: 8.4, priceEur: 81,
+        area: "科隆 Waldecker Str. 11-15(邮编 51065,Mülheim/Buchforst 一带,莱茵河右岸),近 Koelnmesse 会展中心与 Köln Messe/Deutz、Köln Arcaden,至科隆大教堂/老城需跨河车程", near: "科隆会展中心 Koelnmesse",
+        ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/cologne-hotel-detail-2194567/leonardo-hotel-kln/"], address: "Waldecker Str. 11-15, 51065 Cologne, Germany", chain: "Leonardo Hotels",
+      },
+    ],
+  },
+  "luxembourg": {
+    name: "卢森堡", nameEn: "Luxembourg", country: "LU", cityCode: "LUX",
+    note: "卢森堡大公国首都卢森堡市。数据源 Trip.com(2026-09),评分为 10 分制聚合分。", hotels: [
+      {
+        name: "Parc Hotel Alvisse", nameZh: "阿尔维斯帕克酒店", star: 4, rating: 8.0, priceEur: 122,
+        area: "卢森堡市 Dommeldange(Dummeldeng)区 120 Route d'Echternach(邮编 1453),市区北缘往埃希特纳赫方向,近 Dommeldange 城堡/火车站,距市中心与基希贝格(Kirchberg)EU 区短程车程", near: "Dommeldange 区 / 卢森堡市中心",
+        ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/luxembourg-hotel-detail-744906/parc-hotel-alvisse/"], address: "120 Route d'Echternach, L-1453 Luxembourg, Luxembourg", chain: "",
+      },
+    ],
+  },
+  "bruges": {
+    name: "布鲁日", nameEn: "Bruges", country: "BE", cityCode: "BRG",
+    note: "比利时西佛兰德省布鲁日;报价单用名 Velotel(EX APOLLO ART)。数据源 Trip.com(2026-09),评分为 10 分制聚合分。", hotels: [
+      {
+        name: "Velotel Brugge", nameZh: "布鲁日维罗特尔酒店", star: 4, rating: 9.2, priceEur: 83,
+        area: "布鲁日 Handboogstraat 1B(邮编 8000,Sint-Pieters 一带),非老城核心区,进老城需短程车程;前身 Apollo Art Hotel", near: "布鲁日 Sint-Pieters",
+        ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/bruges-hotel-detail-3108032/velotel-brugge/"], address: "Handboogstraat 1B, 8000 Bruges, Belgium", chain: "",
+      },
+    ],
+  },
+  "wavre": {
+    name: "瓦夫尔", nameEn: "Wavre", country: "BE", cityCode: "WAV",
+    note: "比利时瓦隆布拉班特省瓦夫尔(布鲁塞尔东南方向);含 Wavre/Bierges 及 Walibi 一带。数据源 Trip.com(2026-09),评分为 10 分制聚合分;Novotel 星级取自 Accor 数据表(4★,Trip.com 页面标 3★ 有误)。", hotels: [
+      {
+        name: "Novotel Wavre Brussels East", nameZh: "布鲁塞尔东瓦弗诺富特酒店", star: 4, rating: 8.4, priceEur: 70,
+        area: "瓦夫尔 Bierges 区 Rue de la Wastinne 45(邮编 1301),近 E411/A4 高速与 Walibi Belgium 乐园、Bierges-Walibi 车站;布鲁塞尔东南方向过夜点", near: "Walibi Belgium / Bierges-Walibi 车站",
+        ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/wavre-hotel-detail-3067541/novotel-wavre-brussels-east-hotel/"], address: "Rue de la Wastinne 45, 1301 Wavre, Belgium", chain: "Accor / Novotel",
+      },
     ],
   },
 }
