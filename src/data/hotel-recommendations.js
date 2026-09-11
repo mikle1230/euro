@@ -1816,6 +1816,7 @@ export default {
       { name: "Thon Hotel Asker", nameZh: "", star: 4, rating: 7.6, priceEur: 154, area: "Asker 市 Vettre/Konglung 海滨(Konglungveien 201,近 Hvalstrand/Whale Beach 海滩约1.8km),奥斯陆市中心西南约 20km、车程约 25-35 分钟", near: "Hvalstrand bad 海滩(约1.8km);Asker 中心(约2.3km);奥斯陆市中心需车程", ratingSource: "Booking.com(zenhotels.com 转述:7.6,463 条,0-10 制)", sources: ["https://www.zenhotels.com/hotel/en-de/norway/asker/mid7379786/thon_hotel_vettre/", "https://www.thonhotels.com/hotels/norway/asker/thon-hotel-asker/", "https://www.norway-hotel.com/en/asker-hotels-4456/4-stars/", "https://www.agoda.com/en-gb/thon-hotel-vettre/hotel/asker-no.html"], address: "", chain: "", note: "改名核实(doc 'Thon Hotel Vettre'):主酒店现官方名 Thon Hotel Asker——zenhotels 该房源页标题与 deep-link hotel_name、Thon 官网(thon-hotel-asker)、Trip.com 均用现名;zenhotels URL slug 与 hotel_id 仍为 thon_hotel_vettre、easyjet/agoda 2026 部分渠道仍沿用旧名 Thon Hotel Vettre,佐证系更名而非新店。'Thon Hotel Vettre Apartments' 为公寓产品、仍用 Vettre 名,勿混淆。155 房/4 层(1979 建/2009 翻新),海滨度假/会议型(室内泳池、水公园、桑拿、免费自行车)。star 4 据 norway-hotel.com '4 star hotels in Asker' 收录(2026),Booking 官网分级待核。€154 为 zenhotels from(2026-09);Agoda 淡季见 from £90。评分 7.6(463 条)为该类型正常水平;位置距奥斯陆市区远,适合奥斯陆西南峡湾行程或团队休闲/会议。" },
       { name: "Thon Hotel Vika Atrium", nameZh: "", star: 3, rating: 8.4, priceEur: 186, area: "奥斯陆西城 Vika(Munkedamsveien 45,Aker Brygge 海滨与王宫之间;zenhotels 目的地 Frogner),距市中心约 814m", near: "诺贝尔和平中心约300m;Nationaltheatret 地铁约620m;Aker Brygge 海滨、市政厅、王宫步行可达", ratingSource: "Booking.com(zenhotels.com 转述:8.4,1104 条,0-10 制)", sources: ["https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7552280/thon_hotel_vika_atrium/", "https://www.hotelscombined.ca/Hotel/Thon_Hotel_Vika_Atrium.htm", "https://www.cleartrip.com/hotels/details/thon-hotel-vika-atrium-129279"], address: "", chain: "", note: "130 房/7 层(1989 建),会奖/商务型(会议厅、停车、充电桩),位置极佳(Aker Brygge/诺贝尔和平中心旁),前台英语/西/德/法多语。星级:HotelsCombined 标题标 3 stars(2026-09),而 TravelWeekly/GDS 老分类作 'First Class'(≈4★ 档),两源不一;Booking 官网现页分级未能直读,建议人工核后取 Booking 口径(暂按聚合标注 3)。€186 为 zenhotels from 起价(2026-09 会议季)。点评 1104 条、8.4 稳定。" },
       { name: "The Thief", nameZh: "西弗酒店", star: 5, rating: 9.2, priceEur: 352, area: "Tjuvholmen 海滨新区(Landgangen 1,Astrup Fearnley 现代美术馆同区),距市中心约 1.2km", near: "诺贝尔和平中心约720m;Astrup Fearnley 现代美术馆(同区);Aker Brygge;王宫约1.2km", ratingSource: "Booking.com(zenhotels.com 转述:9.2,3188 条,0-10 制;hotelclub.net 另见 8.7/388 条旧快照)", sources: ["https://www.zenhotels.com/hotel/en-de/norway/oslo/mid7622954/the_thief/", "https://www.hotelclub.net/h/the-thief.html", "https://www.trip.com/hotels/oslo-hotel-detail-2506236/hotel/", "https://www.luxurylink.com/5star/hotels/oslo-norway/thief"], address: "", chain: "", note: "核实:正常在营的 Tjuvholmen 网红设计奢华酒店(2013 开业,119 房/8 层,艺术收藏+THIEF Spa+屋顶酒吧,5★ 依 hotelclub '★ ★ ★ ★ ★' 与 zenhotels 描述 '5-star' 一致)。品牌联盟:未能在抓取限额内取得 SLH/其他官方会员页佐证(本批未见 slh.com 条目,部分中文渠道有 SLH 字样但不足以采信),note 中勿写死联盟,建议官网人工确认。中文名:Booking 中文渠道『西弗酒店』,携程/飞客亦作『奥斯陆神偷酒店』。评分两源差异大(zenhotels 9.2/3188 条 vs hotelclub 8.7/388 条),取样本大者 9.2 并注明,Booking 官网现分请人工核。€352 为 zenhotels from(2026-09);五星淡旺季价差大(旺季可 €500+),高端团建议直询协议价。" },
+      { name: "X Hotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.booking.com/hotel/no/moxy-oslo-x.html"], address: "", chain: "", note: "同事报价 BJGSW52123 选用；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。位置核实：X Hotel(原 Moxy Oslo X，2024-11 更名，Norlandia 运营)实际位于 Skjetten/Lillestrøm(Skedsmo 市)，在奥斯陆与 Gardermoen 机场之间、非奥斯陆市区；报价按同事 OSL 口径归集。" },
     ],
   },
   "gardermoen": {
@@ -2070,6 +2071,7 @@ export default {
       { name: "Quality Hotel Winn", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/563223066"], address: "", chain: "", note: "" },
       { name: "Radisson Blu Scandinavia", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Södra Hamngatan 59-65", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/30483077"], address: "", chain: "", note: "" },
       { name: "SGS Veckobostäder", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/971098113"], address: "", chain: "", note: "" },
+      { name: "Scandic Backadal", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Bäckebolsvägen 4", near: "", ratingSource: "", sources: ["https://www.booking.com/hotel/se/scandic-backadal.html", "https://www.openstreetmap.org/way/191613704"], address: "", chain: "", note: "同事报价 BJGSW52123 选用；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。" },
       { name: "Scandic Crown", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Polhemsplatsen 3", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/60891328"], address: "", chain: "", note: "" },
       { name: "Scandic Europa", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Nils Ericsonsgatan 21", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/285734366"], address: "", chain: "", note: "" },
       { name: "Scandic Go, Lilla Bommen 5", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "Lilla Bommen 5", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/14086421601"], address: "", chain: "", note: "" },
@@ -2251,6 +2253,7 @@ export default {
     name: "沃斯", nameEn: "Voss", country: "NO", cityCode: "VOS", note: "挪威峡湾小镇。数据源 OSM 2026-09-10；评分/价格待补。", hotels: [
       { name: "Fleischer's Hotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/241804906"], address: "", chain: "", note: "" },
       { name: "Park Hotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/node/8862821950"], address: "", chain: "", note: "" },
+      { name: "Scandic Voss", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.booking.com/hotel/no/scandic-voss.html", "https://www.openstreetmap.org/node/7996036994"], address: "", chain: "", note: "同事报价 BJGSW52123 选用；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。" },
     ],
   },
   "ulvik": {
@@ -2351,6 +2354,18 @@ export default {
         area: "瓦夫尔 Bierges 区 Rue de la Wastinne 45(邮编 1301),近 E411/A4 高速与 Walibi Belgium 乐园、Bierges-Walibi 车站;布鲁塞尔东南方向过夜点", near: "Walibi Belgium / Bierges-Walibi 车站",
         ratingSource: "Trip.com", sources: ["https://www.trip.com/hotels/wavre-hotel-detail-3067541/novotel-wavre-brussels-east-hotel/"], address: "Rue de la Wastinne 45, 1301 Wavre, Belgium", chain: "Accor / Novotel",
       },
+    ],
+  },
+  "holte": {
+    name: "霍尔特", nameEn: "Holte", country: "DK", cityCode: "HTE",
+    note: "丹麦西兰岛北部 Rudersdal 市镇 Holte（哥本哈根以北通勤镇，HTE/DK；城市键沿用 europe-travel/quos-cities 既有 Holte）。数据源：同事正式报价 BJGSW52123 选用酒店；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。", hotels: [
+      { name: "Comwell Holte", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: [], address: "", chain: "", note: "同事报价 BJGSW52123 选用；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。" },
+    ],
+  },
+  "vantaa": {
+    name: "万塔", nameEn: "Vantaa", country: "FI", cityCode: "VAT",
+    note: "芬兰万塔（赫尔辛基机场所在地，Uusimaa，VAT/FI）。数据源：同事正式报价 BJGSW52123 选用酒店；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。", hotels: [
+      { name: "Break Sokos Hotel Flamingo", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.booking.com/hotel/fi/sokos-flamingo.html"], address: "", chain: "", note: "同事报价 BJGSW52123 选用；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。" },
     ],
   },
 }
