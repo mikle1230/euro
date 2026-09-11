@@ -2260,6 +2260,7 @@ export default {
     name: "于尔维克", nameEn: "Ulvik", country: "NO", cityCode: "ULV", note: "挪威哈当厄尔峡湾小镇。数据源 OSM 2026-09-10；评分/价格待补。", hotels: [
       { name: "Brakanes Hotel", nameZh: "", star: 3, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/260447497"], address: "", chain: "", note: "" },
       { name: "Ulvik Hotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: ["https://www.openstreetmap.org/way/260447514"], address: "", chain: "", note: "" },
+      { name: "Strand Fjordhotel", nameZh: "", star: 0, rating: 0, priceEur: 0, area: "", near: "", ratingSource: "", sources: [], address: "", chain: "", note: "同事报价 BJGSW53076 选用；2026-09-11 按'低成本落库'规则只补名字，未查评分/价格。" },
     ],
   },
   "flam": {
