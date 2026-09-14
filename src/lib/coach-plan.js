@@ -191,6 +191,9 @@ function erPrice(ldc, km) {
         return { price: 0, label: `，ER ×${cnt}` }
       }
     }
+    // 超出表内最后一档 → 若该区域标注了 overNote，提示询价（不再静默返回 0/空）
+    const last = er.tiers[er.tiers.length - 1]
+    if (er.overNote && last && km > last[1]) return { price: 0, label: `，${er.overNote}` }
     return { price: 0, label: '' }
   }
   if (er.type === 'perKm') {

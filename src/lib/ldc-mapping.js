@@ -163,15 +163,20 @@ export const ER_RULES = {
     maxKmPerDay: 375, excessPerKm: 2,
   },
   germanyGls: {
-    type: 'count', tiers: [[200, 400, 1], [401, 599, 1.5], [600, 999, 2], [1000, 99999, 3]], unit: null, // 1000+ 阶梯尾部待确认
+    // 表：200-400=1 / 401-599=1.5 / 600-999=2 / 1000-1699=3 / 1700-1999=4 / 2000+=5（2026-09-14 按表补全尾部）
+    type: 'count', tiers: [[200, 400, 1], [401, 599, 1.5], [600, 999, 2], [1000, 1699, 3], [1700, 1999, 4], [2000, 99999, 5]], unit: null,
     maxKmPerDay: 375, excessPerKm: 2,
   },
   franceMono: {
-    type: 'count', tiers: [[200, 600, 1], [601, 900, 1.5], [901, 1500, 2], [1501, 99999, 3]], unit: null, // 1500+ 阶梯尾部待确认
+    // 表只给到 900-1500=2 ER（另 NCE/PAR 固定 1500 EUR）；1500+ 表内未给 → 不臆造档位，提示询价（2026-09-14 按表回退）
+    type: 'count', tiers: [[200, 600, 1], [601, 900, 1.5], [901, 1500, 2]], unit: null,
+    overNote: '>1500km 官方表未给，需询价 Proc',
     maxKmPerDay: 350, excessPerKm: 1.5,
   },
   italyMono: {
-    type: 'count', tiers: [[351, 600, 1], [601, 999, 1.5], [1000, 1200, 2], [1201, 99999, 2.5]], unit: null, // 1200+ 阶梯尾部待确认
+    // 表只给到 1000-1200=2 ER；1200+ 表内未给 → 不臆造档位，提示询价（2026-09-14 按表回退）
+    type: 'count', tiers: [[351, 600, 1], [601, 999, 1.5], [1000, 1200, 2]], unit: null,
+    overNote: '>1200km 官方表未给，需询价 Proc',
     maxKmPerDay: 350, excessPerKm: 1.8,
   },
   sicilyMono: { type: 'none', maxKmPerDay: 300, excessPerKm: 1.8, note: '≥3 live days 无 ER（仅 2 天时询价）' },
