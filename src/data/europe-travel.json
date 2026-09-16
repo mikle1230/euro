@@ -3333,6 +3333,22 @@
               "lng": 7.672
             }
           ]
+        },
+        {
+          "id": "brensholmen",
+          "name": "布伦斯霍尔门",
+          "nameEn": "Brensholmen",
+          "lat": 69.5911,
+          "lng": 18.0286,
+          "attractions": []
+        },
+        {
+          "id": "botnhamn",
+          "name": "博滕港",
+          "nameEn": "Botnhamn",
+          "lat": 69.5167,
+          "lng": 17.9,
+          "attractions": []
         }
       ]
     },

@@ -55,6 +55,8 @@ export const CITY_CODE_ALIASES = {
   '埃沃内斯': 'Evenes',
   '哈姆诺伊村': 'Hamnoy',
   '盖朗厄尔': 'Geiranger',
+  '布伦斯霍尔门': 'Brensholmen',
+  '博滕港': 'Botnhamn',
   // 机场三字码 → 城市（AI 的 from/to 可能输出机场码；机场码≠城市码的少数，
   // 避免撞码歧义——如 CDG 在 Cities.xlsx 里是 Cardigan/GB）
   'PEK': 'Beijing',
