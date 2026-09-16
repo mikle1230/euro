@@ -2858,6 +2858,14 @@
               "lng": 10.7522,
               "description": "哈当厄尔峡湾当地农庄体验(游客自费)",
               "tips": "品当地水果/农产"
+            },
+            {
+              "id": "oslo-royal-palace",
+              "name": "奥斯陆皇宫",
+              "nameEn": "Royal Palace",
+              "type": "landmark",
+              "lat": 59.9169,
+              "lng": 10.7275
             }
           ]
         },
@@ -2889,6 +2897,22 @@
               "description": "松恩峡湾是挪威最长最深的峡湾",
               "tips": "从卑尔根出发可参加一日游轮",
               "nameEn": "Norwegian Fjords"
+            },
+            {
+              "id": "bergen-cathedral",
+              "name": "卑尔根大教堂",
+              "nameEn": "Bergen Cathedral",
+              "type": "landmark",
+              "lat": 60.3913,
+              "lng": 5.3289
+            },
+            {
+              "id": "bergen-fish-market",
+              "name": "卑尔根鱼市",
+              "nameEn": "Bergen Fish Market",
+              "type": "landmark",
+              "lat": 60.3947,
+              "lng": 5.3252
             }
           ]
         },
@@ -2922,6 +2946,22 @@
               "type": "nature",
               "lat": 69.6516,
               "lng": 18.954
+            },
+            {
+              "id": "tromso-harbour",
+              "name": "港口区",
+              "nameEn": "Havneomradet",
+              "type": "landmark",
+              "lat": 69.6489,
+              "lng": 18.9556
+            },
+            {
+              "id": "tromso-bridge",
+              "name": "特罗姆瑟桥",
+              "nameEn": "Tromso Bridge",
+              "type": "landmark",
+              "lat": 69.6522,
+              "lng": 18.9633
             }
           ]
         },
@@ -2955,6 +2995,14 @@
               "type": "museum",
               "lat": 58.972,
               "lng": 5.7311
+            },
+            {
+              "id": "stavanger-cathedral",
+              "name": "斯塔万格大教堂",
+              "nameEn": "Stavanger Cathedral",
+              "type": "landmark",
+              "lat": 58.969,
+              "lng": 5.733
             }
           ]
         },
@@ -2988,6 +3036,22 @@
               "type": "landmark",
               "lat": 63.4325,
               "lng": 10.3931
+            },
+            {
+              "id": "trondheim-var-frue-church",
+              "name": "圣母教堂",
+              "nameEn": "Var Frue Church",
+              "type": "landmark",
+              "lat": 63.4305,
+              "lng": 10.3951
+            },
+            {
+              "id": "trondheim-stiftsgarden",
+              "name": "前皇家宫邸及鱼市码头",
+              "nameEn": "Stiftsgarden & Ravnkloa",
+              "type": "landmark",
+              "lat": 63.4312,
+              "lng": 10.3945
             }
           ]
         },
@@ -3021,6 +3085,14 @@
               "type": "nature",
               "lat": 60.865,
               "lng": 7.115
+            },
+            {
+              "id": "flam-sognefjord",
+              "name": "松恩峡湾",
+              "nameEn": "Sognefjord",
+              "type": "nature",
+              "lat": 61.1,
+              "lng": 6.6
             }
           ]
         },
@@ -3055,8 +3127,7 @@
           "lat": 60.4639,
           "lng": 6.8794,
           "attractions": []
-        }
-              ,
+        },
         {
           "id": "stalheim",
           "name": "斯塔尔海姆",
@@ -3064,7 +3135,7 @@
           "lat": 60.9475,
           "lng": 6.673,
           "attractions": []
-        }        ,
+        },
         {
           "id": "geilo",
           "name": "盖罗",
@@ -3072,15 +3143,198 @@
           "lat": 60.5333,
           "lng": 8.2,
           "attractions": []
-        }        ,
+        },
         {
           "id": "forde",
           "name": "弗勒",
           "nameEn": "Førde",
           "lat": 61.4522,
           "lng": 5.8572,
+          "attractions": [
+            {
+              "id": "forde-briksdalsbreen",
+              "name": "布里克斯达尔冰川",
+              "nameEn": "Briksdalsbreen",
+              "type": "nature",
+              "lat": 61.67,
+              "lng": 6.83
+            }
+          ]
+        },
+        {
+          "id": "senja",
+          "name": "塞尼亚岛",
+          "nameEn": "Senja",
+          "lat": 69.2833,
+          "lng": 17.5,
+          "attractions": [
+            {
+              "id": "senja-husoy",
+              "name": "房屋岛",
+              "nameEn": "Husoy",
+              "type": "landmark",
+              "lat": 69.5406,
+              "lng": 17.9669
+            },
+            {
+              "id": "senja-fjord-garden",
+              "name": "峡湾花园",
+              "nameEn": "Fjord Garden",
+              "type": "nature",
+              "lat": 69.3,
+              "lng": 17.5
+            },
+            {
+              "id": "senja-tungeneset",
+              "name": "Tungeneset 步行道",
+              "nameEn": "Tungeneset",
+              "type": "nature",
+              "lat": 69.4889,
+              "lng": 17.3472
+            },
+            {
+              "id": "senja-okshornan",
+              "name": "奥克斯霍南山脉（魔鬼下巴、恶魔之牙）",
+              "nameEn": "Okshornan (Devils Teeth)",
+              "type": "nature",
+              "lat": 69.45,
+              "lng": 17.3167
+            }
+          ]
+        },
+        {
+          "id": "lofoten",
+          "name": "罗弗敦小镇",
+          "nameEn": "Lofoten Islands",
+          "lat": 68.15,
+          "lng": 13.6,
+          "attractions": [
+            {
+              "id": "lofoten-e10",
+              "name": "E10 高速公路（景观大道）",
+              "nameEn": "E10 Highway",
+              "type": "landmark",
+              "lat": 68.15,
+              "lng": 13.6
+            }
+          ]
+        },
+        {
+          "id": "reine",
+          "name": "雷讷",
+          "nameEn": "Reine",
+          "lat": 67.9319,
+          "lng": 13.0886,
           "attractions": []
-        }]
+        },
+        {
+          "id": "a-i-lofoten",
+          "name": "奥镇",
+          "nameEn": "A i Lofoten",
+          "lat": 67.8797,
+          "lng": 12.9789,
+          "attractions": []
+        },
+        {
+          "id": "svolvaer",
+          "name": "斯沃尔韦尔",
+          "nameEn": "Svolvaer",
+          "lat": 68.2343,
+          "lng": 14.5682,
+          "attractions": [
+            {
+              "id": "svolvaer-city-square",
+              "name": "斯沃尔韦尔城市广场",
+              "nameEn": "Svolvaer City Square",
+              "type": "landmark",
+              "lat": 68.234,
+              "lng": 14.566
+            },
+            {
+              "id": "svolvaer-church",
+              "name": "斯沃尔韦尔教堂",
+              "nameEn": "Svolvaer Church",
+              "type": "landmark",
+              "lat": 68.2339,
+              "lng": 14.5606
+            }
+          ]
+        },
+        {
+          "id": "evenes",
+          "name": "埃沃内斯",
+          "nameEn": "Evenes",
+          "lat": 68.4906,
+          "lng": 16.6797,
+          "attractions": []
+        },
+        {
+          "id": "alesund",
+          "name": "奥勒松",
+          "nameEn": "Aalesund",
+          "lat": 62.4722,
+          "lng": 6.1495,
+          "attractions": [
+            {
+              "id": "alesund-atlantic-road",
+              "name": "大西洋之路（64号公路）",
+              "nameEn": "Atlantic Ocean Road",
+              "type": "landmark",
+              "lat": 63.0167,
+              "lng": 7.35
+            },
+            {
+              "id": "alesund-aksla",
+              "name": "阿克拉斯观景台",
+              "nameEn": "Aksla Viewpoint",
+              "type": "nature",
+              "lat": 62.4747,
+              "lng": 6.1444
+            }
+          ]
+        },
+        {
+          "id": "hamnoy",
+          "name": "哈姆诺伊村",
+          "nameEn": "Hamnoy",
+          "lat": 67.9453,
+          "lng": 13.1297,
+          "attractions": []
+        },
+        {
+          "id": "geiranger",
+          "name": "盖朗厄尔",
+          "nameEn": "Geiranger",
+          "lat": 62.101,
+          "lng": 7.2065,
+          "attractions": [
+            {
+              "id": "geiranger-fjord",
+              "name": "盖朗厄尔峡湾",
+              "nameEn": "Geirangerfjord",
+              "type": "nature",
+              "lat": 62.101,
+              "lng": 7.2065
+            },
+            {
+              "id": "geiranger-eagle-road",
+              "name": "老鹰之路",
+              "nameEn": "Eagle Road (Ornesvingen)",
+              "type": "landmark",
+              "lat": 62.108,
+              "lng": 7.172
+            },
+            {
+              "id": "geiranger-trollstigen",
+              "name": "精灵之路（山妖之路）",
+              "nameEn": "Trollstigen",
+              "type": "nature",
+              "lat": 62.455,
+              "lng": 7.672
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "sweden",
@@ -3381,8 +3635,7 @@
           "lat": 59.62,
           "lng": 17.72,
           "attractions": []
-        }
-              ,
+        },
         {
           "id": "helsingborg",
           "name": "赫尔辛堡",
@@ -3390,7 +3643,8 @@
           "lat": 56.0465,
           "lng": 12.6945,
           "attractions": []
-        }]
+        }
+      ]
     },
     {
       "id": "finland",
@@ -3624,8 +3878,7 @@
               "lng": -21.9446
             }
           ]
-        }
-              ,
+        },
         {
           "id": "hella",
           "name": "海拉",
@@ -3642,7 +3895,7 @@
           "lng": -19.006,
           "attractions": []
         }
-]
+      ]
     },
     {
       "id": "denmark",
@@ -3874,8 +4127,7 @@
           "lat": 57.4407,
           "lng": 10.5366,
           "attractions": []
-        }
-              ,
+        },
         {
           "id": "helsingor",
           "name": "赫尔辛格",
@@ -3883,7 +4135,7 @@
           "lat": 56.036,
           "lng": 12.6136,
           "attractions": []
-        }        ,
+        },
         {
           "id": "roedby",
           "name": "勒兹比",
@@ -3891,7 +4143,7 @@
           "lat": 54.6549,
           "lng": 11.3544,
           "attractions": []
-        }        ,
+        },
         {
           "id": "nyborg",
           "name": "尼堡",
@@ -3899,7 +4151,7 @@
           "lat": 55.3127,
           "lng": 10.7896,
           "attractions": []
-        }        ,
+        },
         {
           "id": "holte",
           "name": "霍尔特",
@@ -3907,7 +4159,8 @@
           "lat": 55.8131,
           "lng": 12.4673,
           "attractions": []
-        }]
+        }
+      ]
     },
     {
       "id": "netherlands",
@@ -5310,8 +5563,7 @@
           "lat": 47.632,
           "lng": 13.0019,
           "attractions": []
-        }
-              ,
+        },
         {
           "id": "puttgarden",
           "name": "普特加登",
@@ -5319,7 +5571,8 @@
           "lat": 54.4997,
           "lng": 11.2192,
           "attractions": []
-        }]
+        }
+      ]
     },
     {
       "id": "poland",
