@@ -49,12 +49,13 @@ export default function Home() {
     : itineraries[0] || null
 
   // 派生数据 memo 化：仅在行程 store 变更（version 递增）或城市数据就绪时重算。
-  const routeLine = useMemo(() => {
+  // routePoints：地图路线的点集（含天号）；真实里程/几何由 map-core 交给 route-plan.js（OSRM）算。
+  const routePoints = useMemo(() => {
     if (!ready || !activeItinerary) return []
     return activeItinerary.days
       .map((d) => {
         const city = cities.find((c) => c.id === d.cityId)
-        return city ? [city.lat, city.lng] : null
+        return city ? { key: d.cityId, lat: city.lat, lng: city.lng, dayNumber: d.dayNumber } : null
       })
       .filter(Boolean)
   }, [version, ready, activeItinerary, cities])
@@ -78,7 +79,8 @@ export default function Home() {
     })
     return Object.entries(cityDayMap).map(([cityId, dayNums]) => {
       const city = cities.find((c) => c.id === cityId)
-      const label = dayNums.length === 1 ? `D${dayNums[0]}` : `D${dayNums.join(',')}`
+      // 天序号徽章：D3（只待一天）/ D3/D7（行程中出现多天）
+      const label = dayNums.length === 1 ? `D${dayNums[0]}` : `D${dayNums.join('/')}`
       return { cityId, label, lat: city?.lat || 0, lng: city?.lng || 0 }
     })
   }, [version, ready, activeItinerary, cities])
@@ -127,7 +129,7 @@ export default function Home() {
             <MapCore
               cities={cities}
               itineraryCityIds={itineraryCityIds}
-              routeLine={routeLine}
+              routePoints={routePoints}
               onCityClick={handleCityClick}
               onCityAddToItinerary={handleAddCityToItinerary}
               dayLabels={dayLabels}

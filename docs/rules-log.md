@@ -219,3 +219,31 @@
 - 瑞士 `GVA-SMR`、`ZRH/GVA-MIL` = 1 ER（次数型，单价表内未给）→ 按设计不计价。
 - Lapland 固定对与西西里 450 目前**端到端不可达**：`resolveLdcSupplier` 对 `FI+NO`/`FI+SE` 返回 null（无供应商）、且西西里岛内判定（IT PMO）尚未实现 → 只在数据层就位。
 - Benelux PAR-AMS/PAR-BRU 挂在 `benelux` key 下（照抄表），但 Paris 属 FR → 实际场景判给 `westernEurope`，该对是否改挂 westernEurope 待裁决。
+
+---
+
+## 2026-09-17 — 地图真实里程 + 天序号（刀1/刀2）
+
+**状态**：🛠️ 已实现（`npm test` 105/105，`npm run build` 通过）
+**来源**：Michael 口径 —— 地图上的公里数一直是「直线 × 1.35」估算，要换成真实驾驶距离；路线要按天分段着色、城市点带天序号。
+**范围**：只做刀1（真实里程）+ 刀2（天序号徽章 + 线按天着色）；抽屉/详情面板（刀3/刀4）、酒店级坐标、渡轮段、QUOS 条目逻辑一律不碰。
+
+### 改了哪些文件
+| 文件 | 改动 |
+|---|---|
+| `src/lib/route-plan.js`（新） | 路线计划：`buildRoutePlan(points)` → OSRM 真实 km/时长 + 逐段几何；纯函数（去重、天→leg 映射、step 几何拼接、DP 抽稀、标签格式化）+ 可注入 `fetchImpl` 的 fetch 封装；按点集签名缓存（成功才缓存，失败下次重试），>30 点按 29 点重叠分片 |
+| `src/components/map-core.jsx` | 用真实几何画线（按 leg 分色）+ 保留金色流动虚线；段标签改 `446 km · 6h36`（estimate 加 `~` 且不显示时长）；OSRM 失败回退直线；`DAY_COLORS_LIGHT/DARK` 按天配色 |
+| `src/app/explore/page.js` | `routeLine` → `routePoints`（`{ key, lat, lng, dayNumber }`）；天序号徽章分隔符 `D3,D7` → `D3/D7` |
+| `scripts/tests/route-plan.test.mjs`（新） | 17 个纯函数测试（去重 / 天→leg / 几何换序拼接 / 抽稀 / 失败兜底 / 分片 / 缓存 / 标签），OSRM 全部 mock，不联网 |
+| `docs/architecture.md` | 补 `route-plan.js` 说明 + 地图绘制口径 |
+
+### 为什么这么做
+- **口径分离**：`road-distance.js`（空驶计价：直线 × 1.3、吸附 5km 倍数）保持原样不动；地图显示走新模块，**不套任何系数、不吸附**，数字只来自 OSRM 返回。
+- **失败是常态**：公共 `router.project-osrm.org` 是演示服务器（实测 12 点请求 5–15s、1.7MB）。兜底路径 = `estimate`（直线 × 1.35、无几何、标签带 `~`），画线回退到原来的点对点直线，**不白屏、不显示假数字**。
+- **几何抽稀**：`overview=full` 整条几何 57524 点（2898KB），`overview=simplified` 只有 62 点（1721KB），而 **step 几何两种口径点数完全相同**（逐段几何只能靠 step 拼接）；故取 simplified 白拿体积，渲染前再 Douglas-Peucker(0.35km) + 400 点/段硬上限 —— 实测同一条 12 点 / 3962km 路线：58032 点 → **949 点**（单段最多 328），视觉无损（容差 ≈ zoom 10 下 2px）。
+- **缓存不进 localStorage**：点集签名（去重坐标 FNV-1a）+ 模块内 LRU 12 条，不动 `euro-itineraries` 结构，旧数据零影响。
+
+### 遗留 / 风险
+- 公共 OSRM 有限速，长行程（>30 天）会分 2+ 次请求；失败时整条路线降级为 `~` 估算。
+- 主题切换（深/浅色）不会重绘已画的路线（沿用既有行为，需改行程/重挂载才取新色板）。
+- 渡轮/跨海段 OSRM 会绕行（如雅典→圣托里尼走轮渡由 OSRM 驱动路线决定），未做特殊处理（按本次范围明确排除）。

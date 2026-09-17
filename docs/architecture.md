@@ -62,6 +62,7 @@ item 统一由 `makeItem()` 工厂（itinerary-store 内部）创建，AI 导入
 - `src/lib/quote-rates.js`：固定费率集中配置（旅行保险 2.66 USD/人；前后夜默认 €120/晚，仅兜底）。保险改价只动这里。
 - `src/lib/item-name.js`：统一英文名查找（AI nameEn → QUOS 标准 → 实体库）。
 - `src/lib/geo.js`：`haversineKm` 距离计算（map-core / city-coords 共用）。
+- `src/lib/route-plan.js`：**地图路线计划**（`buildRoutePlan(points)` → OSRM 真实 km/时长/逐段几何 + `dayToLegIndex`）。纯函数 + 可注入 `fetchImpl`（Node 可测，无 'use client'）；按点集签名缓存，失败回退 `estimate`（直线×1.35、无几何、`~` 前缀标签）。与 `road-distance.js` 口径不同（后者是空驶计价：直线×1.3 + 吸附 5km，勿混用）。
 - `src/lib/city-coords.js`：城市坐标查询（中文/英文/变体归一化）+ `estimateRoadKm` 车程估算（haversine×1.3 道路系数，就近取整 5km）；坐标表 `src/data/city-coords.js` 由 `scripts/build-city-coords.js` 从 europe-travel.json + MANUAL 生成（EMPTY RUN 空驶公里数用）。
 - `src/lib/coach-plan.js`：报价规则注入（保险 / THROUGH COACH / EMPTY RUN / 接机 / 前后夜 / 每日杂费），纯函数，route.js 调用。**THROUGH COACH 的国/城 = LDC 供应商所在地**（西欧多国→IT ROM、中欧→CZ PRG、波兰→PL WAW；2026-08-19 修正，曾误改为段起始城市），名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS）带车型（NGS/GLS），按 `ldc-mapping.js` 查表注入；**前后夜费率按 LDC 区域细分**（`ldc.prepost`），界面不显示金额；**中国出发/返程日不参与分段**（避免虚段）；**接机/送机只在抵达/离境日**（国/城=当天城市，名称 `{城市英文名} - APT/HTL` / `- HTL/APT`）；**返程离境日总是单独送机**（THROUGH COACH 段不覆盖离境日）；**每日用车杂费**（部分城市，`src/data/daily-fees.js`）段内命中注入；**EMPTY RUN 空驶**（`quoteKind: 'empty-run'`）每段都有（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to 真实车程，按 ER_RULES 阶梯计价，由 route.js `patchEmptyRunRoadKm` 用 OSRM 真实驾驶距离补全（`src/lib/road-distance.js`，失败回退 `estimateRoadKmFallback` 直线×1.3）；day 0 中国出发日不参与判定。
 - `src/lib/ldc-mapping.js`：LDC 长途车供应商判定（单国/多国/北极极地），纯函数；`SUPPLIERS` 每条目含 `prepost`（区域前后夜费率）与 `finlandNorthNgs`（ON REQUEST）。
@@ -86,11 +87,12 @@ item 统一由 `makeItem()` 工厂（itinerary-store 内部）创建，AI 导入
 - 必须 `dynamic(..., { ssr: false })` 加载，Leaflet 图标需手动设默认路径。
 - 面板状态（collapsed/panelWidth）提升到 explore/page.js，同时传 MapCore 与 FloatingPanel。
 - 展开面板时 `map.invalidateSize()` 重新计算尺寸。
-- explore/page.js 的派生数据（routeLine/dayLabels/itineraryCityIds）用 `useMemo` + `useStoreVersion()`，hover 等无关状态不会重建 markers。
+- explore/page.js 的派生数据（routePoints/dayLabels/itineraryCityIds）用 `useMemo` + `useStoreVersion()`，hover 等无关状态不会重建 markers。
+- **路线绘制（刀1/刀2，2026-09-17）**：`explore/page.js` 传 `routePoints`（`{ key, lat, lng, dayNumber }`）→ map-core 用 `route-plan.js` 取 OSRM 真实几何，**按天分段配色**（`DAY_COLORS_LIGHT/DARK`，相邻天色相拉开）+ 原有金色流动虚线叠加；段标签 `446 km · 6h36`（estimate 显示 `~417 km` 且不带时长，杜绝估算冒充真实值）。OSRM 失败/未就绪 → 回退点对点直线画法（不白屏、不显示数字）。点集签名与当前行程不一致的计划一律不画（宁用直线也不用错几何）。
 
 ## 测试
 
-- `npm test`（node:test，`scripts/tests/*.test.mjs`）：coach-plan（报价规则）、ldc-mapping（供应商判定）、quos-mapping（类型/免费/城市码）。
+- `npm test`（node:test，`scripts/tests/*.test.mjs`）：coach-plan（报价规则）、ldc-mapping（供应商判定）、quos-mapping（类型/免费/城市码）、route-plan（路线计划纯函数，OSRM 调用一律注入 mock fetch，不联网）。
 - 纯函数库测试要求相对路径 import + `.js` 扩展名；JSON 用 `with { type: 'json' }`。
 
 ## 改动守则

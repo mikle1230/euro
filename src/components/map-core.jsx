@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useMemo, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import './map-styles.css'
@@ -8,10 +8,8 @@ import { getAllEntities } from '@/lib/entity-store'
 import { getCountryById } from '@/lib/data'
 import { getCityCode } from '@/lib/quos-mapping'
 import { getEntityMarkerColor, TYPE_ICONS, TYPE_LABELS, MAP } from '@/lib/config'
-import { haversineKm } from '@/lib/geo'
+import { buildRoutePlan, routeSignature, formatLegLabel } from '@/lib/route-plan'
 import europeBoundaries from '@/data/europe-boundaries.json'
-
-const ROAD_FACTOR = 1.35
 
 // ISO_A2 → project countryId mapping
 const ISO_TO_COUNTRY_ID = {
@@ -49,10 +47,30 @@ const GOLD_DARK = '#9bc554'
 const ROUTE_COLOR_LIGHT = '#08739D'
 const ROUTE_COLOR_DARK = '#4984AC'
 
+// 按天配电板：前两位直接复用现有主题色（主蓝/辅蓝/绿/青柠系），其余由主题色系派生的相邻色相，
+// 相邻天取相邻项 —— 色相+明度都拉开，连续几天的段不会糊成一条。
+const DAY_COLORS_LIGHT = [
+  ROUTE_COLOR_LIGHT, GOLD_LIGHT, '#C2740F', '#7A4FBF',
+  '#C0392B', '#0E8A7D', '#2F6FA8', '#8A7A1F',
+]
+const DAY_COLORS_DARK = [
+  ROUTE_COLOR_DARK, GOLD_DARK, '#E0A33A', '#A98BE8',
+  '#E0687A', '#35C0AC', '#7FB4D8', '#D6C05A',
+]
+
+// 段标签样式（深浅色主题各一套）
+function routeLabelStyle(isDark) {
+  return {
+    color: isDark ? '#cbd5e1' : '#64748b',
+    background: isDark ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.85)',
+    border: isDark ? '#334155' : '#e2e8f0',
+  }
+}
+
 export default function MapCore({
   cities = [],
   itineraryCityIds = new Set(),
-  routeLine = [],
+  routePoints = [],
   onCityClick,
   onCityAddToItinerary,
   dayLabels = [],
@@ -64,8 +82,8 @@ export default function MapCore({
   const mapRef = useRef(null)
   const markersRef = useRef({})
   const dayLabelMarkersRef = useRef([])
-  const routeRef = useRef(null)
-  const arrowRouteRef = useRef(null)
+  const routeRef = useRef([])
+  const arrowRouteRef = useRef([])
   const routeLabelRef = useRef([])
   const tileLayerRef = useRef(null)
   const geoJsonLayerRef = useRef(null)
@@ -74,6 +92,8 @@ export default function MapCore({
   const onAddRef = useRef(onCityAddToItinerary)
   const onEntityAddRef = useRef(onEntityAddToItinerary)
   const initRef = useRef(false)
+  // [{ signature, plan }] —— OSRM 真实路线计划；签名与当前点集不一致时视为过期，退回直线
+  const [planEntry, setPlanEntry] = useState(null)
 
   onCityClickRef.current = onCityClick
   onAddRef.current = onCityAddToItinerary
@@ -86,8 +106,16 @@ export default function MapCore({
       accent: isDark ? ACCENT_DARK : ACCENT_LIGHT,
       gold: isDark ? GOLD_DARK : GOLD_LIGHT,
       routeColor: isDark ? ROUTE_COLOR_DARK : ROUTE_COLOR_LIGHT,
+      dayColors: isDark ? DAY_COLORS_DARK : DAY_COLORS_LIGHT,
     }
   }, [])
+
+  // 行程点集（含天号）：直线兜底与真实几何共用同一份点数据
+  const routeLine = useMemo(
+    () => routePoints.map((p) => [p.lat, p.lng]),
+    [routePoints],
+  )
+  const routeSig = useMemo(() => routeSignature(routePoints), [routePoints])
 
   // Initialize map
   useEffect(() => {
@@ -124,8 +152,9 @@ export default function MapCore({
       if (geoJsonLayerRef.current) try { map.removeLayer(geoJsonLayerRef.current) } catch {}
       Object.values(markersRef.current).forEach((m) => { try { map.removeLayer(m) } catch {} })
       dayLabelMarkersRef.current.forEach((m) => { try { map.removeLayer(m) } catch {} })
-      if (routeRef.current) try { map.removeLayer(routeRef.current) } catch {}
-      if (arrowRouteRef.current) try { map.removeLayer(arrowRouteRef.current) } catch {}
+      routeRef.current.forEach((l) => { try { map.removeLayer(l) } catch {} })
+      arrowRouteRef.current.forEach((l) => { try { map.removeLayer(l) } catch {} })
+      routeLabelRef.current.forEach((m) => { try { map.removeLayer(m) } catch {} })
       if (entityLayerGroupRef.current) try { map.removeLayer(entityLayerGroupRef.current) } catch {}
       try { map.remove() } catch {}
       mapRef.current = null
@@ -134,8 +163,9 @@ export default function MapCore({
       geoJsonLayerRef.current = null
       markersRef.current = {}
       dayLabelMarkersRef.current = []
-      routeRef.current = null
-      arrowRouteRef.current = null
+      routeRef.current = []
+      arrowRouteRef.current = []
+      routeLabelRef.current = []
       entityLayerGroupRef.current = null
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -483,67 +513,113 @@ export default function MapCore({
     }
   }, [])
 
+  // Route plan：OSRM 真实里程/几何（刀1）
+  // 每个行程点集只发一次请求（buildRoutePlan 内部按点集签名缓存）；失败自动回退 estimate，不阻塞地图。
+  useEffect(() => {
+    if (!routePoints || routePoints.length < 2) return
+    let cancelled = false
+    buildRoutePlan(routePoints)
+      .then((plan) => {
+        if (!cancelled) setPlanEntry({ signature: plan.signature, plan })
+      })
+      .catch(() => {
+        if (!cancelled) setPlanEntry(null)
+      })
+    return () => { cancelled = true }
+  }, [routePoints])
+
   // Route lines
   useEffect(() => {
     const map = mapRef.current
     if (!map) return
 
-    const { isDark, gold, routeColor } = getThemeColors()
+    const { isDark, gold, routeColor, dayColors } = getThemeColors()
 
-    if (routeRef.current && mapRef.current) {
-      map.removeLayer(routeRef.current)
-      routeRef.current = null
-    }
-    if (arrowRouteRef.current && mapRef.current) {
-      map.removeLayer(arrowRouteRef.current)
-      arrowRouteRef.current = null
-    }
-    routeLabelRef.current.forEach((m) => {
-      if (mapRef.current) mapRef.current.removeLayer(m)
-    })
+    routeRef.current.forEach((l) => { if (mapRef.current) mapRef.current.removeLayer(l) })
+    arrowRouteRef.current.forEach((l) => { if (mapRef.current) mapRef.current.removeLayer(l) })
+    routeLabelRef.current.forEach((m) => { if (mapRef.current) mapRef.current.removeLayer(m) })
+    routeRef.current = []
+    arrowRouteRef.current = []
     routeLabelRef.current = []
 
-    if (routeLine.length >= 2) {
-      routeRef.current = L.polyline(routeLine, {
+    if (routeLine.length < 2) return
+
+    // 签名不匹配 → 计划属于旧点集，宁可用直线也不用错几何
+    const plan = planEntry && planEntry.signature === routeSig ? planEntry.plan : null
+    const realGeometry = plan && plan.source === 'osrm' && plan.legs.length > 0 &&
+      plan.legs.every((l) => Array.isArray(l.geometry) && l.geometry.length >= 2)
+
+    // 按天配色：第 i 段（离开第 i 天城市的 leg）取当天颜色，相邻天色相拉开
+    const legColor = (leg, idx) => {
+      const dayNumber = routePoints[leg?.fromIdx]?.dayNumber ?? idx + 1
+      return dayColors[(Math.max(1, dayNumber) - 1) % dayColors.length]
+    }
+
+    if (realGeometry) {
+      plan.legs.forEach((leg, idx) => {
+        const color = legColor(leg, idx)
+        routeRef.current.push(L.polyline(leg.geometry, {
+          color,
+          weight: 3,
+          opacity: 0.85,
+        }).addTo(map))
+        // 保留原有金色流动虚线叠加层（按段重复，视觉一致）
+        arrowRouteRef.current.push(L.polyline(leg.geometry, {
+          color: gold,
+          weight: 1.5,
+          opacity: 0.9,
+          dashArray: '4 12',
+        }).addTo(map))
+      })
+    } else {
+      // OSRM 失败/未就绪：回退到原来的点对点直线画法（不白屏）
+      routeRef.current.push(L.polyline(routeLine, {
         color: routeColor,
         weight: 3,
         opacity: 0.7,
         dashArray: '10 6',
-      }).addTo(map)
-
-      arrowRouteRef.current = L.polyline(routeLine, {
+      }).addTo(map))
+      arrowRouteRef.current.push(L.polyline(routeLine, {
         color: gold,
         weight: 1.5,
         opacity: 0.9,
         dashArray: '4 12',
-      }).addTo(map)
+      }).addTo(map))
+    }
 
-      // Distance labels at midpoints
-      const textColor = isDark ? '#cbd5e1' : '#64748b'
-      for (let i = 0; i < routeLine.length - 1; i++) {
-        const [lat1, lng1] = routeLine[i]
-        const [lat2, lng2] = routeLine[i + 1]
-        const km = Math.round(haversineKm(lat1, lng1, lat2, lng2) * ROAD_FACTOR)
-        const midLat = (lat1 + lat2) / 2
-        const midLng = (lng1 + lng2) / 2
+    // 段标签：数字只来自 OSRM（estimate 加 ~ 前缀且不显示时长）；没有计划时不显示数字，杜绝估算冒充真实值
+    if (plan && plan.legs.length) {
+      const style = routeLabelStyle(isDark)
+      plan.legs.forEach((leg, idx) => {
+        const text = formatLegLabel(leg, plan.source)
+        if (!text) return
+        let at = null
+        if (Array.isArray(leg.geometry) && leg.geometry.length >= 2) {
+          at = leg.geometry[Math.floor(leg.geometry.length / 2)] // 几何中点（真实路线的中间位置）
+        } else {
+          const a = routePoints[leg.fromIdx]
+          const b = routePoints[leg.toIdx]
+          if (!a || !b) return
+          at = [(a.lat + b.lat) / 2, (a.lng + b.lng) / 2]
+        }
         const icon = L.divIcon({
           className: '',
           html: `<div style="
             font-size:11px;font-weight:600;white-space:nowrap;
-            color:${textColor};
-            background:${isDark ? 'rgba(15,23,42,0.8)' : 'rgba(255,255,255,0.85)'};
-            border:1px solid ${isDark ? '#334155' : '#e2e8f0'};
+            color:${style.color};
+            background:${style.background};
+            border:1px solid ${style.border};
+            border-left:3px solid ${legColor(leg, idx)};
             border-radius:6px;padding:2px 6px;
             pointer-events:none;
-          ">${km}km</div>`,
+          ">${text}</div>`,
           iconSize: [0, 0],
           iconAnchor: [0, 0],
         })
-        const marker = L.marker([midLat, midLng], { icon, interactive: false }).addTo(map)
-        routeLabelRef.current.push(marker)
-      }
+        routeLabelRef.current.push(L.marker(at, { icon, interactive: false }).addTo(map))
+      })
     }
-  }, [routeLine, getThemeColors])
+  }, [routeLine, routePoints, routeSig, planEntry, getThemeColors])
 
   const containerStyle = {
     position: 'absolute',
