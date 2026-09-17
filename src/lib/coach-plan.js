@@ -4,7 +4,7 @@
 // 费率常量集中在 ./quote-rates.js；EMPTY RUN 真实车程在 route.js 用 patchEmptyRunRoadKm 异步补全。
 import { QUOTE_RATES } from './quote-rates.js'
 import { getCityCode } from './quos-mapping.js'
-import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES, ER_RULES } from './ldc-mapping.js'
+import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES, ER_RULES, matchFixedEr } from './ldc-mapping.js'
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
 import { DAILY_FEES } from '../data/daily-fees.js'
 import { STD_MTC_OPTIONS, DEPARTURE_ACTIVITY_MTC } from '../data/std-mtc-options.js'
@@ -193,12 +193,24 @@ function makeThroughCoach(seg, ldc) {
   }
 }
 
-// EMPTY RUN 按 LDC 表计价（ER_RULES）：金额阶梯 / 次数×单价 / 按公里；返回 { price, label }
+// EMPTY RUN 按 LDC 表计价（ER_RULES）：固定金额 / 金额阶梯 / 次数×单价 / 按公里；返回 { price, label, currency? }
+// ctx = { fromCode, toCode, liveDays }：段起止城市码（QUOS 码）与段内 live days，用于命中固定金额型 ER。
+//   不给 ctx（拿不到城市码/天数）→ 不命中固定项，行为与加固定金额前完全一致（退回原有阶梯算法）。
 // 次数型（1ER/2ER）单次价 unit 表内未给 → price=0 只显示次数，待用户补充 unit 后自动计价
-function erPrice(ldc, km) {
+function erPrice(ldc, km, ctx = {}) {
   const er = ldc?.key ? ER_RULES[ldc.key] : null
-  if (!er || !km) return { price: 0, label: '' }
+  if (!er) return { price: 0, label: '' }
   const sym = ldc?.symbol || '€'
+  // 固定金额型优先：命中即给金额与币种（不受公里数影响，同城对也能命中）
+  const fixed = matchFixedEr(er, ctx)
+  if (fixed) {
+    return {
+      price: fixed.price,
+      currency: fixed.currency,
+      label: `，ER 固定 ${fixed.price} ${fixed.currency}（${fixed.note}）`,
+    }
+  }
+  if (!km) return { price: 0, label: '' }
   if (er.type === 'tiers') {
     for (const [lo, hi, amt] of er.tiers) {
       if (km >= lo && km <= hi) return { price: amt || 0, label: amt > 0 ? `，ER ${sym}${amt}` : '' }
@@ -228,9 +240,13 @@ function erPrice(ldc, km) {
 // MTC EMPTY RUN 空驶：THROUGH COACH 服务开始当天空驶调车。
 // 公里数先按「第一个城市 → 最后一个城市」的估算值注入（同步兜底），
 // route.js 解析完成后调用 patchEmptyRunRoadKm 用 OSRM 真实车程覆盖（价格按新公里数重算）。
-function makeEmptyRun(firstCity, lastCity, ldc) {
+// liveDays：段内用天（固定金额型 ER 如西西里按 live days 命中）。
+function makeEmptyRun(firstCity, lastCity, ldc, liveDays = 0) {
   const km = estimateRoadKmFallback(firstCity, lastCity)
-  const er = erPrice(ldc, km)
+  // 城市码（QUOS）：固定金额型 ER（ZRH-SMR / CPH-OSL / BCN-BCN / LON-LON 等）按码匹配
+  const fromCode = getCityCode(firstCity)?.cityCode || ''
+  const toCode = getCityCode(lastCity)?.cityCode || ''
+  const er = erPrice(ldc, km, { fromCode, toCode, liveDays })
   const countryCode = ldc?.supplierCode?.split(' ')[0] || ''
   const cityCode = ldc?.supplierCode?.split(' ')[1] || ''
   return {
@@ -243,7 +259,7 @@ function makeEmptyRun(firstCity, lastCity, ldc) {
     costCategory: 'paid',
     estimatedCost: 0,
     price: er.price || 0,
-    currency: er.price > 0 ? (ldc?.symbol || 'EUR') : '',
+    currency: er.price > 0 ? (er.currency || ldc?.symbol || 'EUR') : '',
     priceUnit: 'perGroup',
     quantity: km,
     quoteKind: 'empty-run',
@@ -252,6 +268,9 @@ function makeEmptyRun(firstCity, lastCity, ldc) {
     countryCode,
     erKey: ldc?.key || '', // OSRM 补全公里数后按 ER_RULES 重算价格用
     erSymbol: ldc?.symbol || '€',
+    erFromCode: fromCode, // 固定金额型 ER 重算用（城市码 / live days）
+    erToCode: toCode,
+    erLiveDays: liveDays,
     notes: km > 0
       ? `MTC EMPTY RUN 空驶：${firstCity} → ${lastCity}，约 ${km} km（车程估算）${er.label}`
       : firstCity === lastCity
@@ -595,7 +614,7 @@ export function applyQuoteRules(parsed) {
       // EMPTY RUN 空驶：每段都有，公里数 = 段起点 → 段终点（下一段交通出发城）的车程
       const firstCity = seg.fromCity
       const lastCity = seg.toCity
-      if (firstCity && lastCity) segStart.items.push(makeEmptyRun(firstCity, lastCity, ldc))
+      if (firstCity && lastCity) segStart.items.push(makeEmptyRun(firstCity, lastCity, ldc, seg.endDay - seg.startDay + 1))
       segStart.items.push(makePrePostNight(ldc))
     }
 
@@ -704,10 +723,12 @@ export async function patchEmptyRunRoadKm(result) {
           const km = await roadKmBetween(it.from, it.to)
           if (km > 0) {
             it.quantity = km
-            // 真实公里数出来后按 ER 规则重算价格
-            const er = erPrice({ key: it.erKey, symbol: it.erSymbol }, km)
+            // 真实公里数出来后按 ER 规则重算价格（固定金额型与公里数无关，用同一套 ctx 命中）
+            const er = erPrice({ key: it.erKey, symbol: it.erSymbol }, km, {
+              fromCode: it.erFromCode, toCode: it.erToCode, liveDays: it.erLiveDays,
+            })
             it.price = er.price || 0
-            it.currency = er.price > 0 ? (it.erSymbol || 'EUR') : ''
+            it.currency = er.price > 0 ? (er.currency || it.erSymbol || 'EUR') : ''
             it.notes = `MTC EMPTY RUN 空驶：${it.from} → ${it.to}，约 ${km} km（车程）${er.label}`
           }
         })())

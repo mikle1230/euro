@@ -2,7 +2,7 @@
 // 运行：npm test
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { resolveLdcSupplier, hasArcticCity, SUPPLIERS, KNOWN_COUNTRY_CODES, ER_RULES } from '../../src/lib/ldc-mapping.js'
+import { resolveLdcSupplier, hasArcticCity, SUPPLIERS, KNOWN_COUNTRY_CODES, ER_RULES, matchFixedEr } from '../../src/lib/ldc-mapping.js'
 
 test('单国 → 对应 Mono/区域供应商', () => {
   assert.equal(resolveLdcSupplier(['FR']).supplierCode, 'FR PAR')
@@ -113,4 +113,80 @@ test('冰岛单国 → TEITUR (LDC)（A1）', () => {
 test('冰岛 ER：表外 none 型（ER/空驶待 A3 校准统一处理）', () => {
   assert.equal(ER_RULES.icelandMono.type, 'none')
   assert.ok(ER_RULES.icelandMono.note.length > 0)
+})
+
+// ── 固定金额型 ER（A-4 / A-5，2026-09-17）：金额与币种照抄 LDC 表，未命中返回 null ──
+const pairHit = (key, from, to) => matchFixedEr(ER_RULES[key], { fromCode: from, toCode: to })
+const hasBothWays = (key, a, b) => !!pairHit(key, a, b) && !!pairHit(key, b, a)
+
+test('固定金额型 ER：瑞士 Mono 450 CHF（城市对双向都有，金额/币种照抄表）', () => {
+  for (const [a, b] of [['ZRH', 'SMR'], ['GVA', 'TAC'], ['GVA', 'ZRH'], ['ZRH', 'TAC'], ['SMR', 'TAC'], ['GVA', 'LUZ']]) {
+    assert.ok(hasBothWays('switzerlandMono', a, b), `${a}-${b} 应双向命中`)
+  }
+  const hit = pairHit('switzerlandMono', 'ZRH', 'SMR')
+  assert.equal(hit.price, 450)
+  assert.equal(hit.currency, 'CHF')
+  assert.ok(hit.note.includes('ZRH-SMR'), 'note 应写出处（表内城市对）')
+  assert.equal(pairHit('switzerlandMono', 'ZRH', 'SMR').price, pairHit('switzerlandMono', 'SMR', 'ZRH').price, 'A→B 与 B→A 金额一致')
+  // 表内未列出的对 → 不命中（退回原行为）；GVA-GVA/ZRH-ZRH 表内明确无 ER
+  assert.equal(pairHit('switzerlandMono', 'ZRH', 'LUZ'), null)
+  assert.equal(pairHit('switzerlandMono', 'ZRH', 'ZRH'), null)
+  assert.equal(pairHit('switzerlandMono', 'GVA', 'GVA'), null)
+})
+
+test('固定金额型 ER：Scandi 厄勒大桥特殊线路 770 EUR（CPH-OSL / CPH-STO / CPH-BGO 双向）', () => {
+  for (const other of ['OSL', 'STO', 'BGO']) {
+    assert.ok(hasBothWays('scandinavia', 'CPH', other), `CPH-${other} 应双向命中`)
+  }
+  assert.equal(pairHit('scandinavia', 'CPH', 'OSL').price, 770)
+  assert.equal(pairHit('scandinavia', 'OSL', 'CPH').currency, 'EUR')
+  assert.equal(pairHit('scandinavia', 'STO', 'CPH').price, 770, '反向也是 770')
+  assert.equal(pairHit('scandinavia', 'CPH', 'BGO').price, 770)
+  assert.equal(pairHit('scandinavia', 'STO', 'OSL'), null, '表内未列出的线路 → 不命中（走次数阶梯）')
+  assert.equal(ER_RULES.scandinavia.type, 'count', '命中固定对之外仍保留次数阶梯（type 不变）')
+})
+
+test('固定金额型 ER：拉普兰 900 / 1000（双向；Kiruna 同城对）', () => {
+  assert.equal(pairHit('finlandNorthMono', 'RVN', 'ALF').price, 900)
+  assert.equal(pairHit('finlandNorthMono', 'ALF', 'RVN').price, 900, 'Rovaniemi-Alta 反向同为 900')
+  assert.equal(pairHit('finlandNorthMono', 'RVN', 'TOS').price, 1000)
+  assert.equal(pairHit('finlandNorthMono', 'TOS', 'RVN').price, 1000, 'Rovaniemi-Tromsø 反向同为 1000')
+  assert.equal(pairHit('finlandNorthMono', 'KRN', 'KRN').price, 1000, 'Kiruna-Kiruna 同城固定 1000')
+  assert.equal(pairHit('finlandNorthMono', 'RVN', 'ALF').currency, 'EUR')
+  assert.equal(pairHit('finlandNorthMono', 'KRN', 'KRN').currency, 'EUR')
+  assert.equal(pairHit('finlandNorthMono', 'RVN', 'IVL'), null)
+})
+
+test('固定金额型 ER：Benelux PAR-AMS 550 / PAR-BRU 450（双向）+ 例外 BCN-BCN 630 EUR / LON-LON 700 GBP', () => {
+  assert.ok(hasBothWays('benelux', 'PAR', 'AMS'), 'PAR-AMS 应双向命中')
+  assert.ok(hasBothWays('benelux', 'PAR', 'BRU'), 'PAR-BRU 应双向命中')
+  assert.equal(pairHit('benelux', 'PAR', 'AMS').price, 550)
+  assert.equal(pairHit('benelux', 'AMS', 'PAR').price, 550)
+  assert.equal(pairHit('benelux', 'PAR', 'AMS').currency, 'EUR')
+  assert.equal(pairHit('benelux', 'PAR', 'BRU').price, 450)
+  assert.equal(pairHit('benelux', 'BRU', 'PAR').price, 450)
+  assert.equal(pairHit('benelux', 'BRU', 'AMS'), null, '表内只给 PAR-AMS / PAR-BRU 两对')
+  // 例外（Michael 2026-09-17）：巴塞罗那起止 630 EUR、伦敦起止 700 GBP
+  assert.equal(pairHit('iberia', 'BCN', 'BCN').price, 630)
+  assert.equal(pairHit('iberia', 'BCN', 'BCN').currency, 'EUR')
+  assert.equal(pairHit('iberia', 'BCN', 'MAD'), null)
+  assert.equal(pairHit('uk', 'LON', 'LON').price, 700)
+  assert.equal(pairHit('uk', 'LON', 'LON').currency, 'GBP')
+  assert.equal(pairHit('uk', 'LON', 'EDI'), null)
+})
+
+test('固定金额型 ER：西西里按 live days 命中（2 天 = 450 EUR；3 天及以上无空驶）', () => {
+  assert.equal(ER_RULES.sicilyMono.type, 'fixed')
+  const hit = matchFixedEr(ER_RULES.sicilyMono, { liveDays: 2 })
+  assert.equal(hit.price, 450)
+  assert.equal(hit.currency, 'EUR')
+  assert.equal(matchFixedEr(ER_RULES.sicilyMono, { liveDays: 3 }), null, '≥3 live days 无空驶')
+  assert.equal(matchFixedEr(ER_RULES.sicilyMono, {}), null, '拿不到 live days → 不命中（行为不变）')
+})
+
+test('固定金额型 ER：缺城市码/无 fixed 配置 → 返回 null（不改变原行为）', () => {
+  assert.equal(matchFixedEr(ER_RULES.switzerlandMono, {}), null)
+  assert.equal(matchFixedEr(ER_RULES.switzerlandMono, { fromCode: 'ZRH' }), null, '只给一端不命中')
+  assert.equal(matchFixedEr(ER_RULES.portugalMono, { fromCode: 'LIS', toCode: 'LIS' }), null, '无 fixed 配置的区域返回 null')
+  assert.equal(matchFixedEr(null, { fromCode: 'ZRH', toCode: 'SMR' }), null)
 })

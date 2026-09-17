@@ -147,8 +147,19 @@ export const SUPPLIERS = {
 //   'tiers' —— 金额阶梯 [fromKm, toKm, 金额]（西欧/德国/中欧：0-350 无、351-600=450、601-1000=800、1001-1400=1000、1401-1999=1500）
 //   'count' —— ER 次数阶梯 [fromKm, toKm, 次数]（1ER/1.5ER/2ER/3ER；unit=单次价，**表内未给，待用户补充**，null 时只显示次数不计价）
 //   'perKm' —— 超 fromKm 部分按 perKm 单价（芬兰南部 151km 起 €1.9/km）
-//   'none'  —— 无空驶费（葡萄牙/特殊区域）
+//   'fixed' —— 固定金额型 ER（纯固定区域，如瑞士/西西里）：命中 fixed 项直接给金额与币种，未命中不给价
+//   'none'  —— 无空驶费（葡萄牙/表外区域）
+// 任意 type 都可另挂 fixed: [...]（有固定对时优先命中，未命中再退回该区域原有算法，行为不变）：
+//   { from, to, price, currency, note } —— 城市对固定价（QUOS 城市码，**双向各写一条**，见 fixedBoth）
+//   { liveDays, price, currency, note } —— 按用天数的固定价（西西里：2 live days → 1 empty = €450）
+// 金额/币种一律照抄 LDC 表（references/euro/ldc-region-er-determination-2026-09.md §2），不四舍五入、不推算。
 // maxKmPerDay / excessPerKm：每日包公里数与超公里单价（表内数据，暂未在报价注入中计费）
+// 城市对固定 ER 的双向写法（同一条表项 A-B「或反向」→ 拆成 A→B 与 B→A 两条，避免单向遗漏）
+const fixedBoth = (a, b, price, currency, note) => [
+  { from: a, to: b, price, currency, note },
+  { from: b, to: a, price, currency, note },
+]
+
 export const ER_RULES = {
   westernEurope: {
     type: 'tiers', tiers: [[0, 350, 0], [351, 600, 450], [601, 1000, 800], [1001, 1400, 1000], [1401, 1999, 1500]],
@@ -156,6 +167,11 @@ export const ER_RULES = {
   },
   benelux: {
     type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    // 表：境内无空驶；2 live days 报 1 full empty；3+ live days 起 PAR-AMS 550 EUR / PAR-BRU 450 EUR（固定对，金额照抄表）
+    fixed: [
+      ...fixedBoth('PAR', 'AMS', 550, 'EUR', 'LDC 表 Benelux：3+ live days 起 PAR-AMS'),
+      ...fixedBoth('PAR', 'BRU', 450, 'EUR', 'LDC 表 Benelux：3+ live days 起 PAR-BRU'),
+    ],
     maxKmPerDay: 350, excessPerKm: 1.4,
   },
   germanyNgs: {
@@ -179,14 +195,34 @@ export const ER_RULES = {
     overNote: '>1200km 官方表未给，需询价 Proc',
     maxKmPerDay: 350, excessPerKm: 1.8,
   },
-  sicilyMono: { type: 'none', maxKmPerDay: 300, excessPerKm: 1.8, note: '≥3 live days 无 ER（仅 2 天时询价）' },
-  switzerlandMono: { type: 'none', maxKmPerDay: 250, excessPerKm: 1.5, note: 'GVA-GVA/ZRH-ZRH 无 ER；ZRH-SM 固定 450 CHF' },
+  sicilyMono: {
+    // 表：≥3 live days 无空驶；2 live days 报 1 empty = €450（无城市对条件，按 live days 命中）
+    type: 'fixed',
+    fixed: [{ liveDays: 2, price: 450, currency: 'EUR', note: 'LDC 表 Mono Sicily：2 live days → 1 empty run' }],
+    maxKmPerDay: 300, excessPerKm: 1.8, note: '≥3 live days 无 ER；2 live days = 450 EUR（表）',
+  },
+  switzerlandMono: {
+    // 表：GVA-GVA / ZRH-ZRH 无 ER；下列城市对固定 450 CHF；ZRH/GVA-MIL、GVA-SMR 为 1 ER（次数型，单价表内未给，不臆造）
+    type: 'fixed',
+    fixed: [
+      ...fixedBoth('ZRH', 'SMR', 450, 'CHF', 'LDC 表 Switzerland Mono ER 固定对 ZRH-SMR'),
+      ...fixedBoth('GVA', 'TAC', 450, 'CHF', 'LDC 表 Switzerland Mono ER 固定对 GVA-TAC'),
+      ...fixedBoth('GVA', 'ZRH', 450, 'CHF', 'LDC 表 Switzerland Mono ER 固定对 GVA-ZRH'),
+      ...fixedBoth('ZRH', 'TAC', 450, 'CHF', 'LDC 表 Switzerland Mono ER 固定对 ZRH-TAC'),
+      ...fixedBoth('SMR', 'TAC', 450, 'CHF', 'LDC 表 Switzerland Mono ER 固定对 SMR-TAC'),
+      ...fixedBoth('GVA', 'LUZ', 450, 'CHF', 'LDC 表 Switzerland Mono ER 固定对 GVA-LUZ'),
+    ],
+    maxKmPerDay: 250, excessPerKm: 1.5,
+    note: 'GVA-GVA/ZRH-ZRH 无 ER；ZRH-SMR / GVA-TAC / GVA-ZRH / ZRH-TAC / SMR-TAC / GVA-LUZ 固定 450 CHF；GVA-SMR、ZRH/GVA-MIL = 1 ER',
+  },
   centralEurope: {
     type: 'tiers', tiers: [[0, 350, 0], [351, 600, 450], [601, 1000, 800], [1001, 1400, 1000], [1401, 1999, 1500]],
     maxKmPerDay: 375, excessPerKm: 2,
   },
   iberia: {
     type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    // 例外（Michael 2026-09-17 明确）：巴塞罗那起止 BCN-BCN 固定 630 EUR
+    fixed: [{ from: 'BCN', to: 'BCN', price: 630, currency: 'EUR', note: '例外（Michael 口径 2026-09-17）：BCN-BCN 巴塞罗那起止' }],
     maxKmPerDay: 350, excessPerKm: 1.6,
   },
   portugalMono: { type: 'none', maxKmPerDay: 350, excessPerKm: 1.6, note: 'NO empty run within Portugal' },
@@ -196,11 +232,20 @@ export const ER_RULES = {
   },
   uk: {
     type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    // 例外（Michael 2026-09-17 明确）：伦敦起止 lon-lon 固定 700 GBP（表内 UK 侧币种为 £）
+    fixed: [{ from: 'LON', to: 'LON', price: 700, currency: 'GBP', note: '例外（Michael 口径 2026-09-17）：LON-LON 伦敦起止' }],
     maxKmPerDay: 350, excessPerKm: 1.5,
   },
   irelandMono: { type: 'count', tiers: [[0, 99999, 1]], unit: null, maxKmPerDay: 250, excessPerKm: 1.3, note: 'ER 需按起终点询价' },
   scandinavia: {
     type: 'count', tiers: [[200, 600, 1], [601, 1150, 2], [1151, 1900, 3], [1901, 99999, 4]], unit: null,
+    // 表：厄勒大桥特殊线路 ER 已含 —— CPH-OSL / CPH-STO 或反向 = EUR 770；CPH-BGO 或反向 = EUR 770；
+    //     其他线路 check with Proc.（未列出的对仍走上面的次数阶梯）
+    fixed: [
+      ...fixedBoth('CPH', 'OSL', 770, 'EUR', 'LDC 表 Scandinavia NGS：厄勒大桥特殊线路 CPH-OSL（ER 已含）'),
+      ...fixedBoth('CPH', 'STO', 770, 'EUR', 'LDC 表 Scandinavia NGS：厄勒大桥特殊线路 CPH-STO（ER 已含）'),
+      ...fixedBoth('CPH', 'BGO', 770, 'EUR', 'LDC 表 Scandinavia NGS：厄勒大桥特殊线路 CPH-BGO（ER 已含）'),
+    ],
     maxKmPerDay: 370, excessPerKm: 1.6,
   },
   denmarkMono: {
@@ -222,6 +267,13 @@ export const ER_RULES = {
   finlandSouthMono: { type: 'perKm', fromKm: 151, perKm: 1.9, maxKmPerDay: 350, excessPerKm: 1.9, note: '150km 内无 ER' },
   finlandNorthMono: {
     type: 'count', tiers: [[151, 499, 1], [500, 999, 2], [1000, 1499, 3], [1500, 99999, 4]], unit: null,
+    // 表（Mono-Finland North / Lapland）：特例 Rovaniemi-Alta 900 / Rovaniemi-Tromsø 1000 / Kiruna-Kiruna 1000
+    // （金额表内未标币种；该区域其余费率均为 € → 按 EUR 记，见报告）
+    fixed: [
+      ...fixedBoth('RVN', 'ALF', 900, 'EUR', 'LDC 表 Mono-Finland North (Lapland) 特例 Rovaniemi-Alta'),
+      ...fixedBoth('RVN', 'TOS', 1000, 'EUR', 'LDC 表 Mono-Finland North (Lapland) 特例 Rovaniemi-Tromsø'),
+      { from: 'KRN', to: 'KRN', price: 1000, currency: 'EUR', note: 'LDC 表 Mono-Finland North (Lapland) 特例 Kiruna-Kiruna' },
+    ],
     maxKmPerDay: 350, excessPerKm: 1.9,
   },
   finlandNorthNgs: {
@@ -230,6 +282,25 @@ export const ER_RULES = {
   },
   polandMono: { type: 'none', note: '波兰表外，ER 费率待补充' },
   icelandMono: { type: 'none', note: '冰岛表外（TEITUR 本地打包），ER/空驶按 TEITUR 预设项，待 A3 ER 校准统一处理' },
+}
+
+// 固定金额型 ER 匹配（ER_RULES[key].fixed）：
+//   城市对条目（from/to）—— 按 QUOS 城市码**精确方向**匹配（双向已在数据里各写一条）；
+//   天数条目（liveDays）—— 按段内 live days 等值命中；
+//   未命中 / 缺城市码 / 缺天数 → 返回 null，调用方退回该区域原有算法（阶梯/次数/按公里），行为与加固定对之前完全一致。
+export function matchFixedEr(er, ctx = {}) {
+  if (!Array.isArray(er?.fixed) || er.fixed.length === 0) return null
+  const up = (s) => String(s || '').trim().toUpperCase()
+  const from = up(ctx.fromCode)
+  const to = up(ctx.toCode)
+  for (const item of er.fixed) {
+    if (item.from && item.to) {
+      if (from && to && up(item.from) === from && up(item.to) === to) return item
+      continue
+    }
+    if (item.liveDays && Number(ctx.liveDays) === item.liveDays) return item
+  }
+  return null
 }
 
 const WESTERN_EUROPE_CODES = ['FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'ES', 'PT']

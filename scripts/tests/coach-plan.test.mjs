@@ -933,3 +933,55 @@ test('挪威一地（当地车段）也要注入路税（Michael 口径 2026-09-
   assert.equal(items.find((i) => i.quoteKind === 'through-coach'), undefined, '当地车段仍不注入 THROUGH COACH')
   assert.ok(items.find((i) => i.quoteKind === 'local-mtc'), '当地车段应注入当地车 MTC')
 })
+
+// ── 固定金额型 ER（A-4 / A-5，2026-09-17）：城市对固定空驶费 ──
+const emptyRunOf = (out) => out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'empty-run')
+
+test('固定金额型 ER 命中：瑞士 ZRH-SMR → 450 CHF（带币种与出处）', () => {
+  const out = applyQuoteRules({ groupSize: 20, days: [day(1, '苏黎世'), day(2, '苏黎世'), day(3, '圣莫里茨')] })
+  const er = emptyRunOf(out)
+  assert.ok(er, '应有 EMPTY RUN')
+  assert.equal(er.price, 450, 'ZRH-SMR 固定 450 CHF（不受公里数影响）')
+  assert.equal(er.currency, 'CHF', '币种应为 CHF')
+  assert.ok(er.notes.includes('450 CHF'), '备注带金额与币种')
+  assert.ok(er.notes.includes('ZRH-SMR'), '备注带出处（表内城市对）')
+})
+
+test('固定金额型 ER 命中：Scandi 厄勒 CPH-OSL/CPH-BGO → 770 EUR（公里数台阶不覆盖固定对）', () => {
+  const out = applyQuoteRules({ groupSize: 20, days: [day(1, '哥本哈根'), day(2, '哥本哈根'), day(3, '奥斯陆')] })
+  const er = emptyRunOf(out)
+  assert.equal(er.price, 770)
+  assert.equal(er.currency, 'EUR')
+  assert.ok(er.notes.includes('770 EUR') && er.notes.includes('CPH-OSL'))
+  // 反向：奥斯陆 → 哥本哈根 同样 770
+  const rev = emptyRunOf(applyQuoteRules({ groupSize: 20, days: [day(1, '奥斯陆'), day(2, '奥斯陆'), day(3, '哥本哈根')] }))
+  assert.equal(rev.price, 770, '反向（B→A）同样命中')
+  assert.equal(rev.currency, 'EUR')
+})
+
+test('固定金额型 ER 命中：例外 BCN-BCN 630 EUR / LON-LON 700 GBP（同城对，公里数 0 也命中）', () => {
+  const bcn = emptyRunOf(applyQuoteRules({ groupSize: 20, days: [day(1, '巴塞罗那'), day(2, '巴塞罗那')] }))
+  assert.equal(bcn.from, '巴塞罗那')
+  assert.equal(bcn.to, '巴塞罗那')
+  assert.equal(bcn.quantity, 0, '同城 → 公里数 0')
+  assert.equal(bcn.price, 630, 'BCN-BCN 例外 630 EUR')
+  assert.equal(bcn.currency, 'EUR')
+  const lon = emptyRunOf(applyQuoteRules({ groupSize: 20, days: [day(1, '伦敦'), day(2, '伦敦')] }))
+  assert.equal(lon.price, 700, 'LON-LON 例外 700 GBP')
+  assert.equal(lon.currency, 'GBP', '英国侧币种为 GBP')
+})
+
+test('固定金额型 ER 未命中 → 退回区域原有算法（瑞士无 ER / 英国次数阶梯照旧）', () => {
+  // 瑞士表内未列出的对（ZRH-LUZ）→ 表内无固定金额 → 原行为（0，无 ER 标签）
+  const ch = emptyRunOf(applyQuoteRules({ groupSize: 20, days: [day(1, '苏黎世'), day(2, '苏黎世'), day(3, '卢塞恩')] }))
+  assert.equal(ch.price, 0, '未命中的瑞士对仍不计价')
+  assert.ok(!ch.notes.includes('ER 固定'), '不应出现固定 ER 标签')
+  // 瑞士同城 ZRH-ZRH → 表内明确无 ER
+  const same = emptyRunOf(applyQuoteRules({ groupSize: 20, days: [day(1, '苏黎世'), day(2, '苏黎世')] }))
+  assert.equal(same.price, 0)
+  assert.equal(same.currency, '')
+  // 英国未列出的对（LON-EDI）→ 仍走次数阶梯（unit=null → 只显示 ER ×N，不计价）
+  const uk = emptyRunOf(applyQuoteRules({ groupSize: 20, days: [day(1, '伦敦'), day(2, '伦敦'), day(3, '爱丁堡')] }))
+  assert.equal(uk.price, 0, '次数型 ER 单价表内未给 → 不计价')
+  assert.ok(/ER ×\d/.test(uk.notes), `应退回次数阶梯（实际 ${uk.notes}）`)
+})

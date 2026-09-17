@@ -189,3 +189,33 @@
 ### 去重(两个维度都归零)
 - 库内重复 10 组 → 0(`scripts/dedupe-hotels-2026-09.py`)
 - 与 KT 报价库重叠 6 条 → 0(保留 KT 报价侧;`scripts/remove-kt-overlaps-2026-09.py`)
+
+---
+
+## 2026-09-17 — 固定金额型 ER 落码(A-4 + A-5 例外)(🛠️ 已实现)
+
+**来源**：Michael 口径；唯一权威 = `references/euro/ldc-region-er-determination-2026-09.md` §2（LDC Summer 2026 CN ACTIVE 表）+ 待办 A-4 / A-5。
+**状态**：🛠️ 已实现（`ldc-mapping.js` / `coach-plan.js`，`npm test` 84/84）
+
+### 新形态 `ER_RULES[key].fixed`
+- `{ from, to, price, currency, note }`：城市对固定价，**QUOS 城市码**，双向各写一条（`fixedBoth` 展开）。
+- `{ liveDays, price, currency, note }`：按段内 live days 命中（西西里：2 live days → 1 empty）。
+- 命中优先级：**固定项 → 区域原有算法**（阶梯/次数/按公里）；缺城市码/天数或未命中 → 行为与加固定对之前**完全一致**。
+- `erPrice(ldc, km, ctx)` 新增 `ctx = { fromCode, toCode, liveDays }`；`makeEmptyRun` 用 `getCityCode` 解析段起止城市码并写入 `erFromCode/erToCode/erLiveDays`（OSRM 重算时复用）；返回增加 `currency`（固定项币种 → `item.currency`）。
+
+### 本次入库的固定项
+| 区域 | 城市对（双向） | 金额 | 币种 |
+|---|---|---|---|
+| switzerlandMono | ZRH-SMR / GVA-TAC / GVA-ZRH / ZRH-TAC / SMR-TAC / GVA-LUZ | 450 | CHF |
+| scandinavia | CPH-OSL / CPH-STO / CPH-BGO（厄勒大桥特殊线路 ER 已含） | 770 | EUR |
+| finlandNorthMono（Lapland） | RVN-ALF 900 / RVN-TOS 1000 / KRN-KRN 1000 | 900 / 1000 | EUR |
+| benelux | PAR-AMS 550 / PAR-BRU 450 | 550 / 450 | EUR |
+| iberia（例外） | BCN-BCN | 630 | EUR |
+| uk（例外） | LON-LON | 700 | GBP |
+| sicilyMono（live days 触发，非城市对） | 2 live days → 1 empty | 450 | EUR |
+
+### 未做 / 待裁决（详见本条目报告）
+- 瑞士固定清单里的 `INT/LRR/GRW-TAC`：表内斜杠写法，**未确认是 3 对** → 未编码。
+- 瑞士 `GVA-SMR`、`ZRH/GVA-MIL` = 1 ER（次数型，单价表内未给）→ 按设计不计价。
+- Lapland 固定对与西西里 450 目前**端到端不可达**：`resolveLdcSupplier` 对 `FI+NO`/`FI+SE` 返回 null（无供应商）、且西西里岛内判定（IT PMO）尚未实现 → 只在数据层就位。
+- Benelux PAR-AMS/PAR-BRU 挂在 `benelux` key 下（照抄表），但 Paris 属 FR → 实际场景判给 `westernEurope`，该对是否改挂 westernEurope 待裁决。
