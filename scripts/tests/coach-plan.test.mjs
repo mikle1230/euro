@@ -905,3 +905,31 @@ test('挪威跨城行程：路税读配置 380 NOK/天（Michael 定案 2026-09-
   assert.equal(rt.price, 380, '挪威路税 380')
   assert.equal(rt.currency, 'NOK', '挪威路税为 NOK，非 EUR')
 })
+
+test('挪威一地（当地车段）也要注入路税（Michael 口径 2026-09-17）', () => {
+  const parsed = {
+    groupSize: 20,
+    days: [
+      day(1, '奥斯陆', [
+        item({ type: 'transport', transportMode: 'flight', from: '北京', to: '奥斯陆' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Oslo' }),
+      day(2, '奥斯陆', [
+        item({ type: 'attraction', name: '维格兰雕塑公园' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Oslo' }),
+      day(3, '奥斯陆', [
+        item({ type: 'transport', transportMode: 'flight', from: '奥斯陆', to: '北京' }),
+      ], { cityNameEn: 'Oslo' }),
+      day(4, '北京'),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const items = out.days.flatMap((d) => d.items)
+  const rt = items.find((i) => i.quoteKind === 'road-tax')
+  assert.ok(rt, '挪威一地（当地车段）也应有路税')
+  assert.equal(rt.price, 380)
+  assert.equal(rt.currency, 'NOK')
+  assert.equal(items.find((i) => i.quoteKind === 'through-coach'), undefined, '当地车段仍不注入 THROUGH COACH')
+  assert.ok(items.find((i) => i.quoteKind === 'local-mtc'), '当地车段应注入当地车 MTC')
+})

@@ -583,7 +583,8 @@ export function applyQuoteRules(parsed) {
         if (!dd) continue
         dd.items.push(makeLocalMtc(dd))
       }
-      continue // 不注入 THROUGH COACH / EMPTY RUN / PRE-POST / 杂费
+      injectDailyFees(seg, realDays) // 当地车段：不注入 THROUGH COACH/空驶/前后夜，但国家杂费（路税/VAT/停车）照旧
+      continue
     }
 
     // 无 LDC 供应商（表外国家组合，或「主体非西欧但带德国」需人工问 LDC）
@@ -598,82 +599,89 @@ export function applyQuoteRules(parsed) {
       segStart.items.push(makePrePostNight(ldc))
     }
 
-    // 每日用车杂费（部分城市有）：段内每天命中 DAILY_FEES 表则注入（停车费/许可费等）
-    for (let dn = seg.startDay; dn <= seg.endDay; dn++) {
-      const dd = realDays.find((d) => d.dayNumber === dn)
-      if (!dd) continue
-      const fee = dailyFeeFor(dd)
-      if (fee) {
-        const feeCountry = getCityCode(fee.city, fee.cityEn)?.countryCode || ''
-        dd.items.push({
-          type: 'transport',
-          transportMode: 'bus',
-          name: fee.cityEn ? `${fee.cityEn} - ${fee.note}` : fee.note,
-          nameEn: 'THROUGH COACH (GLS)',
-          costCategory: 'paid',
-          estimatedCost: 0,
-          price: fee.amount || 0,
-          currency: fee.currency || 'EUR',
-          priceUnit: 'perGroup',
-          quoteKind: 'daily-fee',
-          quoteOrder: 21,
-          cityCode: fee.code,
-          countryCode: feeCountry,
-          notes: fee.note,
-        })
-      }
-      // 国家判定用「当晚过夜城市」（finalCityName || cityName）：当天进入奥地利住萨尔茨堡 → 算奥地利日。
-      // 如 D6 贝斯特斯加登（DE）白天、当晚住萨尔茨堡（AT）→ Austria ROAD TAX 而非 GERMAN VAT。
-      const overnightName = overnight(dd)
-      const overnightEn = dd.finalCityNameEn || dd.cityNameEn || ''
-      const dayCountry = getCityCode(overnightName, overnightEn)?.countryCode
-      if (dayCountry === 'DE') {
-        const vat = QUOTE_RATES.germanVat
-        const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
-        dd.items.push({
-          type: 'transport',
-          transportMode: 'bus',
-          name: 'Base - GERMAN VAT',
-          nameEn: 'THROUGH COACH (GLS)',
-          costCategory: 'paid',
-          estimatedCost: 0,
-          price: vat.price,
-          currency: vat.currency,
-          priceUnit: vat.priceUnit,
-          quoteKind: 'daily-fee',
-          quoteOrder: 21,
-          cityCode: dayCode,
-          countryCode: 'DE',
-          notes: vat.note,
-        })
-      }
-      // LDC 路税（KT 国家映射表 2026-08-21）：按过夜国家命中 [NO,CH,AT,DE,HU,CZ,SI,SK,CR] 强制生成。
-      // 金额/货币/计费单位一律读 `QUOTE_RATES.roadTax[国别]` 配置（2026-09-17 改为配置驱动，不再硬编码 price:0/EUR）；
-      // 未确认金额的国家仍为 0，由操作员录入时实填。德国另有 GERMAN VAT（增值税），两者并存。
-      const roadTax = QUOTE_RATES.roadTax[dayCountry]
-      if (roadTax) {
-        const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
-        dd.items.push({
-          type: 'transport',
-          transportMode: 'bus',
-          name: roadTax.name,
-          nameEn: 'THROUGH COACH (GLS)',
-          costCategory: 'paid',
-          estimatedCost: 0,
-          price: roadTax.price ?? 0,
-          currency: roadTax.currency || 'EUR',
-          priceUnit: roadTax.priceUnit || 'perGroup',
-          quoteKind: 'road-tax',
-          quoteOrder: 21,
-          cityCode: dayCode,
-          countryCode: dayCountry,
-          notes: roadTax.note,
-        })
-      }
-    }
+    injectDailyFees(seg, realDays)
   }
 
   return { ...parsed, days }
+}
+
+// 每日「按国家/城市」杂费注入：当地停车费/许可费（DAILY_FEES）+ 德国 GERMAN VAT + LDC 路税。
+// ⭐ 与「长途车 / 当地车」无关 —— 只取决于当天在哪个国家、哪个城市行车，
+//    因此 LDC 段、表外段、R2 当地车段都要跑（Michael 口径 2026-09-17：挪威一地也要路税）。
+function injectDailyFees(seg, realDays) {
+  // 每日用车杂费（部分城市有）：段内每天命中 DAILY_FEES 表则注入（停车费/许可费等）
+  for (let dn = seg.startDay; dn <= seg.endDay; dn++) {
+    const dd = realDays.find((d) => d.dayNumber === dn)
+    if (!dd) continue
+    const fee = dailyFeeFor(dd)
+    if (fee) {
+      const feeCountry = getCityCode(fee.city, fee.cityEn)?.countryCode || ''
+      dd.items.push({
+        type: 'transport',
+        transportMode: 'bus',
+        name: fee.cityEn ? `${fee.cityEn} - ${fee.note}` : fee.note,
+        nameEn: 'THROUGH COACH (GLS)',
+        costCategory: 'paid',
+        estimatedCost: 0,
+        price: fee.amount || 0,
+        currency: fee.currency || 'EUR',
+        priceUnit: 'perGroup',
+        quoteKind: 'daily-fee',
+        quoteOrder: 21,
+        cityCode: fee.code,
+        countryCode: feeCountry,
+        notes: fee.note,
+      })
+    }
+    // 国家判定用「当晚过夜城市」（finalCityName || cityName）：当天进入奥地利住萨尔茨堡 → 算奥地利日。
+    // 如 D6 贝斯特斯加登（DE）白天、当晚住萨尔茨堡（AT）→ Austria ROAD TAX 而非 GERMAN VAT。
+    const overnightName = overnight(dd)
+    const overnightEn = dd.finalCityNameEn || dd.cityNameEn || ''
+    const dayCountry = getCityCode(overnightName, overnightEn)?.countryCode
+    if (dayCountry === 'DE') {
+      const vat = QUOTE_RATES.germanVat
+      const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
+      dd.items.push({
+        type: 'transport',
+        transportMode: 'bus',
+        name: 'Base - GERMAN VAT',
+        nameEn: 'THROUGH COACH (GLS)',
+        costCategory: 'paid',
+        estimatedCost: 0,
+        price: vat.price,
+        currency: vat.currency,
+        priceUnit: vat.priceUnit,
+        quoteKind: 'daily-fee',
+        quoteOrder: 21,
+        cityCode: dayCode,
+        countryCode: 'DE',
+        notes: vat.note,
+      })
+    }
+    // LDC 路税（KT 国家映射表 2026-08-21）：按过夜国家命中 [NO,CH,AT,DE,HU,CZ,SI,SK,CR] 强制生成。
+    // 金额/货币/计费单位一律读 `QUOTE_RATES.roadTax[国别]` 配置（2026-09-17 改为配置驱动，不再硬编码 price:0/EUR）；
+    // 未确认金额的国家仍为 0，由操作员录入时实填。德国另有 GERMAN VAT（增值税），两者并存。
+    const roadTax = QUOTE_RATES.roadTax[dayCountry]
+    if (roadTax) {
+      const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
+      dd.items.push({
+        type: 'transport',
+        transportMode: 'bus',
+        name: roadTax.name,
+        nameEn: 'THROUGH COACH (GLS)',
+        costCategory: 'paid',
+        estimatedCost: 0,
+        price: roadTax.price ?? 0,
+        currency: roadTax.currency || 'EUR',
+        priceUnit: roadTax.priceUnit || 'perGroup',
+        quoteKind: 'road-tax',
+        quoteOrder: 21,
+        cityCode: dayCode,
+        countryCode: dayCountry,
+        notes: roadTax.note,
+      })
+    }
+  }
 }
 
 // 命中当天城市的杂费条目（中文名 / 英文名 / 城市码任一匹配）
