@@ -92,7 +92,9 @@ test('DEFAULT_QUOS_ORDER 为 12 个码且与标签表一致', () => {
 test('数据漂移：每个 europe-travel 城市都能经 getCityCode 解析（无码遗址列白名单）', () => {
   // 以弗所是考古遗址，Cities.xlsx 无对应城市码，属预期无码
   // 多洛米蒂是山区/区域，无单一城市码，同理列入白名单
-  const NO_CODE_ALLOWLIST = new Set(['以弗所', '多洛米蒂'])
+  // 奥镇（Å i Lofoten）是罗弗敦群岛小渔村，Cities.xlsx 无独立码（同地区雷讷/斯沃尔韦尔/哈姆诺伊有码）；
+  // 待业务方从 QUOS 确认码后移除本白名单项
+  const NO_CODE_ALLOWLIST = new Set(['以弗所', '多洛米蒂', '奥镇'])
   const missing = []
   for (const country of travelData.countries) {
     for (const city of country.cities) {

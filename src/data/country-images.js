@@ -1,6 +1,7 @@
 // 国家封面图静态导入表：配合 next/image 做自动优化（WebP/AVIF + 响应式 srcset）。
 // 动态路径 `/images/countries/xxx.jpg` 无法被 next/image 优化，故改为静态 import。
 import austria from '../../public/images/countries/austria.jpg'
+import andorra from '../../public/images/countries/andorra.jpg'
 import belgium from '../../public/images/countries/belgium.jpg'
 import bulgaria from '../../public/images/countries/bulgaria.jpg'
 import croatia from '../../public/images/countries/croatia.jpg'
@@ -17,10 +18,12 @@ import iceland from '../../public/images/countries/iceland.jpg'
 import ireland from '../../public/images/countries/ireland.jpg'
 import italy from '../../public/images/countries/italy.jpg'
 import latvia from '../../public/images/countries/latvia.jpg'
+import liechtenstein from '../../public/images/countries/liechtenstein.jpg'
 import lithuania from '../../public/images/countries/lithuania.jpg'
 import luxembourg from '../../public/images/countries/luxembourg.jpg'
 import malta from '../../public/images/countries/malta.jpg'
 import monaco from '../../public/images/countries/monaco.jpg'
+import moldova from '../../public/images/countries/moldova.jpg'
 import montenegro from '../../public/images/countries/montenegro.jpg'
 import netherlands from '../../public/images/countries/netherlands.jpg'
 import norway from '../../public/images/countries/norway.jpg'
@@ -39,6 +42,7 @@ import unitedKingdom from '../../public/images/countries/united-kingdom.jpg'
 
 export const COUNTRY_IMAGES = {
   austria,
+  andorra,
   belgium,
   bulgaria,
   croatia,
@@ -55,10 +59,12 @@ export const COUNTRY_IMAGES = {
   ireland,
   italy,
   latvia,
+  liechtenstein,
   lithuania,
   luxembourg,
   malta,
   monaco,
+  moldova,
   montenegro,
   netherlands,
   norway,

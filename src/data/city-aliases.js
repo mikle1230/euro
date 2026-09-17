@@ -46,6 +46,18 @@ export const CITY_CODE_ALIASES = {
   '布里姆内斯': 'Brimnes',
   '万塔': 'Vantaa',
   'Tørvikbygd': 'Torviksbygd', // 挪威峡湾 Jondal↔Tørvikbygd 渡轮；QUOS 把该地拼作 Torviksbygd（码 TVB）
+  // 挪威新增城市（英文名用 QUOS 码表里的拼写，保证能查到码）
+  '塞尼亚岛': 'Senja',
+  '罗弗敦小镇': 'Lofoten Islands',
+  '罗弗敦群岛': 'Lofoten Islands',
+  '雷讷': 'Reine',
+  '奥镇': 'A i Lofoten',
+  '斯沃尔韦尔': 'Svolvaer',
+  '埃沃内斯': 'Evenes',
+  '哈姆诺伊村': 'Hamnoy',
+  '盖朗厄尔': 'Geiranger',
+  '布伦斯霍尔门': 'Brensholmen',
+  '博滕港': 'Botnhamn',
   // 机场三字码 → 城市（AI 的 from/to 可能输出机场码；机场码≠城市码的少数，
   // 避免撞码歧义——如 CDG 在 Cities.xlsx 里是 Cardigan/GB）
   'PEK': 'Beijing',
