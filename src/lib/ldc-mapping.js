@@ -285,7 +285,7 @@ const MONO_MAP = {
   CZ: 'centralEurope',
   HU: 'centralEurope',
   SK: 'centralEurope',
-  PL: 'polandMono',
+  // PL 不在此表：波兰表外（向波兰当地办公室申请打包价）→ 见 resolveLdcSupplier 单国分支返回 null
   AT: 'centralEurope',
   SE: 'swedenMono',
   DK: 'denmarkMono',
@@ -307,6 +307,8 @@ export function resolveLdcSupplier(countries, opts = {}) {
   // 单国
   if (list.length === 1) {
     const c = list[0]
+    // 波兰一地：LDC 表外 → 返回 null，走「需人工处理」提示（2026-09-17 口径）
+    if (c === 'PL') return null
     if (c === 'NO') return withKey(arctic ? 'norwayNorthMono' : 'norwaySouthMono')
     if (c === 'FI') return withKey(arctic ? 'finlandNorthMono' : 'finlandSouthMono')
     const key = MONO_MAP[c]
@@ -314,8 +316,13 @@ export function resolveLdcSupplier(countries, opts = {}) {
   }
 
   // 多国：明确规则优先，其余西欧多国统一 IT ROM
-  // 含波兰（用户口径 2026-08-18）：从华沙 WAW 调车 → PL WAW（不并入中欧 CZ PRG）
-  if (list.includes('PL')) return withKey('polandMono')
+  // 含波兰（Michael 口径 2026-09-17，取代 2026-08-18 的「含 PL 一律 PL WAW」）：
+  //   ① 同行含中欧国（CZ / HU / SK）→ 可直接套 Central Europe（CZ PRG）
+  //   ② 其余凡含波兰（波兰一地、或与波罗的海 / 奥地利等组合）→ 判不出 → 返回 null
+  //      （与「判不出供应商」同处理：输出侧提示人工处理；实际做法是向波兰当地办公室申请打包价）
+  if (list.includes('PL')) {
+    return list.some((c) => ['CZ', 'HU', 'SK'].includes(c)) ? withKey('centralEurope') : null
+  }
   if (list.every((c) => ['EE', 'LT', 'LV'].includes(c))) return withKey('balticMono')
   if (list.every((c) => ['NL', 'BE', 'LU'].includes(c))) return withKey('benelux')
   if (list.every((c) => ['HU', 'CZ', 'SK', 'AT'].includes(c))) return withKey('centralEurope')

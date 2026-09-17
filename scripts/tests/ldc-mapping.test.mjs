@@ -27,6 +27,14 @@ test('多国：荷比卢 / 中欧 / 斯堪的纳维亚 / 英国 优先', () => {
   assert.equal(resolveLdcSupplier(['EE', 'LT', 'LV']).supplierCode, 'LT VNO')
 })
 
+test('含波兰（Michael 口径 2026-09-17）：同行含中欧国 → CZ PRG；其余一律 null（人工处理）', () => {
+  assert.equal(resolveLdcSupplier(['PL', 'CZ']).supplierCode, 'CZ PRG')
+  assert.equal(resolveLdcSupplier(['PL', 'HU']).supplierCode, 'CZ PRG')
+  assert.equal(resolveLdcSupplier(['PL']), null, '波兰一地 → 判不出，人工处理')
+  assert.equal(resolveLdcSupplier(['PL', 'EE', 'LT', 'LV']), null, '波兰+波罗的海 → 判不出')
+  assert.equal(resolveLdcSupplier(['DE', 'PL']), null, '波兰+德国（无西欧主体）→ 判不出')
+})
+
 test('其余西欧多国统一 IT ROM', () => {
   assert.equal(resolveLdcSupplier(['FR', 'IT', 'DE', 'CH']).supplierCode, 'IT ROM')
 })

@@ -846,6 +846,9 @@ test('德奥行程：无西欧主体 → 不派 LDC 车（问 LDC）；德国/�
   const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
   assert.equal(tc, undefined, 'DE+AT 无西欧主体 → 不再默认派车（需人工问 LDC）')
   assert.equal(resolveLdcSupplier(['DE', 'AT']), null, 'resolveLdcSupplier(DE+AT) 应为 null')
+  const manual = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'manual-review')
+  assert.ok(manual, '判不出供应商 → 应显式提示人工处理（不静默）')
+  assert.ok(manual.notes.includes('DE'), '提示应列出涉及国家')
   // 按「过夜城市」判国家：D2-D4 德国过夜 → GERMAN VAT + LDC路税（D1 首日接机不在段内）；D5 慕尼黑→当晚萨尔茨堡 → 算奥地利
   const vatDays = out.days.filter((d) =>
     d.dayNumber >= 1 && d.dayNumber <= 7 &&
@@ -871,4 +874,34 @@ test('德奥行程：无西欧主体 → 不派 LDC 车（问 LDC）；德国/�
   assert.equal(tax.name, 'Austria ROAD TAX PAID BY DRIVER')
   assert.equal(tax.price, 0, '路税金额待操作员实填')
   assert.equal(tax.countryCode, 'AT')
+})
+
+test('挪威跨城行程：路税读配置 380 NOK/天（Michael 定案 2026-09-17）', () => {
+  const parsed = {
+    groupSize: 20,
+    days: [
+      day(1, '奥斯陆', [
+        item({ type: 'transport', transportMode: 'flight', from: '北京', to: '奥斯陆' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Oslo' }),
+      day(2, '奥斯陆', [
+        item({ type: 'attraction', name: '维格兰雕塑公园' }),
+        item({ type: 'transport', transportMode: 'bus', from: '奥斯陆', to: '卑尔根' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Oslo', finalCityName: '卑尔根' }),
+      day(3, '卑尔根', [
+        item({ type: 'attraction', name: '布吕根' }),
+        item({ type: 'hotel' }),
+      ], { cityNameEn: 'Bergen' }),
+      day(4, '卑尔根', [
+        item({ type: 'transport', transportMode: 'flight', from: '卑尔根', to: '北京' }),
+      ], { cityNameEn: 'Bergen' }),
+      day(5, '北京'),
+    ],
+  }
+  const out = applyQuoteRules(parsed)
+  const rt = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'road-tax')
+  assert.ok(rt, '挪威路税条目应存在（跨城行程）')
+  assert.equal(rt.price, 380, '挪威路税 380')
+  assert.equal(rt.currency, 'NOK', '挪威路税为 NOK，非 EUR')
 })

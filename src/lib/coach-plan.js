@@ -55,6 +55,27 @@ function makeInsurance(groupSize) {
   }
 }
 
+// LDC 区域判定失败提示（Michael 口径 2026-09-17）：判不出供应商时（表外国家组合 / 含波兰的模糊组合 /
+// 带德国但无西欧主体）显式生成一条提示，交人工向 LDC 部门确认 —— **不静默跳过**。
+// 此情形下用车相关项（THROUGH COACH / 空驶 / 前后夜）不注入；但当日 VAT / 路税 / 每日杂费照旧注入。
+function makeManualReview(countries) {
+  return {
+    type: 'other',
+    name: '⚠️ LDC 区域判定：需人工处理',
+    nameEn: 'LDC region: manual review required',
+    costCategory: 'paid',
+    estimatedCost: 0,
+    price: 0,
+    priceUnit: 'perGroup',
+    currency: 'EUR',
+    quoteKind: 'manual-review',
+    quoteOrder: 10,
+    cityCode: '',
+    countryCode: '',
+    notes: `涉及国家 ${countries.join('/')} —— 无法按 LDC 表自动判定用车供应商，需人工向 LDC 部门确认`,
+  }
+}
+
 // 接机 STD MTC：国/城 = 当天城市（用户口径 2026-08-18，与 THROUGH COACH 相反），
 // 名称格式 `{城市英文名} - APT/HTL`（如 Warsaw - APT/HTL）。价格城市特定（待价格表补充）。
 function makePickup(locationCategory, day) {
@@ -372,6 +393,11 @@ export function applyQuoteRules(parsed) {
   // 2) 旅行保险：第 1 天、置顶、必录，2.66 USD/人 × 人数
   realDays[0].items = [makeInsurance(parsed.groupSize), ...(realDays[0].items || [])]
 
+  // 2b) 判不出 LDC 供应商 → 首日显式提示人工处理（2026-09-17 口径，不静默）
+  if (!ldc && ldcCountries.length > 0) {
+    realDays[0].items = [...(realDays[0].items || []), makeManualReview(ldcCountries)]
+  }
+
   const transitOf = (d) => (d.items || []).find((it) =>
     it.type === 'transport' && ['flight', 'train', 'boat'].includes(it.transportMode) && (it.from || it.to))
   // 「抵达」transit：只认「飞机」跨城抵达。火车/船（金色山口观光列车、游湖船、一日游火车）是地面交通，
@@ -621,8 +647,9 @@ export function applyQuoteRules(parsed) {
           notes: vat.note,
         })
       }
-      // LDC 路税（KT 国家映射表 2026-08-21）：按过夜国家命中 [NO,CH,AT,DE,HU,CZ,SI,SK,CR] 强制生成，
-      // 金额待操作员实填（price=0，备注注明）。德国另有 GERMAN VAT（增值税），两者并存。
+      // LDC 路税（KT 国家映射表 2026-08-21）：按过夜国家命中 [NO,CH,AT,DE,HU,CZ,SI,SK,CR] 强制生成。
+      // 金额/货币/计费单位一律读 `QUOTE_RATES.roadTax[国别]` 配置（2026-09-17 改为配置驱动，不再硬编码 price:0/EUR）；
+      // 未确认金额的国家仍为 0，由操作员录入时实填。德国另有 GERMAN VAT（增值税），两者并存。
       const roadTax = QUOTE_RATES.roadTax[dayCountry]
       if (roadTax) {
         const dayCode = dd.cityCode || getCityCode(overnightName, overnightEn)?.cityCode || ''
@@ -633,9 +660,9 @@ export function applyQuoteRules(parsed) {
           nameEn: 'THROUGH COACH (GLS)',
           costCategory: 'paid',
           estimatedCost: 0,
-          price: 0, // 金额/计费单位待 KT 录入时实填
-          currency: 'EUR',
-          priceUnit: 'perGroup',
+          price: roadTax.price ?? 0,
+          currency: roadTax.currency || 'EUR',
+          priceUnit: roadTax.priceUnit || 'perGroup',
           quoteKind: 'road-tax',
           quoteOrder: 21,
           cityCode: dayCode,

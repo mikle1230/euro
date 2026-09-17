@@ -24,17 +24,20 @@ export const QUOTE_RATES = {
     priceUnit: 'perGroup',
     note: 'GERMAN VAT',
   },
-  // LDC 路税/过路费（KT 国家映射表 2026-08-21）：行程经过下列国家**强制生成**路税项目（不可遗漏），
-  // 金额/计费单位暂未确认 → price=0，由操作员在真实 KT 录入时按当地政策/实际费用手填（按天/按次/打包）。
+  // LDC 路税/过路费（KT 国家映射表 2026-08-21）：行程经过下列国家**强制生成**路税项目（不可遗漏）。
+  // ⚠️ 金额口径（2026-09-17）：**只填已定案或有 LDC 官方附表出处的**，其余留 `price: 0` 由操作员实填；
+  //    无出处的参考价写进 `note` 供录入时参考，**不自动计入报价**。
+  //    出处：`src/data/ancillary-fees.js`（LDC 2025 Onwards Refundable List Ancillary - quotable）。
   roadTax: {
-    NO: { name: 'LDC路税', note: 'LDC路税（金额待操作员实填）' },
-    CH: { name: 'LDC路税', note: 'LDC路税（金额待操作员实填）' },
-    DE: { name: 'LDC路税', note: 'LDC路税（金额待操作员实填）' },
-    AT: { name: 'Austria ROAD TAX PAID BY DRIVER', note: 'Austria ROAD TAX（金额待操作员实填）' },
-    HU: { name: 'Budapest - HUGO ROAD TOLL', note: 'Hungary ROAD TOLL（金额待操作员实填）' },
-    CZ: { name: 'Prague - CZ ROAD TAX', note: 'Czech ROAD TAX（金额待操作员实填）' },
-    SI: { name: 'Ljubljana - ROAD TAX', note: 'Slovenia ROAD TAX（金额待操作员实填）' },
-    SK: { name: 'Bratislava - ROAD TAX PER DAY', note: 'Slovakia ROAD TAX（金额待操作员实填）' },
-    CR: { name: 'Zagreb - Croatian Road Tax', note: 'Croatia Road Tax（金额待操作员实填）' },
+    // 挪威：Michael 定案 2026-09-17 —— QUOS 条目即写 380 NOK/天
+    NO: { name: 'LDC路税', price: 380, currency: 'NOK', note: 'LDC路税 380 NOK/天' },
+    CH: { name: 'LDC路税', note: 'LDC路税（金额待实填；LDC 附表 SWISS ROAD TAX €25/天，限非瑞士供应商）' },
+    DE: { name: 'LDC路税', note: 'LDC路税（金额待实填；德国另按天注入 GERMAN VAT）' },
+    AT: { name: 'Austria ROAD TAX PAID BY DRIVER', note: 'Austria ROAD TAX（金额待实填；LDC 附表 ROAD TAX per day €45）' },
+    HU: { name: 'Budapest - HUGO ROAD TOLL', note: 'Hungary ROAD TOLL（金额待实填；LDC 附表未见 HU 条目）' },
+    CZ: { name: 'Prague - CZ ROAD TAX', note: 'Czech ROAD TAX（金额待实填；LDC 附表 ROAD TOLL €13/天）' },
+    SI: { name: 'Ljubljana - ROAD TAX', note: 'Slovenia ROAD TAX（金额待实填；LDC 附表 ROAD TOLL €100，每单 1 次）' },
+    SK: { name: 'Bratislava - ROAD TAX PER DAY', note: 'Slovakia ROAD TAX（金额待实填；LDC 附表 ROAD TAX PER DAY €12）' },
+    CR: { name: 'Zagreb - Croatian Road Tax', note: 'Croatia Road Tax（金额待实填；LDC 附表为 Croatian VAT €30/天，与本条目名称不同，待核）' },
   },
 }
