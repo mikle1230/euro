@@ -234,6 +234,10 @@ export const ER_RULES = {
 
 const WESTERN_EUROPE_CODES = ['FR', 'IT', 'DE', 'CH', 'NL', 'BE', 'LU', 'AT', 'ES', 'PT']
 
+// 「主体西欧」核心国（决定「带德国时用哪家的车」）。不含 DE 自身，也不含 AT
+// （AT 在 MONO_MAP 里归 Central Europe/CZ PRG）。Michael 口径 2026-09-17。
+const WESTERN_CORE_CODES = ['FR', 'IT', 'CH', 'NL', 'BE', 'LU', 'ES', 'PT']
+
 // LDC 表覆盖的国家集合（单国 Mono + 多国区域 + 西欧）+ 冰岛（TEITUR LDC 本地打包，A1 2026-09-09）。
 // 供 coach-plan 做防御性过滤：行程里出现表外国家（如美国的 Syracuse → US）时
 // 直接忽略，不会让整个 LDC 区域判定失败。
@@ -315,9 +319,12 @@ export function resolveLdcSupplier(countries, opts = {}) {
   if (list.every((c) => ['EE', 'LT', 'LV'].includes(c))) return withKey('balticMono')
   if (list.every((c) => ['NL', 'BE', 'LU'].includes(c))) return withKey('benelux')
   if (list.every((c) => ['HU', 'CZ', 'SK', 'AT'].includes(c))) return withKey('centralEurope')
-  // 德奥组合（用户口径 2026-08-21，KT 实操校准）：凡行程同时经过德国+奥地利 → DE BER（柏林车），
-  // 绝不能落入西欧 IT ROM（罗马车）——如「德国+奥地利12日」团（KT 曾误录 IT ROM，财务成本严重出错）。
-  if (list.includes('DE') && list.includes('AT')) return withKey('germanyNgs')
+  // 德国三档（Michael 口径 2026-09-17，取代旧「含 DE+AT 无条件短路 → DE BER」）：
+  //   ① 德国一地            → DE BER（单国分支已处理）
+  //   ② 主体是西欧 + 带德国  → 西欧车 IT ROM（NGS），交由下面的 westernEurope 兜底
+  //   ③ 完全没西欧 + 带德国  → 无法判定，返回 null（问 LDC）
+  // ⚠️ 旧规则（2026-08-21「凡含 DE+AT 一律 DE BER」）已作废；由此 DE+AT 归入③（问 LDC）。
+  if (list.includes('DE') && !list.some((c) => c !== 'DE' && WESTERN_CORE_CODES.includes(c))) return null
   if (list.every((c) => ['NO', 'SE', 'DK'].includes(c))) return withKey('scandinavia')
   if (list.every((c) => ['GB', 'IE'].includes(c))) return withKey('uk')
   if (list.every((c) => ['ES', 'PT'].includes(c))) return withKey('iberia')

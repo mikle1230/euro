@@ -31,11 +31,17 @@ test('其余西欧多国统一 IT ROM', () => {
   assert.equal(resolveLdcSupplier(['FR', 'IT', 'DE', 'CH']).supplierCode, 'IT ROM')
 })
 
-test('德奥组合 → DE BER（柏林车），绝不落入 IT ROM（KT 实操校准 2026-08-21）', () => {
-  assert.equal(resolveLdcSupplier(['DE', 'AT']).supplierCode, 'DE BER')
-  assert.equal(resolveLdcSupplier(['DE', 'AT']).fullSelectionName, 'DE BER Through Coach (NGS)')
-  assert.equal(resolveLdcSupplier(['DE', 'AT', 'CH']).supplierCode, 'DE BER', '德奥含瑞士 → 仍 DE BER')
-  // 纯奥地利（无德国）→ 保持中欧 CZ PRG；纯德国 → 已单国 DE BER
+test('德国三档（Michael 口径 2026-09-17）：德国一地 DE BER；带西欧 → IT ROM；无西欧 → 问 LDC(null)', () => {
+  // ① 德国一地 → DE BER
+  assert.equal(resolveLdcSupplier(['DE']).supplierCode, 'DE BER')
+  // ② 主体西欧 + 带德国 → 西欧车 IT ROM
+  assert.equal(resolveLdcSupplier(['FR', 'IT', 'DE', 'CH']).supplierCode, 'IT ROM')
+  assert.equal(resolveLdcSupplier(['FR', 'DE']).supplierCode, 'IT ROM')
+  assert.equal(resolveLdcSupplier(['DE', 'AT', 'CH']).supplierCode, 'IT ROM', 'DE+AT+CH：含西欧核心 CH → IT ROM')
+  // ③ 完全没西欧 + 带德国 → 无法判定，返回 null（问 LDC）
+  assert.equal(resolveLdcSupplier(['DE', 'AT']), null, '旧「DE+AT → DE BER」已作废，现归③问 LDC')
+  assert.equal(resolveLdcSupplier(['DE', 'SE', 'DK']), null, '德国+北欧：无西欧主体 → 问 LDC')
+  // 纯奥地利（无德国）→ 保持中欧 CZ PRG
   assert.equal(resolveLdcSupplier(['AT']).supplierCode, 'CZ PRG')
 })
 

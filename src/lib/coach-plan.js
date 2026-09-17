@@ -560,14 +560,17 @@ export function applyQuoteRules(parsed) {
       continue // 不注入 THROUGH COACH / EMPTY RUN / PRE-POST / 杂费
     }
 
-    // 无 LDC 供应商（表外国家组合）→ 不注入 THROUGH COACH / EMPTY RUN / PRE-POST / 杂费
-    if (!ldc) continue
-    segStart.items.push(makeThroughCoach(seg, ldc))
-    // EMPTY RUN 空驶：每段都有，公里数 = 段起点 → 段终点（下一段交通出发城）的车程
-    const firstCity = seg.fromCity
-    const lastCity = seg.toCity
-    if (firstCity && lastCity) segStart.items.push(makeEmptyRun(firstCity, lastCity, ldc))
-    segStart.items.push(makePrePostNight(ldc))
+    // 无 LDC 供应商（表外国家组合，或「主体非西欧但带德国」需人工问 LDC）
+    // → 不注入 THROUGH COACH / EMPTY RUN / PRE-POST；
+    //   但**每日杂费/增值税/路税照旧注入**（这些只取决于当天在哪个国家行车，与是否已定车无关）。
+    if (ldc) {
+      segStart.items.push(makeThroughCoach(seg, ldc))
+      // EMPTY RUN 空驶：每段都有，公里数 = 段起点 → 段终点（下一段交通出发城）的车程
+      const firstCity = seg.fromCity
+      const lastCity = seg.toCity
+      if (firstCity && lastCity) segStart.items.push(makeEmptyRun(firstCity, lastCity, ldc))
+      segStart.items.push(makePrePostNight(ldc))
+    }
 
     // 每日用车杂费（部分城市有）：段内每天命中 DAILY_FEES 表则注入（停车费/许可费等）
     for (let dn = seg.startDay; dn <= seg.endDay; dn++) {

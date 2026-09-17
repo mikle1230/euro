@@ -3,6 +3,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { applyQuoteRules } from '../../src/lib/coach-plan.js'
+import { resolveLdcSupplier } from '../../src/lib/ldc-mapping.js'
 
 function day(n, city, items = [], extra = {}) {
   return { dayNumber: n, cityName: city, cityNameEn: '', finalCityName: city, items, ...extra }
@@ -804,7 +805,7 @@ test('离境日只有早餐+返程航班（无游览）→ 仍视为纯送机，
   assert.ok(dropoff, '只有早餐+航班 → 仍单独注入送机 MTC')
 })
 
-test('德奥行程：DE BER 供应商 + 德国境内每天 GERMAN VAT（KT 实操口径 2026-08-21）', () => {
+test('德奥行程：无西欧主体 → 不派 LDC 车（问 LDC）；德国/奥地利 VAT 与路税照旧', () => {
   const parsed = {
     groupSize: 25,
     days: [
@@ -841,9 +842,10 @@ test('德奥行程：DE BER 供应商 + 德国境内每天 GERMAN VAT（KT 实�
     ],
   }
   const out = applyQuoteRules(parsed)
+  // 新口径（Michael 2026-09-17）：DE+AT 无西欧主体 → 归③「问 LDC」，不再默认 DE BER
   const tc = out.days.flatMap((d) => d.items).find((i) => i.quoteKind === 'through-coach')
-  assert.ok(tc, '应有 THROUGH COACH')
-  assert.equal(tc.notes.split('供应商 ')[1], 'DE BER Through Coach (NGS)', '德奥 → DE BER 柏林车，非 IT ROM')
+  assert.equal(tc, undefined, 'DE+AT 无西欧主体 → 不再默认派车（需人工问 LDC）')
+  assert.equal(resolveLdcSupplier(['DE', 'AT']), null, 'resolveLdcSupplier(DE+AT) 应为 null')
   // 按「过夜城市」判国家：D2-D4 德国过夜 → GERMAN VAT + LDC路税（D1 首日接机不在段内）；D5 慕尼黑→当晚萨尔茨堡 → 算奥地利
   const vatDays = out.days.filter((d) =>
     d.dayNumber >= 1 && d.dayNumber <= 7 &&
