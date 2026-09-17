@@ -200,6 +200,9 @@ export const ER_RULES = {
   },
   sicilyMono: {
     // 表：≥3 live days 无空驶；2 live days 报 1 empty = €450（无城市对条件，按 live days 命中）
+    // ⚠️ **知识存档，暂不启用**（Michael 2026-09-17 定）：euro 目前**没有「西西里岛内」判定**，
+    //    `resolveLdcSupplier` 选不中西西里 → 本条的 450 **端到端不会生效**。
+    //    保留在此作知识存档；将来若补「岛内」判定，此条可直接生效，无需再找数。
     type: 'fixed',
     fixed: [{ liveDays: 2, price: 450, currency: 'EUR', note: 'LDC 表 Mono Sicily：2 live days → 1 empty run' }],
     maxKmPerDay: 300, excessPerKm: 1.8, note: '≥3 live days 无 ER；2 live days = 450 EUR（表）',
@@ -272,6 +275,9 @@ export const ER_RULES = {
     type: 'count', tiers: [[151, 499, 1], [500, 999, 2], [1000, 1499, 3], [1500, 99999, 4]], unit: null,
     // 表（Mono-Finland North / Lapland）：特例 Rovaniemi-Alta 900 / Rovaniemi-Tromsø 1000 / Kiruna-Kiruna 1000
     // （金额表内未标币种；该区域其余费率均为 € → 按 EUR 记，见报告）
+    // ⚠️ **知识存档，暂不启用**（Michael 2026-09-17 定）：Rovaniemi–Alta 是 **FI+NO**、Kiruna 在 **SE**，
+    //    而 `resolveLdcSupplier(['FI','NO'])` / `(['FI','SE'])` 返回 **null**（走「需人工处理」提示）
+    //    → 下列固定对**端到端选不中**。保留作知识存档；将来补「芬北↔挪北/瑞典北」跨境判定即可生效。
     fixed: [
       ...fixedBoth('RVN', 'ALF', 900, 'EUR', 'LDC 表 Mono-Finland North (Lapland) 特例 Rovaniemi-Alta'),
       ...fixedBoth('RVN', 'TOS', 1000, 'EUR', 'LDC 表 Mono-Finland North (Lapland) 特例 Rovaniemi-Tromsø'),
