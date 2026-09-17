@@ -1,6 +1,6 @@
 'use client'
 
-import { uid } from './id'
+import { uid } from './id.js'
 
 const STORAGE_KEY = 'euro-entities'
 

@@ -2,8 +2,8 @@
 // 优先级 1: AI 解析的 nameEn（覆盖景点/酒店等）
 // 优先级 2: QUOS 标准名（KT 巴黎景点.xlsx）
 // 优先级 3: 实体库（localStorage euro-entities）
-import { getAttractionNameEn } from './quos-mapping'
-import { getAllEntities } from './entity-store'
+import { getAttractionNameEn } from './quos-mapping.js'
+import { getAllEntities } from './entity-store.js'
 
 export function getItemNameEn(item) {
   if (!item) return ''

@@ -3,14 +3,15 @@
 import { useState, useRef, useEffect, Fragment } from 'react'
 import { updateItem, setDayChecked } from '@/lib/itinerary-store'
 import { useIsMobile } from '@/lib/use-is-mobile'
-import { getQUOSType, getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem, shouldHideItem } from '@/lib/quos-mapping'
-import { getItemNameEn } from '@/lib/item-name'
+import { getCityCode, getQUOSOrder, QUOS_LABELS, isFreeItem } from '@/lib/quos-mapping'
+// 条目派生（含 QUOS 类型/城市码/英文名/过滤）统一实现在 @/lib/quos-rows ——
+// 段抽屉（刀3）按天复用同一份，禁止在此另写一套
+import { buildQuosRows, quosSortKey, fmtPrice } from '@/lib/quos-rows'
 import { recommendHotels, getHotelPriceRange } from '@/lib/hotel-recommend'
 import { getMonthFromDate, getHotelQuotes, getHotelQuotesOrAll, getQuoteRange, getQuoteRangeOrAll, findHotelQuote, getBookingInfo } from '@/lib/hotel-prices'
 import { EMPTY_TEXT, CURRENCY_SYMBOLS } from '@/lib/config'
 
 // ---- helpers ----
-// getItemNameEn 统一实现在 @/lib/item-name（优先级：AI nameEn → QUOS 标准 → 实体库）
 
 // Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / 7-8 琥珀
 const ratingColor = (r) => {
@@ -152,19 +153,7 @@ function HotelRecommend({ day, aligned = false, month = null }) {
   )
 }
 
-// 报价注入项（保险/用车）优先排序：quoteOrder 越小越靠前；无 quoteOrder 按 QUOS 顺序回退
-function quosSortKey(row, order) {
-  return row.quoteOrder ?? (100 + order.indexOf(row.quosCode))
-}
-
-// ---- 导出工具（CSV）----
-
-function fmtPrice(row) {
-  if (row.price <= 0) return ''
-  const symbol = CURRENCY_SYMBOLS[row.currency] || '€'
-  const unit = row.priceUnit === 'perPerson' ? '/人' : row.priceUnit === 'perGroup' ? '/团' : row.priceUnit === 'perDay' ? '/天' : ''
-  return `${symbol}${row.price}${unit}${row.quantity > 0 ? `×${row.quantity}` : ''}`
-}
+// quosSortKey / fmtPrice 统一实现在 @/lib/quos-rows（与段抽屉共用）
 
 // 备注列的元信息行：时间 · 收费/价格 · 预估 · 数量（与备注文字合并为一列展示）
 // 酒店项：价格优先供应商报价库（标间单人价 €/人，以 hotel list.xlsx 为准），无则回退调研酒店库区间（€/晚）
@@ -262,33 +251,8 @@ export default function QUOSList({ itinerary }) {
     )
   }
 
-  // Build flat item list with day context
-  const flatItems = []
-  itinerary.days.forEach((day) => {
-    day.items.forEach((item) => {
-      if (shouldHideItem(item, { hideFree, hideMeals, hideAttractions, hideInlandTransit })) return
-      const autoQUOS = getQUOSType(item)
-      const cityInfo = getCityCode(day.cityName, day.cityNameEn)
-      // 酒店项归属「当晚过夜城市」（finalCityName 优先）：第4天巴黎→日内瓦火车、住日内瓦 → 酒店按日内瓦报价/推荐
-      const nightName = day.finalCityName || day.cityName
-      const nightNameEn = day.finalCityNameEn || day.cityNameEn || ''
-      const nightInfo = getCityCode(nightName, nightNameEn)
-      const isHotel = item.type === 'hotel'
-      flatItems.push({
-        ...item,
-        dayNumber: day.dayNumber,
-        dayId: day.id,
-        cityName: isHotel ? nightName : day.cityName,
-        cityNameEn: isHotel ? nightNameEn : (day.cityNameEn || ''),
-        finalCityName: day.finalCityName || day.cityName,
-        finalCityNameEn: day.finalCityNameEn || day.cityNameEn || '',
-        cityCode: item.cityCode || (isHotel ? nightInfo?.cityCode : day.cityCode) || cityInfo?.cityCode || '',
-        countryCode: item.countryCode || (isHotel ? nightInfo?.countryCode : day.countryCode) || cityInfo?.countryCode || '',
-        quosCode: autoQUOS.code,
-        nameEn: getItemNameEn(item),
-      })
-    })
-  })
+  // Build flat item list with day context（派生逻辑统一在 @/lib/quos-rows，抽屉复用同一份）
+  const flatItems = buildQuosRows(itinerary, { hideFree, hideMeals, hideAttractions, hideInlandTransit })
 
   const totalCount = flatItems.length
   const doneCount = flatItems.filter((r) => r.quosChecked).length

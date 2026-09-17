@@ -75,6 +75,8 @@ export default function MapCore({
   onCityAddToItinerary,
   dayLabels = [],
   onEntityAddToItinerary,
+  onSegmentClick,
+  onMapBlankClick,
   panelCollapsed = false,
   panelWidth = 0,
 }) {
@@ -91,9 +93,17 @@ export default function MapCore({
   const onCityClickRef = useRef(onCityClick)
   const onAddRef = useRef(onCityAddToItinerary)
   const onEntityAddRef = useRef(onEntityAddToItinerary)
+  const onSegmentClickRef = useRef(onSegmentClick)
+  const onMapBlankClickRef = useRef(onMapBlankClick)
   const initRef = useRef(false)
   // [{ signature, plan }] —— OSRM 真实路线计划；签名与当前点集不一致时视为过期，退回直线
   const [planEntry, setPlanEntry] = useState(null)
+
+  // 刀3：段点击 / 空白处点击的回调（在 effect 里赋值，不在 render 中改 ref）
+  useEffect(() => {
+    onSegmentClickRef.current = onSegmentClick
+    onMapBlankClickRef.current = onMapBlankClick
+  }, [onSegmentClick, onMapBlankClick])
 
   onCityClickRef.current = onCityClick
   onAddRef.current = onCityAddToItinerary
@@ -142,6 +152,21 @@ export default function MapCore({
     }
 
     setTimeout(() => map.invalidateSize(), 100)
+
+    // 点击地图空白处 → 关抽屉。Leaflet 会把一次点击同时派发给命中的图层和 map，所以这里要
+    // 区分「地图元素」与「空白」：点在我们画的数据图层上（城市/景点圆点、路线段等 SVG path，
+    // 国土边界多边形除外）不算空白；点瓦片/海洋/边界上照旧关抽屉。
+    const isBlankTarget = (target) => {
+      if (!target || typeof target.closest !== 'function') return true
+      if (target.closest('.leaflet-marker-pane, .leaflet-popup-pane, .leaflet-tooltip-pane')) return false
+      const path = target.closest('path')
+      if (path && !path.classList.contains('country-boundary')) return false
+      return true
+    }
+    map.on('click', (e) => {
+      if (!isBlankTarget(e?.originalEvent?.target)) return
+      if (onMapBlankClickRef.current) onMapBlankClickRef.current()
+    })
 
     return () => {
       // Close any open popups/tooltips first to prevent _leaflet_pos errors
@@ -551,39 +576,87 @@ export default function MapCore({
 
     // 按天配色：第 i 段（离开第 i 天城市的 leg）取当天颜色，相邻天色相拉开
     const legColor = (leg, idx) => {
-      const dayNumber = routePoints[leg?.fromIdx]?.dayNumber ?? idx + 1
+      const dayNumber = dayNumberOfLeg(leg, idx)
       return dayColors[(Math.max(1, dayNumber) - 1) % dayColors.length]
+    }
+
+    // 段的天号：沿用 buildDayToLegIndex 口径（离开该天城市的那条 leg）
+    const dayNumberOfLeg = (leg, idx) => routePoints[leg?.fromIdx]?.dayNumber ?? idx + 1
+
+    // 段点击 → 开该天抽屉；悬停加粗提亮（简单反馈，不做动效）
+    const attachSegmentHandlers = (line, dayNumber, baseStyle) => {
+      line.on('click', (e) => {
+        // 阻止 Leaflet 把同一次点击继续派发给 map（否则刚打开的抽屉会被 map 点击关掉）。
+        // 传 Leaflet 事件对象：DomEvent.stopPropagation 靠 e.originalEvent._stopped 掐断内部派发。
+        L.DomEvent.stopPropagation(e)
+        if (onSegmentClickRef.current) onSegmentClickRef.current(dayNumber)
+      })
+      line.on('mouseover', () => line.setStyle({ weight: 6, opacity: 1 }))
+      line.on('mouseout', () => line.setStyle(baseStyle))
     }
 
     if (realGeometry) {
       plan.legs.forEach((leg, idx) => {
         const color = legColor(leg, idx)
-        routeRef.current.push(L.polyline(leg.geometry, {
+        const line = L.polyline(leg.geometry, {
           color,
           weight: 3,
           opacity: 0.85,
-        }).addTo(map))
-        // 保留原有金色流动虚线叠加层（按段重复，视觉一致）
+        }).addTo(map)
+        attachSegmentHandlers(line, dayNumberOfLeg(leg, idx), { weight: 3, opacity: 0.85 })
+        routeRef.current.push(line)
+        // 保留原有金色流动虚线叠加层（按段重复，视觉一致）；interactive:false 不抢点击
         arrowRouteRef.current.push(L.polyline(leg.geometry, {
           color: gold,
           weight: 1.5,
           opacity: 0.9,
           dashArray: '4 12',
+          interactive: false,
         }).addTo(map))
       })
-    } else {
-      // OSRM 失败/未就绪：回退到原来的点对点直线画法（不白屏）
-      routeRef.current.push(L.polyline(routeLine, {
-        color: routeColor,
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '10 6',
-      }).addTo(map))
+    } else if (plan && plan.legs.length) {
+      // OSRM 失败（estimate 兜底）：无真实几何，按段画直线 —— 仍可点击开抽屉（数字口径不变）
+      plan.legs.forEach((leg, idx) => {
+        const a = routePoints[leg.fromIdx]
+        const b = routePoints[leg.toIdx]
+        if (!a || !b) return
+        const line = L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
+          color: routeColor,
+          weight: 3,
+          opacity: 0.7,
+          dashArray: '10 6',
+        }).addTo(map)
+        attachSegmentHandlers(line, dayNumberOfLeg(leg, idx), { weight: 3, opacity: 0.7 })
+        routeRef.current.push(line)
+      })
       arrowRouteRef.current.push(L.polyline(routeLine, {
         color: gold,
         weight: 1.5,
         opacity: 0.9,
         dashArray: '4 12',
+        interactive: false,
+      }).addTo(map))
+    } else {
+      // 计划未就绪：回退到原来的点对点直线画法（不白屏）；同样按天可点
+      for (let i = 0; i < routePoints.length - 1; i++) {
+        const a = routePoints[i]
+        const b = routePoints[i + 1]
+        if (!a || !b || (a.lat === b.lat && a.lng === b.lng)) continue
+        const line = L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
+          color: routeColor,
+          weight: 3,
+          opacity: 0.7,
+          dashArray: '10 6',
+        }).addTo(map)
+        attachSegmentHandlers(line, a.dayNumber ?? i + 1, { weight: 3, opacity: 0.7 })
+        routeRef.current.push(line)
+      }
+      arrowRouteRef.current.push(L.polyline(routeLine, {
+        color: gold,
+        weight: 1.5,
+        opacity: 0.9,
+        dashArray: '4 12',
+        interactive: false,
       }).addTo(map))
     }
 

@@ -247,3 +247,46 @@
 - 公共 OSRM 有限速，长行程（>30 天）会分 2+ 次请求；失败时整条路线降级为 `~` 估算。
 - 主题切换（深/浅色）不会重绘已画的路线（沿用既有行为，需改行程/重挂载才取新色板）。
 - 渡轮/跨海段 OSRM 会绕行（如雅典→圣托里尼走轮渡由 OSRM 驱动路线决定），未做特殊处理（按本次范围明确排除）。
+
+---
+
+## 2026-09-18 — 段抽屉 + 行程条（刀3）
+
+**状态**：🛠️ 已实现（`npm test` 120/120，`npm run build` 通过，`npm run lint` 错误数与改动前持平；真机 Chromium 点击实测 42 项断言全过）
+**来源**：A 方案第三刀 —— 地图当主角、QUOS 条目降为「点开才看的详情」。
+**范围**：① 底部行程条 day chips；② 点「地图某段」或「某天 chip」→ 左侧滑出抽屉（移动端 bottom sheet）；③ 地图按天分段的 polyline 可点击 + hover 反馈。
+**明确不做**：不改 `FloatingPanel` 默认展开/收起与宽度（刀4）；不碰 `api/*`、`ai-parse.js`、`prompt.js`、`road-distance.js`、`coach-plan.js`、`ldc-mapping.js` 的现有导出行为、`src/data/*`；不渡轮段、不做酒店级坐标、不做报价合理性对照。
+
+### 改了哪些文件
+| 文件 | 改动 |
+|---|---|
+| `src/lib/day-route.js`（新） | 天 → 段派生（纯函数）：`buildDayPlans` 出当天各段 km/时长、当日累计、全行程累计、`dayDate`（出发日 = 第 1 天）、`canPlan`（点集 <2 点 = 本来就没有段）；`legsByDay`/`totalRouteLabel`/`formatDayRoute` |
+| `src/lib/quos-rows.js`（新） | **QUOS 条目派生唯一实现**：从 `quos-list.jsx` 抽出 `buildQuosRows`（含酒店归当晚过夜城市、cityCode 回退链、过滤）+ `quosSortKey`/`fmtPrice`/`rowsForDay`/`formatQuosRowsText` |
+| `src/components/day-strip.jsx`（新） | 底部行程条：`D1 奥斯陆` chips，当天多城合成一个 chip；选中高亮；行程为空不渲染 |
+| `src/components/segment-drawer.jsx`（新） | 段抽屉：桌面 `left:0, top:56, width:380`；移动端底部半屏；内容顺序 = 标题 `D2 · 9/18` → `起点 → 终点` → 各段 km/时长 + 当日/全程累计 → 分隔线 → `▸ 这段的报价条目`（默认折叠）→ `复制全部条目` / `全部条目 >` |
+| `src/components/map-core.jsx` | 段 polyline 挂 click（`onSegmentClick(dayNumber)`）+ hover 加粗（3→6px）；金色虚线叠加层 `interactive:false` 不抢点击；estimate 兜底与「计划未就绪」的直线也按天可点；map `click` → 关抽屉（排除 marker/popup pane 与非边界 SVG path） |
+| `src/app/explore/page.js` | 抽屉/行程条状态与装配；自己订阅 `buildRoutePlan`（复用 route-plan 模块级缓存+并发去重，不重复打 OSRM）；Esc/空白处关闭；`全部条目 >` 请求面板切 quos 视图 |
+| `src/components/floating-panel.jsx` | 新增**可选** prop `viewRequest={view, nonce}`（不传 = 行为完全不变）；`全部条目 >` 会显式展开面板并切到行程详情（用户主动点击，不是默认状态） |
+| `src/components/panel-views/quos-list.jsx` | 内联条目派生/排序/`fmtPrice` 删掉，改 import `@/lib/quos-rows`（同一份实现，面板与抽屉不会分叉） |
+| `src/lib/item-name.js`、`src/lib/entity-store.js` | 相对 import 补 `.js` 扩展名（Node ESM 直跑测试需要；Next 两种写法都支持） |
+| `scripts/tests/day-route.test.mjs`、`scripts/tests/quos-rows.test.mjs`（新） | 15 个纯函数测试（天→段归属、累计、estimate `~` 前缀、日期、条目按天分组/排序/复制文本），全部不联网 |
+| `docs/architecture.md` | lib 清单 + 地图段补刀3说明 |
+
+### 为什么这么做
+- **条目只有一套推导**：抽屉要「该天条目」时，若再写一遍筛选/城市码逻辑，面板与抽屉迟早分叉。抽出 `quos-rows.js` 后两边同一个函数——面板显示什么，抽屉就是什么。
+- **数字口径不退化**：抽屉的 km 全部来自 `route-plan.js`（OSRM）；`estimate` 时走同一个 `formatLegLabel` → `~637 km` 且不显示时长；没有计划就不显示数字（`—`），绝不拿估算冒充实测。
+- **段的「天」归属沿用刀2**：`routePoints[leg.fromIdx].dayNumber`（= 离开该天城市的那条 leg），与地图按天配色、段标签完全一致，不引入第二套坐标。
+- **Leaflet 点击会同时派发给图层和 map**：段点击里 `L.DomEvent.stopPropagation(e)`（传 Leaflet 事件，靠 `originalEvent._stopped` 掐断内部派发），否则刚开的抽屉会被随后的 map click 立刻关掉——这是实测抓到的真 bug。
+
+### 实测（真机 Chromium，headless，42 项断言全过）
+- 点 chip → 抽屉滑出（`D3 · 9/19` / `尼斯 → 罗马` / `693 km · 7h44`）；点段 → 开对应天（段的天号与地图配色一致）；Esc / ✕ / 点地图空白处 → 关闭；条目默认折叠、展开显示该天条目、复制得到 `D3 · 尼斯\nHTL\tFR\tNCE\tHotel in Nice`。
+- `全部条目 >` → 右侧面板切到行程详情且保持展开；抽屉打开前后面板几何完全一致（740/700）。
+- OSRM 拦截场景（estimate）：`~637 km`、无时长、可点可关、不白屏。
+- 面板收起状态可开抽屉且不强行展开；空行程不渲染行程条/抽屉；单天行程提示「当天无跨城移动」；移动端仍是纯面板（无地图/行程条）。
+
+### 遗留 / 风险
+- **抽屉与右侧面板同开**：互不遮挡（左 380px / 右面板 ≥360px），窄视口（<800px）下两者可能贴到一起但仍有各自层级（抽屉 1050 / 面板 1000）；本刀未做联动（如开抽屉自动收面板）——留给刀4。
+- **移动端没有触发入口**：`explore/page.js` 移动端本就 `showMap=false`（不渲染地图），故行程条/抽屉在移动端不渲染；抽屉的 bottom-sheet 样式已按 `isMobile` 写好，等移动端有地图时直接可用。
+- **段的天号语义**：leg 归「离开第 N 天城市」的那一条（刀2 口径）；因此 `D2 巴黎 → 尼斯` 表示「第 2 天离开巴黎去尼斯」，与行程页「第 3 天到尼斯」可能差一天，属既有口径，未改。
+- **地图空白处判定**：点国土边界/海洋/瓦片算空白（关抽屉）；点城市点（circleMarker）或景点点不算（不关抽屉，弹窗照常）。若日后新增非边界 SVG 图层，需同步 `isBlankTarget` 判定。
+- **hover 反馈只改 stroke**（3→6px + 不透明度），未做动效；主题切换不重绘（沿用刀1 既有行为）。

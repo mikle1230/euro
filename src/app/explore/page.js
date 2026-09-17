@@ -1,12 +1,16 @@
 'use client'
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import FloatingPanel from '@/components/floating-panel'
+import DayStrip from '@/components/day-strip'
+import SegmentDrawer from '@/components/segment-drawer'
 import { getAllCitiesWithCoords, getAllAttractionsFlat } from '@/lib/data'
 import { useItineraries, useStoreVersion, addDay } from '@/lib/itinerary-store'
 import { ensureSeeded } from '@/lib/entity-store'
 import { useIsMobile } from '@/lib/use-is-mobile'
+import { buildRoutePlan, routeSignature } from '@/lib/route-plan'
+import { buildDayPlans, totalRouteLabel } from '@/lib/day-route'
 
 const MapCore = dynamic(() => import('../../components/map-core'), {
   ssr: false,
@@ -29,6 +33,13 @@ export default function Home() {
     return Math.max(360, Math.min(700, Math.floor(window.innerWidth * 0.5)))
   })
   const isMobile = useIsMobile()
+  // 刀3：抽屉当前打开的天（null = 关闭）；行程条高亮跟随它。key 每次打开递增 → 抽屉内部的
+  // 「条目展开」状态不跨开关保留（默认折叠）
+  const [drawer, setDrawer] = useState(null)
+  const drawerKeyRef = useRef(0)
+  const drawerDay = drawer?.dayNumber ?? null
+  // 刀3：请求右侧面板切视图（{ view, nonce }）—— 只在不影响其默认行为的前提下用
+  const [panelViewRequest, setPanelViewRequest] = useState(null)
 
   // 响应式订阅行程 store：任意 mutation 后自动重渲染，activeId 驱动当前行程
   const { itineraries, activeId } = useItineraries()
@@ -89,6 +100,73 @@ export default function Home() {
     // Called alongside popup display, for reference
   }, [])
 
+  // ---- 刀3：段计划（与 map-core 共用 route-plan 的模块级缓存/并发去重，不会多打一次 OSRM）----
+  const [planEntry, setPlanEntry] = useState(null)
+  useEffect(() => {
+    if (!routePoints || routePoints.length < 2) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 清掉上一份计划（无可点路线）
+      setPlanEntry(null)
+      return
+    }
+    let cancelled = false
+    buildRoutePlan(routePoints)
+      .then((plan) => { if (!cancelled) setPlanEntry({ signature: plan.signature, plan }) })
+      .catch(() => { if (!cancelled) setPlanEntry(null) })
+    return () => { cancelled = true }
+  }, [routePoints])
+
+  // 签名不匹配 → 计划属于旧点集，宁可不显示数字也不用错几何/错公里
+  const routeSig = useMemo(() => routeSignature(routePoints), [routePoints])
+  const routePlan = planEntry && planEntry.signature === routeSig ? planEntry.plan : null
+
+  const dayPlans = useMemo(
+    () => buildDayPlans({
+      startDate: activeItinerary?.startDate || '',
+      days: activeItinerary?.days || [],
+      routePoints,
+      plan: routePlan,
+    }),
+    [version, activeItinerary, routePoints, routePlan],
+  )
+  const stripDays = (activeItinerary?.days || []).map((d) => ({
+    id: d.id,
+    dayNumber: d.dayNumber,
+    cityName: d.cityName || '',
+  }))
+  const openDayPlan = drawerDay == null ? null : dayPlans.find((p) => p.dayNumber === drawerDay) || null
+  const openDay = drawerDay == null || !activeItinerary
+    ? null
+    : activeItinerary.days.find((d) => d.dayNumber === drawerDay) || null
+  const openTotalLabel = useMemo(() => totalRouteLabel(routePlan), [routePlan])
+
+  const handleOpenDay = useCallback((dayNumber) => {
+    if (dayNumber == null) return
+    // 只开确实存在的天（段的天号来自点集，行程被改后可能已不存在）
+    if (activeItinerary && !activeItinerary.days.some((d) => d.dayNumber === dayNumber)) return
+    drawerKeyRef.current += 1
+    setDrawer({ dayNumber, key: drawerKeyRef.current })
+  }, [activeItinerary])
+  const handleCloseDrawer = useCallback(() => setDrawer(null), [])
+  // 切到右侧面板的「行程详情」视图（显式用户动作；不改面板默认展开状态）
+  const handleOpenFullPanel = useCallback(() => {
+    setPanelCollapsed(false)
+    setPanelViewRequest({ view: 'quos', nonce: Date.now() })
+  }, [])
+
+  // Esc 关抽屉（输入框内不干扰）
+  useEffect(() => {
+    if (drawerDay == null) return
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      const t = e.target
+      const tag = t?.tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || t?.isContentEditable) return
+      setDrawer(null)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [drawerDay])
+
   const handleAddCityToItinerary = useCallback(
     (city) => {
       if (!activeItinerary) return
@@ -134,8 +212,48 @@ export default function Home() {
               onCityAddToItinerary={handleAddCityToItinerary}
               dayLabels={dayLabels}
               onEntityAddToItinerary={handleEntityAddToItinerary}
+              onSegmentClick={handleOpenDay}
+              onMapBlankClick={handleCloseDrawer}
               panelCollapsed={panelCollapsed}
               panelWidth={panelWidth}
+            />
+          )}
+          {/* 刀3 · 底部行程条：只在有地图时渲染（移动端不渲染地图 → 由面板承接）；
+              抽屉打开时整条右移，避免被抽屉盖住导致点不到 */}
+          {showMap && stripDays.length > 0 && (
+            <div
+              className="flex justify-center items-end"
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                left: drawerDay != null ? 380 : 0,
+                right: !panelCollapsed && panelWidth > 0 ? panelWidth : 0,
+                paddingBottom: 16,
+                pointerEvents: 'none',
+                zIndex: 850,
+              }}
+            >
+              <DayStrip
+                days={stripDays}
+                activeDayNumber={drawerDay}
+                onSelectDay={handleOpenDay}
+              />
+            </div>
+          )}
+          {/* 刀3 · 段抽屉（桌面贴左 / 移动端底部半屏）——无行程时不渲染 */}
+          {showMap && activeItinerary && (
+            <SegmentDrawer
+              open={drawerDay != null && !!openDay}
+              isMobile={isMobile}
+              day={openDay}
+              dayPlan={openDayPlan}
+              totalLabel={openTotalLabel}
+              itinerary={activeItinerary}
+              version={version}
+              openKey={drawer?.key ?? null}
+              onClose={handleCloseDrawer}
+              onOpenFullPanel={handleOpenFullPanel}
             />
           )}
           <FloatingPanel
@@ -145,6 +263,7 @@ export default function Home() {
             onCollapsedChange={setPanelCollapsed}
             panelWidth={panelWidth}
             onWidthChange={setPanelWidth}
+            viewRequest={panelViewRequest}
           />
         </>
       )}

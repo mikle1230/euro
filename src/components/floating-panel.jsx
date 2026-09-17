@@ -26,6 +26,7 @@ export default function FloatingPanel({
   onCollapsedChange,
   panelWidth,
   onWidthChange,
+  viewRequest = null,
 }) {
   const [view, setView] = useState('itineraries')
   const [dragging, setDragging] = useState(false)
@@ -76,6 +77,13 @@ export default function FloatingPanel({
       setView('itineraries')
     }
   }, [activeItinerary, view])
+
+  // 外部请求切视图（刀3 抽屉「全部条目 >」）：只认 nonce 变化，不影响默认行为
+  useEffect(() => {
+    if (!viewRequest?.view || !viewRequest?.nonce) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 响应用户显式点击的视图切换请求
+    setView(viewRequest.view)
+  }, [viewRequest?.nonce]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // 导入/切换行程后直接落到「行程详情」；首挂载不触发
   useEffect(() => {
