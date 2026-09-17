@@ -157,15 +157,18 @@ test('固定金额型 ER：拉普兰 900 / 1000（双向；Kiruna 同城对）',
   assert.equal(pairHit('finlandNorthMono', 'RVN', 'IVL'), null)
 })
 
-test('固定金额型 ER：Benelux PAR-AMS 550 / PAR-BRU 450（双向）+ 例外 BCN-BCN 630 EUR / LON-LON 700 GBP', () => {
-  assert.ok(hasBothWays('benelux', 'PAR', 'AMS'), 'PAR-AMS 应双向命中')
-  assert.ok(hasBothWays('benelux', 'PAR', 'BRU'), 'PAR-BRU 应双向命中')
-  assert.equal(pairHit('benelux', 'PAR', 'AMS').price, 550)
-  assert.equal(pairHit('benelux', 'AMS', 'PAR').price, 550)
-  assert.equal(pairHit('benelux', 'PAR', 'AMS').currency, 'EUR')
-  assert.equal(pairHit('benelux', 'PAR', 'BRU').price, 450)
-  assert.equal(pairHit('benelux', 'BRU', 'PAR').price, 450)
-  assert.equal(pairHit('benelux', 'BRU', 'AMS'), null, '表内只给 PAR-AMS / PAR-BRU 两对')
+test('固定金额型 ER：PAR-AMS 550 / PAR-BRU 450（双向）+ 例外 BCN-BCN 630 EUR / LON-LON 700 GBP', () => {
+  // ⚠️ 挂点修正（2026-09-17）：这两对起点 Paris 属 FR，行程会判给 westernEurope，
+  //    挂在 benelux 下永远命中不了 → 已改挂 westernEurope。
+  assert.ok(hasBothWays('westernEurope', 'PAR', 'AMS'), 'PAR-AMS 应双向命中（westernEurope）')
+  assert.ok(hasBothWays('westernEurope', 'PAR', 'BRU'), 'PAR-BRU 应双向命中（westernEurope）')
+  assert.equal(pairHit('westernEurope', 'PAR', 'AMS').price, 550)
+  assert.equal(pairHit('westernEurope', 'AMS', 'PAR').price, 550)
+  assert.equal(pairHit('westernEurope', 'PAR', 'AMS').currency, 'EUR')
+  assert.equal(pairHit('westernEurope', 'PAR', 'BRU').price, 450)
+  assert.equal(pairHit('westernEurope', 'BRU', 'PAR').price, 450)
+  assert.equal(pairHit('westernEurope', 'BRU', 'AMS'), null, '表内只给 PAR-AMS / PAR-BRU 两对')
+  assert.equal(pairHit('benelux', 'PAR', 'AMS'), null, 'benelux 下不应再挂这两对（起点属 FR）')
   // 例外（Michael 2026-09-17）：巴塞罗那起止 630 EUR、伦敦起止 700 GBP
   assert.equal(pairHit('iberia', 'BCN', 'BCN').price, 630)
   assert.equal(pairHit('iberia', 'BCN', 'BCN').currency, 'EUR')

@@ -163,15 +163,18 @@ const fixedBoth = (a, b, price, currency, note) => [
 export const ER_RULES = {
   westernEurope: {
     type: 'tiers', tiers: [[0, 350, 0], [351, 600, 450], [601, 1000, 800], [1001, 1400, 1000], [1401, 1999, 1500]],
-    maxKmPerDay: 375, excessPerKm: 2,
-  },
-  benelux: {
-    type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
-    // 表：境内无空驶；2 live days 报 1 full empty；3+ live days 起 PAR-AMS 550 EUR / PAR-BRU 450 EUR（固定对，金额照抄表）
+    // LDC 表 Benelux 的固定对挂点修正（2026-09-17）：起点 Paris 属 FR，行程会判给 westernEurope，
+    // 挂在 benelux 下永远命中不了 → 改挂本区域。
     fixed: [
       ...fixedBoth('PAR', 'AMS', 550, 'EUR', 'LDC 表 Benelux：3+ live days 起 PAR-AMS'),
       ...fixedBoth('PAR', 'BRU', 450, 'EUR', 'LDC 表 Benelux：3+ live days 起 PAR-BRU'),
     ],
+    maxKmPerDay: 375, excessPerKm: 2,
+  },
+  benelux: {
+    type: 'count', tiers: [[200, 699, 1], [700, 1674, 2], [1675, 99999, 3]], unit: null,
+    // 表：境内无空驶；2 live days 报 1 full empty；3+ live days 起 PAR-AMS 550 EUR / PAR-BRU 450 EUR
+    // ⚠️ 这两对固定金额已改挂 westernEurope（见上，起点 Paris 属 FR）
     maxKmPerDay: 350, excessPerKm: 1.4,
   },
   germanyNgs: {
