@@ -27,7 +27,9 @@ const MapCore = dynamic(() => import('../../components/map-core'), {
 export default function Home() {
   const [cities, setCities] = useState([])
   const [ready, setReady] = useState(false)
-  const [panelCollapsed, setPanelCollapsed] = useState(false)
+  // 刀4：右侧面板默认收起 —— 打开 /explore 先看到「一张线」，条目要点开（抽屉）才出现。
+  // 移动端不渲染地图（showMap=false），此值对移动端不生效：面板仍按原样铺满。
+  const [panelCollapsed, setPanelCollapsed] = useState(true)
   const [panelWidth, setPanelWidth] = useState(() => {
     if (typeof window === 'undefined') return 360
     return Math.max(360, Math.min(700, Math.floor(window.innerWidth * 0.5)))
@@ -218,6 +220,41 @@ export default function Home() {
               panelWidth={panelWidth}
             />
           )}
+          {/* 刀4 · 空态：面板默认收起后，「导入」入口不再默认可见 —— 给一个明确的一句话指路。
+              仅在没有行程时出现；有行程时完全不存在，不影响任何既有交互。 */}
+          {showMap && !activeItinerary && (
+            <div
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ zIndex: 900, pointerEvents: 'none' }}
+            >
+              <div
+                className="rounded-2xl border text-center px-6 py-5 shadow-lg"
+                style={{
+                  background: 'var(--bg-card)',
+                  borderColor: 'var(--border-color)',
+                  pointerEvents: 'auto',
+                  maxWidth: 320,
+                }}
+              >
+                <div className="text-2xl mb-2">🗺️</div>
+                <p className="text-sm font-medium mb-1" style={{ color: 'var(--text-primary)' }}>
+                  还没有行程
+                </p>
+                <p className="text-xs mb-4" style={{ color: 'var(--text-tertiary)' }}>
+                  导入一份行程（PDF / Word / Excel），地图会画出路线、真实车程和每段公里数。
+                </p>
+                <button
+                  onClick={() => setPanelCollapsed(false)}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium"
+                  style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
+                  title="展开右侧面板（导入按钮在面板里）"
+                >
+                  展开面板导入
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* 刀3 · 底部行程条：只在有地图时渲染（移动端不渲染地图 → 由面板承接）；
               抽屉打开时整条右移，避免被抽屉盖住导致点不到 */}
           {showMap && stripDays.length > 0 && (
