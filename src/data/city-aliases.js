@@ -45,6 +45,7 @@ export const CITY_CODE_ALIASES = {
   '乌尔维克': 'Ulvik',
   '布里姆内斯': 'Brimnes',
   '万塔': 'Vantaa',
+  'Tørvikbygd': 'Torviksbygd', // 挪威峡湾 Jondal↔Tørvikbygd 渡轮；QUOS 把该地拼作 Torviksbygd（码 TVB）
   // 机场三字码 → 城市（AI 的 from/to 可能输出机场码；机场码≠城市码的少数，
   // 避免撞码歧义——如 CDG 在 Cities.xlsx 里是 Cardigan/GB）
   'PEK': 'Beijing',
