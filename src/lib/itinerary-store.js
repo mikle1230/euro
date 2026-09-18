@@ -1,9 +1,16 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
+// 行程 store（2026-09-18 瘦身：解析链路砍掉后，只保留查询平台仍需要的部分）
+//
+// 现存导出只服务两个调用方：
+//   · src/app/settings/page.jsx                —— exportAllData / importAllData（数据备份）、
+//                                                getQuotaWarning / subscribeQuotaWarning（写满告警）
+//   · src/components/panel-views/quos-list.jsx —— updateItem / setDayChecked（QUOS 勾选状态）
+// 已删除：解析导入、行程/天数/条目增删、重命名、模板 CRUD、useItineraries 等
+// —— 这些只为旧「行程工作台」（upload-modal / itinerary-list / explore）存在。
+
 import { uid } from './id'
 import { getAllEntities, replaceAllEntities } from './entity-store'
-import { getCityCode } from './quos-mapping'
 
 const STORAGE_KEY = 'euro-itineraries'
 const SERIAL_KEY = 'euro-itinerary-serial'
@@ -11,7 +18,6 @@ const TEMPLATE_KEY = 'euro-templates'
 
 // ---- Reactive core (in-memory cache + localStorage + subscription) ----
 // 数据流：组件调 mutation 函数 → 改内存 state → commit() 持久化并通知订阅者
-// 组件用 useItineraries() 订阅，store 一变就自动重渲染，无需手动 refresh
 let state = null
 let version = 0
 const listeners = new Set()
@@ -77,24 +83,6 @@ function commit() {
   listeners.forEach((l) => l())
 }
 
-function subscribe(listener) {
-  listeners.add(listener)
-  return () => listeners.delete(listener)
-}
-
-function getVersion() {
-  return version
-}
-
-export function useStoreVersion() {
-  return useSyncExternalStore(subscribe, getVersion, getVersion)
-}
-
-export function useItineraries() {
-  useStoreVersion()
-  return loadState()
-}
-
 // ---- Serial number ----
 function getNextSerial() {
   if (typeof window === 'undefined') return 0
@@ -123,7 +111,7 @@ function migrate(store) {
 }
 
 // ---- Item schema factory ----
-// 统一 item 形状：AI 导入和手动添加都走这里，避免字段漂移
+// 统一 item 形状：导入备份与手动编辑都走这里，避免字段漂移
 function makeItem(input = {}) {
   return {
     id: input.id || uid(),
@@ -157,231 +145,7 @@ function makeItem(input = {}) {
   }
 }
 
-// ---- Itineraries ----
-
-export function createItinerary(name) {
-  const store = loadState()
-  const itinerary = {
-    id: uid(),
-    serialNumber: getNextSerial(),
-    name: name || '未命名行程',
-    startDate: '',
-    endDate: '',
-    groupSize: 0,
-    tourCode: '',
-    notes: '',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    days: [],
-  }
-  store.itineraries.push(itinerary)
-  store.activeId = itinerary.id
-  commit()
-  return itinerary
-}
-
-export function deleteItinerary(id) {
-  const store = loadState()
-  store.itineraries = store.itineraries.filter((t) => t.id !== id)
-  if (store.activeId === id) {
-    store.activeId = store.itineraries[0]?.id || null
-  }
-  commit()
-}
-
-export function renameItinerary(id, name) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === id)
-  if (t) {
-    t.name = name
-    t.updatedAt = new Date().toISOString()
-  }
-  commit()
-  return t
-}
-
-export function updateItineraryMeta(id, updates) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === id)
-  if (t) {
-    Object.assign(t, updates)
-    t.updatedAt = new Date().toISOString()
-  }
-  commit()
-  return t
-}
-
-export function importItinerary(data) {
-  const store = loadState()
-  const itinerary = {
-    id: uid(),
-    serialNumber: getNextSerial(),
-    name: data.name || '导入行程',
-    startDate: data.startDate || '',
-    endDate: data.endDate || '',
-    groupSize: data.groupSize || 0,
-    tourCode: data.tourCode || '',
-    notes: data.notes || '',
-    // 保留原文（AI 解析用文本），供「AI 反馈重解析」复用，无需重新上传
-    sourceText: data.sourceText || '',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    days: (data.days || []).map((d) => ({
-      id: uid(),
-      dayNumber: d.dayNumber,
-      cityId: d.cityId || '',
-      cityName: d.cityName || '',
-      cityNameEn: d.cityNameEn || '',
-      cityCode: d.cityCode || '',
-      countryCode: d.countryCode || '',
-      finalCityName: d.finalCityName || '',
-      finalCityNameEn: d.finalCityNameEn || '',
-      items: (d.items || []).map((item) => makeItem(item)),
-    })),
-  }
-  store.itineraries.push(itinerary)
-  store.activeId = itinerary.id
-  commit()
-  return itinerary
-}
-
-// ---- AI 反馈重解析：原地替换行程内容（保留 id/serialNumber/原文）----
-// days 需已做过城市匹配（cityId/cityName 等），由调用方（itinerary-list）准备。
-export function replaceItineraryContent(id, { days = [], name, tourCode, startDate, endDate, groupSize }) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === id)
-  if (!t) return null
-  t.name = name || t.name
-  t.tourCode = tourCode || t.tourCode
-  t.startDate = startDate || t.startDate
-  t.endDate = endDate || t.endDate
-  t.groupSize = groupSize || t.groupSize
-  t.days = days.map((d) => ({
-    id: uid(),
-    dayNumber: d.dayNumber,
-    cityId: d.cityId || '',
-    cityName: d.cityName || '',
-    cityNameEn: d.cityNameEn || '',
-    cityCode: d.cityCode || '',
-    countryCode: d.countryCode || '',
-    finalCityName: d.finalCityName || '',
-    finalCityNameEn: d.finalCityNameEn || '',
-    items: (d.items || []).map((item) => makeItem(item)),
-  }))
-  t.updatedAt = new Date().toISOString()
-  commit()
-  return t
-}
-
-export function setActiveItinerary(id) {
-  const store = loadState()
-  store.activeId = id
-  commit()
-}
-
-// ---- Days ----
-
-export function addDay(itineraryId, cityId, cityName) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return null
-
-  const info = getCityCode(cityName, '')
-  const day = {
-    id: uid(),
-    dayNumber: t.days.length + 1,
-    cityId,
-    cityName,
-    cityCode: info?.cityCode || '',
-    countryCode: info?.countryCode || '',
-    finalCityName: '',
-    finalCityNameEn: '',
-    items: [],
-  }
-  t.days.push(day)
-  t.updatedAt = new Date().toISOString()
-  commit()
-  return day
-}
-
-export function removeDay(itineraryId, dayId) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return
-  t.days = t.days.filter((d) => d.id !== dayId)
-  t.days.forEach((d, i) => { d.dayNumber = i + 1 })
-  t.updatedAt = new Date().toISOString()
-  commit()
-}
-
-export function reorderDays(itineraryId, dayIds) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return
-  const map = new Map(t.days.map((d) => [d.id, d]))
-  t.days = dayIds.map((id, i) => {
-    const d = map.get(id)
-    d.dayNumber = i + 1
-    return d
-  })
-  t.updatedAt = new Date().toISOString()
-  commit()
-}
-
-export function updateDayCity(itineraryId, dayId, cityId, cityName) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return
-  const d = t.days.find((d) => d.id === dayId)
-  if (d) {
-    const info = getCityCode(cityName, '')
-    d.cityId = cityId
-    d.cityName = cityName
-    d.cityCode = info?.cityCode || ''
-    d.countryCode = info?.countryCode || ''
-    t.updatedAt = new Date().toISOString()
-  }
-  commit()
-}
-
-export function updateDay(itineraryId, dayId, updates) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return
-  const d = t.days.find((d) => d.id === dayId)
-  if (d) {
-    Object.assign(d, updates)
-    t.updatedAt = new Date().toISOString()
-  }
-  commit()
-}
-
 // ---- Items within a day ----
-
-export function addItem(itineraryId, dayId, item) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return null
-  const d = t.days.find((d) => d.id === dayId)
-  if (!d) return null
-
-  const newItem = makeItem(item)
-  d.items.push(newItem)
-  t.updatedAt = new Date().toISOString()
-  commit()
-  return newItem
-}
-
-export function removeItem(itineraryId, dayId, itemId) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return
-  const d = t.days.find((d) => d.id === dayId)
-  if (!d) return
-  d.items = d.items.filter((i) => i.id !== itemId)
-  t.updatedAt = new Date().toISOString()
-  commit()
-}
 
 export function updateItem(itineraryId, dayId, itemId, updates) {
   const store = loadState()
@@ -404,18 +168,6 @@ export function setDayChecked(itineraryId, dayId, checked) {
   if (!d) return
   d.quosChecked = checked
   d.items.forEach((item) => { item.quosChecked = checked })
-  t.updatedAt = new Date().toISOString()
-  commit()
-}
-
-export function reorderItems(itineraryId, dayId, itemIds) {
-  const store = loadState()
-  const t = store.itineraries.find((t) => t.id === itineraryId)
-  if (!t) return
-  const d = t.days.find((d) => d.id === dayId)
-  if (!d) return
-  const map = new Map(d.items.map((i) => [i.id, i]))
-  d.items = itemIds.map((id) => map.get(id)).filter(Boolean)
   t.updatedAt = new Date().toISOString()
   commit()
 }
@@ -502,70 +254,6 @@ export function getAllTemplates() {
   return readTemplates()
 }
 
-export function saveAsTemplate(itineraryId) {
-  const store = loadState()
-  const it = store.itineraries.find((t) => t.id === itineraryId)
-  if (!it || it.days.length === 0) return null
-
-  const templates = readTemplates()
-  const template = {
-    id: uid(),
-    name: it.name + ' (模板)',
-    description: it.days.map((d) => d.cityName).filter((n, i, a) => a.indexOf(n) === i).join('→'),
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    days: it.days.map((d) => ({
-      id: uid(),
-      dayNumber: d.dayNumber,
-      cityId: d.cityId,
-      cityName: d.cityName,
-      items: d.items.map((item) => ({ ...item, id: uid() })),
-    })),
-  }
-  templates.push(template)
-  writeTemplates(templates)
-  return template
-}
-
-export function createFromTemplate(templateId) {
-  const templates = readTemplates()
-  const tpl = templates.find((t) => t.id === templateId)
-  if (!tpl) return null
-
-  const store = loadState()
-  const itinerary = {
-    id: uid(),
-    serialNumber: getNextSerial(),
-    name: tpl.name.replace(' (模板)', ''),
-    startDate: '',
-    endDate: '',
-    groupSize: 0,
-    tourCode: '',
-    notes: '',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    days: tpl.days.map((d) => ({
-      id: uid(),
-      dayNumber: d.dayNumber,
-      cityId: d.cityId,
-      cityName: d.cityName,
-      items: d.items.map((item) => ({
-        ...item,
-        id: uid(),
-      })),
-    })),
-  }
-  store.itineraries.push(itinerary)
-  store.activeId = itinerary.id
-  commit()
-  return itinerary
-}
-
-export function deleteTemplate(id) {
-  const templates = readTemplates()
-  writeTemplates(templates.filter((t) => t.id !== id))
-}
-
 // ---- Backup: export / import ----
 // 所有数据（行程 + 实体 + 模板）打包成一个 JSON 下载；导入时整体恢复。
 // localStorage 有约 5MB 上限且无法跨设备，建议定期导出备份。
@@ -621,15 +309,4 @@ export function importAllData(data) {
   state = nextState
   version++
   listeners.forEach((l) => l())
-}
-
-// ---- Itinerary utility ----
-
-export function getItineraryStats(itinerary) {
-  if (!itinerary) return { dayCount: 0, cityCount: 0, countryIds: [] }
-  const cities = new Set(itinerary.days.map((d) => d.cityId).filter(Boolean))
-  return {
-    dayCount: itinerary.days.length,
-    cityCount: cities.size,
-  }
 }

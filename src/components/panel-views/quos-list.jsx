@@ -1,5 +1,7 @@
 'use client'
 
+// ❄️ 休眠（2026-09-18）：宿主 FloatingPanel 随 /explore 页移除，本组件当前不再被任何页面引用。
+// 组件本身仍可用（只依赖 itinerary-store 的 updateItem / setDayChecked 与 QUOS 规则库），保留供将来复用。
 import { useState, useRef, useEffect, Fragment } from 'react'
 import { updateItem, setDayChecked } from '@/lib/itinerary-store'
 import { useIsMobile } from '@/lib/use-is-mobile'

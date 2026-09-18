@@ -1,14 +1,10 @@
 'use client'
 
+// ❄️ 休眠（2026-09-18 · 砍解析链路）：原「🗂️ 行程列表 / 📤 导入」两个视图随
+// upload-modal.jsx、panel-views/itinerary-list.jsx 一并移除，本面板只剩「📋 行程详情」（QUOS 勾选录入）。
+// 原宿主页 /explore 已整页移除，故本组件当前不再被任何页面引用；保留供将来复活 QUOS 工作台时复用。
 import { useState, useRef, useCallback, useEffect } from 'react'
-import ItineraryList from './panel-views/itinerary-list'
 import QUOSList from './panel-views/quos-list'
-import UploadModal from './upload-modal'
-
-const ICONS = [
-  { key: 'itineraries', icon: '🗂️', label: '行程列表' },
-  { key: 'quos', icon: '📋', label: '行程详情' },
-]
 
 const MIN_W = 360
 const MAX_PCT = 85 // 面板最大宽度 = 视口宽度的 85%
@@ -26,28 +22,9 @@ export default function FloatingPanel({
   onCollapsedChange,
   panelWidth,
   onWidthChange,
-  viewRequest = null,
 }) {
-  const [view, setView] = useState('itineraries')
   const [dragging, setDragging] = useState(false)
   const panelRef = useRef(null)
-  const prevItinIdRef = useRef(null)
-  // 导入（复用 header 逻辑）：隐藏 file input + 上传弹窗
-  const [uploadOpen, setUploadOpen] = useState(false)
-  const [pendingFile, setPendingFile] = useState(null)
-  const importFileRef = useRef(null)
-
-  const handleImportClick = useCallback(() => {
-    importFileRef.current?.click()
-  }, [])
-
-  const handleImportChange = useCallback((e) => {
-    const file = e.target.files?.[0]
-    e.target.value = ''
-    if (!file) return
-    setPendingFile(file)
-    setUploadOpen(true)
-  }, [])
 
   // Left-edge resize logic
   const startResize = useCallback((e) => {
@@ -70,29 +47,6 @@ export default function FloatingPanel({
     document.addEventListener('pointermove', onMove)
     document.addEventListener('pointerup', onUp)
   }, [panelWidth])
-
-  // 无当前行程时，行程详情重定向到列表
-  useEffect(() => {
-    if (!activeItinerary && view === 'quos') {
-      setView('itineraries')
-    }
-  }, [activeItinerary, view])
-
-  // 外部请求切视图（刀3 抽屉「全部条目 >」）：只认 nonce 变化，不影响默认行为
-  useEffect(() => {
-    if (!viewRequest?.view || !viewRequest?.nonce) return
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- 响应用户显式点击的视图切换请求
-    setView(viewRequest.view)
-  }, [viewRequest?.nonce]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // 导入/切换行程后直接落到「行程详情」；首挂载不触发
-  useEffect(() => {
-    const currentId = activeItinerary?.id || null
-    if (prevItinIdRef.current !== null && currentId && currentId !== prevItinIdRef.current) {
-      setView('quos')
-    }
-    prevItinIdRef.current = currentId
-  }, [activeItinerary])
 
   // Update panelWidth on window resize to stay within bounds
   useEffect(() => {
@@ -191,92 +145,28 @@ export default function FloatingPanel({
         className="flex items-center justify-between px-4 py-3 border-b shrink-0"
         style={{ borderColor: 'var(--border-color)' }}
       >
-        <div className="flex items-center">
-          {/* 返回箭头放第一位（仅行程详情视图显示） */}
-          {activeItinerary && view !== 'itineraries' && (
-            <button
-              onClick={() => setView('itineraries')}
-              className="w-9 h-8 rounded-lg border flex items-center justify-center text-base shrink-0 transition-colors hover:bg-[var(--bg-elevated)]"
-              style={{
-                borderColor: 'var(--border-color)',
-                color: 'var(--text-secondary)',
-                background: 'var(--bg-surface)',
-              }}
-              title="返回行程列表"
-              aria-label="返回行程列表"
-            >
-              ←
-            </button>
-          )}
-        </div>
+        <div className="flex items-center" />
         <div className="flex items-center gap-2">
-          {/* 导入按钮（靠右，位于导航状态指示之前） */}
-          <button
-            onClick={handleImportClick}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium border transition-all"
-            style={{
-              background: 'var(--accent-strong)',
-              borderColor: 'transparent',
-              color: 'var(--on-accent-strong)',
-            }}
-            title="导入行程文件"
-            aria-label="导入行程文件"
-          >
-            <span className="text-sm">📤</span>
-            <span>导入</span>
-          </button>
           {/* 导航状态指示（非按钮，图标+文字表示当前位置，悬停显示提示） */}
           <div className="flex items-center gap-1 select-none">
-            {['itineraries', 'quos'].map((key) => {
-              const cfg = ICONS.find((i) => i.key === key)
-              const active = view === key
-              return (
-                <span
-                  key={key}
-                  title={cfg.label}
-                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${
-                    active ? '' : 'opacity-40'
-                  }`}
-                  style={active
-                    ? { background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }
-                    : { color: 'var(--text-tertiary)' }}
-                >
-                  <span className="text-sm">{cfg.icon}</span>
-                  <span>{cfg.label}</span>
-                </span>
-              )
-            })}
+            <span
+              title="行程详情"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium"
+              style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
+            >
+              <span className="text-sm">📋</span>
+              <span>行程详情</span>
+            </span>
           </div>
         </div>
       </div>
 
       {/* Content —— 桌面端左侧留出拖拽手柄宽度（12px），内容与手柄挨着但不被盖住 */}
       <div className={`flex-1 overflow-y-auto ${isMobile ? '' : 'pl-3'}`}>
-        {view === 'itineraries' && (
-          <ItineraryList
-            activeItinerary={activeItinerary}
-            onNavigate={() => setView('quos')}
-          />
-        )}
-        {view === 'quos' && activeItinerary && (
+        {activeItinerary && (
           <QUOSList itinerary={activeItinerary} />
         )}
       </div>
-
-      {/* 导入文件选择器 + 上传弹窗（与 header 一致的导入流程） */}
-      <input
-        ref={importFileRef}
-        type="file"
-        accept=".pdf,.doc,.docx,.xlsx,.xls"
-        className="hidden"
-        onChange={handleImportChange}
-      />
-      <UploadModal
-        open={uploadOpen}
-        pendingFile={pendingFile}
-        onPendingHandled={() => setPendingFile(null)}
-        onClose={() => setUploadOpen(false)}
-      />
     </div>
   )
 }

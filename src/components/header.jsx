@@ -9,8 +9,8 @@ export default function Header() {
   const pathname = usePathname()
 
   const isActive = (href) => {
-    // 首页 = /（重定向到 /explore 工作台）
-    if (href === '/') return pathname === '/' || pathname.startsWith('/explore')
+    // 首页 = /（重定向到 /knowledge 城市库）
+    if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
   }
 
