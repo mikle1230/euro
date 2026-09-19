@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Image from 'next/image'
 import { getPlaceholderColors, getCountryPlaceholderColors } from '@/lib/images'
 import TypeBadge from './type-badge'
@@ -33,6 +33,13 @@ export default function ImageWithPlaceholder({
 }) {
   const [imgError, setImgError] = useState(false)
   const [imgLoaded, setImgLoaded] = useState(false)
+
+  // 图片可能在 hydration 之前就已加载完成，那样 onLoad 不会再触发，组件会一直停在
+  // 骨架屏（图片 opacity-0）——表现为「有图却是一块空白」。挂载后补查一次 DOM 状态兜底；
+  // next/image 会把 ref 透传到真实 <img>，两个分支共用同一个回调。
+  const markLoadedIfComplete = useCallback((el) => {
+    if (el && el.complete && el.naturalWidth > 0) setImgLoaded(true)
+  }, [])
 
   const showPlaceholder = !src || imgError
   const colors = variant === 'country'
@@ -112,6 +119,7 @@ export default function ImageWithPlaceholder({
     <div className={`relative overflow-hidden ${sizeClasses[size] || sizeClasses.card} bg-[var(--bg-surface)] ${className}`}>
       {isStaticImport ? (
         <Image
+          ref={markLoadedIfComplete}
           src={src}
           alt={alt}
           fill
@@ -124,6 +132,7 @@ export default function ImageWithPlaceholder({
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          ref={markLoadedIfComplete}
           src={src}
           alt={alt}
           className={`w-full h-full object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
