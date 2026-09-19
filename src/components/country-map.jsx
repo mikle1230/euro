@@ -22,6 +22,15 @@ const NAME_TO_COUNTRY_ID = {
   'Norway': 'norway',
 }
 
+// 免 key 底图：CARTO 的 keyless 端点现已要求 API key，会盖 "API KEY REQUIRED" 水印。
+// 改用 Esri 的 Canvas 世界灰底（浅/深两套），Leaflet 直接可用、无需 key。
+const TILE_URL_LIGHT =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+const TILE_URL_DARK =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+const TILE_ATTRIBUTION =
+  'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
+
 function resolveCountryId(iso, name) {
   if (iso && ISO_TO_COUNTRY_ID[iso]) return ISO_TO_COUNTRY_ID[iso]
   if (name && NAME_TO_COUNTRY_ID[name]) return NAME_TO_COUNTRY_ID[name]
@@ -39,7 +48,6 @@ export default function CountryMap({ countryId, cities = [] }) {
     const map = L.map(containerRef.current, {
       zoomControl: true,
       scrollWheelZoom: false, // hero 内不抢页面滚动
-      attributionControl: false,
     })
     mapRef.current = map
 
@@ -48,13 +56,10 @@ export default function CountryMap({ countryId, cities = [] }) {
     resizeObserver.observe(containerRef.current)
 
     const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark'
-    const tileUrl = () =>
-      isDark()
-        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+    const tileUrl = () => (isDark() ? TILE_URL_DARK : TILE_URL_LIGHT)
 
     let tileLayer = L.tileLayer(tileUrl(), {
-      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      attribution: TILE_ATTRIBUTION,
     }).addTo(map)
 
     // 国家边界：当前国家高亮，其余淡显
@@ -110,7 +115,7 @@ export default function CountryMap({ countryId, cities = [] }) {
       if (!mapRef.current) return
       tileLayer.remove()
       tileLayer = L.tileLayer(tileUrl(), {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        attribution: TILE_ATTRIBUTION,
       }).addTo(map)
     })
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
