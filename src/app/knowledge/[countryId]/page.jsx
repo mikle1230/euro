@@ -13,6 +13,7 @@ import KnowledgeTopBar from '@/components/knowledge-top-bar'
 import CountryFlag from '@/components/country-flag'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
 import { getCityCode, getCityEnglishName } from '@/lib/quos-mapping'
+import { getCountryAccent } from '@/lib/skin'
 import { COUNTRY_INTROS } from '@/data/country-intros'
 import { COUNTRY_INFO } from '@/data/country-info'
 
@@ -34,11 +35,12 @@ export default function CountryPage() {
   const [attrFilter, setAttrFilter] = useState([])
 
   const country = getCountryById(countryId)
+  // E 皮肤：国家色条（同一国家在各级页面同色，色表见 lib/skin.js）
+  const accent = getCountryAccent(countryId)
   if (!country) {
     return (
-      <div className="min-h-full flex items-center justify-center" style={{ background: 'var(--bg-secondary)' }}>
+      <div className="min-h-full flex items-center justify-center" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
         <div className="text-center">
-          <p className="text-4xl mb-4">🗺️</p>
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>国家未找到</p>
           <Link href="/knowledge" className="text-xs mt-2 inline-block" style={{ color: 'var(--accent)' }}>
             ← 返回城市库
@@ -85,7 +87,7 @@ export default function CountryPage() {
   }
 
   return (
-    <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
+    <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
       {/* 吸顶工具条：面包屑 + 全局搜索（搜索框全程停留在顶部，随时可检索） */}
       <KnowledgeTopBar
         crumbs={[
@@ -101,14 +103,14 @@ export default function CountryPage() {
           {/* 左：地图 */}
           <div
 
-            className="md:col-span-3 relative rounded-2xl overflow-hidden border shadow-lg"
+            className="md:col-span-3 relative rounded-2xl overflow-hidden border"
             style={{ minHeight: '300px', borderColor: 'var(--border-color)' }}
           >
             <CountryMap countryId={country.id} cities={mapCities} />
           </div>
           {/* 右：国家介绍 */}
           <div
-            className="md:col-span-2 rounded-2xl border shadow-lg p-5 md:p-6 flex flex-col justify-center"
+            className="md:col-span-2 rounded-2xl border p-5 md:p-6 flex flex-col justify-center"
             style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
           >
             <h1 className="font-display font-bold text-xl md:text-2xl mb-3 flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-primary)' }}>
@@ -162,30 +164,39 @@ export default function CountryPage() {
                     key={city.id}
                     href={`/knowledge/${countryId}/${city.id}`}
                     className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
-                    style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                    style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                   >
-                    <ImageWithPlaceholder
-                      src={`/images/cities/${city.id}.jpg`}
-                      alt={city.name}
-                      type="landmark"
-                      name={city.name}
-                      subtitle={[city.nameEn, cityQuosCode].filter(Boolean).join(' · ')}
-                      size="card"
-                      variant="city"
-                    />
-                    <div className="p-3">
+                    <div className="relative">
+                      <ImageWithPlaceholder
+                        src={`/images/cities/${city.id}.jpg`}
+                        alt={city.name}
+                        type="landmark"
+                        name={city.name}
+                        subtitle={[city.nameEn, cityQuosCode].filter(Boolean).join(' · ')}
+                        size="card"
+                        variant="city"
+                      />
+                      {(cityQuosCode || city.nameEn) && (
+                        <span className="code-plate" aria-hidden>
+                          {cityQuosCode && <span className="cc">{cityQuosCode}</span>}
+                          {city.nameEn && <span className="cty">{city.nameEn.toUpperCase()}</span>}
+                        </span>
+                      )}
+                      <span className="punch-hole" aria-hidden />
+                    </div>
+                    <div className="p-3 card-body">
                       <h3 className="font-display font-semibold text-sm mb-0.5" style={{ color: 'var(--text-primary)' }}>
                         {city.name}
                       </h3>
-                      <p className="text-xs mb-1" style={{ color: 'var(--text-tertiary)' }}>
+                      <p className="text-xs mb-1 card-meta" style={{ color: 'var(--text-tertiary)' }}>
                         {[city.nameEn, cityQuosCode].filter(Boolean).join(' · ')}
                       </p>
                       {cmeta.description && (
-                        <p className="text-xs line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
+                        <p className="text-xs line-clamp-2 card-desc" style={{ color: 'var(--text-secondary)' }}>
                           {cmeta.description}
                         </p>
                       )}
-                      <div className="flex items-center gap-1 mt-2">
+                      <div className="flex items-center gap-1 mt-2 card-tags">
                         <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>
                           {city.attractions?.length || 0} 个景点
                         </span>
@@ -202,7 +213,7 @@ export default function CountryPage() {
         {countryAttractions.length > 0 && (
           <div className="mb-8">
             <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-              🏛️ 全部景点
+              全部景点
               <span className="text-sm font-normal ml-2" style={{ color: 'var(--text-tertiary)' }}>
                 {countryAttractions.length} 个
               </span>
@@ -220,10 +231,10 @@ export default function CountryPage() {
                 全部 ({countryAttractions.length})
               </button>
               {[
-                { key: 'landmark', icon: '🏛️', label: '地标' },
-                { key: 'museum', icon: '🏺', label: '博物馆' },
-                { key: 'nature', icon: '🌿', label: '自然' },
-              ].filter((t) => attrTypeCounts[t.key] > 0).map(({ key, icon, label }) => (
+                { key: 'landmark', label: '地标' },
+                { key: 'museum', label: '博物馆' },
+                { key: 'nature', label: '自然' },
+              ].filter((t) => attrTypeCounts[t.key] > 0).map(({ key, label }) => (
                 <button
                   key={key}
                   onClick={() =>
@@ -238,7 +249,7 @@ export default function CountryPage() {
                       : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
                   }
                 >
-                  {icon} {label} ({attrTypeCounts[key]})
+                  {label} ({attrTypeCounts[key]})
                 </button>
               ))}
             </div>
@@ -248,7 +259,7 @@ export default function CountryPage() {
                     key={attr.id}
                     href={`/knowledge/${countryId}/${attr.city?.id || 'unknown'}/${attr.id}`}
                     className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
-                    style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                    style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                   >
                     <ImageWithPlaceholder
                       src={`/images/attractions/${attr.id}.jpg`}
@@ -258,7 +269,7 @@ export default function CountryPage() {
                       size="card"
                       variant="attraction"
                     />
-                    <div className="p-3">
+                    <div className="p-3 card-body">
                       <div className="mb-1">
                         <TypeBadge type={attr.type || 'landmark'} />
                       </div>
@@ -266,11 +277,11 @@ export default function CountryPage() {
                         {attr.name}
                         {attr.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{attr.nameEn}</span>}
                       </h3>
-                      <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>
+                      <p className="text-xs card-meta" style={{ color: 'var(--text-tertiary)' }}>
                         {attr.city?.name || ''}
                       </p>
                       {attr.description && (
-                        <p className="text-xs mt-1 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
+                        <p className="text-xs mt-1 line-clamp-2 card-desc" style={{ color: 'var(--text-secondary)' }}>
                           {attr.description}
                         </p>
                       )}
@@ -285,7 +296,7 @@ export default function CountryPage() {
         {neighbors.length > 0 && (
           <div>
             <h2 className="font-display font-bold text-lg mb-3" style={{ color: 'var(--text-primary)' }}>
-              🌍 周边国家
+              周边国家
             </h2>
             <div className="flex flex-wrap gap-2">
               {neighbors.map(({ id }) => {

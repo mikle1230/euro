@@ -26,8 +26,8 @@ export default function Header() {
   }
 
   const tabGlass = {
-    borderTopLeftRadius: '10px',
-    borderTopRightRadius: '10px',
+    borderTopLeftRadius: 'var(--tab-radius)',
+    borderTopRightRadius: 'var(--tab-radius)',
     borderBottomLeftRadius: '0',
     borderBottomRightRadius: '0',
     transition: 'all 0.15s ease',

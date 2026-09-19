@@ -14,7 +14,7 @@ export default function TypeBadge({ type, icon = true }) {
 
   return (
     <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${cls}`}>
-      {icon && <span>{TYPE_ICONS[type] || '📍'}</span>}
+      {icon && <span className="type-badge-icon">{TYPE_ICONS[type] || '📍'}</span>}
       {TYPE_LABELS[type] || type}
     </span>
   )
