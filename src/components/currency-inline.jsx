@@ -54,12 +54,15 @@ export default function CurrencyInline() {
       title="汇率转换"
     >
       <span className="text-sm shrink-0 fx-emoji" aria-hidden>💱</span>
+      {/* 金额输入宽度：容得下 5 位金额（12345）不被裁切。
+          实测 12px 等宽 5 位 ≈36px + 左右内边距 16px + 原生数字步进按钮 ≈15px；
+          88px 还留出约 12px 余量，6 位也放得下。 */}
       <input
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="金额"
-        className="w-[64px] h-8 px-2 rounded-lg text-xs border outline-none shrink-0"
+        className="w-[88px] h-8 px-2 rounded-lg text-xs border outline-none shrink-0"
         style={selectStyle}
         aria-label="汇率转换金额"
       />
