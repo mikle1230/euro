@@ -223,7 +223,7 @@ export default function GlobalSearch({ wide = false }) {
       {/* Search input */}
       <div className="relative">
         <span
-          className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs pointer-events-none"
+          className="search-icon absolute left-2.5 top-1/2 -translate-y-1/2 text-xs pointer-events-none"
           style={{ color: 'var(--text-tertiary)' }}
         >
           🔍
@@ -240,7 +240,7 @@ export default function GlobalSearch({ wide = false }) {
           onFocus={() => { if (query.trim()) { setOpen(true); openDropdown() } }}
           onKeyDown={handleKeyDown}
           placeholder="搜索..."
-          className={wide ? 'w-full pl-8 pr-3 py-2 text-sm rounded-full border outline-none transition-all focus:ring-2' : 'w-36 sm:w-48 pl-7 pr-3 py-1.5 text-xs rounded-full border outline-none transition-all focus:ring-2 focus:w-44 sm:focus:w-64'}
+          className={wide ? 'search-input w-full pl-8 pr-3 py-2 text-sm rounded-full border outline-none transition-all focus:ring-2' : 'w-36 sm:w-48 pl-7 pr-3 py-1.5 text-xs rounded-full border outline-none transition-all focus:ring-2 focus:w-44 sm:focus:w-64'}
           style={{
             background: 'var(--bg-surface)',
             borderColor: open ? 'var(--accent)' : 'var(--border-color)',

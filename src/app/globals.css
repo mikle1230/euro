@@ -63,6 +63,24 @@ body {
   --radius-md: 12px;
 
   --noise-opacity: 0.03;
+
+  /* ---- 顶栏 chrome token：默认值 = 旧的浅色外观 ----
+     皮肤可在页面作用域内覆盖（见文件末尾 E｜磁贴墙）。
+     其余页面无该作用域 → 外观完全不变。 */
+  --chrome-bg: var(--bg-primary);
+  --chrome-border: var(--border-color);
+  --chrome-text: var(--text-primary);
+  --chrome-btn-bg: var(--bg-surface);
+  --chrome-btn-border: var(--border-color);
+  --chrome-btn-fg: var(--text-secondary);
+  --chrome-blur: blur(12px);
+  --tab-on-bg: var(--accent-subtle);
+  --tab-on-fg: var(--accent);
+  --tab-on-border: var(--border-color);
+  --tab-on-shadow: var(--shadow-card);
+  --tab-off-bg: rgba(148, 163, 184, 0.08);
+  --tab-off-fg: var(--text-tertiary);
+  --hero-border: var(--border-color);
 }
 
 /* Dark mode — 深夜蓝 */
@@ -246,4 +264,191 @@ button:not(:disabled),
   * {
     scroll-behavior: auto !important;
   }
+}
+
+/* =============================================================
+   E｜磁贴墙 皮肤 —— P1-1：只落在 /knowledge（城市库）
+   -------------------------------------------------------------
+   作用域 = body:has([data-skin="e"])
+     · [data-skin="e"] 由城市库页面根节点提供；
+     · 用 :has() 让同一份皮肤顺带覆盖顶栏 / 吸顶工具栏 / portal 弹层，
+       而 /hotels、/mice、明细页、/settings 没有该标记 → 外观不变。
+   规则全部写在 Tailwind 分层之外（非分层），因此稳定压过工具类，
+   无需 !important。
+   只改「衣服」：色 / 字 / 圆角 / 装饰；不动结构、文案与 IA。
+   ============================================================= */
+body:has([data-skin="e"]) {
+  /* ---- 旧 token 重映射：现有组件不改 JSX 即自动换皮 ---- */
+  --bg-primary: #EFE7DA;      /* 暖纸底 */
+  --bg-secondary: #E4DACB;
+  --bg-card: #FFFDF8;
+  --bg-surface: #F3EBDD;
+  --bg-elevated: #E4DACB;
+  --text-primary: #2A2723;
+  --text-secondary: #5F5546;
+  --text-tertiary: #8A7C68;
+  --accent: #9E3B1F;          /* 红棕：价签 / 换算结果 */
+  --accent-hover: #8A321A;
+  --accent-dim: #8A7C68;
+  --accent-strong: #2A2723;   /* 主按钮 = 深色实底 */
+  --accent-subtle: rgba(158, 59, 31, 0.10);
+  --gold: #9E3B1F;
+  --gold-dim: #F3EBDD;
+  --border-color: #D6CABA;
+  --border-light: #E0D6C6;
+  --shadow-card: 0 1px 0 #D6CABA;
+  --shadow-hover: 0 2px 8px rgba(42, 39, 35, 0.14);
+  --on-accent: #FFFDF8;
+  --on-accent-strong: #F5EFE4;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+
+  /* ---- 深色实底顶栏（56px，无模糊、无渐变） ---- */
+  --chrome-bg: #2A2723;
+  --chrome-border: #17150F;
+  --chrome-text: #F5EFE4;
+  --chrome-btn-bg: #332E29;
+  --chrome-btn-border: #574F45;
+  --chrome-btn-fg: #E8E0D2;
+  --chrome-blur: none;
+  --tab-on-bg: #F5EFE4;
+  --tab-on-fg: #24211E;
+  --tab-on-border: #F5EFE4;
+  --tab-on-shadow: none;
+  --tab-off-bg: transparent;
+  --tab-off-fg: #B9AE9B;
+  --hero-border: #2A2723;
+
+  /* ---- E 私有 token（命名对齐静态稿） ---- */
+  --e-card: #FFFDF8;
+  --e-ink: #2A2723;
+  --e-ink4: #A99C88;
+  --e-line: #D6CABA;
+  --e-price: #9E3B1F;
+  --e-mono: 'SF Mono', Menlo, Consolas, 'Courier New', monospace;
+  --page-ground: transparent;   /* 页面主体让位给 body 的点阵纸底 */
+
+  /* 暖纸底 + 极轻点阵纹 */
+  background-color: #EFE7DA;
+  background-image: radial-gradient(#DBD1C0 1px, transparent 1px);
+  background-size: 14px 14px;
+  background-attachment: fixed;
+}
+
+/* ---- 顶栏：深色实底，去玻璃拟态 ---- */
+body:has([data-skin="e"]) header { color: var(--chrome-text); }
+.site-mark { display: none; }
+body:has([data-skin="e"]) .site-emoji { display: none; }
+body:has([data-skin="e"]) .site-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 6px;
+  border-radius: 2px;
+  background: #F5EFE4;
+  color: #24211E;
+  font-family: var(--e-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+body:has([data-skin="e"]) .site-brand {
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 12.5px;
+  font-weight: 800;
+}
+/* 小圆角：以方角为主（<=3px） */
+body:has([data-skin="e"]) :where(.rounded-sm, .rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-full) {
+  border-radius: 2px;
+}
+
+/* ---- 页头带（标题 + 说明 + 操作，compact） ---- */
+[data-skin="e"] .page-hero { border-bottom-width: 2px; }
+[data-skin="e"] .page-hero h1 { font-size: 20px; font-weight: 800; letter-spacing: 0.02em; }
+[data-skin="e"] .page-hero p { font-size: 11.5px; }
+[data-skin="e"] .page-hero button { border-radius: 2px; font-size: 11.5px; letter-spacing: 0.04em; }
+
+/* ---- 吸顶工具栏：汇率（等宽）+ 搜索 ---- */
+[data-skin="e"] .fx-inline { border-radius: 2px; gap: 7px; padding: 5px 8px; }
+[data-skin="e"] .fx-inline .fx-emoji { display: none; }
+[data-skin="e"] .fx-inline input,
+[data-skin="e"] .fx-inline select { border-radius: 2px; font-family: var(--e-mono); }
+[data-skin="e"] .search-input {
+  border-radius: 2px;
+  padding-left: 12px;
+  font-size: 12.5px;
+  box-shadow: inset 3px 0 0 var(--e-ink);
+}
+[data-skin="e"] .search-input::placeholder { color: var(--e-ink4); }
+[data-skin="e"] .search-icon { display: none; }
+/* FX 失败态：规格 §5.5 要求降级为「离线」辅文；本皮肤禁 emoji。
+   只在错误分支渲染的 span 带 title 属性 → 用它作选择器（不改组件 JSX）。 */
+[data-skin="e"] .fx-inline > span[title] {
+  font-size: 0;
+  padding: 2px 6px;
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  background: #F3EBDD;
+}
+[data-skin="e"] .fx-inline > span[title]::after {
+  content: '离线';
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--e-price);
+}
+
+/* ---- 磁贴卡（国家墙） ---- */
+[data-skin="e"] .spotlight-card { border-radius: 3px; box-shadow: 0 1px 0 var(--e-line); }
+[data-skin="e"] .spotlight-card::after { background: none; }   /* 去掉蓝色辉光 */
+[data-skin="e"] .spotlight-card img { filter: saturate(0.94) contrast(1.05); }
+[data-skin="e"] .spotlight-card h3 { font-size: 15px; font-weight: 800; letter-spacing: 0.01em; }
+[data-skin="e"] .card-body { padding: 9px 11px 10px; }
+[data-skin="e"] .card-meta { font-family: var(--e-mono); font-size: 10.5px; letter-spacing: 0.02em; margin-top: 4px; }
+[data-skin="e"] .card-desc { font-size: 11.5px; line-height: 1.45; margin-top: 6px; }
+[data-skin="e"] .card-tags {
+  gap: 5px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--e-line);
+}
+[data-skin="e"] .card-tags span {
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  padding: 2px 6px;
+}
+/* 深色等宽码牌 + 打孔（纯装饰，数据仍是卡片原有的 nameEn / 国家码） */
+[data-skin="e"] .code-plate {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+[data-skin="e"] .code-plate .cc { background: #F5EFE4; color: #24211E; font-weight: 700; padding: 5px 6px; }
+[data-skin="e"] .code-plate .cty { background: #24211E; color: #F5EFE4; padding: 5px 7px; border-left: 1px solid rgba(255, 255, 255, 0.18); }
+[data-skin="e"] .punch-hole {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #EFE7DA;
+  border: 1px solid #CFC3B2;
 }

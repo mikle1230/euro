@@ -8,8 +8,8 @@
 export default function PageHero({ title, badge, subtitle, right, maxWidth = 'max-w-7xl', sticky = false, stickyTop = 'top-0' }) {
   return (
     <div
-      className={`${sticky ? `sticky ${stickyTop} ` : ''}border-b px-4 md:px-6 py-3`}
-      style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-color)' }}
+      className={`page-hero ${sticky ? `sticky ${stickyTop} ` : ''}border-b px-4 md:px-6 py-3`}
+      style={{ background: 'var(--bg-secondary)', borderColor: 'var(--hero-border, var(--border-color))' }}
     >
       <div className={`${maxWidth} mx-auto flex items-start justify-between gap-3 flex-wrap`}>
         <div>

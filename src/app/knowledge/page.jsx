@@ -14,6 +14,16 @@ import PageHero from '@/components/page-hero'
 import { toast } from '@/components/toast'
 import { getCityCode } from '@/lib/quos-mapping'
 
+// 国家色条调色板：逐值取自已批准的静态视觉稿 media/mock/E6-knowledge.html，
+// 数组顺序与视觉稿一致 → 与国家列表前 20 项逐一对得上（同一张图）。
+// 颜色只作国家编码（左侧 6px 色条），不做装饰性用色；刻意避开紫。
+const CARD_ACCENTS = [
+  '#2F5D8C', '#9C3A3A', '#B4432B', '#A85A2B', '#4B6B3A',
+  '#5B6E4A', '#2E7C8A', '#6E7A3A', '#3F6E63', '#C9A227',
+  '#A8574F', '#8C6E5A', '#5E7A6E', '#4A5D3A', '#4E8C5A',
+  '#4E5E8C', '#8C4A5D', '#7A6E4A', '#3A6E8C', '#8C3A5D',
+]
+
 export default function KnowledgePage() {
   // getStats / getAllCountries 走模块级缓存（getMergedCountries）；
   // ensureSeeded 是副作用（种子化实体库），放 effect 里执行一次。
@@ -94,7 +104,7 @@ export default function KnowledgePage() {
     setRefresh((v) => v + 1)
     const codeSuffix = codeInfo.cityCode
       ? `（QUOS：${codeInfo.cityCode}/${codeInfo.countryCode}）`
-      : '（⚠️ 未查到 QUOS 码，导出补丁时请附上城市码）'
+      : '（未查到 QUOS 码，导出补丁时请附上城市码）'
     toast(`已添加「${cityZh.trim()}」到 ${countrySel}${codeSuffix}`, 'success')
   }, [countrySel, cityZh, cityEn, lat, lng, resetForm])
 
@@ -112,11 +122,11 @@ export default function KnowledgePage() {
   }, [])
 
   return (
-    <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
+    <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
       {/* Breadcrumb + stats */}
       <PageHero
         maxWidth="max-w-7xl"
-        title="📖 城市库"
+        title="城市库"
         subtitle={`共 ${stats.countryCount} 个国家 · ${stats.cityCount} 个城市 · ${stats.attractionCount}+ 个景点`}
         right={
           <>
@@ -126,14 +136,14 @@ export default function KnowledgePage() {
               className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium border transition-all"
               style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}
             >
-              📋 导出补丁
+              导出补丁
             </button>
             <button
               onClick={() => setShowAdd(true)}
               className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all"
               style={{ background: 'var(--accent-strong)', color: 'var(--on-accent-strong)' }}
             >
-              ➕ 添加城市
+              添加城市
             </button>
           </>
         }
@@ -150,43 +160,53 @@ export default function KnowledgePage() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
         {/* Country grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {countries.map((country) => {
+          {countries.map((country, idx) => {
             const meta = countryMeta[country.id] || {}
             const coverSrc = getCountryCoverImage(country.id)
             const cityCount = country.cities?.length || 0
             const attractionCount = country.cities?.reduce((s, c) => s + (c.attractions?.length || 0), 0) || 0
             const quosCode = countryCodes[country.id] || meta.abbr || ''
+            const accent = CARD_ACCENTS[idx % CARD_ACCENTS.length]
 
             return (
               <Link
                 key={country.id}
                 href={`/knowledge/${country.id}`}
                 className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
-                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
               >
-                <ImageWithPlaceholder
-                  src={coverSrc}
-                  alt={country.name}
-                  name={country.name}
-                  subtitle={[country.nameEn, quosCode].filter(Boolean).join(' · ')}
-                  size="card"
-                  variant="country"
-                  countryName={country.name}
-                />
-                <div className="p-3">
+                <div className="relative">
+                  <ImageWithPlaceholder
+                    src={coverSrc}
+                    alt={country.name}
+                    name={country.name}
+                    subtitle={[country.nameEn, quosCode].filter(Boolean).join(' · ')}
+                    size="card"
+                    variant="country"
+                    countryName={country.name}
+                  />
+                  {(quosCode || country.nameEn) && (
+                    <span className="code-plate" aria-hidden>
+                      {quosCode && <span className="cc">{quosCode}</span>}
+                      {country.nameEn && <span className="cty">{country.nameEn.toUpperCase()}</span>}
+                    </span>
+                  )}
+                  <span className="punch-hole" aria-hidden />
+                </div>
+                <div className="p-3 card-body">
                   <h3 className="font-display font-semibold text-sm flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
                     <CountryFlag countryId={country.id} size="md" />
                     <span className="truncate">{country.name}</span>
                   </h3>
-                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+                  <p className="text-xs mt-0.5 card-meta" style={{ color: 'var(--text-tertiary)' }}>
                     {[country.nameEn, quosCode].filter(Boolean).join(' · ')}
                   </p>
                   {country.description && (
-                    <p className="text-xs mt-2 line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
+                    <p className="text-xs mt-2 line-clamp-2 card-desc" style={{ color: 'var(--text-secondary)' }}>
                       {country.description}
                     </p>
                   )}
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-2 mt-2 card-tags">
                     <span
                       className="text-xs px-2 py-0.5 rounded-full"
                       style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}
@@ -216,7 +236,6 @@ export default function KnowledgePage() {
 
         {countries.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-4xl mb-4">🗺️</p>
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>暂无国家数据</p>
           </div>
         )}
@@ -227,7 +246,7 @@ export default function KnowledgePage() {
         createPortal(
           <div
             className="fixed inset-0 z-[1200] flex items-center justify-center p-4"
-            style={{ background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}
+            style={{ background: 'rgba(42,39,35,0.4)' }}
             onClick={(e) => { if (e.target === e.currentTarget) setShowAdd(false) }}
           >
             <div
@@ -235,7 +254,7 @@ export default function KnowledgePage() {
               style={{ maxWidth: 420, maxHeight: '85vh', background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
             >
               <div className="flex items-center justify-between px-5 py-4 border-b shrink-0" style={{ borderColor: 'var(--border-color)' }}>
-                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>➕ 添加城市</h2>
+                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>添加城市</h2>
                 <button onClick={() => setShowAdd(false)} className="w-8 h-8 rounded-lg" style={{ color: 'var(--text-tertiary)' }}>✕</button>
               </div>
               <div className="p-5 space-y-3.5 overflow-y-auto">
@@ -299,8 +318,8 @@ export default function KnowledgePage() {
                   </div>
                 </div>
                 {formError && (
-                  <div className="px-3 py-2 rounded-lg text-xs" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444' }}>
-                    ⚠️ {formError}
+                  <div className="px-3 py-2 rounded-lg text-xs" style={{ background: 'rgba(158, 59, 31, 0.1)', color: '#9E3B1F' }}>
+                    {formError}
                   </div>
                 )}
                 <div className="flex gap-2 pt-1">

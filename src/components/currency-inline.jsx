@@ -49,11 +49,11 @@ export default function CurrencyInline() {
 
   return (
     <div
-      className="inline-flex items-center gap-1.5 rounded-xl border px-2 py-1"
+      className="fx-inline inline-flex items-center gap-1.5 rounded-xl border px-2 py-1"
       style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
       title="汇率转换"
     >
-      <span className="text-sm shrink-0" aria-hidden>💱</span>
+      <span className="text-sm shrink-0 fx-emoji" aria-hidden>💱</span>
       <input
         type="number"
         value={amount}
