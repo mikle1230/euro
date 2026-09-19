@@ -90,7 +90,7 @@ export default function InstantSearchDropdown({
   return (
     <div ref={containerRef} className="relative">
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center text-sm" style={{ color: 'var(--text-tertiary)' }}>
+        <span className="instant-search-icon absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center text-sm" style={{ color: 'var(--text-tertiary)' }}>
           🔍
         </span>
         <input
@@ -100,7 +100,7 @@ export default function InstantSearchDropdown({
           onFocus={() => { if (value.trim()) setOpen(true) }}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="w-full pl-9 pr-10 py-2.5 rounded-xl text-sm border outline-none focus-ring transition-colors"
+          className="instant-search-input w-full pl-9 pr-10 py-2.5 rounded-xl text-sm border outline-none focus-ring transition-colors"
           style={{
             background: 'var(--bg-card)',
             borderColor: open ? accentVar : 'var(--border-color)',

@@ -3,11 +3,18 @@
 import { useState, useMemo } from 'react'
 import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
 import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
+import { getAllCountries } from '@/lib/data'
+import { getCountryAccent } from '@/lib/skin'
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
 import InstantSearchDropdown from '@/components/instant-search-dropdown'
 import travelData from '@/data/europe-travel.json'
 import { COUNTRIES } from '@/data/countries'
+
+// E｜磁贴墙 皮肤：本页与城市库/国家页/景点页同一套 token（globals.css 末尾 E 段）。
+// 国家色条复用 lib/skin.js 的国家色表；色表按「城市库国家顺序」取色，
+// 所以这里先把 ISO 二字码（酒店数据用的是 ISO 码）映射回城市库的 country id，
+// 保证同一个国家在 /knowledge 与 /hotels 颜色一致。
 
 // 国家标签顺序：跟随「城市库」(europe-travel.json) 的国家顺序（而非中文名音序），便于对照查找
 const COUNTRY_ORDER = (() => {
@@ -29,13 +36,6 @@ const COUNTRY_ORDER = (() => {
 
 function countryRank(cc) {
   return COUNTRY_ORDER.has(cc) ? COUNTRY_ORDER.get(cc) : 999
-}
-
-// Booking 评分配色：≥9 深绿 / ≥8 品牌蓝 / ≥7 琥珀
-function ratingColor(r) {
-  if (r >= 9) return '#1e7d32'
-  if (r >= 8) return 'var(--accent-strong)'
-  return '#b8860b'
 }
 
 // near 字段可能含 "/" 或 "、"（如「火车站/港口」），拆成多个「近X」标签
@@ -77,141 +77,126 @@ function sortedHotels(hotels, sort) {
 
 const stagger = (i, cap = 360) => ({ animationDelay: `${Math.min(i * 36, cap)}ms` })
 
-// 来源标签样式：hotel list（权威报价）用品牌色；AI 探索（待替换参考）用中性色
-function SourceBadge({ fromList }) {
-  return fromList ? (
-    <span
-      className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-medium"
-      style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}
-    >
-      📋 hotel list
-    </span>
-  ) : (
-    <span
-      className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-medium"
-      style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}
-    >
-      🤖 AI 探索
-    </span>
-  )
+// 价贴字号阶梯：hotel list 的 pp 可能是双价/区间（如 '€46.28/60.11/100.53'），
+// 长串降档位保证整串可见、不被卡片裁切；常规单价一律 38px（价格是卡的唯一主角）。
+const PRICE_STEPS = [[6, 38], [8, 32], [10, 26], [12, 20], [15, 16]]
+function priceFontSize(price) {
+  const len = String(price).length
+  for (const [max, size] of PRICE_STEPS) if (len <= max) return size
+  return 13
 }
 
-function HotelCard({ h, showCity = false, cityCode = '', idx = 0 }) {
+// 从 Booking 链接取域名（E10 稿的订房行只显示域名；Booking 名保留在 title 上）
+function bookingHost(link) {
+  if (!link) return ''
+  try {
+    return new URL(link).hostname.replace(/^www\./, '')
+  } catch {
+    return ''
+  }
+}
+
+// 价目名片（E10 稿）：无照片、无 emoji —— 价格是唯一主角。
+// 字段与旧卡完全一致：中文名/英文名、城市码、星/评分/来源、近X、介绍(area)、订房、城市；
+// 只换「衣服」：左上深墨码牌 + 右上红棕等宽价贴 + 虚线打孔 + 4 栏网格。
+function HotelCard({ h, showCity = false, cityCode = '', countryCode = '', accent, idx = 0 }) {
   // 报价库对象（有 hotel 字段，来自 hotel list）→ 按报价库样式；推荐库对象（有 name）→ 推荐库样式
   const priceRef = !!h.hotel
   // 推荐库酒店：找报价库匹配价（€/人）
   const quote = priceRef ? null : findHotelQuote(cityCode, h.name)
   const fromList = priceRef || !!quote?.pp
 
-  // 名称
+  // 名称：中文名优先，数据里没有中文名 → 回退英文名（不编造翻译）
   const name = h.hotel || h.name
   const nameZh = h.nameZh
   // QUOS 名 → Booking 实际名/链接（hotel-booking-map.js），帮助识别 Booking 上的对应酒店
   const booking = getBookingInfo(cityCode, name)
 
-  // 价格 + 单位 + 月份（priceRef 才有月份）
-  let price, unit, month
+  // 价格 + 单位 + 标注（priceRef 才有月份）
+  let price, unit, priceLabel
   if (priceRef) {
     const prices = h.prices || []
-    price = prices[0]?.pp != null ? `€${prices[0].pp}` : null
-    unit = '/人'
-    month = prices.length ? prices.map((p) => p.month).filter(Boolean).join('/') : ''
+    // pp 非数值（数据里有 "/" 这种占位）→ 视同无价，走「价格待定」（口径同 getQuoteRange 的 parseFloat 过滤）
+    const first = prices[0]
+    const hasPp = first?.pp != null && !isNaN(parseFloat(String(first.pp)))
+    price = hasPp ? `€${first.pp}` : null
+    unit = 'EUR / 人'
+    const month = prices.length ? prices.map((p) => p.month).filter(Boolean).join('/') : ''
+    priceLabel = month ? `每人 · ${month}` : '每人报价'
   } else if (quote?.pp) {
     price = `€${quote.pp}`
-    unit = '/人'
+    unit = 'EUR / 人'
+    priceLabel = 'hotel list · 每人'
   } else if (h.priceEur) {
     price = `€${h.priceEur}`
-    unit = '/晚'
+    unit = 'EUR / 晚'
+    priceLabel = '参考价'
   }
+
+  const near = priceRef ? [] : nearTags(h.near)
+  const host = bookingHost(booking?.link)
+  const priceSize = price ? priceFontSize(price) : 0
 
   return (
     <article
-      className="fade-up overflow-hidden rounded-2xl border flex flex-col transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
+      className="e-ticket fade-up flex flex-col transition-all duration-200 hover:-translate-y-0.5"
       style={{
-        background: 'var(--bg-card)',
-        borderColor: 'var(--border-color)',
-        boxShadow: 'var(--shadow-card)',
+        borderLeft: `6px solid ${accent}`,
         animationDelay: stagger(idx).animationDelay,
       }}
     >
-      {/* 深蓝条：酒店名称（中英文）+ 价格 */}
-      <div className="shrink-0 px-4 py-3" style={{ background: 'var(--accent-gradient)' }}>
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <h3 className="font-semibold text-[15px] leading-snug" style={{ color: 'var(--on-accent)' }} title={name}>
-              {name}
-            </h3>
-            {nameZh && (
-              <div className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.86)' }}>{nameZh}</div>
-            )}
-            {booking && (
-              <a
-                href={booking.link || undefined}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(e) => { if (!booking.link) e.preventDefault() }}
-                className="block text-[11px] mt-0.5 truncate"
-                style={{ color: 'rgba(255,255,255,0.92)', textDecoration: 'underline' }}
-                title={booking.link ? '打开 Booking 页面' : `Booking 名：${booking.name}`}
-              >
-                🔗 {booking.name}{booking.link ? ' ↗' : ''}
-              </a>
-            )}
-          </div>
-          <div className="shrink-0 text-right whitespace-nowrap">
-            {price ? (
-              <>
-                <div className="text-sm font-bold leading-none" style={{ color: 'var(--on-accent)' }}>{price}<span className="text-[10px] font-normal" style={{ color: 'rgba(255,255,255,0.86)' }}>{unit}</span></div>
-                {month && <div className="text-[10px] mt-0.5" style={{ color: 'rgba(255,255,255,0.72)' }}>{month}</div>}
-              </>
-            ) : (
-              <div className="text-[11px]" style={{ color: 'rgba(255,255,255,0.72)' }}>价格待定</div>
-            )}
-          </div>
+      {/* 票头：码牌 + 价贴（价格最响） */}
+      <div className="e-tk-strip">
+        <span className="code-plate inline" aria-hidden>
+          {countryCode && <span className="cc">{countryCode}</span>}
+          {cityCode && <span className="cty">{cityCode}</span>}
+        </span>
+        <div className="e-tk-price">
+          {price ? (
+            <>
+              <span className="lab">{priceLabel}</span>
+              <b style={{ fontSize: priceSize }}>{price}</b>
+              <u>{unit}</u>
+            </>
+          ) : (
+            <span className="lab">价格待定</span>
+          )}
         </div>
       </div>
+      {/* 打孔线（纯装饰） */}
+      <div className="e-tk-perf" aria-hidden><i className="l" /><i className="r" /></div>
 
-      {/* 白色区：城市/介绍 + 标签 */}
-      <div className="p-3.5 flex flex-col flex-1">
-        {showCity && !priceRef && (
-          <div className="text-[11px] mb-2 font-medium" style={{ color: 'var(--text-tertiary)' }}>
-            {h.countryName} · {h.city}
-          </div>
+      {/* 票身：中文名 + 英文名 + 标签 + 近X + 订房 */}
+      <div className="e-tk-body">
+        <div className="e-tk-name">
+          <h3 title={name}>{nameZh || name}</h3>
+          <span className="e-tk-seq" aria-hidden>{String(idx + 1).padStart(2, '0')}</span>
+        </div>
+        <div className="e-tk-meta" title={name}>{[name, cityCode].filter(Boolean).join(' · ')}</div>
+        <div className="e-tk-chips">
+          {h.star > 0 && <span>{h.star} 星</span>}
+          {h.rating > 0 && <span>评分 {h.rating}</span>}
+          <span className={fromList ? 'dark' : ''}>{fromList ? 'hotel list' : 'AI 推荐'}</span>
+          {showCity && !priceRef && <span>{[h.countryName, h.city].filter(Boolean).join(' · ')}</span>}
+        </div>
+        {near.length > 0 && (
+          <div className="e-tk-near" title={h.near}>{near.map((n) => `近 ${n}`).join(' · ')}</div>
         )}
-
-        {h.area && (
-          <div className="text-xs leading-snug" style={{ color: 'var(--text-tertiary)', overflowWrap: 'break-word' }}>
-            {h.area}
-          </div>
-        )}
-
-        <div className="flex items-center gap-1.5 mt-3 flex-wrap">
-          <SourceBadge fromList={fromList} />
-          {h.rating > 0 && (
-            <span
-              className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold"
-              style={{ background: 'var(--accent-subtle)', color: ratingColor(h.rating) }}
+        {h.area && <div className="e-tk-area" title={h.area}>{h.area}</div>}
+        <div className="e-tk-foot">
+          {booking ? (
+            <a
+              href={booking.link || undefined}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => { if (!booking.link) e.preventDefault() }}
+              className="lnk"
+              title={booking.link ? `打开 Booking 页面 · ${booking.name || name}` : `Booking 名：${booking.name}`}
             >
-              ★{h.rating}
-            </span>
-          )}
-          {h.star > 0 && (
-            <span
-              className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px]"
-              style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
-            >
-              {h.star}星
-            </span>
-          )}
-          {!priceRef && nearTags(h.near).map((n, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px]"
-              style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}
-            >
-              近{n}
-            </span>
-          ))}
+              {host ? `订房 ↗ ${host}` : `Booking 名：${booking.name}`}
+            </a>
+          ) : null}
+          <span className="cmp" aria-hidden><i />对比</span>
         </div>
       </div>
     </article>
@@ -295,6 +280,21 @@ export default function HotelsPage() {
     () => (country ? merged.filter((c) => c.country === country) : merged),
     [merged, country],
   )
+  // 国家色条：酒店数据用 ISO 二字码 → 映射回城市库 country id 取色（同表同色，见 lib/skin.js）
+  const accentByCountry = useMemo(() => {
+    const isoToCountryId = new Map()
+    for (const c of getAllCountries()) {
+      for (const [cc, info] of Object.entries(COUNTRIES)) {
+        if (info.nameEn === c.nameEn || info.name === c.name) {
+          isoToCountryId.set(cc, c.id)
+          break
+        }
+      }
+    }
+    const map = {}
+    for (const item of merged) map[item.country] = getCountryAccent(isoToCountryId.get(item.country) || '')
+    return map
+  }, [merged])
   const visibleResults = useMemo(() => {
     const filtered = country ? results.filter((h) => h.country === country) : results
     return sortedHotels(filtered, sort)
@@ -305,23 +305,19 @@ export default function HotelsPage() {
   const chipInactive = { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
 
   return (
-    <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
+    <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
       {/* Hero — 与城市库统一风格/高度 */}
       <PageHero
-        maxWidth="max-w-6xl"
+        maxWidth="max-w-7xl"
         title="酒店库"
-        badge={
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium" style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}>
-            <span className="text-sm leading-none">🏨</span> 地接报价参考
-          </span>
-        }
+        badge={<span className="e-badge">地接报价参考</span>}
         subtitle={`共 ${merged.length} 个国家 · ${totalHotels} 家酒店 · Booking 评分 ≥7 推荐库 + 酒店价格参考（€/人，以 hotel list 为准）`}
       />
 
       {/* 搜索工具栏：汇率转换 + 酒店搜索（吸顶，任何滚动位置都能用，输入即下拉） */}
       <SearchToolbar
         stickyTop="top-14"
-        maxWidth="max-w-6xl"
+        maxWidth="max-w-7xl"
         search={
           <div className="relative max-w-2xl">
             <InstantSearchDropdown
@@ -333,12 +329,6 @@ export default function HotelsPage() {
               onSelect={(h) => setQuery(h.name || h.hotel || '')}
               renderItem={(h) => (
                 <div className="flex items-center gap-3 px-3 py-2">
-                  <span
-                    className="w-7 h-7 rounded-lg flex items-center justify-center text-sm shrink-0"
-                    style={{ background: 'var(--accent-subtle)', color: 'var(--accent)' }}
-                  >
-                    🏨
-                  </span>
                   <div className="min-w-0 flex-1">
                     <div className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
                       {h.name || h.hotel}
@@ -347,11 +337,8 @@ export default function HotelsPage() {
                       {[h.countryName, h.city, h.cityNameEn].filter(Boolean).join(' · ')}
                     </div>
                   </div>
-                  <span
-                    className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0"
-                    style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}
-                  >
-                    {h.rating ? `⭐ ${h.rating}` : h.priceEur ? `€${h.priceEur}` : ''}
+                  <span className="e-idx-chip shrink-0">
+                    {h.rating ? `评分 ${h.rating}` : h.priceEur ? `€${h.priceEur}` : ''}
                   </span>
                 </div>
               )}
@@ -360,20 +347,20 @@ export default function HotelsPage() {
         }
       />
 
-      <div className="max-w-6xl mx-auto px-4 md:px-6 py-6">
-        {/* 筛选 + 排序 */}
-        <div className="flex items-start justify-between gap-3 flex-wrap mt-4 mb-6">
-          <div className="flex flex-wrap gap-1.5">
-            <button onClick={() => setCountry('')} className={chipClass} style={country === '' ? chipActive : chipInactive}>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
+        {/* 筛选 + 排序：整条纸带内换行，国家 chip 再多也不会把排序选择挤出屏幕 */}
+        <div className="filter-strip">
+          <div className="flex flex-wrap gap-1.5 filter-chips">
+            <button onClick={() => setCountry('')} className={`${chipClass} filter-chip`} style={country === '' ? chipActive : chipInactive}>
               全部
             </button>
             {merged.map((c) => (
-              <button key={c.country} onClick={() => setCountry(country === c.country ? '' : c.country)} className={chipClass} style={country === c.country ? chipActive : chipInactive}>
+              <button key={c.country} onClick={() => setCountry(country === c.country ? '' : c.country)} className={`${chipClass} filter-chip`} style={country === c.country ? chipActive : chipInactive}>
                 {c.countryName}
               </button>
             ))}
           </div>
-          <select value={sort} onChange={(e) => setSort(e.target.value)} className="px-2.5 py-1.5 rounded-lg text-xs border outline-none focus-ring" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} aria-label="排序方式">
+          <select value={sort} onChange={(e) => setSort(e.target.value)} className="sort-select border outline-none focus-ring" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} aria-label="排序方式">
             {SORT_OPTIONS.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
           </select>
         </div>
@@ -385,10 +372,20 @@ export default function HotelsPage() {
               找到 <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{visibleResults.length}</span> 家酒店
             </p>
             {visibleResults.length === 0 ? (
-              <EmptyState icon="🔍" title="没有匹配的酒店" hint="换个关键词，或点上方国家标签筛选" />
+              <EmptyState title="没有匹配的酒店" hint="换个关键词，或点上方国家标签筛选" />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {visibleResults.map((h, i) => <HotelCard key={`${h.name}-${i}`} h={h} showCity cityCode={h.cityCode} idx={i} />)}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
+                {visibleResults.map((h, i) => (
+                  <HotelCard
+                    key={`${h.name}-${i}`}
+                    h={h}
+                    showCity
+                    cityCode={h.cityCode}
+                    countryCode={h.country}
+                    accent={accentByCountry[h.country]}
+                    idx={i}
+                  />
+                ))}
               </div>
             )}
           </div>
@@ -396,17 +393,17 @@ export default function HotelsPage() {
           <div className="space-y-8">
             {visibleCountries.map((countryItem) => (
               <section key={countryItem.country} className="fade-up">
-                {/* 国家标题 */}
-                <div className="flex items-baseline gap-2 mb-3 flex-wrap pb-2 border-b" style={{ borderColor: 'var(--border-color)' }}>
-                  <h2 className="font-display font-bold text-lg md:text-xl" style={{ color: 'var(--text-primary)' }}>
+                {/* 国家标题（字段不变：国家名 / 国家码 / 货币） */}
+                <div className="e-country-head">
+                  <h2 className="font-display" style={{ color: 'var(--text-primary)' }}>
                     {countryItem.countryName}
                   </h2>
-                  <span className="text-[11px] font-mono" style={{ color: 'var(--text-tertiary)' }}>{countryItem.country}</span>
+                  <span className="e-country-code">{countryItem.country}</span>
                   {(() => {
                     const cur = COUNTRY_CURRENCIES[countryItem.country]
                     if (!cur) return null
                     return (
-                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[11px] ml-auto" style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
+                      <span className="e-country-cur">
                         {cur.symbol} {cur.code} {cur.name}
                       </span>
                     )
@@ -416,27 +413,53 @@ export default function HotelsPage() {
                 <div className="space-y-5">
                   {countryItem.cities.map((city) => (
                     <div key={city.cityCode || city.city}>
-                      <div className="flex items-baseline gap-2 mb-2">
-                        <h3 className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{city.city}</h3>
-                        {city.nameEn && <span className="text-xs" style={{ color: 'var(--text-tertiary)' }}>{city.nameEn}</span>}
-                        {city.cityCode && <span className="text-[11px] font-mono" style={{ color: 'var(--text-tertiary)' }}>{city.cityCode}</span>}
-                        <span className="text-[11px] ml-auto" style={{ color: 'var(--text-tertiary)' }}>{city.hotels.length + (city.quotes?.hotels?.length || 0)} 家</span>
+                      {/* 城市分组标题 = E 城市牌：深墨码牌 + 中文名/英文名 + 家数（字段不变） */}
+                      <div
+                        className="e-city-head"
+                        style={{ borderLeft: `6px solid ${accentByCountry[countryItem.country]}` }}
+                      >
+                        <span className="code-plate inline" aria-hidden>
+                          <span className="cc">{countryItem.country}</span>
+                          {city.cityCode && <span className="cty">{city.cityCode}</span>}
+                        </span>
+                        <h3 className="e-city-name">{city.city}</h3>
+                        {city.nameEn && <span className="e-city-en">{city.nameEn}</span>}
+                        <span className="e-city-count">
+                          {city.hotels.length + (city.quotes?.hotels?.length || 0)} 家
+                        </span>
                       </div>
-                      {city.note && <p className="text-xs mt-0.5 mb-2" style={{ color: 'var(--text-tertiary)' }}>{city.note}</p>}
+                      {city.note && <p className="e-city-note">{city.note}</p>}
 
                       {city.hotels.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-2">
-                          {sortedHotels(city.hotels, sort).map((h, i) => <HotelCard key={i} h={h} cityCode={city.cityCode} idx={i} />)}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 mt-2">
+                          {sortedHotels(city.hotels, sort).map((h, i) => (
+                            <HotelCard
+                              key={i}
+                              h={h}
+                              cityCode={city.cityCode}
+                              countryCode={countryItem.country}
+                              accent={accentByCountry[countryItem.country]}
+                              idx={i}
+                            />
+                          ))}
                         </div>
                       )}
 
                       {city.quotes?.hotels?.length > 0 && (
                         <div className="mt-4">
-                          <div className="flex items-center gap-1.5 mb-2 text-[11px] font-semibold" style={{ color: 'var(--text-secondary)' }}>
-                            💰 酒店价格参考（€/人 · 以 hotel list 为准）
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                            {city.quotes.hotels.map((h, i) => <HotelCard key={i} h={h} priceRef cityCode={city.cityCode} idx={i} />)}
+                          <div className="e-sublab">酒店价格参考（€/人 · 以 hotel list 为准）</div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
+                            {city.quotes.hotels.map((h, i) => (
+                              <HotelCard
+                                key={i}
+                                h={h}
+                                priceRef
+                                cityCode={city.cityCode}
+                                countryCode={countryItem.country}
+                                accent={accentByCountry[countryItem.country]}
+                                idx={i}
+                              />
+                            ))}
                           </div>
                         </div>
                       )}
@@ -452,11 +475,12 @@ export default function HotelsPage() {
   )
 }
 
-function EmptyState({ icon, title, hint }) {
+function EmptyState({ title, hint }) {
   return (
     <div className="text-center py-16 border border-dashed rounded-2xl" style={{ borderColor: 'var(--border-color)' }}>
-      <p className="text-3xl mb-3">{icon}</p>
-      <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{title}</p>
+      {/* E 皮禁 emoji：空态用码牌代替图标（纯装饰） */}
+      <span className="code-plate inline" aria-hidden><span className="cc">0</span><span className="cty">结果</span></span>
+      <p className="text-sm font-medium mt-3" style={{ color: 'var(--text-secondary)' }}>{title}</p>
       {hint && <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>{hint}</p>}
     </div>
   )

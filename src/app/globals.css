@@ -478,3 +478,335 @@ body:has([data-skin="e"]) .type-badge-icon { display: none; }
 }
 /* 图片组「图片整理中」里的装饰 emoji：组件加类名钩子，皮肤内隐藏 */
 body:has([data-skin="e"]) .gallery-emoji { display: none; }
+
+/* =============================================================
+   E｜磁贴墙 皮肤 —— P1-5：/hotels（酒店库）
+   -------------------------------------------------------------
+   与 P1-1..P1-4 同一套 token / 码牌 / 打孔语言（无新增体系）：
+     · 城市分组标题 = 深墨码牌（国家码｜城市码）+ 中文名/英文名 + 家数，
+       纸底 + 左侧 6px 国家色条（色条由 JSX 内联，色值来自 lib/skin.js）；
+     · 酒店卡 = 「价目名片」：无照片、无 emoji，价格是唯一主角
+       （红棕等宽价贴 + 虚线打孔 + 中文名/英文名 + 星/评分/来源 + 近X + 订房）。
+   只改「衣服」：色 / 字 / 圆角 / 装饰；不动结构、文案与 IA。
+   ============================================================= */
+/* 共享汇率条：两个 select 都是固定宽（自适应最宽币种名）+ shrink-0，
+   窄屏（实测 390px）会顶出 54px 横向溢出（/mice、/knowledge 同样存在）。
+   皮肤作用域内允许换行 → 手机端不再横向溢出；顶栏之外的其他页不受影响。 */
+body:has([data-skin="e"]) .fx-inline { flex-wrap: wrap; max-width: 100%; }
+
+/* ---- 吸顶工具条里的页内搜索框（共享组件加了类名钩子，其他页不受影响） ---- */
+body:has([data-skin="e"]) .instant-search-icon { display: none; }
+[data-skin="e"] .instant-search-input {
+  border-radius: 2px;
+  border-color: #C9BCA7;
+  box-shadow: inset 3px 0 0 var(--e-ink);
+  font-size: 12.5px;
+  padding: 8px 40px 8px 12px;
+}
+[data-skin="e"] .instant-search-input::placeholder { color: var(--e-ink4); }
+[data-skin="e"] .instant-search-input:focus { border-color: var(--e-ink); }
+
+/* ---- 筛选 + 排序纸带：chip 换行、排序框不换行（不会把控件挤出屏幕） ---- */
+[data-skin="e"] .filter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  padding: 9px 10px;
+  margin: 2px 0 16px;
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+}
+[data-skin="e"] .filter-chips { flex: 1 1 320px; min-width: 0; }
+[data-skin="e"] .filter-chip {
+  border-radius: 2px;
+  padding: 5px 9px;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+[data-skin="e"] .sort-select {
+  flex: 0 0 auto;
+  border-radius: 2px;
+  font-family: var(--e-mono);
+  font-size: 11px;
+  padding: 6px 9px;
+}
+/* 搜索下拉里的评分小标 */
+[data-skin="e"] .e-idx-chip {
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+/* Hero 标题旁的标签（原「🏨 地接报价参考」→ 去 emoji 的等宽小签） */
+[data-skin="e"] .e-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--e-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  padding: 3px 7px;
+}
+
+/* ---- 国家分组标题 ---- */
+[data-skin="e"] .e-country-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-bottom: 2px solid var(--e-ink);
+  border-radius: 2px;
+}
+[data-skin="e"] .e-country-head h2 { font-size: 17px; font-weight: 800; letter-spacing: 0.02em; }
+[data-skin="e"] .e-country-code {
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: #F5EFE4;
+  background: #2A2723;
+  border-radius: 2px;
+  padding: 3px 6px;
+  align-self: center;
+}
+[data-skin="e"] .e-country-cur {
+  margin-left: auto;
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  padding: 3px 7px;
+}
+
+/* ---- 城市分组标题：E 城市牌（码牌 + 名称 + 家数，纸底 + 6px 国家色条） ---- */
+[data-skin="e"] .e-city-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  margin: 2px 0 8px;
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--e-line);
+}
+/* .inline 变体（E10 稿 .plate.inline）：脱出绝对定位，随文档流排（色条外的纸底场合用） */
+[data-skin="e"] .code-plate.inline {
+  position: static;
+  border-color: #C9BCA7;
+  box-shadow: none;
+}
+[data-skin="e"] .e-city-name { font-size: 15px; font-weight: 800; letter-spacing: 0.01em; color: var(--text-primary); }
+[data-skin="e"] .e-city-en {
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+}
+[data-skin="e"] .e-city-count {
+  margin-left: auto;
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+[data-skin="e"] .e-city-note {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+
+/* ---- 价目名片（酒店卡）：无照片、无 emoji ---- */
+[data-skin="e"] .e-ticket {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--e-line);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--e-line);
+}
+[data-skin="e"] .e-ticket:hover { box-shadow: 2px 3px 0 var(--e-line); }
+[data-skin="e"] .e-tk-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: nowrap;
+  padding: 12px 11px 13px;
+  background: var(--bg-secondary);
+}
+[data-skin="e"] .e-tk-strip .code-plate { flex: 0 0 auto; }
+[data-skin="e"] .e-tk-price { text-align: right; flex: 1 1 auto; min-width: 0; }
+[data-skin="e"] .e-tk-price .lab {
+  display: block;
+  font-family: var(--e-mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  color: var(--text-tertiary);
+}
+[data-skin="e"] .e-tk-price b {
+  display: block;
+  font-family: var(--e-mono);
+  font-size: 38px; /* 默认档；双价等长串由 JSX 降到 26/20px（见 hotels/page.js） */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-top: 3px;
+  color: var(--e-price);
+  white-space: nowrap;
+}
+[data-skin="e"] .e-tk-price u {
+  display: block;
+  text-decoration: none;
+  font-family: var(--e-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  margin-top: 4px;
+  color: var(--text-tertiary);
+}
+/* 打孔虚线：1px 虚线 + 两侧半圆缺口（槽用纸底填） */
+[data-skin="e"] .e-tk-perf { position: relative; height: 0; border-top: 1px dashed #C0AE94; }
+[data-skin="e"] .e-tk-perf i {
+  position: absolute;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 1px solid var(--e-line);
+}
+[data-skin="e"] .e-tk-perf i.l { left: -6px; }
+[data-skin="e"] .e-tk-perf i.r { right: -6px; }
+[data-skin="e"] .e-tk-body { display: flex; flex-direction: column; flex: 1; padding: 9px 11px 10px; }
+[data-skin="e"] .e-tk-name { display: flex; align-items: flex-start; gap: 7px; }
+[data-skin="e"] .e-tk-name h3 {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+[data-skin="e"] .e-tk-seq {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-family: var(--e-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--e-ink4);
+}
+[data-skin="e"] .e-tk-meta {
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+[data-skin="e"] .e-tk-chips { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+[data-skin="e"] .e-tk-chips span {
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--e-line);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+[data-skin="e"] .e-tk-chips span.dark { background: #2A2723; border-color: #2A2723; color: #F5EFE4; }
+[data-skin="e"] .e-tk-near,
+[data-skin="e"] .e-tk-area {
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+[data-skin="e"] .e-tk-near { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+[data-skin="e"] .e-tk-area {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+[data-skin="e"] .e-tk-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-light);
+  font-family: var(--e-mono);
+  font-size: 10px;
+  color: var(--e-ink4);
+}
+[data-skin="e"] .e-tk-foot .lnk {
+  min-width: 0;
+  color: var(--text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+[data-skin="e"] .e-tk-foot .lnk:hover { color: var(--e-price); }
+[data-skin="e"] .e-tk-foot .cmp {
+  margin-left: auto;
+  flex: 0 0 auto;
+  border: 1px solid var(--e-line);
+  background: #F3EBDD;
+  border-radius: 2px;
+  padding: 2px 6px;
+  color: var(--text-secondary);
+  cursor: default;
+}
+[data-skin="e"] .e-tk-foot .cmp i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border: 1px solid var(--text-tertiary);
+  background: #FFFDF8;
+  border-radius: 1px;
+}
+/* 分组小标题（酒店价格参考…）：两侧虚线夹持 */
+[data-skin="e"] .e-sublab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 8px;
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+}
+[data-skin="e"] .e-sublab::before,
+[data-skin="e"] .e-sublab::after { content: ''; flex: 1; height: 0; border-top: 1px dashed var(--e-line); }
