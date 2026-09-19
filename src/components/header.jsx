@@ -8,11 +8,8 @@ import { SITE } from '@/lib/config'
 export default function Header() {
   const pathname = usePathname()
 
-  const isActive = (href) => {
-    // 首页 = /（重定向到 /knowledge 城市库）
-    if (href === '/') return pathname === '/'
-    return pathname.startsWith(href)
-  }
+  // 导航不再有「首页」项：logo 直接指向城市库（/knowledge），`/` 仍由 app/page.js 重定向过来。
+  const isActive = (href) => pathname.startsWith(href)
 
   // 配色全部走 chrome token：默认值 = 旧的浅色外观（见 globals.css :root）；
   // 皮肤作用域（body:has([data-skin="e"])）内改 token 即可整条顶栏换皮。
@@ -52,11 +49,11 @@ export default function Header() {
       }}
     >
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* Logo → 首页 */}
+        {/* Logo → 城市库（/knowledge） */}
         <Link
-          href="/"
+          href="/knowledge"
           className="flex items-center gap-2 sm:gap-3 shrink-0 rounded-lg transition-colors hover:opacity-80"
-          title={`回到首页（${SITE.name}）`}
+          title={`返回城市库（${SITE.name}）`}
         >
           <span className="site-mark" aria-hidden>EA</span>
           <span className="text-base sm:text-lg shrink-0 site-emoji" aria-hidden>🗺️</span>
@@ -68,16 +65,6 @@ export default function Header() {
 
       <div className="flex items-end gap-1 self-end h-14">
         <nav className="flex items-end gap-0 h-full">
-          <Link
-            href="/"
-            style={{
-              ...tabGlass,
-              ...(isActive('/') ? tabActive : tabInactive),
-            }}
-            className={tabClass}
-          >
-            首页
-          </Link>
           <Link
             href="/knowledge"
             style={{
