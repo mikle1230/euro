@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef } from 'react'
 
 // ⚠️ 安全说明：API Key 不写在前端（可被任何浏览器查看）。已改为服务端代理：
 //   前端调 /api/fx → Next 服务端路由读 .env.local 的 EXCHANGE_RATE_API_KEY → 调 exchange-rate-api.com。
@@ -101,13 +101,18 @@ export function useFx() {
     }
   }, [from, to, amount])
 
-  // 初始/切换币种：先用缓存回填显示（避免刷新就请求）；无缓存则清空结果
-  useEffect(() => {
+  // 初始/切换币种：先用缓存回填显示（避免刷新就请求）；无缓存则清空结果。
+  // render 期按 previous 值调整 state（React 官方模式，等价于原来的 [from, to] effect）：
+  // 记录「已回填过的币种对」，对不上就在本次 render 里同步回填/清空。
+  // 服务端读到 null（readCache 无 window 时不读），水合后首次 render 保持同一结果，
+  // rate/fromCache 不参与渲染，不会造成 hydration 不一致。
+  const [cachePair, setCachePair] = useState(null)
+  if (cachePair === null || cachePair[0] !== from || cachePair[1] !== to) {
+    setCachePair([from, to])
     const cached = readCache(from, to)
     if (cached) { setRate(cached.rate); setFromCache(true) }
     else { setRate(null); setResult(null) }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [from, to])
+  }
 
   return { from, setFrom, to, setTo, amount, setAmount, result, rate, loading, error, fromCache, convert }
 }
