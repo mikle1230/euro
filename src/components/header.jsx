@@ -96,20 +96,8 @@ export default function Header() {
             MICE
           </Link>
         </nav>
-        {/* 设置（独立页面 /settings） */}
-        <Link
-          href="/settings"
-          className="inline-flex items-center gap-1 self-end mb-1 sm:mb-1.5 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all border"
-          style={{
-            background: 'var(--chrome-btn-bg)',
-            borderColor: 'var(--chrome-btn-border)',
-            color: 'var(--chrome-btn-fg)',
-          }}
-          title="设置"
-        >
-          <span className="text-sm site-emoji" aria-hidden>⚙️</span>
-          <span className="hidden sm:inline">设置</span>
-        </Link>
+        {/* 设置入口已从顶栏去掉（2026-09-19 定）：/settings 页面仍在（数据备份 / QUOS 类型排序），
+            只是不再从导航暴露；要恢复入口把这段 Link 贴回即可。 */}
         <div className="flex items-center h-14 ml-1 sm:ml-3" style={{ color: 'var(--chrome-text)' }}>
           <ThemeToggle />
         </div>
