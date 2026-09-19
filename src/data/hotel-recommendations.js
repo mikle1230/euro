@@ -16,7 +16,7 @@ export default {
       },
       {
         name: "Hotel Foresteria Baglio Della Luna",
-        nameZh: "",
+        nameZh: "福瑞斯蒂亚巴里奥之月酒店",
         star: 4,
         rating: 8.5,
         priceEur: 130,
@@ -101,7 +101,7 @@ export default {
       },
       {
         name: "Banks Mansion",
-        nameZh: "",
+        nameZh: "银行大厦-全包式酒店",
         star: 4,
         rating: 8.8,
         priceEur: 200,
@@ -116,7 +116,7 @@ export default {
     name: "巴塞罗那", nameEn: "Barcelona", country: "ES", cityCode: "BCN", note: "住加泰罗尼亚广场或扩展区(Eixample)一带最方便：地铁枢纽直达圣家堂、高迪建筑与兰布拉大道", hotels: [
       {
         name: "Hotel Regina Barcelona",
-        nameZh: "",
+        nameZh: "雷吉纳酒店",
         star: 4,
         rating: 8.8,
         priceEur: 160,
@@ -127,7 +127,7 @@ export default {
       },
       {
         name: "Radisson Blu 1882 Hotel, Barcelona Sagrada Familia",
-        nameZh: "",
+        nameZh: "巴塞罗那圣家堂丽笙 1882 酒店",
         star: 4,
         rating: 8.8,
         priceEur: 240,
@@ -138,7 +138,7 @@ export default {
       },
       {
         name: "Hotel Paxton Barcelona",
-        nameZh: "",
+        nameZh: "巴塞罗那帕克斯顿酒店",
         star: 4,
         rating: 8.7,
         priceEur: 190,
@@ -175,7 +175,7 @@ export default {
       },
       {
         name: "Aletto Hotel Potsdamer Platz",
-        nameZh: "",
+        nameZh: "阿莱托波茨坦广场酒店",
         star: 3,
         rating: 8.8,
         priceEur: 80,
@@ -201,7 +201,7 @@ export default {
       },
       {
         name: "Hotel Chambord",
-        nameZh: "",
+        nameZh: "尚博尔酒店",
         star: 3,
         rating: 8.0,
         priceEur: 80,
@@ -253,7 +253,7 @@ export default {
     name: "奇维塔韦基亚", nameEn: "Civitavecchia", country: "IT", cityCode: "CVV", note: "奇维塔韦基亚是罗马的主要邮轮港，建议住港口/火车站附近的 Via Garibaldi 一带，便于步行登船或乘火车往返罗马。", hotels: [
       {
         name: "Hotel San Giorgio",
-        nameZh: "",
+        nameZh: "圣乔治酒店",
         star: 4,
         rating: 8.1,
         priceEur: 110,
@@ -264,7 +264,7 @@ export default {
       },
       {
         name: "Hotel Mediterraneo",
-        nameZh: "",
+        nameZh: "米德特拉尼奥酒店",
         star: 3,
         rating: 7.9,
         priceEur: 90,
@@ -275,7 +275,7 @@ export default {
       },
       {
         name: "Hotel Porto Di Roma",
-        nameZh: "",
+        nameZh: "波尔图迪罗马酒店",
         star: 4,
         rating: 8.2,
         priceEur: 110,
@@ -290,7 +290,7 @@ export default {
     name: "佛罗伦萨", nameEn: "Florence", country: "IT", cityCode: "FLR", note: "住老城中心（圣母百花大教堂/领主广场一带），主要景点均可步行到达。", hotels: [
       {
         name: "Hotel Brunelleschi",
-        nameZh: "",
+        nameZh: "布鲁内莱斯基酒店",
         star: 4,
         rating: 9.0,
         priceEur: 280,
@@ -301,7 +301,7 @@ export default {
       },
       {
         name: "Hotel Davanzati",
-        nameZh: "",
+        nameZh: "达万札蒂酒店",
         star: 3,
         rating: 9.2,
         priceEur: 150,
@@ -364,7 +364,7 @@ export default {
     name: "热那亚", nameEn: "Genoa", country: "IT", cityCode: "GOA", note: "住老港（Porto Antico）或老城区最方便，步行可达水族馆、加里波第路（Rolli 宫殿群）等核心景点。", hotels: [
       {
         name: "Best Western Porto Antico",
-        nameZh: "",
+        nameZh: "波尔图安提科贝斯特韦斯特酒店",
         star: 4,
         rating: 8.4,
         priceEur: 140,
@@ -375,7 +375,7 @@ export default {
       },
       {
         name: "NH Collection Genova Marina",
-        nameZh: "",
+        nameZh: "热那亚码头 NH 精选酒店",
         star: 4,
         rating: 8.5,
         priceEur: 160,
@@ -386,7 +386,7 @@ export default {
       },
       {
         name: "Hotel Palazzo Grillo",
-        nameZh: "",
+        nameZh: "帕拉佐桂罗酒店",
         star: 4,
         rating: 8.9,
         priceEur: 150,
@@ -412,7 +412,7 @@ export default {
       },
       {
         name: "Boutique Hotel Bellevue",
-        nameZh: "",
+        nameZh: "贝尔维尤精品酒店",
         star: 4,
         rating: 8.5,
         priceEur: 190,
@@ -438,7 +438,7 @@ export default {
     name: "里斯本", nameEn: "Lisbon", country: "PT", cityCode: "LIS", note: "住商业广场/罗西乌(Rossio)/希亚多老城中心最方便，步行游览阿尔法玛、圣胡斯塔升降机，机场地铁直达", hotels: [
       {
         name: "Pousada de Lisboa - Small Luxury Hotels Of The World",
-        nameZh: "",
+        nameZh: "里斯本广场商务酒店",
         star: 5,
         rating: 9.2,
         priceEur: 240,
@@ -460,7 +460,7 @@ export default {
       },
       {
         name: "Altis Belem Hotel & Spa, a Member of Design Hotels",
-        nameZh: "",
+        nameZh: "贝伦阿尔蒂斯酒店及水疗中心",
         star: 5,
         rating: 9.3,
         priceEur: 180,
@@ -512,7 +512,7 @@ export default {
     name: "马德里", nameEn: "Madrid", country: "ES", cityCode: "MAD", note: "住太阳门(Puerta del Sol)/格兰大道(Gran Vía)一带最方便，步行可到王宫、普拉多博物馆与主要景点", hotels: [
       {
         name: "Room Mate Oscar",
-        nameZh: "",
+        nameZh: "马德里奥斯卡室友酒店",
         star: 3,
         rating: 8.7,
         priceEur: 140,
@@ -523,7 +523,7 @@ export default {
       },
       {
         name: "Gran Hotel Inglés - The Leading Hotels of the World",
-        nameZh: "",
+        nameZh: "英格尔斯大酒店",
         star: 5,
         rating: 9.3,
         priceEur: 550,
@@ -549,7 +549,7 @@ export default {
       },
       {
         name: "Hôtel Carré Vieux Port",
-        nameZh: "",
+        nameZh: "马赛卡雷维厄波特酒店",
         star: 4,
         rating: 8.7,
         priceEur: 200,
@@ -560,7 +560,7 @@ export default {
       },
       {
         name: "Grand Hôtel Beauvau Marseille Vieux-Port - MGallery",
-        nameZh: "",
+        nameZh: "美憬阁马赛老港博沃大酒店",
         star: 4,
         rating: 8.0,
         priceEur: 180,
@@ -575,7 +575,7 @@ export default {
     name: "米兰", nameEn: "Milan", country: "IT", cityCode: "MIL", note: "住米兰大教堂（Duomo）周边或中央火车站附近最方便，地铁直达大教堂、斯福尔扎城堡与布雷拉美术馆等主要景点。", hotels: [
       {
         name: "Room Mate Collection Giulia",
-        nameZh: "",
+        nameZh: "米兰室友朱莉娅酒店",
         star: 4,
         rating: 9.0,
         priceEur: 220,
@@ -586,7 +586,7 @@ export default {
       },
       {
         name: "Hotel Berna",
-        nameZh: "",
+        nameZh: "伯纳酒店",
         star: 4,
         rating: 9.1,
         priceEur: 170,
@@ -612,7 +612,7 @@ export default {
     name: "慕尼黑", nameEn: "Munich", country: "DE", cityCode: "MUC", note: "住老城（玛利亚广场/Platzl）或主火车站附近最方便，景点集中。", hotels: [
       {
         name: "DO & CO Hotel München",
-        nameZh: "",
+        nameZh: "DO & CO 慕尼黑酒店",
         star: 5,
         rating: 9.1,
         priceEur: 500,
@@ -623,7 +623,7 @@ export default {
       },
       {
         name: "NH Collection München Bavaria",
-        nameZh: "",
+        nameZh: "慕尼黑巴伐利亚 NH 精选酒店",
         star: 4,
         rating: 8.6,
         priceEur: 120,
@@ -634,7 +634,7 @@ export default {
       },
       {
         name: "Augusten Hotel München",
-        nameZh: "",
+        nameZh: "慕尼黑奥古斯根酒店",
         star: 3,
         rating: 8.2,
         priceEur: 120,
@@ -671,7 +671,7 @@ export default {
       },
       {
         name: "Factory Design",
-        nameZh: "",
+        nameZh: "工厂设计旅馆",
         star: 3,
         rating: 8.7,
         priceEur: 85,
@@ -686,7 +686,7 @@ export default {
     name: "尼斯", nameEn: "Nice", country: "FR", cityCode: "NCE", note: "住海滨大道（Promenade des Anglais）与老城之间最方便，海景与老城景点兼顾", hotels: [
       {
         name: "Hôtel Le Royal Promenade des Anglais",
-        nameZh: "",
+        nameZh: "皇家英国大道酒店",
         star: 4,
         rating: 8.3,
         priceEur: 240,
@@ -708,7 +708,7 @@ export default {
       },
       {
         name: "Mercure Nice Promenade des Anglais",
-        nameZh: "",
+        nameZh: "尼斯英格兰人大道美居酒店",
         star: 4,
         rating: 8.0,
         priceEur: 180,
@@ -745,7 +745,7 @@ export default {
       },
       {
         name: "Porta di Castro Boutique Hotel",
-        nameZh: "",
+        nameZh: "卡斯特罗港床早餐酒店",
         star: 4,
         rating: 9.1,
         priceEur: 145,
@@ -760,7 +760,7 @@ export default {
     name: "巴黎", nameEn: "Paris", country: "FR", cityCode: "PAR", note: "住卢浮宫/大堂区（1-2区）或歌剧院区最方便，主要景点步行或地铁直达", hotels: [
       {
         name: "Novotel Paris Les Halles",
-        nameZh: "",
+        nameZh: "巴黎夏特雷大堂诺富特酒店",
         star: 4,
         rating: 8.1,
         priceEur: 220,
@@ -771,7 +771,7 @@ export default {
       },
       {
         name: "Hôtel des Grands Boulevards",
-        nameZh: "",
+        nameZh: "林荫大道酒店",
         star: 4,
         rating: 9.0,
         priceEur: 210,
@@ -797,7 +797,7 @@ export default {
     name: "波尔图", nameEn: "Porto", country: "PT", cityCode: "OPO", note: "住老城中心（圣本笃车站/里贝拉一带）最方便，步行可到主教堂、路易一世大桥与酒窖区", hotels: [
       {
         name: "Porto A.S. 1829 Hotel",
-        nameZh: "",
+        nameZh: "波尔图 A.S.1829 酒店",
         star: 4,
         rating: 9.1,
         priceEur: 110,
@@ -808,7 +808,7 @@ export default {
       },
       {
         name: "Eurostars Porto Centro",
-        nameZh: "",
+        nameZh: "波尔图中心欧洲之星酒店",
         star: 4,
         rating: 9.0,
         priceEur: 130,
@@ -934,7 +934,7 @@ export default {
     name: "圣特罗佩", nameEn: "Saint-Tropez", country: "FR", cityCode: "JSZ", note: "圣特罗佩镇很小，住镇中心或港口附近即可步行游览全部景点", hotels: [
       {
         name: "Le Yaca Saint-Tropez",
-        nameZh: "",
+        nameZh: "圣特罗佩的勒雅卡酒店",
         star: 5,
         rating: 8.7,
         priceEur: 550,
@@ -960,7 +960,7 @@ export default {
     name: "塞维利亚", nameEn: "Seville", country: "ES", cityCode: "SVQ", note: "住圣十字区(Santa Cruz)/大教堂附近最方便，步行可到皇家城堡、大教堂与西班牙广场", hotels: [
       {
         name: "Hotel Las Casas de la Judería",
-        nameZh: "",
+        nameZh: "犹太人之家酒店",
         star: 4,
         rating: 9.2,
         priceEur: 140,
@@ -986,7 +986,7 @@ export default {
     name: "锡拉库扎", nameEn: "Siracusa", country: "IT", cityCode: "QIC", note: "住奥提伽岛（Ortigia）上，步行可达大教堂广场、阿波罗神庙与海边城堡，游览核心区。", hotels: [
       {
         name: "Algilà Ortigia Charme Hotel",
-        nameZh: "",
+        nameZh: "阿尔吉拉奥提伽迷人酒店",
         star: 4,
         rating: 9.3,
         priceEur: 200,
@@ -1008,7 +1008,7 @@ export default {
       },
       {
         name: "Hotel Gutkowski",
-        nameZh: "",
+        nameZh: "古特卡欧斯基酒店",
         star: 3,
         rating: 8.5,
         priceEur: 100,
@@ -1134,7 +1134,7 @@ export default {
     name: "威尼斯", nameEn: "Venice", country: "IT", cityCode: "VCE", note: "住圣马可广场（San Marco）周边步行即可游览主要景点，其次可选大运河沿线（以水上巴士代步）。", hotels: [
       {
         name: "Hotel Saturnia & International",
-        nameZh: "",
+        nameZh: "萨图瑞尼亚国际酒店",
         star: 5,
         rating: 9.2,
         priceEur: 400,
@@ -1145,7 +1145,7 @@ export default {
       },
       {
         name: "Ca' Sagredo Hotel",
-        nameZh: "",
+        nameZh: "萨赛格雷多酒店",
         star: 5,
         rating: 9.3,
         priceEur: 380,
@@ -1208,7 +1208,7 @@ export default {
     name: "苏黎世", nameEn: "Zurich", country: "CH", cityCode: "ZRH", note: "住老城（Altstadt）或班霍夫大街附近最方便，紧邻火车总站，游湖购物均便利", hotels: [
       {
         name: "Storchen Zürich - Lifestyle Boutique Hotel",
-        nameZh: "",
+        nameZh: "斯托申酒店",
         star: 5,
         rating: 9.1,
         priceEur: 550,
