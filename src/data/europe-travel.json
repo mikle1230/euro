@@ -359,7 +359,7 @@
           "lng": 1.4442,
           "attractions": [
             {
-              "id": "piazza-signoria",
+              "id": "toulouse-capitole-de-toulouse",
               "name": "市政厅广场",
               "nameEn": "Capitole de Toulouse",
               "type": "landmark",
@@ -1109,14 +1109,6 @@
               "lng": 8.0393
             }
           ]
-        },
-        {
-          "id": "lucerne",
-          "name": "琉森",
-          "nameEn": "Lucerne",
-          "lat": 47.05,
-          "lng": 8.31,
-          "attractions": []
         }
       ]
     },
@@ -1175,16 +1167,6 @@
               "lng": 12.485,
               "description": "古罗马政治宗教中心遗址",
               "tips": "与斗兽场同游"
-            },
-            {
-              "id": "trevi-fountain",
-              "name": "许愿泉",
-              "nameEn": "Trevi Fountain",
-              "type": "landmark",
-              "lat": 41.9,
-              "lng": 12.483,
-              "description": "特莱维喷泉,抛硬币许愿",
-              "tips": "右手越过左肩抛币"
             }
           ]
         },
@@ -6397,7 +6379,7 @@
           "lng": 15.9819,
           "attractions": [
             {
-              "id": "st-marks-basilica-venice",
+              "id": "zagreb-st-mark-s-church",
               "name": "圣马可教堂",
               "nameEn": "St. Mark's Church",
               "type": "landmark",
