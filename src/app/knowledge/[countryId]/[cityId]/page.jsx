@@ -9,6 +9,7 @@ import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import KnowledgeTopBar from '@/components/knowledge-top-bar'
 import { getCountryAccent } from '@/lib/skin'
+import { getCityImagePath, getAttractionImagePath } from '@/lib/images'
 import { haversineKm } from '@/lib/geo'
 
 export default function CityPage() {
@@ -84,7 +85,7 @@ export default function CityPage() {
           {/* 左：城市图（移动端在上，16/9；桌面端填满左栏高度） */}
           <div className="md:w-1/2 shrink-0">
             <ImageWithPlaceholder
-              src={`/images/cities/${cityId}.jpg`}
+              src={getCityImagePath(cityId)}
               alt={city.name}
               name={city.name}
               subtitle={city.nameEn ? `${city.nameEn} · ${city.country?.name || ''}` : city.country?.name}
@@ -170,7 +171,7 @@ export default function CityPage() {
                   style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                 >
                   <ImageWithPlaceholder
-                    src={`/images/attractions/${item.id}.jpg`}
+                    src={getAttractionImagePath(item.id)}
                     alt={item.name}
                     type={item._type}
                     name={item.name}
