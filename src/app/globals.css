@@ -939,3 +939,66 @@ body:has([data-skin="e"]) .instant-search-icon { display: none; }
 }
 /* 无价：不贴价贴，降为纸底辅文（不拿 0 冒价，也不假装有价） */
 [data-skin="e"] .e-price.none { color: var(--text-tertiary); font-weight: 400; background: transparent; border-style: dashed; }
+
+/* =============================================================
+   E｜磁贴墙 皮肤 —— P1-6b：/mice/[id]（活动详情）
+   -------------------------------------------------------------
+   与 P1-6a/酒店库同一套 token（无新增体系）：面板 = 纸底 + 左侧 6px 国家色条，
+   规格行 = 等宽标签 + 正文；价格/时长贴红棕等宽贴纸；图位占位改「无图牌」。
+   只改「衣服」：色 / 字 / 圆角 / 装饰；不动结构、文案与 IA。
+   ============================================================= */
+/* 面板（活动介绍 / 资源与信息） */
+[data-skin="e"] .e-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--e-line);
+  border-left: 6px solid var(--e-ink);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 var(--e-line);
+  padding: 14px 15px;
+}
+[data-skin="e"] .e-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+  padding-bottom: 7px;
+  border-bottom: 1px dashed var(--e-line);
+}
+[data-skin="e"] .e-panel-head h2 {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+[data-skin="e"] .e-panel-no {
+  margin-left: auto;
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--e-ink4);
+}
+/* 规格行（容量 / 价格 / 时长 / 营业时间 / 地址…） */
+[data-skin="e"] .e-spec { padding: 6px 0; border-bottom: 1px dashed var(--border-light); }
+[data-skin="e"] .e-spec:last-child { border-bottom: none; }
+[data-skin="e"] .e-spec-label {
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-tertiary);
+}
+[data-skin="e"] .e-spec-value {
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 2px;
+  color: var(--text-primary);
+  overflow-wrap: break-word;
+}
+/* 无图牌（详情页图位）：暖纸底 + 深墨码牌（禁渐变、禁 emoji） */
+[data-skin="e"] .e-noimg {
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-radius: 3px;
+}
+[data-skin="e"] .e-noimg .nm { font-size: 13px; font-weight: 700; line-height: 1.4; color: var(--text-primary); }
+[data-skin="e"] .e-noimg .cap { font-family: var(--e-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--text-tertiary); }

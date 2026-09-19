@@ -5,6 +5,9 @@ import { useState } from 'react'
 // MICE 活动图片组：自动探测主图 + 附加图，支持多图缩略图切换 + 点击放大（Lightbox）。
 // 候选链（与 mice-image.jsx 一致）：public/mice-images/{id}.jpg/.jpeg/.png/.webp → {id}-1/2/3.* → Excel previewImageUrl
 // 多图约定：把附加图命名为 {id}-1.jpg、{id}-2.jpg 等放入 public/mice-images/ 即可自动出现，无需改代码。
+//
+// E｜磁贴墙 皮肤：1,697 条活动只 1 张可用图 → 图位占位改「无图牌」（暖纸底 + 深墨码牌 IMG｜0），
+// 不再用渐变底 + emoji（皮肤禁渐变、禁 emoji）。
 export default function MiceGallery({ activity, className = '' }) {
   const EXTS = ['jpg', 'jpeg', 'png', 'webp']
   const candidates = []
@@ -24,7 +27,6 @@ export default function MiceGallery({ activity, className = '' }) {
 
   const okImages = candidates.filter((c) => status[c] === 'ok')
   const active = okImages[Math.min(activeIdx, okImages.length - 1)]
-  const emoji = activity.category === 'Technical Visit' ? '🏭' : '🎪'
   const label = activity.title
 
   return (
@@ -43,15 +45,18 @@ export default function MiceGallery({ activity, className = '' }) {
       ))}
 
       {okImages.length === 0 ? (
-        /* 占位：全部候选加载失败或加载中 */
+        /* 无图牌（E）：暖纸底 + 深墨码牌，不用渐变底 + emoji */
         <div
           role="img"
           aria-label={label}
-          className="relative aspect-[4/3] rounded-xl border flex items-center justify-center overflow-hidden"
-          style={{ background: 'linear-gradient(150deg, var(--bg-elevated), var(--bg-surface))', borderColor: 'var(--border-color)' }}
+          className="e-noimg aspect-[4/3] flex flex-col items-center justify-center gap-2 p-4 text-center"
         >
-          <span className="text-4xl" aria-hidden="true">{emoji}</span>
-          <span className="absolute bottom-2 text-[10px]" style={{ color: 'var(--text-tertiary)' }}>图片整理中</span>
+          <span className="code-plate inline" aria-hidden>
+            <span className="cc">IMG</span>
+            <span className="cty">0</span>
+          </span>
+          <span className="nm">{label}</span>
+          <span className="cap">图片整理中</span>
         </div>
       ) : (
         <>
