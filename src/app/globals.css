@@ -360,9 +360,9 @@ body:has([data-skin="e"]) {
 :root[data-theme="dark"] body:has([data-skin="e"]) .badge-transport { color: #6d3fd4; }
 :root[data-theme="dark"] body:has([data-skin="e"]) .badge-guide { color: #556677; }
 
-/* 主题开关：E 纸皮固定后，它对整站已无任何可见作用 → 在 E 作用域内隐藏。
-   删掉这一行即恢复（按钮本体与切换逻辑仍留在 theme-toggle.jsx）。 */
-body:has([data-skin="e"]) .theme-toggle { display: none; }
+/* 主题开关：2026-09-19 定「露出来」（此前按 B 案在 E 作用域隐藏过）。
+   注意：B 案下 E 纸皮恒定，切换主题目前不会改变外观 —— 开关本身仍正常写
+   localStorage(euro-theme) 与 <html data-theme>，等改走 A 案（真深色 E 皮）才有可见效果。 */
 
 /* ---- 顶栏：深色实底，去玻璃拟态 ---- */
 body:has([data-skin="e"]) header { color: var(--chrome-text); }
