@@ -33,7 +33,7 @@ export default function AttractionGallery({ id, name, type = 'landmark' }) {
         }}
       >
         <div className="aspect-[4/3] flex flex-col items-center justify-center p-4 text-center">
-          <span className="text-2xl mb-1">🖼️</span>
+          <span className="text-2xl mb-1 gallery-emoji">🖼️</span>
           <span className="text-sm font-semibold" style={{ color: colors.text }}>{name}</span>
           <span className="text-xs mt-1 opacity-60" style={{ color: colors.text }}>图片整理中</span>
         </div>

@@ -9,6 +9,7 @@ import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import AttractionGallery from '@/components/attraction-gallery'
 import TypeBadge from '@/components/type-badge'
 import KnowledgeTopBar from '@/components/knowledge-top-bar'
+import { getCountryAccent } from '@/lib/skin'
 import { haversineKm } from '@/lib/geo'
 
 export default function AttractionPage() {
@@ -16,11 +17,12 @@ export default function AttractionPage() {
   const { countryId, cityId, attractionId } = params
 
   const attraction = getAttractionById(attractionId)
+  // E 皮肤：国家色条（同一国家在各级页面同色，色表见 lib/skin.js）
+  const accent = getCountryAccent(countryId)
   if (!attraction) {
     return (
-      <div className="min-h-full flex items-center justify-center" style={{ background: 'var(--bg-secondary)' }}>
+      <div className="min-h-full flex items-center justify-center" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
         <div className="text-center">
-          <p className="text-4xl mb-4">🏛️</p>
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>景点未找到</p>
           <Link href="/knowledge" className="text-xs mt-2 inline-block" style={{ color: 'var(--accent)' }}>
             ← 返回城市库
@@ -55,7 +57,7 @@ export default function AttractionPage() {
   const fieldValue = { color: 'var(--text-primary)', fontSize: '13px' }
 
   return (
-    <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
+    <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
       {/* 吸顶工具条：面包屑 + 全局搜索（搜索框全程停留在顶部，随时可检索） */}
       <KnowledgeTopBar
         crumbs={[
@@ -125,7 +127,7 @@ export default function AttractionPage() {
                   color: 'var(--text-secondary)',
                 }}
               >
-                <span className="font-semibold mr-1" style={{ color: 'var(--text-primary)' }}>💡 贴士</span>
+                <span className="font-semibold mr-1" style={{ color: 'var(--text-primary)' }}>贴士</span>
                 {attraction.tips}
               </div>
             )}
@@ -140,7 +142,7 @@ export default function AttractionPage() {
                   className="text-xs inline-flex items-center gap-1 px-3 py-1.5 rounded-full transition-colors hover:opacity-80"
                   style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}
                 >
-                  🖼️ 搜索图片
+                  搜索图片
                 </a>
               </div>
             )}
@@ -157,7 +159,7 @@ export default function AttractionPage() {
                 {(detail?.visit?.ticket || info.ticketPrice) && (
                   <div className="mb-3">
                     <p style={fieldLabel}>门票</p>
-                    <p style={fieldValue}>{detail?.visit?.ticket || info.ticketPrice}</p>
+                    <p style={fieldValue}><span className="e-price">{detail?.visit?.ticket || info.ticketPrice}</span></p>
                   </div>
                 )}
                 {(detail?.visit?.hours || info.hours) && (
@@ -211,7 +213,7 @@ export default function AttractionPage() {
         {sameCity.length > 0 && (
           <div className="mt-8 pt-8" style={{ borderTop: '1px solid var(--border-color)' }}>
             <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-              🏛️ 同城景点
+              同城景点
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
               {sameCity.map((a) => (
@@ -219,10 +221,10 @@ export default function AttractionPage() {
                   key={a.id}
                   href={`/knowledge/${countryId}/${cityId}/${a.id}`}
                   className="spotlight-card rounded-xl border overflow-hidden transition-all hover:-translate-y-0.5"
-                  style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                  style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                 >
                   <ImageWithPlaceholder src={`/images/attractions/${a.id}.jpg`} alt={a.name} type={a.type || 'landmark'} name={a.name} size="card" variant="attraction" />
-                  <div className="p-2">
+                  <div className="p-2 card-body">
                     <p className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>
                       {a.name}
                       {a.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{a.nameEn}</span>}
@@ -238,7 +240,7 @@ export default function AttractionPage() {
         {otherNear.length > 0 && (
           <div className="mt-8">
             <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-              🧭 周边景点
+              周边景点
             </h2>
             <div className="flex flex-wrap gap-2">
               {otherNear.map((a) => (

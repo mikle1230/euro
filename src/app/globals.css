@@ -462,3 +462,19 @@ body:has([data-skin="e"]) .type-badge-icon { display: none; }
 /* 地图缩放控件自带 4px 圆角，对齐 E 皮的小圆角 */
 [data-skin="e"] .leaflet-bar,
 [data-skin="e"] .leaflet-bar a { border-radius: 2px; }
+
+/* 价格：红棕等宽「贴纸」方块（只贴在真有价格的字段上，如景点门票） */
+[data-skin="e"] .e-price {
+  display: inline-block;
+  font-family: var(--e-mono);
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--e-price);
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  padding: 2px 7px;
+}
+/* 图片组「图片整理中」里的装饰 emoji：组件加类名钩子，皮肤内隐藏 */
+body:has([data-skin="e"]) .gallery-emoji { display: none; }
