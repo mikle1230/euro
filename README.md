@@ -1,5 +1,7 @@
 # Euro Atlas — 欧洲地接行程规划工作台
 
+> ⚠️ **AI 行程解析与地图线路已于 2026-09-18 退役**（`/explore`、`/api/parse-itinerary`、`map-core` 等已删除）；产品与设计真理见 [`docs/product-spec-2026-09.md`](docs/product-spec-2026-09.md)。
+
 为欧洲地接社（KuoniTumlare / JTB）操作员/计调打造的**行程规划 + QUOS 报价辅助工具**。内部工具，不面向公众。
 
 ## 核心闭环

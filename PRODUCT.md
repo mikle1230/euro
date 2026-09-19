@@ -1,5 +1,7 @@
 # Product
 
+> ⚠️ **AI 行程解析与地图线路已于 2026-09-18 退役**；产品与设计真理见 [`docs/product-spec-2026-09.md`](docs/product-spec-2026-09.md)（身份 E｜磁贴墙）。
+
 ## Register
 
 product

@@ -1,5 +1,7 @@
 # Euro Atlas — 跨机迁移 / 开发交接手册
 
+> ⚠️ **AI 行程解析与地图线路已于 2026-09-18 退役**（相关页面/接口/组件已删除）；产品与设计真理见 [`docs/product-spec-2026-09.md`](product-spec-2026-09.md)。
+
 > 用途：换一台电脑继续开发时的「记忆传递」清单 + 一次性初始化步骤。
 > 权威开发规则见仓库根 `CLAUDE.md`；架构不变量见 `docs/architecture.md`；图片规范见 `docs/image-spec.md`。
 > 本文件随 git 一起传递，克隆仓库即得到。

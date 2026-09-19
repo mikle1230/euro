@@ -2,36 +2,48 @@
 
 给后续开发者/Agent 的地图 —— 读完这份比重新扫一遍代码省 token。
 
-## 数据流：响应式行程 store
+> ⚠️ **2026-09-18 已退役**：AI 行程解析（`lib/ai-parse.js` / `lib/prompt.js` / `api/parse-itinerary`）与地图线路绘制（`map-core.jsx` / `route-plan.js` / `day-route.js` / 段抽屉）已删除，相关组件与 `/explore` 工作台**不再存在**。
+> 2026-09-19 **P0** 又删掉死管道（`map-core` / `hotel-map` / `floating-panel` / `panel-views/quos-list` / `confirm-dialog` / `modal` / `city-match` / `flags` / `use-is-mobile`），并作废 `.ulpi/design/*`。
+> 产品与设计真理在 **`docs/product-spec-2026-09.md`**（身份 E｜磁贴墙；D1 只到查/看、D2 费率只读）。本文件只描述**当前代码事实**。
 
-行程数据统一走 `src/lib/itinerary-store.js`（响应式），是唯一数据源。
+## 路由现状（共 5 条页面 + 1 个 API）
 
-```
-组件调 mutation（addItem / addDay / removeItem ...）
-  → 改内存 state（原地 mutate）
-  → commit()：写 localStorage + version++ + 通知订阅者
-  → 用 useItineraries() 订阅的组件自动重渲染
-```
+| 路由 | 文件 | 说明 |
+|---|---|---|
+| `/` | `app/page.js` | 仅 `redirect('/knowledge')` —— **当前没有主页**（P1 重写为工作台） |
+| `/knowledge` | `app/knowledge/page.jsx` | 城市库首页；`ensureSeeded`、QUOS 国码反查、自定义城市 |
+| `/knowledge/[countryId]` | `.../[countryId]/page.jsx` | 国家页；`dynamic(() => import('@/components/country-map'), { ssr: false })` |
+| `/knowledge/[countryId]/[cityId]` | `.../[cityId]/page.jsx` | 城市页 |
+| `/knowledge/[countryId]/[cityId]/[attractionId]` | `.../[attractionId]/page.jsx` | 景点详情页 |
+| `/hotels` | `app/hotels/page.js` | 酒店库（`hotel-prices` 历史报价 + `hotel-recommend` 推荐库双数据源） |
+| `/mice` `/mice/[id]` | `app/mice/page.js` / `app/mice/[id]/page.js` | MICE 列表 / 详情 |
+| `/settings` | `app/settings/page.jsx` | QUOS 排序、API Token、数据备份导出/导入 |
+| `/api/fx` | `app/api/fx/route.js` | 汇率服务端代理 → `v6.exchangerate-api.com`，读 `EXCHANGE_RATE_API_KEY` |
 
-**关键设计**（`useSyncExternalStore` + version 计数器，无第三方依赖）：
+已删除且不再存在：`/explore`、`/api/parse-itinerary`、`/api/reparse-itinerary`。
 
-- `state` 是模块级单例，惰性从 localStorage 加载一次后缓存。
-- `commit()` 用 `version++` 作为变化信号，而非替换对象引用（state 是原地 mutate 的）。
-- `useItineraries()` 订阅 version，返回 `{ itineraries, activeId }`；`useStoreVersion()` 只返回 version。
+## store / 状态
 
-**⚠️ 重要推论**：因为对象是原地 mutate 的，`itinerary`/`activeItinerary` 的**引用始终稳定**。因此：
+无 Context Provider：`app/layout.js` 直接 `<Header/> {children} <ToastHost/>`，状态靠模块级 store。
 
-- 组件里派生数据（routeLine、dayLabels 等）要 **memo 依赖 `useStoreVersion()` 的 version**，不要 `useMemo` 依赖对象引用，否则不会在变更后重算。
-- 子组件（quos-list / itinerary-list）**不需要手动 refresh**，也不需要 `onItineraryChange` 回调 —— mutation 后父组件订阅触发整棵树重渲染，子组件重新读 `itinerary.days` 即得新数据。
+### `src/lib/itinerary-store.js`（`'use client'`，**半活**）
 
-订阅链：`explore/page.js`（`useItineraries()`）→ 重渲染 → `FloatingPanel` → `ItineraryList`/`QUOSList`（非 memo，跟随重渲染）。
+2026-09-18 已瘦身，只保留查询平台仍需要的部分。现存导出：
 
-`activeId` 驱动当前行程；`deleteItinerary` 会自动把 `activeId` 指向剩余首个。
+- `exportAllData()` / `importAllData(data)` —— **当前唯一活消费者**：`app/settings/page.jsx` 的「数据备份」。打包 行程 + 实体 + 模板 为单个 JSON；导入时每条 item 过内部 `makeItem()` 归一化字段。
+- `getAllTemplates()` —— 内置 3 个模板（`tpl-classic-7` / `tpl-eastern-12` / `tpl-uk-5`），导出时排除。
+- `getQuotaWarning()` / `subscribeQuotaWarning(cb)` —— localStorage 写满告警。
+- `updateItem()` / `setDayChecked()` —— QUOS 勾选状态写入。
 
-**数据安全**：
-- `exportAllData()` / `importAllData()` 打包行程+实体+模板为单个 JSON（行程列表「🛟 数据备份」）。
-- 写满 localStorage 时 `commit()` 置 quotaWarning，行程列表顶部显示红色横幅。
-- 监听 `storage` 事件做跨标签页同步（另一标签写入后本标签自动刷新内存 state）。
+⚠️ **现状**：`getQuotaWarning` / `subscribeQuotaWarning` / `updateItem` / `setDayChecked` **当前无任何界面消费者**（原宿主 `panel-views/quos-list.jsx` 已按 D1 删除）；保留是为了数据备份与 P2 复用。已删除的导出：解析导入、行程/天/条目增删、重命名、模板 CRUD、`useItineraries`。
+
+内部仍是「内存单例 + localStorage + version 计数 + `listeners` 订阅」结构；`commit()` 写 localStorage、`version++`、通知订阅者。监听 `storage` 事件做跨标签同步。写满时置 `quotaWarning`。
+
+### `src/lib/entity-store.js`（**活，部分**）
+
+实体（景点/酒店/餐厅）存 `euro-entities`，非响应式，CRUD 直接读写 localStorage，**带内存缓存**（写操作后置脏），渲染循环里反复 `getAllEntities()` 不重复解析。导出：`ensureSeeded` / `getAllEntities` / `getEntitiesByType` / `getEntityById` / `searchEntities` / `createEntity` / `updateEntity` / `deleteEntity` / `replaceAllEntities` / `getEntityStats`。
+
+活消费者：`app/knowledge/page.jsx`、`components/global-search.jsx`（`ensureSeeded` + `getAllEntities`）；`lib/item-name.js` 与 `lib/itinerary-store.js` 也用 `getAllEntities`。
 
 ## 行程数据模型
 
@@ -43,70 +55,87 @@ itinerary = {
 }
 ```
 
-item 统一由 `makeItem()` 工厂（itinerary-store 内部）创建，AI 导入与手动添加共用，避免字段漂移。item 关键字段：`type / name / nameEn / costCategory / estimatedCost / price / priceUnit / quantity / quosChecked / quosOverride / transportMode / transportSubtype`。
+item 由 `itinerary-store` 内部工厂 `makeItem()` 创建/归一化（导入备份时走它），避免字段漂移。item 关键字段：`type / name / nameEn / costCategory / estimatedCost / price / priceUnit / quantity / quosChecked / quosOverride / transportMode / transportSubtype`。
 
-**免费/收费判定 `isFreeItem(item)`**（唯一实现，`src/lib/quos-mapping.js`，quos-list 引用）：
+**免费/收费判定 `isFreeItem(item)`**（唯一实现，`src/lib/quos-mapping.js`）：
 1. `costCategory === 'free'` → 免费
 2. `costCategory === 'paid'` → 收费
 3. 无 costCategory → `!price || price === 0` 为免费
 
-## 其他模块
+## 模块地图（`src/lib`，22 个文件）
 
-- `src/lib/data.js`：静态 JSON（欧洲 24 国）查询。`getCityById` / `getAttractionById` 走惰性 `Map` 索引（O(1)），`getAllCitiesWithCoords` / `getAllAttractionsFlat` 结果缓存。
-- `src/lib/entity-store.js`：实体（景点/酒店/餐厅）存 `euro-entities`，非响应式，CRUD 直接读写 localStorage；**带内存缓存**（写操作后置脏），渲染循环里反复 `getAllEntities()` 不再重复解析。
-- `src/lib/config.js`：`SITE` / `TYPE_LABELS` / `TYPE_ICONS` / `ENTITY_MARKER_COLORS` / **`MAP`**。
-  - `MAP.defaultZoom = 4.5` —— **已确认固定值，勿改**（用户曾回滚过 4.3）。
-  - `MAP.entityVisibleZoom = 8` —— 实体标记显示阈值。
-- `src/lib/prompt.js`：AI 行程解析的 system prompt（`SYSTEM_PROMPT`），与 `app/api/parse-itinerary/route.js` 解耦；文末附常用城市 QUOS 码表（`src/data/city-hints.js`，由 `scripts/build-city-hints.js` 生成），AI 直接输出 `day.cityCode/countryCode`。
-- `src/lib/quos-mapping.js`：QUOS 类型映射（12 种服务类型 HTL/MTC/GUI/...）。**纯函数、无 `'use client'`**，服务端/客户端通用。
-- `src/lib/quote-rates.js`：固定费率集中配置（旅行保险 2.66 USD/人；前后夜默认 €120/晚，仅兜底）。保险改价只动这里。
-- `src/lib/item-name.js`：统一英文名查找（AI nameEn → QUOS 标准 → 实体库）。
-- `src/lib/geo.js`：`haversineKm` 距离计算（map-core / city-coords 共用）。
-- `src/lib/route-plan.js`：**地图路线计划**（`buildRoutePlan(points)` → OSRM 真实 km/时长/逐段几何 + `dayToLegIndex`）。纯函数 + 可注入 `fetchImpl`（Node 可测，无 'use client'）；按点集签名缓存，失败回退 `estimate`（直线×1.35、无几何、`~` 前缀标签）。与 `road-distance.js` 口径不同（后者是空驶计价：直线×1.3 + 吸附 5km，勿混用）。
-- `src/lib/day-route.js`：**天 → 段派生**（`buildDayPlans`）：把 route-plan 的 legs 按天分组，算当天各段 km/时长、当日累计、全行程累计、`dayDate`（出发日 = 第 1 天）。纯函数，段的天号口径与地图按天配色一致（`routePoints[leg.fromIdx].dayNumber`）。
-- `src/lib/quos-rows.js`：**QUOS 条目派生（唯一实现）**：`buildQuosRows(itinerary, filters)` → 扁平 QUOS 行（天号/天 id/城市码/QUOS 类型/英文名，酒店归当晚过夜城市）。`quos-list.jsx` 与段抽屉共用本模块 + `quosSortKey`/`fmtPrice`/`formatQuosRowsText`。
-- `src/lib/city-coords.js`：城市坐标查询（中文/英文/变体归一化）+ `estimateRoadKm` 车程估算（haversine×1.3 道路系数，就近取整 5km）；坐标表 `src/data/city-coords.js` 由 `scripts/build-city-coords.js` 从 europe-travel.json + MANUAL 生成（EMPTY RUN 空驶公里数用）。
-- `src/lib/coach-plan.js`：报价规则注入（保险 / THROUGH COACH / EMPTY RUN / 接机 / 前后夜 / 每日杂费），纯函数，route.js 调用。**THROUGH COACH 的国/城 = LDC 供应商所在地**（西欧多国→IT ROM、中欧→CZ PRG、波兰→PL WAW；2026-08-19 修正，曾误改为段起始城市），名称 = `{起始城市英文名} - {N} DAYS`（如 Warsaw - 9 DAYS）带车型（NGS/GLS），按 `ldc-mapping.js` 查表注入；**前后夜费率按 LDC 区域细分**（`ldc.prepost`），界面不显示金额；**中国出发/返程日不参与分段**（避免虚段）；**接机/送机只在抵达/离境日**（国/城=当天城市，名称 `{城市英文名} - APT/HTL` / `- HTL/APT`）；**返程离境日总是单独送机**（THROUGH COACH 段不覆盖离境日）；**每日用车杂费**（部分城市，`src/data/daily-fees.js`）段内命中注入；**EMPTY RUN 空驶**（`quoteKind: 'empty-run'`）每段都有（有 THROUGH COACH 就有），加在段首天，公里数 = 该段 from→to 真实车程，按 ER_RULES 阶梯计价，由 route.js `patchEmptyRunRoadKm` 用 OSRM 真实驾驶距离补全（`src/lib/road-distance.js`，失败回退 `estimateRoadKmFallback` 直线×1.3）；day 0 中国出发日不参与判定。
-- `src/lib/ldc-mapping.js`：LDC 长途车供应商判定（单国/多国/北极极地），纯函数；`SUPPLIERS` 每条目含 `prepost`（区域前后夜费率）与 `finlandNorthNgs`（ON REQUEST）。
-- `src/lib/api-config.js`：客户端 API Token 存取（解析接口鉴权，见 route.js 的 `PARSE_API_TOKEN`）。
-- `src/lib/id.js`：共享 `uid()`。
+**查询核心**
+- `quos-mapping.js`：QUOS 类型映射（12 类 `HTL/MTC/ENT/RST/GUI/FLT/DTR/OTR/DFR/OFR/LUG/OTH`）、免费判定、隐藏开关、城市码查找（中文/英文/别名/归一化/手工码）、QUOS 排序持久化。**全仓被引最多（7 处）**。纯函数、无 `'use client'`。
+- `data.js`：静态 JSON 查询层，读 `src/data/europe-travel.json`（**39 国 / 248 城 / 613 景点**）。`getCityById` / `getAttractionById` 走惰性 `Map` 索引（O(1)）；`getAllCitiesWithCoords` / `getAllAttractionsFlat` 结果缓存；`getCustomCities` / `saveCustomCities` 管自定义城市；`getStats` / `getCountryCoverImage`。
+- `hotel-prices.js`：供应商历史酒店报价查询（`hotel-prices.json`，€/人/月）。9 个导出：`getBookingInfo` / `getMonthFromDate` / `getHotelQuotes` / `getHotelQuotesOrAll` / `getQuoteRange` / `getQuoteRangeOrAll` / `findHotelQuote` / `searchHotelQuotes` / `getHotelQuoteCatalog`。
+- `hotel-recommend.js`：推荐酒店库（`hotel-recommendations.js`，€/晚），`recommendHotels` / `getHotelPriceRange` / `hasHotelData` / `getHotelCatalog` / `searchHotels`，re-export `COUNTRY_NAMES` / `COUNTRY_CURRENCIES`。
+- `mice.js`：MICE 查询/筛选，读 `mice-activities.js`（1,697 条 / 3.58 MB）+ `mice-zh.js`。导出 `resolveCountry` / `getAllMiceActivities` / `getMiceActivityById` / `getMiceCountries` / `getMiceTags` / `getMiceTourCategories` / `PRICE_RANGES` / `filterMiceActivities`。
+- `fx.js`：`useFx()` hook + `CURRENCIES`（19 币种）+ 5min localStorage 缓存，fetch `/api/fx`。
+- `normalize.js`：`normalizeCityName(name)`（city-coords / hotel-recommend / quos-mapping 共用）。
+- `geo.js`：`haversineKm`。
+- `country-flags.js`：`countryIsoCode(countryId)`（`components/country-flag.jsx` 用）。
+- `images.js` / `config.js` / `id.js`：占位色、`SITE`/`TYPE_LABELS`/`TYPE_ICONS`/`MAP` 等常量与 `uid()`。
 
-## 主题 token（globals.css）
+**报价规则引擎（UNREACHABLE —— 界面不可达，被 `npm test` 保护；D2 决定保留为只读资料）**
+- `coach-plan.js`（740 行）：`applyQuoteRules(parsed)` 注入 保险 / THROUGH COACH / EMPTY RUN / 接机 MTC / 送机 MTC / 前后夜 / 每日杂费 / 德国 VAT / 路税 / 人工处理提示；`patchEmptyRunRoadKm(result)`（async OSRM 补全空驶 km，失败回退 `estimateRoadKmFallback`）。
+- `ldc-mapping.js`（420 行）：`resolveLdcSupplier` / `matchFixedEr` / `hasArcticCity` / `SUPPLIERS` / `ER_RULES` / `KNOWN_COUNTRY_CODES`。
+- `quote-rates.js`：`QUOTE_RATES` 常数（保险 2.66 USD/人、前后夜 120 EUR、德 VAT 90.43 EUR、9 国路税 —— 仅 NO 有定案金额 380 NOK）。
+- `road-distance.js`：`estimateRoadKmFallback(a,b)` / `roadKmBetween(a,b)`（async OSRM）。⚠️ 被 `coach-plan.js` 依赖（`cfaa47b` 曾误判「零引用」），**不能删**。
+- `city-coords.js`：`getCityCoords(name)` → `[lat,lng]`（数据表 `src/data/city-coords.js`）。被 `road-distance.js` 与（已删的）`hotel-map.js` 引用。
+- `quos-rows.js`（92 行）：行程 → 扁平 QUOS 行派生（`buildQuosRows` / `quosSortKey` / `sortQuosRows` / `rowsForDay` / `fmtPrice` / `formatQuosRowsText`）。**当前无 src 消费者**（原宿主 `quos-list.jsx` 已按 D1 删除），仅测试引用；D1 后作为**契约参考实现**保留。
+- `item-name.js`：`getItemNameEn(item)`，仅被 `quos-rows.js` 引用。注意其链路第一段「AI nameEn」已退役，现实际只有「QUOS 标准名 → 实体库」两段可用。
+- `api-config.js`：`getApiToken` / `setApiToken`（localStorage `euro-parse-token`）。**语义悬空**：唯一消费者 `settings/page.jsx` 还在，但 token 的下游 `/api/parse-itinerary` 已删。
+
+## 数据资产（`src/data`）
+
+JSON：`quos-cities.json`(8,458 城码) / `quos-attractions.json`(17) / `europe-travel.json`(39 国·248 城·613 景点) / `hotel-prices.json`(62 城码·89 家·17 国) / `hotel-price-intros.json`(81) / `attraction-info.json`(21) / `city-meta.json`(33) / `country-meta.json`(27) / `europe-boundaries.json`(GeoJSON 40 features)。
+
+JS：`hotel-recommendations.js`(68 城·772 家) / `attraction-details.js`(585) / `mice-activities.js`(1,697·3.58 MB) / `mice-zh.js`(1,657) / `city-coords.js`(502) / `city-aliases.js`(3 表) / `countries.js`(**36 国** ISO 注册表) / `country-info.js`(36) / `country-intros.js`(36) / `country-images.js`(36) / `hotel-booking-map.js` / `hotel-coords.js`(空) / `manual-codes.js`(空)。
+
+**零 UI 消费的悬挂/死资产**（D2/P2 才挂上或按内容运营处理）：`ancillary-fees.js`(154 条 / 15 region，零 import)、`city-hints.js`(146，原给 AI prompt，零引用)、`coach-rules.js` / `daily-fees.js` / `std-mtc-options.js`(仅 `coach-plan.js`，不可达)、`hotel-coords.js`(空)。
+
+## 组件地图（`src/components`，19 个文件）
+
+- **布局/通用**：`header.jsx`（顶部导航，`layout.js` 引）、`footer.jsx`（`not-found` 引）、`toast.jsx`（`toast()` + host）、`theme-toggle.jsx`、`type-badge.jsx`、`page-hero.jsx`（**仍被 3 个在用页面引用**：knowledge / hotels / mice，P1 替换那三页时再删）、`search-toolbar.jsx`、`bilingual-text.jsx`。
+- **搜索**：`global-search.jsx`（portal，knowledge 页 + knowledge-top-bar 引）、`instant-search-dropdown.jsx`（hotels、mice 引）。
+- **知识库**：`knowledge-top-bar.jsx`、`country-flag.jsx`、`country-map.jsx`（国家页 Leaflet，唯一动态加载组件；共用 `map-styles.css`）、`image-with-placeholder.jsx`、`attraction-gallery.jsx`。
+- **酒店/MICE**：`currency-inline.jsx`（浮层汇率转换）、`mice-gallery.jsx`、`mice-image.jsx`。
+
+已删除（P0 或更早）：`map-core.jsx`、`hotel-map.jsx`、`floating-panel.jsx`、`panel-views/quos-list.jsx`、`confirm-dialog.jsx`、`modal.jsx`、`upload-modal.jsx`、`day-strip.jsx`、`segment-drawer.jsx`、`panel-views/itinerary-list.jsx`。
+
+## 主题 token（`globals.css`）
 
 - 双主题 token：浅色 `#E7EEF8` 蓝灰底 / 深色深夜蓝 `#071521`。
-- 品牌 5 色：主蓝 `#08739D`（accent/主按钮）、辅蓝 `#4984AC`（dim/hover）、浅底 `#E7EEF8`、绿 `#6D9D39`（行程城市标记）、青柠 `#AEC60C`（深色价格/高亮环）。
+- 品牌 5 色：主蓝 `#08739D`（accent/主按钮）、辅蓝 `#4984AC`（dim/hover）、浅底 `#E7EEF8`、绿 `#6D9D39`、青柠 `#AEC60C`。
 - **`--accent`** 用于文字/标记/选中态（深色模式用辅蓝亮化 `#63a0c8` 保证 ≥4.5:1）；**`--accent-strong`** 用于主按钮底色（白字 5.32:1）——新增按钮一律用它，勿用 `--accent` 配白字。
-- `--text-tertiary` / `--gold` 已调至 WCAG AA（≥4.5:1 小字）；浅色价格文字是青柠的深橄榄化 `#5f7113`，深色直接用 `#AEC60C`。
-- 地图配色（marker/线路/高亮环）在 map-core.jsx 有独立常量，与新 token 同源（主蓝/辅蓝/绿/青柠）。
-
-## QUOS 行程详情的复制/导出
-
-- `quos-list.jsx`：行/按天/按类型/全部「复制」（Tab 分隔，可直接粘贴进 Excel 类表格）、CSV 导出（带 BOM）、¥预估合计 / €单价合计（按类型视图有小组小计）。
-- 复制/导出范围 = 当前可见项（受隐藏免费/用餐/景点/内陆交通 + 只看未录 过滤影响）。
-
-## 地图（map-core.jsx）
-
-- 必须 `dynamic(..., { ssr: false })` 加载，Leaflet 图标需手动设默认路径。
-- 面板状态（collapsed/panelWidth）提升到 explore/page.js，同时传 MapCore 与 FloatingPanel。
-- 展开面板时 `map.invalidateSize()` 重新计算尺寸。
-- explore/page.js 的派生数据（routePoints/dayLabels/itineraryCityIds）用 `useMemo` + `useStoreVersion()`，hover 等无关状态不会重建 markers。
-- **路线绘制（刀1/刀2，2026-09-17）**：`explore/page.js` 传 `routePoints`（`{ key, lat, lng, dayNumber }`）→ map-core 用 `route-plan.js` 取 OSRM 真实几何，**按天分段配色**（`DAY_COLORS_LIGHT/DARK`，相邻天色相拉开）+ 原有金色流动虚线叠加；段标签 `446 km · 6h36`（estimate 显示 `~417 km` 且不带时长，杜绝估算冒充真实值）。OSRM 失败/未就绪 → 回退点对点直线画法（不白屏、不显示数字）。点集签名与当前行程不一致的计划一律不画（宁用直线也不用错几何）。
-- **段抽屉 + 行程条（刀3，2026-09-18）**：`day-strip.jsx`（地图底部居中一排 `D1 奥斯陆` chip，抽屉打开时右移 380px 不被遮）+ `segment-drawer.jsx`（桌面 `left:0 / top:56 / 380px`，移动端底部半屏 bottom sheet；内容顺序：`D2 · 9/18` → `起点 → 终点` → 各段 km/时长 + 当日/全程累计 → 分隔线 → `▸ 这段的报价条目`（默认折叠）→ `复制全部条目` / `全部条目 >`）。
-  - 触发：地图按天分段 polyline 可点（hover 加粗 3→6px；点击在 handler 里 `L.DomEvent.stopPropagation(e)` 掐断 Leaflet 对 map 的二次派发）+ 行程条 chip。关闭：✕ / Esc / 点地图空白处（map `click` 里判定 target 不在 marker/popup pane 且不是非边界 SVG path，否则算空白）。
-  - `explore/page.js` 自己订阅 `buildRoutePlan(routePoints)`（与 map-core 共用模块级缓存/并发去重，不重复请求 OSRM）→ `buildDayPlans` 出抽屉数据；`全部条目 >` 通过 `FloatingPanel` 的新可选 prop `viewRequest={view, nonce}` 切到 quos 视图（不影响其默认展开/宽度行为）。
+- MICE 专属点缀色：`--mice-accent` / `--mice-accent-subtle` / `--mice-accent-strong`。
+- ⚠️ **这套 token 仍是旧蓝系**：E｜磁贴墙（暖纸底 + 深色实底顶栏）尚未落地，P1 才改皮肤；改前先读 `docs/product-spec-2026-09.md` 第 5 节。
 
 ## 测试
 
-- `npm test`（node:test，`scripts/tests/*.test.mjs`）：coach-plan（报价规则）、ldc-mapping（供应商判定）、quos-mapping（类型/免费/城市码）、route-plan（路线计划纯函数，OSRM 调用一律注入 mock fetch，不联网）、day-route（天→段/累计/estimate 前缀）、quos-rows（条目派生/排序/复制文本）。
-- 纯函数库测试要求相对路径 import + `.js` 扩展名；JSON 用 `with { type: 'json' }`。
+`npm test`（node:test，`scripts/tests/*.test.mjs`，当前 **123 通过 / 0 失败**）：
+
+| 文件 | 覆盖 |
+|---|---|
+| `coach-plan.test.mjs` | `applyQuoteRules` 全链路（47） |
+| `ldc-mapping.test.mjs` | `resolveLdcSupplier` / ER 规则（19） |
+| `quos-mapping.test.mjs` | 类型/免费/隐藏/城市码 + 数据漂移防护（9） |
+| `quos-rows.test.mjs` | 条目派生/排序/复制文本（8） |
+| `hotel-recommend.test.mjs` | 推荐库命中/完整性（9） |
+| `country-images.test.mjs` | 磁盘图 ↔ 注册表一致（4） |
+| `quote-rates.test.mjs` | `QUOTE_RATES` 全部费率（6） |
+| `daily-fees.test.mjs` | `DAILY_FEES` 3 条（3） |
+| `hotel-prices.test.mjs` | `hotel-prices.js` 9 个导出（10） |
+| `ancillary-fees.test.mjs` | `ANCILLARY_FEES` 数据完整性现状（8） |
+
+纯函数库测试要求相对路径 import + `.js` 扩展名；JSON 用 `with { type: 'json' }`。
 
 ## 改动守则
 
-- 加/改 item 字段 → 同步 `makeItem()`。
 - 改免费/收费判定 → 只动 `quos-mapping.js` 的 `isFreeItem`。
-- 改地图默认缩放 → 只动 `config.js` 的 `MAP.defaultZoom`。
-- 改 AI 提示词 → 只动 `lib/prompt.js`；改城市码表 → 跑 `scripts/build-city-hints.js`。
 - 改固定费率 → 只动 `lib/quote-rates.js`。
-- 新增 store 消费者 → 用 `useItineraries()` 订阅，不要自己读 localStorage 再 refresh。
-- 改报价规则 / LDC 判定 / QUOS 映射 → 跑 `npm test`。
+- 改报价规则 / LDC 判定 / QUOS 映射 / 费率 / 酒店价 → 跑 `npm test`。
+- 改 item 字段 → 同步 `itinerary-store.js` 的 `makeItem()`。
+- 数据更新脚本在本机不可复现（仓库根无 `Cities.xlsx` / `hotel list.xlsx`，脚本指向 KT 目录或 Windows 路径）→ 数据改动只能手工或换机时注意。
 - 纯函数库不加 `'use client'`。
+- 设计/产品问题一律以 `docs/product-spec-2026-09.md` 为准。
