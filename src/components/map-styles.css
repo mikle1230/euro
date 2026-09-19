@@ -111,9 +111,9 @@
   background: rgba(10, 18, 25, 0.7) !important;
 }
 
-/* B 案：E 纸皮恒定 → 版权条不跟随暗色（删掉本段即可恢复） */
+/* A 案（2026-09-19 定案）：真深色 E 皮 → 版权条跟随主题回到深底 */
 :root[data-theme="dark"] body:has([data-skin="e"]) .leaflet-control-attribution {
-  background: rgba(250, 247, 242, 0.7) !important;
+  background: rgba(15, 13, 11, 0.72) !important;
 }
 
 /* ---- Container override ---- */

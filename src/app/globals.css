@@ -345,24 +345,89 @@ body:has([data-skin="e"]) {
   background-attachment: fixed;
 }
 
-/* ---- B 案（2026-09-19 定案）：E 纸皮恒定，暗色主题在 E 作用域内失效 ----------------
-   站点所有页面都挂了 [data-skin="e"]，所以 :root[data-theme="dark"] 里
-   那些「非 token 类」的覆盖（类型徽章亮化色 / 地图版权条底色等）
-   会在纸底上留下冷色残留，需要逐条钉回浅色取值。
-   顶栏、码牌、价贴本身就是恒定深墨，不参与主题切换，无需处理。
-   若将来改走 A 案（真深色 E 皮），把本段整段删掉即可恢复暗色。
+/* ---- A 案（2026-09-19 定案）：真深色 E 皮 -----------------------------------------
+   E 的「磁贴墙」语法（国家色条 / 等宽码牌 / 价贴 / 撕线打孔 / 小圆角 / 点阵纸）不动，
+   只把「纸」与「墨」换一套暖黑 —— 刻意避开基础暗色的蓝黑 #071521，
+   免得两套暗色撞成一味（一眼看不出是 E）。
+   权重：本段 (0,3,1) > E 浅色块 (0,1,1) > 基础暗色 (0,1,0)，
+   因此 data-theme="dark" 时由本段在 E 作用域内接管全部 token。
    ------------------------------------------------------------------------ */
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-landmark { color: #8b6914; }
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-museum { color: #3d5a80; }
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-nature { color: #3d6b3d; }
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-hotel { color: #3570a5; }
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-restaurant { color: #c05a30; }
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-transport { color: #6d3fd4; }
-:root[data-theme="dark"] body:has([data-skin="e"]) .badge-guide { color: #556677; }
+:root[data-theme="dark"] body:has([data-skin="e"]) {
+  --bg-primary: #171412;      /* 深墨纸 */
+  --bg-secondary: #1D1916;
+  --bg-card: #242019;
+  --bg-surface: #1F1B17;
+  --bg-elevated: #221E19;
+  --text-primary: #EDE3D3;    /* 米色墨 */
+  --text-secondary: #B7A992;
+  --text-tertiary: #9A8B74;   /* 卡上 4.8:1（#8C8070 只 4.1:1，小字不达标，已提亮） */
+  --accent: #D9764A;          /* 红棕在暗底要提亮，否则价签 / 换算结果会糊 */
+  --accent-hover: #E4895C;
+  --accent-dim: #9A8B74;
+  --accent-strong: #EDE3D3;   /* 主按钮反相成亮块 */
+  --accent-subtle: rgba(217, 118, 74, 0.14);
+  --gold: #D9764A;
+  --gold-dim: #1F1B17;
+  --border-color: #3A342C;
+  --border-light: #332E27;
+  --shadow-card: 0 1px 0 #3A342C;
+  --shadow-hover: 0 2px 10px rgba(0, 0, 0, 0.5);
+  --on-accent: #171412;
+  --on-accent-strong: #171412;
 
-/* 主题开关：2026-09-19 定「露出来」（此前按 B 案在 E 作用域隐藏过）。
-   注意：B 案下 E 纸皮恒定，切换主题目前不会改变外观 —— 开关本身仍正常写
-   localStorage(euro-theme) 与 <html data-theme>，等改走 A 案（真深色 E 皮）才有可见效果。 */
+  /* 顶栏：仍是深色实底，暗色下压得更深，保持「比纸更暗」的层次 */
+  --chrome-bg: #0F0D0B;
+  --chrome-border: #000000;
+  --chrome-text: #F2EADC;
+  --chrome-btn-bg: #221E19;
+  --chrome-btn-border: #4A4237;
+  --chrome-btn-fg: #E0D6C6;
+  --tab-on-bg: #F2EADC;
+  --tab-on-fg: #1A1714;
+  --tab-on-border: #F2EADC;
+  --tab-off-fg: #B9AE9B;
+  --hero-border: #4A4237;
+
+  --mice-accent: #D9764A;
+  --mice-accent-hover: #E4895C;
+  --mice-accent-subtle: rgba(217, 118, 74, 0.14);
+  --mice-accent-strong: #EDE3D3;
+
+  --e-card: #242019;
+  --e-paper3: #201C18;
+  --e-ink: #EDE3D3;
+  --e-ink4: #8A7C68;
+  --e-line: #3A342C;
+  --e-price: #E08A5E;
+  --noise-opacity: 0.03;
+
+  background-color: #171412;
+  background-image: radial-gradient(#26221D 1px, transparent 1px);
+}
+
+/* A 案：E 段里少数写死颜色的地方逐条跟随（浅色取值一律不动） */
+:root[data-theme="dark"] body:has([data-skin="e"]) .site-mark { background: #2A2622; color: #F0E8DA; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .code-plate .cc { background: #2A2622; color: #F0E8DA; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .code-plate .cty { background: #0F0D0B; color: #F0E8DA; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .code-plate.inline { border-color: #3F382E; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .punch-hole { background: #171412; border-color: #4A4237; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .instant-search-input { border-color: #3F382E; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .e-country-code { background: #0F0D0B; color: #F0E8DA; border: 1px solid #4A4237; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .e-tk-perf { border-top-color: #4A4237; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .e-tk-chips span.dark { background: #0F0D0B; border-color: #4A4237; color: #F0E8DA; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .e-mc-flag.soft { color: #D8B25A; border-color: #4A4237; background: #221E19; }
+
+/* 城市页 Hero 右栏蒙版：浅色下就是深墨（= --e-ink）；
+   A 案里 --e-ink 翻成米色当文字色用，所以这块必须单独钉住，否则变成「米底白字」 */
+[data-skin="e"] .e-city-hero-mask { background: #2A2723; }
+
+/* E 皮禁紫：运输类徽章基础色是紫（浅 #6d3fd4 / 暗 #a78bfa），收成石板蓝编码。
+   注意这条同时改了浅色外观（原本浅色 E 也带着这个紫）。 */
+body:has([data-skin="e"]) .badge-transport { background: rgba(74, 93, 107, 0.15); color: #4A5D6B; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-transport { background: rgba(143, 166, 184, 0.16); color: #8FA6B8; }
+
+/* 主题开关：2026-09-19 定「露出来」，同日改走 A 案后它才有真实可见效果。
+   写 localStorage(euro-theme) 与 <html data-theme> 的语义不变。 */
 
 /* ---- 顶栏：深色实底，去玻璃拟态 ---- */
 body:has([data-skin="e"]) header { color: var(--chrome-text); }
@@ -420,7 +485,7 @@ body:has([data-skin="e"]) :where(.rounded-sm, .rounded, .rounded-md, .rounded-lg
   padding: 2px 6px;
   border: 1px solid var(--e-line);
   border-radius: 2px;
-  background: #F3EBDD;
+  background: var(--bg-surface);
 }
 [data-skin="e"] .fx-inline > span[title]::after {
   content: '离线';
@@ -478,7 +543,7 @@ body:has([data-skin="e"]) :where(.rounded-sm, .rounded, .rounded-md, .rounded-lg
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #EFE7DA;
+  background: var(--bg-primary);
   border: 1px solid #CFC3B2;
 }
 
@@ -808,7 +873,7 @@ body:has([data-skin="e"]) .instant-search-icon { display: none; }
   margin-left: auto;
   flex: 0 0 auto;
   border: 1px solid var(--e-line);
-  background: #F3EBDD;
+  background: var(--bg-surface);
   border-radius: 2px;
   padding: 2px 6px;
   color: var(--text-secondary);
@@ -820,7 +885,7 @@ body:has([data-skin="e"]) .instant-search-icon { display: none; }
   height: 8px;
   margin-right: 4px;
   border: 1px solid var(--text-tertiary);
-  background: #FFFDF8;
+  background: var(--e-card);
   border-radius: 1px;
 }
 /* 分组小标题（酒店价格参考…）：两侧虚线夹持 */
@@ -890,7 +955,7 @@ body:has([data-skin="e"]) .instant-search-icon { display: none; }
   letter-spacing: 0.1em;
   line-height: 1.4;
   color: var(--e-price);
-  background: #F7F2E8;
+  background: var(--e-paper3);
   border: 1px solid var(--e-line);
   border-radius: 2px;
   padding: 2px 6px;

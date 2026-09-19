@@ -98,8 +98,7 @@ export default function CityPage() {
           </div>
           {/* 右：蒙版 + 文字（城市名/英文名/国家/描述） */}
           <div
-            className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center"
-            style={{ background: 'var(--e-ink, rgba(23, 32, 42, 0.62))' }}
+            className="e-city-hero-mask md:w-1/2 p-6 md:p-8 flex flex-col justify-center"
           >
             <h1 className="text-white font-display font-bold text-2xl md:text-3xl mb-2">
               {city.name}
