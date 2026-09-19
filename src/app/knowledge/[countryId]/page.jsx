@@ -14,6 +14,7 @@ import CountryFlag from '@/components/country-flag'
 import { CURRENCY_SYMBOLS } from '@/lib/config'
 import { getCityCode, getCityEnglishName } from '@/lib/quos-mapping'
 import { getCountryAccent } from '@/lib/skin'
+import { getCityImagePath, getAttractionImagePath } from '@/lib/images'
 import { COUNTRY_INTROS } from '@/data/country-intros'
 import { COUNTRY_INFO } from '@/data/country-info'
 
@@ -168,7 +169,7 @@ export default function CountryPage() {
                   >
                     <div className="relative">
                       <ImageWithPlaceholder
-                        src={`/images/cities/${city.id}.jpg`}
+                        src={getCityImagePath(city.id)}
                         alt={city.name}
                         type="landmark"
                         name={city.name}
@@ -262,7 +263,7 @@ export default function CountryPage() {
                     style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                   >
                     <ImageWithPlaceholder
-                      src={`/images/attractions/${attr.id}.jpg`}
+                      src={getAttractionImagePath(attr.id)}
                       alt={attr.name}
                       type={attr.type || 'landmark'}
                       name={attr.name}
