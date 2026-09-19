@@ -62,8 +62,12 @@ export default function InstantSearchDropdown({
     return () => window.removeEventListener('scroll', onScroll, true)
   }, [open])
 
-  // 结果变化时重置高亮
-  useEffect(() => { setSelectedIdx(0) }, [results])
+  // 结果变化时重置高亮（render 期按 previous 值调整 state，React 官方模式；行为等同于原来的 [results] effect）
+  const [prevResults, setPrevResults] = useState(results)
+  if (prevResults !== results) {
+    setPrevResults(results)
+    setSelectedIdx(0)
+  }
 
   const handleKeyDown = useCallback(
     (e) => {

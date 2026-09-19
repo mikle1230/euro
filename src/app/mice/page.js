@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
@@ -113,17 +113,17 @@ const chipInactive = { borderColor: 'var(--border-color)', color: 'var(--text-se
 const selectClass = 'px-2.5 py-1.5 rounded-lg text-xs border outline-none focus-ring-mice'
 const selectStyle = { background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }
 
+// URL 的 ?q= 属于外部系统（不在 React 里），用 useSyncExternalStore 读：
+// 水合时 React 用 server 快照（''），水合完成后才切到 client 快照（浏览器 location.search），
+// 所以不会出现 hydration 不一致；随后在 render 期按 previous 值同步到 query
+// （React 官方「按 previous 值调整 state」模式），与原来 [] 依赖的 effect 行为一致。
+const subscribeNoop = () => () => {}
+const readUrlQuery = () => new URLSearchParams(window.location.search).get('q') || ''
+
 export default function MicePage() {
   const router = useRouter()
+  const urlQuery = useSyncExternalStore(subscribeNoop, readUrlQuery, () => '')
   const [query, setQuery] = useState('')
-  // 支持从详情页搜索框跳转过来：/mice?q=关键词 → 自动初始化搜索
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get('q')
-    if (q) {
-      setQuery(q)
-      setShown(60)
-    }
-  }, [])
   const [country, setCountry] = useState('')
   const [categories, setCategories] = useState([])
   const [tourCat, setTourCat] = useState('')
@@ -131,6 +131,14 @@ export default function MicePage() {
   const [tag, setTag] = useState('')
   const [hideClosed, setHideClosed] = useState(true)
   const [shown, setShown] = useState(60)
+  const [urlQueryApplied, setUrlQueryApplied] = useState(false)
+
+  // 支持从详情页搜索框跳转过来：/mice?q=关键词 → 自动初始化搜索
+  if (!urlQueryApplied && urlQuery) {
+    setUrlQueryApplied(true)
+    setQuery(urlQuery)
+    setShown(60)
+  }
 
   const countries = useMemo(() => getMiceCountries(), [])
   const tourCategories = useMemo(() => getMiceTourCategories(), [])

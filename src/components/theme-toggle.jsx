@@ -1,19 +1,25 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useSyncExternalStore } from 'react'
+
+// 外部系统（localStorage + 系统主题）快照：只在挂载后读一次，与原来 [] 依赖 effect 的读取时机一致。
+// useSyncExternalStore 在水合时用 server 快照（'light'），水合完成后才切到 client 快照，
+// 因此不会出现读 localStorage 造成的 hydration 不一致，也不需要 effect 里 setState。
+const subscribeToThemeSource = () => () => {}
+function readThemeSource() {
+  const stored = localStorage.getItem('euro-theme')
+  return stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+}
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState('light')
-
-  useEffect(() => {
-    const stored = localStorage.getItem('euro-theme')
-    const current = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    setTheme(current)
-  }, [])
+  const detected = useSyncExternalStore(subscribeToThemeSource, readThemeSource, () => 'light')
+  // 用户点过按钮后的显式选择；null = 跟随上面探测到的当前主题
+  const [chosen, setChosen] = useState(null)
+  const theme = chosen ?? detected
 
   function toggle() {
     const next = theme === 'light' ? 'dark' : 'light'
-    setTheme(next)
+    setChosen(next)
     localStorage.setItem('euro-theme', next)
     document.documentElement.setAttribute('data-theme', next)
   }

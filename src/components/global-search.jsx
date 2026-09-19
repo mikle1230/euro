@@ -216,7 +216,12 @@ export default function GlobalSearch({ wide = false }) {
   }, [open])
 
   // Reset selectedIdx when results change
-  useEffect(() => { setSelectedIdx(0) }, [results])
+  // （render 期按 previous 值调整 state，React 官方模式；行为等同于原来的 [results] effect）
+  const [prevResults, setPrevResults] = useState(results)
+  if (prevResults !== results) {
+    setPrevResults(results)
+    setSelectedIdx(0)
+  }
 
   return (
     <div ref={containerRef} className="relative">
