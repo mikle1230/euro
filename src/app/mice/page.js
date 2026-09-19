@@ -5,102 +5,110 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getAllMiceActivities, getMiceCountries, getMiceTags, getMiceTourCategories, filterMiceActivities, PRICE_RANGES, resolveCountry } from '@/lib/mice'
 import { MICE_ZH } from '@/data/mice-zh'
-import MiceImage from '@/components/mice-image'
+import { getCountryAccentByIso } from '@/lib/skin'
 import SearchToolbar from '@/components/search-toolbar'
 import PageHero from '@/components/page-hero'
 import InstantSearchDropdown from '@/components/instant-search-dropdown'
 
+// E｜磁贴墙 皮肤：本页与城市库/国家页/景点页/酒店库同一套 token（globals.css 末尾 E 段）。
+// 颜色只做编码：类别用两个非紫的收敛色（赭棕 / 石板灰蓝），国家用 lib/skin.js 的国家色表
+// （ISO 码 → 城市库 country id，同一国家各级页面同色）。
 const CATEGORY_STYLE = {
-  'Activity': { label: '🎪 活动', color: 'var(--mice-accent)', bg: 'var(--mice-accent-subtle)' },
-  'Technical Visit': { label: '🏭 技术参访', color: '#7c5cff', bg: 'rgba(124, 92, 255, 0.14)' },
+  Activity: { label: '活动', color: '#8C5A2B', bg: 'rgba(140, 90, 43, 0.12)' },
+  'Technical Visit': { label: '技术参访', color: '#4A5D6B', bg: 'rgba(74, 93, 107, 0.14)' },
 }
 
 function statusBadge(status) {
-  if (status === 'Temporarily Closed') return { text: '⏸ 暂时关闭', cls: { background: 'rgba(245,158,11,0.15)', color: '#b45309' } }
-  if (status === 'Permanently Closed') return { text: '⛔ 永久关闭', cls: { background: 'rgba(239,68,68,0.12)', color: '#dc2626' } }
+  if (status === 'Temporarily Closed') return { text: '暂时关闭', soft: true }
+  if (status === 'Permanently Closed') return { text: '永久关闭', soft: false }
   return null
 }
 
+// 无图码卡（E）：1,697 条活动只有 1 张可用图 → 不用假图、不用 emoji。
+// 卡面 = 色块头（左 6px 国家色条 + 深墨码牌 MICE｜IT + 红棕价贴）+ 打孔线 + 纸身，
+// 字段与旧卡完全一致：类别 / 国家 / 城市 / 中英标题 / 最多人数 / 价格+单位 / 时长 / 标签。
 function ActivityCard({ a, idx = 0 }) {
   const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)', bg: 'var(--bg-surface)' }
   const closed = statusBadge(a.productStatus)
   const country = resolveCountry(a.country)
+  const accent = getCountryAccentByIso(country?.code)
   const titleZh = MICE_ZH.titles[a.id] || ''
   const cityZh = MICE_ZH.cities[a.city] || ''
   const price = a.priceMax > 0
     ? `€${a.priceMin || '?'}–${a.priceMax}`
     : a.priceMin > 0
       ? `€${a.priceMin}`
-      : '价格待询'
+      : ''
   const unit = a.priceUnit ? `/${a.priceUnit}` : ''
-  const cap = a.capacityMax > 0 ? `👥 最多 ${a.capacityMax} 人` : ''
+  // 时长字段里既有「3 hours 30 minutes」也有整段说明（数据原样）；
+  // 短的贴红棕贴纸，长的降为纸底等宽辅文（不裁切、不假装是短值）。
+  const duration = String(a.activityDuration || '').trim()
+  const durationAsSticker = duration.length > 0 && duration.length <= 18
 
   return (
     <Link
       href={`/mice/${a.id}`}
-      className="fade-up group flex flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-[var(--shadow-hover)] focus-ring-mice"
+      className="e-ticket fade-up group flex flex-col transition-all duration-200 hover:-translate-y-0.5 focus-ring-mice"
       style={{
-        background: 'var(--bg-card)',
-        borderColor: 'var(--border-color)',
         opacity: closed ? 0.72 : 1,
         animationDelay: `${Math.min(idx * 40, 360)}ms`,
-        boxShadow: 'var(--shadow-card)',
       }}
     >
-      <div className="h-36 relative overflow-hidden" style={{ background: 'var(--bg-elevated)' }}>
-        <MiceImage
-          activity={a}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
-        />
-        {closed && (
-          <span className="absolute top-2 left-2 text-[10px] px-2 py-0.5 rounded-full font-semibold backdrop-blur" style={closed.cls}>
-            {closed.text}
+      {/* 色块头：国家色条 + 码牌 + 价贴（无图牌，不假装有照片） */}
+      <div className="e-mc-block" style={{ borderLeft: `6px solid ${accent}` }}>
+        <span className="code-plate inline" aria-hidden>
+          <span className="cc">MICE</span>
+          {country?.code && <span className="cty">{country.code}</span>}
+        </span>
+        {closed && <span className={`e-mc-flag${closed.soft ? ' soft' : ''}`}>{closed.text}</span>}
+        {price ? (
+          <span className="e-price lg">
+            {price}
+            {unit && <span className="u">{unit}</span>}
           </span>
+        ) : (
+          <span className="e-price none">价格待询</span>
         )}
       </div>
 
-      <div className="p-3.5 flex flex-col gap-1.5 flex-1">
-        <div className="flex items-center gap-1.5">
-          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0" style={{ background: cat.bg, color: cat.color }}>
-            {cat.label}
-          </span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full font-medium shrink-0" style={{ background: 'var(--bg-surface)', color: 'var(--text-tertiary)' }}>
-            {country?.flag || ''} {country?.nameZh || a.country}{cityZh ? ` · ${cityZh}` : ''}
-          </span>
+      {/* 打孔线（纯装饰） */}
+      <div className="e-tk-perf" aria-hidden><i className="l" /><i className="r" /></div>
+
+      {/* 纸身：中英标题 + 类别/国家/城市/容量/标签 */}
+      <div className="e-tk-body">
+        <div className="e-tk-name">
+          <h3 title={a.title}>{titleZh || a.title}</h3>
+          <span className="e-tk-seq" aria-hidden>{String(idx + 1).padStart(2, '0')}</span>
+        </div>
+        {titleZh && <div className="e-tk-meta" title={a.title}>{a.title}</div>}
+
+        <div className="e-tk-chips">
+          {/* 类别圆点用类别色（赭棕 / 石板蓝），左侧 6px 色条仍是国家色 */}
+          <span className="e-mc-cat" style={{ color: cat.color }}>{cat.label}</span>
+          <span>{country?.nameZh || a.country}</span>
+          {(cityZh || a.city) && <span>{cityZh || a.city}</span>}
+          {a.capacityMax > 0 && <span>最多 {a.capacityMax} 人</span>}
         </div>
 
-        <div>
-          <h3 className="text-sm font-semibold leading-snug line-clamp-1" style={{ color: 'var(--text-primary)', textWrap: 'balance' }} title={a.title}>
-            {titleZh || a.title}
-          </h3>
-          {titleZh && (
-            <div className="text-[11px] mt-0.5 truncate" style={{ color: 'var(--text-tertiary)' }}>{a.title}</div>
-          )}
-        </div>
-
-        <div className="text-xs flex items-center gap-2 flex-wrap" style={{ color: 'var(--text-tertiary)' }}>
-          {a.city && <span className="inline-flex items-center gap-1">📍 <span className="truncate max-w-28">{cityZh || a.city}</span></span>}
-          {cap && <span>{cap}</span>}
-        </div>
-
-        <div className="mt-auto pt-1 flex items-center justify-between gap-2">
-          <span className="text-xs font-semibold" style={{ color: 'var(--mice-accent)' }}>
-            {price}{unit}
-          </span>
-          {a.tags.slice(0, 2).map((t) => (
-            <span key={t} className="text-[10px] px-1.5 py-0.5 rounded-full truncate max-w-24" style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
-              #{t}
-            </span>
-          ))}
-        </div>
+        {/* 票根行：时长（红棕贴纸）+ 标签，贴到卡底 */}
+        {(duration || a.tags.length > 0) && (
+          <div className="e-mc-foot">
+            {duration && (
+              durationAsSticker
+                ? <span className="e-price" title={duration}>{duration}</span>
+                : <span className="e-mc-note" title={duration}>{duration}</span>
+            )}
+            {a.tags.slice(0, 2).map((t) => <span key={t} className="e-mc-tag">#{t}</span>)}
+          </div>
+        )}
       </div>
     </Link>
   )
 }
 
 const chipClass = 'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium transition-all border whitespace-nowrap focus-ring-mice'
-// 激活态用 --mice-accent-strong（深橙，白字深浅主题都 ≥4.5:1）；--mice-accent 在深色会提亮，白字不达标
-const chipActive = { background: 'var(--mice-accent-strong)', color: '#fff', borderColor: 'transparent' }
+// 激活态用 --mice-accent-strong（E 皮肤下 = 深墨实底，浅纸底上对比 ≥4.5:1）
+const chipActive = { background: 'var(--mice-accent-strong)', color: 'var(--on-accent-strong)', borderColor: 'transparent' }
 const chipInactive = { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
 const selectClass = 'px-2.5 py-1.5 rounded-lg text-xs border outline-none focus-ring-mice'
 const selectStyle = { background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }
@@ -156,16 +164,12 @@ export default function MicePage() {
   const hasFilter = query || country || categories.length || tourCat || priceRange || tag || !hideClosed
 
   return (
-    <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
+    <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
       {/* Hero — 与城市库统一风格/高度 */}
       <PageHero
         maxWidth="max-w-7xl"
         title="MICE 特色活动"
-        badge={
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold" style={{ background: 'var(--mice-accent-subtle)', color: 'var(--mice-accent)' }}>
-            <span className="text-sm leading-none">🎪</span> 活动 / 技术参访
-          </span>
-        }
+        badge={<span className="e-badge">活动 / 技术参访</span>}
         subtitle={`共 ${stats.total} 项（${stats.activity} 活动 · ${stats.tv} 技术参访）· 为地接团组精选的可落地特色活动与技术参访，可直接复制进报价单`}
       />
 
@@ -184,31 +188,19 @@ export default function MicePage() {
               onSelect={(a) => router.push(`/mice/${a.id}`)}
               accentVar="var(--mice-accent)"
               renderItem={(a) => {
-                const cat = CATEGORY_STYLE[a.category] || { label: a.category, color: 'var(--text-secondary)', bg: 'var(--bg-surface)' }
                 const country = resolveCountry(a.country)
                 const price = a.priceMax > 0 ? `€${a.priceMin || '?'}–${a.priceMax}` : a.priceMin > 0 ? `€${a.priceMin}` : '价格待询'
                 return (
                   <div className="flex items-center gap-3 px-3 py-2">
-                    <span
-                      className="w-7 h-7 rounded-lg flex items-center justify-center text-sm shrink-0"
-                      style={{ background: cat.bg, color: cat.color }}
-                    >
-                      {a.category === 'Technical Visit' ? '🏭' : '🎪'}
-                    </span>
                     <div className="min-w-0 flex-1">
                       <div className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
-                        {a.title}
+                        {MICE_ZH.titles[a.id] || a.title}
                       </div>
                       <div className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>
-                        {[country?.flag, country?.nameZh || a.country, a.city].filter(Boolean).join(' · ')}
+                        {[country?.nameZh || a.country, a.city].filter(Boolean).join(' · ')}
                       </div>
                     </div>
-                    <span
-                      className="text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0"
-                      style={{ background: 'var(--bg-surface)', color: 'var(--mice-accent)' }}
-                    >
-                      {price}
-                    </span>
+                    <span className="e-idx-chip shrink-0">{price}</span>
                   </div>
                 )
               }}
@@ -218,51 +210,50 @@ export default function MicePage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
-        {/* 类别 chips */}
-        <div className="flex items-center gap-1.5 mt-4 mb-3 flex-wrap">
-          {Object.keys(CATEGORY_STYLE).map((c) => (
-            <button
-              key={c}
-              onClick={() => { toggleCategory(c); setShown(60) }}
-              className={chipClass}
-              style={categories.includes(c) ? chipActive : chipInactive}
-            >
-              {CATEGORY_STYLE[c].label}
-            </button>
-          ))}
-        </div>
+        {/* 筛选纸带：类别 chips + 国家/团型/价格/标签下拉 + 隐藏关闭 / 重置（顺序与旧版一致） */}
+        <div className="filter-strip">
+          <div className="flex flex-wrap gap-1.5 filter-chips">
+            {Object.keys(CATEGORY_STYLE).map((c) => (
+              <button
+                key={c}
+                onClick={() => { toggleCategory(c); setShown(60) }}
+                className={`${chipClass} filter-chip`}
+                style={categories.includes(c) ? chipActive : chipInactive}
+              >
+                {CATEGORY_STYLE[c].label}
+              </button>
+            ))}
+          </div>
 
-        {/* 筛选器 */}
-        <div className="flex items-start gap-2 flex-wrap mb-4">
-          <select value={country} onChange={(e) => { setCountry(e.target.value); setShown(60) }} className={selectClass} style={selectStyle} aria-label="国家筛选">
-            <option value="">🌍 全部国家</option>
+          <select value={country} onChange={(e) => { setCountry(e.target.value); setShown(60) }} className={`${selectClass} filter-select`} style={selectStyle} aria-label="国家筛选">
+            <option value="">全部国家</option>
             {countries.map((c) => (
               <option key={c.code || c.nameEn} value={c.code || c.nameEn}>
-                {c.flag} {c.nameZh || c.nameEn}（{c.count}）
+                {c.nameZh || c.nameEn}（{c.count}）
               </option>
             ))}
           </select>
-          <select value={tourCat} onChange={(e) => { setTourCat(e.target.value); setShown(60) }} className={selectClass} style={selectStyle} aria-label="团型筛选">
-            <option value="">🧳 全部团型</option>
+          <select value={tourCat} onChange={(e) => { setTourCat(e.target.value); setShown(60) }} className={`${selectClass} filter-select`} style={selectStyle} aria-label="团型筛选">
+            <option value="">全部团型</option>
             {tourCategories.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
-          <select value={priceRange} onChange={(e) => { setPriceRange(e.target.value); setShown(60) }} className={selectClass} style={selectStyle} aria-label="价格筛选">
-            <option value="">💰 全部价格</option>
+          <select value={priceRange} onChange={(e) => { setPriceRange(e.target.value); setShown(60) }} className={`${selectClass} filter-select`} style={selectStyle} aria-label="价格筛选">
+            <option value="">全部价格</option>
             {PRICE_RANGES.map((r) => <option key={r.key} value={r.key}>{r.label}</option>)}
           </select>
-          <select value={tag} onChange={(e) => { setTag(e.target.value); setShown(60) }} className={selectClass} style={selectStyle} aria-label="标签筛选">
-            <option value="">🏷️ 全部标签</option>
+          <select value={tag} onChange={(e) => { setTag(e.target.value); setShown(60) }} className={`${selectClass} filter-select`} style={selectStyle} aria-label="标签筛选">
+            <option value="">全部标签</option>
             {tags.map((t) => <option key={t} value={t}>#{t}</option>)}
           </select>
-          <button onClick={() => setHideClosed(!hideClosed)} className={chipClass} style={hideClosed ? chipActive : chipInactive}>
-            {hideClosed ? '🙈 隐藏关闭' : '👁️ 显示关闭'}
+          <button onClick={() => setHideClosed(!hideClosed)} className={`${chipClass} filter-chip filter-toggle`} style={hideClosed ? chipActive : chipInactive}>
+            {hideClosed ? '隐藏关闭' : '显示关闭'}
           </button>
-          {hasFilter && <button onClick={reset} className={chipClass} style={chipInactive}>✕ 重置</button>}
+          {hasFilter && <button onClick={reset} className={`${chipClass} filter-chip filter-toggle`} style={chipInactive}>重置</button>}
         </div>
 
         {/* 结果统计 */}
-        <p className="text-xs mb-4" style={{ color: 'var(--text-secondary)' }}>
-          找到 <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{results.length}</span> 项{results.length > shown ? `，显示前 ${shown} 项` : ''}
+        <p className="e-count">
+          找到 <b>{results.length}</b> 项{results.length > shown ? `，显示前 ${shown} 项` : ''}
         </p>
 
         {/* 卡片网格 */}
@@ -271,9 +262,10 @@ export default function MicePage() {
             {results.slice(0, shown).map((a, i) => <ActivityCard key={a.id} a={a} idx={i} />)}
           </div>
         ) : (
-          <div className="text-center py-16 border border-dashed rounded-2xl" style={{ borderColor: 'var(--border-color)' }}>
-            <p className="text-3xl mb-3">🔍</p>
-            <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>没有匹配的活动</p>
+          <div className="text-center py-16 border border-dashed" style={{ borderColor: 'var(--e-line, var(--border-color))' }}>
+            {/* E 皮禁 emoji：空态用码牌代替图标（纯装饰） */}
+            <span className="code-plate inline" aria-hidden><span className="cc">0</span><span className="cty">结果</span></span>
+            <p className="text-sm font-medium mt-3" style={{ color: 'var(--text-secondary)' }}>没有匹配的活动</p>
             <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>调整筛选条件，或点击「重置」回到全部</p>
           </div>
         )}

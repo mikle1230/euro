@@ -321,6 +321,12 @@ body:has([data-skin="e"]) {
   --tab-radius: 2px;
   --hero-border: #2A2723;
 
+  /* MICE 专属暖色 token 也收进 E 的红棕 / 深墨（避免第二套配色） */
+  --mice-accent: #9E3B1F;
+  --mice-accent-hover: #8A321A;
+  --mice-accent-subtle: rgba(158, 59, 31, 0.10);
+  --mice-accent-strong: #2A2723;
+
   /* ---- E 私有 token（命名对齐静态稿） ---- */
   --e-card: #FFFDF8;
   --e-paper3: #F7F2E8;        /* 卡身暖白衬纸（不用近白 #FFFDF8） */
@@ -810,3 +816,126 @@ body:has([data-skin="e"]) .instant-search-icon { display: none; }
 }
 [data-skin="e"] .e-sublab::before,
 [data-skin="e"] .e-sublab::after { content: ''; flex: 1; height: 0; border-top: 1px dashed var(--e-line); }
+
+/* =============================================================
+   E｜磁贴墙 皮肤 —— P1-6a：/mice（活动目录）
+   -------------------------------------------------------------
+   与 P1-1..P1-5 同一套 token / 码牌 / 打孔 / 纸带语言（无新增体系）：
+     · 1,697 条活动只有 1 张可用图 → 列表卡一律「无图码卡」（不假装有照片、
+       不用 emoji）：色块头（左 6px 国家色条 + 深墨码牌 MICE｜IT + 红棕价贴）
+       + 打孔线 + 纸身；
+     · 价格与时长都用红棕等宽贴纸（.e-price），无价时只写「价格待询」不贴纸；
+     · 类别只做编码：赭棕（活动）/ 石板灰蓝（技术参访），刻意避开紫。
+   只改「衣服」：色 / 字 / 圆角 / 装饰；不动结构、文案与 IA。
+   ============================================================= */
+/* 结果计数行（等宽） */
+[data-skin="e"] .e-count {
+  font-family: var(--e-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  margin: 0 0 14px;
+}
+[data-skin="e"] .e-count b { font-weight: 700; color: var(--text-primary); }
+
+/* 筛选带里的下拉：可收缩 + 限最大宽度（窄屏不会被 option 撑出横向溢出） */
+[data-skin="e"] .filter-strip .filter-select {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  border-radius: 2px;
+  font-family: var(--e-mono);
+  font-size: 11px;
+  padding: 6px 9px;
+}
+[data-skin="e"] .filter-strip .filter-toggle { flex: 0 0 auto; }
+
+/* ---- 无图码卡（活动卡）：色块头 + 码牌 + 价贴 ---- */
+[data-skin="e"] .e-mc-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px 11px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--e-line);
+}
+[data-skin="e"] .e-mc-block .code-plate { flex: 0 0 auto; }
+[data-skin="e"] .e-mc-block .e-price { margin-left: auto; flex: 0 1 auto; }
+/* 关闭状态牌（E 皮禁 emoji 徽章；原地原意，只换衣服） */
+[data-skin="e"] .e-mc-flag {
+  flex: 0 0 auto;
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  color: var(--e-price);
+  background: #F7F2E8;
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+[data-skin="e"] .e-mc-flag.soft { color: #8A6A1F; border-color: #D8C79A; background: #F7F2E4; }
+/* 类别小牌：分类圆点用类别色（左侧 6px 色条仍是国家色，各管一个编码维度） */
+[data-skin="e"] .e-tk-chips .e-mc-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  background: var(--e-paper3);
+  white-space: nowrap;
+}
+[data-skin="e"] .e-tk-chips .e-mc-cat::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+/* 票根行：时长贴纸 + 标签，贴到卡底（卡内空间不悬空） */
+[data-skin="e"] .e-mc-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-light);
+}
+[data-skin="e"] .e-mc-tag {
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+/* 长时长（整段说明）降为纸底等宽辅文，不裁切 */
+[data-skin="e"] .e-mc-note {
+  font-family: var(--e-mono);
+  font-size: 10.5px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* 价贴尺寸档：大档（列表色块头 / 详情页价格） */
+[data-skin="e"] .e-price.lg { font-size: 15px; font-weight: 700; padding: 3px 9px; }
+[data-skin="e"] .e-price .u {
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-left: 5px;
+}
+/* 无价：不贴价贴，降为纸底辅文（不拿 0 冒价，也不假装有价） */
+[data-skin="e"] .e-price.none { color: var(--text-tertiary); font-weight: 400; background: transparent; border-style: dashed; }

@@ -1,4 +1,5 @@
 import { getAllCountries } from './data'
+import { COUNTRIES } from '../data/countries'
 
 // E｜磁贴墙 皮肤 —— 国家色条。
 // 逐值取自已批准的静态视觉稿 media/mock/E6-knowledge.html，数组顺序与视觉稿一致
@@ -16,4 +17,22 @@ export const CARD_ACCENTS = [
 export function getCountryAccent(countryId) {
   const idx = getAllCountries().findIndex((c) => c.id === countryId)
   return CARD_ACCENTS[(idx < 0 ? 0 : idx) % CARD_ACCENTS.length]
+}
+
+// MICE / 酒店库的数据用的是 ISO 二字码（IT、FR…），城市库用的是 country id（italy、france…）。
+// 这里用「同一份国家表 countries.js 的中英文名」把 ISO 码映射回城市库 id，
+// 再走上面同一张色表取色 —— 保证同一个国家在 /knowledge 与 /mice、/hotels 颜色一致。
+// 查不到时沿用 getCountryAccent 的兜底（第 1 个色），不新增第二套配色。
+export function getCountryAccentByIso(isoCode) {
+  const key = String(isoCode || '').toUpperCase()
+  if (key) {
+    const info = COUNTRIES[key]
+    if (info) {
+      const hit = getAllCountries().find(
+        (c) => c.nameEn === info.nameEn || c.name === info.name,
+      )
+      if (hit) return getCountryAccent(hit.id)
+    }
+  }
+  return getCountryAccent('')
 }
