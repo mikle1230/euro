@@ -1002,3 +1002,60 @@ body:has([data-skin="e"]) .instant-search-icon { display: none; }
 }
 [data-skin="e"] .e-noimg .nm { font-size: 13px; font-weight: 700; line-height: 1.4; color: var(--text-primary); }
 [data-skin="e"] .e-noimg .cap { font-family: var(--e-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--text-tertiary); }
+
+/* =============================================================
+   E｜磁贴墙 皮肤 —— P1-7：/settings（设置）
+   -------------------------------------------------------------
+   与其它页同一套 token / 面板语言（无新增体系）：面板 = 纸底 + 左侧 6px 深墨边
+   （设置页不属于任何国家，不借用国家色），面板头 = 标题 + 等宽编号 + 虚线分隔；
+   QUOS 排序行 = 纸底等宽码行。只改衣服：控件、字段与行为一个不动。
+   ============================================================= */
+[data-skin="e"] .e-page-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--e-ink);
+}
+[data-skin="e"] .e-page-kicker {
+  margin-left: auto;
+  font-family: var(--e-mono);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--e-ink4);
+}
+/* QUOS 排序行 */
+[data-skin="e"] .e-quos-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  background: var(--e-paper3);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  font-size: 11.5px;
+}
+[data-skin="e"] .e-quos-code {
+  flex: 0 0 auto;
+  width: 34px;
+  font-family: var(--e-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--e-price);
+}
+[data-skin="e"] .e-quos-move {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--e-line);
+  border-radius: 2px;
+  color: var(--text-secondary);
+}
+[data-skin="e"] .e-quos-move:hover:not(:disabled) { border-color: var(--e-ink); color: var(--text-primary); }
