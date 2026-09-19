@@ -176,7 +176,7 @@ function HotelCard({ h, showCity = false, cityCode = '', countryCode = '', accen
         <div className="e-tk-chips">
           {h.star > 0 && <span>{h.star} 星</span>}
           {h.rating > 0 && <span>评分 {h.rating}</span>}
-          <span className={fromList ? 'dark' : ''}>{fromList ? 'hotel list' : 'AI 推荐'}</span>
+          <span className={fromList ? 'dark' : ''}>{fromList ? 'QUOS 资源' : 'AI 推荐'}</span>
           {showCity && !priceRef && <span>{[h.countryName, h.city].filter(Boolean).join(' · ')}</span>}
         </div>
         {near.length > 0 && (

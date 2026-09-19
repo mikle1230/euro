@@ -426,6 +426,11 @@ body:has([data-skin="e"]) {
 body:has([data-skin="e"]) .badge-transport { background: rgba(74, 93, 107, 0.15); color: #4A5D6B; }
 :root[data-theme="dark"] body:has([data-skin="e"]) .badge-transport { background: rgba(143, 166, 184, 0.16); color: #8FA6B8; }
 
+/* 深色 E 皮：照片压暗，免得暖黑底上显得过亮跳眼 */
+:root[data-theme="dark"] body:has([data-skin="e"]) img:not(.leaflet-tile):not(.leaflet-marker-icon) {
+  filter: brightness(.92);
+}
+
 /* 主题开关：2026-09-19 定「露出来」，同日改走 A 案后它才有真实可见效果。
    写 localStorage(euro-theme) 与 <html data-theme> 的语义不变。 */
 
