@@ -321,6 +321,7 @@ body:has([data-skin="e"]) {
 
   /* ---- E 私有 token（命名对齐静态稿） ---- */
   --e-card: #FFFDF8;
+  --e-paper3: #F7F2E8;        /* 卡身暖白衬纸（不用近白 #FFFDF8） */
   --e-ink: #2A2723;
   --e-ink4: #A99C88;
   --e-line: #D6CABA;
@@ -406,7 +407,7 @@ body:has([data-skin="e"]) :where(.rounded-sm, .rounded, .rounded-md, .rounded-lg
 [data-skin="e"] .spotlight-card::after { background: none; }   /* 去掉蓝色辉光 */
 [data-skin="e"] .spotlight-card img { filter: saturate(0.94) contrast(1.05); }
 [data-skin="e"] .spotlight-card h3 { font-size: 15px; font-weight: 800; letter-spacing: 0.01em; }
-[data-skin="e"] .card-body { padding: 9px 11px 10px; }
+[data-skin="e"] .card-body { background: var(--e-paper3); padding: 8px 10px 9px; }
 [data-skin="e"] .card-meta { font-family: var(--e-mono); font-size: 10.5px; letter-spacing: 0.02em; margin-top: 4px; }
 [data-skin="e"] .card-desc { font-size: 11.5px; line-height: 1.45; margin-top: 6px; }
 [data-skin="e"] .card-tags {
