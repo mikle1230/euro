@@ -12,6 +12,7 @@
     "build:hotels": "node scripts/build-hotel-prices.js",
     "build:ancillary": "node scripts/build-ancillary-fees.js",
     "mice:images": "node scripts/mice-images-optimize.js",
+    "images:manifest": "node scripts/build-image-manifest.mjs",
     "images:check": "node scripts/normalize-images.mjs --check",
     "images:fix": "node scripts/normalize-images.mjs --fix",
     "images:watch": "node scripts/normalize-images.mjs --watch",
