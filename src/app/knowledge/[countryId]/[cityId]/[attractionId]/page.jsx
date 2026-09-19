@@ -10,6 +10,7 @@ import AttractionGallery from '@/components/attraction-gallery'
 import TypeBadge from '@/components/type-badge'
 import KnowledgeTopBar from '@/components/knowledge-top-bar'
 import { getCountryAccent } from '@/lib/skin'
+import { getAttractionImagePath } from '@/lib/images'
 import { haversineKm } from '@/lib/geo'
 
 export default function AttractionPage() {
@@ -223,7 +224,7 @@ export default function AttractionPage() {
                   className="spotlight-card rounded-xl border overflow-hidden transition-all hover:-translate-y-0.5"
                   style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                 >
-                  <ImageWithPlaceholder src={`/images/attractions/${a.id}.jpg`} alt={a.name} type={a.type || 'landmark'} name={a.name} size="card" variant="attraction" />
+                  <ImageWithPlaceholder src={getAttractionImagePath(a.id)} alt={a.name} type={a.type || 'landmark'} name={a.name} size="card" variant="attraction" />
                   <div className="p-2 card-body">
                     <p className="text-xs font-medium truncate" style={{ color: 'var(--text-primary)' }}>
                       {a.name}

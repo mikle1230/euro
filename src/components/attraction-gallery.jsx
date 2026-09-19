@@ -1,28 +1,25 @@
 'use client'
 
 import { useState } from 'react'
-import { getPlaceholderColors } from '@/lib/images'
+import { getPlaceholderColors, getAttractionImageSources } from '@/lib/images'
 
-// 景点图片组：自动探测主图（封面图 {id}.jpg）+ 附加图（{id}-1/2/3.jpg），
-// 成功加载的组成图片组，点击缩略图切换主图。
-// 用途：景点详情页右侧 1/4 参考图区；多图内容逐步积累，缺图自动隐藏。
+// 景点图片组：主图（{id}.jpg）+ 附加图（{id}-1/2/3.jpg），点击缩略图切换主图。
+// 候选图先过图片清单（getAttractionImageSources）：磁盘上没有的图根本不渲染 <img>，
+// 因此缺图不会产生 404 请求；全部缺图时直接给渐变占位。
+// 用途：景点详情页右侧 1/4 参考图区；多图内容逐步积累。
 export default function AttractionGallery({ id, name, type = 'landmark' }) {
-  const candidates = [
-    { src: `/images/attractions/${id}.jpg`, label: '主图' },
-    { src: `/images/attractions/${id}-1.jpg`, label: '图 2' },
-    { src: `/images/attractions/${id}-2.jpg`, label: '图 3' },
-    { src: `/images/attractions/${id}-3.jpg`, label: '图 4' },
-  ]
-  // 加载状态：pending / ok / fail（用隐藏 img 触发 onLoad/onError 探测）
-  const [status, setStatus] = useState({})
+  const sources = getAttractionImageSources(id)
+  const candidates = sources.map((src, i) => ({ src, label: i === 0 ? '主图' : `图 ${i + 1}` }))
   const [activeIdx, setActiveIdx] = useState(0)
+  const [failed, setFailed] = useState({})
 
-  const images = candidates.filter((c) => status[c.src] === 'ok')
-  const active = images[Math.min(activeIdx, images.length - 1)]
+  // 清单保证文件存在，但仍保留 onError 兜底：文件损坏/被误删时不至于显示破图
+  const images = candidates.filter((c) => !failed[c.src])
+  const active = images[Math.min(activeIdx, Math.max(images.length - 1, 0))]
 
   const colors = getPlaceholderColors(name || '', type)
 
-  if (images.length === 0) {
+  if (!active) {
     // 全部未加载成功（或加载中）→ 渐变占位
     return (
       <div
@@ -43,19 +40,6 @@ export default function AttractionGallery({ id, name, type = 'landmark' }) {
 
   return (
     <div className="space-y-2">
-      {/* 隐藏探测：渲染所有候选图，onLoad/onError 记录状态 */}
-      {candidates.map((c) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          key={c.src}
-          src={c.src}
-          alt=""
-          className="hidden"
-          onLoad={() => setStatus((s) => (s[c.src] === 'ok' ? s : { ...s, [c.src]: 'ok' }))}
-          onError={() => setStatus((s) => (s[c.src] === 'fail' ? s : { ...s, [c.src]: 'fail' }))}
-        />
-      ))}
-
       {/* 主图 */}
       <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-elevated)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -65,6 +49,7 @@ export default function AttractionGallery({ id, name, type = 'landmark' }) {
           className="w-full aspect-[4/3] object-cover"
           loading="eager"
           decoding="async"
+          onError={() => setFailed((f) => ({ ...f, [active.src]: true }))}
         />
       </div>
       {/* 缩略图行（多图时显示） */}
