@@ -17,7 +17,9 @@ export default function CityPage() {
   const { countryId, cityId } = params
   const [typeFilter, setTypeFilter] = useState([])
 
-  const city = getCityById(cityId)
+  // 同景点页：URL 的 country 段必须与城市真实归属一致，避免 /knowledge/<任意国>/<城> 张冠李戴
+  const foundCity = getCityById(cityId)
+  const city = foundCity && foundCity.country?.id === countryId ? foundCity : null
   // E 皮肤：国家色条（同一国家在各级页面同色，色表见 lib/skin.js）
   const accent = getCountryAccent(countryId)
   if (!city) {

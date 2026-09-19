@@ -17,7 +17,10 @@ export default function AttractionPage() {
   const params = useParams()
   const { countryId, cityId, attractionId } = params
 
-  const attraction = getAttractionById(attractionId)
+  // id 全局唯一，但 URL 的三段必须自洽：country/city 写错时不能渲染别处的同 id 景点
+  // （例：/knowledge/france/toulouse/piazza-signoria 曾渲染佛罗伦萨的市政厅广场）
+  const found = getAttractionById(attractionId)
+  const attraction = found && found.country?.id === countryId && found.city?.id === cityId ? found : null
   // E 皮肤：国家色条（同一国家在各级页面同色，色表见 lib/skin.js）
   const accent = getCountryAccent(countryId)
   if (!attraction) {
