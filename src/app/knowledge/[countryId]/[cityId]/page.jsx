@@ -8,6 +8,7 @@ import cityMeta from '@/data/city-meta.json'
 import ImageWithPlaceholder from '@/components/image-with-placeholder'
 import TypeBadge from '@/components/type-badge'
 import KnowledgeTopBar from '@/components/knowledge-top-bar'
+import { getCountryAccent } from '@/lib/skin'
 import { haversineKm } from '@/lib/geo'
 
 export default function CityPage() {
@@ -16,11 +17,12 @@ export default function CityPage() {
   const [typeFilter, setTypeFilter] = useState([])
 
   const city = getCityById(cityId)
+  // E 皮肤：国家色条（同一国家在各级页面同色，色表见 lib/skin.js）
+  const accent = getCountryAccent(countryId)
   if (!city) {
     return (
-      <div className="min-h-full flex items-center justify-center" style={{ background: 'var(--bg-secondary)' }}>
+      <div className="min-h-full flex items-center justify-center" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
         <div className="text-center">
-          <p className="text-4xl mb-4">🏙️</p>
           <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>城市未找到</p>
           <Link href="/knowledge" className="text-xs mt-2 inline-block" style={{ color: 'var(--accent)' }}>
             ← 返回城市库
@@ -48,9 +50,9 @@ export default function CityPage() {
   const availableTypes = [...new Set(allItems.map((item) => item._type))]
 
   const FILTER_TYPES = [
-    { key: 'landmark', icon: '🏛️', label: '地标' },
-    { key: 'museum', icon: '🏺', label: '博物馆' },
-    { key: 'nature', icon: '🌿', label: '自然' },
+    { key: 'landmark', label: '地标' },
+    { key: 'museum', label: '博物馆' },
+    { key: 'nature', label: '自然' },
   ]
 
   // Nearby cities (by geographic distance, cross-country)
@@ -65,7 +67,7 @@ export default function CityPage() {
     .slice(0, 8)
 
   return (
-    <div className="min-h-full" style={{ background: 'var(--bg-secondary)' }}>
+    <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
       {/* 吸顶工具条：面包屑 + 全局搜索（搜索框全程停留在顶部，随时可检索） */}
       <KnowledgeTopBar
         crumbs={[
@@ -78,7 +80,7 @@ export default function CityPage() {
 
       {/* Hero postcard：PPT 式左右分栏 —— 左半边城市图，右半边蒙版文字（与国家页全幅蒙版区分） */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 mb-6">
-        <div className="rounded-2xl overflow-hidden border shadow-lg md:flex" style={{ borderColor: 'var(--border-color)' }}>
+        <div className="rounded-2xl overflow-hidden border md:flex" style={{ borderColor: 'var(--border-color)' }}>
           {/* 左：城市图（移动端在上，16/9；桌面端填满左栏高度） */}
           <div className="md:w-1/2 shrink-0">
             <ImageWithPlaceholder
@@ -94,7 +96,7 @@ export default function CityPage() {
           {/* 右：蒙版 + 文字（城市名/英文名/国家/描述） */}
           <div
             className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center"
-            style={{ background: 'rgba(23, 32, 42, 0.62)' }}
+            style={{ background: 'var(--e-ink, rgba(23, 32, 42, 0.62))' }}
           >
             <h1 className="text-white font-display font-bold text-2xl md:text-3xl mb-2">
               {city.name}
@@ -129,7 +131,7 @@ export default function CityPage() {
             >
               全部 ({allItems.length})
             </button>
-            {FILTER_TYPES.filter((t) => availableTypes.includes(t.key)).map(({ key, icon, label }) => {
+            {FILTER_TYPES.filter((t) => availableTypes.includes(t.key)).map(({ key, label }) => {
               const count = allItems.filter((item) => item._type === key).length
               return (
                 <button
@@ -146,7 +148,7 @@ export default function CityPage() {
                       : { background: 'var(--bg-surface)', color: 'var(--text-secondary)', borderColor: 'var(--border-color)' }
                   }
                 >
-                  {icon} {label} ({count})
+                  {label} ({count})
                 </button>
               )
             })}
@@ -157,7 +159,7 @@ export default function CityPage() {
         {filteredItems.length > 0 && (
           <div className="mb-8">
             <h2 className="font-display font-bold text-lg mb-4" style={{ color: 'var(--text-primary)' }}>
-              📍 探索
+              探索
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredItems.map((item) => (
@@ -165,7 +167,7 @@ export default function CityPage() {
                   key={item.id}
                   href={item._href}
                   className="spotlight-card group rounded-xl border overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-hover)]"
-                  style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+                  style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', borderLeft: `6px solid ${accent}` }}
                 >
                   <ImageWithPlaceholder
                     src={`/images/attractions/${item.id}.jpg`}
@@ -175,7 +177,7 @@ export default function CityPage() {
                     size="card"
                     variant="attraction"
                   />
-                  <div className="p-3">
+                  <div className="p-3 card-body">
                     <div className="mb-1">
                       <TypeBadge type={item._type} />
                     </div>
@@ -184,7 +186,7 @@ export default function CityPage() {
                       {item.nameEn && <span className="ml-1 font-normal" style={{ color: 'var(--text-tertiary)' }}>{item.nameEn}</span>}
                     </h3>
                     {item.description && (
-                      <p className="text-xs line-clamp-2" style={{ color: 'var(--text-secondary)' }}>
+                      <p className="text-xs line-clamp-2 card-desc" style={{ color: 'var(--text-secondary)' }}>
                         {item.description}
                       </p>
                     )}
@@ -199,7 +201,7 @@ export default function CityPage() {
         {nearbyCities.length > 0 && (
           <div>
             <h2 className="font-display font-bold text-lg mb-3" style={{ color: 'var(--text-primary)' }}>
-              🏙️ 周边城市
+              周边城市
             </h2>
             <div className="flex flex-wrap gap-2">
               {nearbyCities.map((c) => (
