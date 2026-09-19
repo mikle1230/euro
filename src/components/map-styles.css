@@ -111,6 +111,11 @@
   background: rgba(10, 18, 25, 0.7) !important;
 }
 
+/* B 案：E 纸皮恒定 → 版权条不跟随暗色（删掉本段即可恢复） */
+:root[data-theme="dark"] body:has([data-skin="e"]) .leaflet-control-attribution {
+  background: rgba(250, 247, 242, 0.7) !important;
+}
+
 /* ---- Container override ---- */
 .leaflet-container {
   font-family: 'Geist', 'Noto Sans SC', sans-serif !important;

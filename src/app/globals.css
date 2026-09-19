@@ -336,6 +336,7 @@ body:has([data-skin="e"]) {
   --e-price: #9E3B1F;
   --e-mono: 'SF Mono', Menlo, Consolas, 'Courier New', monospace;
   --page-ground: transparent;   /* 页面主体让位给 body 的点阵纸底 */
+  --noise-opacity: 0.03;        /* 暗色下的 0.04 在纸底上偏脏，钉回浅色值 */
 
   /* 暖纸底 + 极轻点阵纹 */
   background-color: #EFE7DA;
@@ -343,6 +344,25 @@ body:has([data-skin="e"]) {
   background-size: 14px 14px;
   background-attachment: fixed;
 }
+
+/* ---- B 案（2026-09-19 定案）：E 纸皮恒定，暗色主题在 E 作用域内失效 ----------------
+   站点所有页面都挂了 [data-skin="e"]，所以 :root[data-theme="dark"] 里
+   那些「非 token 类」的覆盖（类型徽章亮化色 / 地图版权条底色等）
+   会在纸底上留下冷色残留，需要逐条钉回浅色取值。
+   顶栏、码牌、价贴本身就是恒定深墨，不参与主题切换，无需处理。
+   若将来改走 A 案（真深色 E 皮），把本段整段删掉即可恢复暗色。
+   ------------------------------------------------------------------------ */
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-landmark { color: #8b6914; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-museum { color: #3d5a80; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-nature { color: #3d6b3d; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-hotel { color: #3570a5; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-restaurant { color: #c05a30; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-transport { color: #6d3fd4; }
+:root[data-theme="dark"] body:has([data-skin="e"]) .badge-guide { color: #556677; }
+
+/* 主题开关：E 纸皮固定后，它对整站已无任何可见作用 → 在 E 作用域内隐藏。
+   删掉这一行即恢复（按钮本体与切换逻辑仍留在 theme-toggle.jsx）。 */
+body:has([data-skin="e"]) .theme-toggle { display: none; }
 
 /* ---- 顶栏：深色实底，去玻璃拟态 ---- */
 body:has([data-skin="e"]) header { color: var(--chrome-text); }

@@ -23,11 +23,11 @@ const NAME_TO_COUNTRY_ID = {
 }
 
 // 免 key 底图：CARTO 的 keyless 端点现已要求 API key，会盖 "API KEY REQUIRED" 水印。
-// 改用 Esri 的 Canvas 世界灰底（浅/深两套），Leaflet 直接可用、无需 key。
+// 改用 Esri 的 Canvas 世界灰底（免 key），Leaflet 直接可用。
+// 站点已全站 E 纸皮（B 案：暗色主题不再换页），因此底图恒用浅灰，
+// 不再保留深色瓦片与主题切换重建瓦片的逻辑。
 const TILE_URL_LIGHT =
   'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-const TILE_URL_DARK =
-  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'
 const TILE_ATTRIBUTION =
   'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors'
 
@@ -55,10 +55,8 @@ export default function CountryMap({ countryId, cities = [] }) {
     const resizeObserver = new ResizeObserver(() => map.invalidateSize())
     resizeObserver.observe(containerRef.current)
 
-    const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark'
-    const tileUrl = () => (isDark() ? TILE_URL_DARK : TILE_URL_LIGHT)
-
-    let tileLayer = L.tileLayer(tileUrl(), {
+    // 恒用浅灰底图（E 纸皮不跟随主题切换）
+    const tileLayer = L.tileLayer(TILE_URL_LIGHT, {
       attribution: TILE_ATTRIBUTION,
     }).addTo(map)
 
@@ -110,18 +108,7 @@ export default function CountryMap({ countryId, cities = [] }) {
       })
     }
 
-    // 主题切换时换瓦片
-    const observer = new MutationObserver(() => {
-      if (!mapRef.current) return
-      tileLayer.remove()
-      tileLayer = L.tileLayer(tileUrl(), {
-        attribution: TILE_ATTRIBUTION,
-      }).addTo(map)
-    })
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-
     return () => {
-      observer.disconnect()
       resizeObserver.disconnect()
       map.remove()
       mapRef.current = null
