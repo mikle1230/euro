@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 // MICE 活动图片组：自动探测主图 + 附加图，支持多图缩略图切换 + 点击放大（Lightbox）。
-// 候选链（与 mice-image.jsx 一致）：public/mice-images/{id}.jpg/.jpeg/.png/.webp → {id}-1/2/3.* → Excel previewImageUrl
+// 候选链：public/mice-images/{id}.jpg/.jpeg/.png/.webp → {id}-1/2/3.* → Excel previewImageUrl
 // 多图约定：把附加图命名为 {id}-1.jpg、{id}-2.jpg 等放入 public/mice-images/ 即可自动出现，无需改代码。
 //
 // E｜磁贴墙 皮肤：1,697 条活动只 1 张可用图 → 图位占位改「无图牌」（暖纸底 + 深墨码牌 IMG｜0），

@@ -38,7 +38,8 @@
 - 北欧单国费率(DK/SE/NO/FI)已编码 ✅ 无需改
 
 ### A5. ✅ 已确认无需改(避免重复劳动)
-- 中欧 CZ/HU/SK→CZ PRG;DE+AT→DE BER;纯意→IT ROM GLS 590(代码已正确)
+- 中欧 CZ/HU/SK→CZ PRG;纯意→IT ROM GLS 590(代码已正确)
+- 德国三档(2026-09-17 修正):西欧主体带德→IT ROM;德国一地→DE BER;无西欧→人工提示
 - 西欧多国→IT ROM NGS 650(代码已正确)
 
 ---
