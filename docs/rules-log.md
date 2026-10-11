@@ -316,3 +316,18 @@
 - **导入后不自动收起面板**：导入完成后面板仍展开并落到「行程详情」（既有行为未动）。若想让“导入即看到线”，需要新增“导入成功后自动收起”——**待 Michael 确认**。
 - **窄视口**：抽屉（左 380）与面板（右 ≥360）同开时在 <800px 会贴近；层级已差开（1050 / 1000），但未做联动。
 - 未改：导入流程、header、AI 解析链、`src/data/*`。
+
+
+
+---
+
+## 2026-10-11 — 城市补录：佩皮尼昂（Perpignan, FR / PGF）
+
+**来源**：`references/euro/inbox/cities-inbox.md` #4（Sarah Farhi 2026-10-06 邮件：KT 拟新开目的地）+ euro 周同步 2026-10-11
+**状态**：🛠️ 已实现
+**落点（4 触点）**：
+- `src/data/europe-travel.json` → 法国段新增城市 `perpignan`（佩皮尼昂 / Perpignan，42.6887/2.8956）
+- `scripts/curated-cities.cjs` → 法国段新增 `['佩皮尼昂', 'Perpignan']`
+- `node scripts/build-city-hints.js` → `src/data/city-hints.js`（158 城）
+- `src/data/quos-cities.json` → 已有 `Perpignan = PGF`，无需改
+**验收**：`npm test` 129/129 全绿（含「数据漂移」用例）

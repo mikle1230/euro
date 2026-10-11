@@ -8,6 +8,7 @@ module.exports = [
   ['巴黎', 'Paris'], ['尼斯', 'Nice'], ['马赛', 'Marseille'], ['戛纳', 'Cannes'],
   ['阿维尼翁', 'Avignon'], ['里昂', 'Lyon'], ['斯特拉斯堡', 'Strasbourg'], ['波尔多', 'Bordeaux'],
   ['第戎', 'Dijon'], ['科尔马', 'Colmar'], ['安纳西', 'Annecy'], ['霞慕尼', 'Chamonix'],
+  ['佩皮尼昂', 'Perpignan'],
   ['凡尔赛', 'Versailles'], ['圣特罗佩', 'Saint Tropez'], ['瓦朗索勒', 'Valensole'], ['圣米歇尔山', 'Mont Saint Michel'],
   // 意大利
   ['罗马', 'Rome'], ['佛罗伦萨', 'Florence'], ['威尼斯', 'Venice'], ['米兰', 'Milan'],

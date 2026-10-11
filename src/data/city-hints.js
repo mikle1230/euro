@@ -249,6 +249,12 @@ export const CITY_HINTS = [
     "countryCode": "DE"
   },
   {
+    "cn": "普特加登",
+    "en": "Puttgarden",
+    "cityCode": "PUT",
+    "countryCode": "DE"
+  },
+  {
     "cn": "斯图加特",
     "en": "Stuttgart",
     "cityCode": "STR",
@@ -267,9 +273,33 @@ export const CITY_HINTS = [
     "countryCode": "DK"
   },
   {
-    "cn": "胖特烈港",
+    "cn": "腓特烈港",
     "en": "Frederikshavn",
     "cityCode": "FRH",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "赫尔辛格",
+    "en": "Helsingor",
+    "cityCode": "HSG",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "霍尔特",
+    "en": "Holte",
+    "cityCode": "HTE",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "尼堡",
+    "en": "Nyborg",
+    "cityCode": "NYB",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "勒兹比",
+    "en": "Roedby",
+    "cityCode": "ROD",
     "countryCode": "DK"
   },
   {
@@ -429,6 +459,12 @@ export const CITY_HINTS = [
     "countryCode": "FR"
   },
   {
+    "cn": "佩皮尼昂",
+    "en": "Perpignan",
+    "cityCode": "PGF",
+    "countryCode": "FR"
+  },
+  {
     "cn": "圣特罗佩",
     "en": "Saint Tropez",
     "cityCode": "JSZ",
@@ -549,9 +585,21 @@ export const CITY_HINTS = [
     "countryCode": "IE"
   },
   {
+    "cn": "海拉",
+    "en": "Hella (Iceland)",
+    "cityCode": "HLL",
+    "countryCode": "IS"
+  },
+  {
     "cn": "雷克雅未克",
     "en": "Reykjavik",
     "cityCode": "REK",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "维克",
+    "en": "Vik i Myrdal",
+    "cityCode": "VKK",
     "countryCode": "IS"
   },
   {
@@ -771,9 +819,27 @@ export const CITY_HINTS = [
     "countryCode": "NO"
   },
   {
+    "cn": "弗勒",
+    "en": "Forde",
+    "cityCode": "FDE",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "盖罗",
+    "en": "Geilo",
+    "cityCode": "DLD",
+    "countryCode": "NO"
+  },
+  {
     "cn": "奥斯陆",
     "en": "Oslo",
     "cityCode": "OSL",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "斯塔尔海姆",
+    "en": "Stalheim",
+    "cityCode": "STH",
     "countryCode": "NO"
   },
   {
@@ -834,6 +900,12 @@ export const CITY_HINTS = [
     "cn": "哥德堡",
     "en": "Gothenburg",
     "cityCode": "GOT",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "赫尔辛堡",
+    "en": "Helsingborg",
+    "cityCode": "AGH",
     "countryCode": "SE"
   },
   {

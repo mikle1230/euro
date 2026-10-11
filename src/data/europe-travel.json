@@ -451,6 +451,14 @@
           ]
         },
         {
+          "id": "perpignan",
+          "name": "佩皮尼昂",
+          "nameEn": "Perpignan",
+          "lat": 42.6887,
+          "lng": 2.8956,
+          "attractions": []
+        },
+        {
           "id": "dijon",
           "name": "第戎",
           "nameEn": "Dijon",
