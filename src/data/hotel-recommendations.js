@@ -1,5 +1,16 @@
 // 酒店参考数据：静态库（Booking 评分/欧元参考价，非实时）
 // 数据来源：联网调研整理（booking.com / Google Hotels / TripAdvisor 等），仅供报价参考
+// ⏸ 占位（2026-10-13，待录入）─────────────────────────────────────────
+// 「常用酒店库」并入本库 —— QUOS 团里已用过的酒店
+//   源：references/euro/常用酒店库-2026-10-13.md / .csv（8 国 / 39 家 / 51 晚）
+//   种子团：BJSGW53630（意大利 21D）、BJSGW53637（西/葡 22D）、BJSGW53638（法+卢/比/荷 18D）
+//   规则：入库前按 references/euro/inbox/hotels-inbox.md 查重、只认 Booking 评分、不补价
+//   归类：**「QUOS 资源」＝主源**（QUOS 团实际住店）；本文件（AI 推荐）＝**辅助扩展**（Michael 2026-10-13 定主次）
+//   落点：**以 euro 库为准** —— 直接在 euro 数据里落 QUOS 资源酒店；hotel list.xlsx 只是**导入方式之一**，非前置条件
+//   ⚠️ 代码待办（不影响占位）：现「QUOS 资源」标签仅由 hotel-prices.json（xlsx 生成）触发；
+//      若要把 QUOS 资源酒店直接写进 euro 数据也带上该标签，需扩展标签判定逻辑。
+//   状态：**先占位、内容不做**（Michael 2026-10-13）。本块仅占位，勿删。
+// ──────────────────────────────────────────────────────────────────────
 export default {
   "agrigento": {
     name: "阿格里真托", nameEn: "Agrigento", country: "IT", cityCode: "QAO", note: "住神殿之谷（Valle dei Templi）入口附近最方便看神庙群；老城市中心次选。", hotels: [
