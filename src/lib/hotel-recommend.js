@@ -42,7 +42,8 @@ export function recommendHotels(cityName, cityNameEn, limit = 5, cityCode = '') 
   const entry = findCity(cityName, cityNameEn, cityCode)
   if (!entry) return []
   return (entry.hotels || [])
-    .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    // 「用过的」优先（无评分也排在前面），其余按评分降序
+    .sort((a, b) => (Number(!!b.used) - Number(!!a.used)) || (b.rating || 0) - (a.rating || 0))
     .slice(0, limit)
 }
 
@@ -72,10 +73,11 @@ export { COUNTRY_NAMES, COUNTRY_CURRENCIES }
 // 全部酒店按「国家 → 城市 → 酒店」分组（不限制数量/评分）
 export function getHotelCatalog() {
   const byCountry = {}
-  for (const c of Object.values(hotelData)) {
+  for (const [slug, c] of Object.entries(hotelData)) {
     const cc = c.country || 'ZZ'
     if (!byCountry[cc]) byCountry[cc] = []
     byCountry[cc].push({
+      slug,
       city: c.name,
       nameEn: c.nameEn,
       cityCode: c.cityCode,
@@ -91,6 +93,46 @@ export function getHotelCatalog() {
       cities: cities.sort((a, b) => String(a.city).localeCompare(String(b.city), 'zh')),
     }))
     .sort((a, b) => String(a.countryName).localeCompare(String(b.countryName), 'zh'))
+}
+
+// ---- 酒店详情页（/hotels/[id]）----
+// id = 城市 slug + '--' + 系统名称/酒店名 slug，例：florence--leonardo-da-vinci
+// 用 slug 而非数组下标：数据增删后链接不会指错店。
+export function hotelSlug(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+export function hotelId(citySlug, h) {
+  return `${citySlug}--${hotelSlug(h.systemName || h.name)}`
+}
+
+// 按 id 取单店（含城市信息）；未命中返回 null
+export function getHotelById(id) {
+  const key = String(id || '')
+  const [citySlug] = key.split('--')
+  const entry = hotelData[citySlug]
+  const pick = (slug, c, h) => ({
+    ...h,
+    id: hotelId(slug, h),
+    citySlug: slug,
+    city: c.name,
+    cityNameEn: c.nameEn,
+    cityCode: c.cityCode,
+    country: c.country,
+    countryName: COUNTRY_NAMES[c.country] || c.country,
+    cityNote: c.note,
+  })
+  if (entry) {
+    for (const h of entry.hotels || []) if (hotelId(citySlug, h) === key) return pick(citySlug, entry, h)
+  }
+  for (const [slug, c] of Object.entries(hotelData)) {
+    for (const h of c.hotels || []) if (hotelId(slug, h) === key) return pick(slug, c, h)
+  }
+  return null
 }
 
 // 搜索酒店：酒店名（中/英）模糊匹配 + 城市名（中/英/码）匹配

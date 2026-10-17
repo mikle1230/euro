@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { getHotelCatalog, searchHotels, COUNTRY_CURRENCIES } from '@/lib/hotel-recommend'
-import { getHotelQuoteCatalog, findHotelQuote, getBookingInfo, searchHotelQuotes } from '@/lib/hotel-prices'
+import Link from 'next/link'
+import { getHotelCatalog, hotelId } from '@/lib/hotel-recommend'
+import { findHotelQuote, getBookingInfo } from '@/lib/hotel-prices'
 import { getAllCountries } from '@/lib/data'
 import { getCountryAccent } from '@/lib/skin'
 import SearchToolbar from '@/components/search-toolbar'
@@ -11,12 +12,11 @@ import InstantSearchDropdown from '@/components/instant-search-dropdown'
 import travelData from '@/data/europe-travel.json'
 import { COUNTRIES } from '@/data/countries'
 
-// E｜磁贴墙 皮肤：本页与城市库/国家页/景点页同一套 token（globals.css 末尾 E 段）。
-// 国家色条复用 lib/skin.js 的国家色表；色表按「城市库国家顺序」取色，
-// 所以这里先把 ISO 二字码（酒店数据用的是 ISO 码）映射回城市库的 country id，
-// 保证同一个国家在 /knowledge 与 /hotels 颜色一致。
+// E｜磁贴墙 皮肤：与城市库/国家页/景点页同一套 token（globals.css 末尾 E 段）。
+// C+ 布局（2026-10-15 定稿）：左筛选 / 中列表 / 右预览；团号与来源只在**详情页**出现。
+// 层切换默认「用过的」；「全部候选」里备选默认折叠，该城没有用过的店时自动展开。
 
-// 国家标签顺序：跟随「城市库」(europe-travel.json) 的国家顺序（而非中文名音序），便于对照查找
+// 国家标签顺序：跟随「城市库」(europe-travel.json) 的国家顺序（而非中文名音序）
 const COUNTRY_ORDER = (() => {
   const isoByName = new Map()
   for (const [cc, info] of Object.entries(COUNTRIES)) {
@@ -38,55 +38,35 @@ function countryRank(cc) {
   return COUNTRY_ORDER.has(cc) ? COUNTRY_ORDER.get(cc) : 999
 }
 
-// near 字段可能含 "/" 或 "、"（如「火车站/港口」），拆成多个「近X」标签
-function nearTags(near) {
-  if (!near) return []
-  return String(near).split(/[/、,，]/).map((s) => s.trim()).filter(Boolean)
-}
-
-// 排序：hotel list（报价项）优先，AI 探索靠后；同来源内按评分（默认）/ 价格升 / 价格降 / 星级；
-// 价格 0（待定）始终排最后
-function isFromList(h) {
-  // 报价库（hotel list）对象：有 hotel + prices 字段；或推荐库对象能匹配到报价库价格（€/人）
-  if (!!h.hotel) return true
-  return !!findHotelQuote(h.cityCode, h.name)?.pp
-}
+// 排序：评分（默认）/ 价格升 / 价格降 / 星级；价格 0（待定）始终排最后
 function sortedHotels(hotels, sort) {
   const arr = [...hotels]
   const ratingDesc = (a, b) => (b.rating || 0) - (a.rating || 0)
-  const listFirst = (a, b) => {
-    const la = isFromList(a) ? 0 : 1
-    const lb = isFromList(b) ? 0 : 1
-    return la - lb
-  }
   if (sort === 'priceAsc') {
     arr.sort((a, b) => (a.priceEur || 0) - (b.priceEur || 0))
-    arr.sort((a, b) => ((a.priceEur || 0) === 0 ? 1 : 0) - ((b.priceEur || 0) === 0 ? 1 : 0))
   } else if (sort === 'priceDesc') {
     arr.sort((a, b) => (b.priceEur || 0) - (a.priceEur || 0))
-    arr.sort((a, b) => ((a.priceEur || 0) === 0 ? 1 : 0) - ((b.priceEur || 0) === 0 ? 1 : 0))
   } else if (sort === 'star') {
     arr.sort((a, b) => (b.star || 0) - (a.star || 0) || ratingDesc(a, b))
   } else {
     arr.sort(ratingDesc)
   }
-  // 无论哪种排序，hotel list 来源始终排在 AI 探索之前（稳定排序保留组内顺序）
-  arr.sort(listFirst)
   return arr
 }
 
-const stagger = (i, cap = 360) => ({ animationDelay: `${Math.min(i * 36, cap)}ms` })
-
-// 价贴字号阶梯：hotel list 的 pp 可能是双价/区间（如 '€46.28/60.11/100.53'），
-// 长串降档位保证整串可见、不被卡片裁切；常规单价一律 38px（价格是卡的唯一主角）。
-const PRICE_STEPS = [[6, 38], [8, 32], [10, 26], [12, 20], [15, 16]]
-function priceFontSize(price) {
-  const len = String(price).length
-  for (const [max, size] of PRICE_STEPS) if (len <= max) return size
-  return 13
+// 列表 / 预览的价格：用过的 → QUOS 录入价（€/人）；备选 → hotel list 报价，其次参考价（€/晚）
+function priceOf(h, cityCode) {
+  if (h.used) {
+    return h.lastPriceRaw
+      ? { text: '€' + h.lastPriceRaw, unit: 'EUR / 人' }
+      : { text: '待定', muted: true }
+  }
+  const q = findHotelQuote(cityCode, h.systemName || h.name)
+  if (q?.pp) return { text: '€' + q.pp, unit: 'EUR / 人' }
+  if (h.priceEur) return { text: '€' + h.priceEur, unit: 'EUR / 晚', muted: true }
+  return { text: '待定', muted: true }
 }
 
-// 从 Booking 链接取域名（E10 稿的订房行只显示域名；Booking 名保留在 title 上）
 function bookingHost(link) {
   if (!link) return ''
   try {
@@ -96,113 +76,6 @@ function bookingHost(link) {
   }
 }
 
-// 价目名片（E10 稿）：无照片、无 emoji —— 价格是唯一主角。
-// 字段与旧卡完全一致：中文名/英文名、城市码、星/评分/来源、近X、介绍(area)、订房、城市；
-// 只换「衣服」：左上深墨码牌 + 右上红棕等宽价贴 + 虚线打孔 + 4 栏网格。
-function HotelCard({ h, showCity = false, cityCode = '', countryCode = '', accent, idx = 0 }) {
-  // 报价库对象（有 hotel 字段，来自 hotel list）→ 按报价库样式；推荐库对象（有 name）→ 推荐库样式
-  const priceRef = !!h.hotel
-  // 推荐库酒店：找报价库匹配价（€/人）
-  const quote = priceRef ? null : findHotelQuote(cityCode, h.name)
-  const fromList = priceRef || !!quote?.pp
-
-  // 名称：中文名优先，数据里没有中文名 → 回退英文名（不编造翻译）
-  const name = h.hotel || h.name
-  const nameZh = h.nameZh
-  // QUOS 名 → Booking 实际名/链接（hotel-booking-map.js），帮助识别 Booking 上的对应酒店
-  const booking = getBookingInfo(cityCode, name)
-
-  // 价格 + 单位 + 标注（priceRef 才有月份）
-  let price, unit, priceLabel
-  if (priceRef) {
-    const prices = h.prices || []
-    // pp 非数值（数据里有 "/" 这种占位）→ 视同无价，走「价格待定」（口径同 getQuoteRange 的 parseFloat 过滤）
-    const first = prices[0]
-    const hasPp = first?.pp != null && !isNaN(parseFloat(String(first.pp)))
-    price = hasPp ? `€${first.pp}` : null
-    unit = 'EUR / 人'
-    const month = prices.length ? prices.map((p) => p.month).filter(Boolean).join('/') : ''
-    priceLabel = month ? `每人 · ${month}` : '每人报价'
-  } else if (quote?.pp) {
-    price = `€${quote.pp}`
-    unit = 'EUR / 人'
-    priceLabel = 'hotel list · 每人'
-  } else if (h.priceEur) {
-    price = `€${h.priceEur}`
-    unit = 'EUR / 晚'
-    priceLabel = '参考价'
-  }
-
-  const near = priceRef ? [] : nearTags(h.near)
-  const host = bookingHost(booking?.link)
-  const priceSize = price ? priceFontSize(price) : 0
-
-  return (
-    <article
-      className="e-ticket fade-up flex flex-col transition-all duration-200 hover:-translate-y-0.5"
-      style={{
-        borderLeft: `6px solid ${accent}`,
-        animationDelay: stagger(idx).animationDelay,
-      }}
-    >
-      {/* 票头：码牌 + 价贴（价格最响） */}
-      <div className="e-tk-strip">
-        <span className="code-plate inline" aria-hidden>
-          {countryCode && <span className="cc">{countryCode}</span>}
-          {cityCode && <span className="cty">{cityCode}</span>}
-        </span>
-        <div className="e-tk-price">
-          {price ? (
-            <>
-              <span className="lab">{priceLabel}</span>
-              <b style={{ fontSize: priceSize }}>{price}</b>
-              <u>{unit}</u>
-            </>
-          ) : (
-            <span className="lab">价格待定</span>
-          )}
-        </div>
-      </div>
-      {/* 打孔线（纯装饰） */}
-      <div className="e-tk-perf" aria-hidden><i className="l" /><i className="r" /></div>
-
-      {/* 票身：中文名 + 英文名 + 标签 + 近X + 订房 */}
-      <div className="e-tk-body">
-        <div className="e-tk-name">
-          <h3 title={name}>{nameZh || name}</h3>
-          <span className="e-tk-seq" aria-hidden>{String(idx + 1).padStart(2, '0')}</span>
-        </div>
-        <div className="e-tk-meta" title={name}>{[name, cityCode].filter(Boolean).join(' · ')}</div>
-        <div className="e-tk-chips">
-          {h.star > 0 && <span>{h.star} 星</span>}
-          {h.rating > 0 && <span>评分 {h.rating}</span>}
-          <span className={fromList ? 'dark' : ''}>{fromList ? 'QUOS 资源' : 'AI 推荐'}</span>
-          {showCity && !priceRef && <span>{[h.countryName, h.city].filter(Boolean).join(' · ')}</span>}
-        </div>
-        {near.length > 0 && (
-          <div className="e-tk-near" title={h.near}>{near.map((n) => `近 ${n}`).join(' · ')}</div>
-        )}
-        {h.area && <div className="e-tk-area" title={h.area}>{h.area}</div>}
-        <div className="e-tk-foot">
-          {booking ? (
-            <a
-              href={booking.link || undefined}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => { if (!booking.link) e.preventDefault() }}
-              className="lnk"
-              title={booking.link ? `打开 Booking 页面 · ${booking.name || name}` : `Booking 名：${booking.name}`}
-            >
-              {host ? `订房 ↗ ${host}` : `Booking 名：${booking.name}`}
-            </a>
-          ) : null}
-          <span className="cmp" aria-hidden><i />对比</span>
-        </div>
-      </div>
-    </article>
-  )
-}
-
 const SORT_OPTIONS = [
   { key: 'rating', label: '评分最高' },
   { key: 'priceAsc', label: '价格从低到高' },
@@ -210,76 +83,109 @@ const SORT_OPTIONS = [
   { key: 'star', label: '星级最高' },
 ]
 
+// 中栏一行：系统名称 + 中文名/城市/套餐/晚数，右侧价格（列表里不出现团号与来源）
+function HotelRow({ h, city, active, onSelect }) {
+  const sys = h.systemName || h.name
+  const meta = [
+    h.nameZh && h.nameZh !== sys ? h.nameZh : '',
+    city.city,
+    city.cityCode,
+    h.package,
+    h.nights ? h.nights + ' 晚' : '',
+  ]
+    .filter(Boolean)
+    .join(' · ')
+  const p = priceOf(h, city.cityCode)
+  return (
+    <button type="button" onClick={onSelect} className={'e-hrow' + (active ? ' sel' : '')}>
+      <span className="min-w-0 flex-1">
+        <span className="n truncate" title={sys}>{sys}</span>
+        <span className="m truncate" title={meta}>{meta}</span>
+      </span>
+      <span className={'p' + (p.muted ? ' mut' : '')}>{p.text}</span>
+    </button>
+  )
+}
+
+// 右栏预览：系统名称 / 星级·评分 / 位置 / 价格 / 订房（团号与来源不在这里）
+function PreviewPanel({ h, city, accent }) {
+  if (!h || !city) {
+    return (
+      <div className="e-hpanel e-hprev">
+        <div className="e-phbox">酒店图片位 · 暂未接入</div>
+        <div className="e-dbody">
+          <p className="text-xs" style={{ color: 'var(--text-tertiary)' }}>在左侧列表里选一家酒店看预览。</p>
+        </div>
+      </div>
+    )
+  }
+  const sys = h.systemName || h.name
+  const booking = getBookingInfo(city.cityCode, h.name)
+  const host = bookingHost(booking?.link)
+  const p = priceOf(h, city.cityCode)
+  const id = hotelId(city.slug, h)
+  return (
+    <div className="e-hpanel e-hprev" style={accent ? { borderTop: '3px solid ' + accent } : undefined}>
+      <div className="e-phbox">酒店图片位 · 暂未接入（先留白）</div>
+      <div className="e-dbody">
+        <h3>{h.nameZh || sys}</h3>
+        <div className="e-den truncate" title={[sys, city.city, city.cityCode].filter(Boolean).join(' · ')}>
+          {[sys, city.city, city.cityCode].filter(Boolean).join(' · ')}
+        </div>
+        <div className="e-dkv"><span>系统名称</span><b className="text-right">{sys}</b></div>
+        <div className="e-dkv">
+          <span>星级 / 评分</span>
+          <b className="dash">{h.star ? h.star + ' 星' : '待补'}{h.rating ? ' · ' + h.rating : ''}</b>
+        </div>
+        <div className="e-dkv"><span>位置</span><b className="dash">{h.area || h.near || '—'}</b></div>
+        <div className="e-bigp">
+          <span>{h.used ? (h.package || 'Standard') + (h.nights ? ' · ' + h.nights + ' 晚' : '') + ' / 人' : '参考价'}</span>
+          <b>{p.text}</b>
+        </div>
+        {booking?.link ? (
+          <a className="e-dbtn2" href={booking.link} target="_blank" rel="noreferrer">订房 ↗ {host || 'Booking'}</a>
+        ) : (
+          <span className="e-dbtn2" aria-disabled="true">Booking 链接 待补</span>
+        )}
+        <Link className="e-dbtn" href={'/hotels/' + id}>查看完整详情 →</Link>
+      </div>
+    </div>
+  )
+}
+
 export default function HotelsPage() {
   const [query, setQuery] = useState('')
-  const [country, setCountry] = useState('') // '' = 全部
+  const [country, setCountry] = useState('')
+  const [citySlug, setCitySlug] = useState('')
   const [sort, setSort] = useState('rating')
+  const [layer, setLayer] = useState('used') // 'used' = 用过的（默认）｜'all' = 全部候选
+  const [selectedId, setSelectedId] = useState('')
+  const [expanded, setExpanded] = useState({})
+
   const catalog = useMemo(() => getHotelCatalog(), [])
-  const quoteCatalog = useMemo(() => getHotelQuoteCatalog(), [])
-  const results = useMemo(() => {
-    if (!query.trim()) return []
-    // 合并推荐库 + 报价库（hotel list 来源）结果：推荐库常缺报价库独有城市（如斯德哥尔摩 BW TEN）
-    const rec = searchHotels(query)
-    const quote = searchHotelQuotes(query)
-    // 去重（同名酒店若两边都有，保留推荐库）
-    const seen = new Set()
-    const merged = [...rec, ...quote].filter((h) => {
-      const key = (h.hotel || h.name || '').toLowerCase()
-      if (seen.has(key)) return false
-      seen.add(key)
-      return true
-    })
-    return merged
-  }, [query])
-  const searching = query.trim().length > 0
 
-  // 合并目录：推荐库 ∪ 报价库（同一城市两种数据都挂上；报价库独有城市也显示）
-  const merged = useMemo(() => {
-    const byCountry = new Map()
-    const getC = (cc) => {
-      if (!byCountry.has(cc)) byCountry.set(cc, new Map())
-      return byCountry.get(cc)
-    }
-    for (const c of catalog) {
-      for (const city of c.cities) {
-        const m = getC(c.country)
-        m.set(city.cityCode || city.city, { ...city, country: c.country, countryName: c.countryName })
-      }
-    }
-    for (const c of quoteCatalog) {
-      for (const city of c.cities) {
-        const m = getC(c.country)
-        const key = city.cityCode || city.city
-        const ex = m.get(key)
-        if (ex) ex.quotes = city
-        else {
-          m.set(key, {
-            city: city.city, nameEn: city.nameEn, cityCode: city.cityCode,
-            hotels: [], note: '', country: c.country, countryName: c.countryName, quotes: city,
-          })
-        }
-      }
-    }
-    return [...byCountry.entries()].map(([cc, m]) => ({
-      country: cc,
-      countryName: [...m.values()][0]?.countryName || cc,
-      cities: [...m.values()].sort((a, b) => String(a.city).localeCompare(String(b.city), 'zh')),
-    })).sort(
-      (a, b) =>
-        countryRank(a.country) - countryRank(b.country) ||
-        String(a.countryName).localeCompare(String(b.countryName), 'zh'),
-    )
-  }, [catalog, quoteCatalog])
-
-  const totalHotels = useMemo(
-    () => merged.reduce((s, c) => s + c.cities.reduce((x, ci) => x + ci.hotels.length + (ci.quotes?.hotels?.length || 0), 0), 0),
-    [merged],
+  // 国家 → 城市 → 酒店（含 slug / 用过的计数）
+  const countries = useMemo(
+    () =>
+      catalog
+        .map((c) => ({
+          ...c,
+          usedCount: c.cities.reduce((s, ci) => s + ci.hotels.filter((h) => h.used).length, 0),
+          total: c.cities.reduce((s, ci) => s + ci.hotels.length, 0),
+          cities: c.cities.map((ci) => ({
+            ...ci,
+            usedCount: ci.hotels.filter((h) => h.used).length,
+            total: ci.hotels.length,
+          })),
+        }))
+        .sort((a, b) => countryRank(a.country) - countryRank(b.country)),
+    [catalog],
   )
 
-  const visibleCountries = useMemo(
-    () => (country ? merged.filter((c) => c.country === country) : merged),
-    [merged, country],
-  )
+  const totalHotels = useMemo(() => countries.reduce((s, c) => s + c.total, 0), [countries])
+  const totalCities = useMemo(() => countries.reduce((s, c) => s + c.cities.length, 0), [countries])
+  const usedTotal = useMemo(() => countries.reduce((s, c) => s + c.usedCount, 0), [countries])
+
   // 国家色条：酒店数据用 ISO 二字码 → 映射回城市库 country id 取色（同表同色，见 lib/skin.js）
   const accentByCountry = useMemo(() => {
     const isoToCountryId = new Map()
@@ -292,29 +198,102 @@ export default function HotelsPage() {
       }
     }
     const map = {}
-    for (const item of merged) map[item.country] = getCountryAccent(isoToCountryId.get(item.country) || '')
+    for (const item of countries) map[item.country] = getCountryAccent(isoToCountryId.get(item.country) || '')
     return map
-  }, [merged])
-  const visibleResults = useMemo(() => {
-    const filtered = country ? results.filter((h) => h.country === country) : results
-    return sortedHotels(filtered, sort)
-  }, [results, country, sort])
+  }, [countries])
+
+  // 搜索：在整库（807 家）上按酒店名 / 中文名 / 城市名 / 城市码匹配
+  const searchRows = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return []
+    const rows = []
+    for (const c of countries) {
+      for (const ci of c.cities) {
+        const cityHit = [ci.city, ci.nameEn, ci.cityCode].some((s) => String(s || '').toLowerCase().includes(q))
+        for (const h of ci.hotels) {
+          const nameHit = [h.name, h.nameZh, h.systemName].some((s) => String(s || '').toLowerCase().includes(q))
+          if (cityHit || nameHit) {
+            rows.push({ h, city: { ...ci, country: c.country, countryName: c.countryName } })
+          }
+        }
+      }
+    }
+    return rows.sort(
+      (a, b) => Number(!!b.h.used) - Number(!!a.h.used) || (b.h.rating || 0) - (a.h.rating || 0),
+    )
+  }, [query, countries])
+
+  // 中栏分组：按国家 / 城市筛选后，每个城市 = 用过的 + 备选
+  const sections = useMemo(() => {
+    const out = []
+    for (const c of countries) {
+      if (country && c.country !== country) continue
+      for (const ci of c.cities) {
+        if (citySlug && ci.slug !== citySlug) continue
+        const used = sortedHotels(ci.hotels.filter((h) => h.used), sort)
+        const alts = sortedHotels(ci.hotels.filter((h) => !h.used), sort)
+        // 「用过的」层：没有任何用过的店的城市不出现（单城选中时除外，见下方提示）
+        if (layer === 'used' && used.length === 0 && !citySlug) continue
+        if (used.length === 0 && alts.length === 0) continue
+        out.push({
+          city: { ...ci, country: c.country, countryName: c.countryName },
+          used,
+          alts,
+          accent: accentByCountry[c.country],
+        })
+      }
+    }
+    return out
+  }, [countries, country, citySlug, layer, sort, accentByCountry])
+
+  // 中栏当前实际可见的行（顺序 = 用户看到的顺序，预览默认取第一行）
+  const visibleRows = useMemo(() => {
+    if (query.trim()) return searchRows
+    const rows = []
+    for (const sec of sections) {
+      for (const h of sec.used) rows.push({ h, city: sec.city })
+      const showAlts = layer === 'all' || sec.used.length === 0
+      if (!showAlts) continue
+      const open = expanded[sec.city.slug] ?? sec.used.length === 0
+      if (open) for (const h of sec.alts) rows.push({ h, city: sec.city })
+    }
+    return rows
+  }, [query, searchRows, sections, layer, expanded])
+
+  const active = useMemo(() => {
+    const hit = visibleRows.find((r) => hotelId(r.city.slug, r.h) === selectedId)
+    return hit || visibleRows[0] || null
+  }, [visibleRows, selectedId])
+
+  const searching = query.trim().length > 0
+  const usedTotalInView = useMemo(
+    () => (searching ? searchRows.filter((r) => r.h.used).length : sections.reduce((s, sec) => s + sec.used.length, 0)),
+    [searching, searchRows, sections],
+  )
+  const allTotalInView = useMemo(
+    () => (searching ? searchRows.length : sections.reduce((s, sec) => s + sec.used.length + sec.alts.length, 0)),
+    [searching, searchRows, sections],
+  )
 
   const chipClass = 'inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium transition-all border whitespace-nowrap focus-ring'
   const chipActive = { background: 'var(--accent-strong)', color: '#fff', borderColor: 'transparent' }
   const chipInactive = { borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }
 
+  const scopeLabel = citySlug
+    ? (sections[0]?.city.city || '')
+    : country
+      ? (countries.find((c) => c.country === country)?.countryName || '')
+      : '全部'
+
   return (
     <div className="min-h-full" data-skin="e" style={{ background: 'var(--page-ground, var(--bg-secondary))' }}>
-      {/* Hero — 与城市库统一风格/高度 */}
       <PageHero
         maxWidth="max-w-7xl"
         title="酒店库"
         badge={<span className="e-badge">地接报价参考</span>}
-        subtitle={`共 ${merged.length} 个国家 · ${totalHotels} 家酒店 · Booking 评分 ≥7 推荐库 + 酒店价格参考（€/人，以 hotel list 为准）`}
+        subtitle={'共 ' + countries.length + ' 个国家 · ' + totalCities + ' 城 · ' + totalHotels + ' 家酒店（用过的 ' + usedTotal + ' 家）'}
       />
 
-      {/* 搜索工具栏：汇率转换 + 酒店搜索（吸顶，任何滚动位置都能用，输入即下拉） */}
       <SearchToolbar
         stickyTop="top-14"
         maxWidth="max-w-7xl"
@@ -324,21 +303,21 @@ export default function HotelsPage() {
               value={query}
               onChange={setQuery}
               placeholder="搜索酒店名或城市（如 Nice、尼斯、罗马、Hôtel Carré）"
-              results={results.slice(0, 8)}
-              getKey={(h) => h.hotel || h.name || `${h.city}-${h.name}`}
-              onSelect={(h) => setQuery(h.name || h.hotel || '')}
+              results={searchRows.slice(0, 8).map((r) => r.h)}
+              getKey={(h) => (h.systemName || h.name || '') + '-' + (h.city || '')}
+              onSelect={(h) => setQuery(h.systemName || h.name || '')}
               renderItem={(h) => (
                 <div className="flex items-center gap-3 px-3 py-2">
                   <div className="min-w-0 flex-1">
                     <div className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
-                      {h.name || h.hotel}
+                      {h.systemName || h.name}
                     </div>
                     <div className="text-xs truncate" style={{ color: 'var(--text-tertiary)' }}>
-                      {[h.countryName, h.city, h.cityNameEn].filter(Boolean).join(' · ')}
+                      {[h.city, h.cityCode].filter(Boolean).join(' · ')}
                     </div>
                   </div>
                   <span className="e-idx-chip shrink-0">
-                    {h.rating ? `评分 ${h.rating}` : h.priceEur ? `€${h.priceEur}` : ''}
+                    {h.rating ? '评分 ' + h.rating : h.used ? '用过的' : ''}
                   </span>
                 </div>
               )}
@@ -348,140 +327,155 @@ export default function HotelsPage() {
       />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
-        {/* 筛选 + 排序：整条纸带内换行，国家 chip 再多也不会把排序选择挤出屏幕 */}
-        <div className="filter-strip">
-          <div className="flex flex-wrap gap-1.5 filter-chips">
-            <button onClick={() => setCountry('')} className={`${chipClass} filter-chip`} style={country === '' ? chipActive : chipInactive}>
-              全部
-            </button>
-            {merged.map((c) => (
-              <button key={c.country} onClick={() => setCountry(country === c.country ? '' : c.country)} className={`${chipClass} filter-chip`} style={country === c.country ? chipActive : chipInactive}>
-                {c.countryName}
-              </button>
-            ))}
-          </div>
-          <select value={sort} onChange={(e) => setSort(e.target.value)} className="sort-select border outline-none focus-ring" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} aria-label="排序方式">
-            {SORT_OPTIONS.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
-          </select>
+        {/* 层切换：用过的（默认）/ 全部候选 */}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <button onClick={() => setLayer('used')} className={chipClass + ' filter-chip'} style={layer === 'used' ? chipActive : chipInactive}>
+            用过的 {usedTotal}
+          </button>
+          <button onClick={() => setLayer('all')} className={chipClass + ' filter-chip'} style={layer === 'all' ? chipActive : chipInactive}>
+            全部候选 {totalHotels}
+          </button>
         </div>
 
-        {/* 搜索结果 */}
-        {searching ? (
-          <div className="fade-up">
-            <p className="text-xs mb-3" style={{ color: 'var(--text-secondary)' }}>
-              找到 <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{visibleResults.length}</span> 家酒店
-            </p>
-            {visibleResults.length === 0 ? (
-              <EmptyState title="没有匹配的酒店" hint="换个关键词，或点上方国家标签筛选" />
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
-                {visibleResults.map((h, i) => (
-                  <HotelCard
-                    key={`${h.name}-${i}`}
-                    h={h}
-                    showCity
-                    cityCode={h.cityCode}
-                    countryCode={h.country}
-                    accent={accentByCountry[h.country]}
-                    idx={i}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="space-y-8">
-            {visibleCountries.map((countryItem) => (
-              <section key={countryItem.country} className="fade-up">
-                {/* 国家标题（字段不变：国家名 / 国家码 / 货币） */}
-                <div className="e-country-head">
-                  <h2 className="font-display" style={{ color: 'var(--text-primary)' }}>
-                    {countryItem.countryName}
-                  </h2>
-                  <span className="e-country-code">{countryItem.country}</span>
-                  {(() => {
-                    const cur = COUNTRY_CURRENCIES[countryItem.country]
-                    if (!cur) return null
-                    return (
-                      <span className="e-country-cur">
-                        {cur.symbol} {cur.code} {cur.name}
-                      </span>
-                    )
-                  })()}
-                </div>
-
-                <div className="space-y-5">
-                  {countryItem.cities.map((city) => (
-                    <div key={city.cityCode || city.city}>
-                      {/* 城市分组标题 = E 城市牌：深墨码牌 + 中文名/英文名 + 家数（字段不变） */}
-                      <div
-                        className="e-city-head"
-                        style={{ borderLeft: `6px solid ${accentByCountry[countryItem.country]}` }}
+        <div className="e-hgrid">
+          {/* 左：筛选 */}
+          <aside className="e-hpanel">
+            <div className="e-hhead">
+              <span>筛选</span>
+              <span className="mut">{searching ? searchRows.length : allTotalInView} 家</span>
+            </div>
+            <div className="e-tree">
+              <button className={!country && !citySlug ? 'on' : ''} onClick={() => { setCountry(''); setCitySlug('') }}>
+                <span>全部国家</span><em>{usedTotal} / {totalHotels}</em>
+              </button>
+              {countries.map((c) => (
+                <div key={c.country}>
+                  <button
+                    className={country === c.country && !citySlug ? 'on' : ''}
+                    onClick={() => { setCountry(c.country === country && !citySlug ? '' : c.country); setCitySlug('') }}
+                  >
+                    <span>{c.countryName}</span><em>{c.usedCount} / {c.total}</em>
+                  </button>
+                  {country === c.country &&
+                    c.cities.map((ci) => (
+                      <button
+                        key={ci.slug}
+                        className={'sub' + (citySlug === ci.slug ? ' on' : '')}
+                        onClick={() => setCitySlug(citySlug === ci.slug ? '' : ci.slug)}
                       >
-                        <span className="code-plate inline" aria-hidden>
-                          <span className="cc">{countryItem.country}</span>
-                          {city.cityCode && <span className="cty">{city.cityCode}</span>}
-                        </span>
-                        <h3 className="e-city-name">{city.city}</h3>
-                        {city.nameEn && <span className="e-city-en">{city.nameEn}</span>}
-                        <span className="e-city-count">
-                          {city.hotels.length + (city.quotes?.hotels?.length || 0)} 家
-                        </span>
-                      </div>
-                      {city.note && <p className="e-city-note">{city.note}</p>}
+                        <span>{ci.city} <em>{ci.cityCode}</em></span><em>{ci.usedCount} / {ci.total}</em>
+                      </button>
+                    ))}
+                </div>
+              ))}
+            </div>
+          </aside>
 
-                      {city.hotels.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 mt-2">
-                          {sortedHotels(city.hotels, sort).map((h, i) => (
-                            <HotelCard
-                              key={i}
+          {/* 中：列表 */}
+          <section className="e-hpanel">
+            <div className="e-hhead">
+              <span>{searching ? '搜索结果 ' + searchRows.length + ' 家' : scopeLabel + ' · ' + (layer === 'used' ? '用过的 ' + usedTotalInView + ' 家' : '全部候选 ' + allTotalInView + ' 家')}</span>
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+                className="sort-select border outline-none focus-ring"
+                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }}
+                aria-label="排序方式"
+              >
+                {SORT_OPTIONS.map((o) => <option key={o.key} value={o.key}>{o.label}</option>)}
+              </select>
+            </div>
+
+            {searching ? (
+              searchRows.length === 0 ? (
+                <div className="e-hint">没有匹配的酒店 —— 换个关键词，或点左侧国家 / 城市筛选。</div>
+              ) : (
+                searchRows.map((r) => (
+                  <HotelRow
+                    key={hotelId(r.city.slug, r.h)}
+                    h={r.h}
+                    city={r.city}
+                    active={active === r}
+                    onSelect={() => setSelectedId(hotelId(r.city.slug, r.h))}
+                  />
+                ))
+              )
+            ) : sections.length === 0 ? (
+              <div className="e-hint">
+                {layer === 'used'
+                  ? '这一范围还没有用过的酒店 —— 切到「全部候选」看备选，或换个国家。'
+                  : '这一范围还没有酒店数据。'}
+              </div>
+            ) : (
+              sections.map((sec) => {
+                const showAlts = layer === 'all' || sec.used.length === 0
+                const open = expanded[sec.city.slug] ?? sec.used.length === 0
+                return (
+                  <div key={sec.city.slug}>
+                    <div
+                      className="flex items-center gap-2 px-3 py-2"
+                      style={{ borderBottom: '1px solid var(--e-line)', borderLeft: '4px solid ' + (sec.accent || 'transparent') }}
+                    >
+                      <span className="code-plate inline" aria-hidden>
+                        <span className="cc">{sec.city.country}</span>
+                        {sec.city.cityCode && <span className="cty">{sec.city.cityCode}</span>}
+                      </span>
+                      <span className="text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>{sec.city.city}</span>
+                      {sec.city.nameEn && (
+                        <span className="text-[10px]" style={{ color: 'var(--text-tertiary)', fontFamily: 'var(--e-mono)' }}>{sec.city.nameEn}</span>
+                      )}
+                      <span className="ml-auto text-[10.5px]" style={{ color: 'var(--text-tertiary)', fontFamily: 'var(--e-mono)' }}>
+                        {sec.used.length > 0 ? sec.used.length + ' 用过的' : '暂无用过'}
+                      </span>
+                    </div>
+
+                    {sec.used.map((h) => (
+                      <HotelRow
+                        key={hotelId(sec.city.slug, h)}
+                        h={h}
+                        city={sec.city}
+                        active={!!active && hotelId(active.city.slug, active.h) === hotelId(sec.city.slug, h)}
+                        onSelect={() => setSelectedId(hotelId(sec.city.slug, h))}
+                      />
+                    ))}
+
+                    {showAlts && sec.alts.length > 0 && (
+                      <>
+                        <div className="e-hdiv">
+                          <span>
+                            {sec.used.length === 0
+                              ? '这个城市还没有用过的酒店 —— 备选 ' + sec.alts.length + ' 家'
+                              : '备选候选 · 未用过（' + sec.alts.length + ' 家）'}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setExpanded((m) => ({ ...m, [sec.city.slug]: !open }))}
+                          >
+                            {open ? '收起 ▴' : '展开 ▾'}
+                          </button>
+                        </div>
+                        {open &&
+                          sec.alts.map((h) => (
+                            <HotelRow
+                              key={hotelId(sec.city.slug, h)}
                               h={h}
-                              cityCode={city.cityCode}
-                              countryCode={countryItem.country}
-                              accent={accentByCountry[countryItem.country]}
-                              idx={i}
+                              city={sec.city}
+                              active={!!active && hotelId(active.city.slug, active.h) === hotelId(sec.city.slug, h)}
+                              onSelect={() => setSelectedId(hotelId(sec.city.slug, h))}
                             />
                           ))}
-                        </div>
-                      )}
+                      </>
+                    )}
+                  </div>
+                )
+              })
+            )}
+          </section>
 
-                      {city.quotes?.hotels?.length > 0 && (
-                        <div className="mt-4">
-                          <div className="e-sublab">酒店价格参考（€/人 · 以 hotel list 为准）</div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
-                            {city.quotes.hotels.map((h, i) => (
-                              <HotelCard
-                                key={i}
-                                h={h}
-                                priceRef
-                                cityCode={city.cityCode}
-                                countryCode={countryItem.country}
-                                accent={accentByCountry[countryItem.country]}
-                                idx={i}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
-        )}
+          {/* 右：预览（团号 / 来源不在此出现） */}
+          <PreviewPanel h={active?.h} city={active?.city} accent={active ? accentByCountry[active.city.country] : ''} />
+        </div>
       </div>
-    </div>
-  )
-}
-
-function EmptyState({ title, hint }) {
-  return (
-    <div className="text-center py-16 border border-dashed rounded-2xl" style={{ borderColor: 'var(--border-color)' }}>
-      {/* E 皮禁 emoji：空态用码牌代替图标（纯装饰） */}
-      <span className="code-plate inline" aria-hidden><span className="cc">0</span><span className="cty">结果</span></span>
-      <p className="text-sm font-medium mt-3" style={{ color: 'var(--text-secondary)' }}>{title}</p>
-      {hint && <p className="text-xs mt-1" style={{ color: 'var(--text-tertiary)' }}>{hint}</p>}
     </div>
   )
 }

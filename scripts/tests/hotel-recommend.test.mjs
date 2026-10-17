@@ -19,7 +19,8 @@ test('中文城市名命中 → 返回评分≥7 的参考酒店（评分降序�
 test('英文城市名命中', () => {
   const hotels = recommendHotels('', 'Nice', 3, '')
   assert.ok(hotels.length >= 2)
-  assert.ok(hotels.every((h) => h.rating >= 7))
+  // 「用过的」酒店按 QUOS 录入优先排前，可能还没有 Booking 评分（null）→ 豁免 ≥7 断言
+  assert.ok(hotels.every((h) => h.used || h.rating >= 7))
 })
 
 test('别名命中：锡拉库扎（中文）→ Siracusa', () => {
