@@ -5,6 +5,17 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { QUOTE_RATES } from '../../src/lib/quote-rates.js'
 
+test('headfee：每团必录，12 EUR/人（BJS/CN）', () => {
+  assert.deepEqual(QUOTE_RATES.headfee, {
+    price: 12,
+    currency: 'EUR',
+    priceUnit: 'perPerson',
+    cityCode: 'BJS',
+    countryCode: 'CN',
+    note: '每团必录',
+  })
+})
+
 test('insurance：每团必录，2.66 USD/人（BJS/CN）', () => {
   assert.deepEqual(QUOTE_RATES.insurance, {
     price: 2.66,

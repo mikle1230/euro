@@ -35,6 +35,27 @@ function parseGuestCount(groupSize) {
   return Number.isFinite(n) && n > 0 ? n : 0
 }
 
+// 团务人头费：每团开单第 1 行固定项 1010 HEADFEE，12 EUR/人（公司新规，刘逸伦 2026-10-16）
+function makeHeadfee(groupSize) {
+  const rate = QUOTE_RATES.headfee
+  return {
+    type: 'other',
+    name: 'HEADFEE',
+    nameEn: 'HEADFEE',
+    costCategory: 'paid',
+    estimatedCost: 0,
+    price: rate.price,
+    priceUnit: rate.priceUnit,
+    currency: rate.currency,
+    quantity: parseGuestCount(groupSize),
+    quoteKind: 'headfee',
+    quoteOrder: 0,
+    cityCode: rate.cityCode,
+    countryCode: rate.countryCode,
+    notes: rate.note,
+  }
+}
+
 function makeInsurance(groupSize) {
   const rate = QUOTE_RATES.insurance
   return {
@@ -48,7 +69,7 @@ function makeInsurance(groupSize) {
     currency: rate.currency,
     quantity: parseGuestCount(groupSize),
     quoteKind: 'insurance',
-    quoteOrder: 0,
+    quoteOrder: 1,
     cityCode: rate.cityCode,
     countryCode: rate.countryCode,
     notes: rate.note,
@@ -409,8 +430,13 @@ export function applyQuoteRules(parsed) {
   const arcticCityNames = realDays.flatMap((d) => [d.cityName, d.cityNameEn])
   const ldc = resolveLdcSupplier(ldcCountries, { arctic: hasArcticCity(arcticCityNames) })
 
-  // 2) 旅行保险：第 1 天、置顶、必录，2.66 USD/人 × 人数
-  realDays[0].items = [makeInsurance(parsed.groupSize), ...(realDays[0].items || [])]
+  // 2) 每团开单固定两行（2026-10-16 公司新规）：1010 HEADFEE 12 EUR/人 + 1020 旅行保险 2.66 USD/人，
+  //    均置顶、必录、按人数计。顺序：HEADFEE → 保险 → 其余行程条目。
+  realDays[0].items = [
+    makeHeadfee(parsed.groupSize),
+    makeInsurance(parsed.groupSize),
+    ...(realDays[0].items || []),
+  ]
 
   // 2b) 判不出 LDC 供应商 → 首日显式提示人工处理（2026-09-17 口径，不静默）
   if (!ldc && ldcCountries.length > 0) {

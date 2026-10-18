@@ -13,7 +13,7 @@ function item(partial = {}) {
   return { type: 'attraction', name: 'x', costCategory: 'paid', ...partial }
 }
 
-test('第一天注入旅行保险（数量=团人数）', () => {
+test('第一天注入 HEADFEE + 旅行保险（顺序固定、数量=团人数）', () => {
   const parsed = {
     groupSize: 30,
     days: [day(1, '巴黎'), day(2, '巴黎')],
@@ -26,6 +26,16 @@ test('第一天注入旅行保险（数量=团人数）', () => {
   assert.equal(ins.quantity, 30)
   assert.equal(ins.cityCode, 'BJS')
   assert.equal(ins.countryCode, 'CN')
+
+  const headfee = d1.items.find((i) => i.quoteKind === 'headfee')
+  assert.ok(headfee, '应该有 HEADFEE 项')
+  assert.equal(headfee.price, 12)
+  assert.equal(headfee.currency, 'EUR')
+  assert.equal(headfee.quantity, 30)
+  assert.equal(headfee.cityCode, 'BJS')
+  assert.equal(headfee.countryCode, 'CN')
+  // 1010 在 1020 之前
+  assert.ok(d1.items.indexOf(headfee) < d1.items.indexOf(ins), 'HEADFEE 应排在保险之前')
 })
 
 test('城际 bus/car 项被移除（被 THROUGH COACH 合并替代）', () => {

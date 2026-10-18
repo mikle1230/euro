@@ -331,3 +331,21 @@
 - `node scripts/build-city-hints.js` → `src/data/city-hints.js`（158 城）
 - `src/data/quos-cities.json` → 已有 `Perpignan = PGF`，无需改
 **验收**：`npm test` 129/129 全绿（含「数据漂移」用例）
+
+---
+
+## 2026-10-18 — 每团开单固定两行：HEADFEE + Travel Insurance
+
+**来源**：刘逸伦 2026-10-16 转达公司新规（TourMaker 截图 Request No `BJSLH30020`）→ `references/euro/inbox/rules-inbox.md` R33
+**状态**：🛠️ 已实现
+
+### 改了什么
+- `src/lib/quote-rates.js`：新增 `QUOTE_RATES.headfee` = **12 EUR/人**（BJS/CN，`perPerson`，每团必录）。
+- `src/lib/coach-plan.js`：`applyQuoteRules` 首日固定注入两行 —— **1010 HEADFEE（`quoteOrder: 0`）→ 1020 Travel Insurance（`quoteOrder: 1`）**，其余行程条目顺延；两行数量均 = 团人数（`+1` 领队不计）。
+- 旅行保险 `quoteOrder` 由 0 改为 1，只为保持 1010/1020 顺序；金额与口径未变。
+
+### 为什么
+- 公司新规：**每团开单先加这两行固定项**，其余行顺延。之前 euro 只注入保险，HEADFEE 缺失。
+
+### 验收
+- `npm test` **130/130 全绿**（新增 headfee 费率与顺序断言；含「数据漂移」用例）。

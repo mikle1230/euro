@@ -2,6 +2,16 @@
 // 纯函数模块，无 'use client'，服务端/客户端均可 import。
 
 export const QUOTE_RATES = {
+  // 团务人头费：每团开单第 1 行固定项 1010 HEADFEE，12 EUR/人（BJS/CN）
+  // 出处：刘逸伦 2026-10-16 转达公司新规（TourMaker Request BJSLH30020 截图）
+  headfee: {
+    price: 12,
+    currency: 'EUR',
+    priceUnit: 'perPerson',
+    cityCode: 'BJS',
+    countryCode: 'CN',
+    note: '每团必录',
+  },
   // 旅行保险：每团必录，2.66 USD/人
   insurance: {
     price: 2.66,
