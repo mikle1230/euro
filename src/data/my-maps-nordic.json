@@ -4886,5 +4886,1509 @@
   "desc": "",
   "lat": 63.9990902,
   "lon": -22.5871271
+ },
+ {
+  "name": "Starhotels Grand Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 248 间 · Saronno",
+  "lat": 45.622988,
+  "lon": 9.02843
+ },
+ {
+  "name": "Starhotels Grand Rosa Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 346 间 · Milano",
+  "lat": 45.463879,
+  "lon": 9.194024
+ },
+ {
+  "name": "E.c.h.o Starhotels Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 143 间 · Milano",
+  "lat": 45.463879,
+  "lon": 9.194024
+ },
+ {
+  "name": "Ritz Starhotels Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 197 间 · Milano",
+  "lat": 45.477951,
+  "lon": 9.209435
+ },
+ {
+  "name": "Starhotels Business Palace Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 255 间 · Milano",
+  "lat": 45.437838,
+  "lon": 9.230908
+ },
+ {
+  "name": "UNAHOTELS Expo Fiera",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 527 间 · Pero",
+  "lat": 45.502023,
+  "lon": 9.086845
+ },
+ {
+  "name": "UNAHOTELS Century Hotel Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 144 间 · Milano",
+  "lat": 45.484738,
+  "lon": 9.19951
+ },
+ {
+  "name": "UNAHOTELS Malpensa Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 144 间 · Cerro Maggiore",
+  "lat": 45.601194,
+  "lon": 8.946038
+ },
+ {
+  "name": "Novotel Malpensa Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 208 间 · Cardano al Campo",
+  "lat": 45.641729,
+  "lon": 8.759083
+ },
+ {
+  "name": "Crowne Plaza Malpensa Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 133 间 · Somma Lombardo",
+  "lat": 45.642073,
+  "lon": 8.708439
+ },
+ {
+  "name": "Crowne Plaza Linate Milan",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 436 间 · San Donato Milanese",
+  "lat": 45.421107,
+  "lon": 9.252448
+ },
+ {
+  "name": "Starhotels Splendid Venice",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 165 间 · Venezia",
+  "lat": 45.435936,
+  "lon": 12.337559
+ },
+ {
+  "name": "Avani Rio Novo Hotel Venice",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 144 间 · Venezia",
+  "lat": 45.435555,
+  "lon": 12.321648
+ },
+ {
+  "name": "Best Western Plus Hotel Bologna",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 127 间 · Mestre",
+  "lat": 45.483052,
+  "lon": 12.2321
+ },
+ {
+  "name": "Antony Palace Hotel Venice",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star Superior · 146 间 · Venezia",
+  "lat": 45.429922,
+  "lon": 12.382367
+ },
+ {
+  "name": "Four Points Hotel by Sheraton Venice",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 160 间 · Mestre",
+  "lat": 45.514369,
+  "lon": 12.231711
+ },
+ {
+  "name": "Novotel Venezia Mestre Castellana",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 215 间 · Venezia",
+  "lat": 45.503219,
+  "lon": 12.234343
+ },
+ {
+  "name": "Crowne Plaza Padova",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 117 间 · Padova",
+  "lat": 45.454103,
+  "lon": 11.856937
+ },
+ {
+  "name": "Best Western CTC Hotel Verona",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · San Giovanni Lupatoto",
+  "lat": 45.398586,
+  "lon": 11.015912
+ },
+ {
+  "name": "Hotel Nil",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 246 间 · Firenze",
+  "lat": 43.798451,
+  "lon": 11.227484
+ },
+ {
+  "name": "Starhotels Michelangelo Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 119 间 · Firenze",
+  "lat": 43.776587,
+  "lon": 11.237951
+ },
+ {
+  "name": "Hilton Metropole Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 212 间 · Firenze",
+  "lat": 43.773483,
+  "lon": 11.189561
+ },
+ {
+  "name": "Grand Hotel Mediterraneo Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 327 间 · Firenze",
+  "lat": 43.766189,
+  "lon": 11.272258
+ },
+ {
+  "name": "Indigo Hotel Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 115 间 · Firenze",
+  "lat": 43.778113,
+  "lon": 11.244238
+ },
+ {
+  "name": "Starhotels Vespucci Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 79 间 · Firenze",
+  "lat": 43.809276,
+  "lon": 11.199107
+ },
+ {
+  "name": "Starhotels Metropole Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 236 间 · Roma",
+  "lat": 41.900509,
+  "lon": 12.497372
+ },
+ {
+  "name": "Crowne Plaza St Peters Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 308 间 · Roma",
+  "lat": 41.888607,
+  "lon": 12.425915
+ },
+ {
+  "name": "St Martin Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 134 间 · Roma",
+  "lat": 41.906095,
+  "lon": 12.50504
+ },
+ {
+  "name": "NH Collection Palazzo Cinquecento",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 177 间 · Roma",
+  "lat": 41.90258,
+  "lon": 12.501627
+ },
+ {
+  "name": "The Westin Excelsior",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 316 间 · Roma",
+  "lat": 41.907596,
+  "lon": 12.490059
+ },
+ {
+  "name": "Anantara Palazzo Naiadi Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 232 间 · Roma",
+  "lat": 41.890181,
+  "lon": 12.495648
+ },
+ {
+  "name": "NH Villa Carpegna Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 201 间 · Roma",
+  "lat": 41.89178,
+  "lon": 12.439132
+ },
+ {
+  "name": "Marriott Park Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · Roma",
+  "lat": 41.824931,
+  "lon": 12.39198
+ },
+ {
+  "name": "Sheraton Parco de' Medici Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 782 间 · Roma",
+  "lat": 41.813412,
+  "lon": 12.409179
+ },
+ {
+  "name": "La Lama Hilton Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · Roma",
+  "lat": 41.830437,
+  "lon": 12.471563
+ },
+ {
+  "name": "A.Roma Lifestyle Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 276 间 · Roma",
+  "lat": 41.87478,
+  "lon": 12.432863
+ },
+ {
+  "name": "Hotel Diana",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 169 间 · Roma",
+  "lat": 41.900702,
+  "lon": 12.497373
+ },
+ {
+  "name": "Bettoja Hotel Mediterraneo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 242 间 · Roma",
+  "lat": 41.900324,
+  "lon": 12.498881
+ },
+ {
+  "name": "Hotel Pineta Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 185 间 · Roma",
+  "lat": 41.919525,
+  "lon": 12.420743
+ },
+ {
+  "name": "Holiday Inn Parco De Medici",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 316 间 · Roma",
+  "lat": 41.823098,
+  "lon": 12.412
+ },
+ {
+  "name": "Mercure Rome West Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 215 间 · Roma",
+  "lat": 41.785751,
+  "lon": 12.434412
+ },
+ {
+  "name": "Cardo Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 324 间 · Roma",
+  "lat": 41.84304,
+  "lon": 12.471316
+ },
+ {
+  "name": "Hotel Villa Pamphili Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 235 间 · Roma",
+  "lat": 41.882069,
+  "lon": 12.432494
+ },
+ {
+  "name": "FH55 Grand Hotel Palatino Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 200 间 · Roma",
+  "lat": 41.894539,
+  "lon": 12.492335
+ },
+ {
+  "name": "Radisson Blu GHR Hotel Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 280 间 · Roma",
+  "lat": 41.903725,
+  "lon": 12.500201
+ },
+ {
+  "name": "Hotel Villa Diodoro",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 102 间 · Taormina",
+  "lat": 37.850952,
+  "lon": 15.293764
+ },
+ {
+  "name": "NH Pisa",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 100 间 · Pisa",
+  "lat": 43.70914,
+  "lon": 10.399196
+ },
+ {
+  "name": "Anglo American Florence Curio Collection by Hilton",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 118 间 · Florence",
+  "lat": 43.775199,
+  "lon": 11.240428
+ },
+ {
+  "name": "NH Napoli Panorama",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 230 间 · Napoli",
+  "lat": 40.842432,
+  "lon": 14.252253
+ },
+ {
+  "name": "Towers Stabiae Sorrento Coast",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 149 间 · Castellammare di Stabia",
+  "lat": 40.694702,
+  "lon": 14.496239
+ },
+ {
+  "name": "Hotel Alaska Cortina",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 95 间 · Cortina d'Ampezzo",
+  "lat": 46.542232,
+  "lon": 12.136236
+ },
+ {
+  "name": "Ambra Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 24 间 · Cortina d'Ampezzo",
+  "lat": 46.537839,
+  "lon": 12.13806
+ },
+ {
+  "name": "Faloria Mountain Resort",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 52 间 · Cortina d'Ampezzo",
+  "lat": 46.514767,
+  "lon": 12.14555
+ },
+ {
+  "name": "Boutique Hotel Villa blu​",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 48 间 · Pescara",
+  "lat": 42.462202,
+  "lon": 14.220885
+ },
+ {
+  "name": "Parc Hotel Victoria​",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 39 间 · Cortina d'Ampezzo",
+  "lat": 46.536446,
+  "lon": 12.139924
+ },
+ {
+  "name": "Hotel De La Poste",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 72 间 · Cortina d'Ampezzo",
+  "lat": 46.538095,
+  "lon": 12.135796
+ },
+ {
+  "name": "Hotel Des Alpes",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 32 间 · Cortina d'Ampezzo",
+  "lat": 46.55464,
+  "lon": 12.129209
+ },
+ {
+  "name": "Grand Hotel Misurina",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 123 间 · Auronzo di Cadore",
+  "lat": 46.584414,
+  "lon": 12.253631
+ },
+ {
+  "name": "Four Points Sheraton",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 189 间 · Bolzano - Bozen",
+  "lat": 46.471841,
+  "lon": 11.325016
+ },
+ {
+  "name": "Hotel Greif",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 33 间 · Bolzano - Bozen",
+  "lat": 46.498684,
+  "lon": 11.35445
+ },
+ {
+  "name": "Parkhotel Laurin",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 100 间 · Bolzano - Bozen",
+  "lat": 46.49797,
+  "lon": 11.356927
+ },
+ {
+  "name": "B&B Hotel Bolzano",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 100 间 · Bolzano - Bozen",
+  "lat": 46.48147,
+  "lon": 11.325219
+ },
+ {
+  "name": "Best Western Hotel Adige",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 70 间 · Mattarello",
+  "lat": 46.014792,
+  "lon": 11.13262
+ },
+ {
+  "name": "Grand Hotel Trento",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 136 间 · Trento",
+  "lat": 46.071039,
+  "lon": 11.122001
+ },
+ {
+  "name": "NH Trento",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 89 间 · Trento",
+  "lat": 46.059392,
+  "lon": 11.114821
+ },
+ {
+  "name": "Hotel Everest",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 112 间 · Trento",
+  "lat": 46.078508,
+  "lon": 11.118319
+ },
+ {
+  "name": "Ciampedie Luxury Alpine Spa Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 46 间 · Vigo di Fassa",
+  "lat": 46.421037,
+  "lon": 11.677076
+ },
+ {
+  "name": "HOTEL ASTORIA",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 41 间 · Canazei",
+  "lat": 46.476816,
+  "lon": 11.766703
+ },
+ {
+  "name": "Hotel Cesa Tyrol",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 57 间 · Canazei - Cianacei",
+  "lat": 46.478747,
+  "lon": 11.765207
+ },
+ {
+  "name": "Alpen Hotel Corona",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 70 间 · San Giovanni di Fassa",
+  "lat": 46.420819,
+  "lon": 11.674537
+ },
+ {
+  "name": "Sport Hotel Passo Carezza",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 18 间 · Welschnofen - Nova Levante",
+  "lat": 46.404043,
+  "lon": 11.608802
+ },
+ {
+  "name": "Schloss Hotel Dolomiti",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 94 间 · Canazei - Cianacei",
+  "lat": 46.477392,
+  "lon": 11.765232
+ },
+ {
+  "name": "Olympic SPA Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 45 间 · Vigo di Fassa",
+  "lat": 46.41867,
+  "lon": 11.68093
+ },
+ {
+  "name": "Astoria Palace Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 310 间 · Palermo",
+  "lat": 38.139479,
+  "lon": 13.357366
+ },
+ {
+  "name": "San Paolo Palace Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 284 间 · Palermo",
+  "lat": 38.10779,
+  "lon": 13.380805
+ },
+ {
+  "name": "Garibaldi Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 71 间 · Palermo",
+  "lat": 38.124843,
+  "lon": 13.357445
+ },
+ {
+  "name": "Hotel Vecchio Borgo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 32 间 · Palermo",
+  "lat": 38.12815,
+  "lon": 13.357954
+ },
+ {
+  "name": "Grand Hotel Wagner",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 58 间 · Palermo",
+  "lat": 38.123604,
+  "lon": 13.358526
+ },
+ {
+  "name": "NH Palermo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 238 间 · Palermo",
+  "lat": 38.115293,
+  "lon": 13.374989
+ },
+ {
+  "name": "Dioscuri Bay Palce",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 102 间 · Molfetta",
+  "lat": 41.182001,
+  "lon": 16.574823
+ },
+ {
+  "name": "Grand Hotel Mosè",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 96 间 · Agrigento",
+  "lat": 37.271717,
+  "lon": 13.620129
+ },
+ {
+  "name": "Hotel Della Valle",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 101 间 · Agrigento",
+  "lat": 37.301991,
+  "lon": 13.594187
+ },
+ {
+  "name": "Scala dei Turchi Resort",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 45 间 · Realmonte",
+  "lat": 37.289888,
+  "lon": 13.47778
+ },
+ {
+  "name": "Hotel Baia Azzurra",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 50 间 · Taormina",
+  "lat": 37.855807,
+  "lon": 15.300124
+ },
+ {
+  "name": "Excelsior Palace Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 88 间 · Taormina",
+  "lat": 37.850537,
+  "lon": 15.281123
+ },
+ {
+  "name": "Hotel Villa Esperia",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 65 间 · Taormina",
+  "lat": 37.856924,
+  "lon": 15.300071
+ },
+ {
+  "name": "Taormina Park Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 60 间 · Taormina",
+  "lat": 37.850661,
+  "lon": 15.292131
+ },
+ {
+  "name": "NH Taormina",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 63 间 · Taormina",
+  "lat": 37.85378,
+  "lon": 15.287169
+ },
+ {
+  "name": "Mercure Siracusa Prometeo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 93 间 · Siracusa",
+  "lat": 37.076141,
+  "lon": 15.28174
+ },
+ {
+  "name": "Unahotels One Siracusa",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 42 间 · Siracusa",
+  "lat": 37.083013,
+  "lon": 15.2944
+ },
+ {
+  "name": "Minareto",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 80 间 · Siracusa",
+  "lat": 37.042092,
+  "lon": 15.300933
+ },
+ {
+  "name": "NH Catania Centro",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 128 间 · Catania",
+  "lat": 37.513776,
+  "lon": 15.089101
+ },
+ {
+  "name": "NH Parco degli Aragonesi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 124 间 · Catania",
+  "lat": 37.476527,
+  "lon": 15.08283
+ },
+ {
+  "name": "Romano Palace Luxury Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 104 间 · Catania",
+  "lat": 37.478379,
+  "lon": 15.082649
+ },
+ {
+  "name": "Courtyard By Marriott Rome Central Park",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 125 间 · Roma",
+  "lat": 41.926605,
+  "lon": 12.428007
+ },
+ {
+  "name": "Hotel Nord Nuova Roma",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 153 间 · Roma",
+  "lat": 41.90106,
+  "lon": 12.497798
+ },
+ {
+  "name": "Novotel Roma Est",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 149 间 · Roma",
+  "lat": 41.913663,
+  "lon": 12.61795
+ },
+ {
+  "name": "All'Angelo Art Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 56 间 · Venezia",
+  "lat": 45.435684,
+  "lon": 12.339923
+ },
+ {
+  "name": "Antony Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 114 间 · Venezia",
+  "lat": 45.487194,
+  "lon": 12.299163
+ },
+ {
+  "name": "Hotel Amadeus",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 63 间 · Venezia",
+  "lat": 45.44212,
+  "lon": 12.32353
+ },
+ {
+  "name": "Belstay Venezia Mestre",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 187 间 · Venezia",
+  "lat": 45.474182,
+  "lon": 12.215032
+ },
+ {
+  "name": "Hotel Carlton on the Grand Canal",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 145 间 · Venezia",
+  "lat": 45.440088,
+  "lon": 12.321889
+ },
+ {
+  "name": "Sina Centurion Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 50 间 · Venezia",
+  "lat": 45.430955,
+  "lon": 12.333617
+ },
+ {
+  "name": "Hotel Danieli",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 144 间 · Venezia",
+  "lat": 45.433901,
+  "lon": 12.34206
+ },
+ {
+  "name": "Hotel Delfino",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 167 间 · Venezia",
+  "lat": 45.484342,
+  "lon": 12.241366
+ },
+ {
+  "name": "Hotel Principe",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 138 间 · Venezia",
+  "lat": 45.44212,
+  "lon": 12.32353
+ },
+ {
+  "name": "NH Collection Venezia Grand Hotel Palazzo dei Dogi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 64 间 · Venezia",
+  "lat": 45.446715,
+  "lon": 12.331019
+ },
+ {
+  "name": "Leonardo Royal Hotel Venice Mestre",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 244 间 · Mestre",
+  "lat": 45.481474,
+  "lon": 12.236781
+ },
+ {
+  "name": "Hotel Metropole",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 67 间 · Venezia",
+  "lat": 45.433751,
+  "lon": 12.347641
+ },
+ {
+  "name": "Hilton Molino Stucky Venice",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 379 间 · Venice",
+  "lat": 45.428237,
+  "lon": 12.320278
+ },
+ {
+  "name": "Hotel Montecarlo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 48 间 · Venezia",
+  "lat": 45.435526,
+  "lon": 12.339238
+ },
+ {
+  "name": "Move Hotels Venezia Nord",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 203 间 · Mogliano Veneto",
+  "lat": 45.583942,
+  "lon": 12.28679
+ },
+ {
+  "name": "Hotel NH Venezia Laguna Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 376 间 · Venezia",
+  "lat": 45.481799,
+  "lon": 12.248973
+ },
+ {
+  "name": "Villa Pace Park Hotel Bolognese",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 95 间 · Preganziol",
+  "lat": 45.633784,
+  "lon": 12.240234
+ },
+ {
+  "name": "Hotel Royal San Marco",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 50 间 · Venezia",
+  "lat": 45.434642,
+  "lon": 12.337755
+ },
+ {
+  "name": "Santa Marina Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · Venezia",
+  "lat": 45.438422,
+  "lon": 12.339187
+ },
+ {
+  "name": "Hotel Villa Condulmer",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 47 间 · Mogliano Veneto",
+  "lat": 45.577657,
+  "lon": 12.26608
+ },
+ {
+  "name": "Park Hotel Villa Fiorita",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 170 间 · Monastier di Treviso",
+  "lat": 45.654733,
+  "lon": 12.427508
+ },
+ {
+  "name": "Starhotels Anderson",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 106 间 · Milano",
+  "lat": 45.485289,
+  "lon": 9.207046
+ },
+ {
+  "name": "Belstay Milano Assago",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 203 间 · Buccinasco",
+  "lat": 45.4011,
+  "lon": 9.12097
+ },
+ {
+  "name": "Belstay Milano Linate",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 203 间 · Peschiera Borromeo",
+  "lat": 45.450717,
+  "lon": 9.290586
+ },
+ {
+  "name": "Best Western Plus Hotel Le Favaglie",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 112 间 · Cornaredo",
+  "lat": 45.487009,
+  "lon": 9.031109
+ },
+ {
+  "name": "West Florence Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 70 间 · Campi Bisenzio",
+  "lat": 43.824413,
+  "lon": 11.125329
+ },
+ {
+  "name": "San Ranieri Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 90 间 · Pisa",
+  "lat": 43.705582,
+  "lon": 10.438801
+ },
+ {
+  "name": "Hotel Albani Firenze",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 97 间 · Firenze",
+  "lat": 43.776945,
+  "lon": 11.25028
+ },
+ {
+  "name": "Art Hotel Museo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 106 间 · Prato",
+  "lat": 43.860828,
+  "lon": 11.108824
+ },
+ {
+  "name": "Grand Hotel Baglioni",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 192 间 · Firenze",
+  "lat": 43.774641,
+  "lon": 11.250659
+ },
+ {
+  "name": "Hotel Balestri",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 50 间 · Firenze",
+  "lat": 43.767252,
+  "lon": 11.257956
+ },
+ {
+  "name": "Best Western Plus CHC Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 73 间 · Firenze",
+  "lat": 43.773876,
+  "lon": 11.254757
+ },
+ {
+  "name": "Hotel Croce di Malta",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 98 间 · Firenze",
+  "lat": 43.773491,
+  "lon": 11.248343
+ },
+ {
+  "name": "Hotel Datini",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 89 间 · Prato",
+  "lat": 43.856901,
+  "lon": 11.122077
+ },
+ {
+  "name": "Hotel degli Orafi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star Superior · 50 间 · Firenze",
+  "lat": 43.768114,
+  "lon": 11.254518
+ },
+ {
+  "name": "Hotel Delta Florence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 240 间 · Calenzano",
+  "lat": 43.850971,
+  "lon": 11.168719
+ },
+ {
+  "name": "Hotel NH Collection Roma Centro",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 257 间 · Roma",
+  "lat": 41.909701,
+  "lon": 12.468786
+ },
+ {
+  "name": "Hotel San Marino iDesign",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 28 间 · Ricadi",
+  "lat": 38.646559,
+  "lon": 15.839164
+ },
+ {
+  "name": "Villa Madruzzo",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 87 间 · Trento",
+  "lat": 46.072868,
+  "lon": 11.14938
+ },
+ {
+  "name": "Grotta Giusti Thermal Spa Resort Tuscany",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star Deluxe · Monsummano Terme",
+  "lat": 43.866808,
+  "lon": 10.83158
+ },
+ {
+  "name": "Hotel Capannelle",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 252 间 · Roma",
+  "lat": 41.835285,
+  "lon": 12.555219
+ },
+ {
+  "name": "Leonardo Da Vinci",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 71 间 · Firenze",
+  "lat": 43.780153,
+  "lon": 11.244571
+ },
+ {
+  "name": "San Gallo Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 56 间 · Firenze",
+  "lat": 43.785022,
+  "lon": 11.2611
+ },
+ {
+  "name": "Hermitage",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star Superior · 54 间 · Poggio a Caiano",
+  "lat": 43.819246,
+  "lon": 11.041809
+ },
+ {
+  "name": "Ercolini e Savi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 81 间 · Montecatini Terme (PT)",
+  "lat": 43.883197,
+  "lon": 10.772666
+ },
+ {
+  "name": "Adesso Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 83 间 · Roma",
+  "lat": 41.91018,
+  "lon": 12.529275
+ },
+ {
+  "name": "Albani Hotel Roma",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 154 间 · Roma",
+  "lat": 41.915935,
+  "lon": 12.500122
+ },
+ {
+  "name": "Settentrionale Esplanade",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 99 间 · Montecatini Terme",
+  "lat": 43.885462,
+  "lon": 10.775246
+ },
+ {
+  "name": "Intercontinental Rome Ambasciatori Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 160 间 · Roma",
+  "lat": 41.906279,
+  "lon": 12.489535
+ },
+ {
+  "name": "Grand Hotel Croce di Malta",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star Superior · 130 间 · Montecatini Terme",
+  "lat": 43.887189,
+  "lon": 10.771605
+ },
+ {
+  "name": "Best Western ArtDeco",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 68 间 · Roma",
+  "lat": 41.906708,
+  "lon": 12.501934
+ },
+ {
+  "name": "Hotel Minerva Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 75 间 · Milano",
+  "lat": 45.453854,
+  "lon": 9.170829
+ },
+ {
+  "name": "Hotel Boston",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 55 间 · Montecatini Terme",
+  "lat": 43.881612,
+  "lon": 10.775588
+ },
+ {
+  "name": "Hotel Da Vinci",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 44 间 · Montecatini Terme",
+  "lat": 43.881552,
+  "lon": 10.775224
+ },
+ {
+  "name": "Palazzo Belvedere",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 60 间 · Montecatini Terme",
+  "lat": 43.890892,
+  "lon": 10.777338
+ },
+ {
+  "name": "Bagni di Pisa Palace & Thermal Spa",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star Deluxe · 61 间 · San Giuliano Terme",
+  "lat": 43.763847,
+  "lon": 10.441021
+ },
+ {
+  "name": "Fattoria degli Usignoli",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 72 间 · Padova",
+  "lat": 45.383518,
+  "lon": 11.849062
+ },
+ {
+  "name": "Charme",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 72 间 · Prato",
+  "lat": 43.858146,
+  "lon": 11.09808
+ },
+ {
+  "name": "Mama Shelter Roma",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 217 间 · Roma",
+  "lat": 41.909005,
+  "lon": 12.445971
+ },
+ {
+  "name": "Jo&Joe",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 49 间 · Bologna",
+  "lat": 44.525129,
+  "lon": 11.367227
+ },
+ {
+  "name": "Villa Maria Regina",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 115 间 · Fiumicello Villa Vicentina",
+  "lat": 45.804994,
+  "lon": 13.416989
+ },
+ {
+  "name": "Villa Aurelia Roma",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 90 间 · Roma",
+  "lat": 41.892415,
+  "lon": 12.435927
+ },
+ {
+  "name": "Golden Tulip Piram",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 113 间 · Roma",
+  "lat": 41.900806,
+  "lon": 12.497883
+ },
+ {
+  "name": "La Griffe",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 123 间 · Roma",
+  "lat": 41.901353,
+  "lon": 12.494403
+ },
+ {
+  "name": "Milani",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star Superior · 71 间 · Roma",
+  "lat": 41.903413,
+  "lon": 12.502708
+ },
+ {
+  "name": "Moderno Roma",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 64 间 · Roma",
+  "lat": 41.903667,
+  "lon": 12.502389
+ },
+ {
+  "name": "Villa Lecchi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star Superior · 37 间 · Poggibonsi",
+  "lat": 43.437083,
+  "lon": 11.186934
+ },
+ {
+  "name": "Amalfi Residence",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 27 间 · Amalfi",
+  "lat": 40.633968,
+  "lon": 14.603792
+ },
+ {
+  "name": "Tower Genova",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · Genova",
+  "lat": 44.416877,
+  "lon": 8.85365
+ },
+ {
+  "name": "Allegroitalia La Spezia",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 37 间 · La Spezia",
+  "lat": 44.108835,
+  "lon": 9.827023
+ },
+ {
+  "name": "Madison Rome",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 131 间 · Roma",
+  "lat": 41.901833,
+  "lon": 12.503389
+ },
+ {
+  "name": "Grand Hotel Vesuvio Sorrento",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 250 间 · Sorrento",
+  "lat": 40.62601,
+  "lon": 14.358433
+ },
+ {
+  "name": "Panorama Palace Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 101 间 · Meta",
+  "lat": 40.647884,
+  "lon": 14.408633
+ },
+ {
+  "name": "Grand Hotel Cesare Augusto",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 120 间 · Sorrento",
+  "lat": 40.624605,
+  "lon": 14.377566
+ },
+ {
+  "name": "Palazzo Ognissanti",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 47 间 · Firenze",
+  "lat": 43.773398,
+  "lon": 11.244913
+ },
+ {
+  "name": "Ibis Florence Prato East",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 127 间 · Campi Bisenzio",
+  "lat": 43.84725,
+  "lon": 11.138924
+ },
+ {
+  "name": "Meininger Termini",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 117 间 · Roma",
+  "lat": 41.905463,
+  "lon": 12.503999
+ },
+ {
+  "name": "Caravel Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 118 间 · Roma",
+  "lat": 41.865226,
+  "lon": 12.496239
+ },
+ {
+  "name": "Precise House Mantegna",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star Superior · 323 间 · Roma",
+  "lat": 41.852658,
+  "lon": 12.496598
+ },
+ {
+  "name": "Hampton by Hilton Rome North Fiano Romano",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 130 间 · Fiano Romano",
+  "lat": 42.137315,
+  "lon": 12.602179
+ },
+ {
+  "name": "H10 Roma Città",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 181 间 · Roma",
+  "lat": 41.867105,
+  "lon": 12.471461
+ },
+ {
+  "name": "Sina Brufani",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 94 间 · Perugia",
+  "lat": 43.108421,
+  "lon": 12.387199
+ },
+ {
+  "name": "Sangallo Palace",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 50 间 · Perugia",
+  "lat": 43.10607,
+  "lon": 12.388238
+ },
+ {
+  "name": "Hotel Giò Wine e Jazz Area",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 202 间 · Perugia",
+  "lat": 43.111793,
+  "lon": 12.377251
+ },
+ {
+  "name": "Perugia Park Hotel",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 153 间 · Ponte San Giovanni",
+  "lat": 43.086308,
+  "lon": 12.444928
+ },
+ {
+  "name": "Hotel Cenacolo Assisi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 111 间 · Assisi",
+  "lat": 43.062449,
+  "lon": 12.587996
+ },
+ {
+  "name": "BV Grand Hotel Assisi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 155 间 · Assisi",
+  "lat": 43.060151,
+  "lon": 12.629429
+ },
+ {
+  "name": "Palace Hotel Fontebella Assisi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 30 间 · Assisi",
+  "lat": 43.072344,
+  "lon": 12.609496
+ },
+ {
+  "name": "Domus Pacis Assisi",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 170 间 · Assisi",
+  "lat": 43.056662,
+  "lon": 12.580336
+ },
+ {
+  "name": "Windsor Savoia",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 34 间 · Assisi",
+  "lat": 43.072527,
+  "lon": 12.607588
+ },
+ {
+  "name": "The Social Hub Florence Lavagnini",
+  "country": "意大利",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 390 间 · Firenze",
+  "lat": 43.78248,
+  "lon": 11.252831
  }
 ]
