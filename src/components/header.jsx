@@ -66,6 +66,16 @@ export default function Header() {
       <div className="flex items-end gap-1 self-end h-14">
         <nav className="flex items-end gap-0 h-full">
           <Link
+            href="/map"
+            style={{
+              ...tabGlass,
+              ...(isActive('/map') ? tabActive : tabInactive),
+            }}
+            className={tabClass}
+          >
+            地图
+          </Link>
+          <Link
             href="/knowledge"
             style={{
               ...tabGlass,
@@ -84,16 +94,6 @@ export default function Header() {
             className={tabClass}
           >
             酒店库
-          </Link>
-          <Link
-            href="/map"
-            style={{
-              ...tabGlass,
-              ...(isActive('/map') ? tabActive : tabInactive),
-            }}
-            className={tabClass}
-          >
-            地图
           </Link>
           <Link
             href="/mice"
