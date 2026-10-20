@@ -4574,5 +4574,149 @@
   "desc": "",
   "lat": 60.297284,
   "lon": 24.961649
+ },
+ {
+  "name": "Sommerro",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 231 间 · Sommerrogata 1, 0255 Oslo",
+  "lat": 59.915245,
+  "lon": 10.719612
+ },
+ {
+  "name": "Scandic Holmenkollen",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 342 间 · Oslo",
+  "lat": 59.962994,
+  "lon": 10.662423
+ },
+ {
+  "name": "Clarion Hotel Oslo",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 255 间 · Dronning Eufemias Gate 15 0191 Oslo , Norge",
+  "lat": 59.907798,
+  "lon": 10.756419
+ },
+ {
+  "name": "Clarion Hotel The Hub",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 810 间 · Biskop Gunnerusgt. 3 0155 Oslo , Norge",
+  "lat": 59.912469,
+  "lon": 10.750042
+ },
+ {
+  "name": "Hotel Continental",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 151 间 · Stortingsgata 24/26, 0117 Oslo",
+  "lat": 59.91409,
+  "lon": 10.733521
+ },
+ {
+  "name": "THE THIEF",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 114 间 · Landgangen 1, 0252 Oslo",
+  "lat": 59.907658,
+  "lon": 10.721052
+ },
+ {
+  "name": "Thon Hotel Opera",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 480 间 · Dronning Eufemias gate 4, 0191 Oslo",
+  "lat": 59.909586,
+  "lon": 10.753362
+ },
+ {
+  "name": "Radisson Blu Plaza Hotel",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 673 间 · Oslo",
+  "lat": 59.912481,
+  "lon": 10.756537
+ },
+ {
+  "name": "Bjørnefjell Mountain Lodge",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 20 间 · Alta",
+  "lat": 70.036229,
+  "lon": 23.533839
+ },
+ {
+  "name": "Scandic Alta",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 241 间 · Løkkeveien 61, 9509 Alta, Norway",
+  "lat": 69.965894,
+  "lon": 23.268331
+ },
+ {
+  "name": "Scandic Sortland",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 128 间 · Havnegata 3, 8400 Sortland, Norway",
+  "lat": 68.69741,
+  "lon": 15.418952
+ },
+ {
+  "name": "Scandic Harstad",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 121 间 · Strandgata 9, 9485 Harstad, Norway",
+  "lat": 68.8009,
+  "lon": 16.542159
+ },
+ {
+  "name": "Scandic Grand Tromsoe",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 133 间 · Tromsø",
+  "lat": 69.648051,
+  "lon": 18.953692
+ },
+ {
+  "name": "X Hotel",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star Superior · 436 间 · Oslo",
+  "lat": 59.916384,
+  "lon": 10.749487
+ },
+ {
+  "name": "Hobo Hotel Oslo",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · 181 间 · Oslo",
+  "lat": 59.911281,
+  "lon": 10.746956
+ },
+ {
+  "name": "Jegtvolden Fjordhotell",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 3-Star · Straumen",
+  "lat": 63.864756,
+  "lon": 11.257712
+ },
+ {
+  "name": "Grand Hotel Oslo by Scandic",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 5-Star · 292 间 · Oslo",
+  "lat": 59.913733,
+  "lon": 10.739478
+ },
+ {
+  "name": "Sorrisniva Arctic Wilderness Lodge",
+  "country": "挪威",
+  "kind": "ktHotel",
+  "desc": "KT产品库 · 4-Star · 24 间 · Alta",
+  "lat": 69.868088,
+  "lon": 23.308753
  }
 ]

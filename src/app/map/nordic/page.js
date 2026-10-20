@@ -10,6 +10,7 @@ const TILE =
 const KIND_LABEL = {
   city: '城市',
   hotel: '酒店',
+  ktHotel: 'KT酒店',
   restaurant: '餐厅',
   attraction: '景点',
   venue: '场地',
@@ -19,6 +20,7 @@ const KIND_LABEL = {
 const COLORS = {
   city: { line: '#075985', fill: '#0ea5e9' },
   hotel: { line: '#b45309', fill: '#f59e0b' },
+  ktHotel: { line: '#6d28d9', fill: '#c4b5fd' },
   restaurant: { line: '#7c2d12', fill: '#fb7185' },
   attraction: { line: '#166534', fill: '#4ade80' },
   venue: { line: '#5b21b6', fill: '#a78bfa' },
