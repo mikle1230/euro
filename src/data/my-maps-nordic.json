@@ -4718,5 +4718,173 @@
   "desc": "KT产品库 · 4-Star · 24 间 · Alta",
   "lat": 69.868088,
   "lon": 23.308753
+ },
+ {
+  "name": "华姆斯唐吉",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 65.3968098,
+  "lon": -20.9430748
+ },
+ {
+  "name": "阿克雷里",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 65.6825509,
+  "lon": -18.0906858
+ },
+ {
+  "name": "胡萨湾",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 66.047451,
+  "lon": -17.3439079
+ },
+ {
+  "name": "埃伊尔斯塔济",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 65.2609232,
+  "lon": -14.3994394
+ },
+ {
+  "name": "大众克鲁斯菲厄泽",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.9304355,
+  "lon": -14.0144542
+ },
+ {
+  "name": "布雷兹达斯湾",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.7922543,
+  "lon": -14.009518
+ },
+ {
+  "name": "赫本",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.2551913,
+  "lon": -15.2088449
+ },
+ {
+  "name": "海德纳尔",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.7507498,
+  "lon": -23.646546
+ },
+ {
+  "name": "雷克霍特",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.6645837,
+  "lon": -21.2911259
+ },
+ {
+  "name": "惠拉盖尔济",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.9984195,
+  "lon": -21.1885909
+ },
+ {
+  "name": "霍尔斯沃德吕尔",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.7511132,
+  "lon": -20.2229199
+ },
+ {
+  "name": "Stracta Hotel Mosfell",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 63.835484,
+  "lon": -20.40103
+ },
+ {
+  "name": "霍斯沃鲁尔酒店",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "Hotel Hvolsvollur",
+  "lat": 63.7504839,
+  "lon": -20.2275174
+ },
+ {
+  "name": "中央广场酒店",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 64.1483111,
+  "lon": -21.9417062
+ },
+ {
+  "name": "Grandi by Center Hotels",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 64.1519,
+  "lon": -21.95169
+ },
+ {
+  "name": "KONVIN Hotel - Keflavik Airport",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 63.9727292,
+  "lon": -22.5763569
+ },
+ {
+  "name": "博加尔尼斯酒店",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 64.5373498,
+  "lon": -21.9237107
+ },
+ {
+  "name": "努帕尔福斯酒店",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 63.9237818,
+  "lon": -17.7061523
+ },
+ {
+  "name": "Adventure Hotel Hof",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 63.9069967,
+  "lon": -16.7056219
+ },
+ {
+  "name": "卡特拉霍夫达布雷卡酒店",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 63.4267993,
+  "lon": -18.9054346
+ },
+ {
+  "name": "Courtyard by Marriott Reykjavik Keflavik Airport",
+  "country": "冰岛",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 63.9990902,
+  "lon": -22.5871271
  }
 ]
