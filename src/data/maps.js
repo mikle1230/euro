@@ -1,8 +1,11 @@
-// Google My Maps 列表：新增一张图只需在数组里加一行（label 用于切换标签）
+// Google My Maps 列表
+// 新增一张图：在 MAPS 里加一行即可，左侧列表和搜索会自动带上
+// group：用于分组（如「北欧」「西欧」「主题图」），留空归到「未分组」
+// note：可选，列表里的小字说明（如「2026 夏」「酒店+餐厅」）
 export const MAPS = [
-  { mid: '15mNXV_q5YES1DmwC4kMlUUCHqMwghGo', label: '冰岛' },
-  { mid: '1LsaRGYuCakiBT7zt9QjcEpFUcyLjBbA', label: '地图 2' },
-  { mid: '1EUo7zZ9Nbz-aegFu639ptLPNftdeEsg', label: '地图 3' },
+  { mid: '15mNXV_q5YES1DmwC4kMlUUCHqMwghGo', label: '冰岛', group: '北欧' },
+  { mid: '1LsaRGYuCakiBT7zt9QjcEpFUcyLjBbA', label: '地图 2', group: '未命名' },
+  { mid: '1EUo7zZ9Nbz-aegFu639ptLPNftdeEsg', label: '地图 3', group: '未命名' },
 ]
 
 export const embedUrl = (mid) =>
