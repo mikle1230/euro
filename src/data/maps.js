@@ -6,7 +6,7 @@
 export const GROUP_ORDER = ['冰岛', '挪威', '瑞典', '丹麦', '芬兰', '意大利', '其他']
 
 export const MAPS = [
-  { mid: '15mNXV_q5YES1DmwC4kMlUUCHqMwghGo', label: '冰岛', group: '北欧' },
+  { mid: '15mNXV_q5YES1DmwC4kMlUUCHqMwghGo', label: '冰岛', group: '冰岛' },
   { mid: '1LsaRGYuCakiBT7zt9QjcEpFUcyLjBbA', label: '地图 2', group: '未命名' },
   { mid: '1EUo7zZ9Nbz-aegFu639ptLPNftdeEsg', label: '地图 3', group: '未命名' },
 ]
