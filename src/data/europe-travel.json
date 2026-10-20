@@ -3339,6 +3339,158 @@
           "lat": 69.5167,
           "lng": 17.9,
           "attractions": []
+        },
+        {
+          "id": "gardermoen",
+          "name": "加勒穆恩",
+          "nameEn": "Gardermoen",
+          "lat": 60.21667,
+          "lng": 11.1,
+          "attractions": []
+        },
+        {
+          "id": "drammen",
+          "name": "德拉门",
+          "nameEn": "Drammen",
+          "lat": 59.74389,
+          "lng": 10.20449,
+          "attractions": []
+        },
+        {
+          "id": "lillestrom",
+          "name": "利勒斯特伦",
+          "nameEn": "Lillestrøm",
+          "lat": 59.95597,
+          "lng": 11.04918,
+          "attractions": []
+        },
+        {
+          "id": "lorenskog",
+          "name": "洛伦斯考格",
+          "nameEn": "Lørenskog",
+          "lat": 59.9291,
+          "lng": 10.961,
+          "attractions": []
+        },
+        {
+          "id": "ulvik-no",
+          "name": "于尔维克",
+          "nameEn": "Ulvik",
+          "lat": 60.56791,
+          "lng": 6.91645,
+          "attractions": []
+        },
+        {
+          "id": "gudvangen",
+          "name": "居德旺恩",
+          "nameEn": "Gudvangen",
+          "lat": 60.87773,
+          "lng": 6.83795,
+          "attractions": []
+        },
+        {
+          "id": "myrdal",
+          "name": "米达尔",
+          "nameEn": "Myrdal",
+          "lat": 60.73333,
+          "lng": 7.13333,
+          "attractions": []
+        },
+        {
+          "id": "laerdal",
+          "name": "莱达尔",
+          "nameEn": "Laerdal",
+          "lat": 61.10001,
+          "lng": 7.47374,
+          "attractions": []
+        },
+        {
+          "id": "sogndal",
+          "name": "松达尔",
+          "nameEn": "Sogndal",
+          "lat": 61.22908,
+          "lng": 7.09674,
+          "attractions": []
+        },
+        {
+          "id": "odda",
+          "name": "奥达",
+          "nameEn": "Odda",
+          "lat": 60.06912,
+          "lng": 6.54565,
+          "attractions": []
+        },
+        {
+          "id": "lofthus",
+          "name": "洛夫特胡斯",
+          "nameEn": "Lofthus",
+          "lat": 60.33263,
+          "lng": 6.66167,
+          "attractions": []
+        },
+        {
+          "id": "eidfjord",
+          "name": "艾德菲尤尔",
+          "nameEn": "Eidfjord",
+          "lat": 60.4675,
+          "lng": 7.07193,
+          "attractions": []
+        },
+        {
+          "id": "kristiansand",
+          "name": "克里斯蒂安桑",
+          "nameEn": "Kristiansand",
+          "lat": 58.14671,
+          "lng": 7.9956,
+          "attractions": []
+        },
+        {
+          "id": "haugesund",
+          "name": "海于格松",
+          "nameEn": "Haugesund",
+          "lat": 59.41378,
+          "lng": 5.268,
+          "attractions": []
+        },
+        {
+          "id": "alta",
+          "name": "阿尔塔",
+          "nameEn": "Alta",
+          "lat": 69.96887,
+          "lng": 23.27165,
+          "attractions": []
+        },
+        {
+          "id": "kirkenes-no",
+          "name": "希尔科内斯",
+          "nameEn": "Kirkenes",
+          "lat": 69.72706,
+          "lng": 30.04578,
+          "attractions": []
+        },
+        {
+          "id": "bodo",
+          "name": "博德",
+          "nameEn": "Bodø",
+          "lat": 67.28267,
+          "lng": 14.37513,
+          "attractions": []
+        },
+        {
+          "id": "gol",
+          "name": "高尔",
+          "nameEn": "Gol",
+          "lat": 60.7014,
+          "lng": 8.94572,
+          "attractions": []
+        },
+        {
+          "id": "hemsedal",
+          "name": "赫姆瑟达尔",
+          "nameEn": "Hemsedal",
+          "lat": 60.86293,
+          "lng": 8.55337,
+          "attractions": []
         }
       ]
     },
@@ -3649,6 +3801,158 @@
           "lat": 56.0465,
           "lng": 12.6945,
           "attractions": []
+        },
+        {
+          "id": "norrkoping",
+          "name": "诺尔雪平",
+          "nameEn": "Norrköping",
+          "lat": 58.59419,
+          "lng": 16.1826,
+          "attractions": []
+        },
+        {
+          "id": "jonkoping",
+          "name": "延雪平",
+          "nameEn": "Jönköping",
+          "lat": 57.78145,
+          "lng": 14.15618,
+          "attractions": []
+        },
+        {
+          "id": "trollhattan",
+          "name": "特洛尔海坦",
+          "nameEn": "Trollhättan",
+          "lat": 58.28365,
+          "lng": 12.28864,
+          "attractions": []
+        },
+        {
+          "id": "halmstad",
+          "name": "哈尔姆斯塔德",
+          "nameEn": "Halmstad",
+          "lat": 56.67446,
+          "lng": 12.85676,
+          "attractions": []
+        },
+        {
+          "id": "lund",
+          "name": "龙德",
+          "nameEn": "Lund",
+          "lat": 55.70584,
+          "lng": 13.19321,
+          "attractions": []
+        },
+        {
+          "id": "karlskrona",
+          "name": "卡尔斯克鲁纳",
+          "nameEn": "Karlskrona",
+          "lat": 56.16156,
+          "lng": 15.58661,
+          "attractions": []
+        },
+        {
+          "id": "kalmar",
+          "name": "卡尔马",
+          "nameEn": "Kalmar",
+          "lat": 56.66157,
+          "lng": 16.36163,
+          "attractions": []
+        },
+        {
+          "id": "visby",
+          "name": "维斯比",
+          "nameEn": "Visby",
+          "lat": 57.64089,
+          "lng": 18.29602,
+          "attractions": []
+        },
+        {
+          "id": "charlottenberg-se",
+          "name": "夏洛滕贝格",
+          "nameEn": "Charlottenberg",
+          "lat": 59.88422,
+          "lng": 12.30398,
+          "attractions": []
+        },
+        {
+          "id": "sunne",
+          "name": "孙讷",
+          "nameEn": "Sunne",
+          "lat": 59.83764,
+          "lng": 13.14302,
+          "attractions": []
+        },
+        {
+          "id": "arvika",
+          "name": "阿尔维卡",
+          "nameEn": "Arvika",
+          "lat": 59.65528,
+          "lng": 12.58518,
+          "attractions": []
+        },
+        {
+          "id": "arjang",
+          "name": "奥尔延",
+          "nameEn": "Arjang",
+          "lat": 59.39217,
+          "lng": 12.13336,
+          "attractions": []
+        },
+        {
+          "id": "ostersund",
+          "name": "厄斯特松德",
+          "nameEn": "Östersund",
+          "lat": 63.1792,
+          "lng": 14.63566,
+          "attractions": []
+        },
+        {
+          "id": "are",
+          "name": "奥勒",
+          "nameEn": "Åre",
+          "lat": 63.39911,
+          "lng": 13.07995,
+          "attractions": []
+        },
+        {
+          "id": "lulea",
+          "name": "吕勒奥",
+          "nameEn": "Luleå",
+          "lat": 65.58415,
+          "lng": 22.15465,
+          "attractions": []
+        },
+        {
+          "id": "ulricehamn",
+          "name": "乌尔里瑟港",
+          "nameEn": "Ulricehamn",
+          "lat": 57.79159,
+          "lng": 13.41422,
+          "attractions": []
+        },
+        {
+          "id": "vetlanda",
+          "name": "韦特兰达",
+          "nameEn": "Vetlanda",
+          "lat": 57.42887,
+          "lng": 15.07762,
+          "attractions": []
+        },
+        {
+          "id": "oskarshamn",
+          "name": "奥斯卡港",
+          "nameEn": "Oskarshamn",
+          "lat": 57.26455,
+          "lng": 16.44837,
+          "attractions": []
+        },
+        {
+          "id": "vaxjo",
+          "name": "韦克舍",
+          "nameEn": "Växjö",
+          "lat": 56.87767,
+          "lng": 14.80906,
+          "attractions": []
         }
       ]
     },
@@ -3843,6 +4147,54 @@
           "lat": 60.45,
           "lng": 22.27,
           "attractions": []
+        },
+        {
+          "id": "hyvinkaa",
+          "name": "许温凯",
+          "nameEn": "Hyvinkää",
+          "lat": 60.63333,
+          "lng": 24.86667,
+          "attractions": []
+        },
+        {
+          "id": "jarvenpaa",
+          "name": "耶尔文佩",
+          "nameEn": "Järvenpää",
+          "lat": 60.47369,
+          "lng": 25.08992,
+          "attractions": []
+        },
+        {
+          "id": "inari",
+          "name": "伊纳里",
+          "nameEn": "Inari",
+          "lat": 68.90596,
+          "lng": 27.02881,
+          "attractions": []
+        },
+        {
+          "id": "oulu",
+          "name": "奥卢",
+          "nameEn": "Oulu",
+          "lat": 65.01236,
+          "lng": 25.46816,
+          "attractions": []
+        },
+        {
+          "id": "kuusamo",
+          "name": "库萨莫",
+          "nameEn": "Kuusamo",
+          "lat": 65.96447,
+          "lng": 29.18878,
+          "attractions": []
+        },
+        {
+          "id": "porvoo-fi",
+          "name": "波尔沃",
+          "nameEn": "Porvoo",
+          "lat": 60.39233,
+          "lng": 25.66507,
+          "attractions": []
         }
       ]
     },
@@ -3899,6 +4251,86 @@
           "nameEn": "Vík í Mýrdal",
           "lat": 63.4187,
           "lng": -19.006,
+          "attractions": []
+        },
+        {
+          "id": "keflavik",
+          "name": "凯夫拉维克",
+          "nameEn": "Keflavík",
+          "lat": 64.00492,
+          "lng": -22.56242,
+          "attractions": []
+        },
+        {
+          "id": "hofn",
+          "name": "赫本镇",
+          "nameEn": "Höfn",
+          "lat": 64.25388,
+          "lng": -15.21212,
+          "attractions": []
+        },
+        {
+          "id": "kirkjubaejarklaustur",
+          "name": "教堂镇",
+          "nameEn": "Kirkjubæjarklaustur",
+          "lat": 63.78935,
+          "lng": -18.05273,
+          "attractions": []
+        },
+        {
+          "id": "selfoss",
+          "name": "塞尔福斯",
+          "nameEn": "Selfoss",
+          "lat": 63.93311,
+          "lng": -20.99712,
+          "attractions": []
+        },
+        {
+          "id": "hvolsvollur",
+          "name": "霍尔斯沃德吕尔",
+          "nameEn": "Hvolsvöllur",
+          "lat": 63.75069,
+          "lng": -20.22454,
+          "attractions": []
+        },
+        {
+          "id": "arnarstapi",
+          "name": "阿尔纳斯塔皮",
+          "nameEn": "Arnarstapi",
+          "lat": 64.76936,
+          "lng": -23.62258,
+          "attractions": []
+        },
+        {
+          "id": "hellnar",
+          "name": "海德纳尔",
+          "nameEn": "Hellnar",
+          "lat": 64.75055,
+          "lng": -23.64747,
+          "attractions": []
+        },
+        {
+          "id": "akureyri",
+          "name": "阿克雷里",
+          "nameEn": "Akureyri",
+          "lat": 65.68353,
+          "lng": -18.0878,
+          "attractions": []
+        },
+        {
+          "id": "egilsstadir",
+          "name": "埃伊尔斯塔济",
+          "nameEn": "Egilsstaðir",
+          "lat": 65.26687,
+          "lng": -14.39485,
+          "attractions": []
+        },
+        {
+          "id": "isafjordur",
+          "name": "伊萨菲厄泽",
+          "nameEn": "Ísafjörður",
+          "lat": 66.07475,
+          "lng": -23.13498,
           "attractions": []
         }
       ]
@@ -4164,6 +4596,46 @@
           "nameEn": "Holte",
           "lat": 55.8131,
           "lng": 12.4673,
+          "attractions": []
+        },
+        {
+          "id": "roskilde",
+          "name": "罗斯基勒",
+          "nameEn": "Roskilde",
+          "lat": 55.64152,
+          "lng": 12.08035,
+          "attractions": []
+        },
+        {
+          "id": "aalborg",
+          "name": "奥尔堡",
+          "nameEn": "Aalborg",
+          "lat": 57.048,
+          "lng": 9.9187,
+          "attractions": []
+        },
+        {
+          "id": "esbjerg",
+          "name": "埃斯比约",
+          "nameEn": "Esbjerg",
+          "lat": 55.47028,
+          "lng": 8.45187,
+          "attractions": []
+        },
+        {
+          "id": "ribe",
+          "name": "里伯",
+          "nameEn": "Ribe",
+          "lat": 55.33051,
+          "lng": 8.76966,
+          "attractions": []
+        },
+        {
+          "id": "skanderborg",
+          "name": "斯坎讷堡",
+          "nameEn": "Skanderborg",
+          "lat": 56.03434,
+          "lng": 9.93177,
           "attractions": []
         }
       ]

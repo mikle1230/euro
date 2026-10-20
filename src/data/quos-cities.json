@@ -33830,5 +33830,241 @@
   "Andorra la Vella": {
     "cityCode": "ANO",
     "countryCode": "AD"
+  },
+  "许温凯": {
+    "cityCode": "HYV",
+    "countryCode": "FI"
+  },
+  "耶尔文佩": {
+    "cityCode": "JVP",
+    "countryCode": "FI"
+  },
+  "伊纳里": {
+    "cityCode": "INR",
+    "countryCode": "FI"
+  },
+  "奥卢": {
+    "cityCode": "OUL",
+    "countryCode": "FI"
+  },
+  "库萨莫": {
+    "cityCode": "KAO",
+    "countryCode": "FI"
+  },
+  "波尔沃": {
+    "cityCode": "PRV",
+    "countryCode": "FI"
+  },
+  "诺尔雪平": {
+    "cityCode": "NRK",
+    "countryCode": "SE"
+  },
+  "延雪平": {
+    "cityCode": "JKG",
+    "countryCode": "SE"
+  },
+  "特洛尔海坦": {
+    "cityCode": "TRL",
+    "countryCode": "SE"
+  },
+  "哈尔姆斯塔德": {
+    "cityCode": "HAD",
+    "countryCode": "SE"
+  },
+  "龙德": {
+    "cityCode": "LUD",
+    "countryCode": "SE"
+  },
+  "卡尔斯克鲁纳": {
+    "cityCode": "KKA",
+    "countryCode": "SE"
+  },
+  "卡尔马": {
+    "cityCode": "KLR",
+    "countryCode": "SE"
+  },
+  "维斯比": {
+    "cityCode": "VBY",
+    "countryCode": "SE"
+  },
+  "夏洛滕贝格": {
+    "cityCode": "CLB",
+    "countryCode": "SE"
+  },
+  "孙讷": {
+    "cityCode": "SUX",
+    "countryCode": "SE"
+  },
+  "阿尔维卡": {
+    "cityCode": "ARI",
+    "countryCode": "SE"
+  },
+  "奥尔延": {
+    "cityCode": "ARJ",
+    "countryCode": "SE"
+  },
+  "厄斯特松德": {
+    "cityCode": "OSD",
+    "countryCode": "SE"
+  },
+  "奥勒": {
+    "cityCode": "AQE",
+    "countryCode": "SE"
+  },
+  "吕勒奥": {
+    "cityCode": "LLA",
+    "countryCode": "SE"
+  },
+  "乌尔里瑟港": {
+    "cityCode": "ULR",
+    "countryCode": "SE"
+  },
+  "韦特兰达": {
+    "cityCode": "VEA",
+    "countryCode": "SE"
+  },
+  "奥斯卡港": {
+    "cityCode": "OSK",
+    "countryCode": "SE"
+  },
+  "韦克舍": {
+    "cityCode": "VXO",
+    "countryCode": "SE"
+  },
+  "加勒穆恩": {
+    "cityCode": "GAR",
+    "countryCode": "NO"
+  },
+  "德拉门": {
+    "cityCode": "DRM",
+    "countryCode": "NO"
+  },
+  "利勒斯特伦": {
+    "cityCode": "LSM",
+    "countryCode": "NO"
+  },
+  "洛伦斯考格": {
+    "cityCode": "LRS",
+    "countryCode": "NO"
+  },
+  "于尔维克": {
+    "cityCode": "ULV",
+    "countryCode": "NO"
+  },
+  "居德旺恩": {
+    "cityCode": "GUD",
+    "countryCode": "NO"
+  },
+  "米达尔": {
+    "cityCode": "MYR",
+    "countryCode": "NO"
+  },
+  "莱达尔": {
+    "cityCode": "LAE",
+    "countryCode": "NO"
+  },
+  "松达尔": {
+    "cityCode": "SOG",
+    "countryCode": "NO"
+  },
+  "奥达": {
+    "cityCode": "ODD",
+    "countryCode": "NO"
+  },
+  "洛夫特胡斯": {
+    "cityCode": "LOF",
+    "countryCode": "NO"
+  },
+  "艾德菲尤尔": {
+    "cityCode": "EFJ",
+    "countryCode": "NO"
+  },
+  "克里斯蒂安桑": {
+    "cityCode": "KRS",
+    "countryCode": "NO"
+  },
+  "海于格松": {
+    "cityCode": "HAU",
+    "countryCode": "NO"
+  },
+  "阿尔塔": {
+    "cityCode": "ALF",
+    "countryCode": "NO"
+  },
+  "希尔科内斯": {
+    "cityCode": "KKN",
+    "countryCode": "NO"
+  },
+  "博德": {
+    "cityCode": "BOO",
+    "countryCode": "NO"
+  },
+  "高尔": {
+    "cityCode": "GOL",
+    "countryCode": "NO"
+  },
+  "赫姆瑟达尔": {
+    "cityCode": "HEM",
+    "countryCode": "NO"
+  },
+  "罗斯基勒": {
+    "cityCode": "ROS",
+    "countryCode": "DK"
+  },
+  "奥尔堡": {
+    "cityCode": "AAL",
+    "countryCode": "DK"
+  },
+  "埃斯比约": {
+    "cityCode": "EBJ",
+    "countryCode": "DK"
+  },
+  "里伯": {
+    "cityCode": "RIB",
+    "countryCode": "DK"
+  },
+  "斯坎讷堡": {
+    "cityCode": "SDB",
+    "countryCode": "DK"
+  },
+  "凯夫拉维克": {
+    "cityCode": "KEF",
+    "countryCode": "IS"
+  },
+  "赫本镇": {
+    "cityCode": "HFN",
+    "countryCode": "IS"
+  },
+  "教堂镇": {
+    "cityCode": "KRJ",
+    "countryCode": "IS"
+  },
+  "塞尔福斯": {
+    "cityCode": "SFZ",
+    "countryCode": "IS"
+  },
+  "霍尔斯沃德吕尔": {
+    "cityCode": "HVO",
+    "countryCode": "IS"
+  },
+  "阿尔纳斯塔皮": {
+    "cityCode": "AI4",
+    "countryCode": "IS"
+  },
+  "海德纳尔": {
+    "cityCode": "HNJ",
+    "countryCode": "IS"
+  },
+  "阿克雷里": {
+    "cityCode": "AEY",
+    "countryCode": "IS"
+  },
+  "埃伊尔斯塔济": {
+    "cityCode": "EGS",
+    "countryCode": "IS"
+  },
+  "伊萨菲厄泽": {
+    "cityCode": "ISF",
+    "countryCode": "IS"
   }
 }

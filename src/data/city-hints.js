@@ -267,9 +267,21 @@ export const CITY_HINTS = [
     "countryCode": "DE"
   },
   {
+    "cn": "奥尔堡",
+    "en": "Aalborg",
+    "cityCode": "AAL",
+    "countryCode": "DK"
+  },
+  {
     "cn": "哥本哈根",
     "en": "Copenhagen",
     "cityCode": "CPH",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "埃斯比约",
+    "en": "Esbjerg",
+    "cityCode": "EBJ",
     "countryCode": "DK"
   },
   {
@@ -297,9 +309,27 @@ export const CITY_HINTS = [
     "countryCode": "DK"
   },
   {
+    "cn": "里伯",
+    "en": "Ribe",
+    "cityCode": "RIB",
+    "countryCode": "DK"
+  },
+  {
     "cn": "勒兹比",
     "en": "Roedby",
     "cityCode": "ROD",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "罗斯基勒",
+    "en": "Roskilde",
+    "cityCode": "ROS",
+    "countryCode": "DK"
+  },
+  {
+    "cn": "斯坎讷堡",
+    "en": "Skanderborg",
+    "cityCode": "SDB",
     "countryCode": "DK"
   },
   {
@@ -378,6 +408,42 @@ export const CITY_HINTS = [
     "cn": "赫尔辛基",
     "en": "Helsinki",
     "cityCode": "HEL",
+    "countryCode": "FI"
+  },
+  {
+    "cn": "许温凯",
+    "en": "Hyvinkää",
+    "cityCode": "HYV",
+    "countryCode": "FI"
+  },
+  {
+    "cn": "伊纳里",
+    "en": "Inari",
+    "cityCode": "INR",
+    "countryCode": "FI"
+  },
+  {
+    "cn": "耶尔文佩",
+    "en": "Järvenpää",
+    "cityCode": "JVP",
+    "countryCode": "FI"
+  },
+  {
+    "cn": "库萨莫",
+    "en": "Kuusamo",
+    "cityCode": "KAO",
+    "countryCode": "FI"
+  },
+  {
+    "cn": "奥卢",
+    "en": "Oulu",
+    "cityCode": "OUL",
+    "countryCode": "FI"
+  },
+  {
+    "cn": "波尔沃",
+    "en": "Porvoo",
+    "cityCode": "PRV",
     "countryCode": "FI"
   },
   {
@@ -585,15 +651,75 @@ export const CITY_HINTS = [
     "countryCode": "IE"
   },
   {
+    "cn": "阿克雷里",
+    "en": "Akureyri",
+    "cityCode": "AEY",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "阿尔纳斯塔皮",
+    "en": "Arnarstapi",
+    "cityCode": "AI4",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "埃伊尔斯塔济",
+    "en": "Egilsstaðir",
+    "cityCode": "EGS",
+    "countryCode": "IS"
+  },
+  {
     "cn": "海拉",
     "en": "Hella (Iceland)",
     "cityCode": "HLL",
     "countryCode": "IS"
   },
   {
+    "cn": "海德纳尔",
+    "en": "Hellnar",
+    "cityCode": "HNJ",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "赫本镇",
+    "en": "Höfn",
+    "cityCode": "HFN",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "霍尔斯沃德吕尔",
+    "en": "Hvolsvöllur",
+    "cityCode": "HVO",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "伊萨菲厄泽",
+    "en": "Ísafjörður",
+    "cityCode": "ISF",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "凯夫拉维克",
+    "en": "Keflavík",
+    "cityCode": "KEF",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "教堂镇",
+    "en": "Kirkjubæjarklaustur",
+    "cityCode": "KRJ",
+    "countryCode": "IS"
+  },
+  {
     "cn": "雷克雅未克",
     "en": "Reykjavik",
     "cityCode": "REK",
+    "countryCode": "IS"
+  },
+  {
+    "cn": "塞尔福斯",
+    "en": "Selfoss",
+    "cityCode": "SFZ",
     "countryCode": "IS"
   },
   {
@@ -813,9 +939,33 @@ export const CITY_HINTS = [
     "countryCode": "NO"
   },
   {
+    "cn": "阿尔塔",
+    "en": "Alta",
+    "cityCode": "ALF",
+    "countryCode": "NO"
+  },
+  {
     "cn": "卑尔根",
     "en": "Bergen",
     "cityCode": "BGO",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "博德",
+    "en": "Bodø",
+    "cityCode": "BOO",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "德拉门",
+    "en": "Drammen",
+    "cityCode": "DRM",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "艾德菲尤尔",
+    "en": "Eidfjord",
+    "cityCode": "EFJ",
     "countryCode": "NO"
   },
   {
@@ -825,15 +975,99 @@ export const CITY_HINTS = [
     "countryCode": "NO"
   },
   {
+    "cn": "加勒穆恩",
+    "en": "Gardermoen",
+    "cityCode": "GAR",
+    "countryCode": "NO"
+  },
+  {
     "cn": "盖罗",
     "en": "Geilo",
     "cityCode": "DLD",
     "countryCode": "NO"
   },
   {
+    "cn": "高尔",
+    "en": "Gol",
+    "cityCode": "GOL",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "居德旺恩",
+    "en": "Gudvangen",
+    "cityCode": "GUD",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "海于格松",
+    "en": "Haugesund",
+    "cityCode": "HAU",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "赫姆瑟达尔",
+    "en": "Hemsedal",
+    "cityCode": "HEM",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "希尔科内斯",
+    "en": "Kirkenes",
+    "cityCode": "KKN",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "克里斯蒂安桑",
+    "en": "Kristiansand",
+    "cityCode": "KRS",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "莱达尔",
+    "en": "Laerdal",
+    "cityCode": "LAE",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "利勒斯特伦",
+    "en": "Lillestrøm",
+    "cityCode": "LSM",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "洛夫特胡斯",
+    "en": "Lofthus",
+    "cityCode": "LOF",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "洛伦斯考格",
+    "en": "Lørenskog",
+    "cityCode": "LRS",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "米达尔",
+    "en": "Myrdal",
+    "cityCode": "MYR",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "奥达",
+    "en": "Odda",
+    "cityCode": "ODD",
+    "countryCode": "NO"
+  },
+  {
     "cn": "奥斯陆",
     "en": "Oslo",
     "cityCode": "OSL",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "松达尔",
+    "en": "Sogndal",
+    "cityCode": "SOG",
     "countryCode": "NO"
   },
   {
@@ -852,6 +1086,12 @@ export const CITY_HINTS = [
     "cn": "特罗姆瑟",
     "en": "Tromso",
     "cityCode": "TOS",
+    "countryCode": "NO"
+  },
+  {
+    "cn": "于尔维克",
+    "en": "Ulvik",
+    "cityCode": "ULV",
     "countryCode": "NO"
   },
   {
@@ -897,9 +1137,39 @@ export const CITY_HINTS = [
     "countryCode": "PT"
   },
   {
+    "cn": "奥勒",
+    "en": "Åre",
+    "cityCode": "AQE",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "奥尔延",
+    "en": "Arjang",
+    "cityCode": "ARJ",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "阿尔维卡",
+    "en": "Arvika",
+    "cityCode": "ARI",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "夏洛滕贝格",
+    "en": "Charlottenberg",
+    "cityCode": "CLB",
+    "countryCode": "SE"
+  },
+  {
     "cn": "哥德堡",
     "en": "Gothenburg",
     "cityCode": "GOT",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "哈尔姆斯塔德",
+    "en": "Halmstad",
+    "cityCode": "HAD",
     "countryCode": "SE"
   },
   {
@@ -909,15 +1179,99 @@ export const CITY_HINTS = [
     "countryCode": "SE"
   },
   {
+    "cn": "延雪平",
+    "en": "Jönköping",
+    "cityCode": "JKG",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "卡尔马",
+    "en": "Kalmar",
+    "cityCode": "KLR",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "卡尔斯克鲁纳",
+    "en": "Karlskrona",
+    "cityCode": "KKA",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "吕勒奥",
+    "en": "Luleå",
+    "cityCode": "LLA",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "龙德",
+    "en": "Lund",
+    "cityCode": "LUD",
+    "countryCode": "SE"
+  },
+  {
     "cn": "马尔默",
     "en": "Malmo",
     "cityCode": "MMA",
     "countryCode": "SE"
   },
   {
+    "cn": "诺尔雪平",
+    "en": "Norrköping",
+    "cityCode": "NRK",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "奥斯卡港",
+    "en": "Oskarshamn",
+    "cityCode": "OSK",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "厄斯特松德",
+    "en": "Östersund",
+    "cityCode": "OSD",
+    "countryCode": "SE"
+  },
+  {
     "cn": "斯德哥尔摩",
     "en": "Stockholm",
     "cityCode": "STO",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "孙讷",
+    "en": "Sunne",
+    "cityCode": "SUX",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "特洛尔海坦",
+    "en": "Trollhättan",
+    "cityCode": "TRL",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "乌尔里瑟港",
+    "en": "Ulricehamn",
+    "cityCode": "ULR",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "韦克舍",
+    "en": "Växjö",
+    "cityCode": "VXO",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "韦特兰达",
+    "en": "Vetlanda",
+    "cityCode": "VEA",
+    "countryCode": "SE"
+  },
+  {
+    "cn": "维斯比",
+    "en": "Visby",
+    "cityCode": "VBY",
     "countryCode": "SE"
   },
   {

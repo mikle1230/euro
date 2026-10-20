@@ -79,6 +79,26 @@ export const CITY_CODE_ALIASES = {
   'HAM': 'Hamburg',
   'STR': 'Stuttgart',
   'GVA': 'Geneva',
+  // 北欧地名变音符号/本地拼写（2026-10-20 批量入库）
+  'Hyvinkää': 'Hyvinkaa',
+  'Järvenpää': 'Jarvenpaa',
+  'Norrköping': 'Norrkoping',
+  'Jönköping': 'Jonkoping',
+  'Trollhättan': 'Trollhattan',
+  'Arjang': 'Arjäng',
+  'Östersund': 'Ostersund',
+  'Åre': 'Are',
+  'Luleå': 'Lulea',
+  'Växjö': 'Vaxjo',
+  'Lillestrøm': 'Lillestrom',
+  'Lørenskog': 'Lorenskog',
+  'Bodø': 'Bodo',
+  'Keflavík': 'Keflavik',
+  'Höfn': 'Hofn',
+  'Kirkjubæjarklaustur': 'Kirkjubaejarklaustur',
+  'Hvolsvöllur': 'Hvolsvollur',
+  'Egilsstaðir': 'Egilsstadir',
+  'Ísafjörður': 'Isafjordur',
 }
 
 // ③ 酒店库别名 → 英文规范名（hotel-recommendations.js 的 nameEn 键）
