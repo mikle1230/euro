@@ -86,6 +86,16 @@ export default function Header() {
             酒店库
           </Link>
           <Link
+            href="/map"
+            style={{
+              ...tabGlass,
+              ...(isActive('/map') ? tabActive : tabInactive),
+            }}
+            className={tabClass}
+          >
+            地图
+          </Link>
+          <Link
             href="/mice"
             style={{
               ...tabGlass,
