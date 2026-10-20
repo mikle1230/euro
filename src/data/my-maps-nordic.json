@@ -1,0 +1,4578 @@
+[
+ {
+  "name": "哥本哈根",
+  "country": "丹麦",
+  "kind": "city",
+  "desc": "",
+  "lat": 55.676097,
+  "lon": 12.568337
+ },
+ {
+  "name": "尼堡",
+  "country": "丹麦",
+  "kind": "city",
+  "desc": "",
+  "lat": 55.813237,
+  "lon": 9.532361
+ },
+ {
+  "name": "腓特烈港",
+  "country": "丹麦",
+  "kind": "city",
+  "desc": "",
+  "lat": 57.442711,
+  "lon": 10.521006
+ },
+ {
+  "name": "赫尔辛格",
+  "country": "丹麦",
+  "kind": "city",
+  "desc": "",
+  "lat": 56.030787,
+  "lon": 12.592127
+ },
+ {
+  "name": "71 Nyhavn Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.679355,
+  "lon": 12.593586
+ },
+ {
+  "name": "A Hotels",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.665639,
+  "lon": 12.420177
+ },
+ {
+  "name": "AC Hotel Bella Sky Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.639725,
+  "lon": 12.577772
+ },
+ {
+  "name": "Absalon Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.671643,
+  "lon": 12.561646
+ },
+ {
+  "name": "Aiden By Best Western Odense",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.353849,
+  "lon": 10.423613
+ },
+ {
+  "name": "Best Western Plus Hotel Odense",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.370782,
+  "lon": 10.449385
+ },
+ {
+  "name": "Clarion Hotel & Congress Copenhagen Airport",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.630571,
+  "lon": 12.650821
+ },
+ {
+  "name": "Comfort Hotel Copenhagen Airport",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.630703,
+  "lon": 12.652532
+ },
+ {
+  "name": "Comfort Hotel Vesterbro",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.672867,
+  "lon": 12.559019
+ },
+ {
+  "name": "Comwell Aarhus, Dolce by Wyndham",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.150278,
+  "lon": 10.209444
+ },
+ {
+  "name": "Comwell Copenhagen Portside Dolce by Wyndham",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.712727,
+  "lon": 12.593346
+ },
+ {
+  "name": "Comwell H.C. Andersen Odense Dolce by Wyndham",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.399088,
+  "lon": 10.392836
+ },
+ {
+  "name": "Comwell Hvide Hus Aalborg",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.042135,
+  "lon": 9.911831
+ },
+ {
+  "name": "Comwell Kolding",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.497773,
+  "lon": 9.483785
+ },
+ {
+  "name": "Comwell Køge Strand",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.447913,
+  "lon": 12.19153
+ },
+ {
+  "name": "Comwell Rebild Bakker",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.834289,
+  "lon": 9.844756
+ },
+ {
+  "name": "Copenhagen Admiral Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.681744,
+  "lon": 12.593858
+ },
+ {
+  "name": "Copenhagen Island",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.663404,
+  "lon": 12.563507
+ },
+ {
+  "name": "Copenhagen Strand",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.677252,
+  "lon": 12.590236
+ },
+ {
+  "name": "Crowne Plaza Copenhagen Towers by IHG",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.627044,
+  "lon": 12.577272
+ },
+ {
+  "name": "Fairfield by Marriott Copenhagen Nordhavn",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.707189,
+  "lon": 12.600584
+ },
+ {
+  "name": "Four Points Flex by Sheraton Copenhagen Airport",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.622919,
+  "lon": 12.615269
+ },
+ {
+  "name": "Four Points Flex by Sheraton Copenhagen Arena",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.625481,
+  "lon": 12.577135
+ },
+ {
+  "name": "Four Points Flex by Sheraton Copenhagen City",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.671459,
+  "lon": 12.561249
+ },
+ {
+  "name": "Gentofte Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.74815,
+  "lon": 12.541189
+ },
+ {
+  "name": "Good Morning City Copenhagen Star",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.671938,
+  "lon": 12.562498
+ },
+ {
+  "name": "Hotel NH Collection Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.67395,
+  "lon": 12.587911
+ },
+ {
+  "name": "Hotel Richmond",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.67856,
+  "lon": 12.562479
+ },
+ {
+  "name": "Imperial Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.675742,
+  "lon": 12.561718
+ },
+ {
+  "name": "Mercur Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.676553,
+  "lon": 12.561812
+ },
+ {
+  "name": "Nobis Hotel Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.672455,
+  "lon": 12.573474
+ },
+ {
+  "name": "Phoenix Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.682888,
+  "lon": 12.58893
+ },
+ {
+  "name": "Point 21",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.684777,
+  "lon": 12.581566
+ },
+ {
+  "name": "Radisson Collection Royal Hotel, Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.67491,
+  "lon": 12.56377
+ },
+ {
+  "name": "Residence Inn Copenhagen Nordhavn",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.707389,
+  "lon": 12.600709
+ },
+ {
+  "name": "Scandic Aalborg City",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.043907,
+  "lon": 9.913061
+ },
+ {
+  "name": "Scandic Aalborg Øst",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.020824,
+  "lon": 9.965065
+ },
+ {
+  "name": "Scandic Aarhus City",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.154125,
+  "lon": 10.205167
+ },
+ {
+  "name": "Scandic CPH Strandpark",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.63538,
+  "lon": 12.654502
+ },
+ {
+  "name": "Scandic Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.674945,
+  "lon": 12.559627
+ },
+ {
+  "name": "Scandic Falkoner",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.679738,
+  "lon": 12.533209
+ },
+ {
+  "name": "Scandic Front",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.681339,
+  "lon": 12.593229
+ },
+ {
+  "name": "Scandic Glostrup",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.668252,
+  "lon": 12.419127
+ },
+ {
+  "name": "Scandic Kolding",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.531311,
+  "lon": 9.470645
+ },
+ {
+  "name": "Scandic Kødbyen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.667128,
+  "lon": 12.557117
+ },
+ {
+  "name": "Scandic Nørreport",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.683828,
+  "lon": 12.571771
+ },
+ {
+  "name": "Scandic Odense",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.360963,
+  "lon": 10.342031
+ },
+ {
+  "name": "Scandic Palace Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.676313,
+  "lon": 12.570226
+ },
+ {
+  "name": "Scandic Sluseholmen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.643475,
+  "lon": 12.544843
+ },
+ {
+  "name": "Scandic Spectrum",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.669447,
+  "lon": 12.57391
+ },
+ {
+  "name": "Scandic The Mayor",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.150884,
+  "lon": 10.202747
+ },
+ {
+  "name": "Scandic Webers",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.673217,
+  "lon": 12.561231
+ },
+ {
+  "name": "Scandic Århus",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.166775,
+  "lon": 10.151325
+ },
+ {
+  "name": "The Square",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.676102,
+  "lon": 12.567073
+ },
+ {
+  "name": "Thon Partner Hotel Høje Taastrup",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.648148,
+  "lon": 12.272552
+ },
+ {
+  "name": "Tivoli Hotel",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.665991,
+  "lon": 12.566303
+ },
+ {
+  "name": "Villa Copenhagen",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.67138,
+  "lon": 12.567542
+ },
+ {
+  "name": "Wakeup Aarhus, M. P. Bruuns Gade",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.148598,
+  "lon": 10.203589
+ },
+ {
+  "name": "Wakeup Copenhagen, Bernstorffsgade",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.668893,
+  "lon": 12.571952
+ },
+ {
+  "name": "Wakeup Copenhagen, Borgergade",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.68309,
+  "lon": 12.584239
+ },
+ {
+  "name": "Wakeup Copenhagen, Carsten Niebuhrs Gade",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.666825,
+  "lon": 12.567115
+ },
+ {
+  "name": "希德哈维恩斯堪迪克酒店",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.654473,
+  "lon": 12.541569
+ },
+ {
+  "name": "格洛斯楚普公园酒店",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.666699,
+  "lon": 12.409498
+ },
+ {
+  "name": "萨迪合威酒店",
+  "country": "丹麦",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.64652,
+  "lon": 12.459439
+ },
+ {
+  "name": "ARoS Café & Orangeri",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.153702,
+  "lon": 10.199804
+ },
+ {
+  "name": "Admiralen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.4893,
+  "lon": 9.481468
+ },
+ {
+  "name": "Aiden by Best Western Lolland",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 54.710684,
+  "lon": 11.480867
+ },
+ {
+  "name": "Al-Diwan",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.672313,
+  "lon": 12.548064
+ },
+ {
+  "name": "Anarkist Bar",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.672868,
+  "lon": 12.566786
+ },
+ {
+  "name": "Asia Restaurant Odense ApS",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.384941,
+  "lon": 10.423406
+ },
+ {
+  "name": "Axelborg Bodega",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.675304,
+  "lon": 12.564609
+ },
+ {
+  "name": "B&B Gødstrup | Den Gamle Stald",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.159967,
+  "lon": 8.887327
+ },
+ {
+  "name": "Barock",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.680826,
+  "lon": 12.587901
+ },
+ {
+  "name": "Beijing",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.676991,
+  "lon": 12.570303
+ },
+ {
+  "name": "Bistro Summér",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.679674,
+  "lon": 12.592925
+ },
+ {
+  "name": "Bryggeriet Apollo",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.674864,
+  "lon": 12.566158
+ },
+ {
+  "name": "Bulko",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.666567,
+  "lon": 12.539474
+ },
+ {
+  "name": "Café Jomfru Rigborg",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.175156,
+  "lon": 10.489169
+ },
+ {
+  "name": "Café Knarr",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.650374,
+  "lon": 12.079205
+ },
+ {
+  "name": "Café Mathisen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.460028,
+  "lon": 10.036676
+ },
+ {
+  "name": "Café Vaabengaard",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.125898,
+  "lon": 12.307998
+ },
+ {
+  "name": "Cap Horn",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.680406,
+  "lon": 12.589462
+ },
+ {
+  "name": "Chambre",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.676252,
+  "lon": 12.566177
+ },
+ {
+  "name": "Chim Chim",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.675539,
+  "lon": 12.564362
+ },
+ {
+  "name": "China Palace Restaurant",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.168226,
+  "lon": 10.191099
+ },
+ {
+  "name": "Cofoco",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.671814,
+  "lon": 12.558428
+ },
+ {
+  "name": "Dalle Valle - Amager",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.630246,
+  "lon": 12.577217
+ },
+ {
+  "name": "Dalle Valle - Axeltorv",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.675415,
+  "lon": 12.565114
+ },
+ {
+  "name": "Dalle Valle - Odense",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.385184,
+  "lon": 10.425763
+ },
+ {
+  "name": "Deep Indian",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.6669,
+  "lon": 12.597808
+ },
+ {
+  "name": "Deep Indisk Restaurant",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.671838,
+  "lon": 12.547746
+ },
+ {
+  "name": "Den Gamle Kro A/S",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.397339,
+  "lon": 10.391945
+ },
+ {
+  "name": "Den Lille Kro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.159269,
+  "lon": 10.201925
+ },
+ {
+  "name": "Diamond Rice",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.682361,
+  "lon": 12.588196
+ },
+ {
+  "name": "Dragør Strandhotel",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.594152,
+  "lon": 12.674226
+ },
+ {
+  "name": "Dronning Louise",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.466477,
+  "lon": 8.452467
+ },
+ {
+  "name": "Ebisu Sushi",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.036506,
+  "lon": 12.610839
+ },
+ {
+  "name": "Flinchs Hotel",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.833287,
+  "lon": 10.592057
+ },
+ {
+  "name": "Fredensborg Store Kro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.979051,
+  "lon": 12.395712
+ },
+ {
+  "name": "Fru Nimb",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.673652,
+  "lon": 12.567061
+ },
+ {
+  "name": "Gro Eatery",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.711246,
+  "lon": 12.564261
+ },
+ {
+  "name": "Hai Yi",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.033638,
+  "lon": 12.613523
+ },
+ {
+  "name": "Hard Rock Cafe Copenhagen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.676662,
+  "lon": 12.56905
+ },
+ {
+  "name": "Hereford Steak",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.682681,
+  "lon": 12.586492
+ },
+ {
+  "name": "Hereford Village",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.677036,
+  "lon": 12.570751
+ },
+ {
+  "name": "Hotel Dagmar",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.32836,
+  "lon": 8.762544
+ },
+ {
+  "name": "Hotel Møen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 54.983395,
+  "lon": 12.284389
+ },
+ {
+  "name": "Hummer",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.679626,
+  "lon": 12.592526
+ },
+ {
+  "name": "Højslev Kro - overnatning Skive",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.550129,
+  "lon": 9.110139
+ },
+ {
+  "name": "Høst",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.683352,
+  "lon": 12.566153
+ },
+ {
+  "name": "Je t'aime",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.665321,
+  "lon": 12.557563
+ },
+ {
+  "name": "Kilden i Haven, Tivoli",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.673699,
+  "lon": 12.569095
+ },
+ {
+  "name": "Krogs Fiskerestaurant",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.677736,
+  "lon": 12.578487
+ },
+ {
+  "name": "Les Trois Cochons",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.673735,
+  "lon": 12.550013
+ },
+ {
+  "name": "Madklubben Copenhagen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.684073,
+  "lon": 12.587681
+ },
+ {
+  "name": "Madklubben Frederiksberg",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.681097,
+  "lon": 12.532085
+ },
+ {
+  "name": "Madklubben Home of Carlsberg",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.664967,
+  "lon": 12.529851
+ },
+ {
+  "name": "Madklubben Vesterbro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.672707,
+  "lon": 12.553129
+ },
+ {
+  "name": "Madklubben Århus",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.155231,
+  "lon": 10.212819
+ },
+ {
+  "name": "Madkælderen Koldinghus",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.491604,
+  "lon": 9.474448
+ },
+ {
+  "name": "Mamma's",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.675851,
+  "lon": 12.571325
+ },
+ {
+  "name": "Marienlyst Restaurant, Bar & Lounge",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.04542,
+  "lon": 12.603656
+ },
+ {
+  "name": "Marsk Camp A/S",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.1529,
+  "lon": 8.741228
+ },
+ {
+  "name": "Mazzoli's",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.674453,
+  "lon": 12.568205
+ },
+ {
+  "name": "Mortens Kro Restaurant & Boutique hotel",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.045917,
+  "lon": 9.921984
+ },
+ {
+  "name": "Munkebo Kro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.456356,
+  "lon": 10.556789
+ },
+ {
+  "name": "Nimb Brasserie",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.673532,
+  "lon": 12.566473
+ },
+ {
+  "name": "No. 2",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.67254,
+  "lon": 12.584327
+ },
+ {
+  "name": "Nyhavn 37",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.680144,
+  "lon": 12.590594
+ },
+ {
+  "name": "Nyhavns Færgekro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.680739,
+  "lon": 12.588313
+ },
+ {
+  "name": "Olivia Brasserie - Restaurant Odense",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.395773,
+  "lon": 10.38344
+ },
+ {
+  "name": "Over Plænen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.673723,
+  "lon": 12.567487
+ },
+ {
+  "name": "Oysters & Grill",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.692895,
+  "lon": 12.551611
+ },
+ {
+  "name": "Raadhuus Kafeen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.153187,
+  "lon": 10.204257
+ },
+ {
+  "name": "Rabarbergaarden Slottet",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.934615,
+  "lon": 12.299148
+ },
+ {
+  "name": "Refborg Restaurant",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.729315,
+  "lon": 9.113572
+ },
+ {
+  "name": "Restaurant Arken",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.470561,
+  "lon": 12.196747
+ },
+ {
+  "name": "Restaurant Bamboo",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.035795,
+  "lon": 12.615555
+ },
+ {
+  "name": "Restaurant Bangs Have",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 54.771919,
+  "lon": 11.495036
+ },
+ {
+  "name": "Restaurant Dokken",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.816516,
+  "lon": 10.638351
+ },
+ {
+  "name": "Restaurant ET",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.153708,
+  "lon": 10.211011
+ },
+ {
+  "name": "Restaurant Flammen - Randers",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.463369,
+  "lon": 10.03885
+ },
+ {
+  "name": "Restaurant Hotel Falster",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 54.778347,
+  "lon": 11.880397
+ },
+ {
+  "name": "Restaurant Håndværkeren",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.639673,
+  "lon": 12.085008
+ },
+ {
+  "name": "Restaurant Koefoed",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.682953,
+  "lon": 12.585532
+ },
+ {
+  "name": "Restaurant Krydderiet",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.920598,
+  "lon": 12.296791
+ },
+ {
+  "name": "Restaurant MARK - Bistro & Bar",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.67559,
+  "lon": 12.564014
+ },
+ {
+  "name": "Restaurant MOTA",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.909358,
+  "lon": 11.659305
+ },
+ {
+  "name": "Restaurant Madklubben Esbjerg",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.467013,
+  "lon": 8.449951
+ },
+ {
+  "name": "Restaurant Madklubben Odense",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.396094,
+  "lon": 10.385685
+ },
+ {
+  "name": "Restaurant Maven",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.678494,
+  "lon": 12.581535
+ },
+ {
+  "name": "Restaurant NO8",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.728533,
+  "lon": 9.133554
+ },
+ {
+  "name": "Restaurant NU&DA",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.674014,
+  "lon": 12.587457
+ },
+ {
+  "name": "Restaurant Paafuglen",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.674306,
+  "lon": 12.567257
+ },
+ {
+  "name": "Restaurant Upstairs",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.641092,
+  "lon": 12.080006
+ },
+ {
+  "name": "SUPERBON",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.669244,
+  "lon": 12.558767
+ },
+ {
+  "name": "SYV NI 13",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.148679,
+  "lon": 10.211274
+ },
+ {
+  "name": "Sand's Restauration ApS",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.467298,
+  "lon": 8.44717
+ },
+ {
+  "name": "Skagen Fiskerestaurant",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.719299,
+  "lon": 10.588771
+ },
+ {
+  "name": "Sortebro Kro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.366888,
+  "lon": 10.38385
+ },
+ {
+  "name": "Spisehuset i Kulturværftet",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.038271,
+  "lon": 12.615382
+ },
+ {
+  "name": "Spiselauget",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.153871,
+  "lon": 10.194566
+ },
+ {
+  "name": "Strejf",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.033462,
+  "lon": 12.614712
+ },
+ {
+  "name": "Sushi Taro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.032001,
+  "lon": 12.608308
+ },
+ {
+  "name": "Svostrup Kro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.223301,
+  "lon": 9.667849
+ },
+ {
+  "name": "Søgaards Bryghus",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.04889,
+  "lon": 9.920126
+ },
+ {
+  "name": "Sønderho Kro",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.347728,
+  "lon": 8.472267
+ },
+ {
+  "name": "The Christiansborg's Tower",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.676224,
+  "lon": 12.580436
+ },
+ {
+  "name": "Traktørstedet Ludvigslyst",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.130627,
+  "lon": 9.641521
+ },
+ {
+  "name": "Vores Skotterup",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.005432,
+  "lon": 12.578866
+ },
+ {
+  "name": "Vækst",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.678841,
+  "lon": 12.567143
+ },
+ {
+  "name": "Weis Stue",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.328532,
+  "lon": 8.762138
+ },
+ {
+  "name": "Zeleste",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.680943,
+  "lon": 12.588295
+ },
+ {
+  "name": "café Møns Klint",
+  "country": "丹麦",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 54.966053,
+  "lon": 12.548247
+ },
+ {
+  "name": "Amalienborg Palace",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.684059,
+  "lon": 12.59302
+ },
+ {
+  "name": "Camp Adventure",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.259899,
+  "lon": 11.9806
+ },
+ {
+  "name": "Christiansborg Palace",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.676551,
+  "lon": 12.580348
+ },
+ {
+  "name": "Danish Architecture Center",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.672288,
+  "lon": 12.578927
+ },
+ {
+  "name": "Home of Carlsberg",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.664575,
+  "lon": 12.530295
+ },
+ {
+  "name": "Koldinghus",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.49162,
+  "lon": 9.474257
+ },
+ {
+  "name": "Kronborg Castle",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 56.039332,
+  "lon": 12.621799
+ },
+ {
+  "name": "National Museum of Denmark",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.6745,
+  "lon": 12.574644
+ },
+ {
+  "name": "Rosenborg Castle",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.685827,
+  "lon": 12.577269
+ },
+ {
+  "name": "The Old Town",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 56.15781,
+  "lon": 10.193645
+ },
+ {
+  "name": "Tivoli Gardens",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.673684,
+  "lon": 12.568147
+ },
+ {
+  "name": "Viking Ship Museum",
+  "country": "丹麦",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.650152,
+  "lon": 12.079088
+ },
+ {
+  "name": "凯夫拉维克",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.999755,
+  "lon": -22.558272
+ },
+ {
+  "name": "博尔加内斯",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.544638,
+  "lon": -21.910501
+ },
+ {
+  "name": "基尔丘拜亚拉伊斯蒂",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.789024,
+  "lon": -18.053116
+ },
+ {
+  "name": "海德拉",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.832576,
+  "lon": -20.393334
+ },
+ {
+  "name": "维克",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.417651,
+  "lon": -18.997439
+ },
+ {
+  "name": "雷克雅未克",
+  "country": "冰岛",
+  "kind": "city",
+  "desc": "",
+  "lat": 64.146987,
+  "lon": -21.940755
+ },
+ {
+  "name": "东峡湾‑东博尔加峡湾哈夫纳霍尔米 Hafnarholmi  停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Hafnarholmi Borgarfjordur Eystri",
+  "lat": 65.542375,
+  "lon": -13.756319
+ },
+ {
+  "name": "东峡湾‑亨吉福斯瀑布 Hengifoss 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik - East fjords - Hengifoss",
+  "lat": 65.095138,
+  "lon": -14.889212
+ },
+ {
+  "name": "东峡湾‑斯图德拉吉尔峡谷 Stuðlagil 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik - East fjords - Studlagil parking fee",
+  "lat": 65.163392,
+  "lon": -15.307183
+ },
+ {
+  "name": "东峡湾‑斯温斯泰库瀑布 Nykurhylsfoss (Sveinsstekksfoss) 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik - East fjords - Sveinsstekkur waterfall (Sveinstekksfoss) parking fee",
+  "lat": 64.753469,
+  "lon": -14.481888
+ },
+ {
+  "name": "凯夫拉维克国际机场 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Keflavik - AIRPORT PARKING FEE",
+  "lat": 63.981487,
+  "lon": -22.628186
+ },
+ {
+  "name": "北部‑伊卢加斯塔迪尔 Illugastaðir 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑North‑Illugastadir parking fee",
+  "lat": 65.620289,
+  "lon": -17.817613
+ },
+ {
+  "name": "北部‑惠尔火山（米湖） Hverfjall (Myvatn )  停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑North‑Hverfjall (Myvatn ) parking fee",
+  "lat": 65.608611,
+  "lon": -16.871667
+ },
+ {
+  "name": "北部‑瓦德拉海达高地隧道 Vaðlaheiði tunnel 通行费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑North‑Vadlaheidagong tunnel",
+  "lat": 65.694381,
+  "lon": -18.053221
+ },
+ {
+  "name": "北部‑纳玛斯卡德（米湖） Námaskarð 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑North‑Namaskard(Myvatn) parking fee",
+  "lat": 65.647222,
+  "lon": -16.826667
+ },
+ {
+  "name": "南海岸‑乌里达福斯瀑布 Urriðafoss 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Urridafoss parking fee",
+  "lat": 63.924614,
+  "lon": -20.672193
+ },
+ {
+  "name": "南海岸‑兰德曼纳劳卡 Landmannalaugar 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Landmannalaugar parking fee",
+  "lat": 63.983,
+  "lon": -19.067
+ },
+ {
+  "name": "南海岸‑埃温达霍尔特‑DC‑3 飞机残骸停车费\nDC-3 Airplane wreck - Eyvindarholt - Iceland",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Eyvindarholt‑DC3 airplane wreck parking fee",
+  "lat": 63.648722,
+  "lon": -19.93362
+ },
+ {
+  "name": "南海岸‑塞里雅兰瀑布 Seljalandsfoss 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Seljalandsfoss parking fee",
+  "lat": 63.615623,
+  "lon": -19.988569
+ },
+ {
+  "name": "南海岸‑斯卡夫塔山 Skaftafell 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Skaftafell parking fee",
+  "lat": 64.070414,
+  "lon": -16.975175
+ },
+ {
+  "name": "南海岸‑斯科加博物馆 / 克维努福斯瀑布 Skógar Museum 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Skogasafn/Kvernufoss parking fee",
+  "lat": 63.52633,
+  "lon": -19.493098
+ },
+ {
+  "name": "南海岸‑斯科加瀑布 Skogafoss 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Skogafoss parking fee",
+  "lat": 63.532052,
+  "lon": -19.511371
+ },
+ {
+  "name": "南海岸‑杰古沙龙冰河湖 Jokulsarlon 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Jokulsarlon parking fee",
+  "lat": 64.078446,
+  "lon": -16.230554
+ },
+ {
+  "name": "南海岸‑格卢加福斯瀑布 Gluggafoss (Merkjárfoss)  停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Gluggafoss parking fee",
+  "lat": 63.71895,
+  "lon": -19.89286
+ },
+ {
+  "name": "南海岸‑穆拉格吕夫尔峡谷 Mulagljufur Canyon 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Mulagljufur parking fee",
+  "lat": 63.989058,
+  "lon": -16.463889
+ },
+ {
+  "name": "南海岸‑索尔黑马冰川 Solheimajokull 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Solheimajokull parking fee",
+  "lat": 63.556944,
+  "lon": -19.302778
+ },
+ {
+  "name": "南海岸‑索尔黑马沙滩 Sólheimasandur 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Solheimasandur parking fee",
+  "lat": 63.473056,
+  "lon": -19.363333
+ },
+ {
+  "name": "南海岸‑菲亚德拉格吕夫尔峡谷（网红羽毛大峡谷） Fjadrargljufur 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Fjadrargljufur parking fee",
+  "lat": 63.771279,
+  "lon": -18.171816
+ },
+ {
+  "name": "南海岸‑赫约尔莱夫肖迪（维京公园） Hjörleifshöfði 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Hjorleifshofdi (Viking Park) parking fee",
+  "lat": 63.416667,
+  "lon": -18.766667
+ },
+ {
+  "name": "南海岸‑迪霍拉里悬崖 Dyrhólaey 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Dyrholaey parking fee",
+  "lat": 63.40468,
+  "lon": -19.118552
+ },
+ {
+  "name": "南海岸‑雷尼斯黑沙滩 Reynisfjara 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Reynisfjara parking fee",
+  "lat": 63.40574,
+  "lon": -19.071619
+ },
+ {
+  "name": "南海岸‑鲁茨赫利尔洞穴 Rutshellir Caves 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑South Coast‑Rutshellir parking fee",
+  "lat": 63.52263,
+  "lon": -19.57268
+ },
+ {
+  "name": "博尔加峡湾‑格拉尼瀑布与帕拉迪萨劳特 Borgarfjordur 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik - Borgarfjordur - Glanni and Paradisarlaut parking fee",
+  "lat": 64.501,
+  "lon": -22.01
+ },
+ {
+  "name": "斯奈山半岛‑伊特里通加（海豹休息点） Ytri tunga 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Snaefellsness‑Ytri tunga parking fee",
+  "lat": 64.802742,
+  "lon": -23.080318
+ },
+ {
+  "name": "斯奈山半岛‑基尔丘山 / 教会山 / 草帽山 Kirkjufell  停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Snaefellsness‑Kirkjufell parking fee",
+  "lat": 64.941667,
+  "lon": -23.306944
+ },
+ {
+  "name": "斯奈山半岛‑艾尔娜尔斯塔皮酒店 Arnarstapi Hotel 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Snaefellsness‑Hotel Arnarstapi parking fee",
+  "lat": 64.766397,
+  "lon": -23.630826
+ },
+ {
+  "name": "斯奈山半岛‑马拉里夫灯塔 Malarrif Lighthouse 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Snaefellsness‑Malarrif lighthouse parking fee",
+  "lat": 64.728249,
+  "lon": -23.802863
+ },
+ {
+  "name": "西峡湾‑丁坚地/丁扬迪 瀑布群 Dynjandi 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑West Fjords‑Dynjandi parking fee",
+  "lat": 65.732597,
+  "lon": -23.198575
+ },
+ {
+  "name": "雷克雅内斯半岛‑伊索尔夫斯卡利 Ísólfsskáli 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Reykjanes‑Isolfsskali parking fee",
+  "lat": 63.850468,
+  "lon": -22.302467
+ },
+ {
+  "name": "雷克雅内斯半岛‑塞尔顿地热区 Seltún Geothermal Area 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Reykjanes‑Seltun parking fee",
+  "lat": 63.895764,
+  "lon": -22.054833
+ },
+ {
+  "name": "雷克雅内斯半岛‑法格拉达尔火山 Fagradalsfjall 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Reykjanes‑Fagradalsfjall parking fee",
+  "lat": 63.893333,
+  "lon": -22.269722
+ },
+ {
+  "name": "雷克雅内斯半岛‑雷克雅内斯灯塔 Reykjanes Lighthouse 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Reykjanes‑Reykjanes Lighthouse parking fee",
+  "lat": 63.815877,
+  "lon": -22.704482
+ },
+ {
+  "name": "黄金圈‑布鲁阿福斯瀑布（蓝秘境 / 桥瀑布） Brúarfoss 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Bruarfoss parking fee",
+  "lat": 64.264303,
+  "lon": -20.515747
+ },
+ {
+  "name": "黄金圈‑布鲁阿赫洛德 Brúarhlöð 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Bruarhlod parking fee",
+  "lat": 64.259837,
+  "lon": -20.224437
+ },
+ {
+  "name": "黄金圈‑惠拉达利尔（斯基达斯卡林） Hveradalir 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Hveradalir (Skidaskalinn) parking fee",
+  "lat": 64.633333,
+  "lon": -19.283333
+ },
+ {
+  "name": "黄金圈‑法西瀑布（马鬃瀑布） Faxafoss 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Faxafoss parking fee",
+  "lat": 64.225735,
+  "lon": -20.338129
+ },
+ {
+  "name": "黄金圈‑盖锡尔间歇泉地热区 Geysir 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Geysir parking fee",
+  "lat": 64.310372,
+  "lon": -20.30236
+ },
+ {
+  "name": "黄金圈‑辛格维利尔国家公园（议会旧址） Thingvellir 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Thingvellir parking fee",
+  "lat": 64.282173,
+  "lon": -21.076449
+ },
+ {
+  "name": "黄金圈‑雷克雅达勒（蒸汽山谷）‑惠拉盖尔济镇 Reykjadalur 停车费",
+  "country": "冰岛",
+  "kind": "parking",
+  "desc": "Reykjavik‑Golden Circle‑Reykjadalur Hveragerdi parking fee",
+  "lat": 64.033089,
+  "lon": -21.216023
+ },
+ {
+  "name": "于尔维克",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.569231,
+  "lon": 6.916875
+ },
+ {
+  "name": "卑尔根",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.391263,
+  "lon": 5.322054
+ },
+ {
+  "name": "奥勒松",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 62.471098,
+  "lon": 6.155817
+ },
+ {
+  "name": "奥斯陆",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.912175,
+  "lon": 10.73127
+ },
+ {
+  "name": "布里姆内斯",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.471288,
+  "lon": 6.909067
+ },
+ {
+  "name": "沃斯",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.629562,
+  "lon": 6.422151
+ },
+ {
+  "name": "特罗姆瑟",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 69.649205,
+  "lon": 18.955324
+ },
+ {
+  "name": "特隆赫姆",
+  "country": "挪威",
+  "kind": "city",
+  "desc": "",
+  "lat": 63.430515,
+  "lon": 10.395053
+ },
+ {
+  "name": "Comfort Hotel Runway",
+  "country": "挪威",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.193262,
+  "lon": 11.071843
+ },
+ {
+  "name": "Park Inn by Radisson Oslo Airport Hotel West",
+  "country": "挪威",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.188,
+  "lon": 11.067855
+ },
+ {
+  "name": "Quality Airport Hotel Gardermoen",
+  "country": "挪威",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.163492,
+  "lon": 11.161564
+ },
+ {
+  "name": "Radisson Blu Hotel Alna",
+  "country": "挪威",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.93013,
+  "lon": 10.86825
+ },
+ {
+  "name": "Thon Hotel Oslofjord",
+  "country": "挪威",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.885792,
+  "lon": 10.518907
+ },
+ {
+  "name": "奥斯陆X慕奇夕酒店",
+  "country": "挪威",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.984129,
+  "lon": 10.973907
+ },
+ {
+  "name": "乌普萨拉",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "斯德哥尔摩北部小城",
+  "lat": 59.858564,
+  "lon": 17.638927
+ },
+ {
+  "name": "卡尔斯塔德",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.37823,
+  "lon": 13.504181
+ },
+ {
+  "name": "厄勒布鲁",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.275263,
+  "lon": 15.213411
+ },
+ {
+  "name": "吕勒奥",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 65.584819,
+  "lon": 22.156703
+ },
+ {
+  "name": "哥得兰岛",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 57.649684,
+  "lon": 18.714468
+ },
+ {
+  "name": "哥德堡",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 57.70887,
+  "lon": 11.97456
+ },
+ {
+  "name": "基律纳",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 67.848223,
+  "lon": 20.297545
+ },
+ {
+  "name": "夏洛滕贝里",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "瑞典去往挪威的小镇",
+  "lat": 59.884842,
+  "lon": 12.299313
+ },
+ {
+  "name": "奥尔延",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.389159,
+  "lon": 12.132717
+ },
+ {
+  "name": "孙讷",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.836557,
+  "lon": 13.144046
+ },
+ {
+  "name": "布罗姆马",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "斯德哥尔摩阿兰达国际机场 ARN 附近的小镇",
+  "lat": 59.339783,
+  "lon": 17.939713
+ },
+ {
+  "name": "斯德哥尔摩",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.332704,
+  "lon": 18.065625
+ },
+ {
+  "name": "玛尔摩",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 55.604981,
+  "lon": 13.003822
+ },
+ {
+  "name": "索尔纳",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "斯德哥尔摩火车站附近的小镇",
+  "lat": 59.368879,
+  "lon": 18.008433
+ },
+ {
+  "name": "赫尔辛堡",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 56.046467,
+  "lon": 12.694512
+ },
+ {
+  "name": "阿尔维卡",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 59.654853,
+  "lon": 12.592136
+ },
+ {
+  "name": "阿比斯库",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "",
+  "lat": 68.349541,
+  "lon": 18.831241
+ },
+ {
+  "name": "阿维斯尤",
+  "country": "瑞典",
+  "kind": "city",
+  "desc": "斯德哥尔摩南部小镇",
+  "lat": 59.279545,
+  "lon": 18.003565
+ },
+ {
+  "name": "Ajtta Lodge Huuva Hideaway",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 66.262618,
+  "lon": 23.414634
+ },
+ {
+  "name": "Arctic Bath",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 66.088693,
+  "lon": 20.938161
+ },
+ {
+  "name": "Astensmåla Gård",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.290577,
+  "lon": 14.727146
+ },
+ {
+  "name": "Avalon Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.703928,
+  "lon": 11.968135
+ },
+ {
+  "name": "BEST WESTERN Hotel Royal",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.606585,
+  "lon": 12.995402
+ },
+ {
+  "name": "Best Western Gustaf Wasa Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.482014,
+  "lon": 15.428786
+ },
+ {
+  "name": "Best Western Hotel Arctic Eden",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 67.860325,
+  "lon": 20.223334
+ },
+ {
+  "name": "Best Western Malmö Arena Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.565678,
+  "lon": 12.976086
+ },
+ {
+  "name": "Best Western Plus Aby Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.649245,
+  "lon": 12.003438
+ },
+ {
+  "name": "Best Western Plus Grow Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.357166,
+  "lon": 17.975701
+ },
+ {
+  "name": "Best Western Plus Hotel Kungens Kurva",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.274712,
+  "lon": 17.920861
+ },
+ {
+  "name": "Best Western Plus Hus 57",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.246566,
+  "lon": 12.866054
+ },
+ {
+  "name": "Best Western Plus Park Airport Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.619016,
+  "lon": 17.873842
+ },
+ {
+  "name": "Best Western Plus Park City Solna- located inside Solna Centrum",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.35883,
+  "lon": 17.999677
+ },
+ {
+  "name": "Best Western Plus TEN Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.506506,
+  "lon": 17.921502
+ },
+ {
+  "name": "Blique by Nobis",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.346025,
+  "lon": 18.036104
+ },
+ {
+  "name": "Camp Ripan",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 67.860693,
+  "lon": 20.240475
+ },
+ {
+  "name": "Clarion Collection Hotel Plaza",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.378495,
+  "lon": 13.502151
+ },
+ {
+  "name": "Clarion Hotel Amaranten",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.331181,
+  "lon": 18.045308
+ },
+ {
+  "name": "Clarion Hotel Draken",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.700794,
+  "lon": 11.953098
+ },
+ {
+  "name": "Clarion Hotel Karlatornet",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.709814,
+  "lon": 11.939349
+ },
+ {
+  "name": "Clarion Hotel Post",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.707831,
+  "lon": 11.97466
+ },
+ {
+  "name": "Clarion Hotel Sense",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 65.584909,
+  "lon": 22.152489
+ },
+ {
+  "name": "Clarion Hotel Sign",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.334758,
+  "lon": 18.053193
+ },
+ {
+  "name": "Clarion Hotel Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.307065,
+  "lon": 18.074809
+ },
+ {
+  "name": "Clarion Hotel® Arlanda Airport Terminal",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.648981,
+  "lon": 17.931043
+ },
+ {
+  "name": "Clarion Hotel® The Pier",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.710673,
+  "lon": 11.948595
+ },
+ {
+  "name": "Comfort Hotel Arctic",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 65.582949,
+  "lon": 22.163649
+ },
+ {
+  "name": "Comfort Hotel Arlanda Airport",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.648414,
+  "lon": 17.933115
+ },
+ {
+  "name": "Comfort Hotel Eskilstuna",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.371909,
+  "lon": 16.516496
+ },
+ {
+  "name": "Comfort Hotel Göteborg",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.70581,
+  "lon": 11.958984
+ },
+ {
+  "name": "Comfort Hotel Jazz",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.722661,
+  "lon": 12.941229
+ },
+ {
+  "name": "Comfort Hotel Kista",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.402815,
+  "lon": 17.9498
+ },
+ {
+  "name": "Comfort Hotel Malmö",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.610831,
+  "lon": 13.001384
+ },
+ {
+  "name": "Comfort Hotel Panorama, Göteborg",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.689589,
+  "lon": 11.987597
+ },
+ {
+  "name": "Comfort Hotel Solna",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.373272,
+  "lon": 17.997522
+ },
+ {
+  "name": "Comfort Hotel Xpress Stockholm Central",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.333027,
+  "lon": 18.054403
+ },
+ {
+  "name": "Downtown Camper by Scandic",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.331301,
+  "lon": 18.065543
+ },
+ {
+  "name": "Elite Eden Park Hotel, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.338392,
+  "lon": 18.075206
+ },
+ {
+  "name": "Elite Hotel Adlon, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.333373,
+  "lon": 18.057233
+ },
+ {
+  "name": "Elite Hotel Arcadia, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.348421,
+  "lon": 18.064488
+ },
+ {
+  "name": "Elite Hotel Brage, Borlänge",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.486044,
+  "lon": 15.432113
+ },
+ {
+  "name": "Elite Hotel Carolina Tower, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.348183,
+  "lon": 18.031656
+ },
+ {
+  "name": "Elite Hotel Esplanade, Malmö",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.605725,
+  "lon": 12.997958
+ },
+ {
+  "name": "Elite Hotel Frost, Kiruna",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 67.849207,
+  "lon": 20.306271
+ },
+ {
+  "name": "Elite Hotel Ideon, Lund",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.717647,
+  "lon": 13.2139
+ },
+ {
+  "name": "Elite Hotel Marina Tower, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.314605,
+  "lon": 18.109972
+ },
+ {
+  "name": "Elite Hotel Savoy, Malmö",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.607652,
+  "lon": 13.000152
+ },
+ {
+  "name": "Elite Hotel Stockholm Plaza",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.337501,
+  "lon": 18.06975
+ },
+ {
+  "name": "Elite Palace Hotel, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.346626,
+  "lon": 18.03955
+ },
+ {
+  "name": "Elite Park Avenue Hotel Gothenburg",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.698416,
+  "lon": 11.978479
+ },
+ {
+  "name": "Elite Plaza Hotel Gothenburg",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.705188,
+  "lon": 11.962885
+ },
+ {
+  "name": "Elite Plaza Hotel, Malmö",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.603265,
+  "lon": 12.999421
+ },
+ {
+  "name": "Elite Stadshotellet Eskilstuna",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.372114,
+  "lon": 16.515743
+ },
+ {
+  "name": "Elite Stadshotellet Karlstad",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.38155,
+  "lon": 13.500486
+ },
+ {
+  "name": "Elite Stadshotellet Luleå",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 65.583684,
+  "lon": 22.145817
+ },
+ {
+  "name": "Eriksberg Hotel & Nature Reserve",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 56.180084,
+  "lon": 15.003039
+ },
+ {
+  "name": "Fågelbrohus",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.275605,
+  "lon": 18.553934
+ },
+ {
+  "name": "Good Morning Arlanda",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.646847,
+  "lon": 17.96862
+ },
+ {
+  "name": "Good Morning Karlstad",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.382443,
+  "lon": 13.502108
+ },
+ {
+  "name": "Good Morning Kista",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.413351,
+  "lon": 17.931254
+ },
+ {
+  "name": "Good Morning Lund",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.717032,
+  "lon": 13.152641
+ },
+ {
+  "name": "Good Morning Mölndal",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.647808,
+  "lon": 11.994905
+ },
+ {
+  "name": "Good Morning+ Hägersten",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.289648,
+  "lon": 17.954013
+ },
+ {
+  "name": "Good Morning+ Malmö",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.581038,
+  "lon": 12.993745
+ },
+ {
+  "name": "Haymarket by Scandic",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.334697,
+  "lon": 18.06154
+ },
+ {
+  "name": "Hilton Stockholm Slussen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.320476,
+  "lon": 18.069283
+ },
+ {
+  "name": "Home Hotel Bergmästaren",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.60573,
+  "lon": 15.635535
+ },
+ {
+  "name": "Home Hotel Bilan",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.379442,
+  "lon": 13.508648
+ },
+ {
+  "name": "Home Hotel Bolinder Munktell",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.376335,
+  "lon": 16.511623
+ },
+ {
+  "name": "Home Hotel Bristol",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.655017,
+  "lon": 12.593292
+ },
+ {
+  "name": "Home Hotel Drott",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.378539,
+  "lon": 13.498938
+ },
+ {
+  "name": "Home Hotel Mektagonen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.681263,
+  "lon": 12.00072
+ },
+ {
+  "name": "Home Hotel Odin",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.70897,
+  "lon": 11.979332
+ },
+ {
+  "name": "Home Hotel Tapetfabriken",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.304409,
+  "lon": 18.12047
+ },
+ {
+  "name": "Home Hotel Tapto",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.343515,
+  "lon": 18.086519
+ },
+ {
+  "name": "Home Hotel Wellington",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.335116,
+  "lon": 18.082321
+ },
+ {
+  "name": "Hotel At Six",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.330987,
+  "lon": 18.06683
+ },
+ {
+  "name": "Hotel C Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.332048,
+  "lon": 18.056645
+ },
+ {
+  "name": "Hotel J",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.318542,
+  "lon": 18.164694
+ },
+ {
+  "name": "Hotell Charlottenberg",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.881874,
+  "lon": 12.28627
+ },
+ {
+  "name": "Hotell E10 i Kiruna AB",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 67.846389,
+  "lon": 20.257222
+ },
+ {
+  "name": "ICEHOTEL",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 67.849884,
+  "lon": 20.597001
+ },
+ {
+  "name": "Kronlund Kursgård",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 64.335139,
+  "lon": 19.501585
+ },
+ {
+  "name": "Livington hotell",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.370438,
+  "lon": 17.860168
+ },
+ {
+  "name": "Miss Clara",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.337593,
+  "lon": 18.061905
+ },
+ {
+  "name": "Nobis Hotel Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.333485,
+  "lon": 18.073834
+ },
+ {
+  "name": "Nordic Light Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.332572,
+  "lon": 18.05715
+ },
+ {
+  "name": "ProfilHotels Savoy Jönköping",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.781366,
+  "lon": 14.160246
+ },
+ {
+  "name": "ProfilHotels | Nacka",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.306884,
+  "lon": 18.118166
+ },
+ {
+  "name": "Quality Hotel 11 & Eriksbergshallen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.701076,
+  "lon": 11.913762
+ },
+ {
+  "name": "Quality Hotel Arlanda XPO",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.608057,
+  "lon": 17.897594
+ },
+ {
+  "name": "Quality Hotel Bodensia",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 65.82467,
+  "lon": 21.687235
+ },
+ {
+  "name": "Quality Hotel Galaxen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.487737,
+  "lon": 15.429858
+ },
+ {
+  "name": "Quality Hotel Globe",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.29264,
+  "lon": 18.084161
+ },
+ {
+  "name": "Quality Hotel Grand, Borås",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.7194,
+  "lon": 12.936959
+ },
+ {
+  "name": "Quality Hotel Strawberry Arena",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.372141,
+  "lon": 18.003042
+ },
+ {
+  "name": "Quality Hotel The Mill",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.599649,
+  "lon": 13.007312
+ },
+ {
+  "name": "Quality Hotel The Weaver",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.66804,
+  "lon": 12.010759
+ },
+ {
+  "name": "Quality Hotel View",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.562191,
+  "lon": 12.976095
+ },
+ {
+  "name": "Quality Hotel Waterfront",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.690572,
+  "lon": 11.90772
+ },
+ {
+  "name": "Quality Hotel Winn Göteborg",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.730343,
+  "lon": 11.980597
+ },
+ {
+  "name": "Quality Hotel Winn, Haninge",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.165703,
+  "lon": 18.135055
+ },
+ {
+  "name": "Radisson Blu Arlandia Hotel, Stockholm-Arlanda",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.639456,
+  "lon": 17.941708
+ },
+ {
+  "name": "Radisson Blu Royal Viking Hotel, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.331513,
+  "lon": 18.058127
+ },
+ {
+  "name": "Radisson Blu Waterfront Hotel, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.330103,
+  "lon": 18.055915
+ },
+ {
+  "name": "Radisson Collection Strand Hotel, Stockholm",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.33093,
+  "lon": 18.07705
+ },
+ {
+  "name": "Riksgränsen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 68.426422,
+  "lon": 18.1248
+ },
+ {
+  "name": "STF Abisko Turiststation",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 68.358623,
+  "lon": 18.783678
+ },
+ {
+  "name": "Scandic Alvik",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.331623,
+  "lon": 17.982379
+ },
+ {
+  "name": "Scandic Anglais",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.337028,
+  "lon": 18.072945
+ },
+ {
+  "name": "Scandic Arlandastad",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.6106,
+  "lon": 17.895273
+ },
+ {
+  "name": "Scandic Arvika",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.65555,
+  "lon": 12.592333
+ },
+ {
+  "name": "Scandic Bollnäs",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 61.350184,
+  "lon": 16.401664
+ },
+ {
+  "name": "Scandic Borlänge",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.484328,
+  "lon": 15.43516
+ },
+ {
+  "name": "Scandic Continental",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.331094,
+  "lon": 18.059567
+ },
+ {
+  "name": "Scandic Crown",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.708238,
+  "lon": 11.977985
+ },
+ {
+  "name": "Scandic Europa",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.7082,
+  "lon": 11.971139
+ },
+ {
+  "name": "Scandic Grand Central",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.333827,
+  "lon": 18.055888
+ },
+ {
+  "name": "Scandic Göteborg Central",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.713366,
+  "lon": 11.971682
+ },
+ {
+  "name": "Scandic Järva Krog",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.379781,
+  "lon": 18.009875
+ },
+ {
+  "name": "Scandic Karlstad City",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.379342,
+  "lon": 13.505715
+ },
+ {
+  "name": "Scandic Kiruna",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 67.848579,
+  "lon": 20.303863
+ },
+ {
+  "name": "Scandic Kista",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.402151,
+  "lon": 17.948266
+ },
+ {
+  "name": "Scandic Klarälven",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.391195,
+  "lon": 13.497196
+ },
+ {
+  "name": "Scandic Kramer",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.606964,
+  "lon": 12.999601
+ },
+ {
+  "name": "Scandic Landvetter",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.669349,
+  "lon": 12.296903
+ },
+ {
+  "name": "Scandic Lugnet Falun",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.613056,
+  "lon": 15.652778
+ },
+ {
+  "name": "Scandic Luleå",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 65.603722,
+  "lon": 22.132666
+ },
+ {
+  "name": "Scandic Malmen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.314542,
+  "lon": 18.073588
+ },
+ {
+  "name": "Scandic Malmö City",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.600971,
+  "lon": 13.00392
+ },
+ {
+  "name": "Scandic Mölndal",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.653781,
+  "lon": 12.015192
+ },
+ {
+  "name": "Scandic No. 25",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.709722,
+  "lon": 11.981389
+ },
+ {
+  "name": "Scandic Opalen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.701319,
+  "lon": 11.984811
+ },
+ {
+  "name": "Scandic Park",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.340918,
+  "lon": 18.075448
+ },
+ {
+  "name": "Scandic Plaza Borås",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.724065,
+  "lon": 12.940458
+ },
+ {
+  "name": "Scandic Rubinen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.699806,
+  "lon": 11.976494
+ },
+ {
+  "name": "Scandic Segevång",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.618393,
+  "lon": 13.063528
+ },
+ {
+  "name": "Scandic Sjöfartshotellet",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.318722,
+  "lon": 18.075874
+ },
+ {
+  "name": "Scandic Skärholmen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.273183,
+  "lon": 17.908864
+ },
+ {
+  "name": "Scandic St Jörgen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.603477,
+  "lon": 13.001864
+ },
+ {
+  "name": "Scandic Star Lund",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.695541,
+  "lon": 13.224919
+ },
+ {
+  "name": "Scandic Star Sollentuna",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.426966,
+  "lon": 17.951407
+ },
+ {
+  "name": "Scandic Stortorget",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.605778,
+  "lon": 12.999009
+ },
+ {
+  "name": "Scandic Södertälje",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.174602,
+  "lon": 17.643991
+ },
+ {
+  "name": "Scandic Södra Kajen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.349044,
+  "lon": 18.113027
+ },
+ {
+  "name": "Scandic Talk",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.276962,
+  "lon": 18.015874
+ },
+ {
+  "name": "Scandic Triangeln",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.596342,
+  "lon": 13.0013
+ },
+ {
+  "name": "Scandic Täby",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.434516,
+  "lon": 18.064722
+ },
+ {
+  "name": "Scandic Upplands Väsby",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.51571,
+  "lon": 17.922746
+ },
+ {
+  "name": "Scandic Wallin",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.336753,
+  "lon": 18.056337
+ },
+ {
+  "name": "Sheraton Stockholm Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.329073,
+  "lon": 18.061616
+ },
+ {
+  "name": "Skeppsholmen",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.324815,
+  "lon": 18.084918
+ },
+ {
+  "name": "Smådalarö Gård",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.166801,
+  "lon": 18.455643
+ },
+ {
+  "name": "Stallmästaregården",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.351867,
+  "lon": 18.043301
+ },
+ {
+  "name": "The Bishops Arms",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 55.706317,
+  "lon": 13.191306
+ },
+ {
+  "name": "Thon Partner Hotel Kungsbron",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.331986,
+  "lon": 18.05302
+ },
+ {
+  "name": "Tree Hotel",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 66.072856,
+  "lon": 20.981835
+ },
+ {
+  "name": "voco Stockholm - Kista by IHG",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.406662,
+  "lon": 17.952249
+ },
+ {
+  "name": "斯堪迪克宫根斯科尔瓦酒店",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.27255,
+  "lon": 17.917057
+ },
+ {
+  "name": "斯堪迪克温恩酒店",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.382908,
+  "lon": 13.505127
+ },
+ {
+  "name": "斯堪迪克维多利亚大厦酒店",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.406881,
+  "lon": 17.957221
+ },
+ {
+  "name": "斯堪迪克茵弗拉城市酒店",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.499234,
+  "lon": 17.928618
+ },
+ {
+  "name": "斯堪迪克贝克戴尔酒店",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 57.749318,
+  "lon": 11.988903
+ },
+ {
+  "name": "斯尔蒙布罗马贝斯特韦斯特酒店",
+  "country": "瑞典",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 59.358058,
+  "lon": 17.947259
+ },
+ {
+  "name": "AIRA",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.320876,
+  "lon": 18.123641
+ },
+ {
+  "name": "Astensmåla Gård",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 56.290577,
+  "lon": 14.727146
+ },
+ {
+  "name": "BIBON",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.334193,
+  "lon": 18.07318
+ },
+ {
+  "name": "Bamboo Garden",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.313062,
+  "lon": 18.075801
+ },
+ {
+  "name": "Bistro Mia",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 67.133233,
+  "lon": 20.663511
+ },
+ {
+  "name": "Bistro Nobel",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.325183,
+  "lon": 18.070724
+ },
+ {
+  "name": "Bistro Royal",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.608784,
+  "lon": 13.000806
+ },
+ {
+  "name": "Bistro Victor",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.357617,
+  "lon": 17.976678
+ },
+ {
+  "name": "Bistron",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 65.584892,
+  "lon": 22.143106
+ },
+ {
+  "name": "Blue Light Yokohama",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.31434,
+  "lon": 18.085532
+ },
+ {
+  "name": "Brasserie Fjällköket",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 68.346778,
+  "lon": 18.832577
+ },
+ {
+  "name": "Brostugan, Kärsön",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.325384,
+  "lon": 17.905629
+ },
+ {
+  "name": "Bun Bo Hue - Vietnamesisk Restaurang",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.346435,
+  "lon": 18.040372
+ },
+ {
+  "name": "CHiÔi",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.33364,
+  "lon": 18.065778
+ },
+ {
+  "name": "Café Sten Sture",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.325278,
+  "lon": 18.07
+ },
+ {
+  "name": "Café Valvet",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.61701,
+  "lon": 17.722632
+ },
+ {
+  "name": "Camp Ripan",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 67.860693,
+  "lon": 20.240475
+ },
+ {
+  "name": "Ceno Brasserie",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.689785,
+  "lon": 11.997217
+ },
+ {
+  "name": "Coco Thai",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.276283,
+  "lon": 15.215086
+ },
+ {
+  "name": "Domtrappkällaren",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.858302,
+  "lon": 17.635281
+ },
+ {
+  "name": "East",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.335723,
+  "lon": 18.072483
+ },
+ {
+  "name": "Feskekörka",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.701054,
+  "lon": 11.95776
+ },
+ {
+  "name": "Fiskekrogen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.705574,
+  "lon": 11.96139
+ },
+ {
+  "name": "Folkets hus (House of People)",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.336309,
+  "lon": 18.056938
+ },
+ {
+  "name": "Formosa since 1968",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.323062,
+  "lon": 18.07073
+ },
+ {
+  "name": "Fotografiska DINE & DRINK",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.317964,
+  "lon": 18.084831
+ },
+ {
+  "name": "Frost",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.379415,
+  "lon": 13.504595
+ },
+ {
+  "name": "Gastropol",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.34539,
+  "lon": 18.032024
+ },
+ {
+  "name": "Gate Gästgiveri",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.662886,
+  "lon": 12.615493
+ },
+ {
+  "name": "Grand Hôtel",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.329726,
+  "lon": 18.075713
+ },
+ {
+  "name": "Grand Palace Restaurang",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.313465,
+  "lon": 18.110682
+ },
+ {
+  "name": "Gustav Adolf",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.603325,
+  "lon": 13.000615
+ },
+ {
+  "name": "Göteborg Wok",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.722456,
+  "lon": 11.952972
+ },
+ {
+  "name": "Harlequin",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 63.826109,
+  "lon": 20.263887
+ },
+ {
+  "name": "Hjalmar Lundbohmsvägen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 67.863,
+  "lon": 20.227719
+ },
+ {
+  "name": "ICEHOTEL Restaurant",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 67.851234,
+  "lon": 20.59767
+ },
+ {
+  "name": "Johan P",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.604196,
+  "lon": 12.998722
+ },
+ {
+  "name": "Juno",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.334293,
+  "lon": 18.03205
+ },
+ {
+  "name": "Karamellan Café & Restaurang vid Drottningholm",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.323464,
+  "lon": 17.888255
+ },
+ {
+  "name": "Kattholmen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.324203,
+  "lon": 18.377552
+ },
+ {
+  "name": "Kin Long",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.596429,
+  "lon": 13.00073
+ },
+ {
+  "name": "Kinamuren",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.271295,
+  "lon": 15.211407
+ },
+ {
+  "name": "Kometen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.701141,
+  "lon": 11.975101
+ },
+ {
+  "name": "Kungsleden",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 68.35786,
+  "lon": 18.778083
+ },
+ {
+  "name": "La Pampa steakhouse",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.275884,
+  "lon": 15.207148
+ },
+ {
+  "name": "Lapportsvägen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 68.348626,
+  "lon": 18.826985
+ },
+ {
+  "name": "Ll'Amice Örebro",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.277491,
+  "lon": 15.215958
+ },
+ {
+  "name": "Moderna Museet",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.326047,
+  "lon": 18.084688
+ },
+ {
+  "name": "Movitz Pub & Restaurang",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.323447,
+  "lon": 18.069762
+ },
+ {
+  "name": "Museum of Spirits",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.326978,
+  "lon": 18.093876
+ },
+ {
+  "name": "Nutti Sámi Siida",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 67.846811,
+  "lon": 20.619783
+ },
+ {
+  "name": "Odinsborg Café & Restaurang",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.899065,
+  "lon": 17.633194
+ },
+ {
+  "name": "PONG Drottninggatan",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.336432,
+  "lon": 18.058723
+ },
+ {
+  "name": "PONG Lindhagen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.33737,
+  "lon": 18.009388
+ },
+ {
+  "name": "Restaurang Agaton",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.322962,
+  "lon": 18.072285
+ },
+ {
+  "name": "Restaurang CG",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 65.583435,
+  "lon": 22.14299
+ },
+ {
+  "name": "Restaurang Gubbhyllan",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.324877,
+  "lon": 18.100814
+ },
+ {
+  "name": "Restaurang Hongkong",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.331112,
+  "lon": 18.050277
+ },
+ {
+  "name": "Restaurang Hubertus AB",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.336588,
+  "lon": 18.060467
+ },
+ {
+  "name": "Restaurang Lai Wa",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.699266,
+  "lon": 11.965344
+ },
+ {
+  "name": "Restaurang Maxim",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.269474,
+  "lon": 15.209187
+ },
+ {
+  "name": "Restaurang Prinsen",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.334392,
+  "lon": 18.073294
+ },
+ {
+  "name": "Restaurang Quê",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.607279,
+  "lon": 13.001774
+ },
+ {
+  "name": "Restaurang Stortorgskällaren",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.324799,
+  "lon": 18.070886
+ },
+ {
+  "name": "Restaurang Udden",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.306535,
+  "lon": 18.006492
+ },
+ {
+  "name": "Restaurant Ardbeg Embassy",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.323149,
+  "lon": 18.071957
+ },
+ {
+  "name": "Restaurant Ekstedt",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.336782,
+  "lon": 18.074918
+ },
+ {
+  "name": "Restaurant Eld",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.326652,
+  "lon": 18.094864
+ },
+ {
+  "name": "Restaurant Frederiks Have",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.679138,
+  "lon": 12.525164
+ },
+ {
+  "name": "Restaurant Nya Tain Loon",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.381317,
+  "lon": 13.511231
+ },
+ {
+  "name": "Restaurant Pelikan",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.310595,
+  "lon": 18.076246
+ },
+ {
+  "name": "Restaurant Ricordi",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.332423,
+  "lon": 18.072062
+ },
+ {
+  "name": "Restaurant Tradition",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.325953,
+  "lon": 18.073853
+ },
+ {
+  "name": "Restaurant Waipo",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.334717,
+  "lon": 18.069299
+ },
+ {
+  "name": "Ristorante da Peppe",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.325361,
+  "lon": 18.067545
+ },
+ {
+  "name": "Rådhuskällaren",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.606506,
+  "lon": 13.001494
+ },
+ {
+  "name": "Sjöfartshuset Festvåning Stockholm",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.325703,
+  "lon": 18.075196
+ },
+ {
+  "name": "Sjömagasinet Sverige",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.691682,
+  "lon": 11.909163
+ },
+ {
+  "name": "Spill saluhall & eatery",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 67.847019,
+  "lon": 20.290839
+ },
+ {
+  "name": "Spritmuseum Restaurant",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.32683,
+  "lon": 18.094244
+ },
+ {
+  "name": "Stadshuskällaren",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.327845,
+  "lon": 18.055633
+ },
+ {
+  "name": "TORPEDVERKSTAN",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.3273,
+  "lon": 18.083596
+ },
+ {
+  "name": "Texas Longhorn",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.37982,
+  "lon": 13.506863
+ },
+ {
+  "name": "Trattorian",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.326455,
+  "lon": 18.04389
+ },
+ {
+  "name": "Tvåkanten",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 57.699486,
+  "lon": 11.97579
+ },
+ {
+  "name": "Vessel - Restaurang, Bar & Event",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.582286,
+  "lon": 12.921566
+ },
+ {
+  "name": "Villa Ekbacken",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.334558,
+  "lon": 17.902257
+ },
+ {
+  "name": "Villa Godthem",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.328598,
+  "lon": 18.100324
+ },
+ {
+  "name": "Wärdshuset Ulla Winbladh AB",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 59.32807,
+  "lon": 18.09984
+ },
+ {
+  "name": "Årstiderna",
+  "country": "瑞典",
+  "kind": "restaurant",
+  "desc": "",
+  "lat": 55.606741,
+  "lon": 12.998969
+ },
+ {
+  "name": "ABBA The Museum",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.324913,
+  "lon": 18.096966
+ },
+ {
+  "name": "Drottningholm Palace",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.321688,
+  "lon": 17.88683
+ },
+ {
+  "name": "Gripsholm Castle",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.256041,
+  "lon": 17.219451
+ },
+ {
+  "name": "ICEHOTEL",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 67.849884,
+  "lon": 20.597001
+ },
+ {
+  "name": "Lund Cathedral",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 55.704052,
+  "lon": 13.194
+ },
+ {
+  "name": "Museum of Spirits",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.326978,
+  "lon": 18.093876
+ },
+ {
+  "name": "Nobel Prize Museum",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.32531,
+  "lon": 18.070666
+ },
+ {
+  "name": "Riddarholmen",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.324902,
+  "lon": 18.06353
+ },
+ {
+  "name": "Skansen",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.326323,
+  "lon": 18.105858
+ },
+ {
+  "name": "Sofiero Palace",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 56.083888,
+  "lon": 12.659701
+ },
+ {
+  "name": "Stockholm City Hall",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.327789,
+  "lon": 18.055179
+ },
+ {
+  "name": "The Hallwyl Museum",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.333141,
+  "lon": 18.074542
+ },
+ {
+  "name": "Vasa Museum",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 59.328023,
+  "lon": 18.091396
+ },
+ {
+  "name": "World of Volvo",
+  "country": "瑞典",
+  "kind": "attraction",
+  "desc": "",
+  "lat": 57.689727,
+  "lon": 11.997458
+ },
+ {
+  "name": "7A Odenplan",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.342378,
+  "lon": 18.051703
+ },
+ {
+  "name": "Bistro Victor",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.357617,
+  "lon": 17.976678
+ },
+ {
+  "name": "Bygget Fest & Konferens - konferenslokal och festvåning Stockholm",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.334043,
+  "lon": 18.070936
+ },
+ {
+  "name": "Eric Ericsonhallen",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.326277,
+  "lon": 18.082213
+ },
+ {
+  "name": "FENIX STHLM",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.345455,
+  "lon": 18.032173
+ },
+ {
+  "name": "Feskekörka",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.701054,
+  "lon": 11.95776
+ },
+ {
+  "name": "Fiskekrogen",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.705574,
+  "lon": 11.96139
+ },
+ {
+  "name": "Gunnebo Palace and Gardens",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.65798,
+  "lon": 12.058353
+ },
+ {
+  "name": "Hällsnäs Hotell & Restaurang",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.675382,
+  "lon": 12.179037
+ },
+ {
+  "name": "Kajutan Stora Saluhallen",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.703437,
+  "lon": 11.967387
+ },
+ {
+  "name": "Långedrag Värdshus",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.669484,
+  "lon": 11.848951
+ },
+ {
+  "name": "Münchenbryggeriet",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.320597,
+  "lon": 18.055865
+ },
+ {
+  "name": "Origo",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.358003,
+  "lon": 17.976855
+ },
+ {
+  "name": "Radisson Blu Waterfront Hotel, Stockholm",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.330103,
+  "lon": 18.055915
+ },
+ {
+  "name": "River Restaurant On The Pier",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.699688,
+  "lon": 11.915699
+ },
+ {
+  "name": "Scandic Continental",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.331094,
+  "lon": 18.059567
+ },
+ {
+  "name": "Scandic Grand Central",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.333827,
+  "lon": 18.055888
+ },
+ {
+  "name": "Sjöfartshuset Festvåning Stockholm",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 59.325703,
+  "lon": 18.075196
+ },
+ {
+  "name": "Sjömagasinet Sverige",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.691682,
+  "lon": 11.909163
+ },
+ {
+  "name": "Wine Mechanics",
+  "country": "瑞典",
+  "kind": "venue",
+  "desc": "",
+  "lat": 57.728851,
+  "lon": 12.000959
+ },
+ {
+  "name": "凯米",
+  "country": "芬兰",
+  "kind": "city",
+  "desc": "",
+  "lat": 65.735568,
+  "lon": 24.565743
+ },
+ {
+  "name": "图尔库",
+  "country": "芬兰",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.45175,
+  "lon": 22.248577
+ },
+ {
+  "name": "罗瓦涅米",
+  "country": "芬兰",
+  "kind": "city",
+  "desc": "",
+  "lat": 66.503948,
+  "lon": 25.729391
+ },
+ {
+  "name": "艾斯堡",
+  "country": "芬兰",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.205491,
+  "lon": 24.6559
+ },
+ {
+  "name": "范塔",
+  "country": "芬兰",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.293352,
+  "lon": 25.037769
+ },
+ {
+  "name": "赫尔辛基",
+  "country": "芬兰",
+  "kind": "city",
+  "desc": "",
+  "lat": 60.169856,
+  "lon": 24.938379
+ },
+ {
+  "name": "Airport Hotel Skyline",
+  "country": "芬兰",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.289127,
+  "lon": 24.950431
+ },
+ {
+  "name": "Heymo 1 by Sokos Hotels",
+  "country": "芬兰",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.1789,
+  "lon": 24.830096
+ },
+ {
+  "name": "Radisson Blu Hotel, Espoo",
+  "country": "芬兰",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.183874,
+  "lon": 24.83642
+ },
+ {
+  "name": "号角酒店赫尔辛基机场",
+  "country": "芬兰",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.305699,
+  "lon": 24.959766
+ },
+ {
+  "name": "布雷克索考斯弗拉明葛酒店",
+  "country": "芬兰",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.290272,
+  "lon": 24.969731
+ },
+ {
+  "name": "斯堪的阿维亚波利斯酒店",
+  "country": "芬兰",
+  "kind": "hotel",
+  "desc": "",
+  "lat": 60.297284,
+  "lon": 24.961649
+ }
+]
