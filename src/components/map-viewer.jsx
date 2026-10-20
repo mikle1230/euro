@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { MAPS, embedUrl, openUrl } from '@/data/maps'
+import { MAPS, GROUP_ORDER, embedUrl, openUrl } from '@/data/maps'
 
 const LAST_KEY = 'euro-map-last'
 
@@ -60,7 +60,14 @@ function MapList({ active, onSelect, query, setQuery }) {
       }
       index.get(g).items.push(m)
     })
+    const rank = (name) => {
+      const i = GROUP_ORDER.indexOf(name)
+      return i === -1 ? GROUP_ORDER.length : i
+    }
     return out
+      .map((g, i) => ({ g, i }))
+      .sort((a, b) => (rank(a.g.name) - rank(b.g.name)) || (a.i - b.i))
+      .map(({ g }) => g)
   }, [query])
 
   return (
