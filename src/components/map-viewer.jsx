@@ -1,39 +1,109 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState, useSyncExternalStore } from 'react'
 import { MAPS, GROUP_ORDER, embedUrl, openUrl } from '@/data/maps'
 
 const LAST_KEY = 'euro-map-last'
+const RAIL_KEY = 'euro-map-rail'
+
+// ---------------------------------------------------------------
+// 「当前选中的图」与「左栏是否收起」都要从 URL / localStorage 恢复。
+// 若放在 effect 里同步 setState，会触发级联渲染（React Compiler 规则
+// react-hooks/set-state-in-effect）。改用 useSyncExternalStore：
+// 服务端与水合时先取快照，水合后再读真实值，切换交给 React 自己处理。
+// ---------------------------------------------------------------
+const midListeners = new Set()
+let midOverride = null
+
+function readMid() {
+  try {
+    const fromUrl = new URLSearchParams(window.location.search).get('m')
+    const mid = fromUrl || localStorage.getItem(LAST_KEY)
+    return MAPS.some((m) => m.mid === mid) ? mid : null
+  } catch (e) {
+    return null
+  }
+}
+const subscribeMid = (cb) => {
+  midListeners.add(cb)
+  return () => midListeners.delete(cb)
+}
+const getMid = () => midOverride || readMid() || MAPS[0].mid
+const getMidServer = () => MAPS[0].mid
+
+const railListeners = new Set()
+let railOverride = null
+
+function readRail() {
+  try {
+    return localStorage.getItem(RAIL_KEY) === '1' ? '1' : '0'
+  } catch (e) {
+    return '0'
+  }
+}
+const subscribeRail = (cb) => {
+  railListeners.add(cb)
+  return () => railListeners.delete(cb)
+}
+const getRail = () => railOverride || readRail()
+const getRailServer = () => '0'
+
+function persistMid(mid) {
+  midOverride = mid
+  try {
+    localStorage.setItem(LAST_KEY, mid)
+    const url = new URL(window.location.href)
+    url.searchParams.set('m', mid)
+    window.history.replaceState(null, '', url)
+  } catch (e) {}
+  midListeners.forEach((cb) => cb())
+}
+
+function persistRail(next) {
+  railOverride = next ? '1' : '0'
+  try {
+    localStorage.setItem(RAIL_KEY, railOverride)
+  } catch (e) {}
+  railListeners.forEach((cb) => cb())
+}
+
+// 等宽两位序号：列表与收起态序号条、右侧工具条共用同一套编号
+const SEQ = new Map(MAPS.map((m, i) => [m.mid, String(i + 1).padStart(2, '0')]))
+
+function groupMaps(list) {
+  const out = []
+  const index = new Map()
+  list.forEach((m) => {
+    const g = m.group || '未分组'
+    if (!index.has(g)) {
+      index.set(g, { name: g, items: [] })
+      out.push(index.get(g))
+    }
+    index.get(g).items.push(m)
+  })
+  const rank = (name) => {
+    const i = GROUP_ORDER.indexOf(name)
+    return i === -1 ? GROUP_ORDER.length : i
+  }
+  return out
+    .map((g, i) => ({ g, i }))
+    .sort((a, b) => rank(a.g.name) - rank(b.g.name) || a.i - b.i)
+    .map(({ g }) => g)
+}
 
 function MapRow({ map, active, onClick }) {
   return (
     <button
       type="button"
       onClick={onClick}
+      title={map.label}
       aria-current={active ? 'true' : undefined}
-      className="group w-full text-left px-2.5 py-2 rounded-md transition-colors flex items-start gap-2"
-      style={
-        active
-          ? {
-              background: 'var(--tab-on-bg)',
-              borderLeft: '2px solid var(--accent)',
-              paddingLeft: 8,
-            }
-          : { borderLeft: '2px solid transparent', paddingLeft: 8 }
-      }
+      className={`e-map-row${active ? ' on' : ''}`}
     >
+      <span className="e-map-seq">{SEQ.get(map.mid)}</span>
       <span className="min-w-0 flex-1">
-        <span
-          className="block text-[13px] leading-snug truncate"
-          style={{ color: active ? 'var(--accent)' : 'var(--text-primary)', fontWeight: active ? 600 : 400 }}
-        >
-          {map.label}
-        </span>
-        {map.note ? (
-          <span className="block text-[11px] truncate mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-            {map.note}
-          </span>
-        ) : null}
+        <span className="e-map-name">{map.label}</span>
+        {map.note ? <span className="e-map-note">{map.note}</span> : null}
       </span>
     </button>
   )
@@ -50,138 +120,128 @@ function MapList({ active, onSelect, query, setQuery }) {
             (m.note || '').toLowerCase().includes(q),
         )
       : MAPS
-    const out = []
-    const index = new Map()
-    list.forEach((m) => {
-      const g = m.group || '未分组'
-      if (!index.has(g)) {
-        index.set(g, { name: g, items: [] })
-        out.push(index.get(g))
-      }
-      index.get(g).items.push(m)
-    })
-    const rank = (name) => {
-      const i = GROUP_ORDER.indexOf(name)
-      return i === -1 ? GROUP_ORDER.length : i
-    }
-    return out
-      .map((g, i) => ({ g, i }))
-      .sort((a, b) => (rank(a.g.name) - rank(b.g.name)) || (a.i - b.i))
-      .map(({ g }) => g)
+    return groupMaps(list)
   }, [query])
 
   return (
     <div className="flex flex-col min-h-0 flex-1">
-      <div className="p-2.5 shrink-0">
+      <div className="p-2 shrink-0">
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="搜索地图…"
-          className="w-full px-2.5 py-1.5 rounded-md text-[13px] outline-none"
-          style={{
-            background: 'var(--bg-primary)',
-            border: '1px solid var(--chrome-border)',
-            color: 'var(--text-primary)',
-          }}
+          aria-label="搜索地图"
+          className="e-map-search"
         />
       </div>
-      <nav className="flex-1 overflow-y-auto px-2 pb-3 min-h-0">
+      <nav className="flex-1 overflow-y-auto px-1.5 pb-2 min-h-0">
         {groups.length === 0 ? (
-          <p className="px-2 py-6 text-[12px] text-center" style={{ color: 'var(--text-tertiary)' }}>
-            没有匹配的地图
-          </p>
+          <p className="e-map-empty">没有匹配的地图</p>
         ) : (
           groups.map((g) => (
-            <div key={g.name} className="mb-1.5">
-              <p
-                className="px-2.5 pt-2 pb-1 text-[10px] tracking-widest uppercase"
-                style={{ color: 'var(--text-tertiary)' }}
-              >
-                {g.name}
-              </p>
+            // 排序仍按 GROUP_ORDER，但列表视觉上是一条平铺清单：
+            // 不写分类名，也不画组间分隔线。
+            <div key={g.name}>
               {g.items.map((m) => (
-                <MapRow key={m.mid} map={m} active={m.mid === active} onClick={() => onSelect(m.mid)} />
+                <MapRow
+                  key={m.mid}
+                  map={m}
+                  active={m.mid === active}
+                  onClick={() => onSelect(m.mid)}
+                />
               ))}
             </div>
           ))
         )}
       </nav>
-      <p className="px-3 py-2 text-[11px] shrink-0 border-t" style={{ borderColor: 'var(--chrome-border)', color: 'var(--text-tertiary)' }}>
-        共 {MAPS.length} 张图
-      </p>
+      <p className="e-map-foot">共 {MAPS.length} 张图</p>
     </div>
   )
 }
 
+// 收起态：只剩等宽序号条，点击照样切图，不必先展开
+function MapRailNums({ active, onSelect }) {
+  return (
+    <nav className="e-map-nums" aria-label="地图序号">
+      {MAPS.map((m) => (
+        <button
+          key={m.mid}
+          type="button"
+          onClick={() => onSelect(m.mid)}
+          title={m.label}
+          aria-label={m.label}
+          aria-current={m.mid === active ? 'true' : undefined}
+          className={`e-map-num${m.mid === active ? ' on' : ''}`}
+        >
+          {SEQ.get(m.mid)}
+        </button>
+      ))}
+    </nav>
+  )
+}
+
 export default function MapViewer() {
-  const [active, setActive] = useState(MAPS[0].mid)
+  const active = useSyncExternalStore(subscribeMid, getMid, getMidServer)
+  const collapsed = useSyncExternalStore(subscribeRail, getRail, getRailServer) === '1'
   const [query, setQuery] = useState('')
   const [sheet, setSheet] = useState(false)
-
-  useEffect(() => {
-    let wanted = null
-    try {
-      wanted = new URLSearchParams(window.location.search).get('m') || localStorage.getItem(LAST_KEY)
-    } catch (e) {}
-    if (wanted && MAPS.some((m) => m.mid === wanted)) setActive(wanted)
-  }, [])
 
   const current = MAPS.find((m) => m.mid === active) || MAPS[0]
 
   const select = (mid) => {
-    setActive(mid)
+    persistMid(mid)
     setSheet(false)
-    try {
-      localStorage.setItem(LAST_KEY, mid)
-      const url = new URL(window.location.href)
-      url.searchParams.set('m', mid)
-      window.history.replaceState(null, '', url)
-    } catch (e) {}
   }
 
   return (
-    <main className="flex-1 flex min-h-0">
-      {/* 桌面端左侧列表 */}
+    <main
+      data-skin="e"
+      className="flex-1 flex min-h-0"
+      style={{ background: 'var(--page-ground, var(--bg-primary))' }}
+    >
+      {/* 桌面端：地图索引条（窄，可收起） */}
       <aside
-        className="hidden md:flex w-[248px] shrink-0 flex-col border-r min-h-0"
-        style={{ borderColor: 'var(--chrome-border)', background: 'var(--bg-secondary)' }}
+        className={`e-map-rail hidden md:flex shrink-0 flex-col min-h-0${collapsed ? ' is-collapsed' : ''}`}
       >
-        <MapList active={active} onSelect={select} query={query} setQuery={setQuery} />
+        <div className="e-map-rail-head">
+          {collapsed ? null : (
+            <>
+              <span className="e-map-rail-title">选择地图</span>
+              <span className="flex-1" />
+            </>
+          )}
+          <button
+            type="button"
+            onClick={() => persistRail(!collapsed)}
+            className="e-map-toggle"
+            title={collapsed ? '展开地图列表' : '收起地图列表'}
+            aria-label={collapsed ? '展开地图列表' : '收起地图列表'}
+            aria-expanded={!collapsed}
+          >
+            {collapsed ? '»' : '«'}
+          </button>
+        </div>
+        {collapsed ? (
+          <MapRailNums active={active} onSelect={select} />
+        ) : (
+          <MapList active={active} onSelect={select} query={query} setQuery={setQuery} />
+        )}
       </aside>
 
       {/* 右侧地图区 */}
       <div className="flex-1 flex flex-col min-w-0 min-h-0">
-        <div
-          className="flex items-center gap-2 px-2 sm:px-3 py-1.5 border-b text-xs sm:text-sm shrink-0"
-          style={{ borderColor: 'var(--chrome-border)' }}
-        >
+        <div className="e-map-bar shrink-0">
           <button
             type="button"
             onClick={() => setSheet(true)}
-            className="md:hidden flex items-center gap-1.5 px-2 py-1 rounded-md max-w-[60%]"
-            style={{ background: 'var(--chrome-btn-bg)', border: '1px solid var(--chrome-btn-border)', color: 'var(--chrome-btn-fg)' }}
+            className="e-map-act md:hidden max-w-[62%] truncate"
           >
-            <span className="truncate">{current.label}</span>
-            <span aria-hidden="true">▾</span>
+            {current.label} ▾
           </button>
-          <span className="hidden md:inline font-medium truncate" style={{ color: 'var(--text-primary)' }}>
-            {current.label}
-          </span>
-          {current.group ? (
-            <span
-              className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded shrink-0"
-              style={{ background: 'var(--tab-off-bg)', color: 'var(--text-tertiary)' }}
-            >
-              {current.group}
-            </span>
-          ) : null}
+          <span className="e-map-bar-no hidden md:inline">{SEQ.get(current.mid)}</span>
+          <span className="e-map-bar-name hidden md:block">{current.label}</span>
           <span className="flex-1" />
-          <a
-            href={openUrl(current.mid)}
-            target="_blank"
-            rel="noreferrer"
-            className="shrink-0 underline underline-offset-2 opacity-70 hover:opacity-100 text-[11px] sm:text-xs"
-          >
+          <a href={openUrl(current.mid)} target="_blank" rel="noreferrer" className="e-map-act">
             在新窗口打开
           </a>
         </div>
@@ -190,7 +250,7 @@ export default function MapViewer() {
           key={current.mid}
           src={embedUrl(current.mid)}
           title={`地图（Google My Maps）：${current.label}`}
-          className="w-full flex-1 border-0 bg-transparent"
+          className="e-map-frame"
           style={{ minHeight: 'calc(100vh - 96px)' }}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -198,21 +258,13 @@ export default function MapViewer() {
         />
       </div>
 
-      {/* 手机端抽屉 */}
+      {/* 手机端选题抽屉 */}
       {sheet ? (
-        <div className="md:hidden fixed inset-0 z-50 flex flex-col" style={{ background: 'var(--bg-primary)' }}>
-          <div
-            className="flex items-center gap-2 px-3 py-2 border-b shrink-0"
-            style={{ borderColor: 'var(--chrome-border)' }}
-          >
-            <span className="text-sm font-medium">选择地图</span>
+        <div className="e-map-sheet md:hidden">
+          <div className="e-map-sheet-head shrink-0">
+            <span className="e-map-sheet-title">选择地图</span>
             <span className="flex-1" />
-            <button
-              type="button"
-              onClick={() => setSheet(false)}
-              className="px-2.5 py-1 rounded-md text-xs"
-              style={{ background: 'var(--chrome-btn-bg)', border: '1px solid var(--chrome-btn-border)', color: 'var(--chrome-btn-fg)' }}
-            >
+            <button type="button" onClick={() => setSheet(false)} className="e-map-act">
               关闭
             </button>
           </div>
