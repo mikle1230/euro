@@ -2,16 +2,18 @@
 // 纯函数模块，无 'use client'，服务端/客户端均可 import。
 
 export const QUOTE_RATES = {
-  // 团务人头费：每团开单第 1 行固定项 1010 HEADFEE，12 EUR/人（BJS/CN）
-  // 出处：刘逸伦 2026-10-16 转达公司新规（TourMaker Request BJSLH30020 截图）
+  // 团务人头费：1010 HEADFEE，12 EUR/人（BJS/CN）
+  // 2026-10-16 公司新规「每团必录」→ 2026-10-21 Tony sales meeting 改为「仅参与 override 的客户」收取。
   headfee: {
     price: 12,
     currency: 'EUR',
     priceUnit: 'perPerson',
     cityCode: 'BJS',
     countryCode: 'CN',
-    note: '每团必录',
+    note: '仅 override 客户（携程/华程/盛行/竹园/众信）',
   },
+  // 需要收 HEADFEE 的客户名单（参与 override 的 5 家）；其余客户不加。
+  headfeeOverrideClients: ['携程', '华程', '盛行', '竹园', '众信'],
   // 旅行保险：每团必录，2.66 USD/人
   insurance: {
     price: 2.66,
@@ -50,4 +52,12 @@ export const QUOTE_RATES = {
     SK: { name: 'Bratislava - ROAD TAX PER DAY', note: 'Slovakia ROAD TAX（金额待实填；LDC 附表 ROAD TAX PER DAY €12）' },
     CR: { name: 'Zagreb - Croatian Road Tax', note: 'Croatia Road Tax（金额待实填；LDC 附表为 Croatian VAT €30/天，与本条目名称不同，待核）' },
   },
+}
+
+// 是否收 HEADFEE：只有参与 override 的客户（名单见 QUOTE_RATES.headfeeOverrideClients）才收。
+// 客户名允许带后缀（如「众信旅游」），用包含匹配；空客户名一律按不收处理。
+export function needsHeadfee(client) {
+  const name = String(client || '').trim()
+  if (!name) return false
+  return QUOTE_RATES.headfeeOverrideClients.some((c) => name.includes(c))
 }

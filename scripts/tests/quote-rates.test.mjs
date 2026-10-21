@@ -3,17 +3,27 @@
 // 其余留空由操作员实填，参考价写在 note 里，不自动计入报价。
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { QUOTE_RATES } from '../../src/lib/quote-rates.js'
+import { QUOTE_RATES, needsHeadfee } from '../../src/lib/quote-rates.js'
 
-test('headfee：每团必录，12 EUR/人（BJS/CN）', () => {
+test('headfee：12 EUR/人（BJS/CN），仅 override 客户收取', () => {
   assert.deepEqual(QUOTE_RATES.headfee, {
     price: 12,
     currency: 'EUR',
     priceUnit: 'perPerson',
     cityCode: 'BJS',
     countryCode: 'CN',
-    note: '每团必录',
+    note: '仅 override 客户（携程/华程/盛行/竹园/众信）',
   })
+  assert.deepEqual(QUOTE_RATES.headfeeOverrideClients, ['携程', '华程', '盛行', '竹园', '众信'])
+})
+
+test('needsHeadfee：名单内（可带后缀）为 true，其余为 false', () => {
+  assert.equal(needsHeadfee('携程'), true)
+  assert.equal(needsHeadfee('众信旅游'), true)
+  assert.equal(needsHeadfee('华程国旅'), true)
+  assert.equal(needsHeadfee('某地方旅行社'), false)
+  assert.equal(needsHeadfee(''), false)
+  assert.equal(needsHeadfee(undefined), false)
 })
 
 test('insurance：每团必录，2.66 USD/人（BJS/CN）', () => {

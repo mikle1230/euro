@@ -2,7 +2,7 @@
 // （旅行保险 / THROUGH COACH / EMPTY RUN 空驶 / 接机 MTC / PRE-POST NIGHT）。
 // 纯函数、无副作用，可运行于服务端 route.js 与客户端。
 // 费率常量集中在 ./quote-rates.js；EMPTY RUN 真实车程在 route.js 用 patchEmptyRunRoadKm 异步补全。
-import { QUOTE_RATES } from './quote-rates.js'
+import { QUOTE_RATES, needsHeadfee } from './quote-rates.js'
 import { getCityCode } from './quos-mapping.js'
 import { resolveLdcSupplier, hasArcticCity, KNOWN_COUNTRY_CODES, ER_RULES, matchFixedEr } from './ldc-mapping.js'
 import { estimateRoadKmFallback, roadKmBetween } from './road-distance.js'
@@ -35,7 +35,8 @@ function parseGuestCount(groupSize) {
   return Number.isFinite(n) && n > 0 ? n : 0
 }
 
-// 团务人头费：每团开单第 1 行固定项 1010 HEADFEE，12 EUR/人（公司新规，刘逸伦 2026-10-16）
+// 团务人头费：1010 HEADFEE，12 EUR/人 —— 仅参与 override 的客户（携程/华程/盛行/竹园/众信）收取
+// （2026-10-16「每团必录」→ 2026-10-21 Tony sales meeting 改口径）
 function makeHeadfee(groupSize) {
   const rate = QUOTE_RATES.headfee
   return {
@@ -323,7 +324,7 @@ function makePrePostNight(ldc) {
   }
 }
 
-export function applyQuoteRules(parsed) {
+export function applyQuoteRules(parsed, options = {}) {
   if (!parsed || !Array.isArray(parsed.days) || parsed.days.length === 0) return parsed
 
   // 浅拷贝 days 及每项 items，避免原地改动入参
@@ -430,10 +431,12 @@ export function applyQuoteRules(parsed) {
   const arcticCityNames = realDays.flatMap((d) => [d.cityName, d.cityNameEn])
   const ldc = resolveLdcSupplier(ldcCountries, { arctic: hasArcticCity(arcticCityNames) })
 
-  // 2) 每团开单固定两行（2026-10-16 公司新规）：1010 HEADFEE 12 EUR/人 + 1020 旅行保险 2.66 USD/人，
-  //    均置顶、必录、按人数计。顺序：HEADFEE → 保险 → 其余行程条目。
+  // 2) 固定项置顶、按人数计：旅行保险 2.66 USD/人每团必录；
+  //    HEADFEE 12 EUR/人**仅参与 override 的客户**（携程/华程/盛行/竹园/众信，2026-10-21 新规），
+  //    其余客户不加。顺序仍为 HEADFEE（如有）→ 保险 → 其余行程条目。
+  const client = options.client ?? parsed.clientName ?? parsed.client ?? ''
   realDays[0].items = [
-    makeHeadfee(parsed.groupSize),
+    ...(needsHeadfee(client) ? [makeHeadfee(parsed.groupSize)] : []),
     makeInsurance(parsed.groupSize),
     ...(realDays[0].items || []),
   ]

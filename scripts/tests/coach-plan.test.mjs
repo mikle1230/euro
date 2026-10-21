@@ -13,7 +13,7 @@ function item(partial = {}) {
   return { type: 'attraction', name: 'x', costCategory: 'paid', ...partial }
 }
 
-test('第一天注入 HEADFEE + 旅行保险（顺序固定、数量=团人数）', () => {
+test('第一天必注入旅行保险，普通客户不加 HEADFEE（2026-10-21 新规）', () => {
   const parsed = {
     groupSize: 30,
     days: [day(1, '巴黎'), day(2, '巴黎')],
@@ -27,15 +27,34 @@ test('第一天注入 HEADFEE + 旅行保险（顺序固定、数量=团人数�
   assert.equal(ins.cityCode, 'BJS')
   assert.equal(ins.countryCode, 'CN')
 
-  const headfee = d1.items.find((i) => i.quoteKind === 'headfee')
-  assert.ok(headfee, '应该有 HEADFEE 项')
-  assert.equal(headfee.price, 12)
-  assert.equal(headfee.currency, 'EUR')
-  assert.equal(headfee.quantity, 30)
-  assert.equal(headfee.cityCode, 'BJS')
-  assert.equal(headfee.countryCode, 'CN')
-  // 1010 在 1020 之前
-  assert.ok(d1.items.indexOf(headfee) < d1.items.indexOf(ins), 'HEADFEE 应排在保险之前')
+  assert.equal(d1.items.find((i) => i.quoteKind === 'headfee'), undefined, '普通客户不应有 HEADFEE')
+  assert.equal(d1.items[0], ins, '保险应为 D1 第 1 项')
+})
+
+test('override 客户（携程/华程/盛行/竹园/众信）加 HEADFEE，排在保险之前', () => {
+  for (const client of ['携程', '华程', '盛行', '竹园', '众信', '众信旅游']) {
+    const parsed = { groupSize: 30, days: [day(1, '巴黎'), day(2, '巴黎')] }
+    const out = applyQuoteRules(parsed, { client })
+    const d1 = out.days.find((d) => d.dayNumber === 1)
+    const ins = d1.items.find((i) => i.quoteKind === 'insurance')
+    const headfee = d1.items.find((i) => i.quoteKind === 'headfee')
+    assert.ok(headfee, `${client} 应该有 HEADFEE 项`)
+    assert.equal(headfee.price, 12)
+    assert.equal(headfee.currency, 'EUR')
+    assert.equal(headfee.quantity, 30)
+    assert.equal(headfee.cityCode, 'BJS')
+    assert.equal(headfee.countryCode, 'CN')
+    assert.ok(d1.items.indexOf(headfee) < d1.items.indexOf(ins), 'HEADFEE 应排在保险之前')
+  }
+})
+
+test('客户名从 parsed.clientName 读取；非名单客户不加 HEADFEE', () => {
+  const parsed = { groupSize: 10, clientName: '携程', days: [day(1, '巴黎')] }
+  const d1 = applyQuoteRules(parsed).days[0]
+  assert.ok(d1.items.find((i) => i.quoteKind === 'headfee'))
+
+  const other = applyQuoteRules({ groupSize: 10, clientName: '某地方旅行社', days: [day(1, '巴黎')] }).days[0]
+  assert.equal(other.items.find((i) => i.quoteKind === 'headfee'), undefined)
 })
 
 test('城际 bus/car 项被移除（被 THROUGH COACH 合并替代）', () => {
